@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** RedeemEthResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemEthResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -49,6 +47,12 @@ public class RedeemEthResponse {
     @SerializedName(SERIALIZED_NAME_ETH_AMOUNT)
     @jakarta.annotation.Nullable
     private String ethAmount;
+
+    public static final String SERIALIZED_NAME_REDEEM_ID = "redeemId";
+
+    @SerializedName(SERIALIZED_NAME_REDEEM_ID)
+    @jakarta.annotation.Nullable
+    private Long redeemId;
 
     public static final String SERIALIZED_NAME_CONVERSION_RATIO = "conversionRatio";
 
@@ -102,6 +106,25 @@ public class RedeemEthResponse {
         this.ethAmount = ethAmount;
     }
 
+    public RedeemEthResponse redeemId(@jakarta.annotation.Nullable Long redeemId) {
+        this.redeemId = redeemId;
+        return this;
+    }
+
+    /**
+     * Get redeemId
+     *
+     * @return redeemId
+     */
+    @jakarta.annotation.Nullable
+    public Long getRedeemId() {
+        return redeemId;
+    }
+
+    public void setRedeemId(@jakarta.annotation.Nullable Long redeemId) {
+        this.redeemId = redeemId;
+    }
+
     public RedeemEthResponse conversionRatio(@jakarta.annotation.Nullable String conversionRatio) {
         this.conversionRatio = conversionRatio;
         return this;
@@ -151,13 +174,14 @@ public class RedeemEthResponse {
         RedeemEthResponse redeemEthResponse = (RedeemEthResponse) o;
         return Objects.equals(this.success, redeemEthResponse.success)
                 && Objects.equals(this.ethAmount, redeemEthResponse.ethAmount)
+                && Objects.equals(this.redeemId, redeemEthResponse.redeemId)
                 && Objects.equals(this.conversionRatio, redeemEthResponse.conversionRatio)
                 && Objects.equals(this.arrivalTime, redeemEthResponse.arrivalTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, ethAmount, conversionRatio, arrivalTime);
+        return Objects.hash(success, ethAmount, redeemId, conversionRatio, arrivalTime);
     }
 
     @Override
@@ -166,6 +190,7 @@ public class RedeemEthResponse {
         sb.append("class RedeemEthResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		ethAmount: ").append(toIndentedString(ethAmount)).append("\n");
+        sb.append("		redeemId: ").append(toIndentedString(redeemId)).append("\n");
         sb.append("		conversionRatio: ").append(toIndentedString(conversionRatio)).append("\n");
         sb.append("		arrivalTime: ").append(toIndentedString(arrivalTime)).append("\n");
         sb.append("}");
@@ -183,6 +208,10 @@ public class RedeemEthResponse {
         String ethAmountValueAsString = "";
         ethAmountValueAsString = ethAmountValue.toString();
         sb.append("ethAmount=").append(urlEncode(ethAmountValueAsString)).append("");
+        Object redeemIdValue = getRedeemId();
+        String redeemIdValueAsString = "";
+        redeemIdValueAsString = redeemIdValue.toString();
+        sb.append("redeemId=").append(urlEncode(redeemIdValueAsString)).append("");
         Object conversionRatioValue = getConversionRatio();
         String conversionRatioValueAsString = "";
         conversionRatioValueAsString = conversionRatioValue.toString();
@@ -221,6 +250,7 @@ public class RedeemEthResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("ethAmount");
+        openapiFields.add("redeemId");
         openapiFields.add("conversionRatio");
         openapiFields.add("arrivalTime");
 
@@ -243,18 +273,6 @@ public class RedeemEthResponse {
                                 "The required field(s) %s in RedeemEthResponse is not found in the"
                                         + " empty JSON string",
                                 RedeemEthResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RedeemEthResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `RedeemEthResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -292,7 +310,7 @@ public class RedeemEthResponse {
                         @Override
                         public void write(JsonWriter out, RedeemEthResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

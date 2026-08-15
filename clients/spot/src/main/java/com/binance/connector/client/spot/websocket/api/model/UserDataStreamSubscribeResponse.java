@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** UserDataStreamSubscribeResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserDataStreamSubscribeResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -55,7 +56,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private Object result;
+    private UserDataStreamSubscribeResponseResult result;
 
     public UserDataStreamSubscribeResponse() {}
 
@@ -97,7 +98,8 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
         this.status = status;
     }
 
-    public UserDataStreamSubscribeResponse result(@jakarta.annotation.Nullable Object result) {
+    public UserDataStreamSubscribeResponse result(
+            @jakarta.annotation.Nullable UserDataStreamSubscribeResponseResult result) {
         this.result = result;
         return this;
     }
@@ -108,11 +110,13 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
      * @return result
      */
     @jakarta.annotation.Nullable
-    public Object getResult() {
+    @Valid
+    public UserDataStreamSubscribeResponseResult getResult() {
         return result;
     }
 
-    public void setResult(@jakarta.annotation.Nullable Object result) {
+    public void setResult(
+            @jakarta.annotation.Nullable UserDataStreamSubscribeResponseResult result) {
         this.result = result;
     }
 
@@ -161,9 +165,9 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        Object resultValue = getResult();
+        UserDataStreamSubscribeResponseResult resultValue = getResult();
         if (resultValue != null) {
-            String resultValueAsString = resultValue.toString();
+            String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
 
@@ -262,6 +266,10 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
         }
+        // validate the optional field `result`
+        if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
+            UserDataStreamSubscribeResponseResult.validateJsonElement(jsonObj.get("result"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -282,7 +290,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, UserDataStreamSubscribeResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

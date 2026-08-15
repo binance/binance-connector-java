@@ -19,7 +19,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Accept Block Trade Order (TRADE)
 
-Accept a block trade order  Weight: 5
+Accept a block trade order  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -81,7 +81,7 @@ No authorization required
 
 Account Block Trade List (USER_DATA)
 
-Gets block trades for a specific account.  Weight: 5
+Gets block trades for a specific account.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -98,10 +98,10 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketMakerBlockTradeApi apiInstance = new MarketMakerBlockTradeApi(defaultClient);
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    String underlying = "underlying_example"; // String | underlying, e.g BTCUSDT
-    Long recvWindow = 56L; // Long | 
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    String underlying = "BTCUSDT"; // String | Underlying asset.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       AccountBlockTradeListResponse result = apiInstance.accountBlockTradeList(endTime, startTime, underlying, recvWindow);
       System.out.println(result);
@@ -122,8 +122,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
-| **underlying** | **String**| underlying, e.g BTCUSDT | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **underlying** | **String**| Underlying asset. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -149,7 +149,7 @@ No authorization required
 
 Cancel Block Trade Order (TRADE)
 
-Cancel a block trade order.  Weight: 5
+Cancel a block trade order.  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -166,8 +166,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketMakerBlockTradeApi apiInstance = new MarketMakerBlockTradeApi(defaultClient);
-    String blockOrderMatchingKey = "blockOrderMatchingKey_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String blockOrderMatchingKey = "7d046e6e-a429-4335-ab9d-6a681febcde5"; // String | Block trade matching key.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       apiInstance.cancelBlockTradeOrder(blockOrderMatchingKey, recvWindow);
     } catch (ApiException e) {
@@ -185,8 +185,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **blockOrderMatchingKey** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **blockOrderMatchingKey** | **String**| Block trade matching key. | |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -212,7 +212,7 @@ No authorization required
 
 Extend Block Trade Order (TRADE)
 
-Extends a block trade expire time by 30 mins from the current time.  Weight: 5
+Extends a block trade expire time by 30 mins from the current time.  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -274,7 +274,7 @@ No authorization required
 
 New Block Trade Order (TRADE)
 
-Send in a new block trade order.  Weight: 5
+Send in a new block trade order.  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -336,7 +336,7 @@ No authorization required
 
 Query Block Trade Details (USER_DATA)
 
-Query block trade details; returns block trade details from counterparty&#39;s perspective.  Weight: 5
+Query block trade details; returns block trade details from counterparty&#39;s perspective.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -353,8 +353,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketMakerBlockTradeApi apiInstance = new MarketMakerBlockTradeApi(defaultClient);
-    String blockOrderMatchingKey = "blockOrderMatchingKey_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String blockOrderMatchingKey = "12b96c28-ba05-8906-c89t-703215cfb2e6"; // String | Block trade matching key.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       QueryBlockTradeDetailsResponse result = apiInstance.queryBlockTradeDetails(blockOrderMatchingKey, recvWindow);
       System.out.println(result);
@@ -373,8 +373,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **blockOrderMatchingKey** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **blockOrderMatchingKey** | **String**| Block trade matching key. | |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 
@@ -400,7 +400,7 @@ No authorization required
 
 Query Block Trade Order (TRADE)
 
-Check block trade order status.  Weight: 5
+Check block trade order status.  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -417,11 +417,11 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketMakerBlockTradeApi apiInstance = new MarketMakerBlockTradeApi(defaultClient);
-    String blockOrderMatchingKey = "blockOrderMatchingKey_example"; // String | If specified, returns the specific block trade associated with the blockOrderMatchingKey
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    String underlying = "underlying_example"; // String | underlying, e.g BTCUSDT
-    Long recvWindow = 56L; // Long | 
+    String blockOrderMatchingKey = "7d046e6e-a429-4335-ab9d-6a681febcde5"; // String | If specified, returns the specific block trade associated with the blockOrderMatchingKey
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    String underlying = "BTCUSDT"; // String | Underlying asset.
+    Long recvWindow = 5000L; // Long | Recv Window.
     try {
       QueryBlockTradeOrderResponse result = apiInstance.queryBlockTradeOrder(blockOrderMatchingKey, endTime, startTime, underlying, recvWindow);
       System.out.println(result);
@@ -443,8 +443,8 @@ public class Example {
 | **blockOrderMatchingKey** | **String**| If specified, returns the specific block trade associated with the blockOrderMatchingKey | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
-| **underlying** | **String**| underlying, e.g BTCUSDT | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **underlying** | **String**| Underlying asset. | [optional] |
+| **recvWindow** | **Long**| Recv Window. | [optional] |
 
 ### Return type
 

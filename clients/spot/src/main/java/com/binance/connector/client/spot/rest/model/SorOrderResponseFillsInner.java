@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SorOrderResponseFillsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SorOrderResponseFillsInner {
     public static final String SERIALIZED_NAME_MATCH_TYPE = "matchType";
 
@@ -342,18 +340,6 @@ public class SorOrderResponseFillsInner {
                                 SorOrderResponseFillsInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SorOrderResponseFillsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SorOrderResponseFillsInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("matchType") != null && !jsonObj.get("matchType").isJsonNull())
                 && !jsonObj.get("matchType").isJsonPrimitive()) {
@@ -414,7 +400,7 @@ public class SorOrderResponseFillsInner {
                         @Override
                         public void write(JsonWriter out, SorOrderResponseFillsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

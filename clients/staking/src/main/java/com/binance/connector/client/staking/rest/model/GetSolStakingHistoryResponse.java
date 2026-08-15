@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetSolStakingHistoryResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSolStakingHistoryResponse {
     public static final String SERIALIZED_NAME_ROWS = "rows";
 
@@ -204,18 +202,6 @@ public class GetSolStakingHistoryResponse {
                                 GetSolStakingHistoryResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetSolStakingHistoryResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetSolStakingHistoryResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("rows") != null && !jsonObj.get("rows").isJsonNull()) {
             JsonArray jsonArrayrows = jsonObj.getAsJsonArray("rows");
@@ -256,7 +242,7 @@ public class GetSolStakingHistoryResponse {
                         @Override
                         public void write(JsonWriter out, GetSolStakingHistoryResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -30,7 +30,9 @@ import com.binance.connector.client.wallet.rest.model.DailyAccountSnapshotRespon
 import com.binance.connector.client.wallet.rest.model.DisableFastWithdrawSwitchRequest;
 import com.binance.connector.client.wallet.rest.model.EnableFastWithdrawSwitchRequest;
 import com.binance.connector.client.wallet.rest.model.GetApiKeyPermissionResponse;
+import com.binance.connector.client.wallet.rest.model.OrderType;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -84,12 +86,12 @@ public class AccountApiTest {
     /**
      * Account API Trading Status (USER_DATA)
      *
-     * <p>Fetch account api trading status detail. Weight: 1
+     * <p>Fetch account api trading status detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountApiTradingStatusTest() throws ApiException, CryptoException {
+    public void accountApiTradingStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountApiTradingStatusResponse> response =
                 api.accountApiTradingStatus(recvWindow);
@@ -114,12 +116,12 @@ public class AccountApiTest {
     /**
      * Account info (USER_DATA)
      *
-     * <p>Fetch account info detail. Weight: 1
+     * <p>Fetch account info detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountInfoTest() throws ApiException, CryptoException {
+    public void accountInfoTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountInfoResponse> response = api.accountInfo(recvWindow);
 
@@ -134,21 +136,19 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/account/info", actualRequest.url().encodedPath());
     }
 
     /**
      * Account Status (USER_DATA)
      *
-     * <p>Fetch account status detail. Weight: 1
+     * <p>Fetch account status detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountStatusTest() throws ApiException, CryptoException {
+    public void accountStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<AccountStatusResponse> response = api.accountStatus(recvWindow);
 
@@ -163,24 +163,22 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/account/status", actualRequest.url().encodedPath());
     }
 
     /**
      * Daily Account Snapshot (USER_DATA)
      *
-     * <p>Daily account snapshot * The query time period must be less then 30 days * Support query
-     * within the last one month only * If startTimeand endTime not sent, return records of the last
-     * 7 days by default Weight: 2400
+     * <p>Daily account snapshot Weight(IP): 2400 Security Type: USER_DATA Notes: - The query time
+     * period must be less then 30 days - Support query within the last one month only - If
+     * startTimeand endTime not sent, return records of the last 7 days by default
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void dailyAccountSnapshotTest() throws ApiException, CryptoException {
-        String type = "";
+    public void dailyAccountSnapshotTest() throws ApiException, CryptoException, IOException {
+        OrderType type = OrderType.MAIN_UMFUTURE;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 7L;
@@ -198,11 +196,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("type=MAIN_UMFUTURE&startTime=1623319461670&endTime=1641782889000&limit=7&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "type=&startTime=1623319461670&endTime=1641782889000&limit=7&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7f5d880300068afcaef8978dcf0b77c58c8307d0f2de2302fd75872e33a68f9e",
+                "97945237d0cc061e7b59a9d456b4b1f3a89788de5f86d77b87b93fdf212918e7",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/accountSnapshot", actualRequest.url().encodedPath());
     }
@@ -210,12 +206,14 @@ public class AccountApiTest {
     /**
      * Disable Fast Withdraw Switch (USER_DATA)
      *
-     * <p>Weight: 1
+     * <p>Disable Fast Withdraw Switch Weight(IP): 1 Security Type: USER_DATA Notes: - This request
+     * will disable fastwithdraw switch under your account. You need to enable \&quot;trade\&quot;
+     * option for the api key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void disableFastWithdrawSwitchTest() throws ApiException, CryptoException {
+    public void disableFastWithdrawSwitchTest() throws ApiException, CryptoException, IOException {
         DisableFastWithdrawSwitchRequest disableFastWithdrawSwitchRequest =
                 new DisableFastWithdrawSwitchRequest();
 
@@ -234,22 +232,22 @@ public class AccountApiTest {
         assertEquals(
                 "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/account/disableFastWithdrawSwitch", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/account/disableFastWithdrawSwitch", actualRequest.url().encodedPath());
     }
 
     /**
      * Enable Fast Withdraw Switch (USER_DATA)
      *
-     * <p>Enable Fast Withdraw Switch (USER_DATA) * This request will enable fastwithdraw switch
-     * under your account. &lt;br&gt;&lt;/br&gt; * When Fast Withdraw Switch is on, transferring
-     * funds to a Binance account will be done instantly. There is no on-chain transaction, no
-     * transaction ID and no withdrawal fee. Weight: 1
+     * <p>Enable Fast Withdraw Switch (USER_DATA) Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * This request will enable fastwithdraw switch under your account. You need to enable
+     * \&quot;trade\&quot; option for the api key which requests this endpoint. - When Fast Withdraw
+     * Switch is on, transferring funds to a Binance account will be done instantly. There is no
+     * on-chain transaction, no transaction ID and no withdrawal fee.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void enableFastWithdrawSwitchTest() throws ApiException, CryptoException {
+    public void enableFastWithdrawSwitchTest() throws ApiException, CryptoException, IOException {
         EnableFastWithdrawSwitchRequest enableFastWithdrawSwitchRequest =
                 new EnableFastWithdrawSwitchRequest();
 
@@ -268,19 +266,18 @@ public class AccountApiTest {
         assertEquals(
                 "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/account/enableFastWithdrawSwitch", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/account/enableFastWithdrawSwitch", actualRequest.url().encodedPath());
     }
 
     /**
      * Get API Key Permission (USER_DATA)
      *
-     * <p>Get API Key Permission Weight: 1
+     * <p>Get API Key Permission Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getApiKeyPermissionTest() throws ApiException, CryptoException {
+    public void getApiKeyPermissionTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetApiKeyPermissionResponse> response = api.getApiKeyPermission(recvWindow);
 
@@ -296,8 +293,7 @@ public class AccountApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/account/apiRestrictions", actualRequest.url().encodedPath());
     }
 }

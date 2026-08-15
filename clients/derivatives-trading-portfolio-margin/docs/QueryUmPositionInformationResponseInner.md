@@ -7,17 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**entryPrice** | **String** |  |  [optional] |
-|**leverage** | **String** |  |  [optional] |
-|**markPrice** | **String** |  |  [optional] |
-|**maxNotionalValue** | **String** |  |  [optional] |
-|**positionAmt** | **String** |  |  [optional] |
-|**notional** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**unRealizedProfit** | **String** |  |  [optional] |
-|**liquidationPrice** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
+|**entryPrice** | **String** | average entry price |  [optional] |
+|**leverage** | **String** | current initial leverage |  [optional] |
+|**markPrice** | **String** | Mark Price. |  [optional] |
+|**maxNotionalValue** | **String** | Max Notional Value. |  [optional] |
+|**positionAmt** | **String** | position amount |  [optional] |
+|**notional** | **String** | Notional. |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**unRealizedProfit** | **String** | Un Realized Profit. |  [optional] |
+|**liquidationPrice** | **String** | Liquidation Price. |  [optional] |
+|**positionSide** | **String** | BOTH means that it is the position of One-way Mode |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
 
 
 

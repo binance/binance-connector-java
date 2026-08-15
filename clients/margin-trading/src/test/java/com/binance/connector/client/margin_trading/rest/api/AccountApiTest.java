@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -30,6 +30,7 @@ import com.binance.connector.client.margin_trading.rest.model.EnableIsolatedMarg
 import com.binance.connector.client.margin_trading.rest.model.EnableIsolatedMarginAccountResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetBnbBurnStatusResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossIsolatedMarginCapitalFlowResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossMarginAccountDetailsResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossMarginFeeDataResponse;
@@ -37,6 +38,7 @@ import com.binance.connector.client.margin_trading.rest.model.QueryEnabledIsolat
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginAccountInfoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginFeeDataResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -90,21 +92,21 @@ public class AccountApiTest {
     /**
      * Adjust cross margin max leverage (USER_DATA)
      *
-     * <p>Adjust cross margin max leverage * The margin level need higher than the initial risk
-     * ratio of adjusted leverage, the initial risk ratio of 3x is 1.5 , the initial risk ratio of
-     * 5x is 1.25; The detail conditions on how to switch between Cross Margin Classic and Cross
-     * Margin Pro can refer to [the
+     * <p>Adjust cross margin max leverage Weight(UID): 3000, 1 times/min per IP Security Type:
+     * USER_DATA Notes: - The margin level need higher than the initial risk ratio of adjusted
+     * leverage, the initial risk ratio of 3x is 1.5 , the initial risk ratio of 5x is 1.25; The
+     * detail conditions on how to switch between Cross Margin Classic and Cross Margin Pro can
+     * refer to [the
      * FAQ](https://www.binance.com/en/support/faq/how-to-activate-the-cross-margin-pro-mode-on-binance-e27786da05e743a694b8c625b3bc475d).
-     * Weight: 3000
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void adjustCrossMarginMaxLeverageTest() throws ApiException, CryptoException {
+    public void adjustCrossMarginMaxLeverageTest()
+            throws ApiException, CryptoException, IOException {
         AdjustCrossMarginMaxLeverageRequest adjustCrossMarginMaxLeverageRequest =
                 new AdjustCrossMarginMaxLeverageRequest();
-
-        adjustCrossMarginMaxLeverageRequest.maxLeverage(0L);
+        adjustCrossMarginMaxLeverageRequest.maxLeverage(3L);
 
         ApiResponse<AdjustCrossMarginMaxLeverageResponse> response =
                 api.adjustCrossMarginMaxLeverage(adjustCrossMarginMaxLeverageRequest);
@@ -119,9 +121,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000maxLeverage=0", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000maxLeverage=3", signInputCaptor.getValue());
         assertEquals(
-                "a39b1baf07c2a88b549c3f24c42e32acc0d249317c2d393b8a05e79f41a62687",
+                "eb6bad7981d2d8dd6fb3daa81aa70e145e4817325e1234b97a5088a9ccdc95f8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/max-leverage", actualRequest.url().encodedPath());
     }
@@ -130,13 +132,14 @@ public class AccountApiTest {
      * Disable Isolated Margin Account (TRADE)
      *
      * <p>Disable isolated margin account for a specific symbol. Each trading pair can only be
-     * deactivated once every 24 hours. Weight: 300(UID)
+     * deactivated once every 24 hours. Weight(UID): 300 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void disableIsolatedMarginAccountTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void disableIsolatedMarginAccountTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<DisableIsolatedMarginAccountResponse> response =
                 api.disableIsolatedMarginAccount(symbol, recvWindow);
@@ -151,9 +154,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/isolated/account", actualRequest.url().encodedPath());
     }
@@ -162,16 +165,16 @@ public class AccountApiTest {
      * Enable Isolated Margin Account (TRADE)
      *
      * <p>Enable isolated margin account for a specific symbol(Only supports activation of
-     * previously disabled accounts). Weight: 300(UID)
+     * previously disabled accounts). Weight(UID): 300 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void enableIsolatedMarginAccountTest() throws ApiException, CryptoException {
+    public void enableIsolatedMarginAccountTest()
+            throws ApiException, CryptoException, IOException {
         EnableIsolatedMarginAccountRequest enableIsolatedMarginAccountRequest =
                 new EnableIsolatedMarginAccountRequest();
-
-        enableIsolatedMarginAccountRequest.symbol("");
+        enableIsolatedMarginAccountRequest.symbol("BTCUSDT");
 
         ApiResponse<EnableIsolatedMarginAccountResponse> response =
                 api.enableIsolatedMarginAccount(enableIsolatedMarginAccountRequest);
@@ -186,9 +189,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT", signInputCaptor.getValue());
         assertEquals(
-                "121e5417aa8a98df3f9c75d42ff90e316237814641c1f7a48f989064fd07a549",
+                "b2849379d99b0ce715e5ad9443d185c377f97a69766c31c6bc15eb0bc758e64e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/isolated/account", actualRequest.url().encodedPath());
     }
@@ -196,12 +199,12 @@ public class AccountApiTest {
     /**
      * Get BNB Burn Status (USER_DATA)
      *
-     * <p>Get BNB Burn Status Weight: 1(IP)
+     * <p>Get BNB Burn Status Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getBnbBurnStatusTest() throws ApiException, CryptoException {
+    public void getBnbBurnStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetBnbBurnStatusResponse> response = api.getBnbBurnStatus(recvWindow);
 
@@ -217,20 +220,19 @@ public class AccountApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/bnbBurn", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Summary of Margin account (USER_DATA)
      *
-     * <p>Get personal margin level information Weight: 10(IP)
+     * <p>Get personal margin level information Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSummaryOfMarginAccountTest() throws ApiException, CryptoException {
+    public void getSummaryOfMarginAccountTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSummaryOfMarginAccountResponse> response =
                 api.getSummaryOfMarginAccount(recvWindow);
@@ -255,15 +257,20 @@ public class AccountApiTest {
     /**
      * Query Cross Isolated Margin Capital Flow (USER_DATA)
      *
-     * <p>Query Cross Isolated Margin Capital Flow Weight: 100(IP)
+     * <p>Query Cross Isolated Margin Capital Flow Weight(IP): 100 Security Type: USER_DATA Notes: -
+     * Only supports querying the data of the last 90 days - The time between startTime and endTime
+     * cannot be longer than 7 days. - If fromId is set, the data with id &gt; fromId will be
+     * returned. Otherwise the latest data will be returned - To query isolated data, Symbol needs
+     * to be entered.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCrossIsolatedMarginCapitalFlowTest() throws ApiException, CryptoException {
-        String asset = "";
-        String symbol = "";
-        String type = "";
+    public void queryCrossIsolatedMarginCapitalFlowTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "USDT";
+        String symbol = "BTCUSDT";
+        OrderType type = OrderType.ROLL_IN;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long fromId = 1L;
@@ -284,23 +291,24 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "asset=&symbol=&type=&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "asset=USDT&symbol=BTCUSDT&type=ROLL_IN&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "9011115f6529558999b5851d10ea31bc0b653ee04f639978eb42a32572f9108c",
+                "00cf7bea4876592845cf629b8ceda79c21300d60f6891267c4df070f2075a035",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/margin/capital-flow", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/margin/capital-flow", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Cross Margin Account Details (USER_DATA)
      *
-     * <p>Query Cross Margin Account Details Weight: 10(IP)
+     * <p>Query Cross Margin Account Details Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCrossMarginAccountDetailsTest() throws ApiException, CryptoException {
+    public void queryCrossMarginAccountDetailsTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryCrossMarginAccountDetailsResponse> response =
                 api.queryCrossMarginAccountDetails(recvWindow);
@@ -326,14 +334,15 @@ public class AccountApiTest {
      * Query Cross Margin Fee Data (USER_DATA)
      *
      * <p>Get cross margin fee data collection with any vip level or user&#39;s current specific
-     * data as https://www.binance.com/en/margin-fee Weight: 1 when coin is specified;(IP)
+     * data as https://www.binance.com/en/margin-fee Weight: 1 when coin is specified;(IP) 5 when
+     * the coin parameter is omitted(IP) Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCrossMarginFeeDataTest() throws ApiException, CryptoException {
+    public void queryCrossMarginFeeDataTest() throws ApiException, CryptoException, IOException {
         Long vipLevel = 1L;
-        String coin = "";
+        String coin = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<QueryCrossMarginFeeDataResponse> response =
                 api.queryCrossMarginFeeData(vipLevel, coin, recvWindow);
@@ -348,11 +357,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("vipLevel=1&coin=BTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "vipLevel=1&coin=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "ddb11dcaf68f149982ca2e477c168aa17faba9ba32646be05b1af39be5822acb",
+                "2c22ef830ed6fa7ca93fd85d9ac9cfdb8728945aea2db6b5cdddb8a8aa9e3ce3",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/crossMarginData", actualRequest.url().encodedPath());
     }
@@ -360,12 +367,13 @@ public class AccountApiTest {
     /**
      * Query Enabled Isolated Margin Account Limit (USER_DATA)
      *
-     * <p>Query enabled isolated margin account limit. Weight: 1(IP)
+     * <p>Query enabled isolated margin account limit. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryEnabledIsolatedMarginAccountLimitTest() throws ApiException, CryptoException {
+    public void queryEnabledIsolatedMarginAccountLimitTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryEnabledIsolatedMarginAccountLimitResponse> response =
                 api.queryEnabledIsolatedMarginAccountLimit(recvWindow);
@@ -380,25 +388,29 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/margin/isolated/accountLimit", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/margin/isolated/accountLimit", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Isolated Margin Account Info (USER_DATA)
      *
-     * <p>Query Isolated Margin Account Info * If \&quot;symbols\&quot; is not sent, all isolated
-     * assets will be returned. * If \&quot;symbols\&quot; is sent, only the isolated assets of the
-     * sent symbols will be returned. Weight: 10(IP)
+     * <p>Query Isolated Margin Account Info Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * \&quot;symbols\&quot; is not sent, all isolated assets will be returned. - If
+     * \&quot;symbols\&quot; is sent, only the isolated assets of the sent symbols will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryIsolatedMarginAccountInfoTest() throws ApiException, CryptoException {
-        String symbols = "";
+    public void queryIsolatedMarginAccountInfoTest()
+            throws ApiException, CryptoException, IOException {
+        String symbols = "BTCUSDT,BNBUSDT,ADAUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryIsolatedMarginAccountInfoResponse> response =
                 api.queryIsolatedMarginAccountInfo(symbols, recvWindow);
@@ -413,10 +425,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbols=BTCUSDT%2CBNBUSDT%2CADAUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbols=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "75a5f82d3ffe60fadeb6d26bd9fa78c81c3f38810e0b7fb2fb801bc1b62a760f",
+                "c99ad6feba260e244f377c7b9aeff38f4a51b48770fe6f382e5b7e96710c0b37",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/isolated/account", actualRequest.url().encodedPath());
     }
@@ -425,14 +436,15 @@ public class AccountApiTest {
      * Query Isolated Margin Fee Data (USER_DATA)
      *
      * <p>Get isolated margin fee data collection with any vip level or user&#39;s current specific
-     * data as https://www.binance.com/en/margin-fee Weight: 1 when a single is specified;(IP)
+     * data as https://www.binance.com/en/margin-fee Weight: 1 when a single is specified;(IP) 10
+     * when the symbol parameter is omitted(IP) Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryIsolatedMarginFeeDataTest() throws ApiException, CryptoException {
+    public void queryIsolatedMarginFeeDataTest() throws ApiException, CryptoException, IOException {
         Long vipLevel = 1L;
-        String symbol = "";
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryIsolatedMarginFeeDataResponse> response =
                 api.queryIsolatedMarginFeeData(vipLevel, symbol, recvWindow);
@@ -447,11 +459,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("vipLevel=1&symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "vipLevel=1&symbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a74c3d13b438d83d79b36502abddfc99e544e261b191d5610ccacc18158c152d",
+                "c507a43589780a442d0f6be3a81a6835e0e2ad0653cb7a9ce7f60466cc500ff1",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/isolatedMarginData", actualRequest.url().encodedPath());
     }

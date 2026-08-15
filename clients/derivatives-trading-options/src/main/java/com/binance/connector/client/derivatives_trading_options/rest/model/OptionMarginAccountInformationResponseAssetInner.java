@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OptionMarginAccountInformationResponseAssetInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionMarginAccountInformationResponseAssetInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -80,11 +78,11 @@ public class OptionMarginAccountInformationResponseAssetInner {
     @jakarta.annotation.Nullable
     private String unrealizedPNL;
 
-    public static final String SERIALIZED_NAME_LP_PROFIT = "lpProfit";
+    public static final String SERIALIZED_NAME_ADJUSTED_EQUITY = "adjustedEquity";
 
-    @SerializedName(SERIALIZED_NAME_LP_PROFIT)
+    @SerializedName(SERIALIZED_NAME_ADJUSTED_EQUITY)
     @jakarta.annotation.Nullable
-    private String lpProfit;
+    private String adjustedEquity;
 
     public OptionMarginAccountInformationResponseAssetInner() {}
 
@@ -95,7 +93,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get asset
+     * asset
      *
      * @return asset
      */
@@ -115,7 +113,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get marginBalance
+     * margin Balance
      *
      * @return marginBalance
      */
@@ -135,7 +133,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get equity
+     * equity
      *
      * @return equity
      */
@@ -155,7 +153,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get available
+     * available
      *
      * @return available
      */
@@ -175,7 +173,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get initialMargin
+     * initial Margin
      *
      * @return initialMargin
      */
@@ -195,7 +193,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get maintMargin
+     * maint Margin
      *
      * @return maintMargin
      */
@@ -215,7 +213,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get unrealizedPNL
+     * unrealized PNL
      *
      * @return unrealizedPNL
      */
@@ -228,24 +226,24 @@ public class OptionMarginAccountInformationResponseAssetInner {
         this.unrealizedPNL = unrealizedPNL;
     }
 
-    public OptionMarginAccountInformationResponseAssetInner lpProfit(
-            @jakarta.annotation.Nullable String lpProfit) {
-        this.lpProfit = lpProfit;
+    public OptionMarginAccountInformationResponseAssetInner adjustedEquity(
+            @jakarta.annotation.Nullable String adjustedEquity) {
+        this.adjustedEquity = adjustedEquity;
         return this;
     }
 
     /**
-     * Get lpProfit
+     * adjusted Equity
      *
-     * @return lpProfit
+     * @return adjustedEquity
      */
     @jakarta.annotation.Nullable
-    public String getLpProfit() {
-        return lpProfit;
+    public String getAdjustedEquity() {
+        return adjustedEquity;
     }
 
-    public void setLpProfit(@jakarta.annotation.Nullable String lpProfit) {
-        this.lpProfit = lpProfit;
+    public void setAdjustedEquity(@jakarta.annotation.Nullable String adjustedEquity) {
+        this.adjustedEquity = adjustedEquity;
     }
 
     @Override
@@ -277,7 +275,8 @@ public class OptionMarginAccountInformationResponseAssetInner {
                         this.unrealizedPNL,
                         optionMarginAccountInformationResponseAssetInner.unrealizedPNL)
                 && Objects.equals(
-                        this.lpProfit, optionMarginAccountInformationResponseAssetInner.lpProfit);
+                        this.adjustedEquity,
+                        optionMarginAccountInformationResponseAssetInner.adjustedEquity);
     }
 
     @Override
@@ -290,7 +289,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
                 initialMargin,
                 maintMargin,
                 unrealizedPNL,
-                lpProfit);
+                adjustedEquity);
     }
 
     @Override
@@ -304,7 +303,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
         sb.append("		initialMargin: ").append(toIndentedString(initialMargin)).append("\n");
         sb.append("		maintMargin: ").append(toIndentedString(maintMargin)).append("\n");
         sb.append("		unrealizedPNL: ").append(toIndentedString(unrealizedPNL)).append("\n");
-        sb.append("		lpProfit: ").append(toIndentedString(lpProfit)).append("\n");
+        sb.append("		adjustedEquity: ").append(toIndentedString(adjustedEquity)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -340,10 +339,10 @@ public class OptionMarginAccountInformationResponseAssetInner {
         String unrealizedPNLValueAsString = "";
         unrealizedPNLValueAsString = unrealizedPNLValue.toString();
         sb.append("unrealizedPNL=").append(urlEncode(unrealizedPNLValueAsString)).append("");
-        Object lpProfitValue = getLpProfit();
-        String lpProfitValueAsString = "";
-        lpProfitValueAsString = lpProfitValue.toString();
-        sb.append("lpProfit=").append(urlEncode(lpProfitValueAsString)).append("");
+        Object adjustedEquityValue = getAdjustedEquity();
+        String adjustedEquityValueAsString = "";
+        adjustedEquityValueAsString = adjustedEquityValue.toString();
+        sb.append("adjustedEquity=").append(urlEncode(adjustedEquityValueAsString)).append("");
         return sb.toString();
     }
 
@@ -379,7 +378,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
         openapiFields.add("initialMargin");
         openapiFields.add("maintMargin");
         openapiFields.add("unrealizedPNL");
-        openapiFields.add("lpProfit");
+        openapiFields.add("adjustedEquity");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -404,20 +403,6 @@ public class OptionMarginAccountInformationResponseAssetInner {
                                 OptionMarginAccountInformationResponseAssetInner
                                         .openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OptionMarginAccountInformationResponseAssetInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OptionMarginAccountInformationResponseAssetInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -477,13 +462,13 @@ public class OptionMarginAccountInformationResponseAssetInner {
                                     + " string but got `%s`",
                             jsonObj.get("unrealizedPNL").toString()));
         }
-        if ((jsonObj.get("lpProfit") != null && !jsonObj.get("lpProfit").isJsonNull())
-                && !jsonObj.get("lpProfit").isJsonPrimitive()) {
+        if ((jsonObj.get("adjustedEquity") != null && !jsonObj.get("adjustedEquity").isJsonNull())
+                && !jsonObj.get("adjustedEquity").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `lpProfit` to be a primitive type in the JSON"
+                            "Expected the field `adjustedEquity` to be a primitive type in the JSON"
                                     + " string but got `%s`",
-                            jsonObj.get("lpProfit").toString()));
+                            jsonObj.get("adjustedEquity").toString()));
         }
     }
 
@@ -509,7 +494,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
                                 JsonWriter out,
                                 OptionMarginAccountInformationResponseAssetInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

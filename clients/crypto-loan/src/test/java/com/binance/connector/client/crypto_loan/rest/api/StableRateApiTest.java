@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,23 +23,13 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
-import com.binance.connector.client.crypto_loan.rest.model.CheckCollateralRepayRateStableRateResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanAdjustLtvRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanAdjustLtvResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanBorrowRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanBorrowResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanCustomizeMarginCallRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanCustomizeMarginCallResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanRepayRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanRepayResponse;
-import com.binance.connector.client.crypto_loan.rest.model.GetCollateralAssetsDataResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetCryptoLoansIncomeHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanBorrowHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanLtvAdjustmentHistoryResponse;
-import com.binance.connector.client.crypto_loan.rest.model.GetLoanOngoingOrdersResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanRepaymentHistoryResponse;
-import com.binance.connector.client.crypto_loan.rest.model.GetLoanableAssetsDataResponse;
+import com.binance.connector.client.crypto_loan.rest.model.OrderType;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -91,231 +81,20 @@ public class StableRateApiTest {
     }
 
     /**
-     * Check Collateral Repay Rate(USER_DATA)
+     * Get Crypto Loans Income History (USER_DATA)
      *
-     * <p>Get the the rate of collateral coin / loan coin when using collateral repay, the rate will
-     * be valid within 8 second. Weight: 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void checkCollateralRepayRateStableRateTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        String collateralCoin = "";
-        Double repayAmount = 1d;
-        Long recvWindow = 5000L;
-        ApiResponse<CheckCollateralRepayRateStableRateResponse> response =
-                api.checkCollateralRepayRateStableRate(
-                        loanCoin, collateralCoin, repayAmount, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "loanCoin=&collateralCoin=&repayAmount=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "daf94761a57c1455fad13013a2f9ee4ce20c3214895583fec61620ef05b9a867",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/repay/collateral/rate", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Crypto Loan Adjust LTV(TRADE)
-     *
-     * <p>Crypto Loan Adjust LTV Weight: 6000
+     * <p>Get Crypto Loans Income History Weight(UID): 6000 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both omitted, the most recent 7 days of
+     * data are returned. - The maximum interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 30 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cryptoLoanAdjustLtvTest() throws ApiException, CryptoException {
-        CryptoLoanAdjustLtvRequest cryptoLoanAdjustLtvRequest = new CryptoLoanAdjustLtvRequest();
-
-        cryptoLoanAdjustLtvRequest.orderId(1L);
-        cryptoLoanAdjustLtvRequest.amount(1d);
-        cryptoLoanAdjustLtvRequest.direction("");
-
-        ApiResponse<CryptoLoanAdjustLtvResponse> response =
-                api.cryptoLoanAdjustLtv(cryptoLoanAdjustLtvRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000amount=1&orderId=1&direction=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "555a3dded49cfe5fa5035bfa15b8c5c9778ef0b8cfcabbcdf5ad6db2f3cf3af2",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/adjust/ltv", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Crypto Loan Borrow(TRADE)
-     *
-     * <p>Crypto Loan Borrow Weight: 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void cryptoLoanBorrowTest() throws ApiException, CryptoException {
-        CryptoLoanBorrowRequest cryptoLoanBorrowRequest = new CryptoLoanBorrowRequest();
-
-        cryptoLoanBorrowRequest.loanCoin("");
-        cryptoLoanBorrowRequest.collateralCoin("");
-        cryptoLoanBorrowRequest.loanTerm(0L);
-
-        ApiResponse<CryptoLoanBorrowResponse> response =
-                api.cryptoLoanBorrow(cryptoLoanBorrowRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000loanTerm=0&collateralCoin=&loanCoin=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "9189fa3bf8c794ba3550c907ec747a0ca9a15367773c864f89ccb33d41388901",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/borrow", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Crypto Loan Customize Margin Call(TRADE)
-     *
-     * <p>Customize Margin Call Weight: 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void cryptoLoanCustomizeMarginCallTest() throws ApiException, CryptoException {
-        CryptoLoanCustomizeMarginCallRequest cryptoLoanCustomizeMarginCallRequest =
-                new CryptoLoanCustomizeMarginCallRequest();
-
-        cryptoLoanCustomizeMarginCallRequest.marginCall(1d);
-
-        ApiResponse<CryptoLoanCustomizeMarginCallResponse> response =
-                api.cryptoLoanCustomizeMarginCall(cryptoLoanCustomizeMarginCallRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000marginCall=1", signInputCaptor.getValue());
-        assertEquals(
-                "1c262b11fbd9775eb44439416ccecefc76df48f58b413c430d909d0cd9cfbf5d",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/customize/margin_call", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Crypto Loan Repay(TRADE)
-     *
-     * <p>Crypto Loan Repay Weight: 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void cryptoLoanRepayTest() throws ApiException, CryptoException {
-        CryptoLoanRepayRequest cryptoLoanRepayRequest = new CryptoLoanRepayRequest();
-
-        cryptoLoanRepayRequest.orderId(1L);
-        cryptoLoanRepayRequest.amount(1d);
-
-        ApiResponse<CryptoLoanRepayResponse> response = api.cryptoLoanRepay(cryptoLoanRepayRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000amount=1&orderId=1", signInputCaptor.getValue());
-        assertEquals(
-                "63a2bd291c903ff313203c537ae5664fa19322a1cd812a2a5267fc7f3c10ef2f",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/repay", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Collateral Assets Data(USER_DATA)
-     *
-     * <p>Get LTV information and collateral limit of collateral assets. The collateral limit is
-     * shown in USD value. Weight: 400
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getCollateralAssetsDataTest() throws ApiException, CryptoException {
-        String collateralCoin = "";
-        Long vipLevel = 1L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetCollateralAssetsDataResponse> response =
-                api.getCollateralAssetsData(collateralCoin, vipLevel, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "collateralCoin=&vipLevel=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7c512838ca931b36c98b5fbb92086accd19e1965d53d4704cb1844d6c5897fa6",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/collateral/data", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Crypto Loans Income History(USER_DATA)
-     *
-     * <p>Get Crypto Loans Income History * If startTime and endTime are not sent, the recent 7-day
-     * data will be returned. * The max interval between startTime and endTime is 30 days. Weight:
-     * 6000
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getCryptoLoansIncomeHistoryTest() throws ApiException, CryptoException {
-        String asset = "";
-        Long type = 1L;
+    public void getCryptoLoansIncomeHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "BUSD";
+        OrderType type = OrderType.borrowIn;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 10L;
@@ -333,28 +112,28 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BUSD&type=borrowIn&startTime=1623319461670&endTime=1641782889000&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&type=1&startTime=1623319461670&endTime=1641782889000&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "fc6cecaab649b163a845cc9e78ea8541f91768db6412aab193710efb1c4155fb",
+                "b0dbea90dc8b771494ba76c8682f1b4df66dd5aff20d97822203b06c71c2f8d6",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/income", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loan Borrow History(USER_DATA)
+     * Get Loan Borrow History (USER_DATA)
      *
-     * <p>Get Loan Borrow History * If startTime and endTime are not sent, the recent 90-day data
-     * will be returned. * The max interval between startTime and endTime is 180 days. Weight: 400
+     * <p>Get Loan Borrow History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanBorrowHistoryTest() throws ApiException, CryptoException {
+    public void getLoanBorrowHistoryTest() throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -381,29 +160,29 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "da8d1cb7245414268128e1a179781fd57029b19e851de2ccfb330a48eccc3a41",
+                "7874a99dfd8cee9b5d8d79f31b9b1061c0f67adcddfdf5ecc2f08290d2ee111a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/borrow/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loan LTV Adjustment History(USER_DATA)
+     * Get Loan LTV Adjustment History (USER_DATA)
      *
-     * <p>Get Loan LTV Adjustment History * If startTime and endTime are not sent, the recent 90-day
-     * data will be returned. * The max interval between startTime and endTime is 180 days. Weight:
-     * 400
+     * <p>Get Loan LTV Adjustment History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanLtvAdjustmentHistoryTest() throws ApiException, CryptoException {
+    public void getLoanLtvAdjustmentHistoryTest()
+            throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -430,66 +209,28 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "da8d1cb7245414268128e1a179781fd57029b19e851de2ccfb330a48eccc3a41",
+                "7874a99dfd8cee9b5d8d79f31b9b1061c0f67adcddfdf5ecc2f08290d2ee111a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/ltv/adjustment/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loan Ongoing Orders(USER_DATA)
+     * Get Loan Repayment History (USER_DATA)
      *
-     * <p>Get Loan Ongoing Orders Weight: 300
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getLoanOngoingOrdersTest() throws ApiException, CryptoException {
-        Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
-        Long current = 1L;
-        Long limit = 10L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetLoanOngoingOrdersResponse> response =
-                api.getLoanOngoingOrders(
-                        orderId, loanCoin, collateralCoin, current, limit, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7634f264d39b64a4f7225f2883868398d5d81a75d85c8eaf7c5749284d06a6d6",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/ongoing/orders", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Loan Repayment History(USER_DATA)
-     *
-     * <p>Get Loan Repayment History * If startTime and endTime are not sent, the recent 90-day data
-     * will be returned. * The max interval between startTime and endTime is 180 days. Weight: 400
+     * <p>Get Loan Repayment History Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanRepaymentHistoryTest() throws ApiException, CryptoException {
+    public void getLoanRepaymentHistoryTest() throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -516,47 +257,10 @@ public class StableRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&loanCoin=BUSD&collateralCoin=BNB&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&loanCoin=&collateralCoin=&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "da8d1cb7245414268128e1a179781fd57029b19e851de2ccfb330a48eccc3a41",
+                "7874a99dfd8cee9b5d8d79f31b9b1061c0f67adcddfdf5ecc2f08290d2ee111a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/repay/history", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Get Loanable Assets Data(USER_DATA)
-     *
-     * <p>Get interest rate and borrow limit of loanable assets. The borrow limit is shown in USD
-     * value. Weight: 400
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getLoanableAssetsDataTest() throws ApiException, CryptoException {
-        String loanCoin = "";
-        Long vipLevel = 1L;
-        Long recvWindow = 5000L;
-        ApiResponse<GetLoanableAssetsDataResponse> response =
-                api.getLoanableAssetsData(loanCoin, vipLevel, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "loanCoin=&vipLevel=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "af7c373de8e0d92e5598d25b5891312de4a5d5f936d893524354a27ca60952d2",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/loan/loanable/data", actualRequest.url().encodedPath());
     }
 }

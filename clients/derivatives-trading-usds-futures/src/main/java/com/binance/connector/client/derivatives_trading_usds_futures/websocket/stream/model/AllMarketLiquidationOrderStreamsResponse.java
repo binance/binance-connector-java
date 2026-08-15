@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** AllMarketLiquidationOrderStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -58,6 +58,18 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private AllMarketLiquidationOrderStreamsResponseO oLowerCase;
 
+    public static final String SERIALIZED_NAME_PS = "ps";
+
+    @SerializedName(SERIALIZED_NAME_PS)
+    @jakarta.annotation.Nullable
+    private String ps;
+
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
+
     public AllMarketLiquidationOrderStreamsResponse() {}
 
     public AllMarketLiquidationOrderStreamsResponse eLowerCase(
@@ -67,7 +79,7 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event Type
      *
      * @return eLowerCase
      */
@@ -86,7 +98,7 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -121,6 +133,44 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
         this.oLowerCase = oLowerCase;
     }
 
+    public AllMarketLiquidationOrderStreamsResponse ps(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Pair symbol
+     *
+     * @return ps
+     */
+    @jakarta.annotation.Nullable
+    public String getPs() {
+        return ps;
+    }
+
+    public void setPs(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+    }
+
+    public AllMarketLiquidationOrderStreamsResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -134,12 +184,14 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
         return Objects.equals(this.eLowerCase, allMarketLiquidationOrderStreamsResponse.eLowerCase)
                 && Objects.equals(this.E, allMarketLiquidationOrderStreamsResponse.E)
                 && Objects.equals(
-                        this.oLowerCase, allMarketLiquidationOrderStreamsResponse.oLowerCase);
+                        this.oLowerCase, allMarketLiquidationOrderStreamsResponse.oLowerCase)
+                && Objects.equals(this.ps, allMarketLiquidationOrderStreamsResponse.ps)
+                && Objects.equals(this.st, allMarketLiquidationOrderStreamsResponse.st);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, oLowerCase);
+        return Objects.hash(eLowerCase, E, oLowerCase, ps, st);
     }
 
     @Override
@@ -149,6 +201,8 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
         sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		oLowerCase: ").append(toIndentedString(oLowerCase)).append("\n");
+        sb.append("		ps: ").append(toIndentedString(ps)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -172,6 +226,16 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
             String oLowerCaseValueAsString = JSON.getGson().toJson(oLowerCaseValue);
             valMap.put("oLowerCase", oLowerCaseValueAsString);
         }
+        String psValue = getPs();
+        if (psValue != null) {
+            String psValueAsString = psValue.toString();
+            valMap.put("ps", psValueAsString);
+        }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -194,6 +258,14 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
         Object oLowerCaseValue = getoLowerCase();
         if (oLowerCaseValue != null) {
             valMap.put("oLowerCase", oLowerCaseValue);
+        }
+        Object psValue = getPs();
+        if (psValue != null) {
+            valMap.put("ps", psValue);
+        }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -224,6 +296,8 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
         openapiFields.add("e");
         openapiFields.add("E");
         openapiFields.add("o");
+        openapiFields.add("ps");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -275,6 +349,14 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
         if (jsonObj.get("o") != null && !jsonObj.get("o").isJsonNull()) {
             AllMarketLiquidationOrderStreamsResponseO.validateJsonElement(jsonObj.get("o"));
         }
+        if ((jsonObj.get("ps") != null && !jsonObj.get("ps").isJsonNull())
+                && !jsonObj.get("ps").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ps` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ps").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -297,7 +379,7 @@ public class AllMarketLiquidationOrderStreamsResponse extends BaseDTO {
                         public void write(
                                 JsonWriter out, AllMarketLiquidationOrderStreamsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** UmPositionAdlQuantileEstimationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UmPositionAdlQuantileEstimationResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -49,7 +47,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
 
     @SerializedName(SERIALIZED_NAME_ADL_QUANTILE)
     @jakarta.annotation.Nullable
-    private CmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile;
+    private UmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile;
 
     public UmPositionAdlQuantileEstimationResponseInner() {}
 
@@ -60,7 +58,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -75,7 +73,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
 
     public UmPositionAdlQuantileEstimationResponseInner adlQuantile(
             @jakarta.annotation.Nullable
-                    CmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
+                    UmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
         this.adlQuantile = adlQuantile;
         return this;
     }
@@ -87,13 +85,13 @@ public class UmPositionAdlQuantileEstimationResponseInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public CmPositionAdlQuantileEstimationResponseInnerAdlQuantile getAdlQuantile() {
+    public UmPositionAdlQuantileEstimationResponseInnerAdlQuantile getAdlQuantile() {
         return adlQuantile;
     }
 
     public void setAdlQuantile(
             @jakarta.annotation.Nullable
-                    CmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
+                    UmPositionAdlQuantileEstimationResponseInnerAdlQuantile adlQuantile) {
         this.adlQuantile = adlQuantile;
     }
 
@@ -193,20 +191,6 @@ public class UmPositionAdlQuantileEstimationResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UmPositionAdlQuantileEstimationResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `UmPositionAdlQuantileEstimationResponseInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -218,7 +202,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
         }
         // validate the optional field `adlQuantile`
         if (jsonObj.get("adlQuantile") != null && !jsonObj.get("adlQuantile").isJsonNull()) {
-            CmPositionAdlQuantileEstimationResponseInnerAdlQuantile.validateJsonElement(
+            UmPositionAdlQuantileEstimationResponseInnerAdlQuantile.validateJsonElement(
                     jsonObj.get("adlQuantile"));
         }
     }
@@ -244,7 +228,7 @@ public class UmPositionAdlQuantileEstimationResponseInner {
                         public void write(
                                 JsonWriter out, UmPositionAdlQuantileEstimationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

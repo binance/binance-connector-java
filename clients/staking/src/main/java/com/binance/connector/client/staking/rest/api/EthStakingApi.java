@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -43,8 +43,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -57,7 +57,7 @@ public class EthStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/1.1.0 (Java/%s; %s; %s)",
+                    "binance-staking/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -97,7 +97,7 @@ public class EthStakingApi {
     /**
      * Build call for ethStakingAccount
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -108,8 +108,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/account/ETH-Staking-account">ETH
-     *     Staking account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#eth-staking-account">ETH
+     *     Staking account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call ethStakingAccountCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -149,15 +149,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -171,7 +167,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -205,9 +201,9 @@ public class EthStakingApi {
     }
 
     /**
-     * ETH Staking account(USER_DATA) ETH Staking account Weight: 150
+     * ETH Staking account (USER_DATA) ETH Staking account Weight(IP): 150 Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;EthStakingAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -219,10 +215,10 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/account/ETH-Staking-account">ETH
-     *     Staking account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#eth-staking-account">ETH
+     *     Staking account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<EthStakingAccountResponse> ethStakingAccount(Long recvWindow)
+    public ApiResponse<EthStakingAccountResponse> ethStakingAccount(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = ethStakingAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -233,7 +229,7 @@ public class EthStakingApi {
     /**
      * Build call for getCurrentEthStakingQuota
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -244,8 +240,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/account/Get-current-ETH-staking-quota">Get
-     *     current ETH staking quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-current-eth-staking-quota">Get
+     *     current ETH staking quota (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getCurrentEthStakingQuotaCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -285,15 +281,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -307,7 +299,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -342,9 +334,10 @@ public class EthStakingApi {
     }
 
     /**
-     * Get current ETH staking quota(USER_DATA) Get current ETH staking quota Weight: 150
+     * Get current ETH staking quota (USER_DATA) Get current ETH staking quota Weight(IP): 150
+     * Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetCurrentEthStakingQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -356,11 +349,11 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/account/Get-current-ETH-staking-quota">Get
-     *     current ETH staking quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-current-eth-staking-quota">Get
+     *     current ETH staking quota (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetCurrentEthStakingQuotaResponse> getCurrentEthStakingQuota(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetCurrentEthStakingQuotaResponse> getCurrentEthStakingQuota(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getCurrentEthStakingQuotaValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetCurrentEthStakingQuotaResponse>() {}.getType();
@@ -370,11 +363,12 @@ public class EthStakingApi {
     /**
      * Build call for getEthRedemptionHistory
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -385,11 +379,11 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-redemption-history">Get
-     *     ETH redemption history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-eth-redemption-history">Get
+     *     ETH redemption history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getEthRedemptionHistoryCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -415,6 +409,10 @@ public class EthStakingApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (redeemId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("redeemId", redeemId));
+        }
+
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
         }
@@ -444,15 +442,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -466,12 +460,12 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEthRedemptionHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -482,11 +476,12 @@ public class EthStakingApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Object[] parameterValues = {redeemId, startTime, endTime, current, size, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getEthRedemptionHistory",
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -496,7 +491,8 @@ public class EthStakingApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getEthRedemptionHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getEthRedemptionHistoryCall(
+                        redeemId, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -510,19 +506,21 @@ public class EthStakingApi {
     }
 
     /**
-     * Get ETH redemption history(USER_DATA) Get ETH redemption history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get ETH redemption history (USER_DATA) Get ETH redemption history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
+     * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetEthRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -534,15 +532,20 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-redemption-history">Get
-     *     ETH redemption history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-eth-redemption-history">Get
+     *     ETH redemption history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetEthRedemptionHistoryResponse> getEthRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getEthRedemptionHistoryValidateBeforeCall(
-                        startTime, endTime, current, size, recvWindow);
+                        redeemId, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetEthRedemptionHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -551,11 +554,12 @@ public class EthStakingApi {
     /**
      * Build call for getEthStakingHistory
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -566,11 +570,11 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-staking-history">Get
-     *     ETH staking history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-eth-staking-history">Get
+     *     ETH staking history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getEthStakingHistoryCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -596,6 +600,10 @@ public class EthStakingApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (purchaseId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("purchaseId", purchaseId));
+        }
+
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
         }
@@ -625,15 +633,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -647,12 +651,12 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEthStakingHistoryValidateBeforeCall(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -663,11 +667,12 @@ public class EthStakingApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Object[] parameterValues = {purchaseId, startTime, endTime, current, size, recvWindow};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "getEthStakingHistory",
+                                    Long.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -677,7 +682,8 @@ public class EthStakingApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return getEthStakingHistoryCall(startTime, endTime, current, size, recvWindow);
+                return getEthStakingHistoryCall(
+                        purchaseId, startTime, endTime, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -691,19 +697,21 @@ public class EthStakingApi {
     }
 
     /**
-     * Get ETH staking history(USER_DATA) Get ETH staking history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get ETH staking history (USER_DATA) Get ETH staking history Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
+     * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetEthStakingHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -715,15 +723,20 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-staking-history">Get
-     *     ETH staking history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-eth-staking-history">Get
+     *     ETH staking history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetEthStakingHistoryResponse> getEthStakingHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getEthStakingHistoryValidateBeforeCall(
-                        startTime, endTime, current, size, recvWindow);
+                        purchaseId, startTime, endTime, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetEthStakingHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -734,9 +747,9 @@ public class EthStakingApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -747,8 +760,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-BETH-Rate-History">Get
-     *     WBETH Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-rate-history">Get
+     *     WBETH Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getWbethRateHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -806,15 +819,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -828,7 +837,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -872,19 +881,20 @@ public class EthStakingApi {
     }
 
     /**
-     * Get WBETH Rate History(USER_DATA) Get WBETH Rate History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get WBETH Rate History (USER_DATA) Get WBETH Rate History Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetWbethRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -896,11 +906,15 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-BETH-Rate-History">Get
-     *     WBETH Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-rate-history">Get
+     *     WBETH Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetWbethRateHistoryResponse> getWbethRateHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getWbethRateHistoryValidateBeforeCall(
@@ -915,9 +929,9 @@ public class EthStakingApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -928,8 +942,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-rewards-history">Get
-     *     WBETH rewards history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-rewards-history">Get
+     *     WBETH rewards history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getWbethRewardsHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -987,15 +1001,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1009,7 +1019,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1053,19 +1063,20 @@ public class EthStakingApi {
     }
 
     /**
-     * Get WBETH rewards history(USER_DATA) Get WBETH rewards history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get WBETH rewards history (USER_DATA) Get WBETH rewards history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetWbethRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1077,11 +1088,15 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-rewards-history">Get
-     *     WBETH rewards history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-rewards-history">Get
+     *     WBETH rewards history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetWbethRewardsHistoryResponse> getWbethRewardsHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getWbethRewardsHistoryValidateBeforeCall(
@@ -1096,9 +1111,9 @@ public class EthStakingApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1109,8 +1124,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-unwrap-history">Get
-     *     WBETH unwrap history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-unwrap-history">Get
+     *     WBETH unwrap history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getWbethUnwrapHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -1168,15 +1183,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1190,7 +1201,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1234,19 +1245,20 @@ public class EthStakingApi {
     }
 
     /**
-     * Get WBETH unwrap history(USER_DATA) Get WBETH unwrap history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get WBETH unwrap history (USER_DATA) Get WBETH unwrap history Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetWbethUnwrapHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1258,11 +1270,15 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-unwrap-history">Get
-     *     WBETH unwrap history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-unwrap-history">Get
+     *     WBETH unwrap history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetWbethUnwrapHistoryResponse> getWbethUnwrapHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getWbethUnwrapHistoryValidateBeforeCall(
@@ -1277,9 +1293,9 @@ public class EthStakingApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1290,8 +1306,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-wrap-history">Get
-     *     WBETH wrap history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-wrap-history">Get
+     *     WBETH wrap history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getWbethWrapHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -1349,15 +1365,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1371,7 +1383,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1415,19 +1427,20 @@ public class EthStakingApi {
     }
 
     /**
-     * Get WBETH wrap history(USER_DATA) Get WBETH wrap history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get WBETH wrap history (USER_DATA) Get WBETH wrap history Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetWbethWrapHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1439,11 +1452,15 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-wrap-history">Get
-     *     WBETH wrap history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-wrap-history">Get
+     *     WBETH wrap history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetWbethWrapHistoryResponse> getWbethWrapHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getWbethWrapHistoryValidateBeforeCall(
@@ -1467,8 +1484,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/staking/Redeem-ETH">Redeem
-     *     ETH(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#redeem-eth">Redeem
+     *     ETH (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemEthCall(RedeemEthRequest redeemEthRequest) throws ApiException {
         String basePath = null;
@@ -1517,15 +1534,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1539,7 +1552,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1574,8 +1587,9 @@ public class EthStakingApi {
     }
 
     /**
-     * Redeem ETH(TRADE) Redeem WBETH or BETH and get ETH * You need to open Enable Spot &amp;
-     * Margin Trading permission for the API Key which requests this endpoint. Weight: 150
+     * Redeem ETH (TRADE) Redeem WBETH or BETH and get ETH Weight(IP): 150 Security Type: TRADE
+     * Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which
+     * requests this endpoint.
      *
      * @param redeemEthRequest (required)
      * @return ApiResponse&lt;RedeemEthResponse&gt;
@@ -1589,8 +1603,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/staking/Redeem-ETH">Redeem
-     *     ETH(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#redeem-eth">Redeem
+     *     ETH (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemEthResponse> redeemEth(
             @Valid @NotNull RedeemEthRequest redeemEthRequest) throws ApiException {
@@ -1613,8 +1627,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/staking/Subscribe-ETH-Staking">Subscribe
-     *     ETH Staking(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#subscribe-eth-staking">Subscribe
+     *     ETH Staking (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeEthStakingCall(
             SubscribeEthStakingRequest subscribeEthStakingRequest) throws ApiException {
@@ -1661,15 +1675,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1683,7 +1693,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1720,8 +1730,9 @@ public class EthStakingApi {
     }
 
     /**
-     * Subscribe ETH Staking(TRADE) Subscribe ETH Staking * You need to open Enable Spot &amp;
-     * Margin Trading permission for the API Key which requests this endpoint. Weight: 150
+     * Subscribe ETH Staking (TRADE) Subscribe ETH Staking Weight(IP): 150 Security Type: TRADE
+     * Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which
+     * requests this endpoint.
      *
      * @param subscribeEthStakingRequest (required)
      * @return ApiResponse&lt;SubscribeEthStakingResponse&gt;
@@ -1735,8 +1746,8 @@ public class EthStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/eth-staking/staking/Subscribe-ETH-Staking">Subscribe
-     *     ETH Staking(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#subscribe-eth-staking">Subscribe
+     *     ETH Staking (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeEthStakingResponse> subscribeEthStaking(
             @Valid @NotNull SubscribeEthStakingRequest subscribeEthStakingRequest)
@@ -1761,8 +1772,9 @@ public class EthStakingApi {
      * <tr><td> 200 </td><td> Wrap BETH </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/eth-staking/staking/Wrap-BETH">Wrap
-     *     BETH(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#wrap-beth">Wrap
+     *     BETH (TRADE) Documentation</a>
      */
     private okhttp3.Call wrapBethCall(WrapBethRequest wrapBethRequest) throws ApiException {
         String basePath = null;
@@ -1807,15 +1819,11 @@ public class EthStakingApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1829,7 +1837,7 @@ public class EthStakingApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1864,8 +1872,8 @@ public class EthStakingApi {
     }
 
     /**
-     * Wrap BETH(TRADE) Wrap BETH * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * Wrap BETH (TRADE) Wrap BETH Weight(IP): 150 Security Type: TRADE Notes: - You need to open
+     * Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @param wrapBethRequest (required)
      * @return ApiResponse&lt;WrapBethResponse&gt;
@@ -1878,8 +1886,9 @@ public class EthStakingApi {
      * <tr><td> 200 </td><td> Wrap BETH </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/staking/eth-staking/staking/Wrap-BETH">Wrap
-     *     BETH(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#wrap-beth">Wrap
+     *     BETH (TRADE) Documentation</a>
      */
     public ApiResponse<WrapBethResponse> wrapBeth(@Valid @NotNull WrapBethRequest wrapBethRequest)
             throws ApiException {

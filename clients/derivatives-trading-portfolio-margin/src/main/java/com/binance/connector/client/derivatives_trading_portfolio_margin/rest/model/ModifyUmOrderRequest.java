@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ModifyUmOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyUmOrderRequest {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -81,6 +79,12 @@ public class ModifyUmOrderRequest {
     @jakarta.annotation.Nullable
     private PriceMatch priceMatch;
 
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -95,7 +99,7 @@ public class ModifyUmOrderRequest {
     }
 
     /**
-     * Get orderId
+     * Order ID
      *
      * @return orderId
      */
@@ -115,7 +119,7 @@ public class ModifyUmOrderRequest {
     }
 
     /**
-     * Get origClientOrderId
+     * Client order ID
      *
      * @return origClientOrderId
      */
@@ -134,7 +138,7 @@ public class ModifyUmOrderRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -175,7 +179,7 @@ public class ModifyUmOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Order quantity
      *
      * @return quantity
      */
@@ -196,7 +200,7 @@ public class ModifyUmOrderRequest {
     }
 
     /**
-     * Get price
+     * Order price
      *
      * @return price
      */
@@ -229,6 +233,26 @@ public class ModifyUmOrderRequest {
 
     public void setPriceMatch(@jakarta.annotation.Nullable PriceMatch priceMatch) {
         this.priceMatch = priceMatch;
+    }
+
+    public ModifyUmOrderRequest modifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * User-defined modification identifier, returned as-is in the response. Optional; not validated
+     * for uniqueness.
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
     }
 
     public ModifyUmOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
@@ -266,13 +290,22 @@ public class ModifyUmOrderRequest {
                 && Objects.equals(this.quantity, modifyUmOrderRequest.quantity)
                 && Objects.equals(this.price, modifyUmOrderRequest.price)
                 && Objects.equals(this.priceMatch, modifyUmOrderRequest.priceMatch)
+                && Objects.equals(this.modifyId, modifyUmOrderRequest.modifyId)
                 && Objects.equals(this.recvWindow, modifyUmOrderRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                orderId, origClientOrderId, symbol, side, quantity, price, priceMatch, recvWindow);
+                orderId,
+                origClientOrderId,
+                symbol,
+                side,
+                quantity,
+                price,
+                priceMatch,
+                modifyId,
+                recvWindow);
     }
 
     @Override
@@ -286,6 +319,7 @@ public class ModifyUmOrderRequest {
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -324,6 +358,10 @@ public class ModifyUmOrderRequest {
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -363,6 +401,7 @@ public class ModifyUmOrderRequest {
         openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("priceMatch");
+        openapiFields.add("modifyId");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -388,18 +427,6 @@ public class ModifyUmOrderRequest {
                                 "The required field(s) %s in ModifyUmOrderRequest is not found in"
                                         + " the empty JSON string",
                                 ModifyUmOrderRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ModifyUmOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ModifyUmOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -453,7 +480,7 @@ public class ModifyUmOrderRequest {
                         @Override
                         public void write(JsonWriter out, ModifyUmOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

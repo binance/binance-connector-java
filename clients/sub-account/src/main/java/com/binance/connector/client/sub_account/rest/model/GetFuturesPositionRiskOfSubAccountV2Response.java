@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,23 +33,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetFuturesPositionRiskOfSubAccountV2Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetFuturesPositionRiskOfSubAccountV2Response {
     public static final String SERIALIZED_NAME_FUTURE_POSITION_RISK_VOS = "futurePositionRiskVos";
 
     @SerializedName(SERIALIZED_NAME_FUTURE_POSITION_RISK_VOS)
     @jakarta.annotation.Nullable
-    private List<@Valid GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner>
-            futurePositionRiskVos;
+    private List<@Valid GetFuturesPositionRiskOfSubAccountResponseInner> futurePositionRiskVos;
 
     public static final String SERIALIZED_NAME_DELIVERY_POSITION_RISK_VOS =
             "deliveryPositionRiskVos";
@@ -63,17 +60,14 @@ public class GetFuturesPositionRiskOfSubAccountV2Response {
 
     public GetFuturesPositionRiskOfSubAccountV2Response futurePositionRiskVos(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner>
+                    List<@Valid GetFuturesPositionRiskOfSubAccountResponseInner>
                             futurePositionRiskVos) {
         this.futurePositionRiskVos = futurePositionRiskVos;
         return this;
     }
 
     public GetFuturesPositionRiskOfSubAccountV2Response addFuturePositionRiskVosItem(
-            GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner
-                    futurePositionRiskVosItem) {
+            GetFuturesPositionRiskOfSubAccountResponseInner futurePositionRiskVosItem) {
         if (this.futurePositionRiskVos == null) {
             this.futurePositionRiskVos = new ArrayList<>();
         }
@@ -88,16 +82,13 @@ public class GetFuturesPositionRiskOfSubAccountV2Response {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner>
-            getFuturePositionRiskVos() {
+    public List<@Valid GetFuturesPositionRiskOfSubAccountResponseInner> getFuturePositionRiskVos() {
         return futurePositionRiskVos;
     }
 
     public void setFuturePositionRiskVos(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner>
+                    List<@Valid GetFuturesPositionRiskOfSubAccountResponseInner>
                             futurePositionRiskVos) {
         this.futurePositionRiskVos = futurePositionRiskVos;
     }
@@ -256,20 +247,6 @@ public class GetFuturesPositionRiskOfSubAccountV2Response {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetFuturesPositionRiskOfSubAccountV2Response.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetFuturesPositionRiskOfSubAccountV2Response` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("futurePositionRiskVos") != null
                 && !jsonObj.get("futurePositionRiskVos").isJsonNull()) {
@@ -287,8 +264,8 @@ public class GetFuturesPositionRiskOfSubAccountV2Response {
 
                 // validate the optional field `futurePositionRiskVos` (array)
                 for (int i = 0; i < jsonArrayfuturePositionRiskVos.size(); i++) {
-                    GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner
-                            .validateJsonElement(jsonArrayfuturePositionRiskVos.get(i));
+                    GetFuturesPositionRiskOfSubAccountResponseInner.validateJsonElement(
+                            jsonArrayfuturePositionRiskVos.get(i));
                 }
                 ;
             }
@@ -338,7 +315,7 @@ public class GetFuturesPositionRiskOfSubAccountV2Response {
                         public void write(
                                 JsonWriter out, GetFuturesPositionRiskOfSubAccountV2Response value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

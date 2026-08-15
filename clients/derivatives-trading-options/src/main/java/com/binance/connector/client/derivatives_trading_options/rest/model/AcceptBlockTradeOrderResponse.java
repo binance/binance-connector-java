@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** AcceptBlockTradeOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AcceptBlockTradeOrderResponse {
     public static final String SERIALIZED_NAME_BLOCK_TRADE_SETTLEMENT_KEY =
             "blockTradeSettlementKey";
@@ -90,7 +88,7 @@ public class AcceptBlockTradeOrderResponse {
     }
 
     /**
-     * Get blockTradeSettlementKey
+     * block Trade Settlement Key
      *
      * @return blockTradeSettlementKey
      */
@@ -110,7 +108,7 @@ public class AcceptBlockTradeOrderResponse {
     }
 
     /**
-     * Get expireTime
+     * expire Time
      *
      * @return expireTime
      */
@@ -129,7 +127,7 @@ public class AcceptBlockTradeOrderResponse {
     }
 
     /**
-     * Get liquidity
+     * liquidity
      *
      * @return liquidity
      */
@@ -148,7 +146,7 @@ public class AcceptBlockTradeOrderResponse {
     }
 
     /**
-     * Get status
+     * status
      *
      * @return status
      */
@@ -167,7 +165,7 @@ public class AcceptBlockTradeOrderResponse {
     }
 
     /**
-     * Get createTime
+     * create Time
      *
      * @return createTime
      */
@@ -196,7 +194,7 @@ public class AcceptBlockTradeOrderResponse {
     }
 
     /**
-     * Get legs
+     * legs
      *
      * @return legs
      */
@@ -342,18 +340,6 @@ public class AcceptBlockTradeOrderResponse {
                                 AcceptBlockTradeOrderResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AcceptBlockTradeOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AcceptBlockTradeOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("blockTradeSettlementKey") != null
                         && !jsonObj.get("blockTradeSettlementKey").isJsonNull())
@@ -420,7 +406,7 @@ public class AcceptBlockTradeOrderResponse {
                         @Override
                         public void write(JsonWriter out, AcceptBlockTradeOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

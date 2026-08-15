@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetAllMarginAssetsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetAllMarginAssetsResponseInner {
     public static final String SERIALIZED_NAME_ASSET_FULL_NAME = "assetFullName";
 
@@ -89,7 +87,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get assetFullName
+     * asset Full Name.
      *
      * @return assetFullName
      */
@@ -109,7 +107,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get assetName
+     * asset Name.
      *
      * @return assetName
      */
@@ -129,7 +127,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get isBorrowable
+     * is Borrowable.
      *
      * @return isBorrowable
      */
@@ -149,7 +147,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get isMortgageable
+     * is Mortgageable.
      *
      * @return isMortgageable
      */
@@ -169,7 +167,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get userMinBorrow
+     * user Min Borrow.
      *
      * @return userMinBorrow
      */
@@ -189,7 +187,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get userMinRepay
+     * user Min Repay.
      *
      * @return userMinRepay
      */
@@ -209,7 +207,7 @@ public class GetAllMarginAssetsResponseInner {
     }
 
     /**
-     * Get delistTime
+     * delist Time.
      *
      * @return delistTime
      */
@@ -358,18 +356,6 @@ public class GetAllMarginAssetsResponseInner {
                                 GetAllMarginAssetsResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetAllMarginAssetsResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetAllMarginAssetsResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("assetFullName") != null && !jsonObj.get("assetFullName").isJsonNull())
                 && !jsonObj.get("assetFullName").isJsonPrimitive()) {
@@ -423,7 +409,7 @@ public class GetAllMarginAssetsResponseInner {
                         @Override
                         public void write(JsonWriter out, GetAllMarginAssetsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

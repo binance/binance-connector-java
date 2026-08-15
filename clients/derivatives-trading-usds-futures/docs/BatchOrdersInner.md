@@ -9,22 +9,17 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
 |**side** | [**SideEnum**](#SideEnum) |  |  [optional] |
-|**positionSide** | [**PositionSideEnum**](#PositionSideEnum) |  |  [optional] |
-|**type** | **String** |  |  [optional] |
+|**positionSide** | [**PositionSideEnum**](#PositionSideEnum) | Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
 |**timeInForce** | [**TimeInForceEnum**](#TimeInForceEnum) |  |  [optional] |
 |**quantity** | **Double** |  |  [optional] |
-|**reduceOnly** | **String** |  |  [optional] |
+|**reduceOnly** | [**ReduceOnlyEnum**](#ReduceOnlyEnum) |  |  [optional] |
 |**price** | **Double** |  |  [optional] |
 |**newClientOrderId** | **String** |  |  [optional] |
-|**stopPrice** | **Double** |  |  [optional] |
-|**activationPrice** | **Double** |  |  [optional] |
-|**callbackRate** | **Double** |  |  [optional] |
-|**workingType** | [**WorkingTypeEnum**](#WorkingTypeEnum) |  |  [optional] |
-|**priceProtect** | **String** |  |  [optional] |
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
-|**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) |  |  [optional] |
-|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) |  |  [optional] |
-|**goodTillDate** | **Long** |  |  [optional] |
+|**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) | only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can&#39;t be passed together with price |  [optional] |
+|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) | EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire taker order when STP triggers/ EXPIRE_BOTH:expire both orders when STP triggers; default NONE |  [optional] |
+|**goodTillDate** | **Long** | Auto-cancel time for &#x60;GTD&#x60; orders. |  [optional] |
 
 
 
@@ -47,6 +42,20 @@
 
 
 
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| LIMIT | &quot;LIMIT&quot; |
+| MARKET | &quot;MARKET&quot; |
+| STOP | &quot;STOP&quot; |
+| STOP_MARKET | &quot;STOP_MARKET&quot; |
+| TAKE_PROFIT | &quot;TAKE_PROFIT&quot; |
+| TAKE_PROFIT_MARKET | &quot;TAKE_PROFIT_MARKET&quot; |
+| TRAILING_STOP_MARKET | &quot;TRAILING_STOP_MARKET&quot; |
+
+
+
 ## Enum: TimeInForceEnum
 
 | Name | Value |
@@ -56,15 +65,16 @@
 | FOK | &quot;FOK&quot; |
 | GTX | &quot;GTX&quot; |
 | GTD | &quot;GTD&quot; |
+| RPI | &quot;RPI&quot; |
 
 
 
-## Enum: WorkingTypeEnum
+## Enum: ReduceOnlyEnum
 
 | Name | Value |
 |---- | -----|
-| MARK_PRICE | &quot;MARK_PRICE&quot; |
-| CONTRACT_PRICE | &quot;CONTRACT_PRICE&quot; |
+| TRUE | &quot;true&quot; |
+| FALSE | &quot;false&quot; |
 
 
 
@@ -81,7 +91,6 @@
 
 | Name | Value |
 |---- | -----|
-| NONE | &quot;NONE&quot; |
 | OPPONENT | &quot;OPPONENT&quot; |
 | OPPONENT_5 | &quot;OPPONENT_5&quot; |
 | OPPONENT_10 | &quot;OPPONENT_10&quot; |
@@ -97,6 +106,7 @@
 
 | Name | Value |
 |---- | -----|
+| NONE | &quot;NONE&quot; |
 | EXPIRE_TAKER | &quot;EXPIRE_TAKER&quot; |
 | EXPIRE_BOTH | &quot;EXPIRE_BOTH&quot; |
 | EXPIRE_MAKER | &quot;EXPIRE_MAKER&quot; |

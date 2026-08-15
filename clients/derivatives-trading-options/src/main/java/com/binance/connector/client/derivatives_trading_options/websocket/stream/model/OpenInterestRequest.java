@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,84 +37,82 @@ import org.hibernate.validator.constraints.*;
 /** OpenInterestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenInterestRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Integer id;
 
-    public static final String SERIALIZED_NAME_UNDERLYING_ASSET = "underlyingAsset";
+    public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
-    @SerializedName(SERIALIZED_NAME_UNDERLYING_ASSET)
-    @jakarta.annotation.Nonnull
-    private String underlyingAsset;
+    @SerializedName(SERIALIZED_NAME_UNDERLYING)
+    @jakarta.annotation.Nullable
+    private String underlying;
 
     public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expirationDate";
 
     @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String expirationDate;
 
     public OpenInterestRequest() {}
 
-    public OpenInterestRequest id(@jakarta.annotation.Nullable String id) {
+    public OpenInterestRequest id(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
     }
 
-    public OpenInterestRequest underlyingAsset(@jakarta.annotation.Nonnull String underlyingAsset) {
-        this.underlyingAsset = underlyingAsset;
+    public OpenInterestRequest underlying(@jakarta.annotation.Nullable String underlying) {
+        this.underlying = underlying;
         return this;
     }
 
     /**
-     * Get underlyingAsset
+     * The underlying parameter
      *
-     * @return underlyingAsset
+     * @return underlying
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getUnderlyingAsset() {
-        return underlyingAsset;
+    @jakarta.annotation.Nullable
+    public String getUnderlying() {
+        return underlying;
     }
 
-    public void setUnderlyingAsset(@jakarta.annotation.Nonnull String underlyingAsset) {
-        this.underlyingAsset = underlyingAsset;
+    public void setUnderlying(@jakarta.annotation.Nullable String underlying) {
+        this.underlying = underlying;
     }
 
-    public OpenInterestRequest expirationDate(@jakarta.annotation.Nonnull String expirationDate) {
+    public OpenInterestRequest expirationDate(@jakarta.annotation.Nullable String expirationDate) {
         this.expirationDate = expirationDate;
         return this;
     }
 
     /**
-     * Get expirationDate
+     * The expirationDate parameter
      *
      * @return expirationDate
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(@jakarta.annotation.Nonnull String expirationDate) {
+    public void setExpirationDate(@jakarta.annotation.Nullable String expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -128,13 +126,13 @@ public class OpenInterestRequest extends BaseDTO {
         }
         OpenInterestRequest openInterestRequest = (OpenInterestRequest) o;
         return Objects.equals(this.id, openInterestRequest.id)
-                && Objects.equals(this.underlyingAsset, openInterestRequest.underlyingAsset)
+                && Objects.equals(this.underlying, openInterestRequest.underlying)
                 && Objects.equals(this.expirationDate, openInterestRequest.expirationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, underlyingAsset, expirationDate);
+        return Objects.hash(id, underlying, expirationDate);
     }
 
     @Override
@@ -142,7 +140,7 @@ public class OpenInterestRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         sb.append("class OpenInterestRequest {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		underlyingAsset: ").append(toIndentedString(underlyingAsset)).append("\n");
+        sb.append("		underlying: ").append(toIndentedString(underlying)).append("\n");
         sb.append("		expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -152,15 +150,15 @@ public class OpenInterestRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
+        Integer idValue = getId();
         if (idValue != null) {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
         }
-        String underlyingAssetValue = getUnderlyingAsset();
-        if (underlyingAssetValue != null) {
-            String underlyingAssetValueAsString = underlyingAssetValue.toString();
-            valMap.put("underlyingAsset", underlyingAssetValueAsString);
+        String underlyingValue = getUnderlying();
+        if (underlyingValue != null) {
+            String underlyingValueAsString = underlyingValue.toString();
+            valMap.put("underlying", underlyingValueAsString);
         }
         String expirationDateValue = getExpirationDate();
         if (expirationDateValue != null) {
@@ -182,9 +180,9 @@ public class OpenInterestRequest extends BaseDTO {
         if (idValue != null) {
             valMap.put("id", idValue);
         }
-        Object underlyingAssetValue = getUnderlyingAsset();
-        if (underlyingAssetValue != null) {
-            valMap.put("underlyingAsset", underlyingAssetValue);
+        Object underlyingValue = getUnderlying();
+        if (underlyingValue != null) {
+            valMap.put("underlying", underlyingValue);
         }
         Object expirationDateValue = getExpirationDate();
         if (expirationDateValue != null) {
@@ -217,13 +215,11 @@ public class OpenInterestRequest extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
-        openapiFields.add("underlyingAsset");
+        openapiFields.add("underlying");
         openapiFields.add("expirationDate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("underlyingAsset");
-        openapiRequiredFields.add("expirationDate");
     }
 
     /**
@@ -255,33 +251,17 @@ public class OpenInterestRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : OpenInterestRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
+        if ((jsonObj.get("underlying") != null && !jsonObj.get("underlying").isJsonNull())
+                && !jsonObj.get("underlying").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
+                            "Expected the field `underlying` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("underlying").toString()));
         }
-        if (!jsonObj.get("underlyingAsset").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `underlyingAsset` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("underlyingAsset").toString()));
-        }
-        if (!jsonObj.get("expirationDate").isJsonPrimitive()) {
+        if ((jsonObj.get("expirationDate") != null && !jsonObj.get("expirationDate").isJsonNull())
+                && !jsonObj.get("expirationDate").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `expirationDate` to be a primitive type in the JSON"
@@ -306,7 +286,7 @@ public class OpenInterestRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OpenInterestRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.GetManagedSubAccountDepositAddressResponse;
+import com.binance.connector.client.sub_account.rest.model.OrderType;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountAssetDetailsResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountFuturesAssetDetailsResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountListResponse;
@@ -31,6 +32,7 @@ import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccoun
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogMasterAccountInvestorResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogMasterAccountTradingResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogSubAccountTradingResponse;
+import com.binance.connector.client.sub_account.rest.model.TransferFunctionAccountType;
 import com.binance.connector.client.sub_account.rest.model.WithdrawlAssetsFromTheManagedSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.WithdrawlAssetsFromTheManagedSubAccountResponse;
 import com.google.gson.reflect.TypeToken;
@@ -42,8 +44,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -56,7 +58,7 @@ public class ManagedSubAccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/1.1.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -107,7 +109,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Deposit-Assets-Into-The-Managed-Sub-account">Deposit
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#deposit-assets-into-the-managed-sub-account">Deposit
      *     Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -170,15 +172,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -192,7 +190,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -235,8 +233,9 @@ public class ManagedSubAccountApi {
 
     /**
      * Deposit Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA) Deposit
-     * Assets Into The Managed Sub-account * You need to enable &#x60;Enable Spot &amp; Margin
-     * Trading&#x60; option for the api key which requests this endpoint Weight: 1
+     * Assets Into The Managed Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - You need
+     * to enable &#x60;Enable Spot &amp; Margin Trading&#x60; option for the api key which requests
+     * this endpoint
      *
      * @param depositAssetsIntoTheManagedSubAccountRequest (required)
      * @return ApiResponse&lt;DepositAssetsIntoTheManagedSubAccountResponse&gt;
@@ -250,7 +249,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Deposit-Assets-Into-The-Managed-Sub-account">Deposit
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#deposit-assets-into-the-managed-sub-account">Deposit
      *     Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -271,7 +270,7 @@ public class ManagedSubAccountApi {
     /**
      * Build call for getManagedSubAccountDepositAddress
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param coin (required)
      * @param network networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60;
      *     (optional)
@@ -287,7 +286,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Get-Managed-Sub-account-Deposit-Address">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#get-managed-sub-account-deposit-address">Get
      *     Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -349,15 +348,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -371,7 +366,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -417,11 +412,12 @@ public class ManagedSubAccountApi {
 
     /**
      * Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA) Get
-     * investor&#39;s managed sub-account deposit address. * If &#x60;network&#x60; is not send,
-     * return with default &#x60;network&#x60; of the &#x60;coin&#x60;. * * &#x60;amount&#x60; needs
-     * to be sent if using LIGHTNING network Weight: 1
+     * investor&#39;s managed sub-account deposit address. Weight(UID): 1 Security Type: USER_DATA
+     * Notes: - If &#x60;network&#x60; is not sent, the default &#x60;network&#x60; for the
+     * &#x60;coin&#x60; is returned. - When using &#x60;LIGHTNING&#x60;, &#x60;amount&#x60; must be
+     * provided.
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param coin (required)
      * @param network networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60;
      *     (optional)
@@ -438,7 +434,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Get-Managed-Sub-account-Deposit-Address">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#get-managed-sub-account-deposit-address">Get
      *     Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -448,7 +444,7 @@ public class ManagedSubAccountApi {
                     @NotNull String coin,
                     String network,
                     Double amount,
-                    Long recvWindow)
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getManagedSubAccountDepositAddressValidateBeforeCall(
@@ -461,7 +457,7 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountAssetDetails
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -473,7 +469,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Asset-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-asset-details">Query
      *     Managed Sub-account Asset Details (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -520,15 +516,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -542,7 +534,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -581,9 +573,9 @@ public class ManagedSubAccountApi {
 
     /**
      * Query Managed Sub-account Asset Details (For Investor Master Account) (USER_DATA) Query
-     * Managed Sub-account Asset Details Weight: 1
+     * Managed Sub-account Asset Details Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountAssetDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -596,12 +588,12 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Asset-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-asset-details">Query
      *     Managed Sub-account Asset Details (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<QueryManagedSubAccountAssetDetailsResponse>
-            queryManagedSubAccountAssetDetails(@NotNull String email, Long recvWindow)
+            queryManagedSubAccountAssetDetails(@NotNull String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 queryManagedSubAccountAssetDetailsValidateBeforeCall(email, recvWindow);
@@ -613,10 +605,9 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountFuturesAssetDetails
      *
-     * @param email [Sub-account email](#email-address) (required)
-     * @param accountType No input or input \&quot;MARGIN\&quot; to get Cross Margin account
-     *     details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details.
-     *     (optional)
+     * @param email (required)
+     * @param accountType No input or input \&quot;USDT_FUTURE\&quot; to get UM Futures account
+     *     details. Input \&quot;COIN_FUTURE\&quot; to get CM Futures account details. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -627,7 +618,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Futures-Asset-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-futures-asset-details">Query
      *     Managed Sub-account Futures Asset Details (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -675,15 +666,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -697,7 +684,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -738,12 +725,12 @@ public class ManagedSubAccountApi {
 
     /**
      * Query Managed Sub-account Futures Asset Details (For Investor Master Account) (USER_DATA)
-     * Investor can use this api to query managed sub account futures asset details Weight: 60
+     * Investor can use this api to query managed sub account futures asset details Weight(UID): 60
+     * Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
-     * @param accountType No input or input \&quot;MARGIN\&quot; to get Cross Margin account
-     *     details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details.
-     *     (optional)
+     * @param email (required)
+     * @param accountType No input or input \&quot;USDT_FUTURE\&quot; to get UM Futures account
+     *     details. Input \&quot;COIN_FUTURE\&quot; to get CM Futures account details. (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountFuturesAssetDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -755,7 +742,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Futures-Asset-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-futures-asset-details">Query
      *     Managed Sub-account Futures Asset Details (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -772,9 +759,9 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountList
      *
-     * @param email Managed sub-account email (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -786,7 +773,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-list">Query
      *     Managed Sub-account List (For Investor) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryManagedSubAccountListCall(
@@ -840,15 +827,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -862,7 +845,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -905,11 +888,11 @@ public class ManagedSubAccountApi {
 
     /**
      * Query Managed Sub-account List (For Investor) (USER_DATA) Get investor&#39;s managed
-     * sub-account list. Weight: 60
+     * sub-account list. Weight(UID): 60 Security Type: USER_DATA
      *
-     * @param email Managed sub-account email (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -922,11 +905,12 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-list">Query
      *     Managed Sub-account List (For Investor) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryManagedSubAccountListResponse> queryManagedSubAccountList(
-            String email, Long page, Long limit, Long recvWindow) throws ApiException {
+            String email, Long page, @Max(20L) Long limit, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryManagedSubAccountListValidateBeforeCall(email, page, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -937,7 +921,7 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountMarginAssetDetails
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param accountType No input or input \&quot;MARGIN\&quot; to get Cross Margin account
      *     details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details.
      *     (optional)
@@ -951,7 +935,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Margin-Asset-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-margin-asset-details">Query
      *     Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -999,15 +983,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1021,7 +1001,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1062,9 +1042,10 @@ public class ManagedSubAccountApi {
 
     /**
      * Query Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
-     * Investor can use this api to query managed sub account margin asset details Weight: 1
+     * Investor can use this api to query managed sub account margin asset details Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param accountType No input or input \&quot;MARGIN\&quot; to get Cross Margin account
      *     details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details.
      *     (optional)
@@ -1079,7 +1060,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Margin-Asset-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-margin-asset-details">Query
      *     Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1096,12 +1077,13 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountSnapshot
      *
-     * @param email [Sub-account email](#email-address) (required)
-     * @param type \&quot;SPOT\&quot;, \&quot;MARGIN\&quot;（cross）, \&quot;FUTURES\&quot;（UM）
-     *     (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (required)
+     * @param type (required)
+     * @param startTime Query time range must be within 30 days and only supports data within the
+     *     last month. (optional)
+     * @param endTime If both startTime and endTime are omitted, records from the last 7 days are
+     *     returned by default. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1113,11 +1095,11 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Snapshot">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-snapshot">Query
      *     Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryManagedSubAccountSnapshotCall(
-            String email, String type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String email, OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1176,15 +1158,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1198,12 +1176,12 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryManagedSubAccountSnapshotValidateBeforeCall(
-            String email, String type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String email, OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1220,7 +1198,7 @@ public class ManagedSubAccountApi {
                             .getMethod(
                                     "queryManagedSubAccountSnapshot",
                                     String.class,
-                                    String.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1245,16 +1223,18 @@ public class ManagedSubAccountApi {
 
     /**
      * Query Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA) Query Managed
-     * Sub-account Snapshot * The query time period must be less then 30 days * Support query within
-     * the last one month only * If startTimeand endTime not sent, return records of the last 7 days
-     * by default Weight: 2400
+     * Sub-account Snapshot Weight(IP): 2400 Security Type: USER_DATA Notes: - The query time range
+     * must be less than 30 days. - Only data from the most recent month is supported. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, records from the last 7 days are
+     * returned by default.
      *
-     * @param email [Sub-account email](#email-address) (required)
-     * @param type \&quot;SPOT\&quot;, \&quot;MARGIN\&quot;（cross）, \&quot;FUTURES\&quot;（UM）
-     *     (required)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (required)
+     * @param type (required)
+     * @param startTime Query time range must be within 30 days and only supports data within the
+     *     last month. (optional)
+     * @param endTime If both startTime and endTime are omitted, records from the last 7 days are
+     *     returned by default. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountSnapshotResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1267,16 +1247,16 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Snapshot">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-snapshot">Query
      *     Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryManagedSubAccountSnapshotResponse> queryManagedSubAccountSnapshot(
             @NotNull String email,
-            @NotNull String type,
+            @NotNull OrderType type,
             Long startTime,
             Long endTime,
-            Long limit,
-            Long recvWindow)
+            @Min(7L) @Max(30L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryManagedSubAccountSnapshotValidateBeforeCall(
@@ -1289,15 +1269,14 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountTransferLogMasterAccountInvestor
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param startTime Start Time (required)
      * @param endTime End Time (The start time and end time interval cannot exceed half a year)
      *     (required)
      * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
+     * @param limit (required)
      * @param transfers Transfer Direction (FROM/TO) (optional)
-     * @param transferFunctionAccountType Transfer function account type
-     *     (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+     * @param transferFunctionAccountType (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1308,8 +1287,8 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Investor">Query
-     *     Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA)
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-master-account-investor">Query
+     *     Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
      *     Documentation</a>
      */
     private okhttp3.Call queryManagedSubAccountTransferLogMasterAccountInvestorCall(
@@ -1319,7 +1298,7 @@ public class ManagedSubAccountApi {
             Long page,
             Long limit,
             String transfers,
-            String transferFunctionAccountType)
+            TransferFunctionAccountType transferFunctionAccountType)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1384,15 +1363,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1406,7 +1381,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1417,7 +1392,7 @@ public class ManagedSubAccountApi {
             Long page,
             Long limit,
             String transfers,
-            String transferFunctionAccountType)
+            TransferFunctionAccountType transferFunctionAccountType)
             throws ApiException {
         try {
             Validator validator =
@@ -1441,7 +1416,7 @@ public class ManagedSubAccountApi {
                                     Long.class,
                                     Long.class,
                                     String.class,
-                                    String.class);
+                                    TransferFunctionAccountType.class);
             Set<ConstraintViolation<ManagedSubAccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1467,23 +1442,23 @@ public class ManagedSubAccountApi {
     }
 
     /**
-     * Query Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA) Investor can
-     * use this api to query managed sub account transfer log. This endpoint is available for
-     * investor of Managed Sub-Account. A Managed Sub-Account is an account type for investors who
-     * value flexibility in asset allocation and account application, while delegating trades to a
-     * professional trading team. Please refer to
+     * Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA) Query Managed
+     * Sub Account Transfer Log For Investor Master Account Investor can use this api to query
+     * managed sub account transfer log. This endpoint is available for investor of Managed
+     * Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in
+     * asset allocation and account application, while delegating trades to a professional trading
+     * team. Please refer to
      * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight: 1
+     * Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param startTime Start Time (required)
      * @param endTime End Time (The start time and end time interval cannot exceed half a year)
      *     (required)
      * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
+     * @param limit (required)
      * @param transfers Transfer Direction (FROM/TO) (optional)
-     * @param transferFunctionAccountType Transfer function account type
-     *     (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+     * @param transferFunctionAccountType (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountTransferLogMasterAccountInvestorResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1495,8 +1470,8 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Investor">Query
-     *     Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA)
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-master-account-investor">Query
+     *     Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<QueryManagedSubAccountTransferLogMasterAccountInvestorResponse>
@@ -1505,9 +1480,9 @@ public class ManagedSubAccountApi {
                     @NotNull Long startTime,
                     @NotNull Long endTime,
                     @NotNull Long page,
-                    @NotNull Long limit,
+                    @NotNull @Max(500L) Long limit,
                     String transfers,
-                    String transferFunctionAccountType)
+                    TransferFunctionAccountType transferFunctionAccountType)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 queryManagedSubAccountTransferLogMasterAccountInvestorValidateBeforeCall(
@@ -1527,15 +1502,14 @@ public class ManagedSubAccountApi {
     /**
      * Build call for queryManagedSubAccountTransferLogMasterAccountTrading
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param startTime Start Time (required)
      * @param endTime End Time (The start time and end time interval cannot exceed half a year)
      *     (required)
-     * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
+     * @param page (required)
+     * @param limit (required)
      * @param transfers Transfer Direction (FROM/TO) (optional)
-     * @param transferFunctionAccountType Transfer function account type
-     *     (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+     * @param transferFunctionAccountType (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1546,8 +1520,8 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Trading-Team-Master">Query
-     *     Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-master-account-trading">Query
+     *     Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
      *     Documentation</a>
      */
     private okhttp3.Call queryManagedSubAccountTransferLogMasterAccountTradingCall(
@@ -1557,7 +1531,7 @@ public class ManagedSubAccountApi {
             Long page,
             Long limit,
             String transfers,
-            String transferFunctionAccountType)
+            TransferFunctionAccountType transferFunctionAccountType)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1622,15 +1596,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1644,7 +1614,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1655,7 +1625,7 @@ public class ManagedSubAccountApi {
             Long page,
             Long limit,
             String transfers,
-            String transferFunctionAccountType)
+            TransferFunctionAccountType transferFunctionAccountType)
             throws ApiException {
         try {
             Validator validator =
@@ -1679,7 +1649,7 @@ public class ManagedSubAccountApi {
                                     Long.class,
                                     Long.class,
                                     String.class,
-                                    String.class);
+                                    TransferFunctionAccountType.class);
             Set<ConstraintViolation<ManagedSubAccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1705,23 +1675,23 @@ public class ManagedSubAccountApi {
     }
 
     /**
-     * Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA) Trading
-     * team can use this api to query managed sub account transfer log. This endpoint is available
-     * for trading team of Managed Sub-Account. A Managed Sub-Account is an account type for
-     * investors who value flexibility in asset allocation and account application, while delegating
-     * trades to a professional trading team. Please refer to
+     * Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA) Query
+     * Managed Sub Account Transfer Log For Trading Team Master Account Trading team can use this
+     * api to query managed sub account transfer log. This endpoint is available for trading team of
+     * Managed Sub-Account. A Managed Sub-Account is an account type for investors who value
+     * flexibility in asset allocation and account application, while delegating trades to a
+     * professional trading team. Please refer to
      * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight: 60
+     * Weight(UID): 60 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param startTime Start Time (required)
      * @param endTime End Time (The start time and end time interval cannot exceed half a year)
      *     (required)
-     * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
+     * @param page (required)
+     * @param limit (required)
      * @param transfers Transfer Direction (FROM/TO) (optional)
-     * @param transferFunctionAccountType Transfer function account type
-     *     (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+     * @param transferFunctionAccountType (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountTransferLogMasterAccountTradingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1733,8 +1703,8 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Trading-Team-Master">Query
-     *     Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-master-account-trading">Query
+     *     Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<QueryManagedSubAccountTransferLogMasterAccountTradingResponse>
@@ -1743,9 +1713,9 @@ public class ManagedSubAccountApi {
                     @NotNull Long startTime,
                     @NotNull Long endTime,
                     @NotNull Long page,
-                    @NotNull Long limit,
+                    @NotNull @Max(500L) Long limit,
                     String transfers,
-                    String transferFunctionAccountType)
+                    TransferFunctionAccountType transferFunctionAccountType)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 queryManagedSubAccountTransferLogMasterAccountTradingValidateBeforeCall(
@@ -1768,11 +1738,10 @@ public class ManagedSubAccountApi {
      * @param startTime Start Time (required)
      * @param endTime End Time (The start time and end time interval cannot exceed half a year)
      *     (required)
-     * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
-     * @param transfers Transfer Direction (FROM/TO) (optional)
-     * @param transferFunctionAccountType Transfer function account type
-     *     (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+     * @param page (required)
+     * @param limit (required)
+     * @param transfers Transfer Direction (from/to) (optional)
+     * @param transferFunctionAccountType (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1784,7 +1753,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Trading-Team-Sub">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-sub-account-trading">Query
      *     Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1794,7 +1763,7 @@ public class ManagedSubAccountApi {
             Long page,
             Long limit,
             String transfers,
-            String transferFunctionAccountType,
+            TransferFunctionAccountType transferFunctionAccountType,
             Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -1860,15 +1829,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1882,7 +1847,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1892,7 +1857,7 @@ public class ManagedSubAccountApi {
             Long page,
             Long limit,
             String transfers,
-            String transferFunctionAccountType,
+            TransferFunctionAccountType transferFunctionAccountType,
             Long recvWindow)
             throws ApiException {
         try {
@@ -1916,7 +1881,7 @@ public class ManagedSubAccountApi {
                                     Long.class,
                                     Long.class,
                                     String.class,
-                                    String.class,
+                                    TransferFunctionAccountType.class,
                                     Long.class);
             Set<ConstraintViolation<ManagedSubAccountApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
@@ -1944,16 +1909,16 @@ public class ManagedSubAccountApi {
 
     /**
      * Query Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA) Query
-     * Managed Sub Account Transfer Log (For Trading Team Sub Account) Weight: 60
+     * Managed Sub Account Transfer Log (For Trading Team Sub Account) Weight(UID): 60 Security
+     * Type: USER_DATA
      *
      * @param startTime Start Time (required)
      * @param endTime End Time (The start time and end time interval cannot exceed half a year)
      *     (required)
-     * @param page Page (required)
-     * @param limit Limit (Max: 500) (required)
-     * @param transfers Transfer Direction (FROM/TO) (optional)
-     * @param transferFunctionAccountType Transfer function account type
-     *     (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+     * @param page (required)
+     * @param limit (required)
+     * @param transfers Transfer Direction (from/to) (optional)
+     * @param transferFunctionAccountType (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryManagedSubAccountTransferLogSubAccountTradingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1966,7 +1931,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Trading-Team-Sub">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-sub-account-trading">Query
      *     Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1975,10 +1940,10 @@ public class ManagedSubAccountApi {
                     @NotNull Long startTime,
                     @NotNull Long endTime,
                     @NotNull Long page,
-                    @NotNull Long limit,
+                    @NotNull @Max(500L) Long limit,
                     String transfers,
-                    String transferFunctionAccountType,
-                    Long recvWindow)
+                    TransferFunctionAccountType transferFunctionAccountType,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 queryManagedSubAccountTransferLogSubAccountTradingValidateBeforeCall(
@@ -2009,7 +1974,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Withdrawl-Assets-From-The-Managed-Sub-account">Withdrawl
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#withdrawl-assets-from-the-managed-sub-account">Withdrawl
      *     Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -2078,15 +2043,11 @@ public class ManagedSubAccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2100,7 +2061,7 @@ public class ManagedSubAccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2143,8 +2104,8 @@ public class ManagedSubAccountApi {
 
     /**
      * Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
-     * Withdrawl Assets From The Managed Sub-account * You need to enable &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; option for the api key which requests this endpoint Weight: 1
+     * Withdrawl Assets From The Managed Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * Your API key must have the permission &#x60;Enable Spot &amp; Margin Trading&#x60;.
      *
      * @param withdrawlAssetsFromTheManagedSubAccountRequest (required)
      * @return ApiResponse&lt;WithdrawlAssetsFromTheManagedSubAccountResponse&gt;
@@ -2158,7 +2119,7 @@ public class ManagedSubAccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/managed-sub-account/Withdrawl-Assets-From-The-Managed-Sub-account">Withdrawl
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#withdrawl-assets-from-the-managed-sub-account">Withdrawl
      *     Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *     Documentation</a>
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** MarkPriceStreamForAllMarketRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -49,7 +50,7 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_UPDATE_SPEED)
     @jakarta.annotation.Nullable
-    private String updateSpeed;
+    private UpdateSpeed updateSpeed;
 
     public MarkPriceStreamForAllMarketRequest() {}
 
@@ -59,7 +60,7 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
@@ -73,7 +74,7 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
     }
 
     public MarkPriceStreamForAllMarketRequest updateSpeed(
-            @jakarta.annotation.Nullable String updateSpeed) {
+            @jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
         return this;
     }
@@ -84,11 +85,12 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
      * @return updateSpeed
      */
     @jakarta.annotation.Nullable
-    public String getUpdateSpeed() {
+    @Valid
+    public UpdateSpeed getUpdateSpeed() {
         return updateSpeed;
     }
 
-    public void setUpdateSpeed(@jakarta.annotation.Nullable String updateSpeed) {
+    public void setUpdateSpeed(@jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
     }
 
@@ -130,7 +132,7 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
         }
-        String updateSpeedValue = getUpdateSpeed();
+        UpdateSpeed updateSpeedValue = getUpdateSpeed();
         if (updateSpeedValue != null) {
             String updateSpeedValueAsString = updateSpeedValue.toString();
             valMap.put("updateSpeed", updateSpeedValueAsString);
@@ -227,13 +229,9 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
         }
-        if ((jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull())
-                && !jsonObj.get("updateSpeed").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `updateSpeed` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("updateSpeed").toString()));
+        // validate the optional field `updateSpeed`
+        if (jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull()) {
+            UpdateSpeed.validateJsonElement(jsonObj.get("updateSpeed"));
         }
     }
 
@@ -255,7 +253,7 @@ public class MarkPriceStreamForAllMarketRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, MarkPriceStreamForAllMarketRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,11 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets priceMatch */
+/**
+ * only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be
+ * passed together with &#x60;price&#x60;
+ */
 @JsonAdapter(PriceMatch.Adapter.class)
 public enum PriceMatch {
-    NONE("NONE"),
-
     OPPONENT("OPPONENT"),
 
     OPPONENT_5("OPPONENT_5"),

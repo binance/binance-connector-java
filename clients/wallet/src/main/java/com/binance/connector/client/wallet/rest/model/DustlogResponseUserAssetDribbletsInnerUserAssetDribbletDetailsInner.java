@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner {
     public static final String SERIALIZED_NAME_TRANS_ID = "transId";
 
@@ -73,6 +71,12 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
     @SerializedName(SERIALIZED_NAME_FROM_ASSET)
     @jakarta.annotation.Nullable
     private String fromAsset;
+
+    public static final String SERIALIZED_NAME_TARGET_ASSET = "targetAsset";
+
+    @SerializedName(SERIALIZED_NAME_TARGET_ASSET)
+    @jakarta.annotation.Nullable
+    private String targetAsset;
 
     public DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner() {}
 
@@ -196,6 +200,26 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
         this.fromAsset = fromAsset;
     }
 
+    public DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner targetAsset(
+            @jakarta.annotation.Nullable String targetAsset) {
+        this.targetAsset = targetAsset;
+        return this;
+    }
+
+    /**
+     * Get targetAsset
+     *
+     * @return targetAsset
+     */
+    @jakarta.annotation.Nullable
+    public String getTargetAsset() {
+        return targetAsset;
+    }
+
+    public void setTargetAsset(@jakarta.annotation.Nullable String targetAsset) {
+        this.targetAsset = targetAsset;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -228,13 +252,23 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
                 && Objects.equals(
                         this.fromAsset,
                         dustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
-                                .fromAsset);
+                                .fromAsset)
+                && Objects.equals(
+                        this.targetAsset,
+                        dustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
+                                .targetAsset);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                transId, serviceChargeAmount, amount, operateTime, transferedAmount, fromAsset);
+                transId,
+                serviceChargeAmount,
+                amount,
+                operateTime,
+                transferedAmount,
+                fromAsset,
+                targetAsset);
     }
 
     @Override
@@ -249,6 +283,7 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
         sb.append("		operateTime: ").append(toIndentedString(operateTime)).append("\n");
         sb.append("		transferedAmount: ").append(toIndentedString(transferedAmount)).append("\n");
         sb.append("		fromAsset: ").append(toIndentedString(fromAsset)).append("\n");
+        sb.append("		targetAsset: ").append(toIndentedString(targetAsset)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -282,6 +317,10 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
         String fromAssetValueAsString = "";
         fromAssetValueAsString = fromAssetValue.toString();
         sb.append("fromAsset=").append(urlEncode(fromAssetValueAsString)).append("");
+        Object targetAssetValue = getTargetAsset();
+        String targetAssetValueAsString = "";
+        targetAssetValueAsString = targetAssetValue.toString();
+        sb.append("targetAsset=").append(urlEncode(targetAssetValueAsString)).append("");
         return sb.toString();
     }
 
@@ -316,6 +355,7 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
         openapiFields.add("operateTime");
         openapiFields.add("transferedAmount");
         openapiFields.add("fromAsset");
+        openapiFields.add("targetAsset");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -341,20 +381,6 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
                                 DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
                                         .openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner.openapiFields
-                    .contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -392,6 +418,14 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
                                     + " string but got `%s`",
                             jsonObj.get("fromAsset").toString()));
         }
+        if ((jsonObj.get("targetAsset") != null && !jsonObj.get("targetAsset").isJsonNull())
+                && !jsonObj.get("targetAsset").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `targetAsset` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("targetAsset").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -422,7 +456,7 @@ public class DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
                                 DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner
                                         value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

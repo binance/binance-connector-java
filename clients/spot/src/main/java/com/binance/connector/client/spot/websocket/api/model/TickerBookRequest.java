@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,8 +38,14 @@ import org.hibernate.validator.constraints.*;
 /** TickerBookRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerBookRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -52,7 +58,32 @@ public class TickerBookRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private Symbols symbols;
 
+    public static final String SERIALIZED_NAME_SYMBOL_STATUS = "symbolStatus";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL_STATUS)
+    @jakarta.annotation.Nullable
+    private SymbolStatus symbolStatus;
+
     public TickerBookRequest() {}
+
+    public TickerBookRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public TickerBookRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
@@ -60,7 +91,7 @@ public class TickerBookRequest extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * Query ticker for a single symbol
      *
      * @return symbol
      */
@@ -93,6 +124,26 @@ public class TickerBookRequest extends BaseDTO {
         this.symbols = symbols;
     }
 
+    public TickerBookRequest symbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+        return this;
+    }
+
+    /**
+     * Get symbolStatus
+     *
+     * @return symbolStatus
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SymbolStatus getSymbolStatus() {
+        return symbolStatus;
+    }
+
+    public void setSymbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,21 +153,25 @@ public class TickerBookRequest extends BaseDTO {
             return false;
         }
         TickerBookRequest tickerBookRequest = (TickerBookRequest) o;
-        return Objects.equals(this.symbol, tickerBookRequest.symbol)
-                && Objects.equals(this.symbols, tickerBookRequest.symbols);
+        return Objects.equals(this.id, tickerBookRequest.id)
+                && Objects.equals(this.symbol, tickerBookRequest.symbol)
+                && Objects.equals(this.symbols, tickerBookRequest.symbols)
+                && Objects.equals(this.symbolStatus, tickerBookRequest.symbolStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, symbols);
+        return Objects.hash(id, symbol, symbols, symbolStatus);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class TickerBookRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		symbols: ").append(toIndentedString(symbols)).append("\n");
+        sb.append("		symbolStatus: ").append(toIndentedString(symbolStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -125,6 +180,11 @@ public class TickerBookRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -134,6 +194,11 @@ public class TickerBookRequest extends BaseDTO {
         if (symbolsValue != null) {
             String symbolsValueAsString = JSON.getGson().toJson(symbolsValue);
             valMap.put("symbols", symbolsValueAsString);
+        }
+        SymbolStatus symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            String symbolStatusValueAsString = symbolStatusValue.toString();
+            valMap.put("symbolStatus", symbolStatusValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -146,6 +211,10 @@ public class TickerBookRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -153,6 +222,10 @@ public class TickerBookRequest extends BaseDTO {
         Object symbolsValue = getSymbols();
         if (symbolsValue != null) {
             valMap.put("symbols", symbolsValue);
+        }
+        Object symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            valMap.put("symbolStatus", symbolStatusValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -180,8 +253,10 @@ public class TickerBookRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("symbols");
+        openapiFields.add("symbolStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -217,6 +292,14 @@ public class TickerBookRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -224,6 +307,10 @@ public class TickerBookRequest extends BaseDTO {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        // validate the optional field `symbolStatus`
+        if (jsonObj.get("symbolStatus") != null && !jsonObj.get("symbolStatus").isJsonNull()) {
+            SymbolStatus.validateJsonElement(jsonObj.get("symbolStatus"));
         }
     }
 
@@ -243,7 +330,7 @@ public class TickerBookRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, TickerBookRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** SymbolPriceTickerResponse2 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SymbolPriceTickerResponse2 extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,7 +59,7 @@ public class SymbolPriceTickerResponse2 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<@Valid SymbolPriceTickerResponse1Result> result;
+    private List<@Valid SymbolPriceTickerResponse2ResultInner> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -108,12 +108,14 @@ public class SymbolPriceTickerResponse2 extends BaseDTO {
     }
 
     public SymbolPriceTickerResponse2 result(
-            @jakarta.annotation.Nullable List<@Valid SymbolPriceTickerResponse1Result> result) {
+            @jakarta.annotation.Nullable
+                    List<@Valid SymbolPriceTickerResponse2ResultInner> result) {
         this.result = result;
         return this;
     }
 
-    public SymbolPriceTickerResponse2 addResultItem(SymbolPriceTickerResponse1Result resultItem) {
+    public SymbolPriceTickerResponse2 addResultItem(
+            SymbolPriceTickerResponse2ResultInner resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -128,12 +130,13 @@ public class SymbolPriceTickerResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid SymbolPriceTickerResponse1Result> getResult() {
+    public List<@Valid SymbolPriceTickerResponse2ResultInner> getResult() {
         return result;
     }
 
     public void setResult(
-            @jakarta.annotation.Nullable List<@Valid SymbolPriceTickerResponse1Result> result) {
+            @jakarta.annotation.Nullable
+                    List<@Valid SymbolPriceTickerResponse2ResultInner> result) {
         this.result = result;
     }
 
@@ -216,7 +219,7 @@ public class SymbolPriceTickerResponse2 extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<@Valid SymbolPriceTickerResponse1Result> resultValue = getResult();
+        List<@Valid SymbolPriceTickerResponse2ResultInner> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
@@ -341,7 +344,8 @@ public class SymbolPriceTickerResponse2 extends BaseDTO {
 
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    SymbolPriceTickerResponse1Result.validateJsonElement(jsonArrayresult.get(i));
+                    SymbolPriceTickerResponse2ResultInner.validateJsonElement(
+                            jsonArrayresult.get(i));
                 }
                 ;
             }
@@ -385,7 +389,7 @@ public class SymbolPriceTickerResponse2 extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, SymbolPriceTickerResponse2 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

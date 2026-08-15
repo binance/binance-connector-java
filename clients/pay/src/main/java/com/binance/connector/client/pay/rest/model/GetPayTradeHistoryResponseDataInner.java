@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetPayTradeHistoryResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInner {
     public static final String SERIALIZED_NAME_ORDER_TYPE = "orderType";
 
@@ -113,7 +111,8 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get orderType
+     * Order type. Enum: PAY, PAY_REFUND, C2C, CRYPTO_BOX, CRYPTO_BOX_RF, C2C_HOLDING,
+     * C2C_HOLDING_RF, PAYOUT, REMITTANCE.
      *
      * @return orderType
      */
@@ -133,7 +132,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get transactionId
+     * Transaction ID.
      *
      * @return transactionId
      */
@@ -153,7 +152,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get transactionTime
+     * Trade timestamp.
      *
      * @return transactionTime
      */
@@ -172,7 +171,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get amount
+     * Order amount (up to 8 decimal places). Positive means income; negative means expenditure.
      *
      * @return amount
      */
@@ -192,7 +191,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get currency
+     * Order asset.
      *
      * @return currency
      */
@@ -212,7 +211,8 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get walletType
+     * Main wallet type: 1&#x3D;funding wallet, 2&#x3D;spot wallet, 3&#x3D;fiat wallet, 4 or
+     * 6&#x3D;card payment, 5&#x3D;earn wallet.
      *
      * @return walletType
      */
@@ -240,7 +240,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get walletTypes
+     * Array format of wallet types. Multiple values may appear for combined payments.
      *
      * @return walletTypes
      */
@@ -270,7 +270,7 @@ public class GetPayTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get fundsDetail
+     * Funds usage details.
      *
      * @return fundsDetail
      */
@@ -501,18 +501,6 @@ public class GetPayTradeHistoryResponseDataInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPayTradeHistoryResponseDataInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetPayTradeHistoryResponseDataInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("orderType") != null && !jsonObj.get("orderType").isJsonNull())
                 && !jsonObj.get("orderType").isJsonPrimitive()) {
@@ -606,7 +594,7 @@ public class GetPayTradeHistoryResponseDataInner {
                         @Override
                         public void write(JsonWriter out, GetPayTradeHistoryResponseDataInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

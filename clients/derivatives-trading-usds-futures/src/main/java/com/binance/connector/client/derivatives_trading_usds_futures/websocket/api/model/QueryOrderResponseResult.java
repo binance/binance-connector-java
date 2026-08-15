@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryOrderResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryOrderResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -176,6 +176,25 @@ public class QueryOrderResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
     private Boolean priceProtect;
+
+    public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_MATCH)
+    @jakarta.annotation.Nullable
+    private String priceMatch;
+
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private String selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
+
+    @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
+    @jakarta.annotation.Nullable
+    private Long goodTillDate;
 
     public QueryOrderResponseResult() {}
 
@@ -414,7 +433,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -434,7 +453,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -472,7 +491,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get time
+     * order time
      *
      * @return time
      */
@@ -530,7 +549,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -549,7 +568,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -568,7 +587,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -607,7 +626,7 @@ public class QueryOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -618,6 +637,65 @@ public class QueryOrderResponseResult extends BaseDTO {
 
     public void setPriceProtect(@jakarta.annotation.Nullable Boolean priceProtect) {
         this.priceProtect = priceProtect;
+    }
+
+    public QueryOrderResponseResult priceMatch(@jakarta.annotation.Nullable String priceMatch) {
+        this.priceMatch = priceMatch;
+        return this;
+    }
+
+    /**
+     * Get priceMatch
+     *
+     * @return priceMatch
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceMatch() {
+        return priceMatch;
+    }
+
+    public void setPriceMatch(@jakarta.annotation.Nullable String priceMatch) {
+        this.priceMatch = priceMatch;
+    }
+
+    public QueryOrderResponseResult selfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Self-trade prevention mode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    public String getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public QueryOrderResponseResult goodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
+        return this;
+    }
+
+    /**
+     * Order good till date timestamp
+     *
+     * @return goodTillDate
+     */
+    @jakarta.annotation.Nullable
+    public Long getGoodTillDate() {
+        return goodTillDate;
+    }
+
+    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
     }
 
     @Override
@@ -651,7 +729,12 @@ public class QueryOrderResponseResult extends BaseDTO {
                 && Objects.equals(this.priceRate, queryOrderResponseResult.priceRate)
                 && Objects.equals(this.updateTime, queryOrderResponseResult.updateTime)
                 && Objects.equals(this.workingType, queryOrderResponseResult.workingType)
-                && Objects.equals(this.priceProtect, queryOrderResponseResult.priceProtect);
+                && Objects.equals(this.priceProtect, queryOrderResponseResult.priceProtect)
+                && Objects.equals(this.priceMatch, queryOrderResponseResult.priceMatch)
+                && Objects.equals(
+                        this.selfTradePreventionMode,
+                        queryOrderResponseResult.selfTradePreventionMode)
+                && Objects.equals(this.goodTillDate, queryOrderResponseResult.goodTillDate);
     }
 
     @Override
@@ -679,7 +762,10 @@ public class QueryOrderResponseResult extends BaseDTO {
                 priceRate,
                 updateTime,
                 workingType,
-                priceProtect);
+                priceProtect,
+                priceMatch,
+                selfTradePreventionMode,
+                goodTillDate);
     }
 
     @Override
@@ -709,6 +795,11 @@ public class QueryOrderResponseResult extends BaseDTO {
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
+        sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
+        sb.append("		goodTillDate: ").append(toIndentedString(goodTillDate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -832,6 +923,21 @@ public class QueryOrderResponseResult extends BaseDTO {
             String priceProtectValueAsString = priceProtectValue.toString();
             valMap.put("priceProtect", priceProtectValueAsString);
         }
+        String priceMatchValue = getPriceMatch();
+        if (priceMatchValue != null) {
+            String priceMatchValueAsString = priceMatchValue.toString();
+            valMap.put("priceMatch", priceMatchValueAsString);
+        }
+        String selfTradePreventionModeValue = getSelfTradePreventionMode();
+        if (selfTradePreventionModeValue != null) {
+            String selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+            valMap.put("selfTradePreventionMode", selfTradePreventionModeValueAsString);
+        }
+        Long goodTillDateValue = getGoodTillDate();
+        if (goodTillDateValue != null) {
+            String goodTillDateValueAsString = goodTillDateValue.toString();
+            valMap.put("goodTillDate", goodTillDateValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -935,6 +1041,18 @@ public class QueryOrderResponseResult extends BaseDTO {
         if (priceProtectValue != null) {
             valMap.put("priceProtect", priceProtectValue);
         }
+        Object priceMatchValue = getPriceMatch();
+        if (priceMatchValue != null) {
+            valMap.put("priceMatch", priceMatchValue);
+        }
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        if (selfTradePreventionModeValue != null) {
+            valMap.put("selfTradePreventionMode", selfTradePreventionModeValue);
+        }
+        Object goodTillDateValue = getGoodTillDate();
+        if (goodTillDateValue != null) {
+            valMap.put("goodTillDate", goodTillDateValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -984,6 +1102,9 @@ public class QueryOrderResponseResult extends BaseDTO {
         openapiFields.add("updateTime");
         openapiFields.add("workingType");
         openapiFields.add("priceProtect");
+        openapiFields.add("priceMatch");
+        openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("goodTillDate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1155,6 +1276,23 @@ public class QueryOrderResponseResult extends BaseDTO {
                                     + " string but got `%s`",
                             jsonObj.get("workingType").toString()));
         }
+        if ((jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull())
+                && !jsonObj.get("priceMatch").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceMatch` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("priceMatch").toString()));
+        }
+        if ((jsonObj.get("selfTradePreventionMode") != null
+                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
+                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("selfTradePreventionMode").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -1174,7 +1312,7 @@ public class QueryOrderResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, QueryOrderResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

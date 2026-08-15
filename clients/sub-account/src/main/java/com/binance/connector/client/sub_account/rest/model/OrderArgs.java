@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,8 +14,8 @@ package com.binance.connector.client.sub_account.rest.model;
 
 import com.binance.connector.client.sub_account.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -28,16 +28,23 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
-/** OrderArgs */
+/**
+ * Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING,
+ * orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING,
+ * positionSide support BOTH,LONG and SHORT. Each entry should be like
+ * orderArgs[0].symbol&#x3D;BTCUSDT,orderArgs[0].quantity&#x3D;0.001,orderArgs[0].positionSide&#x3D;BOTH.
+ * Example of the request parameter array: orderArgs[0].symbol&#x3D;BTCUSDT
+ * orderArgs[0].quantity&#x3D;0.001 orderArgs[0].positionSide&#x3D;BOTH
+ * orderArgs[1].symbol&#x3D;ETHUSDT orderArgs[1].quantity&#x3D;0.01
+ * orderArgs[1].positionSide&#x3D;BOTH
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
-public class OrderArgs extends ArrayList<Object> {
+        comments = "Generator version: 7.22.0")
+public class OrderArgs extends ArrayList<OrderArgsInner> {
     public OrderArgs() {}
 
     @Override
@@ -108,6 +115,18 @@ public class OrderArgs extends ArrayList<Object> {
      * @throws IOException if the JSON Element is invalid with respect to OrderArgs
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            OrderArgsInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!OrderArgs.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -116,18 +135,6 @@ public class OrderArgs extends ArrayList<Object> {
                                 "The required field(s) %s in OrderArgs is not found in the empty"
                                         + " JSON string",
                                 OrderArgs.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderArgs.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderArgs` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }
@@ -147,7 +154,7 @@ public class OrderArgs extends ArrayList<Object> {
                     new TypeAdapter<OrderArgs>() {
                         @Override
                         public void write(JsonWriter out, OrderArgs value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

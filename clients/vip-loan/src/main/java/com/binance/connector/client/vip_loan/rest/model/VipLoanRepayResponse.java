@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** VipLoanRepayResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class VipLoanRepayResponse {
     public static final String SERIALIZED_NAME_LOAN_COIN = "loanCoin";
 
@@ -204,7 +202,7 @@ public class VipLoanRepayResponse {
     }
 
     /**
-     * Get repayStatus
+     * Repayment status (&#x60;Repaid&#x60;, &#x60;Repaying&#x60;, &#x60;Failed&#x60;).
      *
      * @return repayStatus
      */
@@ -356,18 +354,6 @@ public class VipLoanRepayResponse {
                                 VipLoanRepayResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!VipLoanRepayResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `VipLoanRepayResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("loanCoin") != null && !jsonObj.get("loanCoin").isJsonNull())
                 && !jsonObj.get("loanCoin").isJsonPrimitive()) {
@@ -445,7 +431,7 @@ public class VipLoanRepayResponse {
                         @Override
                         public void write(JsonWriter out, VipLoanRepayResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

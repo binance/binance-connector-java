@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** AccountInformationResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponse {
     public static final String SERIALIZED_NAME_ASSETS = "assets";
 
@@ -105,7 +103,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get assets
+     * Supported assets.
      *
      * @return assets
      */
@@ -138,7 +136,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get positions
+     * Position list.
      *
      * @return positions
      */
@@ -160,7 +158,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get canDeposit
+     * Whether deposits are enabled.
      *
      * @return canDeposit
      */
@@ -179,7 +177,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get canTrade
+     * Whether trading is enabled.
      *
      * @return canTrade
      */
@@ -199,7 +197,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get canWithdraw
+     * Whether withdrawals are enabled.
      *
      * @return canWithdraw
      */
@@ -218,7 +216,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get feeTier
+     * Fee tier level.
      *
      * @return feeTier
      */
@@ -237,7 +235,7 @@ public class AccountInformationResponse {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -383,18 +381,6 @@ public class AccountInformationResponse {
                                 AccountInformationResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountInformationResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AccountInformationResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("assets") != null && !jsonObj.get("assets").isJsonNull()) {
             JsonArray jsonArrayassets = jsonObj.getAsJsonArray("assets");
@@ -455,7 +441,7 @@ public class AccountInformationResponse {
                         @Override
                         public void write(JsonWriter out, AccountInformationResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

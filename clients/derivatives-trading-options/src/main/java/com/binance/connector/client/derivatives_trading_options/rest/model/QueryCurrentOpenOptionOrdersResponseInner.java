@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryCurrentOpenOptionOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentOpenOptionOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -68,12 +66,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String executedQty;
 
-    public static final String SERIALIZED_NAME_FEE = "fee";
-
-    @SerializedName(SERIALIZED_NAME_FEE)
-    @jakarta.annotation.Nullable
-    private String fee;
-
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
@@ -97,12 +89,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
-
-    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
-
-    @SerializedName(SERIALIZED_NAME_POST_ONLY)
-    @jakarta.annotation.Nullable
-    private Boolean postOnly;
 
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
@@ -164,6 +150,13 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     @jakarta.annotation.Nullable
     private Boolean mmp;
 
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private String selfTradePreventionMode;
+
     public QueryCurrentOpenOptionOrdersResponseInner() {}
 
     public QueryCurrentOpenOptionOrdersResponseInner orderId(
@@ -173,7 +166,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * System order number
      *
      * @return orderId
      */
@@ -193,7 +186,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -213,7 +206,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -233,7 +226,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -253,7 +246,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Number of completed trades
      *
      * @return executedQty
      */
@@ -266,25 +259,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         this.executedQty = executedQty;
     }
 
-    public QueryCurrentOpenOptionOrdersResponseInner fee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-        return this;
-    }
-
-    /**
-     * Get fee
-     *
-     * @return fee
-     */
-    @jakarta.annotation.Nullable
-    public String getFee() {
-        return fee;
-    }
-
-    public void setFee(@jakarta.annotation.Nullable String fee) {
-        this.fee = fee;
-    }
-
     public QueryCurrentOpenOptionOrdersResponseInner side(
             @jakarta.annotation.Nullable String side) {
         this.side = side;
@@ -292,7 +266,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -312,7 +286,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -332,7 +306,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -352,7 +326,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -365,26 +339,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         this.reduceOnly = reduceOnly;
     }
 
-    public QueryCurrentOpenOptionOrdersResponseInner postOnly(
-            @jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-        return this;
-    }
-
-    /**
-     * Get postOnly
-     *
-     * @return postOnly
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getPostOnly() {
-        return postOnly;
-    }
-
-    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
-        this.postOnly = postOnly;
-    }
-
     public QueryCurrentOpenOptionOrdersResponseInner createTime(
             @jakarta.annotation.Nullable Long createTime) {
         this.createTime = createTime;
@@ -392,7 +346,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get createTime
+     * Order Time
      *
      * @return createTime
      */
@@ -412,7 +366,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Update Time
      *
      * @return updateTime
      */
@@ -432,7 +386,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -452,7 +406,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -472,7 +426,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID
      *
      * @return clientOrderId
      */
@@ -492,7 +446,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -512,7 +466,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -532,7 +486,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -552,7 +506,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -571,7 +525,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */
@@ -582,6 +536,27 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
 
     public void setMmp(@jakarta.annotation.Nullable Boolean mmp) {
         this.mmp = mmp;
+    }
+
+    public QueryCurrentOpenOptionOrdersResponseInner selfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    public String getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
     @Override
@@ -600,14 +575,12 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                 && Objects.equals(this.quantity, queryCurrentOpenOptionOrdersResponseInner.quantity)
                 && Objects.equals(
                         this.executedQty, queryCurrentOpenOptionOrdersResponseInner.executedQty)
-                && Objects.equals(this.fee, queryCurrentOpenOptionOrdersResponseInner.fee)
                 && Objects.equals(this.side, queryCurrentOpenOptionOrdersResponseInner.side)
                 && Objects.equals(this.type, queryCurrentOpenOptionOrdersResponseInner.type)
                 && Objects.equals(
                         this.timeInForce, queryCurrentOpenOptionOrdersResponseInner.timeInForce)
                 && Objects.equals(
                         this.reduceOnly, queryCurrentOpenOptionOrdersResponseInner.reduceOnly)
-                && Objects.equals(this.postOnly, queryCurrentOpenOptionOrdersResponseInner.postOnly)
                 && Objects.equals(
                         this.createTime, queryCurrentOpenOptionOrdersResponseInner.createTime)
                 && Objects.equals(
@@ -624,7 +597,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                         this.optionSide, queryCurrentOpenOptionOrdersResponseInner.optionSide)
                 && Objects.equals(
                         this.quoteAsset, queryCurrentOpenOptionOrdersResponseInner.quoteAsset)
-                && Objects.equals(this.mmp, queryCurrentOpenOptionOrdersResponseInner.mmp);
+                && Objects.equals(this.mmp, queryCurrentOpenOptionOrdersResponseInner.mmp)
+                && Objects.equals(
+                        this.selfTradePreventionMode,
+                        queryCurrentOpenOptionOrdersResponseInner.selfTradePreventionMode);
     }
 
     @Override
@@ -635,12 +611,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                 price,
                 quantity,
                 executedQty,
-                fee,
                 side,
                 type,
                 timeInForce,
                 reduceOnly,
-                postOnly,
                 createTime,
                 updateTime,
                 status,
@@ -650,7 +624,8 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                 quantityScale,
                 optionSide,
                 quoteAsset,
-                mmp);
+                mmp,
+                selfTradePreventionMode);
     }
 
     @Override
@@ -662,12 +637,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
-        sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
-        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
@@ -678,6 +651,9 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         sb.append("		optionSide: ").append(toIndentedString(optionSide)).append("\n");
         sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
         sb.append("		mmp: ").append(toIndentedString(mmp)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -705,10 +681,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
         sb.append("executedQty=").append(urlEncode(executedQtyValueAsString)).append("");
-        Object feeValue = getFee();
-        String feeValueAsString = "";
-        feeValueAsString = feeValue.toString();
-        sb.append("fee=").append(urlEncode(feeValueAsString)).append("");
         Object sideValue = getSide();
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
@@ -725,10 +697,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
-        Object postOnlyValue = getPostOnly();
-        String postOnlyValueAsString = "";
-        postOnlyValueAsString = postOnlyValue.toString();
-        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -769,6 +737,12 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         String mmpValueAsString = "";
         mmpValueAsString = mmpValue.toString();
         sb.append("mmp=").append(urlEncode(mmpValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
         return sb.toString();
     }
 
@@ -802,12 +776,10 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         openapiFields.add("price");
         openapiFields.add("quantity");
         openapiFields.add("executedQty");
-        openapiFields.add("fee");
         openapiFields.add("side");
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
-        openapiFields.add("postOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");
@@ -818,6 +790,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
         openapiFields.add("optionSide");
         openapiFields.add("quoteAsset");
         openapiFields.add("mmp");
+        openapiFields.add("selfTradePreventionMode");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -841,19 +814,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                                     + " the empty JSON string",
                                 QueryCurrentOpenOptionOrdersResponseInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryCurrentOpenOptionOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryCurrentOpenOptionOrdersResponseInner` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -888,14 +848,6 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull())
-                && !jsonObj.get("fee").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fee` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("fee").toString()));
         }
         if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
                 && !jsonObj.get("side").isJsonPrimitive()) {
@@ -961,6 +913,15 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("quoteAsset").toString()));
         }
+        if ((jsonObj.get("selfTradePreventionMode") != null
+                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
+                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("selfTradePreventionMode").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -983,7 +944,7 @@ public class QueryCurrentOpenOptionOrdersResponseInner {
                         public void write(
                                 JsonWriter out, QueryCurrentOpenOptionOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

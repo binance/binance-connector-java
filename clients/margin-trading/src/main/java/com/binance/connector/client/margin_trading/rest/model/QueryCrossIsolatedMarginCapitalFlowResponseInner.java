@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryCrossIsolatedMarginCapitalFlowResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -80,6 +78,12 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     @jakarta.annotation.Nullable
     private String amount;
 
+    public static final String SERIALIZED_NAME_NOTE = "note";
+
+    @SerializedName(SERIALIZED_NAME_NOTE)
+    @jakarta.annotation.Nullable
+    private String note;
+
     public QueryCrossIsolatedMarginCapitalFlowResponseInner() {}
 
     public QueryCrossIsolatedMarginCapitalFlowResponseInner id(
@@ -89,7 +93,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get id
+     * id.
      *
      * @return id
      */
@@ -109,7 +113,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get tranId
+     * tran Id.
      *
      * @return tranId
      */
@@ -129,7 +133,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get timestamp
+     * timestamp.
      *
      * @return timestamp
      */
@@ -149,7 +153,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -169,7 +173,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -189,7 +193,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -209,7 +213,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
     }
 
     /**
-     * Get amount
+     * amount.
      *
      * @return amount
      */
@@ -220,6 +224,26 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
 
     public void setAmount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
+    }
+
+    public QueryCrossIsolatedMarginCapitalFlowResponseInner note(
+            @jakarta.annotation.Nullable String note) {
+        this.note = note;
+        return this;
+    }
+
+    /**
+     * note.
+     *
+     * @return note
+     */
+    @jakarta.annotation.Nullable
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(@jakarta.annotation.Nullable String note) {
+        this.note = note;
     }
 
     @Override
@@ -244,12 +268,13 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
                         this.symbol, queryCrossIsolatedMarginCapitalFlowResponseInner.symbol)
                 && Objects.equals(this.type, queryCrossIsolatedMarginCapitalFlowResponseInner.type)
                 && Objects.equals(
-                        this.amount, queryCrossIsolatedMarginCapitalFlowResponseInner.amount);
+                        this.amount, queryCrossIsolatedMarginCapitalFlowResponseInner.amount)
+                && Objects.equals(this.note, queryCrossIsolatedMarginCapitalFlowResponseInner.note);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tranId, timestamp, asset, symbol, type, amount);
+        return Objects.hash(id, tranId, timestamp, asset, symbol, type, amount, note);
     }
 
     @Override
@@ -263,6 +288,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
+        sb.append("		note: ").append(toIndentedString(note)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -298,6 +324,10 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
         String amountValueAsString = "";
         amountValueAsString = amountValue.toString();
         sb.append("amount=").append(urlEncode(amountValueAsString)).append("");
+        Object noteValue = getNote();
+        String noteValueAsString = "";
+        noteValueAsString = noteValue.toString();
+        sb.append("note=").append(urlEncode(noteValueAsString)).append("");
         return sb.toString();
     }
 
@@ -333,6 +363,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
         openapiFields.add("symbol");
         openapiFields.add("type");
         openapiFields.add("amount");
+        openapiFields.add("note");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -357,20 +388,6 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
                                 QueryCrossIsolatedMarginCapitalFlowResponseInner
                                         .openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryCrossIsolatedMarginCapitalFlowResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryCrossIsolatedMarginCapitalFlowResponseInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -406,6 +423,14 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("amount").toString()));
         }
+        if ((jsonObj.get("note") != null && !jsonObj.get("note").isJsonNull())
+                && !jsonObj.get("note").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `note` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("note").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -430,7 +455,7 @@ public class QueryCrossIsolatedMarginCapitalFlowResponseInner {
                                 JsonWriter out,
                                 QueryCrossIsolatedMarginCapitalFlowResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

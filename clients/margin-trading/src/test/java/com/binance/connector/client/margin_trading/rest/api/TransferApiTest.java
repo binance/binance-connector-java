@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,8 +24,10 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.margin_trading.rest.model.GetCrossMarginTransferHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxTransferOutAmountResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,21 +81,22 @@ public class TransferApiTest {
     /**
      * Get Cross Margin Transfer History (USER_DATA)
      *
-     * <p>Get Cross Margin Transfer History * Response in descending order * The max interval
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. * Returns data for last 7
-     * days by default Weight: 1(IP)
+     * <p>Get Cross Margin Transfer History Weight(IP): 1 Security Type: USER_DATA Notes: - Response
+     * in descending order - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * is 30 days. - Returns data for last 7 days by default
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCrossMarginTransferHistoryTest() throws ApiException, CryptoException {
-        String asset = "";
-        String type = "";
+    public void getCrossMarginTransferHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "BNB";
+        OrderType type = OrderType.ROLL_IN;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
-        String isolatedSymbol = "";
+        String isolatedSymbol = "BNBUSDT";
         Long recvWindow = 5000L;
         ApiResponse<GetCrossMarginTransferHistoryResponse> response =
                 api.getCrossMarginTransferHistory(
@@ -109,11 +112,9 @@ public class TransferApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BNB&type=ROLL_IN&startTime=1623319461670&endTime=1641782889000&current=1&size=10&isolatedSymbol=BNBUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&type=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&isolatedSymbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "55cbed364121f637934cbda6a1bed334c2b241707d51d426b5b67f890b978a77",
+                "7308f1696fe00aa0147f8256f878965e3c4ffaaff988d1eec793135fe43290b7",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/transfer", actualRequest.url().encodedPath());
     }
@@ -121,15 +122,15 @@ public class TransferApiTest {
     /**
      * Query Max Transfer-Out Amount (USER_DATA)
      *
-     * <p>Query Max Transfer-Out Amount * If isolatedSymbol is not sent, crossed margin data will be
-     * sent. Weight: 50(IP)
+     * <p>Query Max Transfer-Out Amount Weight(IP): 50 Security Type: USER_DATA Notes: - If
+     * isolatedSymbol is not sent, crossed margin data will be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMaxTransferOutAmountTest() throws ApiException, CryptoException {
-        String asset = "";
-        String isolatedSymbol = "";
+    public void queryMaxTransferOutAmountTest() throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
+        String isolatedSymbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryMaxTransferOutAmountResponse> response =
                 api.queryMaxTransferOutAmount(asset, isolatedSymbol, recvWindow);
@@ -144,11 +145,9 @@ public class TransferApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BTC&isolatedSymbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&isolatedSymbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "90c4a3668764b733f6c643c57f90568be4756aa70d3d7923c44995f762b25e21",
+                "ef15bb58e0af88d3e358c8e7b014798133d267e863c514921894375c6bd22336",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/maxTransferable", actualRequest.url().encodedPath());
     }

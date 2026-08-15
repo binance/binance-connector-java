@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,8 +14,8 @@ package com.binance.connector.client.wallet.rest.model;
 
 import com.binance.connector.client.wallet.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -28,16 +28,14 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** WithdrawHistoryV1Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
-public class WithdrawHistoryV1Response extends ArrayList<WithdrawHistoryV2ResponseInner> {
+        comments = "Generator version: 7.22.0")
+public class WithdrawHistoryV1Response extends ArrayList<WithdrawHistoryV1ResponseInner> {
     public WithdrawHistoryV1Response() {}
 
     @Override
@@ -108,6 +106,18 @@ public class WithdrawHistoryV1Response extends ArrayList<WithdrawHistoryV2Respon
      * @throws IOException if the JSON Element is invalid with respect to WithdrawHistoryV1Response
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            WithdrawHistoryV1ResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!WithdrawHistoryV1Response.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -116,18 +126,6 @@ public class WithdrawHistoryV1Response extends ArrayList<WithdrawHistoryV2Respon
                                 "The required field(s) %s in WithdrawHistoryV1Response is not found"
                                         + " in the empty JSON string",
                                 WithdrawHistoryV1Response.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!WithdrawHistoryV1Response.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `WithdrawHistoryV1Response` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }
@@ -149,7 +147,7 @@ public class WithdrawHistoryV1Response extends ArrayList<WithdrawHistoryV2Respon
                         @Override
                         public void write(JsonWriter out, WithdrawHistoryV1Response value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

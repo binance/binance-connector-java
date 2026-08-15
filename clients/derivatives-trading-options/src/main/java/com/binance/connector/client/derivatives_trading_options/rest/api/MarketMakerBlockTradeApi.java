@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_options.rest.api;
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
-import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.JSON;
 import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
@@ -39,8 +38,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -53,7 +52,7 @@ public class MarketMakerBlockTradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/1.2.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +103,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Accept-Block-Trade-Order">Accept
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#accept-block-trade-order">Accept
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call acceptBlockTradeOrderCall(
@@ -152,15 +151,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -174,7 +169,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -211,7 +206,8 @@ public class MarketMakerBlockTradeApi {
     }
 
     /**
-     * Accept Block Trade Order (TRADE) Accept a block trade order Weight: 5
+     * Accept Block Trade Order (TRADE) Accept a block trade order Weight(IP): 5 Security Type:
+     * TRADE
      *
      * @param acceptBlockTradeOrderRequest (required)
      * @return ApiResponse&lt;AcceptBlockTradeOrderResponse&gt;
@@ -225,7 +221,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Accept-Block-Trade-Order">Accept
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#accept-block-trade-order">Accept
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<AcceptBlockTradeOrderResponse> acceptBlockTradeOrder(
@@ -243,8 +239,8 @@ public class MarketMakerBlockTradeApi {
      *
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -255,7 +251,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Account-Block-Trade-List">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#account-block-trade-list">Account
      *     Block Trade List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountBlockTradeListCall(
@@ -309,15 +305,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -331,7 +323,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -373,12 +365,13 @@ public class MarketMakerBlockTradeApi {
     }
 
     /**
-     * Account Block Trade List (USER_DATA) Gets block trades for a specific account. Weight: 5
+     * Account Block Trade List (USER_DATA) Gets block trades for a specific account. Weight(IP): 5
+     * Security Type: USER_DATA
      *
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;AccountBlockTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -390,11 +383,12 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Account-Block-Trade-List">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#account-block-trade-list">Account
      *     Block Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountBlockTradeListResponse> accountBlockTradeList(
-            Long endTime, Long startTime, String underlying, Long recvWindow) throws ApiException {
+            Long endTime, Long startTime, String underlying, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 accountBlockTradeListValidateBeforeCall(endTime, startTime, underlying, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -405,8 +399,8 @@ public class MarketMakerBlockTradeApi {
     /**
      * Build call for cancelBlockTradeOrder
      *
-     * @param blockOrderMatchingKey (required)
-     * @param recvWindow (optional)
+     * @param blockOrderMatchingKey Block trade matching key. (required)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -417,7 +411,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#cancel-block-trade-order">Cancel
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelBlockTradeOrderCall(String blockOrderMatchingKey, Long recvWindow)
@@ -465,15 +459,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -487,7 +477,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -523,10 +513,11 @@ public class MarketMakerBlockTradeApi {
     }
 
     /**
-     * Cancel Block Trade Order (TRADE) Cancel a block trade order. Weight: 5
+     * Cancel Block Trade Order (TRADE) Cancel a block trade order. Weight(IP): 5 Security Type:
+     * TRADE
      *
-     * @param blockOrderMatchingKey (required)
-     * @param recvWindow (optional)
+     * @param blockOrderMatchingKey Block trade matching key. (required)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -538,11 +529,12 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Cancel-Block-Trade-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#cancel-block-trade-order">Cancel
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<Void> cancelBlockTradeOrder(
-            @NotNull String blockOrderMatchingKey, Long recvWindow) throws ApiException {
+            @NotNull String blockOrderMatchingKey, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 cancelBlockTradeOrderValidateBeforeCall(blockOrderMatchingKey, recvWindow);
         return localVarApiClient.execute(localVarCall);
@@ -562,7 +554,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Extend-Block-Trade-Order">Extend
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#extend-block-trade-order">Extend
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call extendBlockTradeOrderCall(
@@ -610,15 +602,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -632,7 +620,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -670,7 +658,7 @@ public class MarketMakerBlockTradeApi {
 
     /**
      * Extend Block Trade Order (TRADE) Extends a block trade expire time by 30 mins from the
-     * current time. Weight: 5
+     * current time. Weight(IP): 5 Security Type: TRADE
      *
      * @param extendBlockTradeOrderRequest (required)
      * @return ApiResponse&lt;ExtendBlockTradeOrderResponse&gt;
@@ -684,7 +672,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Extend-Block-Trade-Order">Extend
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#extend-block-trade-order">Extend
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<ExtendBlockTradeOrderResponse> extendBlockTradeOrder(
@@ -711,7 +699,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order">New
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#new-block-trade-order">New
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call newBlockTradeOrderCall(NewBlockTradeOrderRequest newBlockTradeOrderRequest)
@@ -749,27 +737,6 @@ public class MarketMakerBlockTradeApi {
             localVarFormParams.put("legs", json);
         }
 
-        if (newBlockTradeOrderRequest.getSymbol() != null) {
-            localVarFormParams.put("symbol", newBlockTradeOrderRequest.getSymbol());
-        }
-
-        if (newBlockTradeOrderRequest.getSide() != null) {
-            localVarFormParams.put("side", newBlockTradeOrderRequest.getSide());
-        }
-
-        if (newBlockTradeOrderRequest.getPrice() != null) {
-            localVarFormParams.put(
-                    "price",
-                    DecimalFormatter.getFormatter().format(newBlockTradeOrderRequest.getPrice()));
-        }
-
-        if (newBlockTradeOrderRequest.getQuantity() != null) {
-            localVarFormParams.put(
-                    "quantity",
-                    DecimalFormatter.getFormatter()
-                            .format(newBlockTradeOrderRequest.getQuantity()));
-        }
-
         if (newBlockTradeOrderRequest.getRecvWindow() != null) {
             localVarFormParams.put("recvWindow", newBlockTradeOrderRequest.getRecvWindow());
         }
@@ -783,15 +750,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -805,7 +768,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -842,7 +805,8 @@ public class MarketMakerBlockTradeApi {
     }
 
     /**
-     * New Block Trade Order (TRADE) Send in a new block trade order. Weight: 5
+     * New Block Trade Order (TRADE) Send in a new block trade order. Weight(IP): 5 Security Type:
+     * TRADE
      *
      * @param newBlockTradeOrderRequest (required)
      * @return ApiResponse&lt;NewBlockTradeOrderResponse&gt;
@@ -856,7 +820,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/New-Block-Trade-Order">New
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#new-block-trade-order">New
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<NewBlockTradeOrderResponse> newBlockTradeOrder(
@@ -871,8 +835,8 @@ public class MarketMakerBlockTradeApi {
     /**
      * Build call for queryBlockTradeDetails
      *
-     * @param blockOrderMatchingKey (required)
-     * @param recvWindow (optional)
+     * @param blockOrderMatchingKey Block trade matching key. (required)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -883,7 +847,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Detail">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#query-block-trade-details">Query
      *     Block Trade Details (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryBlockTradeDetailsCall(String blockOrderMatchingKey, Long recvWindow)
@@ -931,15 +895,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -953,7 +913,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -990,10 +950,10 @@ public class MarketMakerBlockTradeApi {
 
     /**
      * Query Block Trade Details (USER_DATA) Query block trade details; returns block trade details
-     * from counterparty&#39;s perspective. Weight: 5
+     * from counterparty&#39;s perspective. Weight(IP): 5 Security Type: USER_DATA
      *
-     * @param blockOrderMatchingKey (required)
-     * @param recvWindow (optional)
+     * @param blockOrderMatchingKey Block trade matching key. (required)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;QueryBlockTradeDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1005,11 +965,12 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Detail">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#query-block-trade-details">Query
      *     Block Trade Details (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryBlockTradeDetailsResponse> queryBlockTradeDetails(
-            @NotNull String blockOrderMatchingKey, Long recvWindow) throws ApiException {
+            @NotNull String blockOrderMatchingKey, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryBlockTradeDetailsValidateBeforeCall(blockOrderMatchingKey, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1024,8 +985,8 @@ public class MarketMakerBlockTradeApi {
      *     the blockOrderMatchingKey (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1036,7 +997,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#query-block-trade-order">Query
      *     Block Trade Order (TRADE) Documentation</a>
      */
     private okhttp3.Call queryBlockTradeOrderCall(
@@ -1101,15 +1062,11 @@ public class MarketMakerBlockTradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1123,7 +1080,7 @@ public class MarketMakerBlockTradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1174,14 +1131,15 @@ public class MarketMakerBlockTradeApi {
     }
 
     /**
-     * Query Block Trade Order (TRADE) Check block trade order status. Weight: 5
+     * Query Block Trade Order (TRADE) Check block trade order status. Weight(IP): 5 Security Type:
+     * TRADE
      *
      * @param blockOrderMatchingKey If specified, returns the specific block trade associated with
      *     the blockOrderMatchingKey (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
-     * @param underlying underlying, e.g BTCUSDT (optional)
-     * @param recvWindow (optional)
+     * @param underlying Underlying asset. (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;QueryBlockTradeOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1193,7 +1151,7 @@ public class MarketMakerBlockTradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/option/market-maker-block-trade/Query-Block-Trade-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#query-block-trade-order">Query
      *     Block Trade Order (TRADE) Documentation</a>
      */
     public ApiResponse<QueryBlockTradeOrderResponse> queryBlockTradeOrder(
@@ -1201,7 +1159,7 @@ public class MarketMakerBlockTradeApi {
             Long endTime,
             Long startTime,
             String underlying,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryBlockTradeOrderValidateBeforeCall(

@@ -9,18 +9,18 @@
 |------------ | ------------- | ------------- | -------------|
 |**coin** | **String** |  |  [optional] |
 |**depositAllEnable** | **Boolean** |  |  [optional] |
-|**free** | **String** |  |  [optional] |
-|**freeze** | **String** |  |  [optional] |
-|**ipoable** | **String** |  |  [optional] |
-|**ipoing** | **String** |  |  [optional] |
-|**isLegalMoney** | **Boolean** |  |  [optional] |
-|**locked** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**networkList** | [**List&lt;AllCoinsInformationResponseInnerNetworkListInner&gt;**](AllCoinsInformationResponseInnerNetworkListInner.md) |  |  [optional] |
-|**storage** | **String** |  |  [optional] |
-|**trading** | **Boolean** |  |  [optional] |
 |**withdrawAllEnable** | **Boolean** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**free** | **String** |  |  [optional] |
+|**locked** | **String** |  |  [optional] |
+|**freeze** | **String** |  |  [optional] |
 |**withdrawing** | **String** |  |  [optional] |
+|**ipoing** | **String** |  |  [optional] |
+|**ipoable** | **String** |  |  [optional] |
+|**storage** | **String** |  |  [optional] |
+|**isLegalMoney** | **Boolean** |  |  [optional] |
+|**trading** | **Boolean** |  |  [optional] |
+|**networkList** | [**List&lt;AllCoinsInformationResponseInnerNetworkListInner&gt;**](AllCoinsInformationResponseInnerNetworkListInner.md) |  |  [optional] |
 
 
 

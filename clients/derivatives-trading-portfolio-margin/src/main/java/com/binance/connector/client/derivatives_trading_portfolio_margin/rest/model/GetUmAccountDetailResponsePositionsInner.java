@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetUmAccountDetailResponsePositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmAccountDetailResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -131,7 +129,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * symbol name
      *
      * @return symbol
      */
@@ -151,7 +149,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -171,7 +169,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -191,7 +189,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -211,7 +209,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * initial margin required for positions with current mark price
      *
      * @return positionInitialMargin
      */
@@ -232,7 +230,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * initial margin required for open orders with current mark price
      *
      * @return openOrderInitialMargin
      */
@@ -253,7 +251,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -273,7 +271,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -293,7 +291,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maxNotional
+     * maximum available notional with current leverage
      *
      * @return maxNotional
      */
@@ -313,7 +311,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get bidNotional
+     * bids notional, ignore
      *
      * @return bidNotional
      */
@@ -333,7 +331,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get askNotional
+     * ask notional, ignore
      *
      * @return askNotional
      */
@@ -353,7 +351,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -373,7 +371,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -393,7 +391,7 @@ public class GetUmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -622,19 +620,6 @@ public class GetUmAccountDetailResponsePositionsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetUmAccountDetailResponsePositionsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetUmAccountDetailResponsePositionsInner` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -765,7 +750,7 @@ public class GetUmAccountDetailResponsePositionsInner {
                         public void write(
                                 JsonWriter out, GetUmAccountDetailResponsePositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

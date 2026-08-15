@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetDownloadIdForUmFuturesOrderHistoryResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetDownloadIdForUmFuturesOrderHistoryResponse {
     public static final String SERIALIZED_NAME_AVG_COST_TIMESTAMP_OF_LAST30D =
             "avgCostTimestampOfLast30d";
@@ -60,7 +58,7 @@ public class GetDownloadIdForUmFuturesOrderHistoryResponse {
     }
 
     /**
-     * Get avgCostTimestampOfLast30d
+     * Average time taken for data download in the past 30 days
      *
      * @return avgCostTimestampOfLast30d
      */
@@ -81,7 +79,7 @@ public class GetDownloadIdForUmFuturesOrderHistoryResponse {
     }
 
     /**
-     * Get downloadId
+     * Download ID.
      *
      * @return downloadId
      */
@@ -197,20 +195,6 @@ public class GetDownloadIdForUmFuturesOrderHistoryResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetDownloadIdForUmFuturesOrderHistoryResponse.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetDownloadIdForUmFuturesOrderHistoryResponse` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("downloadId") != null && !jsonObj.get("downloadId").isJsonNull())
                 && !jsonObj.get("downloadId").isJsonPrimitive()) {
@@ -243,7 +227,7 @@ public class GetDownloadIdForUmFuturesOrderHistoryResponse {
                         public void write(
                                 JsonWriter out, GetDownloadIdForUmFuturesOrderHistoryResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

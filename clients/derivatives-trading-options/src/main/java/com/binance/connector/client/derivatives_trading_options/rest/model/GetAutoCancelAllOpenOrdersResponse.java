@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetAutoCancelAllOpenOrdersResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetAutoCancelAllOpenOrdersResponse {
     public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
@@ -59,7 +57,7 @@ public class GetAutoCancelAllOpenOrdersResponse {
     }
 
     /**
-     * Get underlying
+     * underlying
      *
      * @return underlying
      */
@@ -79,7 +77,7 @@ public class GetAutoCancelAllOpenOrdersResponse {
     }
 
     /**
-     * Get countdownTime
+     * countdown Time
      *
      * @return countdownTime
      */
@@ -187,18 +185,6 @@ public class GetAutoCancelAllOpenOrdersResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetAutoCancelAllOpenOrdersResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetAutoCancelAllOpenOrdersResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("underlying") != null && !jsonObj.get("underlying").isJsonNull())
                 && !jsonObj.get("underlying").isJsonPrimitive()) {
@@ -228,7 +214,7 @@ public class GetAutoCancelAllOpenOrdersResponse {
                         @Override
                         public void write(JsonWriter out, GetAutoCancelAllOpenOrdersResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

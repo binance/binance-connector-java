@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** FuturesTradingQuantitativeRulesIndicatorsResponseIndicators */
+/**
+ * indicator: quantitative rules indicators, value: user&#39;s indicators value, triggerValue:
+ * trigger indicator value threshold of quantitative rules.
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesTradingQuantitativeRulesIndicatorsResponseIndicators {
     public static final String SERIALIZED_NAME_B_T_C_U_S_D_T = "BTCUSDT";
 
@@ -306,20 +307,6 @@ public class FuturesTradingQuantitativeRulesIndicatorsResponseIndicators {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!FuturesTradingQuantitativeRulesIndicatorsResponseIndicators.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `FuturesTradingQuantitativeRulesIndicatorsResponseIndicators`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("BTCUSDT") != null && !jsonObj.get("BTCUSDT").isJsonNull()) {
             JsonArray jsonArrayBTCUSDT = jsonObj.getAsJsonArray("BTCUSDT");
@@ -409,7 +396,7 @@ public class FuturesTradingQuantitativeRulesIndicatorsResponseIndicators {
                                 JsonWriter out,
                                 FuturesTradingQuantitativeRulesIndicatorsResponseIndicators value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

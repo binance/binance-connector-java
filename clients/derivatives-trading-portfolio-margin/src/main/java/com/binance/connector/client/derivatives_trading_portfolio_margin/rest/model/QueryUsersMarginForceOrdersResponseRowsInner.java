@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryUsersMarginForceOrdersResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUsersMarginForceOrdersResponseRowsInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -101,7 +99,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -121,7 +119,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -141,7 +139,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -161,7 +159,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -181,7 +179,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -201,7 +199,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -221,7 +219,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -241,7 +239,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -261,7 +259,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
     }
 
     /**
-     * Get updatedTime
+     * Updated Time.
      *
      * @return updatedTime
      */
@@ -423,20 +421,6 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryUsersMarginForceOrdersResponseRowsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryUsersMarginForceOrdersResponseRowsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
                 && !jsonObj.get("avgPrice").isJsonPrimitive()) {
@@ -517,7 +501,7 @@ public class QueryUsersMarginForceOrdersResponseRowsInner {
                         public void write(
                                 JsonWriter out, QueryUsersMarginForceOrdersResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

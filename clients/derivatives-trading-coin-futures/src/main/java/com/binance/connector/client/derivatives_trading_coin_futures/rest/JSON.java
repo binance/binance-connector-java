@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -134,6 +134,9 @@ public class JSON {
                         .AutoCancelAllOpenOrdersRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .AutoCancelAllOpenOrdersResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .BasisResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
@@ -179,21 +182,20 @@ public class JSON {
                         .CheckServerTimeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .ClassicPortfolioMarginAccountInformationResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .CompressedAggregateTradesListResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .CompressedAggregateTradesListResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .ContinuousContractKlineCandlestickDataResponse.CustomTypeAdapterFactory());
+                        .ContinuousContractKlineCandlestickDataItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .ContinuousContractKlineCandlestickDataResponseItem
+                        .ContinuousContractKlineCandlestickDataItemInner
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .ContinuousContractKlineCandlestickDataResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .CurrentAllOpenOrdersResponse.CustomTypeAdapterFactory());
@@ -293,16 +295,22 @@ public class JSON {
                         .IndexPriceAndMarkPriceResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .IndexPriceKlineCandlestickDataItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .IndexPriceKlineCandlestickDataItemInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .IndexPriceKlineCandlestickDataResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .IndexPriceKlineCandlestickDataResponseItem.CustomTypeAdapterFactory());
+                        .KeepaliveUserDataStreamResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .KlineCandlestickDataItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .KlineCandlestickDataResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .KlineCandlestickDataResponseItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .LongShortRatioResponse.CustomTypeAdapterFactory());
@@ -311,10 +319,10 @@ public class JSON {
                         .LongShortRatioResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .MarkPriceKlineCandlestickDataResponse.CustomTypeAdapterFactory());
+                        .MarkPriceKlineCandlestickDataItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .MarkPriceKlineCandlestickDataResponseItem.CustomTypeAdapterFactory());
+                        .MarkPriceKlineCandlestickDataResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .ModifyIsolatedPositionMarginRequest.CustomTypeAdapterFactory());
@@ -378,16 +386,19 @@ public class JSON {
                         .OrderBookResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .OrderBookResponseAsksItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .OrderBookResponseBidsItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .OrderIdList.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .OrigClientOrderIdList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .PlaceMultipleOrdersRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .PlaceMultipleOrdersResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .PlaceMultipleOrdersResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .PositionAdlQuantileEstimationResponse.CustomTypeAdapterFactory());
@@ -406,10 +417,13 @@ public class JSON {
                         .PositionInformationResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .PremiumIndexKlineDataResponse.CustomTypeAdapterFactory());
+                        .PremiumIndexKlineDataItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
-                        .PremiumIndexKlineDataResponseItem.CustomTypeAdapterFactory());
+                        .PremiumIndexKlineDataItemInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
+                        .PremiumIndexKlineDataResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.rest.model
                         .QueryCurrentOpenOrderResponse.CustomTypeAdapterFactory());

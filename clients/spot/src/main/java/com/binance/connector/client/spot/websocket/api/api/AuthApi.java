@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,14 +39,19 @@ public class AuthApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
-     * WebSocket Log in with API key Authenticate WebSocket connection using the provided API key.
+     * Log in with API key (USER_DATA) Authenticate WebSocket connection using the provided API key.
      * After calling &#x60;session.logon&#x60;, you can omit &#x60;apiKey&#x60; and
      * &#x60;signature&#x60; parameters for future requests that require them. Note that only one
      * API key can be authenticated. Calling &#x60;session.logon&#x60; multiple times changes the
-     * current authenticated API key. Weight: 2
+     * current authenticated API key. **Note:** Only Ed25519 keys are supported for this feature.
+     * Weight(IP): 2 Security Type: USER_DATA Notes: **Data Source:** Memory
      *
-     * @param sessionLogonRequest (required)
+     * @param sessionLogonRequest (optional)
      * @return SessionLogonResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -58,8 +63,8 @@ public class AuthApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests#log-in-with-api-key-signed">WebSocket
-     *     Log in with API key Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon">Log
+     *     in with API key (USER_DATA) Documentation</a>
      */
     public CompletableFuture<SessionLogonResponse> sessionLogon(
             SessionLogonRequest sessionLogonRequest) throws ApiException {
@@ -105,11 +110,11 @@ public class AuthApi {
     }
 
     /**
-     * WebSocket Log out of the session Forget the API key previously authenticated. If the
-     * connection is not authenticated, this request does nothing. Note that the WebSocket
-     * connection stays open after &#x60;session.logout&#x60; request. You can continue using the
-     * connection, but now you will have to explicitly provide the &#x60;apiKey&#x60; and
-     * &#x60;signature&#x60; parameters where needed. Weight: 2
+     * Log out of the session Forget the API key previously authenticated. If the connection is not
+     * authenticated, this request does nothing. Note that the WebSocket connection stays open after
+     * &#x60;session.logout&#x60; request. You can continue using the connection, but now you will
+     * have to explicitly provide the &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters where
+     * needed. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @return SessionLogoutResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -122,8 +127,8 @@ public class AuthApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests#log-out-of-the-session">WebSocket
-     *     Log out of the session Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/auth#session-logout">Log
+     *     out of the session Documentation</a>
      */
     public CompletableFuture<SessionLogoutResponse> sessionLogout() throws ApiException {
         sessionLogoutValidateBeforeCall();
@@ -149,8 +154,9 @@ public class AuthApi {
     private void sessionLogoutValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Query session status Query the status of the WebSocket connection, inspecting which
-     * API key (if any) is used to authorize requests. Weight: 2
+     * Query session status Query the status of the WebSocket connection, inspecting which API key
+     * (if any) is used to authorize requests. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
      * @return SessionStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -163,8 +169,8 @@ public class AuthApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests#query-session-status">WebSocket
-     *     Query session status Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/auth#session-status">Query
+     *     session status Documentation</a>
      */
     public CompletableFuture<SessionStatusResponse> sessionStatus() throws ApiException {
         sessionStatusValidateBeforeCall();

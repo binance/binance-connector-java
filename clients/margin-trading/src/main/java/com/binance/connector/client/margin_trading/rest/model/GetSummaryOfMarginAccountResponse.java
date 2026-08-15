@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetSummaryOfMarginAccountResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSummaryOfMarginAccountResponse {
     public static final String SERIALIZED_NAME_NORMAL_BAR = "normalBar";
 
@@ -65,7 +63,7 @@ public class GetSummaryOfMarginAccountResponse {
     }
 
     /**
-     * Get normalBar
+     * normal Bar.
      *
      * @return normalBar
      */
@@ -85,7 +83,7 @@ public class GetSummaryOfMarginAccountResponse {
     }
 
     /**
-     * Get marginCallBar
+     * margin Call Bar.
      *
      * @return marginCallBar
      */
@@ -105,7 +103,7 @@ public class GetSummaryOfMarginAccountResponse {
     }
 
     /**
-     * Get forceLiquidationBar
+     * force Liquidation Bar.
      *
      * @return forceLiquidationBar
      */
@@ -226,18 +224,6 @@ public class GetSummaryOfMarginAccountResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetSummaryOfMarginAccountResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetSummaryOfMarginAccountResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("normalBar") != null && !jsonObj.get("normalBar").isJsonNull())
                 && !jsonObj.get("normalBar").isJsonPrimitive()) {
@@ -284,7 +270,7 @@ public class GetSummaryOfMarginAccountResponse {
                         @Override
                         public void write(JsonWriter out, GetSummaryOfMarginAccountResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

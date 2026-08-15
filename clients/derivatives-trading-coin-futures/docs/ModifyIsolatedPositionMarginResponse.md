@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **Double** |  |  [optional] |
-|**code** | **Long** |  |  [optional] |
-|**msg** | **String** |  |  [optional] |
-|**type** | **Long** |  |  [optional] |
+|**amount** | **Double** | Amount. |  [optional] |
+|**code** | **Long** | API response code. \&quot;000000\&quot; indicates success. |  [optional] |
+|**msg** | **String** | Message details. |  [optional] |
+|**type** | **Long** | Order type. |  [optional] |
 
 
 

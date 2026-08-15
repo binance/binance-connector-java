@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**notionalCoef** | **Double** |  |  [optional] |
-|**brackets** | [**List&lt;NotionalAndLeverageBracketsResponse1InnerBracketsInner&gt;**](NotionalAndLeverageBracketsResponse1InnerBracketsInner.md) |  |  [optional] |
+|**notionalCoef** | **Double** | user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted |  [optional] |
+|**brackets** | [**List&lt;NotionalAndLeverageBracketsResponse2BracketsInner&gt;**](NotionalAndLeverageBracketsResponse2BracketsInner.md) |  |  [optional] |
 
 
 

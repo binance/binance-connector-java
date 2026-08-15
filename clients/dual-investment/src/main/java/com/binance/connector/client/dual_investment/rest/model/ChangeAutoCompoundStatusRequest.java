@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,21 +22,20 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ChangeAutoCompoundStatusRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ChangeAutoCompoundStatusRequest {
     public static final String SERIALIZED_NAME_POSITION_ID = "positionId";
 
@@ -44,11 +43,11 @@ public class ChangeAutoCompoundStatusRequest {
     @jakarta.annotation.Nonnull
     private String positionId;
 
-    public static final String SERIALIZED_NAME_AUTO_COMPOUND_PLAN = "AutoCompoundPlan";
+    public static final String SERIALIZED_NAME_AUTO_COMPOUND_PLAN = "autoCompoundPlan";
 
     @SerializedName(SERIALIZED_NAME_AUTO_COMPOUND_PLAN)
-    @jakarta.annotation.Nullable
-    private String autoCompoundPlan;
+    @jakarta.annotation.Nonnull
+    private AutoCompoundPlan autoCompoundPlan;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -65,7 +64,7 @@ public class ChangeAutoCompoundStatusRequest {
     }
 
     /**
-     * Get positionId
+     * Get positionId from &#x60;/sapi/v1/dci/product/positions&#x60;
      *
      * @return positionId
      */
@@ -80,7 +79,7 @@ public class ChangeAutoCompoundStatusRequest {
     }
 
     public ChangeAutoCompoundStatusRequest autoCompoundPlan(
-            @jakarta.annotation.Nullable String autoCompoundPlan) {
+            @jakarta.annotation.Nonnull AutoCompoundPlan autoCompoundPlan) {
         this.autoCompoundPlan = autoCompoundPlan;
         return this;
     }
@@ -90,12 +89,14 @@ public class ChangeAutoCompoundStatusRequest {
      *
      * @return autoCompoundPlan
      */
-    @jakarta.annotation.Nullable
-    public String getAutoCompoundPlan() {
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public AutoCompoundPlan getAutoCompoundPlan() {
         return autoCompoundPlan;
     }
 
-    public void setAutoCompoundPlan(@jakarta.annotation.Nullable String autoCompoundPlan) {
+    public void setAutoCompoundPlan(@jakarta.annotation.Nonnull AutoCompoundPlan autoCompoundPlan) {
         this.autoCompoundPlan = autoCompoundPlan;
     }
 
@@ -106,11 +107,12 @@ public class ChangeAutoCompoundStatusRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -195,12 +197,13 @@ public class ChangeAutoCompoundStatusRequest {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("positionId");
-        openapiFields.add("AutoCompoundPlan");
+        openapiFields.add("autoCompoundPlan");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
         openapiRequiredFields.add("positionId");
+        openapiRequiredFields.add("autoCompoundPlan");
     }
 
     /**
@@ -222,18 +225,6 @@ public class ChangeAutoCompoundStatusRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ChangeAutoCompoundStatusRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ChangeAutoCompoundStatusRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : ChangeAutoCompoundStatusRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -251,15 +242,8 @@ public class ChangeAutoCompoundStatusRequest {
                                     + " string but got `%s`",
                             jsonObj.get("positionId").toString()));
         }
-        if ((jsonObj.get("AutoCompoundPlan") != null
-                        && !jsonObj.get("AutoCompoundPlan").isJsonNull())
-                && !jsonObj.get("AutoCompoundPlan").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `AutoCompoundPlan` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("AutoCompoundPlan").toString()));
-        }
+        // validate the required field `autoCompoundPlan`
+        AutoCompoundPlan.validateJsonElement(jsonObj.get("autoCompoundPlan"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -280,7 +264,7 @@ public class ChangeAutoCompoundStatusRequest {
                         @Override
                         public void write(JsonWriter out, ChangeAutoCompoundStatusRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

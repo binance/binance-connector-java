@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountCommissionResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountCommissionResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -51,6 +51,12 @@ public class AccountCommissionResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_STANDARD_COMMISSION)
     @jakarta.annotation.Nullable
     private AccountCommissionResponseResultStandardCommission standardCommission;
+
+    public static final String SERIALIZED_NAME_SPECIAL_COMMISSION = "specialCommission";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_COMMISSION)
+    @jakarta.annotation.Nullable
+    private AccountCommissionResponseResultSpecialCommission specialCommission;
 
     public static final String SERIALIZED_NAME_TAX_COMMISSION = "taxCommission";
 
@@ -107,6 +113,30 @@ public class AccountCommissionResponseResult extends BaseDTO {
             @jakarta.annotation.Nullable
                     AccountCommissionResponseResultStandardCommission standardCommission) {
         this.standardCommission = standardCommission;
+    }
+
+    public AccountCommissionResponseResult specialCommission(
+            @jakarta.annotation.Nullable
+                    AccountCommissionResponseResultSpecialCommission specialCommission) {
+        this.specialCommission = specialCommission;
+        return this;
+    }
+
+    /**
+     * Get specialCommission
+     *
+     * @return specialCommission
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AccountCommissionResponseResultSpecialCommission getSpecialCommission() {
+        return specialCommission;
+    }
+
+    public void setSpecialCommission(
+            @jakarta.annotation.Nullable
+                    AccountCommissionResponseResultSpecialCommission specialCommission) {
+        this.specialCommission = specialCommission;
     }
 
     public AccountCommissionResponseResult taxCommission(
@@ -168,13 +198,15 @@ public class AccountCommissionResponseResult extends BaseDTO {
         return Objects.equals(this.symbol, accountCommissionResponseResult.symbol)
                 && Objects.equals(
                         this.standardCommission, accountCommissionResponseResult.standardCommission)
+                && Objects.equals(
+                        this.specialCommission, accountCommissionResponseResult.specialCommission)
                 && Objects.equals(this.taxCommission, accountCommissionResponseResult.taxCommission)
                 && Objects.equals(this.discount, accountCommissionResponseResult.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, standardCommission, taxCommission, discount);
+        return Objects.hash(symbol, standardCommission, specialCommission, taxCommission, discount);
     }
 
     @Override
@@ -185,6 +217,7 @@ public class AccountCommissionResponseResult extends BaseDTO {
         sb.append("		standardCommission: ")
                 .append(toIndentedString(standardCommission))
                 .append("\n");
+        sb.append("		specialCommission: ").append(toIndentedString(specialCommission)).append("\n");
         sb.append("		taxCommission: ").append(toIndentedString(taxCommission)).append("\n");
         sb.append("		discount: ").append(toIndentedString(discount)).append("\n");
         sb.append("}");
@@ -205,6 +238,12 @@ public class AccountCommissionResponseResult extends BaseDTO {
         if (standardCommissionValue != null) {
             String standardCommissionValueAsString = JSON.getGson().toJson(standardCommissionValue);
             valMap.put("standardCommission", standardCommissionValueAsString);
+        }
+        AccountCommissionResponseResultSpecialCommission specialCommissionValue =
+                getSpecialCommission();
+        if (specialCommissionValue != null) {
+            String specialCommissionValueAsString = JSON.getGson().toJson(specialCommissionValue);
+            valMap.put("specialCommission", specialCommissionValueAsString);
         }
         AccountCommissionResponseResultTaxCommission taxCommissionValue = getTaxCommission();
         if (taxCommissionValue != null) {
@@ -234,6 +273,10 @@ public class AccountCommissionResponseResult extends BaseDTO {
         Object standardCommissionValue = getStandardCommission();
         if (standardCommissionValue != null) {
             valMap.put("standardCommission", standardCommissionValue);
+        }
+        Object specialCommissionValue = getSpecialCommission();
+        if (specialCommissionValue != null) {
+            valMap.put("specialCommission", specialCommissionValue);
         }
         Object taxCommissionValue = getTaxCommission();
         if (taxCommissionValue != null) {
@@ -271,6 +314,7 @@ public class AccountCommissionResponseResult extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
         openapiFields.add("standardCommission");
+        openapiFields.add("specialCommission");
         openapiFields.add("taxCommission");
         openapiFields.add("discount");
 
@@ -323,6 +367,12 @@ public class AccountCommissionResponseResult extends BaseDTO {
             AccountCommissionResponseResultStandardCommission.validateJsonElement(
                     jsonObj.get("standardCommission"));
         }
+        // validate the optional field `specialCommission`
+        if (jsonObj.get("specialCommission") != null
+                && !jsonObj.get("specialCommission").isJsonNull()) {
+            AccountCommissionResponseResultSpecialCommission.validateJsonElement(
+                    jsonObj.get("specialCommission"));
+        }
         // validate the optional field `taxCommission`
         if (jsonObj.get("taxCommission") != null && !jsonObj.get("taxCommission").isJsonNull()) {
             AccountCommissionResponseResultTaxCommission.validateJsonElement(
@@ -352,7 +402,7 @@ public class AccountCommissionResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AccountCommissionResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

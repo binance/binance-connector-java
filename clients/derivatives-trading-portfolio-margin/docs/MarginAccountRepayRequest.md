@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**asset** | **String** |  |  |
 |**amount** | **Double** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Long** | The value cannot be greater than 60000 |  [optional] |
 
 
 

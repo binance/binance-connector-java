@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,20 +28,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ResetMarketMakerProtectionConfigRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ResetMarketMakerProtectionConfigRequest {
     public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
     @SerializedName(SERIALIZED_NAME_UNDERLYING)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private String underlying;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
@@ -53,7 +51,7 @@ public class ResetMarketMakerProtectionConfigRequest {
     public ResetMarketMakerProtectionConfigRequest() {}
 
     public ResetMarketMakerProtectionConfigRequest underlying(
-            @jakarta.annotation.Nullable String underlying) {
+            @jakarta.annotation.Nonnull String underlying) {
         this.underlying = underlying;
         return this;
     }
@@ -63,12 +61,13 @@ public class ResetMarketMakerProtectionConfigRequest {
      *
      * @return underlying
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     public String getUnderlying() {
         return underlying;
     }
 
-    public void setUnderlying(@jakarta.annotation.Nullable String underlying) {
+    public void setUnderlying(@jakarta.annotation.Nonnull String underlying) {
         this.underlying = underlying;
     }
 
@@ -166,6 +165,7 @@ public class ResetMarketMakerProtectionConfigRequest {
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("underlying");
     }
 
     /**
@@ -189,21 +189,17 @@ public class ResetMarketMakerProtectionConfigRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ResetMarketMakerProtectionConfigRequest.openapiFields.contains(entry.getKey())) {
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : ResetMarketMakerProtectionConfigRequest.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ResetMarketMakerProtectionConfigRequest` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
+                                "The required field `%s` is not found in the JSON string: %s",
+                                requiredField, jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("underlying") != null && !jsonObj.get("underlying").isJsonNull())
-                && !jsonObj.get("underlying").isJsonPrimitive()) {
+        if (!jsonObj.get("underlying").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `underlying` to be a primitive type in the JSON"
@@ -232,7 +228,7 @@ public class ResetMarketMakerProtectionConfigRequest {
                         public void write(
                                 JsonWriter out, ResetMarketMakerProtectionConfigRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

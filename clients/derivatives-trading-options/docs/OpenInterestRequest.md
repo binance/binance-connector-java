@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**underlyingAsset** | **String** |  |  |
-|**expirationDate** | **String** |  |  |
+|**id** | **Integer** | Unique WebSocket request ID. |  [optional] |
+|**underlying** | **String** | The underlying parameter |  [optional] |
+|**expirationDate** | **String** | The expirationDate parameter |  [optional] |
 
 
 

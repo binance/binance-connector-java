@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -27,7 +27,6 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.AutoC
 import com.binance.connector.client.derivatives_trading_options.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetAutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.GetMarketMakerProtectionConfigResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ResetMarketMakerProtectionConfigResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetAutoCancelAllOpenOrdersRequest;
@@ -35,6 +34,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.SetAu
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetMarketMakerProtectionConfigRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.SetMarketMakerProtectionConfigResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -91,17 +91,16 @@ public class MarketMakerEndpointsApiTest {
      * <p>This endpoint resets the time from which the countdown will begin to the time this
      * messaged is received. It should be called repeatedly as heartbeats. Multiple heartbeats can
      * be updated at once by specifying the underlying symbols as a list (ex. BTCUSDT,ETHUSDT) in
-     * the underlyings parameter. * The response will only include underlying symbols where the
-     * heartbeat has been successfully updated. Weight: 10
+     * the underlyings parameter. Weight(IP): 10 Security Type: TRADE Notes: - The response will
+     * only include underlying symbols where the heartbeat has been successfully updated.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void autoCancelAllOpenOrdersTest() throws ApiException, CryptoException {
+    public void autoCancelAllOpenOrdersTest() throws ApiException, CryptoException, IOException {
         AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest =
                 new AutoCancelAllOpenOrdersRequest();
-
-        autoCancelAllOpenOrdersRequest.underlyings("");
+        autoCancelAllOpenOrdersRequest.underlyings("BTCUSDT,ETHUSDT");
 
         ApiResponse<AutoCancelAllOpenOrdersResponse> response =
                 api.autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
@@ -116,9 +115,9 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000underlyings=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000underlyings=BTCUSDT%2CETHUSDT", signInputCaptor.getValue());
         assertEquals(
-                "b0a783c7757273453a4b860469d3051ab1ebf8dec4a85306ec4cd7dd169a68bd",
+                "1ebb9c376492db3c3327e513d101c250e303b04f1c3e411924f61c00e5f45c96",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/countdownCancelAllHeartBeat", actualRequest.url().encodedPath());
     }
@@ -129,14 +128,14 @@ public class MarketMakerEndpointsApiTest {
      * <p>This endpoint returns the auto-cancel parameters for each underlying symbol. Note only
      * active auto-cancel parameters will be returned, if countdownTime is set to 0 (ie.
      * countdownTime has been turned off), the underlying symbol and corresponding countdownTime
-     * parameter will not be returned in the response. * countdownTime &#x3D; 0 means the function
-     * is disabled. Weight: 1
+     * parameter will not be returned in the response. Weight(IP): 1 Security Type: TRADE Notes: -
+     * countdownTime &#x3D; 0 means the function is disabled.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAutoCancelAllOpenOrdersTest() throws ApiException, CryptoException {
-        String underlying = "";
+    public void getAutoCancelAllOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<GetAutoCancelAllOpenOrdersResponse> response =
                 api.getAutoCancelAllOpenOrders(underlying, recvWindow);
@@ -151,10 +150,9 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("underlying=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "b86106356cee58da83b1db58af2ff785ff31edb20e817cebe1782f91df7ddc12",
+                "d075b5b7e700b7c6bb344e5e944793012900ff9089fc4aeb2c9d02b6495f2f20",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/countdownCancelAll", actualRequest.url().encodedPath());
     }
@@ -162,13 +160,14 @@ public class MarketMakerEndpointsApiTest {
     /**
      * Get Market Maker Protection Config (TRADE)
      *
-     * <p>Get config for MMP. Weight: 1
+     * <p>Get config for MMP. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getMarketMakerProtectionConfigTest() throws ApiException, CryptoException {
-        String underlying = "";
+    public void getMarketMakerProtectionConfigTest()
+            throws ApiException, CryptoException, IOException {
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<GetMarketMakerProtectionConfigResponse> response =
                 api.getMarketMakerProtectionConfig(underlying, recvWindow);
@@ -183,55 +182,26 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("underlying=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "b86106356cee58da83b1db58af2ff785ff31edb20e817cebe1782f91df7ddc12",
+                "d075b5b7e700b7c6bb344e5e944793012900ff9089fc4aeb2c9d02b6495f2f20",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/mmp", actualRequest.url().encodedPath());
     }
 
     /**
-     * Option Margin Account Information (USER_DATA)
-     *
-     * <p>Get current account information. Weight: 3
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void optionMarginAccountInformationTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
-        ApiResponse<OptionMarginAccountInformationResponse> response =
-                api.optionMarginAccountInformation(recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/marginAccount", actualRequest.url().encodedPath());
-    }
-
-    /**
      * Reset Market Maker Protection Config (TRADE)
      *
-     * <p>Reset MMP, start MMP order again. Weight: 1
+     * <p>Reset MMP, start MMP order again. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void resetMarketMakerProtectionConfigTest() throws ApiException, CryptoException {
+    public void resetMarketMakerProtectionConfigTest()
+            throws ApiException, CryptoException, IOException {
         ResetMarketMakerProtectionConfigRequest resetMarketMakerProtectionConfigRequest =
                 new ResetMarketMakerProtectionConfigRequest();
+        resetMarketMakerProtectionConfigRequest.underlying("BTCUSDT");
 
         ApiResponse<ResetMarketMakerProtectionConfigResponse> response =
                 api.resetMarketMakerProtectionConfig(resetMarketMakerProtectionConfigRequest);
@@ -246,9 +216,10 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "timestamp=1736393892000underlying=BTCUSDT", signInputCaptor.getValue());
+        assertEquals(
+                "9a287d4e2dcbc6a1a645f68077afb1ffab2796edec53fe44d13b8066bb9dfa21",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/mmpReset", actualRequest.url().encodedPath());
     }
@@ -261,26 +232,25 @@ public class MarketMakerEndpointsApiTest {
      * symbol at the end of the specified countdown time period if no heartbeat message is sent.
      * After the countdown time period, all open orders will be cancelled and new orders will be
      * rejected with error code -2010 until either a heartbeat message is sent or the auto-cancel
-     * feature is turned off by setting countdownTime to 0. * This rest endpoint sets up the
-     * parameters to cancel your open orders in case of an outage or disconnection. * Example usage:
-     * Call this endpoint with a countdownTime value of 10000 (10 seconds) to turn on the
-     * auto-cancel feature. If the corresponding countdownCancelAllHeartBeat endpoint is not called
-     * within 10 seconds with the specified underlying symbol, all open orders of the specified
-     * symbol will be automatically canceled. If this endpoint is called with an countdownTime of 0,
-     * the countdown timer will be stopped. * The system will check all countdowns approximately
-     * every 1000 milliseconds, **please note that sufficient redundancy should be considered when
-     * using this function**. We do not recommend setting the countdown time to be too precise or
-     * too small. Weight: 1
+     * feature is turned off by setting countdownTime to 0. Weight(IP): 1 Security Type: TRADE
+     * Notes: - This rest endpoint sets up the parameters to cancel your open orders in case of an
+     * outage or disconnection. - Example usage: &gt; Call this endpoint with a countdownTime value
+     * of 10000 (10 seconds) to turn on the auto-cancel feature. If the corresponding
+     * countdownCancelAllHeartBeat endpoint is not called within 10 seconds with the specified
+     * underlying symbol, all open orders of the specified symbol will be automatically canceled. If
+     * this endpoint is called with an countdownTime of 0, the countdown timer will be stopped. -
+     * The system will check all countdowns approximately every 100 milliseconds, **please note that
+     * sufficient redundancy should be considered when using this function**. We do not recommend
+     * setting the countdown time to be too precise or too small.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void setAutoCancelAllOpenOrdersTest() throws ApiException, CryptoException {
+    public void setAutoCancelAllOpenOrdersTest() throws ApiException, CryptoException, IOException {
         SetAutoCancelAllOpenOrdersRequest setAutoCancelAllOpenOrdersRequest =
                 new SetAutoCancelAllOpenOrdersRequest();
-
-        setAutoCancelAllOpenOrdersRequest.underlying("");
-        setAutoCancelAllOpenOrdersRequest.countdownTime(0L);
+        setAutoCancelAllOpenOrdersRequest.underlying("BTCUSDT");
+        setAutoCancelAllOpenOrdersRequest.countdownTime(5000L);
 
         ApiResponse<SetAutoCancelAllOpenOrdersResponse> response =
                 api.setAutoCancelAllOpenOrders(setAutoCancelAllOpenOrdersRequest);
@@ -295,10 +265,9 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000countdownTime=5000&underlying=BTCUSDT", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000countdownTime=0&underlying=", signInputCaptor.getValue());
-        assertEquals(
-                "3ea20362d32987f98f76e76f49289f7848b16910aefdb250e574f5dd050aad4a",
+                "226b8f5b2257bf539c4e6f658ab0cb93aac0a7f8533934b8275557e75fa78640",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/countdownCancelAll", actualRequest.url().encodedPath());
     }
@@ -311,14 +280,20 @@ public class MarketMakerEndpointsApiTest {
      * Once market maker&#39;s account branches the threshold, the Market Maker Protection will be
      * triggered. When Market Maker Protection triggers, all the current MMP orders will be
      * canceled, new MMP orders will be rejected. Market maker can use this time to reevaluate
-     * market and modify order price. Weight: 1
+     * market and modify order price. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void setMarketMakerProtectionConfigTest() throws ApiException, CryptoException {
+    public void setMarketMakerProtectionConfigTest()
+            throws ApiException, CryptoException, IOException {
         SetMarketMakerProtectionConfigRequest setMarketMakerProtectionConfigRequest =
                 new SetMarketMakerProtectionConfigRequest();
+        setMarketMakerProtectionConfigRequest.underlying("BTCUSDT");
+        setMarketMakerProtectionConfigRequest.windowTimeInMilliseconds(1000L);
+        setMarketMakerProtectionConfigRequest.frozenTimeInMilliseconds(1000L);
+        setMarketMakerProtectionConfigRequest.qtyLimit(1.0d);
+        setMarketMakerProtectionConfigRequest.deltaLimit(1.0d);
 
         ApiResponse<SetMarketMakerProtectionConfigResponse> response =
                 api.setMarketMakerProtectionConfig(setMarketMakerProtectionConfigRequest);
@@ -333,9 +308,9 @@ public class MarketMakerEndpointsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000frozenTimeInMilliseconds=1000&windowTimeInMilliseconds=1000&qtyLimit=1&underlying=BTCUSDT&deltaLimit=1", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "1cab4ceefc619bad05c9cfc38020e0f3c8fe014a4ed842b61d5664022534f873",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/mmpSet", actualRequest.url().encodedPath());
     }

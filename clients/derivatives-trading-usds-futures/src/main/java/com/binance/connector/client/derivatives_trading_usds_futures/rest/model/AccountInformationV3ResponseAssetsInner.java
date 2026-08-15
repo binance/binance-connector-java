@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
-/** AccountInformationV3ResponseAssetsInner */
+/** For assets that are quote assets, USDT/USDC/BTC */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV3ResponseAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -116,12 +114,6 @@ public class AccountInformationV3ResponseAssetsInner {
     @jakarta.annotation.Nullable
     private Long updateTime;
 
-    public static final String SERIALIZED_NAME_MARGIN_AVAILABLE = "marginAvailable";
-
-    @SerializedName(SERIALIZED_NAME_MARGIN_AVAILABLE)
-    @jakarta.annotation.Nullable
-    private Boolean marginAvailable;
-
     public AccountInformationV3ResponseAssetsInner() {}
 
     public AccountInformationV3ResponseAssetsInner asset(
@@ -131,7 +123,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get asset
+     * Asset name.
      *
      * @return asset
      */
@@ -151,7 +143,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get walletBalance
+     * Wallet balance.
      *
      * @return walletBalance
      */
@@ -171,7 +163,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * Unrealized profit.
      *
      * @return unrealizedProfit
      */
@@ -191,7 +183,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get marginBalance
+     * Margin balance.
      *
      * @return marginBalance
      */
@@ -211,7 +203,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get maintMargin
+     * Maintenance margin requirement.
      *
      * @return maintMargin
      */
@@ -231,7 +223,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get initialMargin
+     * Total initial margin requirement.
      *
      * @return initialMargin
      */
@@ -251,7 +243,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * Initial margin required for positions.
      *
      * @return positionInitialMargin
      */
@@ -272,7 +264,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * Initial margin required for open orders.
      *
      * @return openOrderInitialMargin
      */
@@ -293,7 +285,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * Cross wallet balance.
      *
      * @return crossWalletBalance
      */
@@ -313,7 +305,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get crossUnPnl
+     * Unrealized PnL for cross positions.
      *
      * @return crossUnPnl
      */
@@ -333,7 +325,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get availableBalance
+     * Available balance.
      *
      * @return availableBalance
      */
@@ -353,7 +345,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * Maximum transferable/withdrawable amount.
      *
      * @return maxWithdrawAmount
      */
@@ -373,7 +365,7 @@ public class AccountInformationV3ResponseAssetsInner {
     }
 
     /**
-     * Get updateTime
+     * Last update time in milliseconds.
      *
      * @return updateTime
      */
@@ -384,26 +376,6 @@ public class AccountInformationV3ResponseAssetsInner {
 
     public void setUpdateTime(@jakarta.annotation.Nullable Long updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public AccountInformationV3ResponseAssetsInner marginAvailable(
-            @jakarta.annotation.Nullable Boolean marginAvailable) {
-        this.marginAvailable = marginAvailable;
-        return this;
-    }
-
-    /**
-     * Get marginAvailable
-     *
-     * @return marginAvailable
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getMarginAvailable() {
-        return marginAvailable;
-    }
-
-    public void setMarginAvailable(@jakarta.annotation.Nullable Boolean marginAvailable) {
-        this.marginAvailable = marginAvailable;
     }
 
     @Override
@@ -446,10 +418,7 @@ public class AccountInformationV3ResponseAssetsInner {
                         this.maxWithdrawAmount,
                         accountInformationV3ResponseAssetsInner.maxWithdrawAmount)
                 && Objects.equals(
-                        this.updateTime, accountInformationV3ResponseAssetsInner.updateTime)
-                && Objects.equals(
-                        this.marginAvailable,
-                        accountInformationV3ResponseAssetsInner.marginAvailable);
+                        this.updateTime, accountInformationV3ResponseAssetsInner.updateTime);
     }
 
     @Override
@@ -467,8 +436,7 @@ public class AccountInformationV3ResponseAssetsInner {
                 crossUnPnl,
                 availableBalance,
                 maxWithdrawAmount,
-                updateTime,
-                marginAvailable);
+                updateTime);
     }
 
     @Override
@@ -494,7 +462,6 @@ public class AccountInformationV3ResponseAssetsInner {
         sb.append("		availableBalance: ").append(toIndentedString(availableBalance)).append("\n");
         sb.append("		maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
-        sb.append("		marginAvailable: ").append(toIndentedString(marginAvailable)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -562,10 +529,6 @@ public class AccountInformationV3ResponseAssetsInner {
         String updateTimeValueAsString = "";
         updateTimeValueAsString = updateTimeValue.toString();
         sb.append("updateTime=").append(urlEncode(updateTimeValueAsString)).append("");
-        Object marginAvailableValue = getMarginAvailable();
-        String marginAvailableValueAsString = "";
-        marginAvailableValueAsString = marginAvailableValue.toString();
-        sb.append("marginAvailable=").append(urlEncode(marginAvailableValueAsString)).append("");
         return sb.toString();
     }
 
@@ -607,7 +570,6 @@ public class AccountInformationV3ResponseAssetsInner {
         openapiFields.add("availableBalance");
         openapiFields.add("maxWithdrawAmount");
         openapiFields.add("updateTime");
-        openapiFields.add("marginAvailable");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -631,19 +593,6 @@ public class AccountInformationV3ResponseAssetsInner {
                                     + " empty JSON string",
                                 AccountInformationV3ResponseAssetsInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountInformationV3ResponseAssetsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AccountInformationV3ResponseAssetsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -771,7 +720,7 @@ public class AccountInformationV3ResponseAssetsInner {
                         public void write(
                                 JsonWriter out, AccountInformationV3ResponseAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -27,10 +27,6 @@ import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAcco
 import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.GetFuturesPositionRiskOfSubAccountResponse;
@@ -39,6 +35,7 @@ import com.binance.connector.client.sub_account.rest.model.GetSubAccountsStatusO
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountListResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountTransactionStatisticsResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -90,20 +87,19 @@ public class AccountManagementApiTest {
     }
 
     /**
-     * Create a Virtual Sub-account(For Master Account)
+     * Create a Virtual Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Create a Virtual Sub-account * This request will generate a virtual sub account under your
-     * master account. * You need to enable \&quot;trade\&quot; option for the API Key which
-     * requests this endpoint. Weight: 1
+     * <p>Create a Virtual Sub-account Weight(IP): 1 Security Type: USER_DATA Notes: - This request
+     * generates a virtual sub-account under your master account. - The API key used to call this
+     * endpoint must have the &#x60;trade&#x60; option enabled.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createAVirtualSubAccountTest() throws ApiException, CryptoException {
+    public void createAVirtualSubAccountTest() throws ApiException, CryptoException, IOException {
         CreateAVirtualSubAccountRequest createAVirtualSubAccountRequest =
                 new CreateAVirtualSubAccountRequest();
-
-        createAVirtualSubAccountRequest.subAccountString("");
+        createAVirtualSubAccountRequest.subAccountString("testSubAccount");
 
         ApiResponse<CreateAVirtualSubAccountResponse> response =
                 api.createAVirtualSubAccount(createAVirtualSubAccountRequest);
@@ -118,26 +114,25 @@ public class AccountManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000subAccountString=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000subAccountString=testSubAccount", signInputCaptor.getValue());
         assertEquals(
-                "17957384d6df5c7c6e52eefb50fa8aab7e6c71cb463c5010af594789262b22f5",
+                "0fe42141d019bd733e2a22a2104d028b3325400af1f9c91486f5a6efe6f05526",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/virtualSubAccount", actualRequest.url().encodedPath());
     }
 
     /**
-     * Enable Futures for Sub-account(For Master Account)
+     * Enable Futures for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Enable Futures for Sub-account for Master Account Weight: 1
+     * <p>Enable Futures for Sub-account for Master Account Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void enableFuturesForSubAccountTest() throws ApiException, CryptoException {
+    public void enableFuturesForSubAccountTest() throws ApiException, CryptoException, IOException {
         EnableFuturesForSubAccountRequest enableFuturesForSubAccountRequest =
                 new EnableFuturesForSubAccountRequest();
-
-        enableFuturesForSubAccountRequest.email("sub-account-email@email.com");
+        enableFuturesForSubAccountRequest.email("123@test.com");
 
         ApiResponse<EnableFuturesForSubAccountResponse> response =
                 api.enableFuturesForSubAccount(enableFuturesForSubAccountRequest);
@@ -152,101 +147,26 @@ public class AccountManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000email=123%40test.com", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
+                "b352a4ac3d81990c97a21d9249ef59c109edd5d7ecc759377bacfb3bbcc91981",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/futures/enable", actualRequest.url().encodedPath());
     }
 
     /**
-     * Enable Leverage Token for Sub-account(For Master Account)
+     * Enable Options for Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Enable Leverage Token for Sub-account Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void enableLeverageTokenForSubAccountTest() throws ApiException, CryptoException {
-        EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest =
-                new EnableLeverageTokenForSubAccountRequest();
-
-        enableLeverageTokenForSubAccountRequest.email("sub-account-email@email.com");
-        enableLeverageTokenForSubAccountRequest.enableBlvt(true);
-
-        ApiResponse<EnableLeverageTokenForSubAccountResponse> response =
-                api.enableLeverageTokenForSubAccount(enableLeverageTokenForSubAccountRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000enableBlvt=true&email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "5637c5d98dd70674f12e4b6ae5f4f7f3a6c15655aff997d057d7e9b4ceadf77c",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/blvt/enable", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Enable Margin for Sub-account(For Master Account)
-     *
-     * <p>Enable Margin for Sub-account Weight: 1
+     * <p>Enable Options for Sub-account (For Master Account). Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void enableMarginForSubAccountTest() throws ApiException, CryptoException {
-        EnableMarginForSubAccountRequest enableMarginForSubAccountRequest =
-                new EnableMarginForSubAccountRequest();
-
-        enableMarginForSubAccountRequest.email("sub-account-email@email.com");
-
-        ApiResponse<EnableMarginForSubAccountResponse> response =
-                api.enableMarginForSubAccount(enableMarginForSubAccountRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "timestamp=1736393892000email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/margin/enable", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Enable Options for Sub-account(For Master Account)(USER_DATA)
-     *
-     * <p>Enable Options for Sub-account (For Master Account). Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void enableOptionsForSubAccountTest() throws ApiException, CryptoException {
+    public void enableOptionsForSubAccountTest() throws ApiException, CryptoException, IOException {
         EnableOptionsForSubAccountRequest enableOptionsForSubAccountRequest =
                 new EnableOptionsForSubAccountRequest();
-
-        enableOptionsForSubAccountRequest.email("sub-account-email@email.com");
+        enableOptionsForSubAccountRequest.email("123@test.com");
 
         ApiResponse<EnableOptionsForSubAccountResponse> response =
                 api.enableOptionsForSubAccount(enableOptionsForSubAccountRequest);
@@ -261,25 +181,24 @@ public class AccountManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000email=123%40test.com", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000email=sub-account-email%40email.com",
-                signInputCaptor.getValue());
-        assertEquals(
-                "f67b06b499d40c01558e887eeacedf34d4c15093e3369cc524fd961d26d2a511",
+                "b352a4ac3d81990c97a21d9249ef59c109edd5d7ecc759377bacfb3bbcc91981",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/eoptions/enable", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Futures Position-Risk of Sub-account(For Master Account)
+     * Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA)
      *
-     * <p>Get Futures Position-Risk of Sub-account Weight: 10
+     * <p>Get Futures Position-Risk of Sub-account Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFuturesPositionRiskOfSubAccountTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void getFuturesPositionRiskOfSubAccountTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesPositionRiskOfSubAccountResponse> response =
                 api.getFuturesPositionRiskOfSubAccount(email, recvWindow);
@@ -295,26 +214,26 @@ public class AccountManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "cd63404bc561d336289e8cb941b7cdf71a2a31b8167ead6c6b6d60e0279653ce",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/futures/positionRisk", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Futures Position-Risk of Sub-account V2(For Master Account)
+     * Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
      *
-     * <p>Get Futures Position-Risk of Sub-account V2 Weight: 1
+     * <p>Get Futures Position-Risk of Sub-account V2 Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFuturesPositionRiskOfSubAccountV2Test() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        Long futuresType = 0L;
+    public void getFuturesPositionRiskOfSubAccountV2Test()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        Long futuresType = 1L;
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesPositionRiskOfSubAccountV2Response> response =
                 api.getFuturesPositionRiskOfSubAccountV2(email, futuresType, recvWindow);
@@ -330,26 +249,26 @@ public class AccountManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&futuresType=0&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=123%40test.com&futuresType=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "cc664677d48539d81fe257dafb4f793b0036ed86f73c1bca867f692c34b6b490",
+                "26bcd5b994bb829b3a59484013a4fce2a60ba12d6f08fbe5a00173000cbe40c7",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v2/sub-account/futures/positionRisk", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Sub-account&#39;s Status on Margin Or Futures(For Master Account)
+     * Get Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA)
      *
-     * <p>Get Sub-account&#39;s Status on Margin Or Futures * If no email sent, all
-     * sub-accounts&#39; information will be returned. Weight: 10
+     * <p>Get Sub-account&#39;s Status on Margin Or Futures Weight(IP): 10 Security Type: USER_DATA
+     * Notes: - If no email sent, all sub-accounts&#39; information will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSubAccountsStatusOnMarginOrFuturesTest() throws ApiException, CryptoException {
-        String email = "";
+    public void getSubAccountsStatusOnMarginOrFuturesTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
         Long recvWindow = 5000L;
         ApiResponse<GetSubAccountsStatusOnMarginOrFuturesResponse> response =
                 api.getSubAccountsStatusOnMarginOrFutures(email, recvWindow);
@@ -364,26 +283,29 @@ public class AccountManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("email=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "ca098fe86ad4ca7fbb1763dbb32c5c8f0611c1ee3dd0334fa79e767a306b3ab9",
+                "email=123%40test.com&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "cd63404bc561d336289e8cb941b7cdf71a2a31b8167ead6c6b6d60e0279653ce",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/sub-account/status", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/sub-account/status", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account List(For Master Account)
+     * Query Sub-account List (For Master Account) (USER_DATA)
      *
-     * <p>Query Sub-account List Weight: 1
+     * <p>Query Sub-account List Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubAccountListTest() throws ApiException, CryptoException {
-        String email = "";
-        String isFreeze = "";
+    public void querySubAccountListTest() throws ApiException, CryptoException, IOException {
+        String email = "123@test.com";
+        String isFreeze = "true";
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountListResponse> response =
                 api.querySubAccountList(email, isFreeze, page, limit, recvWindow);
@@ -398,25 +320,24 @@ public class AccountManagementApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=123%40test.com&isFreeze=true&page=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=&isFreeze=&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "563b2264a7851ddf9f32d76d6be3966d159a697f45e7ebbafe60f7d561e426c6",
-                actualRequest.url().queryParameter("signature"));
+                "d447a745a6b1160ad2e844d97262797f9db645aa97c70aeb73fbd2ac5cb44280", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/sub-account/list", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub-account Transaction Statistics(For Master Account)(USER_DATA)
+     * Query Sub-account Transaction Statistics (For Master Account) (USER_DATA)
      *
-     * <p>Query Sub-account Transaction statistics (For Master Account). Weight: 60
+     * <p>Query Sub-account Transaction statistics (For Master Account). Weight(IP): 60 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubAccountTransactionStatisticsTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void querySubAccountTransactionStatisticsTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
         Long recvWindow = 5000L;
         ApiResponse<QuerySubAccountTransactionStatisticsResponse> response =
                 api.querySubAccountTransactionStatistics(email, recvWindow);
@@ -432,10 +353,9 @@ public class AccountManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=abc%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "18e24a62c2fe0e440151dfc8e5f916abc1d41f6895ddeec80f18ff7ee97887f5",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/transaction-statistics", actualRequest.url().encodedPath());

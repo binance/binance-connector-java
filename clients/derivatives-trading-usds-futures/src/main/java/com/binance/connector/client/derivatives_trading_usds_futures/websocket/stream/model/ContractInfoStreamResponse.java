@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** ContractInfoStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ContractInfoStreamResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -60,12 +60,6 @@ public class ContractInfoStreamResponse extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
     @jakarta.annotation.Nullable
     private String sLowerCase;
-
-    public static final String SERIALIZED_NAME_PS = "ps";
-
-    @SerializedName(SERIALIZED_NAME_PS)
-    @jakarta.annotation.Nullable
-    private String ps;
 
     public static final String SERIALIZED_NAME_CT = "ct";
 
@@ -97,6 +91,12 @@ public class ContractInfoStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private List<@Valid ContractInfoStreamResponseBksInner> bks;
 
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
+
     public ContractInfoStreamResponse() {}
 
     public ContractInfoStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
@@ -105,7 +105,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type.
      *
      * @return eLowerCase
      */
@@ -124,7 +124,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time.
      *
      * @return E
      */
@@ -143,7 +143,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol.
      *
      * @return sLowerCase
      */
@@ -156,32 +156,13 @@ public class ContractInfoStreamResponse extends BaseDTO {
         this.sLowerCase = sLowerCase;
     }
 
-    public ContractInfoStreamResponse ps(@jakarta.annotation.Nullable String ps) {
-        this.ps = ps;
-        return this;
-    }
-
-    /**
-     * Get ps
-     *
-     * @return ps
-     */
-    @jakarta.annotation.Nullable
-    public String getPs() {
-        return ps;
-    }
-
-    public void setPs(@jakarta.annotation.Nullable String ps) {
-        this.ps = ps;
-    }
-
     public ContractInfoStreamResponse ct(@jakarta.annotation.Nullable String ct) {
         this.ct = ct;
         return this;
     }
 
     /**
-     * Get ct
+     * Contract type.
      *
      * @return ct
      */
@@ -200,7 +181,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get dt
+     * Delivery date time.
      *
      * @return dt
      */
@@ -219,7 +200,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get ot
+     * Onboard date time.
      *
      * @return ot
      */
@@ -238,7 +219,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get cs
+     * Contract status.
      *
      * @return cs
      */
@@ -266,7 +247,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get bks
+     * Notional bracket updates.
      *
      * @return bks
      */
@@ -281,6 +262,25 @@ public class ContractInfoStreamResponse extends BaseDTO {
         this.bks = bks;
     }
 
+    public ContractInfoStreamResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -293,17 +293,17 @@ public class ContractInfoStreamResponse extends BaseDTO {
         return Objects.equals(this.eLowerCase, contractInfoStreamResponse.eLowerCase)
                 && Objects.equals(this.E, contractInfoStreamResponse.E)
                 && Objects.equals(this.sLowerCase, contractInfoStreamResponse.sLowerCase)
-                && Objects.equals(this.ps, contractInfoStreamResponse.ps)
                 && Objects.equals(this.ct, contractInfoStreamResponse.ct)
                 && Objects.equals(this.dt, contractInfoStreamResponse.dt)
                 && Objects.equals(this.ot, contractInfoStreamResponse.ot)
                 && Objects.equals(this.cs, contractInfoStreamResponse.cs)
-                && Objects.equals(this.bks, contractInfoStreamResponse.bks);
+                && Objects.equals(this.bks, contractInfoStreamResponse.bks)
+                && Objects.equals(this.st, contractInfoStreamResponse.st);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, sLowerCase, ps, ct, dt, ot, cs, bks);
+        return Objects.hash(eLowerCase, E, sLowerCase, ct, dt, ot, cs, bks, st);
     }
 
     @Override
@@ -313,12 +313,12 @@ public class ContractInfoStreamResponse extends BaseDTO {
         sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
-        sb.append("		ps: ").append(toIndentedString(ps)).append("\n");
         sb.append("		ct: ").append(toIndentedString(ct)).append("\n");
         sb.append("		dt: ").append(toIndentedString(dt)).append("\n");
         sb.append("		ot: ").append(toIndentedString(ot)).append("\n");
         sb.append("		cs: ").append(toIndentedString(cs)).append("\n");
         sb.append("		bks: ").append(toIndentedString(bks)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -341,11 +341,6 @@ public class ContractInfoStreamResponse extends BaseDTO {
         if (sLowerCaseValue != null) {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
             valMap.put("sLowerCase", sLowerCaseValueAsString);
-        }
-        String psValue = getPs();
-        if (psValue != null) {
-            String psValueAsString = psValue.toString();
-            valMap.put("ps", psValueAsString);
         }
         String ctValue = getCt();
         if (ctValue != null) {
@@ -372,6 +367,11 @@ public class ContractInfoStreamResponse extends BaseDTO {
             String bksValueAsString = JSON.getGson().toJson(bksValue);
             valMap.put("bks", bksValueAsString);
         }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -395,10 +395,6 @@ public class ContractInfoStreamResponse extends BaseDTO {
         if (sLowerCaseValue != null) {
             valMap.put("sLowerCase", sLowerCaseValue);
         }
-        Object psValue = getPs();
-        if (psValue != null) {
-            valMap.put("ps", psValue);
-        }
         Object ctValue = getCt();
         if (ctValue != null) {
             valMap.put("ct", ctValue);
@@ -418,6 +414,10 @@ public class ContractInfoStreamResponse extends BaseDTO {
         Object bksValue = getBks();
         if (bksValue != null) {
             valMap.put("bks", bksValue);
+        }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -448,12 +448,12 @@ public class ContractInfoStreamResponse extends BaseDTO {
         openapiFields.add("e");
         openapiFields.add("E");
         openapiFields.add("s");
-        openapiFields.add("ps");
         openapiFields.add("ct");
         openapiFields.add("dt");
         openapiFields.add("ot");
         openapiFields.add("cs");
         openapiFields.add("bks");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -504,14 +504,6 @@ public class ContractInfoStreamResponse extends BaseDTO {
                             "Expected the field `s` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("s").toString()));
-        }
-        if ((jsonObj.get("ps") != null && !jsonObj.get("ps").isJsonNull())
-                && !jsonObj.get("ps").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ps` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("ps").toString()));
         }
         if ((jsonObj.get("ct") != null && !jsonObj.get("ct").isJsonNull())
                 && !jsonObj.get("ct").isJsonPrimitive()) {
@@ -567,7 +559,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, ContractInfoStreamResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

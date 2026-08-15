@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AllOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllOrdersResponseInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -55,6 +53,12 @@ public class AllOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_CUM_BASE)
     @jakarta.annotation.Nullable
     private String cumBase;
+
+    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
+
+    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
+    @jakarta.annotation.Nullable
+    private String cumQuote;
 
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
@@ -195,6 +199,12 @@ public class AllOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
+
+    @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
+    @jakarta.annotation.Nullable
+    private Long goodTillDate;
+
     public AllOrdersResponseInner() {}
 
     public AllOrdersResponseInner avgPrice(@jakarta.annotation.Nullable String avgPrice) {
@@ -203,7 +213,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -222,7 +232,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -241,7 +251,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get cumBase
+     * Cumulative base asset amount.
      *
      * @return cumBase
      */
@@ -254,13 +264,32 @@ public class AllOrdersResponseInner {
         this.cumBase = cumBase;
     }
 
+    public AllOrdersResponseInner cumQuote(@jakarta.annotation.Nullable String cumQuote) {
+        this.cumQuote = cumQuote;
+        return this;
+    }
+
+    /**
+     * Cumulative quote asset amount.
+     *
+     * @return cumQuote
+     */
+    @jakarta.annotation.Nullable
+    public String getCumQuote() {
+        return cumQuote;
+    }
+
+    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
+        this.cumQuote = cumQuote;
+    }
+
     public AllOrdersResponseInner executedQty(@jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -279,7 +308,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -298,7 +327,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -317,7 +346,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -336,7 +365,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -355,7 +384,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -374,7 +403,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -393,7 +422,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -412,7 +441,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -431,7 +460,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -451,7 +480,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -470,7 +499,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -489,7 +518,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -508,7 +537,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -527,7 +556,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -546,7 +575,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -565,7 +594,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -584,7 +613,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -603,7 +632,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -622,7 +651,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -641,7 +670,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -660,7 +689,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -680,7 +709,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -692,6 +721,25 @@ public class AllOrdersResponseInner {
     public void setSelfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public AllOrdersResponseInner goodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
+        return this;
+    }
+
+    /**
+     * order pre-set auto cancel time for TIF GTD order
+     *
+     * @return goodTillDate
+     */
+    @jakarta.annotation.Nullable
+    public Long getGoodTillDate() {
+        return goodTillDate;
+    }
+
+    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
     }
 
     @Override
@@ -706,6 +754,7 @@ public class AllOrdersResponseInner {
         return Objects.equals(this.avgPrice, allOrdersResponseInner.avgPrice)
                 && Objects.equals(this.clientOrderId, allOrdersResponseInner.clientOrderId)
                 && Objects.equals(this.cumBase, allOrdersResponseInner.cumBase)
+                && Objects.equals(this.cumQuote, allOrdersResponseInner.cumQuote)
                 && Objects.equals(this.executedQty, allOrdersResponseInner.executedQty)
                 && Objects.equals(this.orderId, allOrdersResponseInner.orderId)
                 && Objects.equals(this.origQty, allOrdersResponseInner.origQty)
@@ -730,7 +779,8 @@ public class AllOrdersResponseInner {
                 && Objects.equals(this.priceMatch, allOrdersResponseInner.priceMatch)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        allOrdersResponseInner.selfTradePreventionMode);
+                        allOrdersResponseInner.selfTradePreventionMode)
+                && Objects.equals(this.goodTillDate, allOrdersResponseInner.goodTillDate);
     }
 
     @Override
@@ -739,6 +789,7 @@ public class AllOrdersResponseInner {
                 avgPrice,
                 clientOrderId,
                 cumBase,
+                cumQuote,
                 executedQty,
                 orderId,
                 origQty,
@@ -761,7 +812,8 @@ public class AllOrdersResponseInner {
                 workingType,
                 priceProtect,
                 priceMatch,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                goodTillDate);
     }
 
     @Override
@@ -771,6 +823,7 @@ public class AllOrdersResponseInner {
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
+        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
@@ -796,6 +849,7 @@ public class AllOrdersResponseInner {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		goodTillDate: ").append(toIndentedString(goodTillDate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -815,6 +869,10 @@ public class AllOrdersResponseInner {
         String cumBaseValueAsString = "";
         cumBaseValueAsString = cumBaseValue.toString();
         sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
+        Object cumQuoteValue = getCumQuote();
+        String cumQuoteValueAsString = "";
+        cumQuoteValueAsString = cumQuoteValue.toString();
+        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -909,6 +967,10 @@ public class AllOrdersResponseInner {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object goodTillDateValue = getGoodTillDate();
+        String goodTillDateValueAsString = "";
+        goodTillDateValueAsString = goodTillDateValue.toString();
+        sb.append("goodTillDate=").append(urlEncode(goodTillDateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -940,6 +1002,7 @@ public class AllOrdersResponseInner {
         openapiFields.add("avgPrice");
         openapiFields.add("clientOrderId");
         openapiFields.add("cumBase");
+        openapiFields.add("cumQuote");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
         openapiFields.add("origQty");
@@ -963,6 +1026,7 @@ public class AllOrdersResponseInner {
         openapiFields.add("priceProtect");
         openapiFields.add("priceMatch");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("goodTillDate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -983,18 +1047,6 @@ public class AllOrdersResponseInner {
                                 "The required field(s) %s in AllOrdersResponseInner is not found in"
                                         + " the empty JSON string",
                                 AllOrdersResponseInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AllOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AllOrdersResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1021,6 +1073,14 @@ public class AllOrdersResponseInner {
                             "Expected the field `cumBase` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumBase").toString()));
+        }
+        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
+                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cumQuote` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
@@ -1177,7 +1237,7 @@ public class AllOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, AllOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

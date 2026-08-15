@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
-/** AccountInformationV2ResponsePositionsInner */
+/** positions of all symbols in the market are returned */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV2ResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -137,7 +135,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -157,7 +155,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * Initial margin requirement.
      *
      * @return initialMargin
      */
@@ -177,7 +175,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * Maintenance margin requirement.
      *
      * @return maintMargin
      */
@@ -197,7 +195,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * Unrealized profit.
      *
      * @return unrealizedProfit
      */
@@ -217,7 +215,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * Initial margin required for positions.
      *
      * @return positionInitialMargin
      */
@@ -238,7 +236,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * Initial margin required for open orders.
      *
      * @return openOrderInitialMargin
      */
@@ -259,7 +257,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get leverage
+     * Current initial leverage.
      *
      * @return leverage
      */
@@ -279,7 +277,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get isolated
+     * Whether the position uses isolated margin mode.
      *
      * @return isolated
      */
@@ -299,7 +297,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get entryPrice
+     * Average entry price.
      *
      * @return entryPrice
      */
@@ -319,7 +317,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get maxNotional
+     * Maximum available notional under current leverage.
      *
      * @return maxNotional
      */
@@ -339,7 +337,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get bidNotional
+     * Bid notional (ignore).
      *
      * @return bidNotional
      */
@@ -359,7 +357,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get askNotional
+     * Ask notional (ignore).
      *
      * @return askNotional
      */
@@ -379,7 +377,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * Position side.
      *
      * @return positionSide
      */
@@ -399,7 +397,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * Position quantity.
      *
      * @return positionAmt
      */
@@ -419,7 +417,7 @@ public class AccountInformationV2ResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * Last update time in milliseconds.
      *
      * @return updateTime
      */
@@ -659,20 +657,6 @@ public class AccountInformationV2ResponsePositionsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountInformationV2ResponsePositionsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AccountInformationV2ResponsePositionsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -803,7 +787,7 @@ public class AccountInformationV2ResponsePositionsInner {
                         public void write(
                                 JsonWriter out, AccountInformationV2ResponsePositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

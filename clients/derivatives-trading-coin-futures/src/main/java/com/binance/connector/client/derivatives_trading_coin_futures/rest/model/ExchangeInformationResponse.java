@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInformationResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponse {
     public static final String SERIALIZED_NAME_EXCHANGE_FILTERS = "exchangeFilters";
 
@@ -91,7 +89,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get exchangeFilters
+     * Exchange filters.
      *
      * @return exchangeFilters
      */
@@ -121,7 +119,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get rateLimits
+     * Rate limit definitions.
      *
      * @return rateLimits
      */
@@ -143,7 +141,8 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get serverTime
+     * Ignore please. If you want to check current server time, please check via \&quot;GET
+     * /dapi/v1/time\&quot;
      *
      * @return serverTime
      */
@@ -173,7 +172,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get symbols
+     * Supported trading symbols.
      *
      * @return symbols
      */
@@ -195,7 +194,7 @@ public class ExchangeInformationResponse {
     }
 
     /**
-     * Get timezone
+     * Timezone of market data.
      *
      * @return timezone
      */
@@ -330,18 +329,6 @@ public class ExchangeInformationResponse {
                                 ExchangeInformationResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInformationResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ExchangeInformationResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         // ensure the optional json data is an array if present
         if (jsonObj.get("exchangeFilters") != null
@@ -420,7 +407,7 @@ public class ExchangeInformationResponse {
                         @Override
                         public void write(JsonWriter out, ExchangeInformationResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

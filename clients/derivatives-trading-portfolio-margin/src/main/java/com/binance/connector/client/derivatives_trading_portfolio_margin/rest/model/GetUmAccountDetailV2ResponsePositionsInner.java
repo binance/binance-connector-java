@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetUmAccountDetailV2ResponsePositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmAccountDetailV2ResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -95,7 +93,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * symbol name
      *
      * @return symbol
      */
@@ -115,7 +113,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -135,7 +133,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -155,7 +153,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -175,7 +173,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -195,7 +193,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -215,7 +213,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -235,7 +233,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
     }
 
     /**
-     * Get notional
+     * Notional.
      *
      * @return notional
      */
@@ -402,20 +400,6 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetUmAccountDetailV2ResponsePositionsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetUmAccountDetailV2ResponsePositionsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -496,7 +480,7 @@ public class GetUmAccountDetailV2ResponsePositionsInner {
                         public void write(
                                 JsonWriter out, GetUmAccountDetailV2ResponsePositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

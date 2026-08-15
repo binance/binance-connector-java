@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetPortfolioMarginProAccountBalanceResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPortfolioMarginProAccountBalanceResponseInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -137,7 +135,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -157,7 +155,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get totalWalletBalance
+     * total Wallet Balance.
      *
      * @return totalWalletBalance
      */
@@ -177,7 +175,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginAsset
+     * cross Margin Asset.
      *
      * @return crossMarginAsset
      */
@@ -197,7 +195,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginBorrowed
+     * cross Margin Borrowed.
      *
      * @return crossMarginBorrowed
      */
@@ -217,7 +215,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginFree
+     * cross Margin Free.
      *
      * @return crossMarginFree
      */
@@ -237,7 +235,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginInterest
+     * cross Margin Interest.
      *
      * @return crossMarginInterest
      */
@@ -257,7 +255,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginLocked
+     * cross Margin Locked.
      *
      * @return crossMarginLocked
      */
@@ -277,7 +275,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get umWalletBalance
+     * um Wallet Balance.
      *
      * @return umWalletBalance
      */
@@ -297,7 +295,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get umUnrealizedPNL
+     * um Unrealized PNL.
      *
      * @return umUnrealizedPNL
      */
@@ -317,7 +315,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get cmWalletBalance
+     * cm Wallet Balance.
      *
      * @return cmWalletBalance
      */
@@ -337,7 +335,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get cmUnrealizedPNL
+     * cm Unrealized PNL.
      *
      * @return cmUnrealizedPNL
      */
@@ -357,7 +355,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update Time.
      *
      * @return updateTime
      */
@@ -377,7 +375,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get negativeBalance
+     * negative Balance.
      *
      * @return negativeBalance
      */
@@ -397,7 +395,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get optionWalletBalance
+     * option Wallet Balance.
      *
      * @return optionWalletBalance
      */
@@ -417,7 +415,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get optionEquity
+     * option Equity.
      *
      * @return optionEquity
      */
@@ -679,20 +677,6 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPortfolioMarginProAccountBalanceResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetPortfolioMarginProAccountBalanceResponseInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -836,7 +820,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
                                 JsonWriter out,
                                 GetPortfolioMarginProAccountBalanceResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

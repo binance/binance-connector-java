@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,11 +24,14 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AccountTradeListResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AlgoType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AllOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.AutoCloseType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.BatchOrders;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAlgoOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelAllOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CancelOrderResponse;
@@ -40,7 +43,10 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangeMultiAssetsModeResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangePositionModeRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ChangePositionModeResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllAlgoOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.CurrentAllOpenOrdersResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.FuturesTradfiPerpsContractResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetOrderModifyHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.GetPositionMarginChangeHistoryResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.MarginType;
@@ -50,15 +56,20 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.ModifyOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrderIdList;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrderType;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.OrigClientOrderIdList;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PlaceMultipleOrdersRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PlaceMultipleOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionAdlQuantileEstimationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionInformationV2Response;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.PositionInformationV3Response;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryAlgoOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryAllAlgoOrdersResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryCurrentOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.QueryOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.Side;
@@ -66,6 +77,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.TestOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.UsersForceOrdersResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -119,22 +131,23 @@ public class TradeApiTest {
     /**
      * Account Trade List (USER_DATA)
      *
-     * <p>Get trades for a specific account and symbol. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 7 days&#39; data will be returned. * The
-     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. *
-     * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or
-     * &#x60;endTime&#x60;. * Only support querying trade in the past 6 months Weight: 5
+     * <p>Get trades for a specific account and symbol. Weight(IP): 5 Security Type: USER_DATA
+     * Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 7
+     * days&#39; data will be returned. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter &#x60;fromId&#x60; cannot
+     * be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;. - Only support querying trade in
+     * the past 6 months
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountTradeListTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
+    public void accountTradeListTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 25851813L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long fromId = 1L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<AccountTradeListResponse> response =
                 api.accountTradeList(
@@ -150,34 +163,31 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&orderId=25851813&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "10058794572cc782968aa3d3e6b73a369146898e471235e8712344dea70cb4d5",
-                actualRequest.url().queryParameter("signature"));
+                "112d12a3f2bb41fde16926832816f97757883ecc80d0f834949e1455af98cf60", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/userTrades", actualRequest.url().encodedPath());
     }
 
     /**
      * All Orders (USER_DATA)
      *
-     * <p>Get all account orders; active, canceled, or filled. * These orders will not be found: *
+     * <p>Get all account orders; active, canceled, or filled. - These orders will not be found: -
      * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade
-     * **AND** created time + 3 days &lt; current time * order create time + 90 days &lt; current
-     * time * If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that &#x60;orderId&#x60;.
-     * Otherwise most recent orders are returned. * The query time period must be less then 7 days(
-     * default as the recent 7 days). Weight: 5
+     * **AND** created time + 3 days &lt; current time - order create time + 90 days &lt; current
+     * time Weight(IP): 5 Security Type: USER_DATA Notes: - If &#x60;orderId&#x60; is set, it will
+     * get orders &gt;&#x3D; that &#x60;orderId&#x60;. Otherwise most recent orders are returned. -
+     * The query time period must be less then 7 days( default as the recent 7 days).
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void allOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
+    public void allOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 1917641L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<AllOrdersResponse> response =
                 api.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
@@ -192,12 +202,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "dc0808314025fc813dcde0328cd6754c982d28888760fc74b17e072087eb4895",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=BTCUSDT&orderId=1917641&startTime=1623319461670&endTime=1641782889000&limit=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("d1a057b71926be10598d9bb88b1a716b0993682423d8051ddf297fee99c72ed2", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/allOrders", actualRequest.url().encodedPath());
     }
 
@@ -206,23 +212,22 @@ public class TradeApiTest {
      *
      * <p>Cancel all open orders of the specified symbol at the end of the specified countdown. The
      * endpoint should be called repeatedly as heartbeats so that the existing countdown time can be
-     * canceled and replaced by a new one. * Example usage: Call this endpoint at 30s intervals with
+     * canceled and replaced by a new one. Example usage: Call this endpoint at 30s intervals with
      * an countdownTime of 120000 (120s). If this endpoint is not called within 120 seconds, all
      * your orders of the specified symbol will be automatically canceled. If this endpoint is
      * called with an countdownTime of 0, the countdown timer will be stopped. The system will check
      * all countdowns **approximately every 10 milliseconds**, so please note that sufficient
      * redundancy should be considered when using this function. We do not recommend setting the
-     * countdown time to be too precise or too small. Weight: 10
+     * countdown time to be too precise or too small. Weight(IP): 10 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void autoCancelAllOpenOrdersTest() throws ApiException, CryptoException {
+    public void autoCancelAllOpenOrdersTest() throws ApiException, CryptoException, IOException {
         AutoCancelAllOpenOrdersRequest autoCancelAllOpenOrdersRequest =
                 new AutoCancelAllOpenOrdersRequest();
-
-        autoCancelAllOpenOrdersRequest.symbol("");
-        autoCancelAllOpenOrdersRequest.countdownTime(0L);
+        autoCancelAllOpenOrdersRequest.symbol("BTCUSDT");
+        autoCancelAllOpenOrdersRequest.countdownTime(1000L);
 
         ApiResponse<AutoCancelAllOpenOrdersResponse> response =
                 api.autoCancelAllOpenOrders(autoCancelAllOpenOrdersRequest);
@@ -237,23 +242,88 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=&countdownTime=0", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&countdownTime=1000", signInputCaptor.getValue());
         assertEquals(
-                "42826e2320d45fba6a83c5a5da223ab9f7e622a05303b8d5507c99448d3a0a88",
+                "e9bb86a708dfe5349c8752b9067b4dafed68fce404096ea4cbe783bcea370bdc",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/countdownCancelAll", actualRequest.url().encodedPath());
     }
 
     /**
-     * Cancel All Open Orders (TRADE)
+     * Cancel Algo Order (TRADE)
      *
-     * <p>Cancel All Open Orders Weight: 1
+     * <p>Cancel an active algo (conditional) order, including TP/SL (Take Profit / Stop Loss) and
+     * trailing stop orders on USD-M Futures. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelAllOpenOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void cancelAlgoOrderTest() throws ApiException, CryptoException, IOException {
+        Long algoId = 2146760L;
+        String clientAlgoId = "6B2I9XVcJpCjqPAJ4YoFX7";
+        Long recvWindow = 5000L;
+        ApiResponse<CancelAlgoOrderResponse> response =
+                api.cancelAlgoOrder(algoId, clientAlgoId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("algoId=2146760&clientAlgoId=6B2I9XVcJpCjqPAJ4YoFX7&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "87096ab0f7ef63c753df68f8402162e99b54653f0b45ee1736f9b9f8b1ff7160", actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/algoOrder", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Cancel All Algo Open Orders (TRADE)
+     *
+     * <p>Cancel all open algo (conditional) orders on a symbol, including TP/SL (Take Profit / Stop
+     * Loss) and trailing stop orders on USD-M Futures. Weight(IP): 1 Security Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void cancelAllAlgoOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long recvWindow = 5000L;
+        ApiResponse<CancelAllAlgoOpenOrdersResponse> response =
+                api.cancelAllAlgoOpenOrders(symbol, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/algoOpenOrders", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Cancel All Open Orders (TRADE)
+     *
+     * <p>Cancel All Open Orders Weight(IP): 1 Security Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void cancelAllOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<CancelAllOpenOrdersResponse> response =
                 api.cancelAllOpenOrders(symbol, recvWindow);
@@ -268,26 +338,26 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
-                actualRequest.url().queryParameter("signature"));
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/allOpenOrders", actualRequest.url().encodedPath());
     }
 
     /**
      * Cancel Multiple Orders (TRADE)
      *
-     * <p>Cancel Multiple Orders * Either &#x60;orderIdList&#x60; or &#x60;origClientOrderIdList
-     * &#x60; must be sent. Weight: 1
+     * <p>Cancel Multiple Orders Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderIdList&#x60; or &#x60;origClientOrderIdList &#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelMultipleOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
-        OrderIdList orderIdList = null;
-        OrigClientOrderIdList origClientOrderIdList = null;
+    public void cancelMultipleOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        OrderIdList orderIdList = OrderIdList.fromJson("[1234567]");
+        OrigClientOrderIdList origClientOrderIdList =
+                OrigClientOrderIdList.fromJson("[\"my_id_1\"]");
         Long recvWindow = 5000L;
         ApiResponse<CancelMultipleOrdersResponse> response =
                 api.cancelMultipleOrders(symbol, orderIdList, origClientOrderIdList, recvWindow);
@@ -302,9 +372,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&orderIdList=%5B1234567%5D&origClientOrderIdList=%5B%22my_id_1%22%5D&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "9aac844b6b7223dbf5f02ead8a277b7f68fb30bf38dfe499e1e8351195e2fb61",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/batchOrders", actualRequest.url().encodedPath());
     }
@@ -312,16 +382,16 @@ public class TradeApiTest {
     /**
      * Cancel Order (TRADE)
      *
-     * <p>Cancel an active order. * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
-     * be sent. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
-        String origClientOrderId = "1";
+    public void cancelOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 283194212L;
+        String origClientOrderId = "myOrder1";
         Long recvWindow = 5000L;
         ApiResponse<CancelOrderResponse> response =
                 api.cancelOrder(symbol, orderId, origClientOrderId, recvWindow);
@@ -336,29 +406,25 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=&orderId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "cbec82483be2ad044b893ffb2e6bc0d55370e378eaea0b4b61d95893bd9cc458",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=BTCUSDT&orderId=283194212&origClientOrderId=myOrder1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("da02e45bd705baeff03b72cf656f68b68c67e7ac5ad328ec8dc867e26dfc0a48", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Change Initial Leverage(TRADE)
+     * Change Initial Leverage (TRADE)
      *
-     * <p>Change user&#39;s initial leverage of specific symbol market. Weight: 1
+     * <p>Change user&#39;s initial leverage of specific symbol market. Weight(IP): 1 Security Type:
+     * TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void changeInitialLeverageTest() throws ApiException, CryptoException {
+    public void changeInitialLeverageTest() throws ApiException, CryptoException, IOException {
         ChangeInitialLeverageRequest changeInitialLeverageRequest =
                 new ChangeInitialLeverageRequest();
-
-        changeInitialLeverageRequest.symbol("");
-        changeInitialLeverageRequest.leverage(0L);
+        changeInitialLeverageRequest.symbol("BTCUSDT");
+        changeInitialLeverageRequest.leverage(1L);
 
         ApiResponse<ChangeInitialLeverageResponse> response =
                 api.changeInitialLeverage(changeInitialLeverageRequest);
@@ -373,25 +439,24 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=&leverage=0", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&leverage=1", signInputCaptor.getValue());
         assertEquals(
-                "31c40eeb1a5a52384cff8a195c1c312e32b26a672ad8fb71dc96256a61c4101c",
+                "155331b13264bb9a61c6964e6f7a237b2a5348d3edfa097b2c3d30a014c2637b",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/leverage", actualRequest.url().encodedPath());
     }
 
     /**
-     * Change Margin Type(TRADE)
+     * Change Margin Type (TRADE)
      *
-     * <p>Change symbol level margin type Weight: 1
+     * <p>Change symbol level margin type Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void changeMarginTypeTest() throws ApiException, CryptoException {
+    public void changeMarginTypeTest() throws ApiException, CryptoException, IOException {
         ChangeMarginTypeRequest changeMarginTypeRequest = new ChangeMarginTypeRequest();
-
-        changeMarginTypeRequest.symbol("");
+        changeMarginTypeRequest.symbol("BTCUSDT");
         changeMarginTypeRequest.marginType(MarginType.ISOLATED);
 
         ApiResponse<ChangeMarginTypeResponse> response =
@@ -407,11 +472,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&marginType=ISOLATED", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000symbol=&marginType=ISOLATED", signInputCaptor.getValue());
-        assertEquals(
-                "7cedb25e13ff6f8ca5b22d48cb06eaaa3b2a8c7d1f13a1aeb891f6a8125f5399",
-                actualRequest.url().queryParameter("signature"));
+                "2d44aebe8eb6fd4dfc9916652ec7ee9a4ef125f38d847240ffb7310fb9843089", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/marginType", actualRequest.url().encodedPath());
     }
 
@@ -419,16 +482,15 @@ public class TradeApiTest {
      * Change Multi-Assets Mode (TRADE)
      *
      * <p>Change user&#39;s Multi-Assets mode (Multi-Assets Mode or Single-Asset Mode) on ***Every
-     * symbol*** Weight: 1
+     * symbol*** Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void changeMultiAssetsModeTest() throws ApiException, CryptoException {
+    public void changeMultiAssetsModeTest() throws ApiException, CryptoException, IOException {
         ChangeMultiAssetsModeRequest changeMultiAssetsModeRequest =
                 new ChangeMultiAssetsModeRequest();
-
-        changeMultiAssetsModeRequest.multiAssetsMargin("");
+        changeMultiAssetsModeRequest.multiAssetsMargin("true");
 
         ApiResponse<ChangeMultiAssetsModeResponse> response =
                 api.changeMultiAssetsMode(changeMultiAssetsModeRequest);
@@ -443,26 +505,28 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000multiAssetsMargin=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000multiAssetsMargin=true", signInputCaptor.getValue());
         assertEquals(
-                "2bbddd5005c80c60a12618873cdf82e9e364838ddd3cfc74dd620b1bab630db2",
+                "906bfdccb2168a76e005394dca4b5be65f85cb3f94d1c811b0fbbfa158f9684e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/multiAssetsMargin", actualRequest.url().encodedPath());
     }
 
     /**
-     * Change Position Mode(TRADE)
+     * Change Position Mode (TRADE)
      *
-     * <p>Change user&#39;s position mode (Hedge Mode or One-way Mode ) on ***EVERY symbol***
-     * Weight: 1
+     * <p>Change user&#39;s position mode (Hedge Mode or One-way Mode ) on ***EVERY symbol***.
+     * **After CM migration**, UM and CM share the **same** &#x60;dualSidePosition&#x60; setting.
+     * Calling this endpoint flips both UM and CM at once. If either side has any open order or open
+     * position, the change is rejected: - &#x60;-4067&#x60; (open orders exist) - &#x60;-4068&#x60;
+     * (open position exists) Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void changePositionModeTest() throws ApiException, CryptoException {
+    public void changePositionModeTest() throws ApiException, CryptoException, IOException {
         ChangePositionModeRequest changePositionModeRequest = new ChangePositionModeRequest();
-
-        changePositionModeRequest.dualSidePosition("");
+        changePositionModeRequest.dualSidePosition("true");
 
         ApiResponse<ChangePositionModeResponse> response =
                 api.changePositionMode(changePositionModeRequest);
@@ -477,25 +541,61 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000dualSidePosition=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000dualSidePosition=true", signInputCaptor.getValue());
         assertEquals(
-                "234d62c8a0356474ae6889f6aee70005b8ded595c0d02364bc91a55e250c6017",
-                actualRequest.url().queryParameter("signature"));
+                "e5d54f89dd6a1e74ab1ef1fa8057f86c8736d76176c60cbbfdc4a54572efc7fa", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/positionSide/dual", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Current All Algo Open Orders (USER_DATA)
+     *
+     * <p>Get all open algo (conditional) orders on a symbol, including TP/SL (Take Profit / Stop
+     * Loss) and trailing stop orders on USD-M Futures. Weight: **1** for a single symbol; **40**
+     * when the symbol parameter is omitted **Careful** when accessing this with no symbol. Security
+     * Type: USER_DATA Notes: - If the symbol is not sent, orders for all symbols will be returned
+     * in an array.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void currentAllAlgoOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        String algoType = "CONDITIONAL";
+        String symbol = "BTCUSDT";
+        Long algoId = 2148627L;
+        Long recvWindow = 5000L;
+        ApiResponse<CurrentAllAlgoOpenOrdersResponse> response =
+                api.currentAllAlgoOpenOrders(algoType, symbol, algoId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("algoType=CONDITIONAL&symbol=BTCUSDT&algoId=2148627&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "73973747a6b353c9a81896cf7c83530e5ca468edabc8256b40ce8d651b8aa9e6",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/openAlgoOrders", actualRequest.url().encodedPath());
     }
 
     /**
      * Current All Open Orders (USER_DATA)
      *
-     * <p>Get all open orders on a symbol. * If the symbol is not sent, orders for all symbols will
-     * be returned in an array. Weight: 1 for a single symbol; 40 when the symbol parameter is
-     * omitted Careful when accessing this with no symbol.
+     * <p>Get all open orders on a symbol. Weight: **1** for a single symbol; **40** when the symbol
+     * parameter is omitted **Careful** when accessing this with no symbol. Security Type: USER_DATA
+     * Notes: - If the symbol is not sent, orders for all symbols will be returned in an array.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void currentAllOpenOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void currentAllOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<CurrentAllOpenOrdersResponse> response =
                 api.currentAllOpenOrders(symbol, recvWindow);
@@ -510,30 +610,63 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/openOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Order Modify History (USER_DATA)
+     * Futures TradFi Perps Contract (USER_DATA)
      *
-     * <p>Get order modification history * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
-     * are sent. * Order modify history longer than 3 month is not avaliable Weight: 1
+     * <p>Sign TradFi-Perps agreement contract Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getOrderModifyHistoryTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
-        String origClientOrderId = "1";
+    public void futuresTradfiPerpsContractTest() throws ApiException, CryptoException, IOException {
+        FuturesTradfiPerpsContractRequest futuresTradfiPerpsContractRequest =
+                new FuturesTradfiPerpsContractRequest();
+
+        ApiResponse<FuturesTradfiPerpsContractResponse> response =
+                api.futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/stock/contract", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Order Modify History (USER_DATA)
+     *
+     * <p>Get order modification history Weight(IP): 1 Security Type: USER_DATA Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the
+     * &#x60;orderId&#x60; will prevail if both are sent. - Order modify history longer than 3 month
+     * is not avaliable
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getOrderModifyHistoryTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 20072994037L;
+        String origClientOrderId = "LJ9R4QZDihCaS8UAOOLpgW";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<GetOrderModifyHistoryResponse> response =
                 api.getOrderModifyHistory(
@@ -549,11 +682,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&orderId=20072994037&origClientOrderId=LJ9R4QZDihCaS8UAOOLpgW&startTime=1623319461670&endTime=1641782889000&limit=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&origClientOrderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "8dfcc843fc05f631a3b12c4a0080f9d1f2283472ee0032b3e7e7fd46d855bcde",
+                "2294284a523af7557fe89ef5dc78f234fa03898b25f54a0c789f8f5db330c696",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/orderAmendment", actualRequest.url().encodedPath());
     }
@@ -561,19 +692,20 @@ public class TradeApiTest {
     /**
      * Get Position Margin Change History (TRADE)
      *
-     * <p>Get Position Margin Change History * Support querying future histories that are not older
-     * than 30 days * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;can&#39;t be
-     * more than 30 days Weight: 1
+     * <p>Get Position Margin Change History Weight(IP): 1 Security Type: TRADE Notes: - Support
+     * querying future histories that are not older than 30 days - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;can&#39;t be more than 30 days
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPositionMarginChangeHistoryTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String type = "";
+    public void getPositionMarginChangeHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        String type = "1";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<GetPositionMarginChangeHistoryResponse> response =
                 api.getPositionMarginChangeHistory(
@@ -589,30 +721,29 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&type=1&startTime=1623319461670&endTime=1641782889000&limit=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&type=&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "9993f640a7ff2dec80d1ea367a29578129bbfd1b7dea64f0710fecff16fb887e",
+                "d80f95495789b10a60550626850d95015cbc2d976b45d397def52508b27420f8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/positionMargin/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Modify Isolated Position Margin(TRADE)
+     * Modify Isolated Position Margin (TRADE)
      *
-     * <p>Modify Isolated Position Margin * Only for isolated symbol Weight: 1
+     * <p>Modify Isolated Position Margin Weight(IP): 1 Security Type: TRADE Notes: - Only for
+     * isolated symbol
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void modifyIsolatedPositionMarginTest() throws ApiException, CryptoException {
+    public void modifyIsolatedPositionMarginTest()
+            throws ApiException, CryptoException, IOException {
         ModifyIsolatedPositionMarginRequest modifyIsolatedPositionMarginRequest =
                 new ModifyIsolatedPositionMarginRequest();
-
-        modifyIsolatedPositionMarginRequest.symbol("");
-        modifyIsolatedPositionMarginRequest.amount(1d);
-        modifyIsolatedPositionMarginRequest.type("");
+        modifyIsolatedPositionMarginRequest.symbol("BTCUSDT");
+        modifyIsolatedPositionMarginRequest.amount(1.0d);
+        modifyIsolatedPositionMarginRequest.type(1);
 
         ApiResponse<ModifyIsolatedPositionMarginResponse> response =
                 api.modifyIsolatedPositionMargin(modifyIsolatedPositionMarginRequest);
@@ -627,29 +758,28 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=&amount=1&type=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&amount=1&type=1", signInputCaptor.getValue());
         assertEquals(
-                "921166da829e0f721b541df55b30dc589552e9b564377ec51db466f94d2e2f8b",
+                "0aa7d644eaa767ee27bf6f8014cea06c916e5d7b471b3bdf6748899112753937",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/positionMargin", actualRequest.url().encodedPath());
     }
 
     /**
-     * Modify Multiple Orders(TRADE)
+     * Modify Multiple Orders (TRADE)
      *
-     * <p>Modify Multiple Orders (TRADE) * Parameter rules are same with &#x60;Modify Order&#x60; *
-     * Batch modify orders are processed concurrently, and the order of matching is not guaranteed.
-     * * The order of returned contents for batch modify orders is the same as the order of the
-     * order list. * One order can only be modfied for less than 10000 times Weight: 5 on 10s order
-     * rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP
-     * rate limit(x-mbx-used-weight-1m);
+     * <p>Modify Multiple Orders (TRADE) Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1
+     * on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * Security Type: TRADE Notes: - Parameter rules are same with &#x60;Modify Order&#x60; - Batch
+     * modify orders are processed concurrently, and the order of matching is not guaranteed. - The
+     * order of returned contents for batch modify orders is the same as the order of the order
+     * list. - One order can only be modfied for less than 10000 times
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void modifyMultipleOrdersTest() throws ApiException, CryptoException {
+    public void modifyMultipleOrdersTest() throws ApiException, CryptoException, IOException {
         ModifyMultipleOrdersRequest modifyMultipleOrdersRequest = new ModifyMultipleOrdersRequest();
-
         modifyMultipleOrdersRequest.batchOrders(new BatchOrders());
 
         ApiResponse<ModifyMultipleOrdersResponse> response =
@@ -676,29 +806,28 @@ public class TradeApiTest {
      * Modify Order (TRADE)
      *
      * <p>Order modify function, currently only LIMIT order modification is supported, modified
-     * orders will be reordered in the match queue * Either &#x60;orderId&#x60; or
+     * orders will be reordered in the match queue Weight: 1 on 10s order rate
+     * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate
+     * limit(x-mbx-used-weight-1m) Security Type: TRADE Notes: - Either &#x60;orderId&#x60; or
      * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
-     * are sent. * Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is different
-     * from dapi modify order endpoint. * When the new &#x60;quantity&#x60; or &#x60;price&#x60;
+     * are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is different
+     * from dapi modify order endpoint. - When the new &#x60;quantity&#x60; or &#x60;price&#x60;
      * doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and
-     * the order will stay as it is. * However the order will be cancelled by the amendment in the
-     * following situations: * when the order is in partially filled status and the new
-     * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is &#x60;GTX&#x60;
-     * and the new price will cause it to be executed immediately * One order can only be modfied
-     * for less than 10000 times * Modify order will set &#x60;selfTradePreventionMode&#x60; to
-     * &#x60;NONE&#x60; Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order
-     * rate limit(X-MBX-ORDER-COUNT-1M); 1 on IP rate limit(x-mbx-used-weight-1m)
+     * the order will stay as it is. - However the order will be cancelled by the amendment in the
+     * following situations: - when the order is in partially filled status and the new
+     * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60;
+     * and the new price will cause it to be executed immediately - One order can only be modfied
+     * for less than 10000 times
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void modifyOrderTest() throws ApiException, CryptoException {
+    public void modifyOrderTest() throws ApiException, CryptoException, IOException {
         ModifyOrderRequest modifyOrderRequest = new ModifyOrderRequest();
-
-        modifyOrderRequest.symbol("");
+        modifyOrderRequest.symbol("BTCUSDT");
         modifyOrderRequest.side(Side.BUY);
-        modifyOrderRequest.quantity(1d);
-        modifyOrderRequest.price(1d);
+        modifyOrderRequest.quantity(1.0d);
+        modifyOrderRequest.price(30005d);
 
         ApiResponse<ModifyOrderResponse> response = api.modifyOrder(modifyOrderRequest);
 
@@ -712,66 +841,103 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=&side=BUY&quantity=1&price=1",
-                signInputCaptor.getValue());
-        assertEquals(
-                "5d55a15240b44cfacea70546cc8dc2e0e1394ec0f194ec1bf1e67bfac92cd911",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&quantity=1&price=30005", signInputCaptor.getValue());
+        assertEquals("7a1d3d44b78f319ffdc267b36f0f6d32e7a9d63a1a4ffa7a1d25b0281b702ae6", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * New Order(TRADE)
+     * New Algo Order (TRADE)
      *
-     * <p>Send in a new order. * Order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60;
-     * can be sent ( default &#x60;GTC&#x60;). * Order with type &#x60;TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be
-     * triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches
-     * the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * <p>Send in a new algo (conditional) order. Use this endpoint to place **TP/SL (Take Profit /
+     * Stop Loss)** and trailing stop orders on USD-M Futures. Supported order types under
+     * &#x60;algoType&#x3D;CONDITIONAL&#x60; are &#x60;STOP_MARKET&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;STOP&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TRAILING_STOP_MARKET&#x60;. Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1
+     * on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * Security Type: TRADE Notes: - Algo order with type &#x60;STOP&#x60;, parameter
+     * &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Algo order with type
+     * &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
+     * &#x60;GTC&#x60;). - Condition orders will be triggered when: - If
+     * parameter&#x60;priceProtect&#x60;is sent as true: - when price reaches the
+     * &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 +
-     * &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 -
-     * &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.
-     * &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately
-     * trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following
-     * requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If &#x60;newOrderRespType
-     * &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of
-     * the order will be return directly. * &#x60;LIMIT&#x60; order with special
-     * &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be
-     * returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
-     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * symbol - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; - SELL: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: -
+     * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) - SELL: latest
+     * price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
+     * &#x60;triggerPrice&#x60; - &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after
+     * order placed &#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest
+     * price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price - For
+     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &gt; &#x60;{\&quot;code\&quot;:
+     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; &gt; means
+     * that the parameters you send do not meet the following requirements: - BUY:
+     * &#x60;activatePrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activatePrice&#x60; should be larger than latest price. - &#x60;STOP_MARKET&#x60;,
+     * &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: - Follow
+     * the same rules for condition orders. - If triggered，**close all** current long position( if
+     * &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;). - Cannot be used with
+     * &#x60;quantity&#x60; paremeter - Cannot be used with &#x60;reduceOnly&#x60; parameter - In
+     * Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and
+     * cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
-     * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min
-     * order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void newOrderTest() throws ApiException, CryptoException {
-        NewOrderRequest newOrderRequest = new NewOrderRequest();
+    public void newAlgoOrderTest() throws ApiException, CryptoException, IOException {
+        NewAlgoOrderRequest newAlgoOrderRequest = new NewAlgoOrderRequest();
+        newAlgoOrderRequest.algoType(AlgoType.CONDITIONAL);
+        newAlgoOrderRequest.symbol("BNBUSDT");
+        newAlgoOrderRequest.side(Side.BUY);
+        newAlgoOrderRequest.type(OrderType.LIMIT);
 
-        newOrderRequest.symbol("");
+        ApiResponse<NewAlgoOrderResponse> response = api.newAlgoOrder(newAlgoOrderRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&reduceOnly=false&algoType=CONDITIONAL&newOrderRespType=ACK&selfTradePreventionMode=NONE&type=LIMIT&priceProtect=false&workingType=CONTRACT_PRICE", signInputCaptor.getValue());
+        assertEquals("e12ec8df92e5886319b32a913f0f988abfddaf9092516c76b7cb8dc39366423b", actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/algoOrder", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * New Order (TRADE)
+     *
+     * <p>Send in a new order. Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min
+     * order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m) Security
+     * Type: TRADE Notes: Additional mandatory parameters based on &#x60;type&#x60;: | Type |
+     * Additional mandatory parameters | |------|----------------------------------| |
+     * &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60; | |
+     * &#x60;MARKET&#x60; | &#x60;quantity&#x60; | - If &#x60;newOrderRespType&#x60; is sent as
+     * &#x60;RESULT&#x60;: - &#x60;MARKET&#x60; order: the final FILLED result of the order will be
+     * returned directly. - &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final
+     * status result of the order (FILLED or EXPIRED) will be returned directly. -
+     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; is set to
+     * &#x60;IOC&#x60;, &#x60;GTC&#x60;, or &#x60;GTD&#x60;. - In extreme market conditions,
+     * &#x60;timeInForce&#x60; &#x60;GTD&#x60; order auto-cancel time might be delayed compared to
+     * &#x60;goodTillDate&#x60;.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void newOrderTest() throws ApiException, CryptoException, IOException {
+        NewOrderRequest newOrderRequest = new NewOrderRequest();
+        newOrderRequest.symbol("BTCUSDT");
         newOrderRequest.side(Side.BUY);
-        newOrderRequest.type("");
+        newOrderRequest.type(OrderType.LIMIT);
 
         ApiResponse<NewOrderResponse> response = api.newOrder(newOrderRequest);
 
@@ -785,28 +951,25 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=&side=BUY&type=", signInputCaptor.getValue());
-        assertEquals(
-                "fa7ddab4a660903f7305421c43e7705a88aa40d3039a17e6bf6ad242ec379289",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&reduceOnly=false&newOrderRespType=ACK&selfTradePreventionMode=NONE&type=LIMIT", signInputCaptor.getValue());
+        assertEquals("c1c527929b68b53933480df5c04fa37fa74061c457c6c1e730bda50ef68f96b4", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Place Multiple Orders(TRADE)
+     * Place Multiple Orders (TRADE)
      *
-     * <p>Place Multiple Orders * Paremeter rules are same with &#x60;New Order&#x60; * Batch orders
-     * are processed concurrently, and the order of matching is not guaranteed. * The order of
-     * returned contents for batch orders is the same as the order of the order list. Weight: 5 on
-     * 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate
-     * limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m);
+     * <p>Place Multiple Orders Weight: 5 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min
+     * order rate limit(X-MBX-ORDER-COUNT-1M); 5 on IP rate limit(x-mbx-used-weight-1m); Security
+     * Type: TRADE Notes: - Paremeter rules are same with &#x60;New Order&#x60; - Batch orders are
+     * processed concurrently, and the order of matching is not guaranteed. - The order of returned
+     * contents for batch orders is the same as the order of the order list.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void placeMultipleOrdersTest() throws ApiException, CryptoException {
+    public void placeMultipleOrdersTest() throws ApiException, CryptoException, IOException {
         PlaceMultipleOrdersRequest placeMultipleOrdersRequest = new PlaceMultipleOrdersRequest();
-
         placeMultipleOrdersRequest.batchOrders(new BatchOrders());
 
         ApiResponse<PlaceMultipleOrdersResponse> response =
@@ -824,13 +987,12 @@ public class TradeApiTest {
 
         assertEquals("timestamp=1736393892000batchOrders=%5B%5D", signInputCaptor.getValue());
         assertEquals(
-                "84453de090bb6a9299c2928d3b767e0cd7298a2b7e7a004b22943b9d5990663b",
-                actualRequest.url().queryParameter("signature"));
+                "84453de090bb6a9299c2928d3b767e0cd7298a2b7e7a004b22943b9d5990663b", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/batchOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Position ADL Quantile Estimation(USER_DATA)
+     * Position ADL Quantile Estimation (USER_DATA)
      *
      * <p>Position ADL Quantile Estimation * Values update every 30s. * Values 0, 1, 2, 3, 4 shows
      * the queue position and possibility of ADL from low to high. * For positions of the symbol are
@@ -840,13 +1002,14 @@ public class TradeApiTest {
      * \&quot;HEDGE\&quot; as a sign will be returned instead of \&quot;BOTH\&quot;; * A same value
      * caculated on unrealized pnls on long and short sides&#39; positions will be shown for
      * \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there are positions in both of long and short
-     * sides. Weight: 5
+     * sides. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void positionAdlQuantileEstimationTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void positionAdlQuantileEstimationTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<PositionAdlQuantileEstimationResponse> response =
                 api.positionAdlQuantileEstimation(symbol, recvWindow);
@@ -861,9 +1024,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/adlQuantile", actualRequest.url().encodedPath());
     }
@@ -871,14 +1034,15 @@ public class TradeApiTest {
     /**
      * Position Information V2 (USER_DATA)
      *
-     * <p>Get current position information. Please use with user data stream
-     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * <p>Get current position information. Weight(IP): 5 Security Type: USER_DATA Notes: - Please
+     * use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy
+     * needs.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void positionInformationV2Test() throws ApiException, CryptoException {
-        String symbol = "";
+    public void positionInformationV2Test() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<PositionInformationV2Response> response =
                 api.positionInformationV2(symbol, recvWindow);
@@ -893,9 +1057,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v2/positionRisk", actualRequest.url().encodedPath());
     }
@@ -904,14 +1068,14 @@ public class TradeApiTest {
      * Position Information V3 (USER_DATA)
      *
      * <p>Get current position information(only symbol that has position or open orders will be
-     * returned). Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your
-     * timeliness and accuracy needs. Weight: 5
+     * returned). Weight(IP): 5 Security Type: USER_DATA Notes: - Please use with user data stream
+     * &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void positionInformationV3Test() throws ApiException, CryptoException {
-        String symbol = "";
+    public void positionInformationV3Test() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<PositionInformationV3Response> response =
                 api.positionInformationV3(symbol, recvWindow);
@@ -926,27 +1090,103 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v3/positionRisk", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Current Open Order (USER_DATA)
+     * Query Algo Order (USER_DATA)
      *
-     * <p>Query open order * Either&#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent
-     * * If the queried order has been filled or cancelled, the error message \&quot;Order does not
-     * exist\&quot; will be returned. Weight: 1
+     * <p>Check the status of an algo (conditional) order, such as TP/SL (Take Profit / Stop Loss)
+     * or trailing stop orders on USD-M Futures. * These orders will not be found: * order status is
+     * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created
+     * time + 3 days &lt; current time * order create time + 90 days &lt; current time Weight(IP): 1
+     * Security Type: USER_DATA Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must
+     * be sent. - &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCurrentOpenOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
-        String origClientOrderId = "1";
+    public void queryAlgoOrderTest() throws ApiException, CryptoException, IOException {
+        Long algoId = 1L;
+        String clientAlgoId = "1";
+        Long recvWindow = 5000L;
+        ApiResponse<QueryAlgoOrderResponse> response =
+                api.queryAlgoOrder(algoId, clientAlgoId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("algoId=1&clientAlgoId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("45846156242c5b783dfbafe56f177eb51e9d45a16dcb15e667e825d16d7333a2", actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/algoOrder", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query All Algo Orders (USER_DATA)
+     *
+     * <p>Get all algo (conditional) orders — active, CANCELED, TRIGGERED, or FINISHED — including
+     * TP/SL (Take Profit / Stop Loss) and trailing stop orders on USD-M Futures. * These orders
+     * will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND**
+     * order has NO filled trade **AND** created time + 3 days &lt; current time * order create time
+     * + 90 days &lt; current time Weight(IP): 5 Security Type: USER_DATA Notes: - If
+     * &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise
+     * most recent orders are returned. - The query time period must be less then 7 days( default as
+     * the recent 7 days).
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryAllAlgoOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long algoId = 2146760L;
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long limit = 50L;
+        Long recvWindow = 5000L;
+        ApiResponse<QueryAllAlgoOrdersResponse> response =
+                api.queryAllAlgoOrders(symbol, algoId, startTime, endTime, limit, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=BTCUSDT&algoId=2146760&startTime=1623319461670&endTime=1641782889000&limit=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "30d9cf58adf890dd8dd4517ffbfd074467e59275fa5741115c5e3c38bbf8565b", actualRequest.url().queryParameter("signature"));
+        assertEquals("/fapi/v1/allAlgoOrders", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Current Open Order (USER_DATA)
+     *
+     * <p>Query open order Weight(IP): 1 Security Type: USER_DATA Notes: - Either&#x60;orderId&#x60;
+     * or &#x60;origClientOrderId&#x60; must be sent - If the queried order has been filled or
+     * cancelled, the error message \&quot;Order does not exist\&quot; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryCurrentOpenOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 1917641L;
+        String origClientOrderId = "abc";
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentOpenOrderResponse> response =
                 api.queryCurrentOpenOrder(symbol, orderId, origClientOrderId, recvWindow);
@@ -961,11 +1201,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&orderId=1917641&origClientOrderId=abc&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "cbec82483be2ad044b893ffb2e6bc0d55370e378eaea0b4b61d95893bd9cc458",
+                "e9a9f1217302762b1994fd8f413387e1956dad2b9eed05daa1d0d64fbf8993c8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/openOrder", actualRequest.url().encodedPath());
     }
@@ -975,17 +1213,17 @@ public class TradeApiTest {
      *
      * <p>Check an order&#39;s status. * These orders will not be found: * order status is
      * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created
-     * time + 3 days &lt; current time * order create time + 90 days &lt; current time * Either
-     * &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * &#x60;orderId&#x60; is
-     * self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * time + 3 days &lt; current time * order create time + 90 days &lt; current time Weight(IP): 1
+     * Security Type: USER_DATA Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60;
+     * must be sent. - &#x60;orderId&#x60; is self-increment for each specific &#x60;symbol&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
-        String origClientOrderId = "1";
+    public void queryOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 1917641L;
+        String origClientOrderId = "abc";
         Long recvWindow = 5000L;
         ApiResponse<QueryOrderResponse> response =
                 api.queryOrder(symbol, orderId, origClientOrderId, recvWindow);
@@ -1000,66 +1238,66 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=&orderId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "cbec82483be2ad044b893ffb2e6bc0d55370e378eaea0b4b61d95893bd9cc458",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=BTCUSDT&orderId=1917641&origClientOrderId=abc&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("e9a9f1217302762b1994fd8f413387e1956dad2b9eed05daa1d0d64fbf8993c8", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Test Order(TRADE)
+     * Test Order (TRADE)
      *
-     * <p>Testing order request, this order will not be submitted to matching engine * Order with
-     * type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Order with type &#x60;TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be
-     * triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches
-     * the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
+     * <p>Testing order request, this order will not be submitted to matching engine Security Type:
+     * TRADE Notes: Additional mandatory parameters based on &#x60;type&#x60;: | Type | Additional
+     * mandatory parameters | | -------------------------------- |
+     * ---------------------------------- | | &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;,
+     * &#x60;quantity&#x60;, &#x60;price&#x60; | | &#x60;MARKET&#x60; | &#x60;quantity&#x60; | |
+     * &#x60;STOP/TAKE_PROFIT&#x60; | &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60;
+     * | | &#x60;STOP_MARKET/TAKE_PROFIT_MARKET&#x60; | &#x60;stopPrice&#x60; | |
+     * &#x60;TRAILING_STOP_MARKET&#x60; | &#x60;callbackRate&#x60; | - Order with type
+     * &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). -
+     * Order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent
+     * (default &#x60;GTC&#x60;). - Condition orders will be triggered when: - If
+     * parameter&#x60;priceProtect&#x60;is sent as true: - when price reaches the
+     * &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and
      * \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the
-     * symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
-     * /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY:
-     * latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D;
-     * &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 +
-     * &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D;
-     * &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 -
-     * &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.
-     * &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately
-     * trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following
-     * requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If &#x60;newOrderRespType
-     * &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of
-     * the order will be return directly. * &#x60;LIMIT&#x60; order with special
+     * symbol - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET
+     * /fapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; -
+     * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) -
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) - SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; -
+     * &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after order placed
+     * &#x60;&#x60;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest
+     * price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price - For
+     * &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &gt; &#x60;{\&quot;code\&quot;:
+     * -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; &gt; means
+     * that the parameters you send do not meet the following requirements: - BUY:
+     * &#x60;activationPrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activationPrice&#x60; should be larger than latest price. - If &#x60;newOrderRespType
+     * &#x60; is sent as &#x60;RESULT&#x60; : - &#x60;MARKET&#x60; order: the final FILLED result of
+     * the order will be return directly. - &#x60;LIMIT&#x60; order with special
      * &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be
-     * returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition
-     * orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
-     * short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter *
-     * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with
+     * returned directly. - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: - Follow the same rules for condition
+     * orders. - If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current
+     * short position( if &#x60;BUY&#x60;). - Cannot be used with &#x60;quantity&#x60; paremeter -
+     * Cannot be used with &#x60;reduceOnly&#x60; parameter - In Hedge Mode,cannot be used with
      * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side *
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side -
      * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions,
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. - In extreme market conditions,
      * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60; Weight: 0
+     * &#x60;goodTillDate&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void testOrderTest() throws ApiException, CryptoException {
+    public void testOrderTest() throws ApiException, CryptoException, IOException {
         TestOrderRequest testOrderRequest = new TestOrderRequest();
-
-        testOrderRequest.symbol("");
+        testOrderRequest.symbol("BTCUSDT");
         testOrderRequest.side(Side.BUY);
-        testOrderRequest.type("");
+        testOrderRequest.type(OrderType.LIMIT);
 
         ApiResponse<TestOrderResponse> response = api.testOrder(testOrderRequest);
 
@@ -1073,29 +1311,28 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=&side=BUY&type=", signInputCaptor.getValue());
-        assertEquals(
-                "fa7ddab4a660903f7305421c43e7705a88aa40d3039a17e6bf6ad242ec379289",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&reduceOnly=false&newOrderRespType=ACK&selfTradePreventionMode=NONE&type=LIMIT&priceProtect=false&workingType=CONTRACT_PRICE", signInputCaptor.getValue());
+        assertEquals("f94675b1eda7bc2f3a75dd980ae74b50323a46281326728f8e74976c18dbabe3", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/order/test", actualRequest.url().encodedPath());
     }
 
     /**
      * User&#39;s Force Orders (USER_DATA)
      *
-     * <p>Query user&#39;s Force Orders * If \&quot;autoCloseType\&quot; is not sent, orders with
-     * both of the types will be returned * If \&quot;startTime\&quot; is not sent, data within 7
-     * days before \&quot;endTime\&quot; can be queried Weight: 20 with symbol, 50 without symbol
+     * <p>Query user&#39;s Force Orders Weight: **20** with symbol, **50** without symbol Security
+     * Type: USER_DATA Notes: - If \&quot;autoCloseType\&quot; is not sent, orders with both of the
+     * types will be returned - If \&quot;startTime\&quot; is not sent, data within 7 days before
+     * \&quot;endTime\&quot; can be queried
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void usersForceOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void usersForceOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         AutoCloseType autoCloseType = AutoCloseType.LIQUIDATION;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 50L;
         Long recvWindow = 5000L;
         ApiResponse<UsersForceOrdersResponse> response =
                 api.usersForceOrders(symbol, autoCloseType, startTime, endTime, limit, recvWindow);
@@ -1110,12 +1347,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&autoCloseType=LIQUIDATION&startTime=1623319461670&endTime=1641782889000&limit=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&autoCloseType=LIQUIDATION&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a8fbc61c925506a4d0328c80dbe4bd786245accbfc50aef2a14a769d18bde9d9",
-                actualRequest.url().queryParameter("signature"));
+                "46e5a20281632f247f2f44f5d90210688640d36919b65ad3dc793a9652be5e62", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/forceOrders", actualRequest.url().encodedPath());
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** MarginAccountCancelAllOpenOrdersOnASymbolResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -187,7 +185,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -207,7 +205,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get isIsolated
+     * if isolated margin
      *
      * @return isIsolated
      */
@@ -227,7 +225,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get origClientOrderId
+     * orig Client Order Id.
      *
      * @return origClientOrderId
      */
@@ -247,7 +245,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -267,7 +265,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -287,7 +285,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -307,7 +305,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -327,7 +325,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -347,7 +345,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -367,7 +365,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -387,7 +385,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -407,7 +405,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -427,7 +425,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -447,7 +445,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -467,7 +465,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */
@@ -488,7 +486,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get contingencyType
+     * contingency Type.
      *
      * @return contingencyType
      */
@@ -508,7 +506,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listStatusType
+     * list Status Type.
      *
      * @return listStatusType
      */
@@ -528,7 +526,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listOrderStatus
+     * list Order Status.
      *
      * @return listOrderStatus
      */
@@ -548,7 +546,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listClientOrderId
+     * list Client Order Id.
      *
      * @return listClientOrderId
      */
@@ -568,7 +566,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get transactionTime
+     * transaction Time.
      *
      * @return transactionTime
      */
@@ -599,7 +597,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orders
+     * orders list.
      *
      * @return orders
      */
@@ -638,7 +636,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderReports
+     * order Reports list.
      *
      * @return orderReports
      */
@@ -974,20 +972,6 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountCancelAllOpenOrdersOnASymbolResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `MarginAccountCancelAllOpenOrdersOnASymbolResponseInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -1187,7 +1171,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
                                 JsonWriter out,
                                 MarginAccountCancelAllOpenOrdersOnASymbolResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AccountFundingFlowResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountFundingFlowResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -76,7 +74,7 @@ public class AccountFundingFlowResponseInner {
     }
 
     /**
-     * Get id
+     * id
      *
      * @return id
      */
@@ -95,7 +93,7 @@ public class AccountFundingFlowResponseInner {
     }
 
     /**
-     * Get asset
+     * Asset type
      *
      * @return asset
      */
@@ -114,7 +112,7 @@ public class AccountFundingFlowResponseInner {
     }
 
     /**
-     * Get amount
+     * Amount (positive numbers represent inflow, negative numbers represent outflow)
      *
      * @return amount
      */
@@ -133,7 +131,7 @@ public class AccountFundingFlowResponseInner {
     }
 
     /**
-     * Get type
+     * type (fees)
      *
      * @return type
      */
@@ -153,7 +151,7 @@ public class AccountFundingFlowResponseInner {
     }
 
     /**
-     * Get createDate
+     * Time
      *
      * @return createDate
      */
@@ -280,18 +278,6 @@ public class AccountFundingFlowResponseInner {
                                 AccountFundingFlowResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountFundingFlowResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AccountFundingFlowResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -337,7 +323,7 @@ public class AccountFundingFlowResponseInner {
                         @Override
                         public void write(JsonWriter out, AccountFundingFlowResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

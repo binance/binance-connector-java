@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -98,23 +96,11 @@ public class AccountTradeListResponseInner {
     @jakarta.annotation.Nullable
     private String type;
 
-    public static final String SERIALIZED_NAME_VOLATILITY = "volatility";
-
-    @SerializedName(SERIALIZED_NAME_VOLATILITY)
-    @jakarta.annotation.Nullable
-    private String volatility;
-
     public static final String SERIALIZED_NAME_LIQUIDITY = "liquidity";
 
     @SerializedName(SERIALIZED_NAME_LIQUIDITY)
     @jakarta.annotation.Nullable
     private String liquidity;
-
-    public static final String SERIALIZED_NAME_QUOTE_ASSET = "quoteAsset";
-
-    @SerializedName(SERIALIZED_NAME_QUOTE_ASSET)
-    @jakarta.annotation.Nullable
-    private String quoteAsset;
 
     public static final String SERIALIZED_NAME_TIME = "time";
 
@@ -140,6 +126,12 @@ public class AccountTradeListResponseInner {
     @jakarta.annotation.Nullable
     private String optionSide;
 
+    public static final String SERIALIZED_NAME_QUOTE_ASSET = "quoteAsset";
+
+    @SerializedName(SERIALIZED_NAME_QUOTE_ASSET)
+    @jakarta.annotation.Nullable
+    private String quoteAsset;
+
     public AccountTradeListResponseInner() {}
 
     public AccountTradeListResponseInner id(@jakarta.annotation.Nullable Long id) {
@@ -148,7 +140,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * unique id
      *
      * @return id
      */
@@ -167,7 +159,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get tradeId
+     * trade id
      *
      * @return tradeId
      */
@@ -186,7 +178,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * order id
      *
      * @return orderId
      */
@@ -205,7 +197,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * option symbol
      *
      * @return symbol
      */
@@ -224,7 +216,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * trade price
      *
      * @return price
      */
@@ -243,7 +235,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quantity
+     * trade quantity
      *
      * @return quantity
      */
@@ -262,7 +254,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get fee
+     * fee(negative is fee deduction)
      *
      * @return fee
      */
@@ -282,7 +274,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedProfit
+     * realized profit/loss
      *
      * @return realizedProfit
      */
@@ -301,7 +293,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * order side
      *
      * @return side
      */
@@ -320,7 +312,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get type
+     * order type
      *
      * @return type
      */
@@ -333,33 +325,13 @@ public class AccountTradeListResponseInner {
         this.type = type;
     }
 
-    public AccountTradeListResponseInner volatility(
-            @jakarta.annotation.Nullable String volatility) {
-        this.volatility = volatility;
-        return this;
-    }
-
-    /**
-     * Get volatility
-     *
-     * @return volatility
-     */
-    @jakarta.annotation.Nullable
-    public String getVolatility() {
-        return volatility;
-    }
-
-    public void setVolatility(@jakarta.annotation.Nullable String volatility) {
-        this.volatility = volatility;
-    }
-
     public AccountTradeListResponseInner liquidity(@jakarta.annotation.Nullable String liquidity) {
         this.liquidity = liquidity;
         return this;
     }
 
     /**
-     * Get liquidity
+     * TAKER or MAKER
      *
      * @return liquidity
      */
@@ -372,33 +344,13 @@ public class AccountTradeListResponseInner {
         this.liquidity = liquidity;
     }
 
-    public AccountTradeListResponseInner quoteAsset(
-            @jakarta.annotation.Nullable String quoteAsset) {
-        this.quoteAsset = quoteAsset;
-        return this;
-    }
-
-    /**
-     * Get quoteAsset
-     *
-     * @return quoteAsset
-     */
-    @jakarta.annotation.Nullable
-    public String getQuoteAsset() {
-        return quoteAsset;
-    }
-
-    public void setQuoteAsset(@jakarta.annotation.Nullable String quoteAsset) {
-        this.quoteAsset = quoteAsset;
-    }
-
     public AccountTradeListResponseInner time(@jakarta.annotation.Nullable Long time) {
         this.time = time;
         return this;
     }
 
     /**
-     * Get time
+     * trade time
      *
      * @return time
      */
@@ -417,7 +369,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -437,7 +389,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -457,7 +409,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -468,6 +420,26 @@ public class AccountTradeListResponseInner {
 
     public void setOptionSide(@jakarta.annotation.Nullable String optionSide) {
         this.optionSide = optionSide;
+    }
+
+    public AccountTradeListResponseInner quoteAsset(
+            @jakarta.annotation.Nullable String quoteAsset) {
+        this.quoteAsset = quoteAsset;
+        return this;
+    }
+
+    /**
+     * quote Asset
+     *
+     * @return quoteAsset
+     */
+    @jakarta.annotation.Nullable
+    public String getQuoteAsset() {
+        return quoteAsset;
+    }
+
+    public void setQuoteAsset(@jakarta.annotation.Nullable String quoteAsset) {
+        this.quoteAsset = quoteAsset;
     }
 
     @Override
@@ -490,13 +462,12 @@ public class AccountTradeListResponseInner {
                 && Objects.equals(this.realizedProfit, accountTradeListResponseInner.realizedProfit)
                 && Objects.equals(this.side, accountTradeListResponseInner.side)
                 && Objects.equals(this.type, accountTradeListResponseInner.type)
-                && Objects.equals(this.volatility, accountTradeListResponseInner.volatility)
                 && Objects.equals(this.liquidity, accountTradeListResponseInner.liquidity)
-                && Objects.equals(this.quoteAsset, accountTradeListResponseInner.quoteAsset)
                 && Objects.equals(this.time, accountTradeListResponseInner.time)
                 && Objects.equals(this.priceScale, accountTradeListResponseInner.priceScale)
                 && Objects.equals(this.quantityScale, accountTradeListResponseInner.quantityScale)
-                && Objects.equals(this.optionSide, accountTradeListResponseInner.optionSide);
+                && Objects.equals(this.optionSide, accountTradeListResponseInner.optionSide)
+                && Objects.equals(this.quoteAsset, accountTradeListResponseInner.quoteAsset);
     }
 
     @Override
@@ -512,13 +483,12 @@ public class AccountTradeListResponseInner {
                 realizedProfit,
                 side,
                 type,
-                volatility,
                 liquidity,
-                quoteAsset,
                 time,
                 priceScale,
                 quantityScale,
-                optionSide);
+                optionSide,
+                quoteAsset);
     }
 
     @Override
@@ -535,13 +505,12 @@ public class AccountTradeListResponseInner {
         sb.append("		realizedProfit: ").append(toIndentedString(realizedProfit)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
-        sb.append("		volatility: ").append(toIndentedString(volatility)).append("\n");
         sb.append("		liquidity: ").append(toIndentedString(liquidity)).append("\n");
-        sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
         sb.append("		optionSide: ").append(toIndentedString(optionSide)).append("\n");
+        sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -589,18 +558,10 @@ public class AccountTradeListResponseInner {
         String typeValueAsString = "";
         typeValueAsString = typeValue.toString();
         sb.append("type=").append(urlEncode(typeValueAsString)).append("");
-        Object volatilityValue = getVolatility();
-        String volatilityValueAsString = "";
-        volatilityValueAsString = volatilityValue.toString();
-        sb.append("volatility=").append(urlEncode(volatilityValueAsString)).append("");
         Object liquidityValue = getLiquidity();
         String liquidityValueAsString = "";
         liquidityValueAsString = liquidityValue.toString();
         sb.append("liquidity=").append(urlEncode(liquidityValueAsString)).append("");
-        Object quoteAssetValue = getQuoteAsset();
-        String quoteAssetValueAsString = "";
-        quoteAssetValueAsString = quoteAssetValue.toString();
-        sb.append("quoteAsset=").append(urlEncode(quoteAssetValueAsString)).append("");
         Object timeValue = getTime();
         String timeValueAsString = "";
         timeValueAsString = timeValue.toString();
@@ -617,6 +578,10 @@ public class AccountTradeListResponseInner {
         String optionSideValueAsString = "";
         optionSideValueAsString = optionSideValue.toString();
         sb.append("optionSide=").append(urlEncode(optionSideValueAsString)).append("");
+        Object quoteAssetValue = getQuoteAsset();
+        String quoteAssetValueAsString = "";
+        quoteAssetValueAsString = quoteAssetValue.toString();
+        sb.append("quoteAsset=").append(urlEncode(quoteAssetValueAsString)).append("");
         return sb.toString();
     }
 
@@ -655,13 +620,12 @@ public class AccountTradeListResponseInner {
         openapiFields.add("realizedProfit");
         openapiFields.add("side");
         openapiFields.add("type");
-        openapiFields.add("volatility");
         openapiFields.add("liquidity");
-        openapiFields.add("quoteAsset");
         openapiFields.add("time");
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
         openapiFields.add("optionSide");
+        openapiFields.add("quoteAsset");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -683,18 +647,6 @@ public class AccountTradeListResponseInner {
                                 "The required field(s) %s in AccountTradeListResponseInner is not"
                                         + " found in the empty JSON string",
                                 AccountTradeListResponseInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountTradeListResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AccountTradeListResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -754,14 +706,6 @@ public class AccountTradeListResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("type").toString()));
         }
-        if ((jsonObj.get("volatility") != null && !jsonObj.get("volatility").isJsonNull())
-                && !jsonObj.get("volatility").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `volatility` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("volatility").toString()));
-        }
         if ((jsonObj.get("liquidity") != null && !jsonObj.get("liquidity").isJsonNull())
                 && !jsonObj.get("liquidity").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -770,14 +714,6 @@ public class AccountTradeListResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("liquidity").toString()));
         }
-        if ((jsonObj.get("quoteAsset") != null && !jsonObj.get("quoteAsset").isJsonNull())
-                && !jsonObj.get("quoteAsset").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `quoteAsset` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("quoteAsset").toString()));
-        }
         if ((jsonObj.get("optionSide") != null && !jsonObj.get("optionSide").isJsonNull())
                 && !jsonObj.get("optionSide").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -785,6 +721,14 @@ public class AccountTradeListResponseInner {
                             "Expected the field `optionSide` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("optionSide").toString()));
+        }
+        if ((jsonObj.get("quoteAsset") != null && !jsonObj.get("quoteAsset").isJsonNull())
+                && !jsonObj.get("quoteAsset").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quoteAsset` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quoteAsset").toString()));
         }
     }
 
@@ -806,7 +750,7 @@ public class AccountTradeListResponseInner {
                         @Override
                         public void write(JsonWriter out, AccountTradeListResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

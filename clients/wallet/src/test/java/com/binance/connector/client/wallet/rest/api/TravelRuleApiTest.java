@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,17 +25,25 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.BrokerWithdrawResponse;
+import com.binance.connector.client.wallet.rest.model.CheckQuestionnaireRequirementsResponse;
 import com.binance.connector.client.wallet.rest.model.DepositHistoryTravelRuleResponse;
-import com.binance.connector.client.wallet.rest.model.OnboardedVaspListResponse;
+import com.binance.connector.client.wallet.rest.model.DepositHistoryV2Response;
+import com.binance.connector.client.wallet.rest.model.FetchAddressVerificationListResponse;
+import com.binance.connector.client.wallet.rest.model.GetCountryListResponse;
+import com.binance.connector.client.wallet.rest.model.GetRegionListResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleResponse;
+import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Request;
+import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Response;
+import com.binance.connector.client.wallet.rest.model.VaspListResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response;
 import com.binance.connector.client.wallet.rest.model.WithdrawTravelRuleRequest;
 import com.binance.connector.client.wallet.rest.model.WithdrawTravelRuleResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -89,26 +97,27 @@ public class TravelRuleApiTest {
     /**
      * Broker Withdraw (for brokers of local entities that require travel rule) (USER_DATA)
      *
-     * <p>Submit a withdrawal request for brokers of local entities that required travel rule. * If
-     * &#x60;network&#x60; not send, return with default network of the coin, but if the address
-     * could not match default network, the withdraw will be rejected. * You can get
-     * &#x60;network&#x60; in &#x60;networkList&#x60; of a coin in the response * Questionnaire is
-     * different for each local entity, please refer to * If getting error like &#x60;Questionnaire
-     * format not valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;, Weight: 600
+     * <p>Submit a withdrawal request for brokers of local entities that required travel rule.
+     * Weight(UID): 600 Security Type: USER_DATA Notes: - If &#x60;network&#x60; not send, return
+     * with default network of the coin, but if the address could not match default network, the
+     * withdraw will be rejected. - You can get &#x60;network&#x60; in &#x60;networkList&#x60; of a
+     * coin in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. -
+     * Questionnaire is different for each local entity, please refer to the &#x60;Withdraw
+     * Questionnaire Contents&#x60; page. - If getting error like &#x60;Questionnaire format not
+     * valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;, please try to verify the format
+     * of the questionnaire and use URL-encoded format.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void brokerWithdrawTest() throws ApiException, CryptoException {
+    public void brokerWithdrawTest() throws ApiException, CryptoException, IOException {
         BrokerWithdrawRequest brokerWithdrawRequest = new BrokerWithdrawRequest();
-
         brokerWithdrawRequest.address("");
-        brokerWithdrawRequest.coin("");
-        brokerWithdrawRequest.amount(1d);
+        brokerWithdrawRequest.coin("BTC");
+        brokerWithdrawRequest.amount(1.0d);
         brokerWithdrawRequest.withdrawOrderId("1");
         brokerWithdrawRequest.questionnaire("");
         brokerWithdrawRequest.originatorPii("");
-        brokerWithdrawRequest.signature("");
 
         ApiResponse<BrokerWithdrawResponse> response = api.brokerWithdraw(brokerWithdrawRequest);
 
@@ -122,41 +131,71 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000amount=1&questionnaire=&address=&originatorPii=&signature=&withdrawOrderId=1&coin=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "6ce402e604ac1f40520a2141d76058ffdf83f05b607f6d223735777372cc792a",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/localentity/broker/withdraw/apply", actualRequest.url().encodedPath());
+        assertEquals("timestamp=1736393892000amount=1&questionnaire=&address=&originatorPii=&withdrawOrderId=1&coin=BTC", signInputCaptor.getValue());
+        assertEquals("63b56878ca09cee069222535c18988282c0997f226a7b25126c65c04ec83dd66", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/localentity/broker/withdraw/apply", actualRequest.url().encodedPath());
     }
 
     /**
-     * Deposit History (for local entities that required travel rule) (supporting network)
-     * (USER_DATA)
+     * Check Questionnaire Requirements (for local entities that require travel rule) (supporting
+     * network) (USER_DATA)
      *
-     * <p>Fetch deposit history for local entities that required travel rule. * Please notice the
-     * default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is
-     * within * If both &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; are
-     * sent, time between &#x60;&#x60;startTime&#x60;&#x60; and &#x60;&#x60;endTime&#x60;&#x60; must
-     * Weight: 1
+     * <p>This API will return user-specific Travel Rule questionnaire requirement information in
+     * reference to the current API key. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void depositHistoryTravelRuleTest() throws ApiException, CryptoException {
+    public void checkQuestionnaireRequirementsTest()
+            throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<CheckQuestionnaireRequirementsResponse> response =
+                api.checkQuestionnaireRequirements(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/localentity/questionnaire-requirements", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Deposit History Travel Rule (for local entities that required travel rule) (supporting
+     * network) (USER_DATA)
+     *
+     * <p>Fetch deposit history for local entities that required travel rule. Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - Please notice the default &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; must be less than 90 days. - Please, note that due to
+     * network-specific characteristics, the returned source address may be inaccurate. If multiple
+     * source addresses are found, only the first one will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void depositHistoryTravelRuleTest() throws ApiException, CryptoException, IOException {
         String trId = "1";
         String txId = "1";
         String tranId = "1";
         String network = "";
-        String coin = "";
+        String coin = "BTC";
         Long travelRuleStatus = 0L;
         Boolean pendingQuestionnaire = true;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         ApiResponse<DepositHistoryTravelRuleResponse> response =
                 api.depositHistoryTravelRule(
                         trId,
@@ -181,31 +220,49 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("trId=1&txId=1&tranId=1&network=&coin=BTC&travelRuleStatus=0&pendingQuestionnaire=true&startTime=1623319461670&endTime=1641782889000&offset=0&limit=1000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "trId=1&txId=1&tranId=1&network=&coin=&travelRuleStatus=0&pendingQuestionnaire=true&startTime=1623319461670&endTime=1641782889000&offset=0&limit=7&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bf7c19baf5be02bb16000deb65b9564080523e751dc8e0b4bdd740b8d4106acd",
+                "b5007a774e9f14cef87b41144e3fb1c3ce553325908aaa686818bacf47dc23d1",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/localentity/deposit/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Onboarded VASP list (for local entities that require travel rule) (supporting network)
+     * Deposit History V2 (for local entities that required travel rule) (supporting network)
      * (USER_DATA)
      *
-     * <p>Fetch the onboarded VASP list for local entities that required travel rule. * This
-     * endpoint specifically uses per second IP rate limit, user&#39;s total second level IP rate
-     * Weight: 18000 Request limit: 10 requests per second &gt; * This endpoint specifically uses
-     * per second IP rate limit, user&#39;s total second level IP rate limit is 180000/second.
-     * Response from the endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight
-     * used by the current IP.
+     * <p>Fetch deposit history for local entities that with required travel rule information.
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - Please notice the default
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90
+     * days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 90 days. - Please, note that
+     * due to network-specific characteristics, the returned source address may be inaccurate. If
+     * multiple source addresses are found, only the first one will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void onboardedVaspListTest() throws ApiException, CryptoException {
-        ApiResponse<OnboardedVaspListResponse> response = api.onboardedVaspList();
+    public void depositHistoryV2Test() throws ApiException, CryptoException, IOException {
+        Long depositId = 1L;
+        String txId = "1";
+        String network = "";
+        String coin = "BTC";
+        Boolean retrieveQuestionnaire = true;
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long offset = 0L;
+        Long limit = 1000L;
+        ApiResponse<DepositHistoryV2Response> response =
+                api.depositHistoryV2(
+                        depositId,
+                        txId,
+                        network,
+                        coin,
+                        retrieveQuestionnaire,
+                        startTime,
+                        endTime,
+                        offset,
+                        limit);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -217,35 +274,123 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("depositId=1&txId=1&network=&coin=BTC&retrieveQuestionnaire=true&startTime=1623319461670&endTime=1641782889000&offset=0&limit=1000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/localentity/vasp", actualRequest.url().encodedPath());
+                "7b773da0b9c8b90cbeeeb9b510e20abd034071a59bbfd68cc7a711ce098d2260", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v2/localentity/deposit/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Submit Deposit Questionnaire (For local entities that require travel rule) (supporting
-     * network) (USER_DATA)
+     * Fetch address verification list (USER_DATA)
      *
-     * <p>Submit questionnaire for brokers of local entities that require travel rule. The
-     * questionnaire is only applies to transactions from un-hosted wallets or VASPs that are not
-     * yet onboarded with GTR. * Questionnaire is different for each local entity, please refer * If
-     * getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must
-     * not be blank&#x60;, Weight: 600
+     * <p>Fetch address verification list for user to check on status and other details for the
+     * addresses stored in Address Book. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void submitDepositQuestionnaireTest() throws ApiException, CryptoException {
+    public void fetchAddressVerificationListTest()
+            throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<FetchAddressVerificationListResponse> response =
+                api.fetchAddressVerificationList(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/addressVerify/list", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Country List (USER_DATA)
+     *
+     * <p>Query the active country list for travel rule questionnaires. Currently, only supports AU
+     * entity. Weight(IP): 1 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getCountryListTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<GetCountryListResponse> response = api.getCountryList(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/localentity/country/list", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Region List (USER_DATA)
+     *
+     * <p>Query the active region/city list for a given country. Currently, only supports AU entity.
+     * Weight(IP): 1 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getRegionListTest() throws ApiException, CryptoException, IOException {
+        String countryCode = "au";
+        Long recvWindow = 5000L;
+        ApiResponse<GetRegionListResponse> response = api.getRegionList(countryCode, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("countryCode=au&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("5a770e1be4f7ae33475170a7d414899f5f6272d739c94acd2c9535dae8676acd", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/localentity/region/list", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Submit Deposit Questionnaire Broker (For local entities that require travel rule) (supporting
+     * network) (USER_DATA)
+     *
+     * <p>Submit questionnaire for brokers of local entities that require travel rule. The
+     * questionnaire is only applies to transactions from un-hosted wallets or VASPs that are not
+     * yet onboarded with GTR. Weight(UID): 600 Security Type: USER_DATA Notes: - Questionnaire is
+     * different for each local entity, please refer to &#x60;Deposit Questionnaire Content&#x60;
+     * page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
+     * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
+     * questionnaire and use URL-encoded format.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void submitDepositQuestionnaireTest() throws ApiException, CryptoException, IOException {
         SubmitDepositQuestionnaireRequest submitDepositQuestionnaireRequest =
                 new SubmitDepositQuestionnaireRequest();
-
         submitDepositQuestionnaireRequest.subAccountId("1");
-        submitDepositQuestionnaireRequest.depositId("1");
+        submitDepositQuestionnaireRequest.depositId(1L);
         submitDepositQuestionnaireRequest.questionnaire("");
         submitDepositQuestionnaireRequest.beneficiaryPii("");
-        submitDepositQuestionnaireRequest.signature("");
 
         ApiResponse<SubmitDepositQuestionnaireResponse> response =
                 api.submitDepositQuestionnaire(submitDepositQuestionnaireRequest);
@@ -260,15 +405,11 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000depositId=1&questionnaire=&subAccountId=1&beneficiaryPii=", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000depositId=1&questionnaire=&subAccountId=1&signature=&beneficiaryPii=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "c4bbb7027534c11fe660c1aa3f3389c8dc17e536410954b4f9d83978c3962d8b",
+                "cb327a0dd670185553e76229bfcb3bafdb7e0eee33158e781cb35b97b0c5215b",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/localentity/broker/deposit/provide-info",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/localentity/broker/deposit/provide-info", actualRequest.url().encodedPath());
     }
 
     /**
@@ -277,17 +418,18 @@ public class TravelRuleApiTest {
      *
      * <p>Submit questionnaire for local entities that require travel rule. The questionnaire is
      * only applies to transactions from unhosted wallets or VASPs that are not yet onboarded with
-     * GTR. * Questionnaire is different for each local entity, please refer * If getting error like
-     * &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;,
-     * Weight: 600
+     * GTR. Weight(UID): 600 Security Type: USER_DATA Notes: - Questionnaire is different for each
+     * local entity, please refer to &#x60;Deposit Questionnaire Content&#x60; page. - If getting
+     * error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be
+     * blank&#x60;, please try to verify the format of the questionnaire and use URL-encoded format.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void submitDepositQuestionnaireTravelRuleTest() throws ApiException, CryptoException {
+    public void submitDepositQuestionnaireTravelRuleTest()
+            throws ApiException, CryptoException, IOException {
         SubmitDepositQuestionnaireTravelRuleRequest submitDepositQuestionnaireTravelRuleRequest =
                 new SubmitDepositQuestionnaireTravelRuleRequest();
-
         submitDepositQuestionnaireTravelRuleRequest.tranId(1L);
         submitDepositQuestionnaireTravelRuleRequest.questionnaire("");
 
@@ -305,7 +447,8 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000tranId=1&questionnaire=", signInputCaptor.getValue());
+        assertEquals(
+                "timestamp=1736393892000tranId=1&questionnaire=", signInputCaptor.getValue());
         assertEquals(
                 "020cf8035001d243dd7a11f2af50c753cad954902892ef59cb222ea644dd54cf",
                 actualRequest.url().queryParameter("signature"));
@@ -314,31 +457,95 @@ public class TravelRuleApiTest {
     }
 
     /**
-     * Withdraw History (for local entities that require travel rule) (supporting network)
-     * (USER_DATA)
+     * Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
+     * network) (USER_DATA)
      *
-     * <p>Fetch withdraw history for local entities that required travel rule. * This endpoint
-     * specifically uses per second IP rate limit, user&#39;s total second level IP rate *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
-     * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 18000 Request limit: 10
-     * requests per second &gt; * This endpoint specifically uses per second IP rate limit,
-     * user&#39;s total second level IP rate limit is 180000/second. Response from the endpoint
-     * contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the current IP.
+     * <p>Submit questionnaire for local entities that require travel rule. The questionnaire is
+     * only applies to transactions from unhosted wallets or VASPs that are not yet onboarded with
+     * GTR. Weight(UID): 600 Security Type: USER_DATA Notes: - Questionnaire is different for each
+     * local entity, please refer to &#x60;Deposit Questionnaire Content&#x60; page. - If getting
+     * error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be
+     * blank&#x60;, please try to verify the format of the questionnaire and use URL-encoded format.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void withdrawHistoryV1Test() throws ApiException, CryptoException {
+    public void submitDepositQuestionnaireV2Test()
+            throws ApiException, CryptoException, IOException {
+        SubmitDepositQuestionnaireV2Request submitDepositQuestionnaireV2Request =
+                new SubmitDepositQuestionnaireV2Request();
+        submitDepositQuestionnaireV2Request.depositId(1L);
+        submitDepositQuestionnaireV2Request.questionnaire("");
+
+        ApiResponse<SubmitDepositQuestionnaireV2Response> response =
+                api.submitDepositQuestionnaireV2(submitDepositQuestionnaireV2Request);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000depositId=1&questionnaire=", signInputCaptor.getValue());
+        assertEquals(
+                "cd809c3893fa9bc85fce1b5b615b51c00be3f21be5768050475d6a03943bb2fc",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v2/localentity/deposit/provide-info", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
+     *
+     * <p>Fetch the VASP list for local entities. Weight(IP): 1 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void vaspListTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<VaspListResponse> response = api.vaspList(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/localentity/vasp", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Withdraw History Travel Rule (supporting network) (USER_DATA)
+     *
+     * <p>Fetch withdraw history for local entities that required travel rule. Weight(IP): 1
+     * Security Type: USER_DATA Notes: - &#x60;network&#x60; may not be in the response for old
+     * withdraw. - Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make
+     * sure that time interval is within 0-90 days. - If both &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be
+     * less than 90 days.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void withdrawHistoryV1Test() throws ApiException, CryptoException, IOException {
         String trId = "1";
         String txId = "1";
         String withdrawOrderId = "1";
         String network = "";
-        String coin = "";
+        String coin = "BTC";
         Long travelRuleStatus = 0L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
@@ -366,12 +573,9 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("trId=1&txId=1&withdrawOrderId=1&network=&coin=BTC&travelRuleStatus=0&offset=0&limit=1000&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "trId=1&txId=1&withdrawOrderId=1&network=&coin=&travelRuleStatus=0&offset=0&limit=7&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "c9d943d585057bc16f31e43b0069bc8759c99f467198f5992994ff387ca4384b",
-                actualRequest.url().queryParameter("signature"));
+                "d59bafdbf2e62ed5cdf82da8e0fd12acbdf571336f7dbcea07db60c1fc972063", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/localentity/withdraw/history", actualRequest.url().encodedPath());
     }
 
@@ -379,26 +583,22 @@ public class TravelRuleApiTest {
      * Withdraw History V2 (for local entities that require travel rule) (supporting network)
      * (USER_DATA)
      *
-     * <p>Fetch withdraw history for local entities that required travel rule. * This endpoint
-     * specifically uses per second IP rate limit, user&#39;s total second level IP rate *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through
-     * /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
-     * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less * If withdrawOrderId is sent, time
-     * between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent,
-     * startTime and endTime are not sent, will return last 7 days records by default. * Maximum
-     * support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not
-     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 18000 Request
-     * limit: 10 requests per second &gt; * This endpoint specifically uses per second IP rate
-     * limit, user&#39;s total second level IP rate limit is 180000/second. Response from the
-     * endpoint contains header key X-SAPI-USED-IP-WEIGHT-1S, which defines weight used by the
-     * current IP.
+     * <p>Fetch withdraw history for local entities that required travel rule. Weight(IP): 1
+     * Security Type: USER_DATA Notes: - &#x60;network&#x60; may not be in the response for old
+     * withdraw. - Withdrawal made through /sapi/v1/capital/withdraw/apply may not be in the
+     * response. - Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make
+     * sure that time interval is within 0-90 days. - If both &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be
+     * less than 90 days. - If withdrawOrderId is sent, time between startTime and endTime must be
+     * less than 7 days. - If withdrawOrderId is sent, startTime and endTime are not sent, will
+     * return last 7 days records by default. - Maximum support trId,txId number is 45. -
+     * WithdrawOrderId only support 1. - If responsible does not include withdrawalStatus, please
+     * input trId or txId retrieve the data.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void withdrawHistoryV2Test() throws ApiException, CryptoException {
+    public void withdrawHistoryV2Test() throws ApiException, CryptoException, IOException {
         String trId = "1";
         String txId = "1";
         String withdrawOrderId = "1";
@@ -406,7 +606,7 @@ public class TravelRuleApiTest {
         String coin = "";
         Long travelRuleStatus = 0L;
         Long offset = 0L;
-        Long limit = 7L;
+        Long limit = 1000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
@@ -434,35 +634,33 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("trId=1&txId=1&withdrawOrderId=1&network=&coin=&travelRuleStatus=0&offset=0&limit=1000&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "trId=1&txId=1&withdrawOrderId=1&network=&coin=&travelRuleStatus=0&offset=0&limit=7&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "c9d943d585057bc16f31e43b0069bc8759c99f467198f5992994ff387ca4384b",
-                actualRequest.url().queryParameter("signature"));
+                "c38fc7b6c6e24de355dc76617ac10af1b4404502f0b30563f28d3b7f4dbb5a07", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/localentity/withdraw/history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Withdraw (for local entities that require travel rule) (USER_DATA)
+     * Withdraw Travel Rule (USER_DATA)
      *
-     * <p>Submit a withdrawal request for local entities that required travel rule. * If
-     * &#x60;network&#x60; not send, return with default network of the coin, but if the address
-     * could not match default network, the withdraw will be rejected. * You can get
-     * &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the
-     * response * Questionnaire is different for each local entity, please refer to * If getting
-     * error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must not be
-     * blank&#x60;, Weight: 600
+     * <p>Submit a withdrawal request for local entities that required travel rule. Weight(UID): 600
+     * Security Type: USER_DATA Notes: - If &#x60;network&#x60; not send, return with default
+     * network of the coin, but if the address could not match default network, the withdraw will be
+     * rejected. - You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
+     * &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall
+     * (HMAC SHA256)&#x60;. - Questionnaire is different for each local entity, please refer to the
+     * &#x60;Withdraw Questionnaire Contents&#x60; page. - If getting error like &#x60;Questionnaire
+     * format not valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;, please try to verify
+     * the format of the questionnaire and use URL-encoded format.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void withdrawTravelRuleTest() throws ApiException, CryptoException {
+    public void withdrawTravelRuleTest() throws ApiException, CryptoException, IOException {
         WithdrawTravelRuleRequest withdrawTravelRuleRequest = new WithdrawTravelRuleRequest();
-
-        withdrawTravelRuleRequest.coin("");
+        withdrawTravelRuleRequest.coin("BTC");
         withdrawTravelRuleRequest.address("");
-        withdrawTravelRuleRequest.amount(1d);
+        withdrawTravelRuleRequest.amount(1.0d);
         withdrawTravelRuleRequest.questionnaire("");
 
         ApiResponse<WithdrawTravelRuleResponse> response =
@@ -478,12 +676,9 @@ public class TravelRuleApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000amount=1&questionnaire=&address=&coin=BTC", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000amount=1&questionnaire=&address=&coin=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "30a5f51ebf4cf7070fe2301951f7720bba2ab127a668eab66e65c551e67a0963",
-                actualRequest.url().queryParameter("signature"));
+                "68705ae3a25f489e2389148c6b560acddecbdfa9566aa38c35d114316dd93400", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/localentity/withdraw/apply", actualRequest.url().encodedPath());
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -32,16 +32,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** OrderBookResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderBookResponse {
     public static final String SERIALIZED_NAME_LAST_UPDATE_ID = "lastUpdateId";
 
@@ -77,13 +75,13 @@ public class OrderBookResponse {
 
     @SerializedName(SERIALIZED_NAME_BIDS)
     @jakarta.annotation.Nullable
-    private List<OrderBookResponseBidsItem> bids;
+    private List<List<String>> bids;
 
     public static final String SERIALIZED_NAME_ASKS = "asks";
 
     @SerializedName(SERIALIZED_NAME_ASKS)
     @jakarta.annotation.Nullable
-    private List<OrderBookResponseAsksItem> asks;
+    private List<List<String>> asks;
 
     public OrderBookResponse() {}
 
@@ -93,7 +91,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get lastUpdateId
+     * Last update ID.
      *
      * @return lastUpdateId
      */
@@ -112,7 +110,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -131,7 +129,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -150,7 +148,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get E
+     * Message output time
      *
      * @return E
      */
@@ -169,7 +167,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get T
+     * Transaction time
      *
      * @return T
      */
@@ -182,13 +180,12 @@ public class OrderBookResponse {
         this.T = T;
     }
 
-    public OrderBookResponse bids(
-            @jakarta.annotation.Nullable List<OrderBookResponseBidsItem> bids) {
+    public OrderBookResponse bids(@jakarta.annotation.Nullable List<List<String>> bids) {
         this.bids = bids;
         return this;
     }
 
-    public OrderBookResponse addBidsItem(OrderBookResponseBidsItem bidsItem) {
+    public OrderBookResponse addBidsItem(List<String> bidsItem) {
         if (this.bids == null) {
             this.bids = new ArrayList<>();
         }
@@ -197,27 +194,26 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get bids
+     * Bid orders. Each entry is [price, quantity].
      *
      * @return bids
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<OrderBookResponseBidsItem> getBids() {
+    public List<List<String>> getBids() {
         return bids;
     }
 
-    public void setBids(@jakarta.annotation.Nullable List<OrderBookResponseBidsItem> bids) {
+    public void setBids(@jakarta.annotation.Nullable List<List<String>> bids) {
         this.bids = bids;
     }
 
-    public OrderBookResponse asks(
-            @jakarta.annotation.Nullable List<OrderBookResponseAsksItem> asks) {
+    public OrderBookResponse asks(@jakarta.annotation.Nullable List<List<String>> asks) {
         this.asks = asks;
         return this;
     }
 
-    public OrderBookResponse addAsksItem(OrderBookResponseAsksItem asksItem) {
+    public OrderBookResponse addAsksItem(List<String> asksItem) {
         if (this.asks == null) {
             this.asks = new ArrayList<>();
         }
@@ -226,17 +222,17 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get asks
+     * Ask orders. Each entry is [price, quantity].
      *
      * @return asks
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<OrderBookResponseAsksItem> getAsks() {
+    public List<List<String>> getAsks() {
         return asks;
     }
 
-    public void setAsks(@jakarta.annotation.Nullable List<OrderBookResponseAsksItem> asks) {
+    public void setAsks(@jakarta.annotation.Nullable List<List<String>> asks) {
         this.asks = asks;
     }
 
@@ -372,18 +368,6 @@ public class OrderBookResponse {
                                 OrderBookResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderBookResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderBookResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -439,7 +423,7 @@ public class OrderBookResponse {
                         @Override
                         public void write(JsonWriter out, OrderBookResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

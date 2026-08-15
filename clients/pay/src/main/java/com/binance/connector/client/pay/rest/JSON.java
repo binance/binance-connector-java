@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -117,10 +117,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.pay.rest.model
                         .GetPayTradeHistoryResponseDataInnerFundsDetailInner
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.pay.rest.model
-                        .GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.pay.rest.model

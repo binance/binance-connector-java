@@ -5,17 +5,11 @@
 ## Enum
 
 
-* `PERPETUAL` (value: `"PERPETUAL"`)
+* `perpetual` (value: `"perpetual"`)
 
-* `CURRENT_QUARTER` (value: `"CURRENT_QUARTER"`)
+* `current_quarter` (value: `"current_quarter"`)
 
-* `NEXT_QUARTER` (value: `"NEXT_QUARTER"`)
-
-* `CURRENT_QUARTER_DELIVERING` (value: `"CURRENT_QUARTER_DELIVERING"`)
-
-* `NEXT_QUARTER_DELIVERING` (value: `"NEXT_QUARTER_DELIVERING"`)
-
-* `PERPETUAL_DELIVERING` (value: `"PERPETUAL_DELIVERING"`)
+* `next_quarter` (value: `"next_quarter"`)
 
 
 

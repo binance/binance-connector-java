@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_options.websocket.strea
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -36,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OpenInterestResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenInterestResponse extends ArrayList<OpenInterestResponseInner> {
     public OpenInterestResponse() {}
 
@@ -154,7 +153,7 @@ public class OpenInterestResponse extends ArrayList<OpenInterestResponseInner> {
                         @Override
                         public void write(JsonWriter out, OpenInterestResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

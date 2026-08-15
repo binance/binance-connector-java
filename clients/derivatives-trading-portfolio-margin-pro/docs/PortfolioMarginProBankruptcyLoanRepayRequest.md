@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**from** | **String** |  |  [optional] |
+|**from** | **From** |  |  [optional] |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

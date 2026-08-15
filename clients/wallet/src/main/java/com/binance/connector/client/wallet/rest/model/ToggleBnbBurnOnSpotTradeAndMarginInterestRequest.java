@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ToggleBnbBurnOnSpotTradeAndMarginInterestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     public static final String SERIALIZED_NAME_SPOT_B_N_B_BURN = "spotBNBBurn";
 
@@ -65,7 +63,7 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     }
 
     /**
-     * Get spotBNBBurn
+     * Determines whether to use BNB to pay for trading fees on SPOT
      *
      * @return spotBNBBurn
      */
@@ -85,7 +83,7 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     }
 
     /**
-     * Get interestBNBBurn
+     * Determines whether to use BNB to pay for margin loan&#39;s interest
      *
      * @return interestBNBBurn
      */
@@ -105,11 +103,12 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -228,20 +227,6 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ToggleBnbBurnOnSpotTradeAndMarginInterestRequest.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ToggleBnbBurnOnSpotTradeAndMarginInterestRequest`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("spotBNBBurn") != null && !jsonObj.get("spotBNBBurn").isJsonNull())
                 && !jsonObj.get("spotBNBBurn").isJsonPrimitive()) {
@@ -283,7 +268,7 @@ public class ToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
                                 JsonWriter out,
                                 ToggleBnbBurnOnSpotTradeAndMarginInterestRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

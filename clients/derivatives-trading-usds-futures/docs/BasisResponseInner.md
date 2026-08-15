@@ -14,7 +14,7 @@
 |**annualizedBasisRate** | **String** |  |  [optional] |
 |**basis** | **String** |  |  [optional] |
 |**pair** | **String** |  |  [optional] |
-|**timestamp** | **Long** |  |  [optional] |
+|**timestamp** | **Long** | Start time of the period, in milliseconds. |  [optional] |
 
 
 

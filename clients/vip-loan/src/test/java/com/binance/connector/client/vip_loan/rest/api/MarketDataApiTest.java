@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,7 +26,10 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.vip_loan.rest.model.GetBorrowInterestRateResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetCollateralAssetDataResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetLoanableAssetsDataResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanInterestRateHistoryResponse;
+import com.binance.connector.client.vip_loan.rest.model.QueryVIPLoanFixedRateMarketResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -78,15 +81,15 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Get Borrow Interest Rate(USER_DATA)
+     * Get Borrow Interest Rate (USER_DATA)
      *
-     * <p>Get Borrow Interest Rate Weight: 400
+     * <p>Get Borrow Interest Rate Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getBorrowInterestRateTest() throws ApiException, CryptoException {
-        String loanCoin = "";
+    public void getBorrowInterestRateTest() throws ApiException, CryptoException, IOException {
+        String loanCoin = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<GetBorrowInterestRateResponse> response =
                 api.getBorrowInterestRate(loanCoin, recvWindow);
@@ -101,24 +104,23 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2a09517b57df001aaf35228b8642b62271321de1e3714ccb1f56606355218630",
+                "e2df8992565a192c3c5c9627c14a6f6c38f6fa8750a2836baa0d9b9ba4060593",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/request/interestRate", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Collateral Asset Data(USER_DATA)
+     * Get Collateral Asset Data (USER_DATA)
      *
-     * <p>Get Collateral Asset Data Weight: 400
+     * <p>Get Collateral Asset Data Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCollateralAssetDataTest() throws ApiException, CryptoException {
-        String collateralCoin = "";
+    public void getCollateralAssetDataTest() throws ApiException, CryptoException, IOException {
+        String collateralCoin = "BUSD";
         Long recvWindow = 5000L;
         ApiResponse<GetCollateralAssetDataResponse> response =
                 api.getCollateralAssetData(collateralCoin, recvWindow);
@@ -133,26 +135,24 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("collateralCoin=BUSD&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "collateralCoin=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "55075b58719a54df8f08bc09d0797b888e135d419c7e19dfe4987b5f83354c8e",
+                "7ac8cb563757d110aaa5e45f0b34fadad5350dc6296907ea489b6c30ba9bc2ba",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/collateral/data", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Loanable Assets Data(USER_DATA)
+     * Get Loanable Assets Data (USER_DATA)
      *
      * <p>Get interest rate and borrow limit of loanable assets. The borrow limit is shown in USD
-     * value. Weight: 400
+     * value. Weight(IP): 400 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getLoanableAssetsDataTest() throws ApiException, CryptoException {
-        String loanCoin = "";
+    public void getLoanableAssetsDataTest() throws ApiException, CryptoException, IOException {
+        String loanCoin = "BUSD";
         Long vipLevel = 1L;
         Long recvWindow = 5000L;
         ApiResponse<GetLoanableAssetsDataResponse> response =
@@ -168,12 +168,86 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("loanCoin=BUSD&vipLevel=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "loanCoin=&vipLevel=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "af7c373de8e0d92e5598d25b5891312de4a5d5f936d893524354a27ca60952d2",
+                "49e6cfbc5d086eaedfd713d095c4e3c4bee9b744235ac4eb289a65a071ec3286",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/loanable/data", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get VIP Loan Interest Rate History (USER_DATA)
+     *
+     * <p>Check VIP Loan flexible interest rate history Weight(IP): 400 Security Type: USER_DATA
+     * Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is
+     * returned. - The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days. - Time is based on UTC+0.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getVIPLoanInterestRateHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String coin = "USDT";
+        Long recvWindow = 5000L;
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long current = 1L;
+        Long limit = 10L;
+        ApiResponse<GetVIPLoanInterestRateHistoryResponse> response =
+                api.getVIPLoanInterestRateHistory(
+                        coin, recvWindow, startTime, endTime, current, limit);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("coin=USDT&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "280639a911b1fb845012f755918969756593d9854fefaed7dbe1e00020403a61",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/loan/vip/interestRateHistory", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query VIP Loan Fixed Rate Market (USER_DATA)
+     *
+     * <p>Query the VIP Loan fixed rate market. Returns a paginated list of fixed-rate supply
+     * orders. Weight(IP): 6000 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryVIPLoanFixedRateMarketTest()
+            throws ApiException, CryptoException, IOException {
+        String loanCoin = "USDT";
+        Long duration = 30L;
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<QueryVIPLoanFixedRateMarketResponse> response =
+                api.queryVIPLoanFixedRateMarket(loanCoin, duration, current, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("loanCoin=USDT&duration=30&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "01adc694e26b9e50057aba0737839f356eb3862794d409335bf00101e0ca02aa",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/loan/vip/fixed/market", actualRequest.url().encodedPath());
     }
 }

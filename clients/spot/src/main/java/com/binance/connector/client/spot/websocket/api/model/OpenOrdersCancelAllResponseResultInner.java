@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** OpenOrdersCancelAllResponseResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -217,6 +217,60 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_PREVENTED_MATCH_ID = "preventedMatchId";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_MATCH_ID)
+    @jakarta.annotation.Nullable
+    private Long preventedMatchId;
+
+    public static final String SERIALIZED_NAME_PREVENTED_QUANTITY = "preventedQuantity";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_QUANTITY)
+    @jakarta.annotation.Nullable
+    private String preventedQuantity;
+
+    public static final String SERIALIZED_NAME_USED_SOR = "usedSor";
+
+    @SerializedName(SERIALIZED_NAME_USED_SOR)
+    @jakarta.annotation.Nullable
+    private Boolean usedSor;
+
+    public static final String SERIALIZED_NAME_WORKING_FLOOR = "workingFloor";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_FLOOR)
+    @jakarta.annotation.Nullable
+    private String workingFloor;
+
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegOffsetType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Long pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEGGED_PRICE = "peggedPrice";
+
+    @SerializedName(SERIALIZED_NAME_PEGGED_PRICE)
+    @jakarta.annotation.Nullable
+    private String peggedPrice;
+
+    public static final String SERIALIZED_NAME_EXPIRY_REASON = "expiryReason";
+
+    @SerializedName(SERIALIZED_NAME_EXPIRY_REASON)
+    @jakarta.annotation.Nullable
+    private String expiryReason;
 
     public OpenOrdersCancelAllResponseResultInner() {}
 
@@ -692,7 +746,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
      *
      * @return stopPrice
      */
@@ -712,7 +766,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get trailingDelta
+     * Delta price change required before order activation.
      *
      * @return trailingDelta
      */
@@ -732,7 +786,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get trailingTime
+     * Time when the trailing order is now active and tracking price changes.
      *
      * @return trailingTime
      */
@@ -752,7 +806,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get icebergQty
+     * Appears only if the parameter icebergQty was sent in the request.
      *
      * @return icebergQty
      */
@@ -772,7 +826,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get strategyId
+     * Appears only if the strategyId parameter was provided upon order placement.
      *
      * @return strategyId
      */
@@ -792,7 +846,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get strategyType
+     * Appears only if the strategyType parameter was provided upon order placement.
      *
      * @return strategyType
      */
@@ -824,6 +878,186 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
     public void setSelfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner preventedMatchId(
+            @jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+        return this;
+    }
+
+    /**
+     * Appears only if the order expired due to STP.
+     *
+     * @return preventedMatchId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPreventedMatchId() {
+        return preventedMatchId;
+    }
+
+    public void setPreventedMatchId(@jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner preventedQuantity(
+            @jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+        return this;
+    }
+
+    /**
+     * Order quantity that expired due to STP.
+     *
+     * @return preventedQuantity
+     */
+    @jakarta.annotation.Nullable
+    public String getPreventedQuantity() {
+        return preventedQuantity;
+    }
+
+    public void setPreventedQuantity(@jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner usedSor(
+            @jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+        return this;
+    }
+
+    /**
+     * Field that determines whether order used SOR.
+     *
+     * @return usedSor
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getUsedSor() {
+        return usedSor;
+    }
+
+    public void setUsedSor(@jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner workingFloor(
+            @jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+        return this;
+    }
+
+    /**
+     * Determines whether the order is being filled by the SOR or by the order book.
+     *
+     * @return workingFloor
+     */
+    @jakarta.annotation.Nullable
+    public String getWorkingFloor() {
+        return workingFloor;
+    }
+
+    public void setWorkingFloor(@jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner pegPriceType(
+            @jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Price peg type. Only for pegged orders.
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner pegOffsetType(
+            @jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Price peg offset type. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner pegOffsetValue(
+            @jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Price peg offset value. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Long getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner peggedPrice(
+            @jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+        return this;
+    }
+
+    /**
+     * Current price order is pegged at. Only for pegged orders, once determined.
+     *
+     * @return peggedPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getPeggedPrice() {
+        return peggedPrice;
+    }
+
+    public void setPeggedPrice(@jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+    }
+
+    public OpenOrdersCancelAllResponseResultInner expiryReason(
+            @jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
+        return this;
+    }
+
+    /**
+     * Cause of the order&#39;s expiration. Appears when an order has expired.
+     *
+     * @return expiryReason
+     */
+    @jakarta.annotation.Nullable
+    public String getExpiryReason() {
+        return expiryReason;
+    }
+
+    public void setExpiryReason(@jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
     }
 
     @Override
@@ -891,7 +1125,26 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
                         this.strategyType, openOrdersCancelAllResponseResultInner.strategyType)
                 && Objects.equals(
                         this.selfTradePreventionMode,
-                        openOrdersCancelAllResponseResultInner.selfTradePreventionMode);
+                        openOrdersCancelAllResponseResultInner.selfTradePreventionMode)
+                && Objects.equals(
+                        this.preventedMatchId,
+                        openOrdersCancelAllResponseResultInner.preventedMatchId)
+                && Objects.equals(
+                        this.preventedQuantity,
+                        openOrdersCancelAllResponseResultInner.preventedQuantity)
+                && Objects.equals(this.usedSor, openOrdersCancelAllResponseResultInner.usedSor)
+                && Objects.equals(
+                        this.workingFloor, openOrdersCancelAllResponseResultInner.workingFloor)
+                && Objects.equals(
+                        this.pegPriceType, openOrdersCancelAllResponseResultInner.pegPriceType)
+                && Objects.equals(
+                        this.pegOffsetType, openOrdersCancelAllResponseResultInner.pegOffsetType)
+                && Objects.equals(
+                        this.pegOffsetValue, openOrdersCancelAllResponseResultInner.pegOffsetValue)
+                && Objects.equals(
+                        this.peggedPrice, openOrdersCancelAllResponseResultInner.peggedPrice)
+                && Objects.equals(
+                        this.expiryReason, openOrdersCancelAllResponseResultInner.expiryReason);
     }
 
     @Override
@@ -925,7 +1178,16 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
                 icebergQty,
                 strategyId,
                 strategyType,
-                selfTradePreventionMode);
+                selfTradePreventionMode,
+                preventedMatchId,
+                preventedQuantity,
+                usedSor,
+                workingFloor,
+                pegPriceType,
+                pegOffsetType,
+                pegOffsetValue,
+                peggedPrice,
+                expiryReason);
     }
 
     @Override
@@ -965,6 +1227,15 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		preventedMatchId: ").append(toIndentedString(preventedMatchId)).append("\n");
+        sb.append("		preventedQuantity: ").append(toIndentedString(preventedQuantity)).append("\n");
+        sb.append("		usedSor: ").append(toIndentedString(usedSor)).append("\n");
+        sb.append("		workingFloor: ").append(toIndentedString(workingFloor)).append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		peggedPrice: ").append(toIndentedString(peggedPrice)).append("\n");
+        sb.append("		expiryReason: ").append(toIndentedString(expiryReason)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -1119,6 +1390,51 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
             String selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValueAsString);
         }
+        Long preventedMatchIdValue = getPreventedMatchId();
+        if (preventedMatchIdValue != null) {
+            String preventedMatchIdValueAsString = preventedMatchIdValue.toString();
+            valMap.put("preventedMatchId", preventedMatchIdValueAsString);
+        }
+        String preventedQuantityValue = getPreventedQuantity();
+        if (preventedQuantityValue != null) {
+            String preventedQuantityValueAsString = preventedQuantityValue.toString();
+            valMap.put("preventedQuantity", preventedQuantityValueAsString);
+        }
+        Boolean usedSorValue = getUsedSor();
+        if (usedSorValue != null) {
+            String usedSorValueAsString = usedSorValue.toString();
+            valMap.put("usedSor", usedSorValueAsString);
+        }
+        String workingFloorValue = getWorkingFloor();
+        if (workingFloorValue != null) {
+            String workingFloorValueAsString = workingFloorValue.toString();
+            valMap.put("workingFloor", workingFloorValueAsString);
+        }
+        String pegPriceTypeValue = getPegPriceType();
+        if (pegPriceTypeValue != null) {
+            String pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+            valMap.put("pegPriceType", pegPriceTypeValueAsString);
+        }
+        String pegOffsetTypeValue = getPegOffsetType();
+        if (pegOffsetTypeValue != null) {
+            String pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+            valMap.put("pegOffsetType", pegOffsetTypeValueAsString);
+        }
+        Long pegOffsetValueValue = getPegOffsetValue();
+        if (pegOffsetValueValue != null) {
+            String pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+            valMap.put("pegOffsetValue", pegOffsetValueValueAsString);
+        }
+        String peggedPriceValue = getPeggedPrice();
+        if (peggedPriceValue != null) {
+            String peggedPriceValueAsString = peggedPriceValue.toString();
+            valMap.put("peggedPrice", peggedPriceValueAsString);
+        }
+        String expiryReasonValue = getExpiryReason();
+        if (expiryReasonValue != null) {
+            String expiryReasonValueAsString = expiryReasonValue.toString();
+            valMap.put("expiryReason", expiryReasonValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -1246,6 +1562,42 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         if (selfTradePreventionModeValue != null) {
             valMap.put("selfTradePreventionMode", selfTradePreventionModeValue);
         }
+        Object preventedMatchIdValue = getPreventedMatchId();
+        if (preventedMatchIdValue != null) {
+            valMap.put("preventedMatchId", preventedMatchIdValue);
+        }
+        Object preventedQuantityValue = getPreventedQuantity();
+        if (preventedQuantityValue != null) {
+            valMap.put("preventedQuantity", preventedQuantityValue);
+        }
+        Object usedSorValue = getUsedSor();
+        if (usedSorValue != null) {
+            valMap.put("usedSor", usedSorValue);
+        }
+        Object workingFloorValue = getWorkingFloor();
+        if (workingFloorValue != null) {
+            valMap.put("workingFloor", workingFloorValue);
+        }
+        Object pegPriceTypeValue = getPegPriceType();
+        if (pegPriceTypeValue != null) {
+            valMap.put("pegPriceType", pegPriceTypeValue);
+        }
+        Object pegOffsetTypeValue = getPegOffsetType();
+        if (pegOffsetTypeValue != null) {
+            valMap.put("pegOffsetType", pegOffsetTypeValue);
+        }
+        Object pegOffsetValueValue = getPegOffsetValue();
+        if (pegOffsetValueValue != null) {
+            valMap.put("pegOffsetValue", pegOffsetValueValue);
+        }
+        Object peggedPriceValue = getPeggedPrice();
+        if (peggedPriceValue != null) {
+            valMap.put("peggedPrice", peggedPriceValue);
+        }
+        Object expiryReasonValue = getExpiryReason();
+        if (expiryReasonValue != null) {
+            valMap.put("expiryReason", expiryReasonValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -1301,6 +1653,15 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
         openapiFields.add("strategyId");
         openapiFields.add("strategyType");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("preventedMatchId");
+        openapiFields.add("preventedQuantity");
+        openapiFields.add("usedSor");
+        openapiFields.add("workingFloor");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("peggedPrice");
+        openapiFields.add("expiryReason");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -1536,6 +1897,55 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
         }
+        if ((jsonObj.get("preventedQuantity") != null
+                        && !jsonObj.get("preventedQuantity").isJsonNull())
+                && !jsonObj.get("preventedQuantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `preventedQuantity` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("preventedQuantity").toString()));
+        }
+        if ((jsonObj.get("workingFloor") != null && !jsonObj.get("workingFloor").isJsonNull())
+                && !jsonObj.get("workingFloor").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `workingFloor` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("workingFloor").toString()));
+        }
+        if ((jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull())
+                && !jsonObj.get("pegPriceType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegPriceType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegPriceType").toString()));
+        }
+        if ((jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull())
+                && !jsonObj.get("pegOffsetType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegOffsetType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegOffsetType").toString()));
+        }
+        if ((jsonObj.get("peggedPrice") != null && !jsonObj.get("peggedPrice").isJsonNull())
+                && !jsonObj.get("peggedPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `peggedPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("peggedPrice").toString()));
+        }
+        if ((jsonObj.get("expiryReason") != null && !jsonObj.get("expiryReason").isJsonNull())
+                && !jsonObj.get("expiryReason").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `expiryReason` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("expiryReason").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -1557,7 +1967,7 @@ public class OpenOrdersCancelAllResponseResultInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, OpenOrdersCancelAllResponseResultInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

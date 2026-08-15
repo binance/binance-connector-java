@@ -1,0 +1,78 @@
+package com.binance.connector.client.spot.websocket.api.market;
+
+import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
+import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
+import com.binance.connector.client.spot.websocket.api.model.Ticker24hrRequest;
+import com.binance.connector.client.spot.websocket.api.model.Ticker24hrResponse;
+import java.util.concurrent.CompletableFuture;
+
+/** API examples for MarketApi */
+public class Ticker24hrExample {
+    private SpotWebSocketApi api;
+
+    public SpotWebSocketApi getApi() {
+        if (api == null) {
+            WebSocketClientConfiguration clientConfiguration =
+                    SpotWebSocketApiUtil.getClientConfiguration();
+            // if you want the connection to be auto logged on:
+            // https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests
+            clientConfiguration.setAutoLogon(true);
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("/path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            api = new SpotWebSocketApi(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * 24hr ticker price change statistics
+     *
+     * <p>Get 24-hour rolling window price change statistics. If you need to continuously monitor
+     * trading statistics, please consider using WebSocket Streams: *
+     * &#x60;&lt;symbol&gt;@ticker&#x60; or &#x60;!ticker@arr&#x60; *
+     * &#x60;&lt;symbol&gt;@miniTicker&#x60; or &#x60;!miniTicker@arr&#x60; If you need different
+     * window sizes, use the &#x60;ticker&#x60; request. Weight: Adjusted based on the number of
+     * requested symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| |
+     * |omitted| 80| |symbols| 1-20 |2| | | 21-100 |40| | | 101+ |80| | |omitted| 80| Security Type:
+     * NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and &#x60;symbols&#x60;
+     * cannot be used together. * If no symbol is specified, returns information about all symbols
+     * currently trading on the exchange.
+     */
+    public void ticker24hrExampleAsync() {
+        Ticker24hrRequest ticker24hrRequest = new Ticker24hrRequest();
+        CompletableFuture<Ticker24hrResponse> future = getApi().ticker24hr(ticker24hrRequest);
+        future.handle(
+                (response, error) -> {
+                    if (error != null) {
+                        System.err.println(error);
+                    }
+                    System.out.println(response);
+                    return response;
+                });
+    }
+
+    /**
+     * 24hr ticker price change statistics
+     *
+     * <p>Get 24-hour rolling window price change statistics. If you need to continuously monitor
+     * trading statistics, please consider using WebSocket Streams: *
+     * &#x60;&lt;symbol&gt;@ticker&#x60; or &#x60;!ticker@arr&#x60; *
+     * &#x60;&lt;symbol&gt;@miniTicker&#x60; or &#x60;!miniTicker@arr&#x60; If you need different
+     * window sizes, use the &#x60;ticker&#x60; request. Weight: Adjusted based on the number of
+     * requested symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| |
+     * |omitted| 80| |symbols| 1-20 |2| | | 21-100 |40| | | 101+ |80| | |omitted| 80| Security Type:
+     * NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and &#x60;symbols&#x60;
+     * cannot be used together. * If no symbol is specified, returns information about all symbols
+     * currently trading on the exchange.
+     */
+    public void ticker24hrExampleSync() {
+        Ticker24hrRequest ticker24hrRequest = new Ticker24hrRequest();
+        CompletableFuture<Ticker24hrResponse> future = getApi().ticker24hr(ticker24hrRequest);
+        Ticker24hrResponse response = future.join();
+        System.out.println(response);
+    }
+}

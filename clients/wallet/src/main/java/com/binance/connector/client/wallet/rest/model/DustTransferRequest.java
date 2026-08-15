@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,21 +22,20 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** DustTransferRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DustTransferRequest {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -48,7 +47,7 @@ public class DustTransferRequest {
 
     @SerializedName(SERIALIZED_NAME_ACCOUNT_TYPE)
     @jakarta.annotation.Nullable
-    private String accountType;
+    private AccountType accountType;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -64,7 +63,7 @@ public class DustTransferRequest {
     }
 
     /**
-     * Get asset
+     * The asset being converted. For example: asset&#x3D;BTC,USDT
      *
      * @return asset
      */
@@ -78,7 +77,7 @@ public class DustTransferRequest {
         this.asset = asset;
     }
 
-    public DustTransferRequest accountType(@jakarta.annotation.Nullable String accountType) {
+    public DustTransferRequest accountType(@jakarta.annotation.Nullable AccountType accountType) {
         this.accountType = accountType;
         return this;
     }
@@ -89,11 +88,12 @@ public class DustTransferRequest {
      * @return accountType
      */
     @jakarta.annotation.Nullable
-    public String getAccountType() {
+    @Valid
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(@jakarta.annotation.Nullable String accountType) {
+    public void setAccountType(@jakarta.annotation.Nullable AccountType accountType) {
         this.accountType = accountType;
     }
 
@@ -103,11 +103,12 @@ public class DustTransferRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -216,18 +217,6 @@ public class DustTransferRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!DustTransferRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `DustTransferRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : DustTransferRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -245,13 +234,9 @@ public class DustTransferRequest {
                                     + " but got `%s`",
                             jsonObj.get("asset").toString()));
         }
-        if ((jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull())
-                && !jsonObj.get("accountType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `accountType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("accountType").toString()));
+        // validate the optional field `accountType`
+        if (jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull()) {
+            AccountType.validateJsonElement(jsonObj.get("accountType"));
         }
     }
 
@@ -271,7 +256,7 @@ public class DustTransferRequest {
                         @Override
                         public void write(JsonWriter out, DustTransferRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SymbolConfigurationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SymbolConfigurationResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -54,7 +52,7 @@ public class SymbolConfigurationResponseInner {
 
     @SerializedName(SERIALIZED_NAME_IS_AUTO_ADD_MARGIN)
     @jakarta.annotation.Nullable
-    private String isAutoAddMargin;
+    private Boolean isAutoAddMargin;
 
     public static final String SERIALIZED_NAME_LEVERAGE = "leverage";
 
@@ -110,7 +108,7 @@ public class SymbolConfigurationResponseInner {
     }
 
     public SymbolConfigurationResponseInner isAutoAddMargin(
-            @jakarta.annotation.Nullable String isAutoAddMargin) {
+            @jakarta.annotation.Nullable Boolean isAutoAddMargin) {
         this.isAutoAddMargin = isAutoAddMargin;
         return this;
     }
@@ -121,11 +119,11 @@ public class SymbolConfigurationResponseInner {
      * @return isAutoAddMargin
      */
     @jakarta.annotation.Nullable
-    public String getIsAutoAddMargin() {
+    public Boolean getIsAutoAddMargin() {
         return isAutoAddMargin;
     }
 
-    public void setIsAutoAddMargin(@jakarta.annotation.Nullable String isAutoAddMargin) {
+    public void setIsAutoAddMargin(@jakarta.annotation.Nullable Boolean isAutoAddMargin) {
         this.isAutoAddMargin = isAutoAddMargin;
     }
 
@@ -284,18 +282,6 @@ public class SymbolConfigurationResponseInner {
                                 SymbolConfigurationResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SymbolConfigurationResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `SymbolConfigurationResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -312,14 +298,6 @@ public class SymbolConfigurationResponseInner {
                             "Expected the field `marginType` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("marginType").toString()));
-        }
-        if ((jsonObj.get("isAutoAddMargin") != null && !jsonObj.get("isAutoAddMargin").isJsonNull())
-                && !jsonObj.get("isAutoAddMargin").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isAutoAddMargin` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("isAutoAddMargin").toString()));
         }
         if ((jsonObj.get("maxNotionalValue") != null
                         && !jsonObj.get("maxNotionalValue").isJsonNull())
@@ -350,7 +328,7 @@ public class SymbolConfigurationResponseInner {
                         @Override
                         public void write(JsonWriter out, SymbolConfigurationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

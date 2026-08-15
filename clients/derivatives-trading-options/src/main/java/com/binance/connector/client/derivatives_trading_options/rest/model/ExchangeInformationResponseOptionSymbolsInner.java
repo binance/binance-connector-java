@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInformationResponseOptionSymbolsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseOptionSymbolsInner {
     public static final String SERIALIZED_NAME_EXPIRY_DATE = "expiryDate";
 
@@ -86,17 +84,11 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     @jakarta.annotation.Nullable
     private Long unit;
 
-    public static final String SERIALIZED_NAME_MAKER_FEE_RATE = "makerFeeRate";
+    public static final String SERIALIZED_NAME_LIQUIDATION_FEE_RATE = "liquidationFeeRate";
 
-    @SerializedName(SERIALIZED_NAME_MAKER_FEE_RATE)
+    @SerializedName(SERIALIZED_NAME_LIQUIDATION_FEE_RATE)
     @jakarta.annotation.Nullable
-    private String makerFeeRate;
-
-    public static final String SERIALIZED_NAME_TAKER_FEE_RATE = "takerFeeRate";
-
-    @SerializedName(SERIALIZED_NAME_TAKER_FEE_RATE)
-    @jakarta.annotation.Nullable
-    private String takerFeeRate;
+    private String liquidationFeeRate;
 
     public static final String SERIALIZED_NAME_MIN_QTY = "minQty";
 
@@ -152,6 +144,30 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     @jakarta.annotation.Nullable
     private String quoteAsset;
 
+    public static final String SERIALIZED_NAME_CONTRACT_TYPE = "contractType";
+
+    @SerializedName(SERIALIZED_NAME_CONTRACT_TYPE)
+    @jakarta.annotation.Nullable
+    private String contractType;
+
+    public static final String SERIALIZED_NAME_UNDERLYING_TYPE = "underlyingType";
+
+    @SerializedName(SERIALIZED_NAME_UNDERLYING_TYPE)
+    @jakarta.annotation.Nullable
+    private String underlyingType;
+
+    public static final String SERIALIZED_NAME_NAKED_SELL = "nakedSell";
+
+    @SerializedName(SERIALIZED_NAME_NAKED_SELL)
+    @jakarta.annotation.Nullable
+    private Boolean nakedSell;
+
+    public static final String SERIALIZED_NAME_STATUS = "status";
+
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    @jakarta.annotation.Nullable
+    private String status;
+
     public ExchangeInformationResponseOptionSymbolsInner() {}
 
     public ExchangeInformationResponseOptionSymbolsInner expiryDate(
@@ -161,7 +177,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get expiryDate
+     * expiry time
      *
      * @return expiryDate
      */
@@ -192,7 +208,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get filters
+     * filters
      *
      * @return filters
      */
@@ -216,7 +232,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get symbol
+     * Trading pair name
      *
      * @return symbol
      */
@@ -236,7 +252,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get side
+     * Direction: CALL long, PUT short
      *
      * @return side
      */
@@ -256,7 +272,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get strikePrice
+     * Strike price
      *
      * @return strikePrice
      */
@@ -276,7 +292,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get underlying
+     * Name of the underlying asset of the option contract
      *
      * @return underlying
      */
@@ -296,7 +312,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get unit
+     * Contract unit, the quantity of the underlying asset represented by a single contract.
      *
      * @return unit
      */
@@ -309,44 +325,24 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         this.unit = unit;
     }
 
-    public ExchangeInformationResponseOptionSymbolsInner makerFeeRate(
-            @jakarta.annotation.Nullable String makerFeeRate) {
-        this.makerFeeRate = makerFeeRate;
+    public ExchangeInformationResponseOptionSymbolsInner liquidationFeeRate(
+            @jakarta.annotation.Nullable String liquidationFeeRate) {
+        this.liquidationFeeRate = liquidationFeeRate;
         return this;
     }
 
     /**
-     * Get makerFeeRate
+     * liquidation fee rate
      *
-     * @return makerFeeRate
+     * @return liquidationFeeRate
      */
     @jakarta.annotation.Nullable
-    public String getMakerFeeRate() {
-        return makerFeeRate;
+    public String getLiquidationFeeRate() {
+        return liquidationFeeRate;
     }
 
-    public void setMakerFeeRate(@jakarta.annotation.Nullable String makerFeeRate) {
-        this.makerFeeRate = makerFeeRate;
-    }
-
-    public ExchangeInformationResponseOptionSymbolsInner takerFeeRate(
-            @jakarta.annotation.Nullable String takerFeeRate) {
-        this.takerFeeRate = takerFeeRate;
-        return this;
-    }
-
-    /**
-     * Get takerFeeRate
-     *
-     * @return takerFeeRate
-     */
-    @jakarta.annotation.Nullable
-    public String getTakerFeeRate() {
-        return takerFeeRate;
-    }
-
-    public void setTakerFeeRate(@jakarta.annotation.Nullable String takerFeeRate) {
-        this.takerFeeRate = takerFeeRate;
+    public void setLiquidationFeeRate(@jakarta.annotation.Nullable String liquidationFeeRate) {
+        this.liquidationFeeRate = liquidationFeeRate;
     }
 
     public ExchangeInformationResponseOptionSymbolsInner minQty(
@@ -356,7 +352,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get minQty
+     * Minimum order quantity
      *
      * @return minQty
      */
@@ -376,7 +372,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get maxQty
+     * Maximum order quantity
      *
      * @return maxQty
      */
@@ -396,7 +392,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get initialMargin
+     * Initial Magin Ratio
      *
      * @return initialMargin
      */
@@ -416,7 +412,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get maintenanceMargin
+     * Maintenance Margin Ratio
      *
      * @return maintenanceMargin
      */
@@ -436,7 +432,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get minInitialMargin
+     * Min Initial Margin Ratio
      *
      * @return minInitialMargin
      */
@@ -456,7 +452,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get minMaintenanceMargin
+     * Min Maintenance Margin Ratio
      *
      * @return minMaintenanceMargin
      */
@@ -476,7 +472,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get priceScale
+     * price precision
      *
      * @return priceScale
      */
@@ -496,7 +492,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity precision
      *
      * @return quantityScale
      */
@@ -516,7 +512,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quotation asset
      *
      * @return quoteAsset
      */
@@ -527,6 +523,86 @@ public class ExchangeInformationResponseOptionSymbolsInner {
 
     public void setQuoteAsset(@jakarta.annotation.Nullable String quoteAsset) {
         this.quoteAsset = quoteAsset;
+    }
+
+    public ExchangeInformationResponseOptionSymbolsInner contractType(
+            @jakarta.annotation.Nullable String contractType) {
+        this.contractType = contractType;
+        return this;
+    }
+
+    /**
+     * Contract type
+     *
+     * @return contractType
+     */
+    @jakarta.annotation.Nullable
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(@jakarta.annotation.Nullable String contractType) {
+        this.contractType = contractType;
+    }
+
+    public ExchangeInformationResponseOptionSymbolsInner underlyingType(
+            @jakarta.annotation.Nullable String underlyingType) {
+        this.underlyingType = underlyingType;
+        return this;
+    }
+
+    /**
+     * Underlying type
+     *
+     * @return underlyingType
+     */
+    @jakarta.annotation.Nullable
+    public String getUnderlyingType() {
+        return underlyingType;
+    }
+
+    public void setUnderlyingType(@jakarta.annotation.Nullable String underlyingType) {
+        this.underlyingType = underlyingType;
+    }
+
+    public ExchangeInformationResponseOptionSymbolsInner nakedSell(
+            @jakarta.annotation.Nullable Boolean nakedSell) {
+        this.nakedSell = nakedSell;
+        return this;
+    }
+
+    /**
+     * Whether naked selling is allowed for this symbol
+     *
+     * @return nakedSell
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getNakedSell() {
+        return nakedSell;
+    }
+
+    public void setNakedSell(@jakarta.annotation.Nullable Boolean nakedSell) {
+        this.nakedSell = nakedSell;
+    }
+
+    public ExchangeInformationResponseOptionSymbolsInner status(
+            @jakarta.annotation.Nullable String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Trading Status
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(@jakarta.annotation.Nullable String status) {
+        this.status = status;
     }
 
     @Override
@@ -552,11 +628,8 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                         this.underlying, exchangeInformationResponseOptionSymbolsInner.underlying)
                 && Objects.equals(this.unit, exchangeInformationResponseOptionSymbolsInner.unit)
                 && Objects.equals(
-                        this.makerFeeRate,
-                        exchangeInformationResponseOptionSymbolsInner.makerFeeRate)
-                && Objects.equals(
-                        this.takerFeeRate,
-                        exchangeInformationResponseOptionSymbolsInner.takerFeeRate)
+                        this.liquidationFeeRate,
+                        exchangeInformationResponseOptionSymbolsInner.liquidationFeeRate)
                 && Objects.equals(this.minQty, exchangeInformationResponseOptionSymbolsInner.minQty)
                 && Objects.equals(this.maxQty, exchangeInformationResponseOptionSymbolsInner.maxQty)
                 && Objects.equals(
@@ -577,7 +650,17 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                         this.quantityScale,
                         exchangeInformationResponseOptionSymbolsInner.quantityScale)
                 && Objects.equals(
-                        this.quoteAsset, exchangeInformationResponseOptionSymbolsInner.quoteAsset);
+                        this.quoteAsset, exchangeInformationResponseOptionSymbolsInner.quoteAsset)
+                && Objects.equals(
+                        this.contractType,
+                        exchangeInformationResponseOptionSymbolsInner.contractType)
+                && Objects.equals(
+                        this.underlyingType,
+                        exchangeInformationResponseOptionSymbolsInner.underlyingType)
+                && Objects.equals(
+                        this.nakedSell, exchangeInformationResponseOptionSymbolsInner.nakedSell)
+                && Objects.equals(
+                        this.status, exchangeInformationResponseOptionSymbolsInner.status);
     }
 
     @Override
@@ -590,8 +673,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                 strikePrice,
                 underlying,
                 unit,
-                makerFeeRate,
-                takerFeeRate,
+                liquidationFeeRate,
                 minQty,
                 maxQty,
                 initialMargin,
@@ -600,7 +682,11 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                 minMaintenanceMargin,
                 priceScale,
                 quantityScale,
-                quoteAsset);
+                quoteAsset,
+                contractType,
+                underlyingType,
+                nakedSell,
+                status);
     }
 
     @Override
@@ -614,8 +700,9 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         sb.append("		strikePrice: ").append(toIndentedString(strikePrice)).append("\n");
         sb.append("		underlying: ").append(toIndentedString(underlying)).append("\n");
         sb.append("		unit: ").append(toIndentedString(unit)).append("\n");
-        sb.append("		makerFeeRate: ").append(toIndentedString(makerFeeRate)).append("\n");
-        sb.append("		takerFeeRate: ").append(toIndentedString(takerFeeRate)).append("\n");
+        sb.append("		liquidationFeeRate: ")
+                .append(toIndentedString(liquidationFeeRate))
+                .append("\n");
         sb.append("		minQty: ").append(toIndentedString(minQty)).append("\n");
         sb.append("		maxQty: ").append(toIndentedString(maxQty)).append("\n");
         sb.append("		initialMargin: ").append(toIndentedString(initialMargin)).append("\n");
@@ -627,6 +714,10 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         sb.append("		priceScale: ").append(toIndentedString(priceScale)).append("\n");
         sb.append("		quantityScale: ").append(toIndentedString(quantityScale)).append("\n");
         sb.append("		quoteAsset: ").append(toIndentedString(quoteAsset)).append("\n");
+        sb.append("		contractType: ").append(toIndentedString(contractType)).append("\n");
+        sb.append("		underlyingType: ").append(toIndentedString(underlyingType)).append("\n");
+        sb.append("		nakedSell: ").append(toIndentedString(nakedSell)).append("\n");
+        sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -665,14 +756,12 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         String unitValueAsString = "";
         unitValueAsString = unitValue.toString();
         sb.append("unit=").append(urlEncode(unitValueAsString)).append("");
-        Object makerFeeRateValue = getMakerFeeRate();
-        String makerFeeRateValueAsString = "";
-        makerFeeRateValueAsString = makerFeeRateValue.toString();
-        sb.append("makerFeeRate=").append(urlEncode(makerFeeRateValueAsString)).append("");
-        Object takerFeeRateValue = getTakerFeeRate();
-        String takerFeeRateValueAsString = "";
-        takerFeeRateValueAsString = takerFeeRateValue.toString();
-        sb.append("takerFeeRate=").append(urlEncode(takerFeeRateValueAsString)).append("");
+        Object liquidationFeeRateValue = getLiquidationFeeRate();
+        String liquidationFeeRateValueAsString = "";
+        liquidationFeeRateValueAsString = liquidationFeeRateValue.toString();
+        sb.append("liquidationFeeRate=")
+                .append(urlEncode(liquidationFeeRateValueAsString))
+                .append("");
         Object minQtyValue = getMinQty();
         String minQtyValueAsString = "";
         minQtyValueAsString = minQtyValue.toString();
@@ -713,6 +802,22 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         String quoteAssetValueAsString = "";
         quoteAssetValueAsString = quoteAssetValue.toString();
         sb.append("quoteAsset=").append(urlEncode(quoteAssetValueAsString)).append("");
+        Object contractTypeValue = getContractType();
+        String contractTypeValueAsString = "";
+        contractTypeValueAsString = contractTypeValue.toString();
+        sb.append("contractType=").append(urlEncode(contractTypeValueAsString)).append("");
+        Object underlyingTypeValue = getUnderlyingType();
+        String underlyingTypeValueAsString = "";
+        underlyingTypeValueAsString = underlyingTypeValue.toString();
+        sb.append("underlyingType=").append(urlEncode(underlyingTypeValueAsString)).append("");
+        Object nakedSellValue = getNakedSell();
+        String nakedSellValueAsString = "";
+        nakedSellValueAsString = nakedSellValue.toString();
+        sb.append("nakedSell=").append(urlEncode(nakedSellValueAsString)).append("");
+        Object statusValue = getStatus();
+        String statusValueAsString = "";
+        statusValueAsString = statusValue.toString();
+        sb.append("status=").append(urlEncode(statusValueAsString)).append("");
         return sb.toString();
     }
 
@@ -748,8 +853,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         openapiFields.add("strikePrice");
         openapiFields.add("underlying");
         openapiFields.add("unit");
-        openapiFields.add("makerFeeRate");
-        openapiFields.add("takerFeeRate");
+        openapiFields.add("liquidationFeeRate");
         openapiFields.add("minQty");
         openapiFields.add("maxQty");
         openapiFields.add("initialMargin");
@@ -759,6 +863,10 @@ public class ExchangeInformationResponseOptionSymbolsInner {
         openapiFields.add("priceScale");
         openapiFields.add("quantityScale");
         openapiFields.add("quoteAsset");
+        openapiFields.add("contractType");
+        openapiFields.add("underlyingType");
+        openapiFields.add("nakedSell");
+        openapiFields.add("status");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -782,20 +890,6 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                                     + " in the empty JSON string",
                                 ExchangeInformationResponseOptionSymbolsInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInformationResponseOptionSymbolsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ExchangeInformationResponseOptionSymbolsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -851,21 +945,14 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                                     + " string but got `%s`",
                             jsonObj.get("underlying").toString()));
         }
-        if ((jsonObj.get("makerFeeRate") != null && !jsonObj.get("makerFeeRate").isJsonNull())
-                && !jsonObj.get("makerFeeRate").isJsonPrimitive()) {
+        if ((jsonObj.get("liquidationFeeRate") != null
+                        && !jsonObj.get("liquidationFeeRate").isJsonNull())
+                && !jsonObj.get("liquidationFeeRate").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `makerFeeRate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("makerFeeRate").toString()));
-        }
-        if ((jsonObj.get("takerFeeRate") != null && !jsonObj.get("takerFeeRate").isJsonNull())
-                && !jsonObj.get("takerFeeRate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `takerFeeRate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("takerFeeRate").toString()));
+                            "Expected the field `liquidationFeeRate` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("liquidationFeeRate").toString()));
         }
         if ((jsonObj.get("minQty") != null && !jsonObj.get("minQty").isJsonNull())
                 && !jsonObj.get("minQty").isJsonPrimitive()) {
@@ -926,6 +1013,30 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                                     + " string but got `%s`",
                             jsonObj.get("quoteAsset").toString()));
         }
+        if ((jsonObj.get("contractType") != null && !jsonObj.get("contractType").isJsonNull())
+                && !jsonObj.get("contractType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `contractType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("contractType").toString()));
+        }
+        if ((jsonObj.get("underlyingType") != null && !jsonObj.get("underlyingType").isJsonNull())
+                && !jsonObj.get("underlyingType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `underlyingType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("underlyingType").toString()));
+        }
+        if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
+                && !jsonObj.get("status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `status` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("status").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -949,7 +1060,7 @@ public class ExchangeInformationResponseOptionSymbolsInner {
                         public void write(
                                 JsonWriter out, ExchangeInformationResponseOptionSymbolsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

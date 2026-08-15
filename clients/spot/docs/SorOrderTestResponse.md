@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | [**OrderTestResponseResult**](OrderTestResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;TimeResponseRateLimitsInner&gt;**](TimeResponseRateLimitsInner.md) |  |  [optional] |
+|**result** | [**SorOrderTestResponseResult**](SorOrderTestResponseResult.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

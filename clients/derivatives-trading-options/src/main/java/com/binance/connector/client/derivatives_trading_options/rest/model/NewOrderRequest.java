@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -55,7 +53,7 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private Type type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -73,25 +71,25 @@ public class NewOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForce timeInForce;
+    private TimeInForce timeInForce = TimeInForce.GTC;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean reduceOnly;
+    private Boolean reduceOnly = false;
 
     public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
 
     @SerializedName(SERIALIZED_NAME_POST_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean postOnly;
+    private Boolean postOnly = false;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -104,6 +102,13 @@ public class NewOrderRequest {
     @SerializedName(SERIALIZED_NAME_IS_MMP)
     @jakarta.annotation.Nullable
     private Boolean isMmp;
+
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private SelfTradePreventionMode selfTradePreventionMode;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -154,7 +159,7 @@ public class NewOrderRequest {
         this.side = side;
     }
 
-    public NewOrderRequest type(@jakarta.annotation.Nonnull Type type) {
+    public NewOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -167,11 +172,11 @@ public class NewOrderRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public Type getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull Type type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -181,7 +186,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -202,7 +207,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -302,7 +307,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get clientOrderId
+     * User-defined order ID cannot be repeated in pending orders
      *
      * @return clientOrderId
      */
@@ -321,7 +326,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get isMmp
+     * is market maker protection order
      *
      * @return isMmp
      */
@@ -332,6 +337,28 @@ public class NewOrderRequest {
 
     public void setIsMmp(@jakarta.annotation.Nullable Boolean isMmp) {
         this.isMmp = isMmp;
+    }
+
+    public NewOrderRequest selfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
     public NewOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
@@ -373,6 +400,8 @@ public class NewOrderRequest {
                 && Objects.equals(this.newOrderRespType, newOrderRequest.newOrderRespType)
                 && Objects.equals(this.clientOrderId, newOrderRequest.clientOrderId)
                 && Objects.equals(this.isMmp, newOrderRequest.isMmp)
+                && Objects.equals(
+                        this.selfTradePreventionMode, newOrderRequest.selfTradePreventionMode)
                 && Objects.equals(this.recvWindow, newOrderRequest.recvWindow);
     }
 
@@ -390,6 +419,7 @@ public class NewOrderRequest {
                 newOrderRespType,
                 clientOrderId,
                 isMmp,
+                selfTradePreventionMode,
                 recvWindow);
     }
 
@@ -408,6 +438,9 @@ public class NewOrderRequest {
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		isMmp: ").append(toIndentedString(isMmp)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -460,6 +493,12 @@ public class NewOrderRequest {
         String isMmpValueAsString = "";
         isMmpValueAsString = isMmpValue.toString();
         sb.append("isMmp=").append(urlEncode(isMmpValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -503,6 +542,7 @@ public class NewOrderRequest {
         openapiFields.add("newOrderRespType");
         openapiFields.add("clientOrderId");
         openapiFields.add("isMmp");
+        openapiFields.add("selfTradePreventionMode");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -531,18 +571,6 @@ public class NewOrderRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NewOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NewOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : NewOrderRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -563,7 +591,7 @@ public class NewOrderRequest {
         // validate the required field `side`
         Side.validateJsonElement(jsonObj.get("side"));
         // validate the required field `type`
-        Type.validateJsonElement(jsonObj.get("type"));
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
@@ -580,6 +608,11 @@ public class NewOrderRequest {
                             "Expected the field `clientOrderId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("clientOrderId").toString()));
+        }
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
     }
 
@@ -599,7 +632,7 @@ public class NewOrderRequest {
                         @Override
                         public void write(JsonWriter out, NewOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

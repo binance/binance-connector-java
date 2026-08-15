@@ -4,7 +4,7 @@ import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 
 public class DerivativesTradingPortfolioMarginProRestApiUtil {
-    private static final String BASE_URL = "https://fapi.binance.com";
+    private static final String BASE_URL = "https://api.binance.com";
     private static final boolean HAS_TIME_UNIT = false;
 
     public static ClientConfiguration getClientConfiguration() {

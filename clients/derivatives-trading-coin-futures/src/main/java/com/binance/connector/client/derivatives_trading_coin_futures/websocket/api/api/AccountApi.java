@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,12 +38,16 @@ public class AccountApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
-     * Account Information(USER_DATA) Get current account information. User in single-asset/
+     * Account Information (USER_DATA) Get current account information. User in single-asset/
      * multi-assets mode will see different value, see comments in response section for detail.
-     * Weight: 5
+     * Weight(IP): 5 Security Type: USER_DATA
      *
-     * @param accountInformationRequest (required)
+     * @param accountInformationRequest (optional)
      * @return AccountInformationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -55,8 +59,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/websocket-api/Account-Information">Account
-     *     Information(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/account#account-information">Account
+     *     Information (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountInformationResponse> accountInformation(
             AccountInformationRequest accountInformationRequest) throws ApiException {
@@ -103,9 +107,10 @@ public class AccountApi {
     }
 
     /**
-     * Futures Account Balance(USER_DATA) Query account balance info Weight: 5
+     * Futures Account Balance (USER_DATA) Futures Account Balance Weight(IP): 5 Security Type:
+     * USER_DATA
      *
-     * @param futuresAccountBalanceRequest (required)
+     * @param futuresAccountBalanceRequest (optional)
      * @return FuturesAccountBalanceResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -117,8 +122,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/websocket-api/Futures-Account-Balance">Futures
-     *     Account Balance(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/account#futures-account-balance">Futures
+     *     Account Balance (USER_DATA) Documentation</a>
      */
     public CompletableFuture<FuturesAccountBalanceResponse> futuresAccountBalance(
             FuturesAccountBalanceRequest futuresAccountBalanceRequest) throws ApiException {

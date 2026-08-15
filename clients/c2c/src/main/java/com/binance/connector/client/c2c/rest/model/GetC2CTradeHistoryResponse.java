@@ -1,6 +1,6 @@
 /*
- * Binance C2C REST API
- * OpenAPI Specification for the Binance C2C REST API
+ * C2C REST API
+ * Query fiat transaction history via the C2C REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetC2CTradeHistoryResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetC2CTradeHistoryResponse {
     public static final String SERIALIZED_NAME_CODE = "code";
 
@@ -82,7 +80,7 @@ public class GetC2CTradeHistoryResponse {
     }
 
     /**
-     * Get code
+     * API response code. \&quot;000000\&quot; indicates success.
      *
      * @return code
      */
@@ -101,7 +99,7 @@ public class GetC2CTradeHistoryResponse {
     }
 
     /**
-     * Get message
+     * Response message.
      *
      * @return message
      */
@@ -150,7 +148,7 @@ public class GetC2CTradeHistoryResponse {
     }
 
     /**
-     * Get total
+     * Total number of records
      *
      * @return total
      */
@@ -169,7 +167,7 @@ public class GetC2CTradeHistoryResponse {
     }
 
     /**
-     * Get success
+     * Whether request is successful
      *
      * @return success
      */
@@ -297,18 +295,6 @@ public class GetC2CTradeHistoryResponse {
                                 GetC2CTradeHistoryResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetC2CTradeHistoryResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetC2CTradeHistoryResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull())
                 && !jsonObj.get("code").isJsonPrimitive()) {
@@ -364,7 +350,7 @@ public class GetC2CTradeHistoryResponse {
                         @Override
                         public void write(JsonWriter out, GetC2CTradeHistoryResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -7,29 +7,29 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**newClientStrategyId** | **String** |  |  [optional] |
-|**strategyId** | **Long** |  |  [optional] |
-|**strategyStatus** | **String** |  |  [optional] |
-|**strategyType** | **String** |  |  [optional] |
-|**origQty** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**stopPrice** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**bookTime** | **Long** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**triggerTime** | **Long** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**activatePrice** | **String** |  |  [optional] |
-|**priceRate** | **String** |  |  [optional] |
-|**workingType** | **String** |  |  [optional] |
-|**priceProtect** | **Boolean** |  |  [optional] |
-|**priceMatch** | **String** |  |  [optional] |
+|**newClientStrategyId** | **String** | New Client Strategy ID. |  [optional] |
+|**strategyId** | **Long** | Strategy ID. |  [optional] |
+|**strategyStatus** | **String** | Strategy Status. |  [optional] |
+|**strategyType** | **String** | Strategy Type. |  [optional] |
+|**origQty** | **String** | Orig Qty. |  [optional] |
+|**price** | **String** | Price. |  [optional] |
+|**reduceOnly** | **Boolean** | Reduce Only. |  [optional] |
+|**side** | **String** | Side. |  [optional] |
+|**positionSide** | **String** | BOTH means that it is the position of One-way Mode |  [optional] |
+|**stopPrice** | **String** | please ignore when order type is TRAILING_STOP_MARKET |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**orderId** | **Long** | Normal orderID after trigger if appliable，only have when the strategy is triggered |  [optional] |
+|**status** | **String** | Normal order status after trigger if appliable, only have when the strategy is triggered |  [optional] |
+|**bookTime** | **Long** | order time |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
+|**triggerTime** | **Long** | Trigger Time. |  [optional] |
+|**timeInForce** | **String** | Time In Force. |  [optional] |
+|**type** | **String** | Normal order type after trigger if appliable |  [optional] |
+|**activatePrice** | **String** | activation price, only return with TRAILING_STOP_MARKET order |  [optional] |
+|**priceRate** | **String** | callback rate, only return with TRAILING_STOP_MARKET order |  [optional] |
+|**workingType** | **String** | Working Type. |  [optional] |
+|**priceProtect** | **Boolean** | Price Protect. |  [optional] |
+|**priceMatch** | **String** | Price Match. |  [optional] |
 
 
 

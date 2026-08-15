@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CancelMarginAccountOcoOrdersResponseOrdersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMarginAccountOcoOrdersResponseOrdersInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -65,7 +63,7 @@ public class CancelMarginAccountOcoOrdersResponseOrdersInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -85,7 +83,7 @@ public class CancelMarginAccountOcoOrdersResponseOrdersInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -105,7 +103,7 @@ public class CancelMarginAccountOcoOrdersResponseOrdersInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -225,20 +223,6 @@ public class CancelMarginAccountOcoOrdersResponseOrdersInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelMarginAccountOcoOrdersResponseOrdersInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `CancelMarginAccountOcoOrdersResponseOrdersInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -280,7 +264,7 @@ public class CancelMarginAccountOcoOrdersResponseOrdersInner {
                                 JsonWriter out,
                                 CancelMarginAccountOcoOrdersResponseOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

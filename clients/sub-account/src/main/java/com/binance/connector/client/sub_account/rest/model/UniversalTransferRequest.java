@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** UniversalTransferRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UniversalTransferRequest {
     public static final String SERIALIZED_NAME_FROM_EMAIL = "fromEmail";
 
@@ -55,13 +53,13 @@ public class UniversalTransferRequest {
 
     @SerializedName(SERIALIZED_NAME_FROM_ACCOUNT_TYPE)
     @jakarta.annotation.Nonnull
-    private String fromAccountType;
+    private FromAccountType fromAccountType;
 
     public static final String SERIALIZED_NAME_TO_ACCOUNT_TYPE = "toAccountType";
 
     @SerializedName(SERIALIZED_NAME_TO_ACCOUNT_TYPE)
     @jakarta.annotation.Nonnull
-    private String toAccountType;
+    private ToAccountType toAccountType;
 
     public static final String SERIALIZED_NAME_CLIENT_TRAN_ID = "clientTranId";
 
@@ -134,7 +132,7 @@ public class UniversalTransferRequest {
     }
 
     public UniversalTransferRequest fromAccountType(
-            @jakarta.annotation.Nonnull String fromAccountType) {
+            @jakarta.annotation.Nonnull FromAccountType fromAccountType) {
         this.fromAccountType = fromAccountType;
         return this;
     }
@@ -146,16 +144,17 @@ public class UniversalTransferRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getFromAccountType() {
+    @Valid
+    public FromAccountType getFromAccountType() {
         return fromAccountType;
     }
 
-    public void setFromAccountType(@jakarta.annotation.Nonnull String fromAccountType) {
+    public void setFromAccountType(@jakarta.annotation.Nonnull FromAccountType fromAccountType) {
         this.fromAccountType = fromAccountType;
     }
 
     public UniversalTransferRequest toAccountType(
-            @jakarta.annotation.Nonnull String toAccountType) {
+            @jakarta.annotation.Nonnull ToAccountType toAccountType) {
         this.toAccountType = toAccountType;
         return this;
     }
@@ -167,11 +166,12 @@ public class UniversalTransferRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getToAccountType() {
+    @Valid
+    public ToAccountType getToAccountType() {
         return toAccountType;
     }
 
-    public void setToAccountType(@jakarta.annotation.Nonnull String toAccountType) {
+    public void setToAccountType(@jakarta.annotation.Nonnull ToAccountType toAccountType) {
         this.toAccountType = toAccountType;
     }
 
@@ -181,7 +181,7 @@ public class UniversalTransferRequest {
     }
 
     /**
-     * Get clientTranId
+     * Must be unique
      *
      * @return clientTranId
      */
@@ -200,7 +200,7 @@ public class UniversalTransferRequest {
     }
 
     /**
-     * Get symbol
+     * Only supported under ISOLATED_MARGIN type
      *
      * @return symbol
      */
@@ -260,11 +260,12 @@ public class UniversalTransferRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -427,18 +428,6 @@ public class UniversalTransferRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UniversalTransferRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `UniversalTransferRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : UniversalTransferRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -465,20 +454,10 @@ public class UniversalTransferRequest {
                                     + " but got `%s`",
                             jsonObj.get("toEmail").toString()));
         }
-        if (!jsonObj.get("fromAccountType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `fromAccountType` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("fromAccountType").toString()));
-        }
-        if (!jsonObj.get("toAccountType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `toAccountType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("toAccountType").toString()));
-        }
+        // validate the required field `fromAccountType`
+        FromAccountType.validateJsonElement(jsonObj.get("fromAccountType"));
+        // validate the required field `toAccountType`
+        ToAccountType.validateJsonElement(jsonObj.get("toAccountType"));
         if ((jsonObj.get("clientTranId") != null && !jsonObj.get("clientTranId").isJsonNull())
                 && !jsonObj.get("clientTranId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -521,7 +500,7 @@ public class UniversalTransferRequest {
                         @Override
                         public void write(JsonWriter out, UniversalTransferRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

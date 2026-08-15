@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryApplicationStatusResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryApplicationStatusResponseRowsInner {
     public static final String SERIALIZED_NAME_LOAN_ACCOUNT_ID = "loanAccountId";
 
@@ -107,7 +105,7 @@ public class QueryApplicationStatusResponseRowsInner {
     }
 
     /**
-     * Get loanAccountId
+     * Loan receiving account.
      *
      * @return loanAccountId
      */
@@ -267,7 +265,9 @@ public class QueryApplicationStatusResponseRowsInner {
     }
 
     /**
-     * Get status
+     * Order status (&#x60;Accruing_Interest&#x60;, &#x60;Overdue&#x60;, &#x60;Liquidating&#x60;,
+     * &#x60;Repaying&#x60;, &#x60;Repaid&#x60;, &#x60;Liquidated&#x60;, &#x60;Pending&#x60;,
+     * &#x60;Failed&#x60;).
      *
      * @return status
      */
@@ -470,19 +470,6 @@ public class QueryApplicationStatusResponseRowsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryApplicationStatusResponseRowsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryApplicationStatusResponseRowsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("loanAccountId") != null && !jsonObj.get("loanAccountId").isJsonNull())
                 && !jsonObj.get("loanAccountId").isJsonPrimitive()) {
@@ -587,7 +574,7 @@ public class QueryApplicationStatusResponseRowsInner {
                         public void write(
                                 JsonWriter out, QueryApplicationStatusResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

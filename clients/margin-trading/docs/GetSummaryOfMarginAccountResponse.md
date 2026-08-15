@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**normalBar** | **String** |  |  [optional] |
-|**marginCallBar** | **String** |  |  [optional] |
-|**forceLiquidationBar** | **String** |  |  [optional] |
+|**normalBar** | **String** | normal Bar. |  [optional] |
+|**marginCallBar** | **String** | margin Call Bar. |  [optional] |
+|**forceLiquidationBar** | **String** | force Liquidation Bar. |  [optional] |
 
 
 

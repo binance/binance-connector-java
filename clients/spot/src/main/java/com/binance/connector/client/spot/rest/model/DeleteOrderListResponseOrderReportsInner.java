@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** DeleteOrderListResponseOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DeleteOrderListResponseOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -128,18 +126,95 @@ public class DeleteOrderListResponseOrderReportsInner {
     @jakarta.annotation.Nullable
     private String side;
 
-    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
-            "selfTradePreventionMode";
+    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
 
-    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
     @jakarta.annotation.Nullable
-    private String selfTradePreventionMode;
+    private String icebergQty;
+
+    public static final String SERIALIZED_NAME_PREVENTED_MATCH_ID = "preventedMatchId";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_MATCH_ID)
+    @jakarta.annotation.Nullable
+    private Long preventedMatchId;
+
+    public static final String SERIALIZED_NAME_PREVENTED_QUANTITY = "preventedQuantity";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_QUANTITY)
+    @jakarta.annotation.Nullable
+    private String preventedQuantity;
 
     public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
 
     @SerializedName(SERIALIZED_NAME_STOP_PRICE)
     @jakarta.annotation.Nullable
     private String stopPrice;
+
+    public static final String SERIALIZED_NAME_STRATEGY_ID = "strategyId";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_ID)
+    @jakarta.annotation.Nullable
+    private Long strategyId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_TYPE)
+    @jakarta.annotation.Nullable
+    private Long strategyType;
+
+    public static final String SERIALIZED_NAME_TRAILING_DELTA = "trailingDelta";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_DELTA)
+    @jakarta.annotation.Nullable
+    private Long trailingDelta;
+
+    public static final String SERIALIZED_NAME_TRAILING_TIME = "trailingTime";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_TIME)
+    @jakarta.annotation.Nullable
+    private Long trailingTime;
+
+    public static final String SERIALIZED_NAME_USED_SOR = "usedSor";
+
+    @SerializedName(SERIALIZED_NAME_USED_SOR)
+    @jakarta.annotation.Nullable
+    private Boolean usedSor;
+
+    public static final String SERIALIZED_NAME_WORKING_FLOOR = "workingFloor";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_FLOOR)
+    @jakarta.annotation.Nullable
+    private String workingFloor;
+
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegOffsetType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Long pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEGGED_PRICE = "peggedPrice";
+
+    @SerializedName(SERIALIZED_NAME_PEGGED_PRICE)
+    @jakarta.annotation.Nullable
+    private String peggedPrice;
+
+    public static final String SERIALIZED_NAME_EXPIRY_REASON = "expiryReason";
+
+    @SerializedName(SERIALIZED_NAME_EXPIRY_REASON)
+    @jakarta.annotation.Nullable
+    private String expiryReason;
 
     public DeleteOrderListResponseOrderReportsInner() {}
 
@@ -441,25 +516,64 @@ public class DeleteOrderListResponseOrderReportsInner {
         this.side = side;
     }
 
-    public DeleteOrderListResponseOrderReportsInner selfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
-        this.selfTradePreventionMode = selfTradePreventionMode;
+    public DeleteOrderListResponseOrderReportsInner icebergQty(
+            @jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
         return this;
     }
 
     /**
-     * Get selfTradePreventionMode
+     * Appears only if the parameter icebergQty was sent in the request.
      *
-     * @return selfTradePreventionMode
+     * @return icebergQty
      */
     @jakarta.annotation.Nullable
-    public String getSelfTradePreventionMode() {
-        return selfTradePreventionMode;
+    public String getIcebergQty() {
+        return icebergQty;
     }
 
-    public void setSelfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
-        this.selfTradePreventionMode = selfTradePreventionMode;
+    public void setIcebergQty(@jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner preventedMatchId(
+            @jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+        return this;
+    }
+
+    /**
+     * Appears only if the order expired due to STP.
+     *
+     * @return preventedMatchId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPreventedMatchId() {
+        return preventedMatchId;
+    }
+
+    public void setPreventedMatchId(@jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner preventedQuantity(
+            @jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+        return this;
+    }
+
+    /**
+     * Order quantity that expired due to STP.
+     *
+     * @return preventedQuantity
+     */
+    @jakarta.annotation.Nullable
+    public String getPreventedQuantity() {
+        return preventedQuantity;
+    }
+
+    public void setPreventedQuantity(@jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
     }
 
     public DeleteOrderListResponseOrderReportsInner stopPrice(
@@ -469,7 +583,7 @@ public class DeleteOrderListResponseOrderReportsInner {
     }
 
     /**
-     * Get stopPrice
+     * Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
      *
      * @return stopPrice
      */
@@ -480,6 +594,226 @@ public class DeleteOrderListResponseOrderReportsInner {
 
     public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner strategyId(
+            @jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+        return this;
+    }
+
+    /**
+     * Appears only if the strategyId parameter was provided upon order placement.
+     *
+     * @return strategyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner strategyType(
+            @jakarta.annotation.Nullable Long strategyType) {
+        this.strategyType = strategyType;
+        return this;
+    }
+
+    /**
+     * Appears only if the strategyType parameter was provided upon order placement.
+     *
+     * @return strategyType
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(@jakarta.annotation.Nullable Long strategyType) {
+        this.strategyType = strategyType;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner trailingDelta(
+            @jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+        return this;
+    }
+
+    /**
+     * Delta price change required before order activation.
+     *
+     * @return trailingDelta
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingDelta() {
+        return trailingDelta;
+    }
+
+    public void setTrailingDelta(@jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner trailingTime(
+            @jakarta.annotation.Nullable Long trailingTime) {
+        this.trailingTime = trailingTime;
+        return this;
+    }
+
+    /**
+     * Time when the trailing order is now active and tracking price changes.
+     *
+     * @return trailingTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingTime() {
+        return trailingTime;
+    }
+
+    public void setTrailingTime(@jakarta.annotation.Nullable Long trailingTime) {
+        this.trailingTime = trailingTime;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner usedSor(
+            @jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+        return this;
+    }
+
+    /**
+     * Field that determines whether order used SOR.
+     *
+     * @return usedSor
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getUsedSor() {
+        return usedSor;
+    }
+
+    public void setUsedSor(@jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner workingFloor(
+            @jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+        return this;
+    }
+
+    /**
+     * Determines whether the order is being filled by the SOR or by the order book.
+     *
+     * @return workingFloor
+     */
+    @jakarta.annotation.Nullable
+    public String getWorkingFloor() {
+        return workingFloor;
+    }
+
+    public void setWorkingFloor(@jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner pegPriceType(
+            @jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Price peg type. Only for pegged orders.
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner pegOffsetType(
+            @jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Price peg offset type. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner pegOffsetValue(
+            @jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Price peg offset value. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Long getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner peggedPrice(
+            @jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+        return this;
+    }
+
+    /**
+     * Current price order is pegged at. Only for pegged orders, once determined.
+     *
+     * @return peggedPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getPeggedPrice() {
+        return peggedPrice;
+    }
+
+    public void setPeggedPrice(@jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+    }
+
+    public DeleteOrderListResponseOrderReportsInner expiryReason(
+            @jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
+        return this;
+    }
+
+    /**
+     * Cause of the order&#39;s expiration. Appears when an order has expired.
+     *
+     * @return expiryReason
+     */
+    @jakarta.annotation.Nullable
+    public String getExpiryReason() {
+        return expiryReason;
+    }
+
+    public void setExpiryReason(@jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
     }
 
     @Override
@@ -519,10 +853,37 @@ public class DeleteOrderListResponseOrderReportsInner {
                 && Objects.equals(this.type, deleteOrderListResponseOrderReportsInner.type)
                 && Objects.equals(this.side, deleteOrderListResponseOrderReportsInner.side)
                 && Objects.equals(
-                        this.selfTradePreventionMode,
-                        deleteOrderListResponseOrderReportsInner.selfTradePreventionMode)
+                        this.icebergQty, deleteOrderListResponseOrderReportsInner.icebergQty)
                 && Objects.equals(
-                        this.stopPrice, deleteOrderListResponseOrderReportsInner.stopPrice);
+                        this.preventedMatchId,
+                        deleteOrderListResponseOrderReportsInner.preventedMatchId)
+                && Objects.equals(
+                        this.preventedQuantity,
+                        deleteOrderListResponseOrderReportsInner.preventedQuantity)
+                && Objects.equals(
+                        this.stopPrice, deleteOrderListResponseOrderReportsInner.stopPrice)
+                && Objects.equals(
+                        this.strategyId, deleteOrderListResponseOrderReportsInner.strategyId)
+                && Objects.equals(
+                        this.strategyType, deleteOrderListResponseOrderReportsInner.strategyType)
+                && Objects.equals(
+                        this.trailingDelta, deleteOrderListResponseOrderReportsInner.trailingDelta)
+                && Objects.equals(
+                        this.trailingTime, deleteOrderListResponseOrderReportsInner.trailingTime)
+                && Objects.equals(this.usedSor, deleteOrderListResponseOrderReportsInner.usedSor)
+                && Objects.equals(
+                        this.workingFloor, deleteOrderListResponseOrderReportsInner.workingFloor)
+                && Objects.equals(
+                        this.pegPriceType, deleteOrderListResponseOrderReportsInner.pegPriceType)
+                && Objects.equals(
+                        this.pegOffsetType, deleteOrderListResponseOrderReportsInner.pegOffsetType)
+                && Objects.equals(
+                        this.pegOffsetValue,
+                        deleteOrderListResponseOrderReportsInner.pegOffsetValue)
+                && Objects.equals(
+                        this.peggedPrice, deleteOrderListResponseOrderReportsInner.peggedPrice)
+                && Objects.equals(
+                        this.expiryReason, deleteOrderListResponseOrderReportsInner.expiryReason);
     }
 
     @Override
@@ -543,8 +904,21 @@ public class DeleteOrderListResponseOrderReportsInner {
                 timeInForce,
                 type,
                 side,
-                selfTradePreventionMode,
-                stopPrice);
+                icebergQty,
+                preventedMatchId,
+                preventedQuantity,
+                stopPrice,
+                strategyId,
+                strategyType,
+                trailingDelta,
+                trailingTime,
+                usedSor,
+                workingFloor,
+                pegPriceType,
+                pegOffsetType,
+                pegOffsetValue,
+                peggedPrice,
+                expiryReason);
     }
 
     @Override
@@ -568,10 +942,21 @@ public class DeleteOrderListResponseOrderReportsInner {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		selfTradePreventionMode: ")
-                .append(toIndentedString(selfTradePreventionMode))
-                .append("\n");
+        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
+        sb.append("		preventedMatchId: ").append(toIndentedString(preventedMatchId)).append("\n");
+        sb.append("		preventedQuantity: ").append(toIndentedString(preventedQuantity)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		strategyId: ").append(toIndentedString(strategyId)).append("\n");
+        sb.append("		strategyType: ").append(toIndentedString(strategyType)).append("\n");
+        sb.append("		trailingDelta: ").append(toIndentedString(trailingDelta)).append("\n");
+        sb.append("		trailingTime: ").append(toIndentedString(trailingTime)).append("\n");
+        sb.append("		usedSor: ").append(toIndentedString(usedSor)).append("\n");
+        sb.append("		workingFloor: ").append(toIndentedString(workingFloor)).append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		peggedPrice: ").append(toIndentedString(peggedPrice)).append("\n");
+        sb.append("		expiryReason: ").append(toIndentedString(expiryReason)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -645,16 +1030,68 @@ public class DeleteOrderListResponseOrderReportsInner {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
-        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
-        String selfTradePreventionModeValueAsString = "";
-        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
-        sb.append("selfTradePreventionMode=")
-                .append(urlEncode(selfTradePreventionModeValueAsString))
+        Object icebergQtyValue = getIcebergQty();
+        String icebergQtyValueAsString = "";
+        icebergQtyValueAsString = icebergQtyValue.toString();
+        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
+        Object preventedMatchIdValue = getPreventedMatchId();
+        String preventedMatchIdValueAsString = "";
+        preventedMatchIdValueAsString = preventedMatchIdValue.toString();
+        sb.append("preventedMatchId=").append(urlEncode(preventedMatchIdValueAsString)).append("");
+        Object preventedQuantityValue = getPreventedQuantity();
+        String preventedQuantityValueAsString = "";
+        preventedQuantityValueAsString = preventedQuantityValue.toString();
+        sb.append("preventedQuantity=")
+                .append(urlEncode(preventedQuantityValueAsString))
                 .append("");
         Object stopPriceValue = getStopPrice();
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
         sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object strategyIdValue = getStrategyId();
+        String strategyIdValueAsString = "";
+        strategyIdValueAsString = strategyIdValue.toString();
+        sb.append("strategyId=").append(urlEncode(strategyIdValueAsString)).append("");
+        Object strategyTypeValue = getStrategyType();
+        String strategyTypeValueAsString = "";
+        strategyTypeValueAsString = strategyTypeValue.toString();
+        sb.append("strategyType=").append(urlEncode(strategyTypeValueAsString)).append("");
+        Object trailingDeltaValue = getTrailingDelta();
+        String trailingDeltaValueAsString = "";
+        trailingDeltaValueAsString = trailingDeltaValue.toString();
+        sb.append("trailingDelta=").append(urlEncode(trailingDeltaValueAsString)).append("");
+        Object trailingTimeValue = getTrailingTime();
+        String trailingTimeValueAsString = "";
+        trailingTimeValueAsString = trailingTimeValue.toString();
+        sb.append("trailingTime=").append(urlEncode(trailingTimeValueAsString)).append("");
+        Object usedSorValue = getUsedSor();
+        String usedSorValueAsString = "";
+        usedSorValueAsString = usedSorValue.toString();
+        sb.append("usedSor=").append(urlEncode(usedSorValueAsString)).append("");
+        Object workingFloorValue = getWorkingFloor();
+        String workingFloorValueAsString = "";
+        workingFloorValueAsString = workingFloorValue.toString();
+        sb.append("workingFloor=").append(urlEncode(workingFloorValueAsString)).append("");
+        Object pegPriceTypeValue = getPegPriceType();
+        String pegPriceTypeValueAsString = "";
+        pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+        sb.append("pegPriceType=").append(urlEncode(pegPriceTypeValueAsString)).append("");
+        Object pegOffsetTypeValue = getPegOffsetType();
+        String pegOffsetTypeValueAsString = "";
+        pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+        sb.append("pegOffsetType=").append(urlEncode(pegOffsetTypeValueAsString)).append("");
+        Object pegOffsetValueValue = getPegOffsetValue();
+        String pegOffsetValueValueAsString = "";
+        pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+        sb.append("pegOffsetValue=").append(urlEncode(pegOffsetValueValueAsString)).append("");
+        Object peggedPriceValue = getPeggedPrice();
+        String peggedPriceValueAsString = "";
+        peggedPriceValueAsString = peggedPriceValue.toString();
+        sb.append("peggedPrice=").append(urlEncode(peggedPriceValueAsString)).append("");
+        Object expiryReasonValue = getExpiryReason();
+        String expiryReasonValueAsString = "";
+        expiryReasonValueAsString = expiryReasonValue.toString();
+        sb.append("expiryReason=").append(urlEncode(expiryReasonValueAsString)).append("");
         return sb.toString();
     }
 
@@ -698,8 +1135,21 @@ public class DeleteOrderListResponseOrderReportsInner {
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("side");
-        openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("icebergQty");
+        openapiFields.add("preventedMatchId");
+        openapiFields.add("preventedQuantity");
         openapiFields.add("stopPrice");
+        openapiFields.add("strategyId");
+        openapiFields.add("strategyType");
+        openapiFields.add("trailingDelta");
+        openapiFields.add("trailingTime");
+        openapiFields.add("usedSor");
+        openapiFields.add("workingFloor");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("peggedPrice");
+        openapiFields.add("expiryReason");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -723,19 +1173,6 @@ public class DeleteOrderListResponseOrderReportsInner {
                                     + " the empty JSON string",
                                 DeleteOrderListResponseOrderReportsInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!DeleteOrderListResponseOrderReportsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `DeleteOrderListResponseOrderReportsInner` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -838,14 +1275,22 @@ public class DeleteOrderListResponseOrderReportsInner {
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
-        if ((jsonObj.get("selfTradePreventionMode") != null
-                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
-                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
+        if ((jsonObj.get("icebergQty") != null && !jsonObj.get("icebergQty").isJsonNull())
+                && !jsonObj.get("icebergQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("selfTradePreventionMode").toString()));
+                            "Expected the field `icebergQty` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("icebergQty").toString()));
+        }
+        if ((jsonObj.get("preventedQuantity") != null
+                        && !jsonObj.get("preventedQuantity").isJsonNull())
+                && !jsonObj.get("preventedQuantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `preventedQuantity` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("preventedQuantity").toString()));
         }
         if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
                 && !jsonObj.get("stopPrice").isJsonPrimitive()) {
@@ -854,6 +1299,46 @@ public class DeleteOrderListResponseOrderReportsInner {
                             "Expected the field `stopPrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("stopPrice").toString()));
+        }
+        if ((jsonObj.get("workingFloor") != null && !jsonObj.get("workingFloor").isJsonNull())
+                && !jsonObj.get("workingFloor").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `workingFloor` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("workingFloor").toString()));
+        }
+        if ((jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull())
+                && !jsonObj.get("pegPriceType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegPriceType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegPriceType").toString()));
+        }
+        if ((jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull())
+                && !jsonObj.get("pegOffsetType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegOffsetType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegOffsetType").toString()));
+        }
+        if ((jsonObj.get("peggedPrice") != null && !jsonObj.get("peggedPrice").isJsonNull())
+                && !jsonObj.get("peggedPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `peggedPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("peggedPrice").toString()));
+        }
+        if ((jsonObj.get("expiryReason") != null && !jsonObj.get("expiryReason").isJsonNull())
+                && !jsonObj.get("expiryReason").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `expiryReason` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("expiryReason").toString()));
         }
     }
 
@@ -877,7 +1362,7 @@ public class DeleteOrderListResponseOrderReportsInner {
                         public void write(
                                 JsonWriter out, DeleteOrderListResponseOrderReportsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

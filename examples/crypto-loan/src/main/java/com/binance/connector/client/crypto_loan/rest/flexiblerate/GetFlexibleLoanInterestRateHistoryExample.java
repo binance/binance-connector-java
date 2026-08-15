@@ -1,0 +1,51 @@
+package com.binance.connector.client.crypto_loan.rest.flexiblerate;
+
+import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.ApiResponse;
+import com.binance.connector.client.common.configuration.ClientConfiguration;
+import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.crypto_loan.rest.CryptoLoanRestApiUtil;
+import com.binance.connector.client.crypto_loan.rest.api.CryptoLoanRestApi;
+import com.binance.connector.client.crypto_loan.rest.model.GetFlexibleLoanInterestRateHistoryResponse;
+import java.io.IOException;
+
+/** API examples for FlexibleRateApi */
+public class GetFlexibleLoanInterestRateHistoryExample {
+    private CryptoLoanRestApi api;
+
+    public CryptoLoanRestApi getApi() {
+        if (api == null) {
+            ClientConfiguration clientConfiguration =
+                    CryptoLoanRestApiUtil.getClientConfiguration();
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            api = new CryptoLoanRestApi(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * Get Flexible Loan Interest Rate History (USER_DATA)
+     *
+     * <p>Check Flexible Loan interest rate history Weight(IP): 400 Security Type: USER_DATA Notes:
+     * - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90
+     * days. - Time is based on UTC+0.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    public void getFlexibleLoanInterestRateHistoryExample() throws ApiException, IOException {
+        String coin = "USDT";
+        Long recvWindow = 5000L;
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long current = 1L;
+        Long limit = 10L;
+        ApiResponse<GetFlexibleLoanInterestRateHistoryResponse> response =
+                getApi().getFlexibleLoanInterestRateHistory(
+                                coin, recvWindow, startTime, endTime, current, limit);
+        System.out.println(response.getData());
+    }
+}

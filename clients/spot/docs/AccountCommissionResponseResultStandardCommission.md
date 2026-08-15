@@ -2,6 +2,7 @@
 
 # AccountCommissionResponseResultStandardCommission
 
+Standard commission rates on trades from the order.
 
 ## Properties
 

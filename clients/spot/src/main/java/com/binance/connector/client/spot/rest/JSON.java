@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.gsonfire.GsonFireBuilder;
+import io.gsonfire.TypeSelector;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Type;
@@ -37,6 +38,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import okio.ByteString;
 
@@ -58,7 +60,289 @@ public class JSON {
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
-        GsonFireBuilder fireBuilder = new GsonFireBuilder();
+        GsonFireBuilder fireBuilder =
+                new GsonFireBuilder()
+                        .registerTypeSelector(
+                                com.binance.connector.client.spot.rest.model.ExchangeFilters.class,
+                                new TypeSelector<
+                                        com.binance.connector.client.spot.rest.model
+                                                .ExchangeFilters>() {
+                                    @Override
+                                    public Class<
+                                                    ? extends
+                                                            com.binance.connector.client.spot.rest
+                                                                    .model.ExchangeFilters>
+                                            getClassForElement(JsonElement readElement) {
+                                        Map<String, Class> classByDiscriminatorValue =
+                                                new HashMap<String, Class>();
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ALGO_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumAlgoOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ICEBERG_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumIcebergOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ORDER_LISTS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumOrderListsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "exchangeFilters",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeFilters.class);
+                                        return getClassByDiscriminator(
+                                                classByDiscriminatorValue,
+                                                getDiscriminatorValue(readElement, "filterType"));
+                                    }
+                                })
+                        .registerTypeSelector(
+                                com.binance.connector.client.spot.rest.model
+                                        .MyFiltersResponseAssetFiltersInner.class,
+                                new TypeSelector<
+                                        com.binance.connector.client.spot.rest.model
+                                                .MyFiltersResponseAssetFiltersInner>() {
+                                    @Override
+                                    public Class<
+                                                    ? extends
+                                                            com.binance.connector.client.spot.rest
+                                                                    .model
+                                                                    .MyFiltersResponseAssetFiltersInner>
+                                            getClassForElement(JsonElement readElement) {
+                                        Map<String, Class> classByDiscriminatorValue =
+                                                new HashMap<String, Class>();
+                                        classByDiscriminatorValue.put(
+                                                "MAX_ASSET",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxAssetFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "myFiltersResponse_assetFilters_inner",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MyFiltersResponseAssetFiltersInner.class);
+                                        return getClassByDiscriminator(
+                                                classByDiscriminatorValue,
+                                                getDiscriminatorValue(readElement, "filterType"));
+                                    }
+                                })
+                        .registerTypeSelector(
+                                com.binance.connector.client.spot.rest.model
+                                        .MyFiltersResponseExchangeFiltersInner.class,
+                                new TypeSelector<
+                                        com.binance.connector.client.spot.rest.model
+                                                .MyFiltersResponseExchangeFiltersInner>() {
+                                    @Override
+                                    public Class<
+                                                    ? extends
+                                                            com.binance.connector.client.spot.rest
+                                                                    .model
+                                                                    .MyFiltersResponseExchangeFiltersInner>
+                                            getClassForElement(JsonElement readElement) {
+                                        Map<String, Class> classByDiscriminatorValue =
+                                                new HashMap<String, Class>();
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ALGO_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumAlgoOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ICEBERG_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumIcebergOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "EXCHANGE_MAX_NUM_ORDER_LISTS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .ExchangeMaxNumOrderListsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "myFiltersResponse_exchangeFilters_inner",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MyFiltersResponseExchangeFiltersInner
+                                                        .class);
+                                        return getClassByDiscriminator(
+                                                classByDiscriminatorValue,
+                                                getDiscriminatorValue(readElement, "filterType"));
+                                    }
+                                })
+                        .registerTypeSelector(
+                                com.binance.connector.client.spot.rest.model
+                                        .MyFiltersResponseSymbolFiltersInner.class,
+                                new TypeSelector<
+                                        com.binance.connector.client.spot.rest.model
+                                                .MyFiltersResponseSymbolFiltersInner>() {
+                                    @Override
+                                    public Class<
+                                                    ? extends
+                                                            com.binance.connector.client.spot.rest
+                                                                    .model
+                                                                    .MyFiltersResponseSymbolFiltersInner>
+                                            getClassForElement(JsonElement readElement) {
+                                        Map<String, Class> classByDiscriminatorValue =
+                                                new HashMap<String, Class>();
+                                        classByDiscriminatorValue.put(
+                                                "ICEBERG_PARTS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .IcebergPartsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "LOT_SIZE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .LotSizeFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MARKET_LOT_SIZE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MarketLotSizeFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ALGO_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumAlgoOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ICEBERG_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumIcebergOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ORDER_AMENDS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumOrderAmendsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ORDER_LISTS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumOrderListsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_POSITION",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxPositionFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MIN_NOTIONAL",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MinNotionalFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "NOTIONAL",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .NotionalFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "PERCENT_PRICE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .PercentPriceFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "PERCENT_PRICE_BY_SIDE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .PercentPriceBySideFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "PRICE_FILTER",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .PriceFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "TRAILING_DELTA",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .TrailingDeltaFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "T_PLUS_SELL",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .TPlusSellFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "myFiltersResponse_symbolFilters_inner",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MyFiltersResponseSymbolFiltersInner.class);
+                                        return getClassByDiscriminator(
+                                                classByDiscriminatorValue,
+                                                getDiscriminatorValue(readElement, "filterType"));
+                                    }
+                                })
+                        .registerTypeSelector(
+                                com.binance.connector.client.spot.rest.model.SymbolFilters.class,
+                                new TypeSelector<
+                                        com.binance.connector.client.spot.rest.model
+                                                .SymbolFilters>() {
+                                    @Override
+                                    public Class<
+                                                    ? extends
+                                                            com.binance.connector.client.spot.rest
+                                                                    .model.SymbolFilters>
+                                            getClassForElement(JsonElement readElement) {
+                                        Map<String, Class> classByDiscriminatorValue =
+                                                new HashMap<String, Class>();
+                                        classByDiscriminatorValue.put(
+                                                "ICEBERG_PARTS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .IcebergPartsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "LOT_SIZE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .LotSizeFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MARKET_LOT_SIZE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MarketLotSizeFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ALGO_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumAlgoOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ICEBERG_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumIcebergOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ORDERS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumOrdersFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ORDER_AMENDS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumOrderAmendsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_NUM_ORDER_LISTS",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxNumOrderListsFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MAX_POSITION",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MaxPositionFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "MIN_NOTIONAL",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .MinNotionalFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "NOTIONAL",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .NotionalFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "PERCENT_PRICE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .PercentPriceFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "PERCENT_PRICE_BY_SIDE",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .PercentPriceBySideFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "PRICE_FILTER",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .PriceFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "TRAILING_DELTA",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .TrailingDeltaFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "T_PLUS_SELL",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .TPlusSellFilter.class);
+                                        classByDiscriminatorValue.put(
+                                                "symbolFilters",
+                                                com.binance.connector.client.spot.rest.model
+                                                        .SymbolFilters.class);
+                                        return getClassByDiscriminator(
+                                                classByDiscriminatorValue,
+                                                getDiscriminatorValue(readElement, "filterType"));
+                                    }
+                                });
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;
     }
@@ -116,6 +400,9 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
+                        .AccountCommissionResponseSpecialCommission.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
                         .AccountCommissionResponseStandardCommission.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
@@ -166,16 +453,38 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.DepthResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ExchangeFilters
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.ExchangeInfoResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model
-                        .ExchangeInfoResponseExchangeFiltersInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseRateLimitsInner
+                new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseSorsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.ExchangeInfoResponseSymbolsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ExchangeMaxNumAlgoOrdersFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ExchangeMaxNumIcebergOrdersFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ExchangeMaxNumOrderListsFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ExchangeMaxNumOrdersFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ExecutionRulesResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .ExecutionRulesResponseSymbolRulesInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .ExecutionRulesResponseSymbolRulesInnerRulesInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.GetAccountResponse
@@ -190,6 +499,9 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.GetOpenOrdersResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.GetOrderListResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -202,22 +514,79 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.GetTradesResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.GetTradesResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.HistoricalBlockTradesResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.HistoricalBlockTradesResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.HistoricalTradesResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.HistoricalTradesResponseInner
+                new com.binance.connector.client.spot.rest.model.IcebergPartsFilter
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.KlinesItem
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.KlinesItemInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.KlinesResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.LotSizeFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MarketLotSizeFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxAssetFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxNumAlgoOrdersFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxNumIcebergOrdersFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxNumOrderAmendsFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxNumOrderListsFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxNumOrdersFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MaxPositionFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MinNotionalFilter
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.MyAllocationsResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.MyAllocationsResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MyFiltersResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MyFiltersResponseAssetFiltersInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .MyFiltersResponseExchangeFiltersInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MyFiltersResponseRateLimitsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.MyFiltersResponseSymbolFiltersInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.MyPreventedMatchesResponse
@@ -241,7 +610,7 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.NewOrderResponseFillsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.NewUserDataStreamResponse
+                new com.binance.connector.client.spot.rest.model.NotionalFilter
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OpenOrderListResponse
@@ -281,14 +650,15 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponseData
+                new com.binance.connector.client.spot.rest.model
+                        .OrderCancelReplaceResponseCancelResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderCancelReplaceResponseNewOrderResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderCancelReplaceResponseNewOrderResponseFillsInner
                         .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model
-                        .OrderCancelReplaceResponseDataCancelResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model
-                        .OrderCancelReplaceResponseDataNewOrderResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OrderListOcoRequest
                         .CustomTypeAdapterFactory());
@@ -300,6 +670,30 @@ public class JSON {
                         .OrderListOcoResponseOrderReportsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OrderListOcoResponseOrdersInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.OrderListOpoRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.OrderListOpoResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderListOpoResponseOrderReportsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.OrderListOpoResponseOrdersInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.OrderListOpocoRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.OrderListOpocoResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderListOpocoResponseOrderReportsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.OrderListOpocoResponseOrdersInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.OrderListOtoRequest
@@ -348,18 +742,39 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model
+                        .OrderTestResponseSpecialCommissionForOrder.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
                         .OrderTestResponseStandardCommissionForOrder.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model
+                        .OrderTestResponseTaxCommissionForOrder.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.PercentPriceBySideFilter
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.PercentPriceFilter
+                        .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.Permissions
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.spot.rest.model.PutUserDataStreamRequest
+                new com.binance.connector.client.spot.rest.model.PriceFilter
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.RateLimitOrderResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.RateLimitOrderResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.RateLimits
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ReferencePriceCalculationResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.ReferencePriceResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.SorOrderRequest
@@ -377,7 +792,13 @@ public class JSON {
                 new com.binance.connector.client.spot.rest.model.SorOrderTestResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.SymbolFilters
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.Symbols
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.TPlusSellFilter
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.Ticker24hrResponse
@@ -441,6 +862,9 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.TimeResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.spot.rest.model.TrailingDeltaFilter
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.spot.rest.model.UiKlinesItem

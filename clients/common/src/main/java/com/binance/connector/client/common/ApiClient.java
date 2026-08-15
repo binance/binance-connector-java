@@ -48,10 +48,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -89,13 +91,17 @@ public class ApiClient {
 
     private static final int DIFF_TILL_POSITION_INDEX = 1;
 
-    private static final Pattern PATTERN_USED_WEIGHT =
-            Pattern.compile("x-mbx-used-weight-([0-9]+)([shmd])");
-    private static final Pattern PATTERN_ORDER_COUNT =
-            Pattern.compile("x-mbx-order-count-([0-9]+)([smhd])");
+    private static final Map<RateLimitType, Pattern> RATE_LIMIT_PATTERN_MAP =
+            Map.of(
+                    RateLimitType.REQUEST_WEIGHT,
+                            Pattern.compile("x-mbx-used-weight-([0-9]+)([shmd])"),
+                    RateLimitType.ORDERS, Pattern.compile("x-mbx-order-count-([0-9]+)([smhd])"));
 
     private static final String HEADER_TIMEUNIT = "X-MBX-TIME-UNIT";
     private static final String HEADER_API_KEY = "X-MBX-APIKEY";
+
+    private static final String BINANCE_SIGNATURE = "binanceSignature";
+    private static final String BINANCE_API_KEY_ONLY = "binanceApiKeyOnly";
 
     private String basePath = "https://api.binance.com";
     protected List<ServerConfiguration> servers =
@@ -127,6 +133,9 @@ public class ApiClient {
     private HttpLoggingInterceptor loggingInterceptor;
 
     private Gson json;
+
+    private Set<String> forbiddenHeaders =
+            new HashSet<>(Arrays.asList("host", "authorization", "cookie", ":method", ":path"));
 
     public ApiClient(ClientConfiguration configuration) {
         this(configuration, new BinanceAuthenticationFactory(), null);
@@ -180,6 +189,13 @@ public class ApiClient {
             }
         }
 
+        if (configuration.getCustomHeaders() != null
+                && !configuration.getCustomHeaders().isEmpty()) {
+            Interceptor customHeadersInterceptor =
+                    getCustomHeadersInterceptor(configuration.getCustomHeaders());
+            builder.addInterceptor(customHeadersInterceptor);
+        }
+
         // Compression is enabled by default, so add interceptor to remove gzip only if config is
         // disabled
         if (!configuration.getCompression()) {
@@ -199,18 +215,17 @@ public class ApiClient {
 
         SignatureConfiguration signatureConfiguration = configuration.getSignatureConfiguration();
         if (signatureConfiguration != null) {
-            Authentication authentication =
-                    binanceAuthenticationFactory.getAuthentication(signatureConfiguration);
-            if (authentication != null) {
-                authentications.put("binanceSignature", authentication);
-            }
-
-            Authentication binanceApiKeyOnly =
-                    (queryParams, headerParams, cookieParams, payload, method, uri) -> {
-                        headerParams.put(HEADER_API_KEY, signatureConfiguration.getApiKey());
-                    };
-            authentications.put("binanceApiKeyOnly", binanceApiKeyOnly);
+            Map<String, Authentication> customAuthentications = getCustomAuthentications(binanceAuthenticationFactory, signatureConfiguration);
+            authentications.putAll(customAuthentications);
         }
+
+        Authentication binanceApiKeyOnly =
+                (queryParams, headerParams, cookieParams, payload, method, uri) -> {
+                    if (signatureConfiguration != null && signatureConfiguration.getApiKey() != null) {
+                        headerParams.put(HEADER_API_KEY, signatureConfiguration.getApiKey());
+                    }
+                };
+        authentications.put(BINANCE_API_KEY_ONLY, binanceApiKeyOnly);
     }
 
     private void init() {
@@ -233,6 +248,26 @@ public class ApiClient {
 
     public void setJson(Gson json) {
         this.json = json;
+    }
+
+    public Interceptor getCustomHeadersInterceptor(Map<String, String> customHeaders) {
+        return chain -> {
+            Request request = chain.request();
+            Request.Builder newBuilder = request.newBuilder();
+            for (String headerName : customHeaders.keySet()) {
+                String headerValue = customHeaders.get(headerName);
+                if (!validateHeader(headerName, headerValue)) {
+                    throw new ApiException(
+                            "Invalid header "
+                                    + headerName
+                                    + ", it is forbidden or invalid (contains CR/LF)");
+                }
+
+                newBuilder.addHeader(headerName, headerValue);
+            }
+
+            return chain.proceed(newBuilder.build());
+        };
     }
 
     public Interceptor getRetryInterceptor(Integer retryCount, Integer retryBackoff) {
@@ -474,6 +509,21 @@ public class ApiClient {
      * @return Map of authentication objects
      */
     public Map<String, Authentication> getAuthentications() {
+        return authentications;
+    }
+
+    /**
+     * Get custom authentications to be added (key: authentication name, value: authentication).
+     *
+     * @return Map of authentication objects
+     */
+    protected Map<String, Authentication> getCustomAuthentications(BinanceAuthenticationFactory binanceAuthenticationFactory, SignatureConfiguration signatureConfiguration) {
+        Map<String, Authentication> authentications = new HashMap<>();
+        Authentication authentication =
+                binanceAuthenticationFactory.getAuthentication(signatureConfiguration);
+        if (authentication != null) {
+            authentications.put(BINANCE_SIGNATURE, authentication);
+        }
         return authentications;
     }
 
@@ -1177,8 +1227,7 @@ public class ApiClient {
         try {
             Response response = call.execute();
             T data = handleResponse(response, returnType);
-            Map<RateLimitType, RateLimit> rateLimit =
-                    getRateLimit(response.code(), response.headers());
+            Map<RateLimitType, ? extends RateLimit> rateLimit = getRateLimit(response.code(), response.headers());
             return new ApiResponse<T>(
                     response.code(), response.headers().toMultimap(), data, rateLimit);
         } catch (IOException e) {
@@ -1262,7 +1311,7 @@ public class ApiClient {
             Map<String, String> headerParams,
             Map<String, String> cookieParams,
             Map<String, Object> formParams,
-            String[] authNames)
+            Set<String> authNames)
             throws ApiException {
         Request request =
                 buildRequest(
@@ -1349,7 +1398,7 @@ public class ApiClient {
             Map<String, String> headerParams,
             Map<String, String> cookieParams,
             Map<String, Object> formParams,
-            String[] authNames)
+            Set<String> authNames)
             throws ApiException {
         final String url = buildUrl(baseUrl, path, queryParams, collectionQueryParams);
 
@@ -1381,6 +1430,8 @@ public class ApiClient {
         }
 
         List<Pair> updatedQueryParams = new ArrayList<>(queryParams);
+
+        authNames.add(BINANCE_API_KEY_ONLY);
 
         // update parameters with authentication settings
         updateParamsForAuth(
@@ -1520,7 +1571,7 @@ public class ApiClient {
      * @throws com.binance.connector.client.common.ApiException If fails to update the parameters
      */
     public void updateParamsForAuth(
-            String[] authNames,
+            Set<String> authNames,
             List<Pair> queryParams,
             Map<String, String> headerParams,
             Map<String, String> cookieParams,
@@ -1531,6 +1582,11 @@ public class ApiClient {
         for (String authName : authNames) {
             Authentication auth = authentications.get(authName);
             if (auth == null) {
+                if (isRequiredAuth(authName)) {
+                    throw new RuntimeException(
+                            "Request is signed, please add signatureConfiguration to"
+                                    + " clientConfiguration");
+                }
                 throw new RuntimeException("Authentication undefined: " + authName);
             }
             try {
@@ -1539,6 +1595,10 @@ public class ApiClient {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    protected boolean isRequiredAuth(String authName) {
+        return BINANCE_SIGNATURE.equals(authName);
     }
 
     /**
@@ -1774,24 +1834,27 @@ public class ApiClient {
         return "";
     }
 
-    private Map<RateLimitType, RateLimit> getRateLimit(Integer responseCode, Headers headers) {
+    protected Map<RateLimitType, ? extends RateLimit> getRateLimit(Integer responseCode, Headers headers) {
         HashMap<RateLimitType, RateLimit> rateLimitMap = new HashMap<>();
         Integer retryAfter = null;
         if (Arrays.asList(HTTP_TEA_POT, HTTP_TOO_MANY_REQS).contains(responseCode)) {
-            retryAfter = Integer.valueOf(headers.get("retry-after"));
+            String retryAfterHeaderVal = headers.get("retry-after");
+            if (retryAfterHeaderVal != null) {
+                retryAfter = Integer.valueOf(retryAfterHeaderVal);
+            }
         }
         for (String name : headers.names()) {
             if (name.startsWith("x-mbx-used-weight-")) {
                 RateLimit usedWeightRateLimit =
                         getRateLimitFromHeader(
-                                name, headers.get(name), PATTERN_USED_WEIGHT, retryAfter);
+                                name, headers.get(name), RateLimitType.REQUEST_WEIGHT, retryAfter);
                 rateLimitMap.put(RateLimitType.REQUEST_WEIGHT, usedWeightRateLimit);
             }
 
             if (name.startsWith("x-mbx-order-count-")) {
                 RateLimit orderCountRateLimit =
                         getRateLimitFromHeader(
-                                name, headers.get(name), PATTERN_ORDER_COUNT, retryAfter);
+                                name, headers.get(name), RateLimitType.ORDERS, retryAfter);
                 rateLimitMap.put(RateLimitType.ORDERS, orderCountRateLimit);
             }
         }
@@ -1799,11 +1862,11 @@ public class ApiClient {
     }
 
     private RateLimit getRateLimitFromHeader(
-            String headerName, String value, Pattern pattern, Integer retryAfter) {
+            String headerName, String value, RateLimitType rateLimitType, Integer retryAfter) {
         RateLimit rateLimit = new RateLimit();
-        rateLimit.setRateLimitType(RateLimitType.REQUEST_WEIGHT);
+        rateLimit.setRateLimitType(rateLimitType);
 
-        Matcher usedWeightMatcher = pattern.matcher(headerName);
+        Matcher usedWeightMatcher = RATE_LIMIT_PATTERN_MAP.get(rateLimitType).matcher(headerName);
         if (usedWeightMatcher.find()) {
             String intervalCount = usedWeightMatcher.group(1);
             String intervalType = usedWeightMatcher.group(2);
@@ -1814,5 +1877,22 @@ public class ApiClient {
         rateLimit.setCount(Integer.valueOf(value));
 
         return rateLimit;
+    }
+
+    private Boolean validateHeader(String name, String value) {
+        if (forbiddenHeaders.contains(name)) {
+            return false;
+        }
+
+        return !value.contains("\n") && !value.contains("\t");
+    }
+
+    private String[] append(String[] array, String value) {
+        if (array == null) {
+            return new String[] {value};
+        }
+        String[] newArray = Arrays.copyOf(array, array.length + 1);
+        newArray[newArray.length - 1] = value;
+        return newArray;
     }
 }

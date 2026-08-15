@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryCurrentMarginOrderCountUsageResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentMarginOrderCountUsageResponseInner {
     public static final String SERIALIZED_NAME_RATE_LIMIT_TYPE = "rateLimitType";
 
@@ -77,7 +75,7 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
     }
 
     /**
-     * Get rateLimitType
+     * rate Limit Type.
      *
      * @return rateLimitType
      */
@@ -97,7 +95,7 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
     }
 
     /**
-     * Get interval
+     * interval.
      *
      * @return interval
      */
@@ -117,7 +115,7 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
     }
 
     /**
-     * Get intervalNum
+     * interval Num.
      *
      * @return intervalNum
      */
@@ -137,7 +135,7 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
     }
 
     /**
-     * Get limit
+     * limit.
      *
      * @return limit
      */
@@ -157,7 +155,7 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
     }
 
     /**
-     * Get count
+     * count.
      *
      * @return count
      */
@@ -292,20 +290,6 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryCurrentMarginOrderCountUsageResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryCurrentMarginOrderCountUsageResponseInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("rateLimitType") != null && !jsonObj.get("rateLimitType").isJsonNull())
                 && !jsonObj.get("rateLimitType").isJsonPrimitive()) {
@@ -347,7 +331,7 @@ public class QueryCurrentMarginOrderCountUsageResponseInner {
                                 JsonWriter out,
                                 QueryCurrentMarginOrderCountUsageResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

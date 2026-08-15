@@ -1,5 +1,111 @@
 # Changelog
 
+## 6.0.0 - 2026-07-29
+
+### Changed (6)
+
+- Modified parameter `asset`:
+  - enum added: `WBETH`, `BETH`
+  - affected methods:
+    - `redeemEth()` (`POST /sapi/v1/eth-staking/eth/redeem`)
+- Modified parameter `positionId`:
+  - type `integer` → `string`
+  - affected methods:
+    - `getOnChainYieldsLockedRedemptionRecord()` (`GET /sapi/v1/onchain-yields/locked/history/redemptionRecord`)
+    - `getOnChainYieldsLockedProductPosition()` (`GET /sapi/v1/onchain-yields/locked/position`)
+- Modified parameter `redeemTo`:
+  - enum added: `SPOT`, `FLEXIBLE`
+  - affected methods:
+    - `setOnChainYieldsLockedProductRedeemOption()` (`POST /sapi/v1/onchain-yields/locked/setRedeemOption`)
+- Modified parameter `redeemTo`:
+  - enum added: `SPOT`, `FLEXIBLE`
+  - affected methods:
+    - `subscribeOnChainYieldsLockedProduct()` (`POST /sapi/v1/onchain-yields/locked/subscribe`)
+- Modified parameter `sourceAccount`:
+  - enum added: `SPOT`, `FUND`, `ALL`
+  - affected methods:
+    - `subscribeOnChainYieldsLockedProduct()` (`POST /sapi/v1/onchain-yields/locked/subscribe`)
+- Modified parameter `type`:
+  - enum added: `CLAIM`, `DISTRIBUTE`
+  - affected methods:
+    - `getBoostRewardsHistory()` (`GET /sapi/v1/sol-staking/sol/history/boostRewardsHistory`)
+
+## 5.0.0 - 2026-05-04
+
+### Changed (6)
+
+- Added parameter `purchaseId`
+  - affected methods:
+    - `getEthStakingHistory()` (`GET /sapi/v1/eth-staking/eth/history/stakingHistory`)
+    - `getSolStakingHistory()` (`GET /sapi/v1/sol-staking/sol/history/stakingHistory`)
+- Added parameter `redeemId`
+  - affected methods:
+    - `getEthRedemptionHistory()` (`GET /sapi/v1/eth-staking/eth/history/redemptionHistory`)
+    - `getSolRedemptionHistory()` (`GET /sapi/v1/sol-staking/sol/history/redemptionHistory`)
+- Modified response for `redeemEth()` (`POST /sapi/v1/eth-staking/eth/redeem`):
+  - property `redeemId` added
+
+- Modified response for `redeemSol()` (`POST /sapi/v1/sol-staking/sol/redeem`):
+  - property `redeemId` added
+
+- Modified response for `subscribeSolStaking()` (`POST /sapi/v1/sol-staking/sol/stake`):
+  - property `purchaseId` added
+
+- Modified response for `subscribeEthStaking()` (`POST /sapi/v2/eth-staking/eth/stake`):
+  - property `purchaseId` added
+
+## 4.0.1 - 2026-04-30
+
+- Update `binance/common` module to version `2.4.2`.
+
+## 4.0.0 - 2025-12-16
+
+### Changed (1)
+
+- Modified response for `getCurrentEthStakingQuota()` (`GET /sapi/v1/eth-staking/eth/quota`):
+  - property `calculating` added
+  - property `minStakeAmount` added
+  - property `redeemPeriod` added
+  - property `stakeable` added
+  - property `commissionFee` added
+  - property `redeemable` added
+  - property `minRedeemAmount` added
+
+## 3.0.0 - 2025-09-22
+
+### Added (3)
+
+- `getSoftStakingProductList()` (`GET /sapi/v1/soft-staking/list`)
+- `getSoftStakingRewardsHistory()` (`GET /sapi/v1/soft-staking/history/rewardsRecord`)
+- `setSoftStaking()` (`GET /sapi/v1/soft-staking/set`)
+
+## 2.1.1 - 2025-08-07
+
+- Update `binance/common` module to version `2.0.0`.
+- Add `Content-Type` header only if there is a body.
+
+## 2.1.0 - 2025-07-08
+
+- Update `binance/common` module to version `1.3.0`.
+- Added `customHeaders` configuration.
+
+## 2.0.0 - 2025-07-01
+
+### Added (12)
+
+- `getOnChainYieldsLockedPersonalLeftQuota()` (`GET /sapi/v1/onchain-yields/locked/personalLeftQuota`)
+- `getOnChainYieldsLockedProductList()` (`GET /sapi/v1/onchain-yields/locked/list`)
+- `getOnChainYieldsLockedProductPosition()` (`GET /sapi/v1/onchain-yields/locked/position`)
+- `getOnChainYieldsLockedRedemptionRecord()` (`GET /sapi/v1/onchain-yields/locked/history/redemptionRecord`)
+- `getOnChainYieldsLockedRewardsHistory()` (`GET /sapi/v1/onchain-yields/locked/history/rewardsRecord`)
+- `getOnChainYieldsLockedSubscriptionPreview()` (`GET /sapi/v1/onchain-yields/locked/subscriptionPreview`)
+- `getOnChainYieldsLockedSubscriptionRecord()` (`GET /sapi/v1/onchain-yields/locked/history/subscriptionRecord`)
+- `onChainYieldsAccount()` (`GET /sapi/v1/onchain-yields/account`)
+- `redeemOnChainYieldsLockedProduct()` (`POST /sapi/v1/onchain-yields/locked/redeem`)
+- `setOnChainYieldsLockedAutoSubscribe()` (`POST /sapi/v1/onchain-yields/locked/setAutoSubscribe`)
+- `setOnChainYieldsLockedProductRedeemOption()` (`POST /sapi/v1/onchain-yields/locked/setRedeemOption`)
+- `subscribeOnChainYieldsLockedProduct()` (`POST /sapi/v1/onchain-yields/locked/subscribe`)
+
 ## 1.1.0 - 2025-05-02
 
 - Update `binance/common` module to version `1.1.0`.

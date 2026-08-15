@@ -1,6 +1,6 @@
 /*
- * Binance Copy Trading REST API
- * OpenAPI Specification for the Binance Copy Trading REST API
+ * Copy Trading REST API
+ * Automate lead trading via the Copy Trading API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.copy_trading.rest.model.GetFuturesLeadTraderStatusResponse;
 import com.binance.connector.client.copy_trading.rest.model.GetFuturesLeadTradingSymbolWhitelistResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -77,14 +78,14 @@ public class FutureCopyTradingApiTest {
     }
 
     /**
-     * Get Futures Lead Trader Status(TRADE)
+     * Get Futures Lead Trader Status (TRADE)
      *
-     * <p>Get Futures Lead Trader Status Weight: 20
+     * <p>Get Futures Lead Trader Status Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFuturesLeadTraderStatusTest() throws ApiException, CryptoException {
+    public void getFuturesLeadTraderStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesLeadTraderStatusResponse> response =
                 api.getFuturesLeadTraderStatus(recvWindow);
@@ -107,14 +108,15 @@ public class FutureCopyTradingApiTest {
     }
 
     /**
-     * Get Futures Lead Trading Symbol Whitelist(USER_DATA)
+     * Get Futures Lead Trading Symbol Whitelist (USER_DATA)
      *
-     * <p>Get Futures Lead Trading Symbol Whitelist Weight: 20
+     * <p>Get Futures Lead Trading Symbol Whitelist Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFuturesLeadTradingSymbolWhitelistTest() throws ApiException, CryptoException {
+    public void getFuturesLeadTradingSymbolWhitelistTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetFuturesLeadTradingSymbolWhitelistResponse> response =
                 api.getFuturesLeadTradingSymbolWhitelist(recvWindow);
@@ -129,10 +131,12 @@ public class FutureCopyTradingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/copyTrading/futures/leadSymbol", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/copyTrading/futures/leadSymbol", actualRequest.url().encodedPath());
     }
 }

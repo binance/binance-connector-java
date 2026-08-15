@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationResponseResultAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -132,7 +132,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -152,7 +152,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get walletBalance
+     * wallet balance
      *
      * @return walletBalance
      */
@@ -172,7 +172,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -192,7 +192,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get marginBalance
+     * margin balance
      *
      * @return marginBalance
      */
@@ -212,7 +212,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -232,7 +232,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -252,7 +252,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get positionInitialMargin
+     * initial margin required for positions with current mark price
      *
      * @return positionInitialMargin
      */
@@ -273,7 +273,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * initial margin required for open orders with current mark price
      *
      * @return openOrderInitialMargin
      */
@@ -294,7 +294,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get crossWalletBalance
+     * crossed wallet balance
      *
      * @return crossWalletBalance
      */
@@ -314,7 +314,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get crossUnPnl
+     * unrealized profit of crossed positions
      *
      * @return crossUnPnl
      */
@@ -334,7 +334,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get availableBalance
+     * available balance, only for USDT asset
      *
      * @return availableBalance
      */
@@ -354,7 +354,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * maximum amount for transfer out, only for USDT asset
      *
      * @return maxWithdrawAmount
      */
@@ -374,7 +374,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get marginAvailable
+     * whether the asset can be used as margin in Multi-Assets mode
      *
      * @return marginAvailable
      */
@@ -394,7 +394,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * reserved property, please ignore
      *
      * @return updateTime
      */
@@ -848,7 +848,7 @@ public class AccountInformationResponseResultAssetsInner extends BaseDTO {
                         public void write(
                                 JsonWriter out, AccountInformationResponseResultAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

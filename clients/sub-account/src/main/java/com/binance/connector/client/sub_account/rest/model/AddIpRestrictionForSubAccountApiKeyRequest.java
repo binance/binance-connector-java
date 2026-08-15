@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AddIpRestrictionForSubAccountApiKeyRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AddIpRestrictionForSubAccountApiKeyRequest {
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
@@ -119,7 +117,8 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
     }
 
     /**
-     * Get status
+     * IP Restriction status. 1 &#x3D; IP Unrestricted. 2 &#x3D; Restrict access to trusted IPs
+     * only.
      *
      * @return status
      */
@@ -140,7 +139,7 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
     }
 
     /**
-     * Get ipAddress
+     * Insert static IP in batch, separated by commas.
      *
      * @return ipAddress
      */
@@ -160,11 +159,12 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -297,20 +297,6 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AddIpRestrictionForSubAccountApiKeyRequest.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AddIpRestrictionForSubAccountApiKeyRequest` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField :
                 AddIpRestrictionForSubAccountApiKeyRequest.openapiRequiredFields) {
@@ -366,7 +352,7 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
                         public void write(
                                 JsonWriter out, AddIpRestrictionForSubAccountApiKeyRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

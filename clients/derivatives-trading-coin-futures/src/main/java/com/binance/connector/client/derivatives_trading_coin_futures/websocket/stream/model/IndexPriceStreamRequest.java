@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** IndexPriceStreamRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndexPriceStreamRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -48,14 +49,14 @@ public class IndexPriceStreamRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_PAIR = "pair";
 
     @SerializedName(SERIALIZED_NAME_PAIR)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String pair;
 
     public static final String SERIALIZED_NAME_UPDATE_SPEED = "updateSpeed";
 
     @SerializedName(SERIALIZED_NAME_UPDATE_SPEED)
     @jakarta.annotation.Nullable
-    private String updateSpeed;
+    private UpdateSpeed updateSpeed;
 
     public IndexPriceStreamRequest() {}
 
@@ -65,7 +66,7 @@ public class IndexPriceStreamRequest extends BaseDTO {
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
@@ -78,27 +79,27 @@ public class IndexPriceStreamRequest extends BaseDTO {
         this.id = id;
     }
 
-    public IndexPriceStreamRequest pair(@jakarta.annotation.Nonnull String pair) {
+    public IndexPriceStreamRequest pair(@jakarta.annotation.Nullable String pair) {
         this.pair = pair;
         return this;
     }
 
     /**
-     * Get pair
+     * The pair parameter
      *
      * @return pair
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getPair() {
         return pair;
     }
 
-    public void setPair(@jakarta.annotation.Nonnull String pair) {
+    public void setPair(@jakarta.annotation.Nullable String pair) {
         this.pair = pair;
     }
 
-    public IndexPriceStreamRequest updateSpeed(@jakarta.annotation.Nullable String updateSpeed) {
+    public IndexPriceStreamRequest updateSpeed(
+            @jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
         return this;
     }
@@ -109,11 +110,12 @@ public class IndexPriceStreamRequest extends BaseDTO {
      * @return updateSpeed
      */
     @jakarta.annotation.Nullable
-    public String getUpdateSpeed() {
+    @Valid
+    public UpdateSpeed getUpdateSpeed() {
         return updateSpeed;
     }
 
-    public void setUpdateSpeed(@jakarta.annotation.Nullable String updateSpeed) {
+    public void setUpdateSpeed(@jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
     }
 
@@ -161,7 +163,7 @@ public class IndexPriceStreamRequest extends BaseDTO {
             String pairValueAsString = pairValue.toString();
             valMap.put("pair", pairValueAsString);
         }
-        String updateSpeedValue = getUpdateSpeed();
+        UpdateSpeed updateSpeedValue = getUpdateSpeed();
         if (updateSpeedValue != null) {
             String updateSpeedValueAsString = updateSpeedValue.toString();
             valMap.put("updateSpeed", updateSpeedValueAsString);
@@ -221,7 +223,6 @@ public class IndexPriceStreamRequest extends BaseDTO {
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("pair");
     }
 
     /**
@@ -253,16 +254,6 @@ public class IndexPriceStreamRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : IndexPriceStreamRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
                 && !jsonObj.get("id").isJsonPrimitive()) {
@@ -272,20 +263,17 @@ public class IndexPriceStreamRequest extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
         }
-        if (!jsonObj.get("pair").isJsonPrimitive()) {
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `pair` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("pair").toString()));
         }
-        if ((jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull())
-                && !jsonObj.get("updateSpeed").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `updateSpeed` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("updateSpeed").toString()));
+        // validate the optional field `updateSpeed`
+        if (jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull()) {
+            UpdateSpeed.validateJsonElement(jsonObj.get("updateSpeed"));
         }
     }
 
@@ -306,7 +294,7 @@ public class IndexPriceStreamRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, IndexPriceStreamRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

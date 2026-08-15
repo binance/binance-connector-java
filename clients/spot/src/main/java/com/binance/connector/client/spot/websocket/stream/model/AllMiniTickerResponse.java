@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,7 +15,6 @@ package com.binance.connector.client.spot.websocket.stream.model;
 import com.binance.connector.client.spot.websocket.stream.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -36,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** AllMiniTickerResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllMiniTickerResponse extends ArrayList<AllMiniTickerResponseInner> {
     public AllMiniTickerResponse() {}
 
@@ -154,7 +153,7 @@ public class AllMiniTickerResponse extends ArrayList<AllMiniTickerResponseInner>
                         @Override
                         public void write(JsonWriter out, AllMiniTickerResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

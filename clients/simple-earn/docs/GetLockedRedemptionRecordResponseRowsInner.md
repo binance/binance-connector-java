@@ -15,7 +15,7 @@
 |**amount** | **String** |  |  [optional] |
 |**originalAmount** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
-|**deliverDate** | **String** |  |  [optional] |
+|**deliverDate** | **Long** |  |  [optional] |
 |**lossAmount** | **String** |  |  [optional] |
 |**isComplete** | **Boolean** |  |  [optional] |
 |**rewardAsset** | **String** |  |  [optional] |

@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AggTradesResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AggTradesResponseInner {
     public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
 
@@ -94,7 +92,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get aLowerCase
+     * Aggregate tradeId
      *
      * @return aLowerCase
      */
@@ -113,7 +111,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get pLowerCase
+     * Price
      *
      * @return pLowerCase
      */
@@ -132,7 +130,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get qLowerCase
+     * Quantity
      *
      * @return qLowerCase
      */
@@ -151,7 +149,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get fLowerCase
+     * First tradeId
      *
      * @return fLowerCase
      */
@@ -170,7 +168,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get lLowerCase
+     * Last tradeId
      *
      * @return lLowerCase
      */
@@ -189,7 +187,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get T
+     * Timestamp
      *
      * @return T
      */
@@ -208,7 +206,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get mLowerCase
+     * Was the buyer the maker?
      *
      * @return mLowerCase
      */
@@ -227,7 +225,7 @@ public class AggTradesResponseInner {
     }
 
     /**
-     * Get M
+     * Was the trade the best price match?
      *
      * @return M
      */
@@ -374,18 +372,6 @@ public class AggTradesResponseInner {
                                 AggTradesResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AggTradesResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AggTradesResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("p") != null && !jsonObj.get("p").isJsonNull())
                 && !jsonObj.get("p").isJsonPrimitive()) {
@@ -421,7 +407,7 @@ public class AggTradesResponseInner {
                         @Override
                         public void write(JsonWriter out, AggTradesResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

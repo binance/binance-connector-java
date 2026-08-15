@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OrderListOcoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOcoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -103,7 +101,7 @@ public class OrderListOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_ABOVE_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private Double aboveTimeInForce;
+    private AboveTimeInForce aboveTimeInForce;
 
     public static final String SERIALIZED_NAME_ABOVE_STRATEGY_ID = "aboveStrategyId";
 
@@ -116,6 +114,24 @@ public class OrderListOcoRequest {
     @SerializedName(SERIALIZED_NAME_ABOVE_STRATEGY_TYPE)
     @jakarta.annotation.Nullable
     private Integer aboveStrategyType;
+
+    public static final String SERIALIZED_NAME_ABOVE_PEG_PRICE_TYPE = "abovePegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_ABOVE_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private AbovePegPriceType abovePegPriceType;
+
+    public static final String SERIALIZED_NAME_ABOVE_PEG_OFFSET_TYPE = "abovePegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_ABOVE_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private AbovePegOffsetType abovePegOffsetType;
+
+    public static final String SERIALIZED_NAME_ABOVE_PEG_OFFSET_VALUE = "abovePegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_ABOVE_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer abovePegOffsetValue;
 
     public static final String SERIALIZED_NAME_BELOW_TYPE = "belowType";
 
@@ -171,6 +187,24 @@ public class OrderListOcoRequest {
     @jakarta.annotation.Nullable
     private Integer belowStrategyType;
 
+    public static final String SERIALIZED_NAME_BELOW_PEG_PRICE_TYPE = "belowPegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_BELOW_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private BelowPegPriceType belowPegPriceType;
+
+    public static final String SERIALIZED_NAME_BELOW_PEG_OFFSET_TYPE = "belowPegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_BELOW_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private BelowPegOffsetType belowPegOffsetType;
+
+    public static final String SERIALIZED_NAME_BELOW_PEG_OFFSET_VALUE = "belowPegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_BELOW_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer belowPegOffsetValue;
+
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
@@ -188,7 +222,7 @@ public class OrderListOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderListOcoRequest() {}
 
@@ -219,7 +253,10 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order
+     * list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is
+     * filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the
+     * &#x60;aboveClientOrderId&#x60; and the &#x60;belowClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -259,7 +296,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get quantity
+     * Quantity for both orders of the order list.
      *
      * @return quantity
      */
@@ -302,7 +339,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveClientOrderId
+     * Arbitrary unique ID among open orders for the above order. Automatically generated if not
+     * sent.
      *
      * @return aboveClientOrderId
      */
@@ -321,7 +359,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveIcebergQty
+     * Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;.
      *
      * @return aboveIcebergQty
      */
@@ -340,7 +378,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get abovePrice
+     * Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
+     * or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
      *
      * @return abovePrice
      */
@@ -360,7 +399,9 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveStopPrice
+     * Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;aboveStopPrice&#x60; or
+     * &#x60;aboveTrailingDelta&#x60; or both, must be specified.
      *
      * @return aboveStopPrice
      */
@@ -381,7 +422,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveTrailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return aboveTrailingDelta
      */
@@ -395,7 +436,7 @@ public class OrderListOcoRequest {
     }
 
     public OrderListOcoRequest aboveTimeInForce(
-            @jakarta.annotation.Nullable Double aboveTimeInForce) {
+            @jakarta.annotation.Nullable AboveTimeInForce aboveTimeInForce) {
         this.aboveTimeInForce = aboveTimeInForce;
         return this;
     }
@@ -407,11 +448,12 @@ public class OrderListOcoRequest {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public Double getAboveTimeInForce() {
+    public AboveTimeInForce getAboveTimeInForce() {
         return aboveTimeInForce;
     }
 
-    public void setAboveTimeInForce(@jakarta.annotation.Nullable Double aboveTimeInForce) {
+    public void setAboveTimeInForce(
+            @jakarta.annotation.Nullable AboveTimeInForce aboveTimeInForce) {
         this.aboveTimeInForce = aboveTimeInForce;
     }
 
@@ -421,7 +463,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveStrategyId
+     * Arbitrary numeric value identifying the above order within an order strategy.
      *
      * @return aboveStrategyId
      */
@@ -441,7 +483,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveStrategyType
+     * Arbitrary numeric value identifying the above order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return aboveStrategyType
      */
@@ -452,6 +495,70 @@ public class OrderListOcoRequest {
 
     public void setAboveStrategyType(@jakarta.annotation.Nullable Integer aboveStrategyType) {
         this.aboveStrategyType = aboveStrategyType;
+    }
+
+    public OrderListOcoRequest abovePegPriceType(
+            @jakarta.annotation.Nullable AbovePegPriceType abovePegPriceType) {
+        this.abovePegPriceType = abovePegPriceType;
+        return this;
+    }
+
+    /**
+     * Get abovePegPriceType
+     *
+     * @return abovePegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AbovePegPriceType getAbovePegPriceType() {
+        return abovePegPriceType;
+    }
+
+    public void setAbovePegPriceType(
+            @jakarta.annotation.Nullable AbovePegPriceType abovePegPriceType) {
+        this.abovePegPriceType = abovePegPriceType;
+    }
+
+    public OrderListOcoRequest abovePegOffsetType(
+            @jakarta.annotation.Nullable AbovePegOffsetType abovePegOffsetType) {
+        this.abovePegOffsetType = abovePegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get abovePegOffsetType
+     *
+     * @return abovePegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AbovePegOffsetType getAbovePegOffsetType() {
+        return abovePegOffsetType;
+    }
+
+    public void setAbovePegOffsetType(
+            @jakarta.annotation.Nullable AbovePegOffsetType abovePegOffsetType) {
+        this.abovePegOffsetType = abovePegOffsetType;
+    }
+
+    public OrderListOcoRequest abovePegOffsetValue(
+            @jakarta.annotation.Nullable Integer abovePegOffsetValue) {
+        this.abovePegOffsetValue = abovePegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get abovePegOffsetValue
+     *
+     * @return abovePegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getAbovePegOffsetValue() {
+        return abovePegOffsetValue;
+    }
+
+    public void setAbovePegOffsetValue(@jakarta.annotation.Nullable Integer abovePegOffsetValue) {
+        this.abovePegOffsetValue = abovePegOffsetValue;
     }
 
     public OrderListOcoRequest belowType(@jakarta.annotation.Nonnull BelowType belowType) {
@@ -482,7 +589,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowClientOrderId
+     * Arbitrary unique ID among open orders for the below order. Automatically generated if not
+     * sent.
      *
      * @return belowClientOrderId
      */
@@ -501,7 +609,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowIcebergQty
+     * Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;.
      *
      * @return belowIcebergQty
      */
@@ -520,7 +628,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowPrice
+     * Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
+     * or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
      *
      * @return belowPrice
      */
@@ -540,7 +649,9 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowStopPrice
+     * Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;belowStopPrice&#x60; or
+     * &#x60;belowTrailingDelta&#x60; or both, must be specified.
      *
      * @return belowStopPrice
      */
@@ -561,7 +672,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowTrailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return belowTrailingDelta
      */
@@ -602,7 +713,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowStrategyId
+     * Arbitrary numeric value identifying the below order within an order strategy.
      *
      * @return belowStrategyId
      */
@@ -622,7 +733,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowStrategyType
+     * Arbitrary numeric value identifying the below order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return belowStrategyType
      */
@@ -633,6 +745,70 @@ public class OrderListOcoRequest {
 
     public void setBelowStrategyType(@jakarta.annotation.Nullable Integer belowStrategyType) {
         this.belowStrategyType = belowStrategyType;
+    }
+
+    public OrderListOcoRequest belowPegPriceType(
+            @jakarta.annotation.Nullable BelowPegPriceType belowPegPriceType) {
+        this.belowPegPriceType = belowPegPriceType;
+        return this;
+    }
+
+    /**
+     * Get belowPegPriceType
+     *
+     * @return belowPegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public BelowPegPriceType getBelowPegPriceType() {
+        return belowPegPriceType;
+    }
+
+    public void setBelowPegPriceType(
+            @jakarta.annotation.Nullable BelowPegPriceType belowPegPriceType) {
+        this.belowPegPriceType = belowPegPriceType;
+    }
+
+    public OrderListOcoRequest belowPegOffsetType(
+            @jakarta.annotation.Nullable BelowPegOffsetType belowPegOffsetType) {
+        this.belowPegOffsetType = belowPegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get belowPegOffsetType
+     *
+     * @return belowPegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public BelowPegOffsetType getBelowPegOffsetType() {
+        return belowPegOffsetType;
+    }
+
+    public void setBelowPegOffsetType(
+            @jakarta.annotation.Nullable BelowPegOffsetType belowPegOffsetType) {
+        this.belowPegOffsetType = belowPegOffsetType;
+    }
+
+    public OrderListOcoRequest belowPegOffsetValue(
+            @jakarta.annotation.Nullable Integer belowPegOffsetValue) {
+        this.belowPegOffsetValue = belowPegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get belowPegOffsetValue
+     *
+     * @return belowPegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getBelowPegOffsetValue() {
+        return belowPegOffsetValue;
+    }
+
+    public void setBelowPegOffsetValue(@jakarta.annotation.Nullable Integer belowPegOffsetValue) {
+        this.belowPegOffsetValue = belowPegOffsetValue;
     }
 
     public OrderListOcoRequest newOrderRespType(
@@ -679,22 +855,24 @@ public class OrderListOcoRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public OrderListOcoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderListOcoRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -720,6 +898,9 @@ public class OrderListOcoRequest {
                 && Objects.equals(this.aboveTimeInForce, orderListOcoRequest.aboveTimeInForce)
                 && Objects.equals(this.aboveStrategyId, orderListOcoRequest.aboveStrategyId)
                 && Objects.equals(this.aboveStrategyType, orderListOcoRequest.aboveStrategyType)
+                && Objects.equals(this.abovePegPriceType, orderListOcoRequest.abovePegPriceType)
+                && Objects.equals(this.abovePegOffsetType, orderListOcoRequest.abovePegOffsetType)
+                && Objects.equals(this.abovePegOffsetValue, orderListOcoRequest.abovePegOffsetValue)
                 && Objects.equals(this.belowType, orderListOcoRequest.belowType)
                 && Objects.equals(this.belowClientOrderId, orderListOcoRequest.belowClientOrderId)
                 && Objects.equals(this.belowIcebergQty, orderListOcoRequest.belowIcebergQty)
@@ -729,6 +910,9 @@ public class OrderListOcoRequest {
                 && Objects.equals(this.belowTimeInForce, orderListOcoRequest.belowTimeInForce)
                 && Objects.equals(this.belowStrategyId, orderListOcoRequest.belowStrategyId)
                 && Objects.equals(this.belowStrategyType, orderListOcoRequest.belowStrategyType)
+                && Objects.equals(this.belowPegPriceType, orderListOcoRequest.belowPegPriceType)
+                && Objects.equals(this.belowPegOffsetType, orderListOcoRequest.belowPegOffsetType)
+                && Objects.equals(this.belowPegOffsetValue, orderListOcoRequest.belowPegOffsetValue)
                 && Objects.equals(this.newOrderRespType, orderListOcoRequest.newOrderRespType)
                 && Objects.equals(
                         this.selfTradePreventionMode, orderListOcoRequest.selfTradePreventionMode)
@@ -751,6 +935,9 @@ public class OrderListOcoRequest {
                 aboveTimeInForce,
                 aboveStrategyId,
                 aboveStrategyType,
+                abovePegPriceType,
+                abovePegOffsetType,
+                abovePegOffsetValue,
                 belowType,
                 belowClientOrderId,
                 belowIcebergQty,
@@ -760,6 +947,9 @@ public class OrderListOcoRequest {
                 belowTimeInForce,
                 belowStrategyId,
                 belowStrategyType,
+                belowPegPriceType,
+                belowPegOffsetType,
+                belowPegOffsetValue,
                 newOrderRespType,
                 selfTradePreventionMode,
                 recvWindow);
@@ -786,6 +976,13 @@ public class OrderListOcoRequest {
         sb.append("		aboveTimeInForce: ").append(toIndentedString(aboveTimeInForce)).append("\n");
         sb.append("		aboveStrategyId: ").append(toIndentedString(aboveStrategyId)).append("\n");
         sb.append("		aboveStrategyType: ").append(toIndentedString(aboveStrategyType)).append("\n");
+        sb.append("		abovePegPriceType: ").append(toIndentedString(abovePegPriceType)).append("\n");
+        sb.append("		abovePegOffsetType: ")
+                .append(toIndentedString(abovePegOffsetType))
+                .append("\n");
+        sb.append("		abovePegOffsetValue: ")
+                .append(toIndentedString(abovePegOffsetValue))
+                .append("\n");
         sb.append("		belowType: ").append(toIndentedString(belowType)).append("\n");
         sb.append("		belowClientOrderId: ")
                 .append(toIndentedString(belowClientOrderId))
@@ -799,6 +996,13 @@ public class OrderListOcoRequest {
         sb.append("		belowTimeInForce: ").append(toIndentedString(belowTimeInForce)).append("\n");
         sb.append("		belowStrategyId: ").append(toIndentedString(belowStrategyId)).append("\n");
         sb.append("		belowStrategyType: ").append(toIndentedString(belowStrategyType)).append("\n");
+        sb.append("		belowPegPriceType: ").append(toIndentedString(belowPegPriceType)).append("\n");
+        sb.append("		belowPegOffsetType: ")
+                .append(toIndentedString(belowPegOffsetType))
+                .append("\n");
+        sb.append("		belowPegOffsetValue: ")
+                .append(toIndentedString(belowPegOffsetValue))
+                .append("\n");
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
@@ -871,6 +1075,24 @@ public class OrderListOcoRequest {
         sb.append("aboveStrategyType=")
                 .append(urlEncode(aboveStrategyTypeValueAsString))
                 .append("");
+        Object abovePegPriceTypeValue = getAbovePegPriceType();
+        String abovePegPriceTypeValueAsString = "";
+        abovePegPriceTypeValueAsString = abovePegPriceTypeValue.toString();
+        sb.append("abovePegPriceType=")
+                .append(urlEncode(abovePegPriceTypeValueAsString))
+                .append("");
+        Object abovePegOffsetTypeValue = getAbovePegOffsetType();
+        String abovePegOffsetTypeValueAsString = "";
+        abovePegOffsetTypeValueAsString = abovePegOffsetTypeValue.toString();
+        sb.append("abovePegOffsetType=")
+                .append(urlEncode(abovePegOffsetTypeValueAsString))
+                .append("");
+        Object abovePegOffsetValueValue = getAbovePegOffsetValue();
+        String abovePegOffsetValueValueAsString = "";
+        abovePegOffsetValueValueAsString = abovePegOffsetValueValue.toString();
+        sb.append("abovePegOffsetValue=")
+                .append(urlEncode(abovePegOffsetValueValueAsString))
+                .append("");
         Object belowTypeValue = getBelowType();
         String belowTypeValueAsString = "";
         belowTypeValueAsString = belowTypeValue.toString();
@@ -912,6 +1134,24 @@ public class OrderListOcoRequest {
         belowStrategyTypeValueAsString = belowStrategyTypeValue.toString();
         sb.append("belowStrategyType=")
                 .append(urlEncode(belowStrategyTypeValueAsString))
+                .append("");
+        Object belowPegPriceTypeValue = getBelowPegPriceType();
+        String belowPegPriceTypeValueAsString = "";
+        belowPegPriceTypeValueAsString = belowPegPriceTypeValue.toString();
+        sb.append("belowPegPriceType=")
+                .append(urlEncode(belowPegPriceTypeValueAsString))
+                .append("");
+        Object belowPegOffsetTypeValue = getBelowPegOffsetType();
+        String belowPegOffsetTypeValueAsString = "";
+        belowPegOffsetTypeValueAsString = belowPegOffsetTypeValue.toString();
+        sb.append("belowPegOffsetType=")
+                .append(urlEncode(belowPegOffsetTypeValueAsString))
+                .append("");
+        Object belowPegOffsetValueValue = getBelowPegOffsetValue();
+        String belowPegOffsetValueValueAsString = "";
+        belowPegOffsetValueValueAsString = belowPegOffsetValueValue.toString();
+        sb.append("belowPegOffsetValue=")
+                .append(urlEncode(belowPegOffsetValueValueAsString))
                 .append("");
         Object newOrderRespTypeValue = getNewOrderRespType();
         String newOrderRespTypeValueAsString = "";
@@ -968,6 +1208,9 @@ public class OrderListOcoRequest {
         openapiFields.add("aboveTimeInForce");
         openapiFields.add("aboveStrategyId");
         openapiFields.add("aboveStrategyType");
+        openapiFields.add("abovePegPriceType");
+        openapiFields.add("abovePegOffsetType");
+        openapiFields.add("abovePegOffsetValue");
         openapiFields.add("belowType");
         openapiFields.add("belowClientOrderId");
         openapiFields.add("belowIcebergQty");
@@ -977,6 +1220,9 @@ public class OrderListOcoRequest {
         openapiFields.add("belowTimeInForce");
         openapiFields.add("belowStrategyId");
         openapiFields.add("belowStrategyType");
+        openapiFields.add("belowPegPriceType");
+        openapiFields.add("belowPegOffsetType");
+        openapiFields.add("belowPegOffsetValue");
         openapiFields.add("newOrderRespType");
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("recvWindow");
@@ -1005,18 +1251,6 @@ public class OrderListOcoRequest {
                                 "The required field(s) %s in OrderListOcoRequest is not found in"
                                         + " the empty JSON string",
                                 OrderListOcoRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderListOcoRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderListOcoRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -1059,6 +1293,21 @@ public class OrderListOcoRequest {
                                     + " JSON string but got `%s`",
                             jsonObj.get("aboveClientOrderId").toString()));
         }
+        // validate the optional field `aboveTimeInForce`
+        if (jsonObj.get("aboveTimeInForce") != null
+                && !jsonObj.get("aboveTimeInForce").isJsonNull()) {
+            AboveTimeInForce.validateJsonElement(jsonObj.get("aboveTimeInForce"));
+        }
+        // validate the optional field `abovePegPriceType`
+        if (jsonObj.get("abovePegPriceType") != null
+                && !jsonObj.get("abovePegPriceType").isJsonNull()) {
+            AbovePegPriceType.validateJsonElement(jsonObj.get("abovePegPriceType"));
+        }
+        // validate the optional field `abovePegOffsetType`
+        if (jsonObj.get("abovePegOffsetType") != null
+                && !jsonObj.get("abovePegOffsetType").isJsonNull()) {
+            AbovePegOffsetType.validateJsonElement(jsonObj.get("abovePegOffsetType"));
+        }
         // validate the required field `belowType`
         BelowType.validateJsonElement(jsonObj.get("belowType"));
         if ((jsonObj.get("belowClientOrderId") != null
@@ -1074,6 +1323,16 @@ public class OrderListOcoRequest {
         if (jsonObj.get("belowTimeInForce") != null
                 && !jsonObj.get("belowTimeInForce").isJsonNull()) {
             BelowTimeInForce.validateJsonElement(jsonObj.get("belowTimeInForce"));
+        }
+        // validate the optional field `belowPegPriceType`
+        if (jsonObj.get("belowPegPriceType") != null
+                && !jsonObj.get("belowPegPriceType").isJsonNull()) {
+            BelowPegPriceType.validateJsonElement(jsonObj.get("belowPegPriceType"));
+        }
+        // validate the optional field `belowPegOffsetType`
+        if (jsonObj.get("belowPegOffsetType") != null
+                && !jsonObj.get("belowPegOffsetType").isJsonNull()) {
+            BelowPegOffsetType.validateJsonElement(jsonObj.get("belowPegOffsetType"));
         }
         // validate the optional field `newOrderRespType`
         if (jsonObj.get("newOrderRespType") != null
@@ -1103,7 +1362,7 @@ public class OrderListOcoRequest {
                         @Override
                         public void write(JsonWriter out, OrderListOcoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

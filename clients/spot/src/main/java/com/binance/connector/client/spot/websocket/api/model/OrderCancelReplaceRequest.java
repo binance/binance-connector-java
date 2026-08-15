@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** OrderCancelReplaceRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderCancelReplaceRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -57,7 +63,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_CANCEL_ORDER_ID)
     @jakarta.annotation.Nullable
-    private Integer cancelOrderId;
+    private Long cancelOrderId;
 
     public static final String SERIALIZED_NAME_CANCEL_ORIG_CLIENT_ORDER_ID =
             "cancelOrigClientOrderId";
@@ -171,13 +177,50 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private OrderRateLimitExceededMode orderRateLimitExceededMode;
 
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PegPriceType pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PegOffsetType pegOffsetType;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderCancelReplaceRequest() {}
+
+    public OrderCancelReplaceRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public OrderCancelReplaceRequest symbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
@@ -223,22 +266,27 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     public OrderCancelReplaceRequest cancelOrderId(
-            @jakarta.annotation.Nullable Integer cancelOrderId) {
+            @jakarta.annotation.Nullable Long cancelOrderId) {
         this.cancelOrderId = cancelOrderId;
         return this;
     }
 
     /**
-     * Get cancelOrderId
+     * Either &#x60;cancelOrderId&#x60; or &#x60;cancelOrigClientOrderId&#x60; must be sent.
+     * &lt;br&gt;&lt;/br&gt;If both &#x60;cancelOrderId&#x60; and
+     * &#x60;cancelOrigClientOrderId&#x60; parameters are provided, the &#x60;cancelOrderId&#x60; is
+     * searched first, then the &#x60;cancelOrigClientOrderId&#x60; from that result is checked
+     * against that order. &lt;br&gt;&lt;/br&gt;If both conditions are not met the request will be
+     * rejected.
      *
      * @return cancelOrderId
      */
     @jakarta.annotation.Nullable
-    public Integer getCancelOrderId() {
+    public Long getCancelOrderId() {
         return cancelOrderId;
     }
 
-    public void setCancelOrderId(@jakarta.annotation.Nullable Integer cancelOrderId) {
+    public void setCancelOrderId(@jakarta.annotation.Nullable Long cancelOrderId) {
         this.cancelOrderId = cancelOrderId;
     }
 
@@ -249,7 +297,12 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get cancelOrigClientOrderId
+     * Either &#x60;cancelOrderId&#x60; or &#x60;cancelOrigClientOrderId&#x60; must be sent.
+     * &lt;br&gt;&lt;/br&gt; If both &#x60;cancelOrderId&#x60; and
+     * &#x60;cancelOrigClientOrderId&#x60; parameters are provided, the &#x60;cancelOrderId&#x60; is
+     * searched first, then the &#x60;cancelOrigClientOrderId&#x60; from that result is checked
+     * against that order. &lt;br&gt;&lt;/br&gt; If both conditions are not met the request will be
+     * rejected.
      *
      * @return cancelOrigClientOrderId
      */
@@ -270,7 +323,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get cancelNewClientOrderId
+     * Used to uniquely identify this cancel. Automatically generated by default.
      *
      * @return cancelNewClientOrderId
      */
@@ -415,7 +468,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get newClientOrderId
+     * Used to identify the new order.
      *
      * @return newClientOrderId
      */
@@ -456,7 +509,8 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -477,7 +531,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get trailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return trailingDelta
      */
@@ -497,7 +551,8 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -537,7 +592,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return strategyType
      */
@@ -616,22 +671,88 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         this.orderRateLimitExceededMode = orderRateLimitExceededMode;
     }
 
-    public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderCancelReplaceRequest pegPriceType(
+            @jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pegPriceType
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegPriceType getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public OrderCancelReplaceRequest pegOffsetValue(
+            @jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Price level to peg the price to (max: 100) &lt;br&gt; See Pegged Orders maximum: 100
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    @Max(100)
+    public Integer getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public OrderCancelReplaceRequest pegOffsetType(
+            @jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pegOffsetType
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegOffsetType getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
+    public OrderCancelReplaceRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    @DecimalMax("60000")
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -644,7 +765,8 @@ public class OrderCancelReplaceRequest extends BaseDTO {
             return false;
         }
         OrderCancelReplaceRequest orderCancelReplaceRequest = (OrderCancelReplaceRequest) o;
-        return Objects.equals(this.symbol, orderCancelReplaceRequest.symbol)
+        return Objects.equals(this.id, orderCancelReplaceRequest.id)
+                && Objects.equals(this.symbol, orderCancelReplaceRequest.symbol)
                 && Objects.equals(
                         this.cancelReplaceMode, orderCancelReplaceRequest.cancelReplaceMode)
                 && Objects.equals(this.cancelOrderId, orderCancelReplaceRequest.cancelOrderId)
@@ -675,12 +797,16 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                 && Objects.equals(
                         this.orderRateLimitExceededMode,
                         orderCancelReplaceRequest.orderRateLimitExceededMode)
+                && Objects.equals(this.pegPriceType, orderCancelReplaceRequest.pegPriceType)
+                && Objects.equals(this.pegOffsetValue, orderCancelReplaceRequest.pegOffsetValue)
+                && Objects.equals(this.pegOffsetType, orderCancelReplaceRequest.pegOffsetType)
                 && Objects.equals(this.recvWindow, orderCancelReplaceRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
+                id,
                 symbol,
                 cancelReplaceMode,
                 cancelOrderId,
@@ -702,6 +828,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                 selfTradePreventionMode,
                 cancelRestrictions,
                 orderRateLimitExceededMode,
+                pegPriceType,
+                pegOffsetValue,
+                pegOffsetType,
                 recvWindow);
     }
 
@@ -709,6 +838,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderCancelReplaceRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		cancelReplaceMode: ").append(toIndentedString(cancelReplaceMode)).append("\n");
         sb.append("		cancelOrderId: ").append(toIndentedString(cancelOrderId)).append("\n");
@@ -740,6 +870,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         sb.append("		orderRateLimitExceededMode: ")
                 .append(toIndentedString(orderRateLimitExceededMode))
                 .append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -749,6 +882,11 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -759,7 +897,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
             String cancelReplaceModeValueAsString = cancelReplaceModeValue.toString();
             valMap.put("cancelReplaceMode", cancelReplaceModeValueAsString);
         }
-        Integer cancelOrderIdValue = getCancelOrderId();
+        Long cancelOrderIdValue = getCancelOrderId();
         if (cancelOrderIdValue != null) {
             String cancelOrderIdValueAsString = cancelOrderIdValue.toString();
             valMap.put("cancelOrderId", cancelOrderIdValueAsString);
@@ -859,9 +997,25 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                     orderRateLimitExceededModeValue.toString();
             valMap.put("orderRateLimitExceededMode", orderRateLimitExceededModeValueAsString);
         }
-        Long recvWindowValue = getRecvWindow();
+        PegPriceType pegPriceTypeValue = getPegPriceType();
+        if (pegPriceTypeValue != null) {
+            String pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+            valMap.put("pegPriceType", pegPriceTypeValueAsString);
+        }
+        Integer pegOffsetValueValue = getPegOffsetValue();
+        if (pegOffsetValueValue != null) {
+            String pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+            valMap.put("pegOffsetValue", pegOffsetValueValueAsString);
+        }
+        PegOffsetType pegOffsetTypeValue = getPegOffsetType();
+        if (pegOffsetTypeValue != null) {
+            String pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+            valMap.put("pegOffsetType", pegOffsetTypeValueAsString);
+        }
+        Double recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
-            String recvWindowValueAsString = recvWindowValue.toString();
+            String recvWindowValueAsString =
+                    DecimalFormatter.getFormatter().format(recvWindowValue);
             valMap.put("recvWindow", recvWindowValueAsString);
         }
 
@@ -875,6 +1029,10 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -959,6 +1117,18 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         if (orderRateLimitExceededModeValue != null) {
             valMap.put("orderRateLimitExceededMode", orderRateLimitExceededModeValue);
         }
+        Object pegPriceTypeValue = getPegPriceType();
+        if (pegPriceTypeValue != null) {
+            valMap.put("pegPriceType", pegPriceTypeValue);
+        }
+        Object pegOffsetValueValue = getPegOffsetValue();
+        if (pegOffsetValueValue != null) {
+            valMap.put("pegOffsetValue", pegOffsetValueValue);
+        }
+        Object pegOffsetTypeValue = getPegOffsetType();
+        if (pegOffsetTypeValue != null) {
+            valMap.put("pegOffsetType", pegOffsetTypeValue);
+        }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             valMap.put("recvWindow", recvWindowValue);
@@ -989,6 +1159,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("cancelReplaceMode");
         openapiFields.add("cancelOrderId");
@@ -1010,6 +1181,9 @@ public class OrderCancelReplaceRequest extends BaseDTO {
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("cancelRestrictions");
         openapiFields.add("orderRateLimitExceededMode");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("pegOffsetType");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -1060,6 +1234,14 @@ public class OrderCancelReplaceRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
@@ -1125,6 +1307,14 @@ public class OrderCancelReplaceRequest extends BaseDTO {
             OrderRateLimitExceededMode.validateJsonElement(
                     jsonObj.get("orderRateLimitExceededMode"));
         }
+        // validate the optional field `pegPriceType`
+        if (jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull()) {
+            PegPriceType.validateJsonElement(jsonObj.get("pegPriceType"));
+        }
+        // validate the optional field `pegOffsetType`
+        if (jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull()) {
+            PegOffsetType.validateJsonElement(jsonObj.get("pegOffsetType"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -1144,7 +1334,7 @@ public class OrderCancelReplaceRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderCancelReplaceRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

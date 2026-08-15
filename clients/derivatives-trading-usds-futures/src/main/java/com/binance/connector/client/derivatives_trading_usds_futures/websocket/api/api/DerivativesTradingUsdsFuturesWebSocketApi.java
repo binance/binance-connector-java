@@ -11,6 +11,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.a
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.AccountInformationResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.AccountInformationV2Request;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.AccountInformationV2Response;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CancelOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.CloseUserDataStreamRequest;
@@ -23,6 +25,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.a
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.KeepaliveUserDataStreamResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.ModifyOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.ModifyOrderResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewAlgoOrderRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewAlgoOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewOrderRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.OrderBookRequest;
@@ -39,13 +43,17 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.a
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.SymbolOrderBookTickerResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.SymbolPriceTickerRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.model.SymbolPriceTickerResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class DerivativesTradingUsdsFuturesWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/1.2.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final ConnectionInterface connection;
 
     private AccountApi accountApi;
     private MarketDataApi marketDataApi;
@@ -61,6 +69,11 @@ public class DerivativesTradingUsdsFuturesWebSocketApi {
 
     public DerivativesTradingUsdsFuturesWebSocketApi(ConnectionInterface connection) {
         connection.setUserAgent(USER_AGENT);
+        List<String> logonMethods = new ArrayList<>();
+        List<String> logoutMethods = new ArrayList<>();
+
+        connection.setLogonMethods(logonMethods);
+        connection.setLogoutMethods(logoutMethods);
         if (!connection.isConnected()) {
             connection.connect();
         }
@@ -69,6 +82,14 @@ public class DerivativesTradingUsdsFuturesWebSocketApi {
         this.marketDataApi = new MarketDataApi(connection);
         this.tradeApi = new TradeApi(connection);
         this.userDataStreamsApi = new UserDataStreamsApi(connection);
+
+        this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     public CompletableFuture<AccountInformationResponse> accountInformation(
@@ -106,6 +127,11 @@ public class DerivativesTradingUsdsFuturesWebSocketApi {
         return marketDataApi.symbolPriceTicker(symbolPriceTickerRequest);
     }
 
+    public CompletableFuture<CancelAlgoOrderResponse> cancelAlgoOrder(
+            CancelAlgoOrderRequest cancelAlgoOrderRequest) throws ApiException {
+        return tradeApi.cancelAlgoOrder(cancelAlgoOrderRequest);
+    }
+
     public CompletableFuture<CancelOrderResponse> cancelOrder(CancelOrderRequest cancelOrderRequest)
             throws ApiException {
         return tradeApi.cancelOrder(cancelOrderRequest);
@@ -114,6 +140,11 @@ public class DerivativesTradingUsdsFuturesWebSocketApi {
     public CompletableFuture<ModifyOrderResponse> modifyOrder(ModifyOrderRequest modifyOrderRequest)
             throws ApiException {
         return tradeApi.modifyOrder(modifyOrderRequest);
+    }
+
+    public CompletableFuture<NewAlgoOrderResponse> newAlgoOrder(
+            NewAlgoOrderRequest newAlgoOrderRequest) throws ApiException {
+        return tradeApi.newAlgoOrder(newAlgoOrderRequest);
     }
 
     public CompletableFuture<NewOrderResponse> newOrder(NewOrderRequest newOrderRequest)

@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SubscribeFlexibleProductRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeFlexibleProductRequest {
     public static final String SERIALIZED_NAME_PRODUCT_ID = "productId";
 
@@ -55,13 +53,13 @@ public class SubscribeFlexibleProductRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_SUBSCRIBE)
     @jakarta.annotation.Nullable
-    private Boolean autoSubscribe;
+    private Boolean autoSubscribe = true;
 
     public static final String SERIALIZED_NAME_SOURCE_ACCOUNT = "sourceAccount";
 
     @SerializedName(SERIALIZED_NAME_SOURCE_ACCOUNT)
     @jakarta.annotation.Nullable
-    private String sourceAccount;
+    private SourceAccount sourceAccount = SourceAccount.SPOT;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -133,7 +131,7 @@ public class SubscribeFlexibleProductRequest {
     }
 
     public SubscribeFlexibleProductRequest sourceAccount(
-            @jakarta.annotation.Nullable String sourceAccount) {
+            @jakarta.annotation.Nullable SourceAccount sourceAccount) {
         this.sourceAccount = sourceAccount;
         return this;
     }
@@ -144,11 +142,12 @@ public class SubscribeFlexibleProductRequest {
      * @return sourceAccount
      */
     @jakarta.annotation.Nullable
-    public String getSourceAccount() {
+    @Valid
+    public SourceAccount getSourceAccount() {
         return sourceAccount;
     }
 
-    public void setSourceAccount(@jakarta.annotation.Nullable String sourceAccount) {
+    public void setSourceAccount(@jakarta.annotation.Nullable SourceAccount sourceAccount) {
         this.sourceAccount = sourceAccount;
     }
 
@@ -159,11 +158,12 @@ public class SubscribeFlexibleProductRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -289,18 +289,6 @@ public class SubscribeFlexibleProductRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SubscribeFlexibleProductRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SubscribeFlexibleProductRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : SubscribeFlexibleProductRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -318,13 +306,9 @@ public class SubscribeFlexibleProductRequest {
                                     + " string but got `%s`",
                             jsonObj.get("productId").toString()));
         }
-        if ((jsonObj.get("sourceAccount") != null && !jsonObj.get("sourceAccount").isJsonNull())
-                && !jsonObj.get("sourceAccount").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `sourceAccount` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("sourceAccount").toString()));
+        // validate the optional field `sourceAccount`
+        if (jsonObj.get("sourceAccount") != null && !jsonObj.get("sourceAccount").isJsonNull()) {
+            SourceAccount.validateJsonElement(jsonObj.get("sourceAccount"));
         }
     }
 
@@ -346,7 +330,7 @@ public class SubscribeFlexibleProductRequest {
                         @Override
                         public void write(JsonWriter out, SubscribeFlexibleProductRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

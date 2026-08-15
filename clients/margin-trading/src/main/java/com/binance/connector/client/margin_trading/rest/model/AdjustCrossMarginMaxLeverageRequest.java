@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AdjustCrossMarginMaxLeverageRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AdjustCrossMarginMaxLeverageRequest {
     public static final String SERIALIZED_NAME_MAX_LEVERAGE = "maxLeverage";
 
@@ -53,7 +51,8 @@ public class AdjustCrossMarginMaxLeverageRequest {
     }
 
     /**
-     * Get maxLeverage
+     * Can only adjust 3 , 5 or 10，Example: maxLeverage &#x3D; 5 or 3 for Cross Margin Classic;
+     * maxLeverage&#x3D;10 for Cross Margin Pro 10x leverage or 20x if compliance allows.
      *
      * @return maxLeverage
      */
@@ -156,18 +155,6 @@ public class AdjustCrossMarginMaxLeverageRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AdjustCrossMarginMaxLeverageRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AdjustCrossMarginMaxLeverageRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : AdjustCrossMarginMaxLeverageRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -198,7 +185,7 @@ public class AdjustCrossMarginMaxLeverageRequest {
                         @Override
                         public void write(JsonWriter out, AdjustCrossMarginMaxLeverageRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

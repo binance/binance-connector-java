@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**ps** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**ps** | **String** | Pair |  [optional] |
+|**price** | **String** | Latest token price. |  [optional] |
+|**time** | **Long** | Time |  [optional] |
 
 
 

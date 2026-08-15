@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,73 +22,69 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** MarginMaxBorrowResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginMaxBorrowResponse {
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
     @SerializedName(SERIALIZED_NAME_AMOUNT)
     @jakarta.annotation.Nullable
-    private Double amount;
+    private String amount;
 
     public static final String SERIALIZED_NAME_BORROW_LIMIT = "borrowLimit";
 
     @SerializedName(SERIALIZED_NAME_BORROW_LIMIT)
     @jakarta.annotation.Nullable
-    private Long borrowLimit;
+    private String borrowLimit;
 
     public MarginMaxBorrowResponse() {}
 
-    public MarginMaxBorrowResponse amount(@jakarta.annotation.Nullable Double amount) {
+    public MarginMaxBorrowResponse amount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
         return this;
     }
 
     /**
-     * Get amount
+     * account&#39;s currently max borrowable amount with sufficient system availability
      *
      * @return amount
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(@jakarta.annotation.Nullable Double amount) {
+    public void setAmount(@jakarta.annotation.Nullable String amount) {
         this.amount = amount;
     }
 
-    public MarginMaxBorrowResponse borrowLimit(@jakarta.annotation.Nullable Long borrowLimit) {
+    public MarginMaxBorrowResponse borrowLimit(@jakarta.annotation.Nullable String borrowLimit) {
         this.borrowLimit = borrowLimit;
         return this;
     }
 
     /**
-     * Get borrowLimit
+     * max borrowable amount limited by the account level
      *
      * @return borrowLimit
      */
     @jakarta.annotation.Nullable
-    public Long getBorrowLimit() {
+    public String getBorrowLimit() {
         return borrowLimit;
     }
 
-    public void setBorrowLimit(@jakarta.annotation.Nullable Long borrowLimit) {
+    public void setBorrowLimit(@jakarta.annotation.Nullable String borrowLimit) {
         this.borrowLimit = borrowLimit;
     }
 
@@ -183,19 +179,23 @@ public class MarginMaxBorrowResponse {
                                 MarginMaxBorrowResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginMaxBorrowResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `MarginMaxBorrowResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull())
+                && !jsonObj.get("amount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `amount` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("amount").toString()));
+        }
+        if ((jsonObj.get("borrowLimit") != null && !jsonObj.get("borrowLimit").isJsonNull())
+                && !jsonObj.get("borrowLimit").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `borrowLimit` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("borrowLimit").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -215,7 +215,7 @@ public class MarginMaxBorrowResponse {
                         @Override
                         public void write(JsonWriter out, MarginMaxBorrowResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

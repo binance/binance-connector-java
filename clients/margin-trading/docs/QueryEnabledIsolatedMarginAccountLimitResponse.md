@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**enabledAccount** | **Long** |  |  [optional] |
-|**maxAccount** | **Long** |  |  [optional] |
+|**enabledAccount** | **Long** | enabled Account. |  [optional] |
+|**maxAccount** | **Long** | max Account. |  [optional] |
 
 
 

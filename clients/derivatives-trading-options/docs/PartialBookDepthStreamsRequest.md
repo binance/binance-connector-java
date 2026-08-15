@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  |
-|**levels** | **Long** |  |  |
-|**updateSpeed** | **String** |  |  [optional] |
+|**id** | **Integer** | Unique WebSocket request ID. |  [optional] |
+|**symbol** | **String** | The symbol parameter |  [optional] |
+|**level** | **Level** |  |  [optional] |
+|**updateSpeed** | **UpdateSpeed** |  |  [optional] |
 
 
 

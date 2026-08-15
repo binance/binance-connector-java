@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** OpenInterestResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenInterestResponseInner extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -77,7 +77,7 @@ public class OpenInterestResponseInner extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -96,7 +96,7 @@ public class OpenInterestResponseInner extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -115,7 +115,7 @@ public class OpenInterestResponseInner extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option symbol
      *
      * @return sLowerCase
      */
@@ -134,7 +134,7 @@ public class OpenInterestResponseInner extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Open interest in contracts
      *
      * @return oLowerCase
      */
@@ -153,7 +153,7 @@ public class OpenInterestResponseInner extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * Open interest in USDT
      *
      * @return hLowerCase
      */
@@ -377,7 +377,7 @@ public class OpenInterestResponseInner extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OpenInterestResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

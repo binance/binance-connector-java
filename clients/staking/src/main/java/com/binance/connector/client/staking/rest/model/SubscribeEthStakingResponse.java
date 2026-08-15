@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SubscribeEthStakingResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeEthStakingResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -49,6 +47,12 @@ public class SubscribeEthStakingResponse {
     @SerializedName(SERIALIZED_NAME_WBETH_AMOUNT)
     @jakarta.annotation.Nullable
     private String wbethAmount;
+
+    public static final String SERIALIZED_NAME_PURCHASE_ID = "purchaseId";
+
+    @SerializedName(SERIALIZED_NAME_PURCHASE_ID)
+    @jakarta.annotation.Nullable
+    private Long purchaseId;
 
     public static final String SERIALIZED_NAME_CONVERSION_RATIO = "conversionRatio";
 
@@ -97,6 +101,25 @@ public class SubscribeEthStakingResponse {
         this.wbethAmount = wbethAmount;
     }
 
+    public SubscribeEthStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+        return this;
+    }
+
+    /**
+     * Get purchaseId
+     *
+     * @return purchaseId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
     public SubscribeEthStakingResponse conversionRatio(
             @jakarta.annotation.Nullable String conversionRatio) {
         this.conversionRatio = conversionRatio;
@@ -128,13 +151,14 @@ public class SubscribeEthStakingResponse {
         SubscribeEthStakingResponse subscribeEthStakingResponse = (SubscribeEthStakingResponse) o;
         return Objects.equals(this.success, subscribeEthStakingResponse.success)
                 && Objects.equals(this.wbethAmount, subscribeEthStakingResponse.wbethAmount)
+                && Objects.equals(this.purchaseId, subscribeEthStakingResponse.purchaseId)
                 && Objects.equals(
                         this.conversionRatio, subscribeEthStakingResponse.conversionRatio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, wbethAmount, conversionRatio);
+        return Objects.hash(success, wbethAmount, purchaseId, conversionRatio);
     }
 
     @Override
@@ -143,6 +167,7 @@ public class SubscribeEthStakingResponse {
         sb.append("class SubscribeEthStakingResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		wbethAmount: ").append(toIndentedString(wbethAmount)).append("\n");
+        sb.append("		purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
         sb.append("		conversionRatio: ").append(toIndentedString(conversionRatio)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -159,6 +184,10 @@ public class SubscribeEthStakingResponse {
         String wbethAmountValueAsString = "";
         wbethAmountValueAsString = wbethAmountValue.toString();
         sb.append("wbethAmount=").append(urlEncode(wbethAmountValueAsString)).append("");
+        Object purchaseIdValue = getPurchaseId();
+        String purchaseIdValueAsString = "";
+        purchaseIdValueAsString = purchaseIdValue.toString();
+        sb.append("purchaseId=").append(urlEncode(purchaseIdValueAsString)).append("");
         Object conversionRatioValue = getConversionRatio();
         String conversionRatioValueAsString = "";
         conversionRatioValueAsString = conversionRatioValue.toString();
@@ -193,6 +222,7 @@ public class SubscribeEthStakingResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("wbethAmount");
+        openapiFields.add("purchaseId");
         openapiFields.add("conversionRatio");
 
         // a set of required properties/fields (JSON key names)
@@ -215,18 +245,6 @@ public class SubscribeEthStakingResponse {
                                 "The required field(s) %s in SubscribeEthStakingResponse is not"
                                         + " found in the empty JSON string",
                                 SubscribeEthStakingResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SubscribeEthStakingResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SubscribeEthStakingResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -265,7 +283,7 @@ public class SubscribeEthStakingResponse {
                         @Override
                         public void write(JsonWriter out, SubscribeEthStakingResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

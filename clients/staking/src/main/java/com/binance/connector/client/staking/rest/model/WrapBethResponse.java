@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** WrapBethResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class WrapBethResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -213,18 +211,6 @@ public class WrapBethResponse {
                                 WrapBethResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!WrapBethResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `WrapBethResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("wbethAmount") != null && !jsonObj.get("wbethAmount").isJsonNull())
                 && !jsonObj.get("wbethAmount").isJsonPrimitive()) {
@@ -260,7 +246,7 @@ public class WrapBethResponse {
                         @Override
                         public void write(JsonWriter out, WrapBethResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

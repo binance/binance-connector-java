@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OrderListOtocoResponseOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOtocoResponseOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -135,11 +133,95 @@ public class OrderListOtocoResponseOrderReportsInner {
     @jakarta.annotation.Nullable
     private String selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
+
+    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
+    @jakarta.annotation.Nullable
+    private String icebergQty;
+
+    public static final String SERIALIZED_NAME_PREVENTED_MATCH_ID = "preventedMatchId";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_MATCH_ID)
+    @jakarta.annotation.Nullable
+    private Long preventedMatchId;
+
+    public static final String SERIALIZED_NAME_PREVENTED_QUANTITY = "preventedQuantity";
+
+    @SerializedName(SERIALIZED_NAME_PREVENTED_QUANTITY)
+    @jakarta.annotation.Nullable
+    private String preventedQuantity;
+
     public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
 
     @SerializedName(SERIALIZED_NAME_STOP_PRICE)
     @jakarta.annotation.Nullable
     private String stopPrice;
+
+    public static final String SERIALIZED_NAME_STRATEGY_ID = "strategyId";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_ID)
+    @jakarta.annotation.Nullable
+    private Long strategyId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_TYPE)
+    @jakarta.annotation.Nullable
+    private Long strategyType;
+
+    public static final String SERIALIZED_NAME_TRAILING_DELTA = "trailingDelta";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_DELTA)
+    @jakarta.annotation.Nullable
+    private Long trailingDelta;
+
+    public static final String SERIALIZED_NAME_TRAILING_TIME = "trailingTime";
+
+    @SerializedName(SERIALIZED_NAME_TRAILING_TIME)
+    @jakarta.annotation.Nullable
+    private Long trailingTime;
+
+    public static final String SERIALIZED_NAME_USED_SOR = "usedSor";
+
+    @SerializedName(SERIALIZED_NAME_USED_SOR)
+    @jakarta.annotation.Nullable
+    private Boolean usedSor;
+
+    public static final String SERIALIZED_NAME_WORKING_FLOOR = "workingFloor";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_FLOOR)
+    @jakarta.annotation.Nullable
+    private String workingFloor;
+
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private String pegOffsetType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Long pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEGGED_PRICE = "peggedPrice";
+
+    @SerializedName(SERIALIZED_NAME_PEGGED_PRICE)
+    @jakarta.annotation.Nullable
+    private String peggedPrice;
+
+    public static final String SERIALIZED_NAME_EXPIRY_REASON = "expiryReason";
+
+    @SerializedName(SERIALIZED_NAME_EXPIRY_REASON)
+    @jakarta.annotation.Nullable
+    private String expiryReason;
 
     public OrderListOtocoResponseOrderReportsInner() {}
 
@@ -462,6 +544,66 @@ public class OrderListOtocoResponseOrderReportsInner {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
+    public OrderListOtocoResponseOrderReportsInner icebergQty(
+            @jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
+        return this;
+    }
+
+    /**
+     * Appears only if the parameter icebergQty was sent in the request.
+     *
+     * @return icebergQty
+     */
+    @jakarta.annotation.Nullable
+    public String getIcebergQty() {
+        return icebergQty;
+    }
+
+    public void setIcebergQty(@jakarta.annotation.Nullable String icebergQty) {
+        this.icebergQty = icebergQty;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner preventedMatchId(
+            @jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+        return this;
+    }
+
+    /**
+     * Appears only if the order expired due to STP.
+     *
+     * @return preventedMatchId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPreventedMatchId() {
+        return preventedMatchId;
+    }
+
+    public void setPreventedMatchId(@jakarta.annotation.Nullable Long preventedMatchId) {
+        this.preventedMatchId = preventedMatchId;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner preventedQuantity(
+            @jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+        return this;
+    }
+
+    /**
+     * Order quantity that expired due to STP.
+     *
+     * @return preventedQuantity
+     */
+    @jakarta.annotation.Nullable
+    public String getPreventedQuantity() {
+        return preventedQuantity;
+    }
+
+    public void setPreventedQuantity(@jakarta.annotation.Nullable String preventedQuantity) {
+        this.preventedQuantity = preventedQuantity;
+    }
+
     public OrderListOtocoResponseOrderReportsInner stopPrice(
             @jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
@@ -469,7 +611,7 @@ public class OrderListOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get stopPrice
+     * Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
      *
      * @return stopPrice
      */
@@ -480,6 +622,226 @@ public class OrderListOtocoResponseOrderReportsInner {
 
     public void setStopPrice(@jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner strategyId(
+            @jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+        return this;
+    }
+
+    /**
+     * Appears only if the strategyId parameter was provided upon order placement.
+     *
+     * @return strategyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner strategyType(
+            @jakarta.annotation.Nullable Long strategyType) {
+        this.strategyType = strategyType;
+        return this;
+    }
+
+    /**
+     * Appears only if the strategyType parameter was provided upon order placement.
+     *
+     * @return strategyType
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(@jakarta.annotation.Nullable Long strategyType) {
+        this.strategyType = strategyType;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner trailingDelta(
+            @jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+        return this;
+    }
+
+    /**
+     * Delta price change required before order activation.
+     *
+     * @return trailingDelta
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingDelta() {
+        return trailingDelta;
+    }
+
+    public void setTrailingDelta(@jakarta.annotation.Nullable Long trailingDelta) {
+        this.trailingDelta = trailingDelta;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner trailingTime(
+            @jakarta.annotation.Nullable Long trailingTime) {
+        this.trailingTime = trailingTime;
+        return this;
+    }
+
+    /**
+     * Time when the trailing order is now active and tracking price changes.
+     *
+     * @return trailingTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getTrailingTime() {
+        return trailingTime;
+    }
+
+    public void setTrailingTime(@jakarta.annotation.Nullable Long trailingTime) {
+        this.trailingTime = trailingTime;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner usedSor(
+            @jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+        return this;
+    }
+
+    /**
+     * Field that determines whether order used SOR.
+     *
+     * @return usedSor
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getUsedSor() {
+        return usedSor;
+    }
+
+    public void setUsedSor(@jakarta.annotation.Nullable Boolean usedSor) {
+        this.usedSor = usedSor;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner workingFloor(
+            @jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+        return this;
+    }
+
+    /**
+     * Determines whether the order is being filled by the SOR or by the order book.
+     *
+     * @return workingFloor
+     */
+    @jakarta.annotation.Nullable
+    public String getWorkingFloor() {
+        return workingFloor;
+    }
+
+    public void setWorkingFloor(@jakarta.annotation.Nullable String workingFloor) {
+        this.workingFloor = workingFloor;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner pegPriceType(
+            @jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Price peg type. Only for pegged orders.
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable String pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner pegOffsetType(
+            @jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Price peg offset type. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    public String getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable String pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner pegOffsetValue(
+            @jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Price peg offset value. Only for pegged orders, if requested.
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Long getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Long pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner peggedPrice(
+            @jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+        return this;
+    }
+
+    /**
+     * Current price order is pegged at. Only for pegged orders, once determined.
+     *
+     * @return peggedPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getPeggedPrice() {
+        return peggedPrice;
+    }
+
+    public void setPeggedPrice(@jakarta.annotation.Nullable String peggedPrice) {
+        this.peggedPrice = peggedPrice;
+    }
+
+    public OrderListOtocoResponseOrderReportsInner expiryReason(
+            @jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
+        return this;
+    }
+
+    /**
+     * Cause of the order&#39;s expiration. Appears when an order has expired.
+     *
+     * @return expiryReason
+     */
+    @jakarta.annotation.Nullable
+    public String getExpiryReason() {
+        return expiryReason;
+    }
+
+    public void setExpiryReason(@jakarta.annotation.Nullable String expiryReason) {
+        this.expiryReason = expiryReason;
     }
 
     @Override
@@ -521,7 +883,35 @@ public class OrderListOtocoResponseOrderReportsInner {
                         this.selfTradePreventionMode,
                         orderListOtocoResponseOrderReportsInner.selfTradePreventionMode)
                 && Objects.equals(
-                        this.stopPrice, orderListOtocoResponseOrderReportsInner.stopPrice);
+                        this.icebergQty, orderListOtocoResponseOrderReportsInner.icebergQty)
+                && Objects.equals(
+                        this.preventedMatchId,
+                        orderListOtocoResponseOrderReportsInner.preventedMatchId)
+                && Objects.equals(
+                        this.preventedQuantity,
+                        orderListOtocoResponseOrderReportsInner.preventedQuantity)
+                && Objects.equals(this.stopPrice, orderListOtocoResponseOrderReportsInner.stopPrice)
+                && Objects.equals(
+                        this.strategyId, orderListOtocoResponseOrderReportsInner.strategyId)
+                && Objects.equals(
+                        this.strategyType, orderListOtocoResponseOrderReportsInner.strategyType)
+                && Objects.equals(
+                        this.trailingDelta, orderListOtocoResponseOrderReportsInner.trailingDelta)
+                && Objects.equals(
+                        this.trailingTime, orderListOtocoResponseOrderReportsInner.trailingTime)
+                && Objects.equals(this.usedSor, orderListOtocoResponseOrderReportsInner.usedSor)
+                && Objects.equals(
+                        this.workingFloor, orderListOtocoResponseOrderReportsInner.workingFloor)
+                && Objects.equals(
+                        this.pegPriceType, orderListOtocoResponseOrderReportsInner.pegPriceType)
+                && Objects.equals(
+                        this.pegOffsetType, orderListOtocoResponseOrderReportsInner.pegOffsetType)
+                && Objects.equals(
+                        this.pegOffsetValue, orderListOtocoResponseOrderReportsInner.pegOffsetValue)
+                && Objects.equals(
+                        this.peggedPrice, orderListOtocoResponseOrderReportsInner.peggedPrice)
+                && Objects.equals(
+                        this.expiryReason, orderListOtocoResponseOrderReportsInner.expiryReason);
     }
 
     @Override
@@ -543,7 +933,21 @@ public class OrderListOtocoResponseOrderReportsInner {
                 side,
                 workingTime,
                 selfTradePreventionMode,
-                stopPrice);
+                icebergQty,
+                preventedMatchId,
+                preventedQuantity,
+                stopPrice,
+                strategyId,
+                strategyType,
+                trailingDelta,
+                trailingTime,
+                usedSor,
+                workingFloor,
+                pegPriceType,
+                pegOffsetType,
+                pegOffsetValue,
+                peggedPrice,
+                expiryReason);
     }
 
     @Override
@@ -570,7 +974,21 @@ public class OrderListOtocoResponseOrderReportsInner {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
+        sb.append("		preventedMatchId: ").append(toIndentedString(preventedMatchId)).append("\n");
+        sb.append("		preventedQuantity: ").append(toIndentedString(preventedQuantity)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
+        sb.append("		strategyId: ").append(toIndentedString(strategyId)).append("\n");
+        sb.append("		strategyType: ").append(toIndentedString(strategyType)).append("\n");
+        sb.append("		trailingDelta: ").append(toIndentedString(trailingDelta)).append("\n");
+        sb.append("		trailingTime: ").append(toIndentedString(trailingTime)).append("\n");
+        sb.append("		usedSor: ").append(toIndentedString(usedSor)).append("\n");
+        sb.append("		workingFloor: ").append(toIndentedString(workingFloor)).append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		peggedPrice: ").append(toIndentedString(peggedPrice)).append("\n");
+        sb.append("		expiryReason: ").append(toIndentedString(expiryReason)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -648,10 +1066,68 @@ public class OrderListOtocoResponseOrderReportsInner {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object icebergQtyValue = getIcebergQty();
+        String icebergQtyValueAsString = "";
+        icebergQtyValueAsString = icebergQtyValue.toString();
+        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
+        Object preventedMatchIdValue = getPreventedMatchId();
+        String preventedMatchIdValueAsString = "";
+        preventedMatchIdValueAsString = preventedMatchIdValue.toString();
+        sb.append("preventedMatchId=").append(urlEncode(preventedMatchIdValueAsString)).append("");
+        Object preventedQuantityValue = getPreventedQuantity();
+        String preventedQuantityValueAsString = "";
+        preventedQuantityValueAsString = preventedQuantityValue.toString();
+        sb.append("preventedQuantity=")
+                .append(urlEncode(preventedQuantityValueAsString))
+                .append("");
         Object stopPriceValue = getStopPrice();
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
         sb.append("stopPrice=").append(urlEncode(stopPriceValueAsString)).append("");
+        Object strategyIdValue = getStrategyId();
+        String strategyIdValueAsString = "";
+        strategyIdValueAsString = strategyIdValue.toString();
+        sb.append("strategyId=").append(urlEncode(strategyIdValueAsString)).append("");
+        Object strategyTypeValue = getStrategyType();
+        String strategyTypeValueAsString = "";
+        strategyTypeValueAsString = strategyTypeValue.toString();
+        sb.append("strategyType=").append(urlEncode(strategyTypeValueAsString)).append("");
+        Object trailingDeltaValue = getTrailingDelta();
+        String trailingDeltaValueAsString = "";
+        trailingDeltaValueAsString = trailingDeltaValue.toString();
+        sb.append("trailingDelta=").append(urlEncode(trailingDeltaValueAsString)).append("");
+        Object trailingTimeValue = getTrailingTime();
+        String trailingTimeValueAsString = "";
+        trailingTimeValueAsString = trailingTimeValue.toString();
+        sb.append("trailingTime=").append(urlEncode(trailingTimeValueAsString)).append("");
+        Object usedSorValue = getUsedSor();
+        String usedSorValueAsString = "";
+        usedSorValueAsString = usedSorValue.toString();
+        sb.append("usedSor=").append(urlEncode(usedSorValueAsString)).append("");
+        Object workingFloorValue = getWorkingFloor();
+        String workingFloorValueAsString = "";
+        workingFloorValueAsString = workingFloorValue.toString();
+        sb.append("workingFloor=").append(urlEncode(workingFloorValueAsString)).append("");
+        Object pegPriceTypeValue = getPegPriceType();
+        String pegPriceTypeValueAsString = "";
+        pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+        sb.append("pegPriceType=").append(urlEncode(pegPriceTypeValueAsString)).append("");
+        Object pegOffsetTypeValue = getPegOffsetType();
+        String pegOffsetTypeValueAsString = "";
+        pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+        sb.append("pegOffsetType=").append(urlEncode(pegOffsetTypeValueAsString)).append("");
+        Object pegOffsetValueValue = getPegOffsetValue();
+        String pegOffsetValueValueAsString = "";
+        pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+        sb.append("pegOffsetValue=").append(urlEncode(pegOffsetValueValueAsString)).append("");
+        Object peggedPriceValue = getPeggedPrice();
+        String peggedPriceValueAsString = "";
+        peggedPriceValueAsString = peggedPriceValue.toString();
+        sb.append("peggedPrice=").append(urlEncode(peggedPriceValueAsString)).append("");
+        Object expiryReasonValue = getExpiryReason();
+        String expiryReasonValueAsString = "";
+        expiryReasonValueAsString = expiryReasonValue.toString();
+        sb.append("expiryReason=").append(urlEncode(expiryReasonValueAsString)).append("");
         return sb.toString();
     }
 
@@ -696,7 +1172,21 @@ public class OrderListOtocoResponseOrderReportsInner {
         openapiFields.add("side");
         openapiFields.add("workingTime");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("icebergQty");
+        openapiFields.add("preventedMatchId");
+        openapiFields.add("preventedQuantity");
         openapiFields.add("stopPrice");
+        openapiFields.add("strategyId");
+        openapiFields.add("strategyType");
+        openapiFields.add("trailingDelta");
+        openapiFields.add("trailingTime");
+        openapiFields.add("usedSor");
+        openapiFields.add("workingFloor");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("peggedPrice");
+        openapiFields.add("expiryReason");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -720,19 +1210,6 @@ public class OrderListOtocoResponseOrderReportsInner {
                                     + " empty JSON string",
                                 OrderListOtocoResponseOrderReportsInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderListOtocoResponseOrderReportsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `OrderListOtocoResponseOrderReportsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -835,6 +1312,23 @@ public class OrderListOtocoResponseOrderReportsInner {
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
         }
+        if ((jsonObj.get("icebergQty") != null && !jsonObj.get("icebergQty").isJsonNull())
+                && !jsonObj.get("icebergQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `icebergQty` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("icebergQty").toString()));
+        }
+        if ((jsonObj.get("preventedQuantity") != null
+                        && !jsonObj.get("preventedQuantity").isJsonNull())
+                && !jsonObj.get("preventedQuantity").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `preventedQuantity` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("preventedQuantity").toString()));
+        }
         if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
                 && !jsonObj.get("stopPrice").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -842,6 +1336,46 @@ public class OrderListOtocoResponseOrderReportsInner {
                             "Expected the field `stopPrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("stopPrice").toString()));
+        }
+        if ((jsonObj.get("workingFloor") != null && !jsonObj.get("workingFloor").isJsonNull())
+                && !jsonObj.get("workingFloor").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `workingFloor` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("workingFloor").toString()));
+        }
+        if ((jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull())
+                && !jsonObj.get("pegPriceType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegPriceType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegPriceType").toString()));
+        }
+        if ((jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull())
+                && !jsonObj.get("pegOffsetType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pegOffsetType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("pegOffsetType").toString()));
+        }
+        if ((jsonObj.get("peggedPrice") != null && !jsonObj.get("peggedPrice").isJsonNull())
+                && !jsonObj.get("peggedPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `peggedPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("peggedPrice").toString()));
+        }
+        if ((jsonObj.get("expiryReason") != null && !jsonObj.get("expiryReason").isJsonNull())
+                && !jsonObj.get("expiryReason").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `expiryReason` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("expiryReason").toString()));
         }
     }
 
@@ -865,7 +1399,7 @@ public class OrderListOtocoResponseOrderReportsInner {
                         public void write(
                                 JsonWriter out, OrderListOtocoResponseOrderReportsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

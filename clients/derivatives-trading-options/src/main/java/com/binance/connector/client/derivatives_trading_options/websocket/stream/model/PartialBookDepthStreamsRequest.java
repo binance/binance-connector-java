@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,95 +38,94 @@ import org.hibernate.validator.constraints.*;
 /** PartialBookDepthStreamsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PartialBookDepthStreamsRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Integer id;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String symbol;
 
-    public static final String SERIALIZED_NAME_LEVELS = "levels";
+    public static final String SERIALIZED_NAME_LEVEL = "level";
 
-    @SerializedName(SERIALIZED_NAME_LEVELS)
-    @jakarta.annotation.Nonnull
-    private Long levels;
+    @SerializedName(SERIALIZED_NAME_LEVEL)
+    @jakarta.annotation.Nullable
+    private Level level;
 
     public static final String SERIALIZED_NAME_UPDATE_SPEED = "updateSpeed";
 
     @SerializedName(SERIALIZED_NAME_UPDATE_SPEED)
     @jakarta.annotation.Nullable
-    private String updateSpeed;
+    private UpdateSpeed updateSpeed;
 
     public PartialBookDepthStreamsRequest() {}
 
-    public PartialBookDepthStreamsRequest id(@jakarta.annotation.Nullable String id) {
+    public PartialBookDepthStreamsRequest id(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
     }
 
-    public PartialBookDepthStreamsRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+    public PartialBookDepthStreamsRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * The symbol parameter
      *
      * @return symbol
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
     }
 
-    public PartialBookDepthStreamsRequest levels(@jakarta.annotation.Nonnull Long levels) {
-        this.levels = levels;
+    public PartialBookDepthStreamsRequest level(@jakarta.annotation.Nullable Level level) {
+        this.level = level;
         return this;
     }
 
     /**
-     * Get levels
+     * Get level
      *
-     * @return levels
+     * @return level
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public Long getLevels() {
-        return levels;
+    @jakarta.annotation.Nullable
+    @Valid
+    public Level getLevel() {
+        return level;
     }
 
-    public void setLevels(@jakarta.annotation.Nonnull Long levels) {
-        this.levels = levels;
+    public void setLevel(@jakarta.annotation.Nullable Level level) {
+        this.level = level;
     }
 
     public PartialBookDepthStreamsRequest updateSpeed(
-            @jakarta.annotation.Nullable String updateSpeed) {
+            @jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
         return this;
     }
@@ -136,11 +136,12 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
      * @return updateSpeed
      */
     @jakarta.annotation.Nullable
-    public String getUpdateSpeed() {
+    @Valid
+    public UpdateSpeed getUpdateSpeed() {
         return updateSpeed;
     }
 
-    public void setUpdateSpeed(@jakarta.annotation.Nullable String updateSpeed) {
+    public void setUpdateSpeed(@jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
     }
 
@@ -156,13 +157,13 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
                 (PartialBookDepthStreamsRequest) o;
         return Objects.equals(this.id, partialBookDepthStreamsRequest.id)
                 && Objects.equals(this.symbol, partialBookDepthStreamsRequest.symbol)
-                && Objects.equals(this.levels, partialBookDepthStreamsRequest.levels)
+                && Objects.equals(this.level, partialBookDepthStreamsRequest.level)
                 && Objects.equals(this.updateSpeed, partialBookDepthStreamsRequest.updateSpeed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, symbol, levels, updateSpeed);
+        return Objects.hash(id, symbol, level, updateSpeed);
     }
 
     @Override
@@ -171,7 +172,7 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
         sb.append("class PartialBookDepthStreamsRequest {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
-        sb.append("		levels: ").append(toIndentedString(levels)).append("\n");
+        sb.append("		level: ").append(toIndentedString(level)).append("\n");
         sb.append("		updateSpeed: ").append(toIndentedString(updateSpeed)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -181,7 +182,7 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
+        Integer idValue = getId();
         if (idValue != null) {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
@@ -191,12 +192,12 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
         }
-        Long levelsValue = getLevels();
-        if (levelsValue != null) {
-            String levelsValueAsString = levelsValue.toString();
-            valMap.put("levels", levelsValueAsString);
+        Level levelValue = getLevel();
+        if (levelValue != null) {
+            String levelValueAsString = levelValue.toString();
+            valMap.put("level", levelValueAsString);
         }
-        String updateSpeedValue = getUpdateSpeed();
+        UpdateSpeed updateSpeedValue = getUpdateSpeed();
         if (updateSpeedValue != null) {
             String updateSpeedValueAsString = updateSpeedValue.toString();
             valMap.put("updateSpeed", updateSpeedValueAsString);
@@ -220,9 +221,9 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
         }
-        Object levelsValue = getLevels();
-        if (levelsValue != null) {
-            valMap.put("levels", levelsValue);
+        Object levelValue = getLevel();
+        if (levelValue != null) {
+            valMap.put("level", levelValue);
         }
         Object updateSpeedValue = getUpdateSpeed();
         if (updateSpeedValue != null) {
@@ -256,13 +257,11 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
         openapiFields.add("symbol");
-        openapiFields.add("levels");
+        openapiFields.add("level");
         openapiFields.add("updateSpeed");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("symbol");
-        openapiRequiredFields.add("levels");
     }
 
     /**
@@ -295,39 +294,22 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : PartialBookDepthStreamsRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull())
-                && !jsonObj.get("updateSpeed").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `updateSpeed` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("updateSpeed").toString()));
+        // validate the optional field `level`
+        if (jsonObj.get("level") != null && !jsonObj.get("level").isJsonNull()) {
+            Level.validateJsonElement(jsonObj.get("level"));
+        }
+        // validate the optional field `updateSpeed`
+        if (jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull()) {
+            UpdateSpeed.validateJsonElement(jsonObj.get("updateSpeed"));
         }
     }
 
@@ -349,7 +331,7 @@ public class PartialBookDepthStreamsRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, PartialBookDepthStreamsRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

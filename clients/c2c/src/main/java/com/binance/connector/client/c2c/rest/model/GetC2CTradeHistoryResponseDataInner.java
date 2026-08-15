@@ -1,6 +1,6 @@
 /*
- * Binance C2C REST API
- * OpenAPI Specification for the Binance C2C REST API
+ * C2C REST API
+ * Query fiat transaction history via the C2C REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetC2CTradeHistoryResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetC2CTradeHistoryResponseDataInner {
     public static final String SERIALIZED_NAME_ORDER_NUMBER = "orderNumber";
 
@@ -115,6 +113,36 @@ public class GetC2CTradeHistoryResponseDataInner {
     @SerializedName(SERIALIZED_NAME_COUNTER_PART_NICK_NAME)
     @jakarta.annotation.Nullable
     private String counterPartNickName;
+
+    public static final String SERIALIZED_NAME_PAY_METHOD_NAME = "payMethodName";
+
+    @SerializedName(SERIALIZED_NAME_PAY_METHOD_NAME)
+    @jakarta.annotation.Nullable
+    private String payMethodName;
+
+    public static final String SERIALIZED_NAME_ADDITIONAL_KYC_VERIFY = "additionalKycVerify";
+
+    @SerializedName(SERIALIZED_NAME_ADDITIONAL_KYC_VERIFY)
+    @jakarta.annotation.Nullable
+    private Long additionalKycVerify;
+
+    public static final String SERIALIZED_NAME_TAKER_COMMISSION_RATE = "takerCommissionRate";
+
+    @SerializedName(SERIALIZED_NAME_TAKER_COMMISSION_RATE)
+    @jakarta.annotation.Nullable
+    private String takerCommissionRate;
+
+    public static final String SERIALIZED_NAME_TAKER_COMMISSION = "takerCommission";
+
+    @SerializedName(SERIALIZED_NAME_TAKER_COMMISSION)
+    @jakarta.annotation.Nullable
+    private String takerCommission;
+
+    public static final String SERIALIZED_NAME_TAKER_AMOUNT = "takerAmount";
+
+    @SerializedName(SERIALIZED_NAME_TAKER_AMOUNT)
+    @jakarta.annotation.Nullable
+    private String takerAmount;
 
     public static final String SERIALIZED_NAME_ADVERTISEMENT_ROLE = "advertisementRole";
 
@@ -247,7 +275,7 @@ public class GetC2CTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get amount
+     * Quantity (in Crypto)
      *
      * @return amount
      */
@@ -267,7 +295,7 @@ public class GetC2CTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get totalPrice
+     * Total order amount in fiat
      *
      * @return totalPrice
      */
@@ -287,7 +315,7 @@ public class GetC2CTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get unitPrice
+     * Unit Price (in Fiat)
      *
      * @return unitPrice
      */
@@ -327,7 +355,7 @@ public class GetC2CTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get createTime
+     * Order creation timestamp in milliseconds
      *
      * @return createTime
      */
@@ -347,7 +375,7 @@ public class GetC2CTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get commission
+     * Transaction Fee (in Crypto)
      *
      * @return commission
      */
@@ -367,7 +395,7 @@ public class GetC2CTradeHistoryResponseDataInner {
     }
 
     /**
-     * Get counterPartNickName
+     * Counterparty nickname
      *
      * @return counterPartNickName
      */
@@ -378,6 +406,106 @@ public class GetC2CTradeHistoryResponseDataInner {
 
     public void setCounterPartNickName(@jakarta.annotation.Nullable String counterPartNickName) {
         this.counterPartNickName = counterPartNickName;
+    }
+
+    public GetC2CTradeHistoryResponseDataInner payMethodName(
+            @jakarta.annotation.Nullable String payMethodName) {
+        this.payMethodName = payMethodName;
+        return this;
+    }
+
+    /**
+     * Identifier of the payment method
+     *
+     * @return payMethodName
+     */
+    @jakarta.annotation.Nullable
+    public String getPayMethodName() {
+        return payMethodName;
+    }
+
+    public void setPayMethodName(@jakarta.annotation.Nullable String payMethodName) {
+        this.payMethodName = payMethodName;
+    }
+
+    public GetC2CTradeHistoryResponseDataInner additionalKycVerify(
+            @jakarta.annotation.Nullable Long additionalKycVerify) {
+        this.additionalKycVerify = additionalKycVerify;
+        return this;
+    }
+
+    /**
+     * KYC verification status. 0: not required, 1: not verified, 2: verified
+     *
+     * @return additionalKycVerify
+     */
+    @jakarta.annotation.Nullable
+    public Long getAdditionalKycVerify() {
+        return additionalKycVerify;
+    }
+
+    public void setAdditionalKycVerify(@jakarta.annotation.Nullable Long additionalKycVerify) {
+        this.additionalKycVerify = additionalKycVerify;
+    }
+
+    public GetC2CTradeHistoryResponseDataInner takerCommissionRate(
+            @jakarta.annotation.Nullable String takerCommissionRate) {
+        this.takerCommissionRate = takerCommissionRate;
+        return this;
+    }
+
+    /**
+     * Taker commission rate
+     *
+     * @return takerCommissionRate
+     */
+    @jakarta.annotation.Nullable
+    public String getTakerCommissionRate() {
+        return takerCommissionRate;
+    }
+
+    public void setTakerCommissionRate(@jakarta.annotation.Nullable String takerCommissionRate) {
+        this.takerCommissionRate = takerCommissionRate;
+    }
+
+    public GetC2CTradeHistoryResponseDataInner takerCommission(
+            @jakarta.annotation.Nullable String takerCommission) {
+        this.takerCommission = takerCommission;
+        return this;
+    }
+
+    /**
+     * Taker commission amount
+     *
+     * @return takerCommission
+     */
+    @jakarta.annotation.Nullable
+    public String getTakerCommission() {
+        return takerCommission;
+    }
+
+    public void setTakerCommission(@jakarta.annotation.Nullable String takerCommission) {
+        this.takerCommission = takerCommission;
+    }
+
+    public GetC2CTradeHistoryResponseDataInner takerAmount(
+            @jakarta.annotation.Nullable String takerAmount) {
+        this.takerAmount = takerAmount;
+        return this;
+    }
+
+    /**
+     * Taker trade amount
+     *
+     * @return takerAmount
+     */
+    @jakarta.annotation.Nullable
+    public String getTakerAmount() {
+        return takerAmount;
+    }
+
+    public void setTakerAmount(@jakarta.annotation.Nullable String takerAmount) {
+        this.takerAmount = takerAmount;
     }
 
     public GetC2CTradeHistoryResponseDataInner advertisementRole(
@@ -426,6 +554,17 @@ public class GetC2CTradeHistoryResponseDataInner {
                         this.counterPartNickName,
                         getC2CTradeHistoryResponseDataInner.counterPartNickName)
                 && Objects.equals(
+                        this.payMethodName, getC2CTradeHistoryResponseDataInner.payMethodName)
+                && Objects.equals(
+                        this.additionalKycVerify,
+                        getC2CTradeHistoryResponseDataInner.additionalKycVerify)
+                && Objects.equals(
+                        this.takerCommissionRate,
+                        getC2CTradeHistoryResponseDataInner.takerCommissionRate)
+                && Objects.equals(
+                        this.takerCommission, getC2CTradeHistoryResponseDataInner.takerCommission)
+                && Objects.equals(this.takerAmount, getC2CTradeHistoryResponseDataInner.takerAmount)
+                && Objects.equals(
                         this.advertisementRole,
                         getC2CTradeHistoryResponseDataInner.advertisementRole);
     }
@@ -446,6 +585,11 @@ public class GetC2CTradeHistoryResponseDataInner {
                 createTime,
                 commission,
                 counterPartNickName,
+                payMethodName,
+                additionalKycVerify,
+                takerCommissionRate,
+                takerCommission,
+                takerAmount,
                 advertisementRole);
     }
 
@@ -468,6 +612,15 @@ public class GetC2CTradeHistoryResponseDataInner {
         sb.append("		counterPartNickName: ")
                 .append(toIndentedString(counterPartNickName))
                 .append("\n");
+        sb.append("		payMethodName: ").append(toIndentedString(payMethodName)).append("\n");
+        sb.append("		additionalKycVerify: ")
+                .append(toIndentedString(additionalKycVerify))
+                .append("\n");
+        sb.append("		takerCommissionRate: ")
+                .append(toIndentedString(takerCommissionRate))
+                .append("\n");
+        sb.append("		takerCommission: ").append(toIndentedString(takerCommission)).append("\n");
+        sb.append("		takerAmount: ").append(toIndentedString(takerAmount)).append("\n");
         sb.append("		advertisementRole: ").append(toIndentedString(advertisementRole)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -530,6 +683,30 @@ public class GetC2CTradeHistoryResponseDataInner {
         sb.append("counterPartNickName=")
                 .append(urlEncode(counterPartNickNameValueAsString))
                 .append("");
+        Object payMethodNameValue = getPayMethodName();
+        String payMethodNameValueAsString = "";
+        payMethodNameValueAsString = payMethodNameValue.toString();
+        sb.append("payMethodName=").append(urlEncode(payMethodNameValueAsString)).append("");
+        Object additionalKycVerifyValue = getAdditionalKycVerify();
+        String additionalKycVerifyValueAsString = "";
+        additionalKycVerifyValueAsString = additionalKycVerifyValue.toString();
+        sb.append("additionalKycVerify=")
+                .append(urlEncode(additionalKycVerifyValueAsString))
+                .append("");
+        Object takerCommissionRateValue = getTakerCommissionRate();
+        String takerCommissionRateValueAsString = "";
+        takerCommissionRateValueAsString = takerCommissionRateValue.toString();
+        sb.append("takerCommissionRate=")
+                .append(urlEncode(takerCommissionRateValueAsString))
+                .append("");
+        Object takerCommissionValue = getTakerCommission();
+        String takerCommissionValueAsString = "";
+        takerCommissionValueAsString = takerCommissionValue.toString();
+        sb.append("takerCommission=").append(urlEncode(takerCommissionValueAsString)).append("");
+        Object takerAmountValue = getTakerAmount();
+        String takerAmountValueAsString = "";
+        takerAmountValueAsString = takerAmountValue.toString();
+        sb.append("takerAmount=").append(urlEncode(takerAmountValueAsString)).append("");
         Object advertisementRoleValue = getAdvertisementRole();
         String advertisementRoleValueAsString = "";
         advertisementRoleValueAsString = advertisementRoleValue.toString();
@@ -577,6 +754,11 @@ public class GetC2CTradeHistoryResponseDataInner {
         openapiFields.add("createTime");
         openapiFields.add("commission");
         openapiFields.add("counterPartNickName");
+        openapiFields.add("payMethodName");
+        openapiFields.add("additionalKycVerify");
+        openapiFields.add("takerCommissionRate");
+        openapiFields.add("takerCommission");
+        openapiFields.add("takerAmount");
         openapiFields.add("advertisementRole");
 
         // a set of required properties/fields (JSON key names)
@@ -600,18 +782,6 @@ public class GetC2CTradeHistoryResponseDataInner {
                                         + " not found in the empty JSON string",
                                 GetC2CTradeHistoryResponseDataInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetC2CTradeHistoryResponseDataInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetC2CTradeHistoryResponseDataInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -712,6 +882,39 @@ public class GetC2CTradeHistoryResponseDataInner {
                                     + " JSON string but got `%s`",
                             jsonObj.get("counterPartNickName").toString()));
         }
+        if ((jsonObj.get("payMethodName") != null && !jsonObj.get("payMethodName").isJsonNull())
+                && !jsonObj.get("payMethodName").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `payMethodName` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("payMethodName").toString()));
+        }
+        if ((jsonObj.get("takerCommissionRate") != null
+                        && !jsonObj.get("takerCommissionRate").isJsonNull())
+                && !jsonObj.get("takerCommissionRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `takerCommissionRate` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("takerCommissionRate").toString()));
+        }
+        if ((jsonObj.get("takerCommission") != null && !jsonObj.get("takerCommission").isJsonNull())
+                && !jsonObj.get("takerCommission").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `takerCommission` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("takerCommission").toString()));
+        }
+        if ((jsonObj.get("takerAmount") != null && !jsonObj.get("takerAmount").isJsonNull())
+                && !jsonObj.get("takerAmount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `takerAmount` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("takerAmount").toString()));
+        }
         if ((jsonObj.get("advertisementRole") != null
                         && !jsonObj.get("advertisementRole").isJsonNull())
                 && !jsonObj.get("advertisementRole").isJsonPrimitive()) {
@@ -741,7 +944,7 @@ public class GetC2CTradeHistoryResponseDataInner {
                         @Override
                         public void write(JsonWriter out, GetC2CTradeHistoryResponseDataInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

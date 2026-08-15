@@ -15,6 +15,7 @@ package com.binance.connector.client.c2c.rest.api;
 import static org.junit.Assert.assertEquals;
 
 import com.binance.connector.client.c2c.rest.model.GetC2CTradeHistoryResponse;
+import com.binance.connector.client.c2c.rest.model.TradeType;
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
@@ -36,7 +37,7 @@ import org.mockito.Mockito;
 /** API tests for C2CApi */
 public class C2CApiTest {
 
-    private C2CApi api;
+    private C2cRestApi api;
     private ApiClient apiClientSpy;
     private SignatureGenerator signatureGeneratorSpy;
 
@@ -72,7 +73,7 @@ public class C2CApiTest {
         Mockito.doReturn(new ApiResponse<>(200, null)).when(apiClientSpy).execute(Mockito.any());
         Mockito.doReturn("1736393892000").when(apiClientSpy).buildTimestamp();
 
-        api = new C2CApi(apiClientSpy);
+        api = new C2cRestApi(apiClientSpy);
     }
 
     /**
@@ -87,28 +88,23 @@ public class C2CApiTest {
      */
     @Test
     public void getC2CTradeHistoryTest() throws ApiException, CryptoException {
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
+        TradeType tradeType = TradeType.BUY;
+        Long startTimestamp = 1623319461670L;
+        Long endTimestamp = 1641782889000L;
         Long page = 1L;
-        Long recvWindow = 5000L;
+        Long rows = 100L;
         ApiResponse<GetC2CTradeHistoryResponse> response =
-                api.getC2CTradeHistory(startTime, endTime, page, recvWindow);
+                api.getC2CTradeHistory(tradeType, startTimestamp, endTimestamp, page, rows);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&page=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d8669595398c3478db78736dbf4210642841e9920062e47dd9e504f877e947a8",
+                null,
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/c2c/orderMatch/listUserOrderHistory", actualRequest.url().encodedPath());

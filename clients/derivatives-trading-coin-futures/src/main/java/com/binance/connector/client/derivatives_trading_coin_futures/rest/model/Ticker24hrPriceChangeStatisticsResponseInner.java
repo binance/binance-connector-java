@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** Ticker24hrPriceChangeStatisticsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrPriceChangeStatisticsResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -149,7 +147,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -169,7 +167,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -189,7 +187,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get priceChange
+     * Absolute price change in the 24h window.
      *
      * @return priceChange
      */
@@ -209,7 +207,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get priceChangePercent
+     * Percentage price change in the 24h window.
      *
      * @return priceChangePercent
      */
@@ -229,7 +227,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get weightedAvgPrice
+     * Weighted average price in the 24h window.
      *
      * @return weightedAvgPrice
      */
@@ -249,7 +247,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastPrice
+     * Latest traded price.
      *
      * @return lastPrice
      */
@@ -269,7 +267,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastQty
+     * Quantity of the latest trade.
      *
      * @return lastQty
      */
@@ -289,7 +287,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get openPrice
+     * Opening price of the 24h window.
      *
      * @return openPrice
      */
@@ -309,7 +307,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get highPrice
+     * Highest price in the 24h window.
      *
      * @return highPrice
      */
@@ -329,7 +327,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lowPrice
+     * Lowest price in the 24h window.
      *
      * @return lowPrice
      */
@@ -349,7 +347,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get volume
+     * Base asset volume in the 24h window.
      *
      * @return volume
      */
@@ -369,7 +367,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get baseVolume
+     * Base asset volume.
      *
      * @return baseVolume
      */
@@ -389,7 +387,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get openTime
+     * Start time of the 24h window (milliseconds).
      *
      * @return openTime
      */
@@ -409,7 +407,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get closeTime
+     * End time of the 24h window (milliseconds).
      *
      * @return closeTime
      */
@@ -429,7 +427,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get firstId
+     * First tradeId
      *
      * @return firstId
      */
@@ -449,7 +447,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastId
+     * Last tradeId
      *
      * @return lastId
      */
@@ -469,7 +467,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get count
+     * Total number of trades in the 24h window.
      *
      * @return count
      */
@@ -717,20 +715,6 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Ticker24hrPriceChangeStatisticsResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `Ticker24hrPriceChangeStatisticsResponseInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -853,7 +837,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
                         public void write(
                                 JsonWriter out, Ticker24hrPriceChangeStatisticsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** MarginAccountNewOcoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOcoResponse {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -118,7 +116,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -138,7 +136,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get contingencyType
+     * Contingency Type.
      *
      * @return contingencyType
      */
@@ -158,7 +156,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get listStatusType
+     * List Status Type.
      *
      * @return listStatusType
      */
@@ -178,7 +176,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get listOrderStatus
+     * List Order Status.
      *
      * @return listOrderStatus
      */
@@ -198,7 +196,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get listClientOrderId
+     * List Client Order ID.
      *
      * @return listClientOrderId
      */
@@ -218,7 +216,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get transactionTime
+     * Transaction Time.
      *
      * @return transactionTime
      */
@@ -237,7 +235,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -257,7 +255,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get marginBuyBorrowAmount
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAmount
      */
@@ -278,7 +276,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get marginBuyBorrowAsset
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAsset
      */
@@ -308,7 +306,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get orders
+     * Orders.
      *
      * @return orders
      */
@@ -341,7 +339,7 @@ public class MarginAccountNewOcoResponse {
     }
 
     /**
-     * Get orderReports
+     * Order Reports.
      *
      * @return orderReports
      */
@@ -543,18 +541,6 @@ public class MarginAccountNewOcoResponse {
                                 MarginAccountNewOcoResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountNewOcoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `MarginAccountNewOcoResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("contingencyType") != null && !jsonObj.get("contingencyType").isJsonNull())
                 && !jsonObj.get("contingencyType").isJsonPrimitive()) {
@@ -674,7 +660,7 @@ public class MarginAccountNewOcoResponse {
                         @Override
                         public void write(JsonWriter out, MarginAccountNewOcoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** HashrateResaleListResponseDataConfigDetailsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class HashrateResaleListResponseDataConfigDetailsInner {
     public static final String SERIALIZED_NAME_CONFIG_ID = "configId";
 
@@ -86,6 +84,12 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     @jakarta.annotation.Nullable
     private Long status;
 
+    public static final String SERIALIZED_NAME_TYPE = "type";
+
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    @jakarta.annotation.Nullable
+    private Long type;
+
     public HashrateResaleListResponseDataConfigDetailsInner() {}
 
     public HashrateResaleListResponseDataConfigDetailsInner configId(
@@ -95,7 +99,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get configId
+     * Configuration ID
      *
      * @return configId
      */
@@ -115,7 +119,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get poolUsername
+     * Transfer-out sub-account
      *
      * @return poolUsername
      */
@@ -135,7 +139,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get toPoolUsername
+     * Transfer-in sub-account
      *
      * @return toPoolUsername
      */
@@ -155,7 +159,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get algoName
+     * Transfer algorithm name
      *
      * @return algoName
      */
@@ -175,7 +179,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get hashRate
+     * Transferred hashrate
      *
      * @return hashRate
      */
@@ -195,7 +199,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get startDay
+     * Start date
      *
      * @return startDay
      */
@@ -215,7 +219,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get endDay
+     * End date
      *
      * @return endDay
      */
@@ -235,7 +239,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
     }
 
     /**
-     * Get status
+     * Status: 0 Processing, 1 Cancelled, 2 Terminated
      *
      * @return status
      */
@@ -246,6 +250,26 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
 
     public void setStatus(@jakarta.annotation.Nullable Long status) {
         this.status = status;
+    }
+
+    public HashrateResaleListResponseDataConfigDetailsInner type(
+            @jakarta.annotation.Nullable Long type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Type: 0 Hashrate transfer record, 1 Hashrate receive record
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nullable
+    public Long getType() {
+        return type;
+    }
+
+    public void setType(@jakarta.annotation.Nullable Long type) {
+        this.type = type;
     }
 
     @Override
@@ -276,7 +300,8 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
                 && Objects.equals(
                         this.endDay, hashrateResaleListResponseDataConfigDetailsInner.endDay)
                 && Objects.equals(
-                        this.status, hashrateResaleListResponseDataConfigDetailsInner.status);
+                        this.status, hashrateResaleListResponseDataConfigDetailsInner.status)
+                && Objects.equals(this.type, hashrateResaleListResponseDataConfigDetailsInner.type);
     }
 
     @Override
@@ -289,7 +314,8 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
                 hashRate,
                 startDay,
                 endDay,
-                status);
+                status,
+                type);
     }
 
     @Override
@@ -304,6 +330,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         sb.append("		startDay: ").append(toIndentedString(startDay)).append("\n");
         sb.append("		endDay: ").append(toIndentedString(endDay)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
+        sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -343,6 +370,10 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
         sb.append("status=").append(urlEncode(statusValueAsString)).append("");
+        Object typeValue = getType();
+        String typeValueAsString = "";
+        typeValueAsString = typeValue.toString();
+        sb.append("type=").append(urlEncode(typeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -379,6 +410,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
         openapiFields.add("startDay");
         openapiFields.add("endDay");
         openapiFields.add("status");
+        openapiFields.add("type");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -403,20 +435,6 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
                                 HashrateResaleListResponseDataConfigDetailsInner
                                         .openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!HashrateResaleListResponseDataConfigDetailsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `HashrateResaleListResponseDataConfigDetailsInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -468,7 +486,7 @@ public class HashrateResaleListResponseDataConfigDetailsInner {
                                 JsonWriter out,
                                 HashrateResaleListResponseDataConfigDetailsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

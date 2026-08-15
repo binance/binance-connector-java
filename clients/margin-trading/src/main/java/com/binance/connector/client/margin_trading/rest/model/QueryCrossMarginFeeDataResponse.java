@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,8 +14,8 @@ package com.binance.connector.client.margin_trading.rest.model;
 
 import com.binance.connector.client.margin_trading.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -28,15 +28,13 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryCrossMarginFeeDataResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCrossMarginFeeDataResponse
         extends ArrayList<QueryCrossMarginFeeDataResponseInner> {
     public QueryCrossMarginFeeDataResponse() {}
@@ -110,6 +108,18 @@ public class QueryCrossMarginFeeDataResponse
      *     QueryCrossMarginFeeDataResponse
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            QueryCrossMarginFeeDataResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!QueryCrossMarginFeeDataResponse.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -118,18 +128,6 @@ public class QueryCrossMarginFeeDataResponse
                                 "The required field(s) %s in QueryCrossMarginFeeDataResponse is not"
                                         + " found in the empty JSON string",
                                 QueryCrossMarginFeeDataResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryCrossMarginFeeDataResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryCrossMarginFeeDataResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }
@@ -152,7 +150,7 @@ public class QueryCrossMarginFeeDataResponse
                         @Override
                         public void write(JsonWriter out, QueryCrossMarginFeeDataResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

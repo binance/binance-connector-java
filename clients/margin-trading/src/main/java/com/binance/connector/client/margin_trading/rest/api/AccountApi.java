@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.binance.connector.client.margin_trading.rest.model.EnableIsolatedMarg
 import com.binance.connector.client.margin_trading.rest.model.EnableIsolatedMarginAccountResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetBnbBurnStatusResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossIsolatedMarginCapitalFlowResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossMarginAccountDetailsResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryCrossMarginFeeDataResponse;
@@ -41,8 +42,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -55,7 +56,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/1.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -106,7 +107,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Adjust-cross-margin-max-leverage">Adjust
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#adjust-cross-margin-max-leverage">Adjust
      *     cross margin max leverage (USER_DATA) Documentation</a>
      */
     private okhttp3.Call adjustCrossMarginMaxLeverageCall(
@@ -150,15 +151,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -172,7 +169,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -212,12 +209,12 @@ public class AccountApi {
     }
 
     /**
-     * Adjust cross margin max leverage (USER_DATA) Adjust cross margin max leverage * The margin
-     * level need higher than the initial risk ratio of adjusted leverage, the initial risk ratio of
-     * 3x is 1.5 , the initial risk ratio of 5x is 1.25; The detail conditions on how to switch
-     * between Cross Margin Classic and Cross Margin Pro can refer to [the
+     * Adjust cross margin max leverage (USER_DATA) Adjust cross margin max leverage Weight(UID):
+     * 3000, 1 times/min per IP Security Type: USER_DATA Notes: - The margin level need higher than
+     * the initial risk ratio of adjusted leverage, the initial risk ratio of 3x is 1.5 , the
+     * initial risk ratio of 5x is 1.25; The detail conditions on how to switch between Cross Margin
+     * Classic and Cross Margin Pro can refer to [the
      * FAQ](https://www.binance.com/en/support/faq/how-to-activate-the-cross-margin-pro-mode-on-binance-e27786da05e743a694b8c625b3bc475d).
-     * Weight: 3000
      *
      * @param adjustCrossMarginMaxLeverageRequest (required)
      * @return ApiResponse&lt;AdjustCrossMarginMaxLeverageResponse&gt;
@@ -231,7 +228,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Adjust-cross-margin-max-leverage">Adjust
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#adjust-cross-margin-max-leverage">Adjust
      *     cross margin max leverage (USER_DATA) Documentation</a>
      */
     public ApiResponse<AdjustCrossMarginMaxLeverageResponse> adjustCrossMarginMaxLeverage(
@@ -248,7 +245,7 @@ public class AccountApi {
      * Build call for disableIsolatedMarginAccount
      *
      * @param symbol (required)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -259,7 +256,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Disable-Isolated-Margin-Account">Disable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#disable-isolated-margin-account">Disable
      *     Isolated Margin Account (TRADE) Documentation</a>
      */
     private okhttp3.Call disableIsolatedMarginAccountCall(String symbol, Long recvWindow)
@@ -305,15 +302,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -327,7 +320,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -365,10 +358,11 @@ public class AccountApi {
 
     /**
      * Disable Isolated Margin Account (TRADE) Disable isolated margin account for a specific
-     * symbol. Each trading pair can only be deactivated once every 24 hours. Weight: 300(UID)
+     * symbol. Each trading pair can only be deactivated once every 24 hours. Weight(UID): 300
+     * Security Type: TRADE
      *
      * @param symbol (required)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;DisableIsolatedMarginAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -380,11 +374,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Disable-Isolated-Margin-Account">Disable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#disable-isolated-margin-account">Disable
      *     Isolated Margin Account (TRADE) Documentation</a>
      */
     public ApiResponse<DisableIsolatedMarginAccountResponse> disableIsolatedMarginAccount(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 disableIsolatedMarginAccountValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -406,7 +400,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Enable-Isolated-Margin-Account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#enable-isolated-margin-account">Enable
      *     Isolated Margin Account (TRADE) Documentation</a>
      */
     private okhttp3.Call enableIsolatedMarginAccountCall(
@@ -454,15 +448,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -476,7 +466,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -517,7 +507,8 @@ public class AccountApi {
 
     /**
      * Enable Isolated Margin Account (TRADE) Enable isolated margin account for a specific
-     * symbol(Only supports activation of previously disabled accounts). Weight: 300(UID)
+     * symbol(Only supports activation of previously disabled accounts). Weight(UID): 300 Security
+     * Type: TRADE
      *
      * @param enableIsolatedMarginAccountRequest (required)
      * @return ApiResponse&lt;EnableIsolatedMarginAccountResponse&gt;
@@ -531,7 +522,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Enable-Isolated-Margin-Account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#enable-isolated-margin-account">Enable
      *     Isolated Margin Account (TRADE) Documentation</a>
      */
     public ApiResponse<EnableIsolatedMarginAccountResponse> enableIsolatedMarginAccount(
@@ -547,7 +538,7 @@ public class AccountApi {
     /**
      * Build call for getBnbBurnStatus
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -558,7 +549,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Get-BNB-Burn-Status">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-bnb-burn-status">Get
      *     BNB Burn Status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBnbBurnStatusCall(Long recvWindow) throws ApiException {
@@ -599,15 +590,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -621,7 +608,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -655,9 +642,9 @@ public class AccountApi {
     }
 
     /**
-     * Get BNB Burn Status (USER_DATA) Get BNB Burn Status Weight: 1(IP)
+     * Get BNB Burn Status (USER_DATA) Get BNB Burn Status Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBnbBurnStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -669,10 +656,10 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Get-BNB-Burn-Status">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-bnb-burn-status">Get
      *     BNB Burn Status (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetBnbBurnStatusResponse> getBnbBurnStatus(Long recvWindow)
+    public ApiResponse<GetBnbBurnStatusResponse> getBnbBurnStatus(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getBnbBurnStatusValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -683,7 +670,7 @@ public class AccountApi {
     /**
      * Build call for getSummaryOfMarginAccount
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -694,7 +681,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Get-Summary-of-Margin-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-summary-of-margin-account">Get
      *     Summary of Margin account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSummaryOfMarginAccountCall(Long recvWindow) throws ApiException {
@@ -735,15 +722,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -757,7 +740,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -792,10 +775,10 @@ public class AccountApi {
     }
 
     /**
-     * Get Summary of Margin account (USER_DATA) Get personal margin level information Weight:
-     * 10(IP)
+     * Get Summary of Margin account (USER_DATA) Get personal margin level information Weight(IP):
+     * 10 Security Type: USER_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSummaryOfMarginAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -807,11 +790,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Get-Summary-of-Margin-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-summary-of-margin-account">Get
      *     Summary of Margin account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetSummaryOfMarginAccountResponse> getSummaryOfMarginAccount(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetSummaryOfMarginAccountResponse> getSummaryOfMarginAccount(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getSummaryOfMarginAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSummaryOfMarginAccountResponse>() {}.getType();
@@ -822,13 +805,13 @@ public class AccountApi {
      * Build call for queryCrossIsolatedMarginCapitalFlow
      *
      * @param asset (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param symbol Mandatory for Isolated data (optional)
+     * @param type (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param fromId (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -839,13 +822,13 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Isolated-Margin-Capital-Flow">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow">Query
      *     Cross Isolated Margin Capital Flow (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCrossIsolatedMarginCapitalFlowCall(
             String asset,
             String symbol,
-            String type,
+            OrderType type,
             Long startTime,
             Long endTime,
             Long fromId,
@@ -917,15 +900,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -939,14 +918,14 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryCrossIsolatedMarginCapitalFlowValidateBeforeCall(
             String asset,
             String symbol,
-            String type,
+            OrderType type,
             Long startTime,
             Long endTime,
             Long fromId,
@@ -971,7 +950,7 @@ public class AccountApi {
                                     "queryCrossIsolatedMarginCapitalFlow",
                                     String.class,
                                     String.class,
-                                    String.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -997,16 +976,19 @@ public class AccountApi {
 
     /**
      * Query Cross Isolated Margin Capital Flow (USER_DATA) Query Cross Isolated Margin Capital Flow
-     * Weight: 100(IP)
+     * Weight(IP): 100 Security Type: USER_DATA Notes: - Only supports querying the data of the last
+     * 90 days - The time between startTime and endTime cannot be longer than 7 days. - If fromId is
+     * set, the data with id &gt; fromId will be returned. Otherwise the latest data will be
+     * returned - To query isolated data, Symbol needs to be entered.
      *
      * @param asset (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param type Transfer Type: ROLL_IN, ROLL_OUT (optional)
-     * @param startTime 只支持查询最近90天的数据 (optional)
+     * @param symbol Mandatory for Isolated data (optional)
+     * @param type (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param fromId 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 (optional)
-     * @param limit Default Value: 500; Max Value: 1000 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param fromId (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCrossIsolatedMarginCapitalFlowResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1018,19 +1000,19 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Isolated-Margin-Capital-Flow">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow">Query
      *     Cross Isolated Margin Capital Flow (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCrossIsolatedMarginCapitalFlowResponse>
             queryCrossIsolatedMarginCapitalFlow(
                     String asset,
                     String symbol,
-                    String type,
+                    OrderType type,
                     Long startTime,
                     Long endTime,
                     Long fromId,
-                    Long limit,
-                    Long recvWindow)
+                    @Max(1000L) Long limit,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 queryCrossIsolatedMarginCapitalFlowValidateBeforeCall(
@@ -1043,7 +1025,7 @@ public class AccountApi {
     /**
      * Build call for queryCrossMarginAccountDetails
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1054,7 +1036,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Account-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-account-details">Query
      *     Cross Margin Account Details (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCrossMarginAccountDetailsCall(Long recvWindow) throws ApiException {
@@ -1095,15 +1077,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1117,7 +1095,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1152,10 +1130,10 @@ public class AccountApi {
     }
 
     /**
-     * Query Cross Margin Account Details (USER_DATA) Query Cross Margin Account Details Weight:
-     * 10(IP)
+     * Query Cross Margin Account Details (USER_DATA) Query Cross Margin Account Details Weight(IP):
+     * 10 Security Type: USER_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCrossMarginAccountDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1167,11 +1145,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Account-Details">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-account-details">Query
      *     Cross Margin Account Details (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCrossMarginAccountDetailsResponse> queryCrossMarginAccountDetails(
-            Long recvWindow) throws ApiException {
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = queryCrossMarginAccountDetailsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryCrossMarginAccountDetailsResponse>() {}.getType();
@@ -1184,7 +1162,7 @@ public class AccountApi {
      * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
      *     omitted (optional)
      * @param coin (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1195,7 +1173,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Fee-Data">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-fee-data">Query
      *     Cross Margin Fee Data (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCrossMarginFeeDataCall(Long vipLevel, String coin, Long recvWindow)
@@ -1245,15 +1223,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1267,7 +1241,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1310,12 +1284,12 @@ public class AccountApi {
     /**
      * Query Cross Margin Fee Data (USER_DATA) Get cross margin fee data collection with any vip
      * level or user&#39;s current specific data as https://www.binance.com/en/margin-fee Weight: 1
-     * when coin is specified;(IP)
+     * when coin is specified;(IP) 5 when the coin parameter is omitted(IP) Security Type: USER_DATA
      *
      * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
      *     omitted (optional)
      * @param coin (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCrossMarginFeeDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1327,11 +1301,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Fee-Data">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-fee-data">Query
      *     Cross Margin Fee Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCrossMarginFeeDataResponse> queryCrossMarginFeeData(
-            Long vipLevel, String coin, Long recvWindow) throws ApiException {
+            Long vipLevel, String coin, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryCrossMarginFeeDataValidateBeforeCall(vipLevel, coin, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1342,7 +1316,7 @@ public class AccountApi {
     /**
      * Build call for queryEnabledIsolatedMarginAccountLimit
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1353,7 +1327,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Enabled-Isolated-Margin-Account-Limit">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-enabled-isolated-margin-account-limit">Query
      *     Enabled Isolated Margin Account Limit (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryEnabledIsolatedMarginAccountLimitCall(Long recvWindow)
@@ -1395,15 +1369,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1417,7 +1387,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1454,9 +1424,9 @@ public class AccountApi {
 
     /**
      * Query Enabled Isolated Margin Account Limit (USER_DATA) Query enabled isolated margin account
-     * limit. Weight: 1(IP)
+     * limit. Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryEnabledIsolatedMarginAccountLimitResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1468,11 +1438,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Enabled-Isolated-Margin-Account-Limit">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-enabled-isolated-margin-account-limit">Query
      *     Enabled Isolated Margin Account Limit (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryEnabledIsolatedMarginAccountLimitResponse>
-            queryEnabledIsolatedMarginAccountLimit(Long recvWindow) throws ApiException {
+            queryEnabledIsolatedMarginAccountLimit(@Max(60000L) Long recvWindow)
+                    throws ApiException {
         okhttp3.Call localVarCall =
                 queryEnabledIsolatedMarginAccountLimitValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1483,9 +1454,8 @@ public class AccountApi {
     /**
      * Build call for queryIsolatedMarginAccountInfo
      *
-     * @param symbols Max 5 symbols can be sent; separated by \&quot;,\&quot;. e.g.
-     *     \&quot;BTCUSDT,BNBUSDT,ADAUSDT\&quot; (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbols (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1496,7 +1466,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Account-Info">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-isolated-margin-account-info">Query
      *     Isolated Margin Account Info (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryIsolatedMarginAccountInfoCall(String symbols, Long recvWindow)
@@ -1542,15 +1512,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1564,7 +1530,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1601,14 +1567,13 @@ public class AccountApi {
     }
 
     /**
-     * Query Isolated Margin Account Info (USER_DATA) Query Isolated Margin Account Info * If
-     * \&quot;symbols\&quot; is not sent, all isolated assets will be returned. * If
-     * \&quot;symbols\&quot; is sent, only the isolated assets of the sent symbols will be returned.
-     * Weight: 10(IP)
+     * Query Isolated Margin Account Info (USER_DATA) Query Isolated Margin Account Info Weight(IP):
+     * 10 Security Type: USER_DATA Notes: - If \&quot;symbols\&quot; is not sent, all isolated
+     * assets will be returned. - If \&quot;symbols\&quot; is sent, only the isolated assets of the
+     * sent symbols will be returned.
      *
-     * @param symbols Max 5 symbols can be sent; separated by \&quot;,\&quot;. e.g.
-     *     \&quot;BTCUSDT,BNBUSDT,ADAUSDT\&quot; (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbols (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryIsolatedMarginAccountInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1620,11 +1585,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Account-Info">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-isolated-margin-account-info">Query
      *     Isolated Margin Account Info (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryIsolatedMarginAccountInfoResponse> queryIsolatedMarginAccountInfo(
-            String symbols, Long recvWindow) throws ApiException {
+            String symbols, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryIsolatedMarginAccountInfoValidateBeforeCall(symbols, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1635,10 +1600,9 @@ public class AccountApi {
     /**
      * Build call for queryIsolatedMarginFeeData
      *
-     * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
-     *     omitted (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param vipLevel (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1649,7 +1613,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Fee-Data">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-isolated-margin-fee-data">Query
      *     Isolated Margin Fee Data (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryIsolatedMarginFeeDataCall(
@@ -1699,15 +1663,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1721,7 +1681,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1764,12 +1724,12 @@ public class AccountApi {
     /**
      * Query Isolated Margin Fee Data (USER_DATA) Get isolated margin fee data collection with any
      * vip level or user&#39;s current specific data as https://www.binance.com/en/margin-fee
-     * Weight: 1 when a single is specified;(IP)
+     * Weight: 1 when a single is specified;(IP) 10 when the symbol parameter is omitted(IP)
+     * Security Type: USER_DATA
      *
-     * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
-     *     omitted (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param vipLevel (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryIsolatedMarginFeeDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1781,11 +1741,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Fee-Data">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-isolated-margin-fee-data">Query
      *     Isolated Margin Fee Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryIsolatedMarginFeeDataResponse> queryIsolatedMarginFeeData(
-            Long vipLevel, String symbol, Long recvWindow) throws ApiException {
+            Long vipLevel, String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryIsolatedMarginFeeDataValidateBeforeCall(vipLevel, symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =

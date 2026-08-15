@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** IndividualSymbolMiniTickerStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -93,6 +93,18 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String qLowerCase;
 
+    public static final String SERIALIZED_NAME_PS = "ps";
+
+    @SerializedName(SERIALIZED_NAME_PS)
+    @jakarta.annotation.Nullable
+    private String ps;
+
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
+
     public IndividualSymbolMiniTickerStreamResponse() {}
 
     public IndividualSymbolMiniTickerStreamResponse eLowerCase(
@@ -102,7 +114,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -121,7 +133,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -141,7 +153,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -161,7 +173,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Close price
      *
      * @return cLowerCase
      */
@@ -181,7 +193,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Open price
      *
      * @return oLowerCase
      */
@@ -201,7 +213,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * High price
      *
      * @return hLowerCase
      */
@@ -221,7 +233,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Low price
      *
      * @return lLowerCase
      */
@@ -241,7 +253,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * Total traded base asset volume
      *
      * @return vLowerCase
      */
@@ -261,7 +273,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Total traded quote asset volume
      *
      * @return qLowerCase
      */
@@ -272,6 +284,44 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
 
     public void setqLowerCase(@jakarta.annotation.Nullable String qLowerCase) {
         this.qLowerCase = qLowerCase;
+    }
+
+    public IndividualSymbolMiniTickerStreamResponse ps(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Pair symbol
+     *
+     * @return ps
+     */
+    @jakarta.annotation.Nullable
+    public String getPs() {
+        return ps;
+    }
+
+    public void setPs(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+    }
+
+    public IndividualSymbolMiniTickerStreamResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
     }
 
     @Override
@@ -299,7 +349,9 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
                 && Objects.equals(
                         this.vLowerCase, individualSymbolMiniTickerStreamResponse.vLowerCase)
                 && Objects.equals(
-                        this.qLowerCase, individualSymbolMiniTickerStreamResponse.qLowerCase);
+                        this.qLowerCase, individualSymbolMiniTickerStreamResponse.qLowerCase)
+                && Objects.equals(this.ps, individualSymbolMiniTickerStreamResponse.ps)
+                && Objects.equals(this.st, individualSymbolMiniTickerStreamResponse.st);
     }
 
     @Override
@@ -313,7 +365,9 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
                 hLowerCase,
                 lLowerCase,
                 vLowerCase,
-                qLowerCase);
+                qLowerCase,
+                ps,
+                st);
     }
 
     @Override
@@ -329,6 +383,8 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
         sb.append("		lLowerCase: ").append(toIndentedString(lLowerCase)).append("\n");
         sb.append("		vLowerCase: ").append(toIndentedString(vLowerCase)).append("\n");
         sb.append("		qLowerCase: ").append(toIndentedString(qLowerCase)).append("\n");
+        sb.append("		ps: ").append(toIndentedString(ps)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -382,6 +438,16 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
             String qLowerCaseValueAsString = qLowerCaseValue.toString();
             valMap.put("qLowerCase", qLowerCaseValueAsString);
         }
+        String psValue = getPs();
+        if (psValue != null) {
+            String psValueAsString = psValue.toString();
+            valMap.put("ps", psValueAsString);
+        }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -429,6 +495,14 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
         if (qLowerCaseValue != null) {
             valMap.put("qLowerCase", qLowerCaseValue);
         }
+        Object psValue = getPs();
+        if (psValue != null) {
+            valMap.put("ps", psValue);
+        }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -464,6 +538,8 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
         openapiFields.add("l");
         openapiFields.add("v");
         openapiFields.add("q");
+        openapiFields.add("ps");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -567,6 +643,14 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("q").toString()));
         }
+        if ((jsonObj.get("ps") != null && !jsonObj.get("ps").isJsonNull())
+                && !jsonObj.get("ps").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ps` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ps").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -589,7 +673,7 @@ public class IndividualSymbolMiniTickerStreamResponse extends BaseDTO {
                         public void write(
                                 JsonWriter out, IndividualSymbolMiniTickerStreamResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

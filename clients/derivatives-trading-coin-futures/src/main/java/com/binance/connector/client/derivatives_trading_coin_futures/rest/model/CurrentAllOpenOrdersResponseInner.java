@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CurrentAllOpenOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CurrentAllOpenOrdersResponseInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -128,6 +126,12 @@ public class CurrentAllOpenOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String symbol;
 
+    public static final String SERIALIZED_NAME_PAIR = "pair";
+
+    @SerializedName(SERIALIZED_NAME_PAIR)
+    @jakarta.annotation.Nullable
+    private String pair;
+
     public static final String SERIALIZED_NAME_TIME = "time";
 
     @SerializedName(SERIALIZED_NAME_TIME)
@@ -198,7 +202,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -218,7 +222,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -237,7 +241,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get cumBase
+     * Cumulative base asset amount.
      *
      * @return cumBase
      */
@@ -257,7 +261,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -276,7 +280,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -295,7 +299,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -315,7 +319,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -334,7 +338,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -354,7 +358,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -373,7 +377,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -393,7 +397,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -412,7 +416,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -432,7 +436,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -452,7 +456,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -471,7 +475,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -484,13 +488,32 @@ public class CurrentAllOpenOrdersResponseInner {
         this.symbol = symbol;
     }
 
+    public CurrentAllOpenOrdersResponseInner pair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+        return this;
+    }
+
+    /**
+     * Pair
+     *
+     * @return pair
+     */
+    @jakarta.annotation.Nullable
+    public String getPair() {
+        return pair;
+    }
+
+    public void setPair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+    }
+
     public CurrentAllOpenOrdersResponseInner time(@jakarta.annotation.Nullable Long time) {
         this.time = time;
         return this;
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -510,7 +533,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -529,7 +552,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -549,7 +572,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -569,7 +592,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -589,7 +612,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -609,7 +632,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -629,7 +652,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -649,7 +672,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -669,7 +692,7 @@ public class CurrentAllOpenOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -710,6 +733,7 @@ public class CurrentAllOpenOrdersResponseInner {
                 && Objects.equals(
                         this.closePosition, currentAllOpenOrdersResponseInner.closePosition)
                 && Objects.equals(this.symbol, currentAllOpenOrdersResponseInner.symbol)
+                && Objects.equals(this.pair, currentAllOpenOrdersResponseInner.pair)
                 && Objects.equals(this.time, currentAllOpenOrdersResponseInner.time)
                 && Objects.equals(this.timeInForce, currentAllOpenOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, currentAllOpenOrdersResponseInner.type)
@@ -743,6 +767,7 @@ public class CurrentAllOpenOrdersResponseInner {
                 stopPrice,
                 closePosition,
                 symbol,
+                pair,
                 time,
                 timeInForce,
                 type,
@@ -774,6 +799,7 @@ public class CurrentAllOpenOrdersResponseInner {
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
@@ -853,6 +879,10 @@ public class CurrentAllOpenOrdersResponseInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object pairValue = getPair();
+        String pairValueAsString = "";
+        pairValueAsString = pairValue.toString();
+        sb.append("pair=").append(urlEncode(pairValueAsString)).append("");
         Object timeValue = getTime();
         String timeValueAsString = "";
         timeValueAsString = timeValue.toString();
@@ -938,6 +968,7 @@ public class CurrentAllOpenOrdersResponseInner {
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
         openapiFields.add("symbol");
+        openapiFields.add("pair");
         openapiFields.add("time");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
@@ -970,18 +1001,6 @@ public class CurrentAllOpenOrdersResponseInner {
                                         + " not found in the empty JSON string",
                                 CurrentAllOpenOrdersResponseInner.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CurrentAllOpenOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `CurrentAllOpenOrdersResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1081,6 +1100,14 @@ public class CurrentAllOpenOrdersResponseInner {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pair` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("pair").toString()));
+        }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1158,7 +1185,7 @@ public class CurrentAllOpenOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, CurrentAllOpenOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

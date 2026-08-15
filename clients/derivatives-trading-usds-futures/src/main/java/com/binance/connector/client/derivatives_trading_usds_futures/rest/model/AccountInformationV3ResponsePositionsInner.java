@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
-/** AccountInformationV3ResponsePositionsInner */
+/** positions of all symbols user had position/ open orders are returned */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV3ResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -107,7 +105,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -127,7 +125,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * Position side.
      *
      * @return positionSide
      */
@@ -147,7 +145,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * Position quantity.
      *
      * @return positionAmt
      */
@@ -167,7 +165,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * Unrealized profit.
      *
      * @return unrealizedProfit
      */
@@ -187,7 +185,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get isolatedMargin
+     * Isolated margin.
      *
      * @return isolatedMargin
      */
@@ -207,7 +205,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get notional
+     * Position notional value.
      *
      * @return notional
      */
@@ -227,7 +225,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get isolatedWallet
+     * Isolated wallet balance.
      *
      * @return isolatedWallet
      */
@@ -247,7 +245,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * Initial margin requirement.
      *
      * @return initialMargin
      */
@@ -267,7 +265,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * Maintenance margin requirement.
      *
      * @return maintMargin
      */
@@ -287,7 +285,7 @@ public class AccountInformationV3ResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * Last update time in milliseconds.
      *
      * @return updateTime
      */
@@ -474,20 +472,6 @@ public class AccountInformationV3ResponsePositionsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountInformationV3ResponsePositionsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AccountInformationV3ResponsePositionsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -584,7 +568,7 @@ public class AccountInformationV3ResponsePositionsInner {
                         public void write(
                                 JsonWriter out, AccountInformationV3ResponsePositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

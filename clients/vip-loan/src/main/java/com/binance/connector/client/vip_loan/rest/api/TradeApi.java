@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,8 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowResponse;
+import com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowRequest;
+import com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRepayRequest;
@@ -35,8 +37,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,7 +51,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/1.1.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -99,8 +101,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> VIP Loan Borrow </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow">VIP Loan
-     *     Borrow(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-borrow">VIP
+     *     Loan Borrow (TRADE) Documentation</a>
      */
     private okhttp3.Call vipLoanBorrowCall(VipLoanBorrowRequest vipLoanBorrowRequest)
             throws ApiException {
@@ -155,6 +158,10 @@ public class TradeApi {
             localVarFormParams.put("isFlexibleRate", vipLoanBorrowRequest.getIsFlexibleRate());
         }
 
+        if (vipLoanBorrowRequest.getLoanTerm() != null) {
+            localVarFormParams.put("loanTerm", vipLoanBorrowRequest.getLoanTerm());
+        }
+
         if (vipLoanBorrowRequest.getRecvWindow() != null) {
             localVarFormParams.put("recvWindow", vipLoanBorrowRequest.getRecvWindow());
         }
@@ -168,15 +175,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -190,7 +193,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -225,10 +228,11 @@ public class TradeApi {
     }
 
     /**
-     * VIP Loan Borrow(TRADE) VIP loan is available for VIP users only. * loanAccountId refer to
-     * loan receiving account * Only master account applications are supported * loanAccountId and
-     * collateralAccountId under same master account * loanTerm is mandatory if user choose stable
-     * rate Weight: 0
+     * VIP Loan Borrow (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
+     * Type: TRADE Notes: - &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only
+     * master account applications are supported. - &#x60;loanAccountId&#x60; and
+     * &#x60;collateralAccountId&#x60; must be under the same master account. - &#x60;loanTerm&#x60;
+     * is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
      *
      * @param vipLoanBorrowRequest (required)
      * @return ApiResponse&lt;VipLoanBorrowResponse&gt;
@@ -241,14 +245,189 @@ public class TradeApi {
      * <tr><td> 200 </td><td> VIP Loan Borrow </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow">VIP Loan
-     *     Borrow(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-borrow">VIP
+     *     Loan Borrow (TRADE) Documentation</a>
      */
     public ApiResponse<VipLoanBorrowResponse> vipLoanBorrow(
             @Valid @NotNull VipLoanBorrowRequest vipLoanBorrowRequest) throws ApiException {
         okhttp3.Call localVarCall = vipLoanBorrowValidateBeforeCall(vipLoanBorrowRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<VipLoanBorrowResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for vipLoanFixedRateBorrow
+     *
+     * @param vipLoanFixedRateBorrowRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> VIP Loan Fixed Rate Borrow </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-fixed-rate-borrow">VIP
+     *     Loan Fixed Rate Borrow (TRADE) Documentation</a>
+     */
+    private okhttp3.Call vipLoanFixedRateBorrowCall(
+            VipLoanFixedRateBorrowRequest vipLoanFixedRateBorrowRequest) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/loan/vip/fixed/borrow";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (vipLoanFixedRateBorrowRequest.getSupplyRequest() != null) {
+            localVarFormParams.put(
+                    "supplyRequest", vipLoanFixedRateBorrowRequest.getSupplyRequest());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getBorrowCoin() != null) {
+            localVarFormParams.put("borrowCoin", vipLoanFixedRateBorrowRequest.getBorrowCoin());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getLoanTerm() != null) {
+            localVarFormParams.put("loanTerm", vipLoanFixedRateBorrowRequest.getLoanTerm());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getBorrowUid() != null) {
+            localVarFormParams.put("borrowUid", vipLoanFixedRateBorrowRequest.getBorrowUid());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getCollateralCoin() != null) {
+            localVarFormParams.put(
+                    "collateralCoin", vipLoanFixedRateBorrowRequest.getCollateralCoin());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getCollateralAccountId() != null) {
+            localVarFormParams.put(
+                    "collateralAccountId", vipLoanFixedRateBorrowRequest.getCollateralAccountId());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getAutoRepay() != null) {
+            localVarFormParams.put("autoRepay", vipLoanFixedRateBorrowRequest.getAutoRepay());
+        }
+
+        if (vipLoanFixedRateBorrowRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", vipLoanFixedRateBorrowRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call vipLoanFixedRateBorrowValidateBeforeCall(
+            VipLoanFixedRateBorrowRequest vipLoanFixedRateBorrowRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {vipLoanFixedRateBorrowRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "vipLoanFixedRateBorrow", VipLoanFixedRateBorrowRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return vipLoanFixedRateBorrowCall(vipLoanFixedRateBorrowRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * VIP Loan Fixed Rate Borrow (TRADE) Submit a fixed rate borrow request by matching market
+     * supply orders. Weight(UID): 6000 Security Type: TRADE Notes: - **Rate limit:** 2 requests per
+     * second per account. - When multiple &#x60;supplyRequest&#x60; entries are provided, all
+     * &#x60;requestId&#x60; values must correspond to the same &#x60;borrowCoin&#x60; and
+     * &#x60;loanTerm&#x60; (validated by collateral facade).
+     *
+     * @param vipLoanFixedRateBorrowRequest (required)
+     * @return ApiResponse&lt;VipLoanFixedRateBorrowResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> VIP Loan Fixed Rate Borrow </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-fixed-rate-borrow">VIP
+     *     Loan Fixed Rate Borrow (TRADE) Documentation</a>
+     */
+    public ApiResponse<VipLoanFixedRateBorrowResponse> vipLoanFixedRateBorrow(
+            @Valid @NotNull VipLoanFixedRateBorrowRequest vipLoanFixedRateBorrowRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                vipLoanFixedRateBorrowValidateBeforeCall(vipLoanFixedRateBorrowRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<VipLoanFixedRateBorrowResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -265,8 +444,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> VIP Loan Renew </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Renew">VIP Loan
-     *     Renew(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-renew">VIP
+     *     Loan Renew (TRADE) Documentation</a>
      */
     private okhttp3.Call vipLoanRenewCall(VipLoanRenewRequest vipLoanRenewRequest)
             throws ApiException {
@@ -315,15 +495,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -337,7 +513,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -372,7 +548,8 @@ public class TradeApi {
     }
 
     /**
-     * VIP Loan Renew(TRADE) VIP loan is available for VIP users only. Weight: 6000
+     * VIP Loan Renew (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
+     * Type: TRADE
      *
      * @param vipLoanRenewRequest (required)
      * @return ApiResponse&lt;VipLoanRenewResponse&gt;
@@ -385,8 +562,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> VIP Loan Renew </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Renew">VIP Loan
-     *     Renew(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-renew">VIP
+     *     Loan Renew (TRADE) Documentation</a>
      */
     public ApiResponse<VipLoanRenewResponse> vipLoanRenew(
             @Valid @NotNull VipLoanRenewRequest vipLoanRenewRequest) throws ApiException {
@@ -409,8 +587,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> VIP Loan Repay </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Repay">VIP Loan
-     *     Repay(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-repay">VIP
+     *     Loan Repay (TRADE) Documentation</a>
      */
     private okhttp3.Call vipLoanRepayCall(VipLoanRepayRequest vipLoanRepayRequest)
             throws ApiException {
@@ -461,15 +640,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -483,7 +658,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -518,7 +693,8 @@ public class TradeApi {
     }
 
     /**
-     * VIP Loan Repay(TRADE) VIP loan is available for VIP users only. Weight: 6000
+     * VIP Loan Repay (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
+     * Type: TRADE
      *
      * @param vipLoanRepayRequest (required)
      * @return ApiResponse&lt;VipLoanRepayResponse&gt;
@@ -531,8 +707,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> VIP Loan Repay </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Repay">VIP Loan
-     *     Repay(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-repay">VIP
+     *     Loan Repay (TRADE) Documentation</a>
      */
     public ApiResponse<VipLoanRepayResponse> vipLoanRepay(
             @Valid @NotNull VipLoanRepayRequest vipLoanRepayRequest) throws ApiException {

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,58 +37,57 @@ import org.hibernate.validator.constraints.*;
 /** TradeStreamsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TradeStreamsRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Integer id;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String symbol;
 
     public TradeStreamsRequest() {}
 
-    public TradeStreamsRequest id(@jakarta.annotation.Nullable String id) {
+    public TradeStreamsRequest id(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
     }
 
-    public TradeStreamsRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+    public TradeStreamsRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * The symbol parameter
      *
      * @return symbol
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
     }
 
@@ -124,7 +123,7 @@ public class TradeStreamsRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
+        Integer idValue = getId();
         if (idValue != null) {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
@@ -184,7 +183,6 @@ public class TradeStreamsRequest extends BaseDTO {
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("symbol");
     }
 
     /**
@@ -216,26 +214,9 @@ public class TradeStreamsRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : TradeStreamsRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
@@ -260,7 +241,7 @@ public class TradeStreamsRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, TradeStreamsRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,0 +1,53 @@
+package com.binance.connector.client.simple_earn.rest.rwusd;
+
+import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.ApiResponse;
+import com.binance.connector.client.common.configuration.ClientConfiguration;
+import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
+import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
+import com.binance.connector.client.simple_earn.rest.model.GetRwusdRedemptionHistoryResponse;
+import java.io.IOException;
+
+/** API examples for RwusdApi */
+public class GetRwusdRedemptionHistoryExample {
+    private SimpleEarnRestApi api;
+
+    public SimpleEarnRestApi getApi() {
+        if (api == null) {
+            ClientConfiguration clientConfiguration =
+                    SimpleEarnRestApiUtil.getClientConfiguration();
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            api = new SimpleEarnRestApi(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * Get RWUSD Redemption History (USER_DATA)
+     *
+     * <p>Get RWUSD redemption history. Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, &#x60;endTime&#x60; will default to current time, and results from
+     * &#x60;startTime&#x60; onward will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
+     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    public void getRwusdRedemptionHistoryExample() throws ApiException, IOException {
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetRwusdRedemptionHistoryResponse> response =
+                getApi().getRwusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
+        System.out.println(response.getData());
+    }
+}

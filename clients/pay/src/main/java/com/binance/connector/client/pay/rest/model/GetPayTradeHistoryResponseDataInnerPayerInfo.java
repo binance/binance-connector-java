@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetPayTradeHistoryResponseDataInnerPayerInfo */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     public static final String SERIALIZED_NAME_NAME = "name";
 
@@ -56,12 +54,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     @jakarta.annotation.Nullable
     private String binanceId;
 
-    public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
-
-    @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
-    @jakarta.annotation.Nullable
-    private String accountId;
-
     public GetPayTradeHistoryResponseDataInnerPayerInfo() {}
 
     public GetPayTradeHistoryResponseDataInnerPayerInfo name(
@@ -71,7 +63,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     }
 
     /**
-     * Get name
+     * Nickname or merchant name.
      *
      * @return name
      */
@@ -91,7 +83,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     }
 
     /**
-     * Get type
+     * Account type: USER for personal, MERCHANT for merchant.
      *
      * @return type
      */
@@ -111,7 +103,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     }
 
     /**
-     * Get binanceId
+     * Binance UID.
      *
      * @return binanceId
      */
@@ -122,26 +114,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
 
     public void setBinanceId(@jakarta.annotation.Nullable String binanceId) {
         this.binanceId = binanceId;
-    }
-
-    public GetPayTradeHistoryResponseDataInnerPayerInfo accountId(
-            @jakarta.annotation.Nullable String accountId) {
-        this.accountId = accountId;
-        return this;
-    }
-
-    /**
-     * Get accountId
-     *
-     * @return accountId
-     */
-    @jakarta.annotation.Nullable
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(@jakarta.annotation.Nullable String accountId) {
-        this.accountId = accountId;
     }
 
     @Override
@@ -157,14 +129,12 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         return Objects.equals(this.name, getPayTradeHistoryResponseDataInnerPayerInfo.name)
                 && Objects.equals(this.type, getPayTradeHistoryResponseDataInnerPayerInfo.type)
                 && Objects.equals(
-                        this.binanceId, getPayTradeHistoryResponseDataInnerPayerInfo.binanceId)
-                && Objects.equals(
-                        this.accountId, getPayTradeHistoryResponseDataInnerPayerInfo.accountId);
+                        this.binanceId, getPayTradeHistoryResponseDataInnerPayerInfo.binanceId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, binanceId, accountId);
+        return Objects.hash(name, type, binanceId);
     }
 
     @Override
@@ -174,7 +144,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         sb.append("		name: ").append(toIndentedString(name)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		binanceId: ").append(toIndentedString(binanceId)).append("\n");
-        sb.append("		accountId: ").append(toIndentedString(accountId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -194,10 +163,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         String binanceIdValueAsString = "";
         binanceIdValueAsString = binanceIdValue.toString();
         sb.append("binanceId=").append(urlEncode(binanceIdValueAsString)).append("");
-        Object accountIdValue = getAccountId();
-        String accountIdValueAsString = "";
-        accountIdValueAsString = accountIdValue.toString();
-        sb.append("accountId=").append(urlEncode(accountIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -229,7 +194,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
         openapiFields.add("name");
         openapiFields.add("type");
         openapiFields.add("binanceId");
-        openapiFields.add("accountId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -253,20 +217,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
                                     + " in the empty JSON string",
                                 GetPayTradeHistoryResponseDataInnerPayerInfo.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPayTradeHistoryResponseDataInnerPayerInfo.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetPayTradeHistoryResponseDataInnerPayerInfo` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -294,14 +244,6 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
                                     + " string but got `%s`",
                             jsonObj.get("binanceId").toString()));
         }
-        if ((jsonObj.get("accountId") != null && !jsonObj.get("accountId").isJsonNull())
-                && !jsonObj.get("accountId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `accountId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("accountId").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -325,7 +267,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
                         public void write(
                                 JsonWriter out, GetPayTradeHistoryResponseDataInnerPayerInfo value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

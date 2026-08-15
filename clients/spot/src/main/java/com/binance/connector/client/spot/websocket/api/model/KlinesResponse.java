@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** KlinesResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlinesResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,13 +59,13 @@ public class KlinesResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<KlinesItem> result;
+    private List<List<KlinesResponseResultInnerInner>> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AvgPriceResponseRateLimitsInner> rateLimits;
+    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
 
     public KlinesResponse() {}
 
@@ -107,12 +107,13 @@ public class KlinesResponse extends BaseDTO {
         this.status = status;
     }
 
-    public KlinesResponse result(@jakarta.annotation.Nullable List<KlinesItem> result) {
+    public KlinesResponse result(
+            @jakarta.annotation.Nullable List<List<KlinesResponseResultInnerInner>> result) {
         this.result = result;
         return this;
     }
 
-    public KlinesResponse addResultItem(KlinesItem resultItem) {
+    public KlinesResponse addResultItem(List<KlinesResponseResultInnerInner> resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -127,21 +128,24 @@ public class KlinesResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<KlinesItem> getResult() {
+    public List<List<KlinesResponseResultInnerInner>> getResult() {
         return result;
     }
 
-    public void setResult(@jakarta.annotation.Nullable List<KlinesItem> result) {
+    public void setResult(
+            @jakarta.annotation.Nullable List<List<KlinesResponseResultInnerInner>> result) {
         this.result = result;
     }
 
     public KlinesResponse rateLimits(
-            @jakarta.annotation.Nullable List<@Valid AvgPriceResponseRateLimitsInner> rateLimits) {
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
-    public KlinesResponse addRateLimitsItem(AvgPriceResponseRateLimitsInner rateLimitsItem) {
+    public KlinesResponse addRateLimitsItem(
+            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -156,12 +160,13 @@ public class KlinesResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AvgPriceResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
-            @jakarta.annotation.Nullable List<@Valid AvgPriceResponseRateLimitsInner> rateLimits) {
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -211,12 +216,12 @@ public class KlinesResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<KlinesItem> resultValue = getResult();
+        List<List<KlinesResponseResultInnerInner>> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AvgPriceResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -345,7 +350,8 @@ public class KlinesResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AvgPriceResponseRateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
+                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                            jsonArrayrateLimits.get(i));
                 }
                 ;
             }
@@ -367,7 +373,7 @@ public class KlinesResponse extends BaseDTO {
                     new TypeAdapter<KlinesResponse>() {
                         @Override
                         public void write(JsonWriter out, KlinesResponse value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

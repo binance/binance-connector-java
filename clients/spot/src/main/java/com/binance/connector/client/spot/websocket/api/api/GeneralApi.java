@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -19,6 +19,9 @@ import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesRequest;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesResponse;
+import com.binance.connector.client.spot.websocket.api.model.PingResponse;
 import com.binance.connector.client.spot.websocket.api.model.TimeResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -38,9 +41,29 @@ public class GeneralApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
-     * WebSocket Exchange information Query current exchange trading rules, rate limits, and symbol
-     * information. Weight: 20
+     * Exchange information Query current exchange trading rules, rate limits, and symbol
+     * information. Weight(IP): 20 Security Type: NONE Notes: **Data Source:** Memory **Notes:** *
+     * If the value provided to &#x60;symbol&#x60; or &#x60;symbols&#x60; do not exist, the endpoint
+     * will throw an error saying the symbol is invalid. * All parameters are optional. * Only one
+     * of &#x60;symbol&#x60;, &#x60;symbols&#x60;, &#x60;permissions&#x60; parameters can be
+     * specified. * Without parameters, &#x60;exchangeInfo&#x60; displays all symbols with
+     * &#x60;[\&quot;SPOT\&quot;, \&quot;MARGIN\&quot;, \&quot;LEVERAGED\&quot;]&#x60; permissions.
+     * * In order to list *all* active symbols on the exchange, you need to explicitly request all
+     * permissions. * &#x60;permissions&#x60; accepts either a list of permissions, or a single
+     * permission name. E.g. &#x60;\&quot;SPOT\&quot;&#x60;. **Examples of Symbol Permissions
+     * Interpretation from the Response:** * &#x60;[[\&quot;A\&quot;,\&quot;B\&quot;]]&#x60; means
+     * you may place an order if your account has either permission \&quot;A\&quot; **or**
+     * permission \&quot;B\&quot;. * &#x60;[[\&quot;A\&quot;],[\&quot;B\&quot;]]&#x60; means you can
+     * place an order if your account has permission \&quot;A\&quot; **and** permission
+     * \&quot;B\&quot;. * &#x60;[[\&quot;A\&quot;],[\&quot;B\&quot;,\&quot;C\&quot;]]&#x60; means
+     * you can place an order if your account has permission \&quot;A\&quot; **and** permission
+     * \&quot;B\&quot; or permission \&quot;C\&quot;. (Inclusive or is applied here, not exclusive
+     * or, so your account may have both permission \&quot;B\&quot; and permission \&quot;C\&quot;.)
      *
      * @param exchangeInfoRequest (optional)
      * @return ExchangeInfoResponse
@@ -54,8 +77,8 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#exchange-information">WebSocket
-     *     Exchange information Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#exchange-info">Exchange
+     *     information Documentation</a>
      */
     public CompletableFuture<ExchangeInfoResponse> exchangeInfo(
             ExchangeInfoRequest exchangeInfoRequest) throws ApiException {
@@ -102,29 +125,36 @@ public class GeneralApi {
     }
 
     /**
-     * WebSocket Test connectivity Test connectivity to the WebSocket API. Weight: 1
+     * Query Execution Rules Query execution rules for symbols. Weight: Parameter | Weight --- | ---
+     * &#x60;symbol&#x60; | 2 &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max
+     * of 40 &#x60;symbolStatus&#x60; | 40 None | 40 Security Type: NONE Notes: **Data Source:**
+     * Memory **Note:** No combination of multiple parameters is allowed.
      *
+     * @param executionRulesRequest (optional)
+     * @return ExecutionRulesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#test-connectivity">WebSocket
-     *     Test connectivity Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#execution-rules">Query
+     *     Execution Rules Documentation</a>
      */
-    public void ping() throws ApiException {
-        pingValidateBeforeCall();
-        String methodName = "/ping".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, Object> build =
-                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, Object>()
+    public CompletableFuture<ExecutionRulesResponse> executionRules(
+            ExecutionRulesRequest executionRulesRequest) throws ApiException {
+        executionRulesValidateBeforeCall(executionRulesRequest);
+        String methodName = "/executionRules".substring(1);
+        ApiRequestWrapperDTO<ExecutionRulesRequest, ExecutionRulesResponse> build =
+                new ApiRequestWrapperDTO.Builder<ExecutionRulesRequest, ExecutionRulesResponse>()
                         .id(getRequestID())
                         .method(methodName)
-                        .params(new BaseRequestDTO())
+                        .params(executionRulesRequest)
+                        .responseType(ExecutionRulesResponse.class)
                         .signed(false)
                         .build();
 
@@ -133,14 +163,78 @@ public class GeneralApi {
         } catch (InterruptedException e) {
             throw new ApiException(e);
         }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void executionRulesValidateBeforeCall(ExecutionRulesRequest executionRulesRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<ExecutionRulesRequest>> violations =
+                    validator.validate(executionRulesRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Test connectivity Test connectivity to the WebSocket API. Note: You can use regular WebSocket
+     * ping frames to test connectivity as well, WebSocket API will respond with pong frames as soon
+     * as possible. ping request along with time is a safe way to test request-response handling in
+     * your application. Weight(IP): 1 Security Type: NONE Notes: **Data Source:** Memory
+     *
+     * @return PingResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Test connectivity </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#ping">Test
+     *     connectivity Documentation</a>
+     */
+    public CompletableFuture<PingResponse> ping() throws ApiException {
+        pingValidateBeforeCall();
+        String methodName = "/ping".substring(1);
+        ApiRequestWrapperDTO<BaseRequestDTO, PingResponse> build =
+                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, PingResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(new BaseRequestDTO())
+                        .responseType(PingResponse.class)
+                        .signed(false)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
     }
 
     @SuppressWarnings("rawtypes")
     private void pingValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Check server time Test connectivity to the WebSocket API and get the current server
-     * time. Weight: 1
+     * Check server time Test connectivity to the WebSocket API and get the current server time.
+     * Weight(IP): 1 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @return TimeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -153,8 +247,8 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#check-server-time">WebSocket
-     *     Check server time Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#time">Check
+     *     server time Documentation</a>
      */
     public CompletableFuture<TimeResponse> time() throws ApiException {
         timeValidateBeforeCall();

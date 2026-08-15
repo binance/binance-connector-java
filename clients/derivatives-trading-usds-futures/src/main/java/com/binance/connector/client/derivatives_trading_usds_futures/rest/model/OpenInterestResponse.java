@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OpenInterestResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenInterestResponse {
     public static final String SERIALIZED_NAME_OPEN_INTEREST = "openInterest";
 
@@ -64,7 +62,7 @@ public class OpenInterestResponse {
     }
 
     /**
-     * Get openInterest
+     * Open Interest.
      *
      * @return openInterest
      */
@@ -83,7 +81,7 @@ public class OpenInterestResponse {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -102,7 +100,7 @@ public class OpenInterestResponse {
     }
 
     /**
-     * Get time
+     * Transaction time
      *
      * @return time
      */
@@ -213,18 +211,6 @@ public class OpenInterestResponse {
                                 OpenInterestResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OpenInterestResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OpenInterestResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("openInterest") != null && !jsonObj.get("openInterest").isJsonNull())
                 && !jsonObj.get("openInterest").isJsonPrimitive()) {
@@ -260,7 +246,7 @@ public class OpenInterestResponse {
                         @Override
                         public void write(JsonWriter out, OpenInterestResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

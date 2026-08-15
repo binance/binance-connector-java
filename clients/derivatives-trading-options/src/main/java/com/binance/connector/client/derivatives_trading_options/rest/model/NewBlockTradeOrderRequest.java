@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,51 +29,25 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NewBlockTradeOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewBlockTradeOrderRequest {
     public static final String SERIALIZED_NAME_LIQUIDITY = "liquidity";
 
     @SerializedName(SERIALIZED_NAME_LIQUIDITY)
     @jakarta.annotation.Nonnull
-    private String liquidity;
+    private Liquidity liquidity;
 
     public static final String SERIALIZED_NAME_LEGS = "legs";
 
     @SerializedName(SERIALIZED_NAME_LEGS)
     @jakarta.annotation.Nonnull
     private Legs legs;
-
-    public static final String SERIALIZED_NAME_SYMBOL = "symbol";
-
-    @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
-    private String symbol;
-
-    public static final String SERIALIZED_NAME_SIDE = "side";
-
-    @SerializedName(SERIALIZED_NAME_SIDE)
-    @jakarta.annotation.Nonnull
-    private Side side;
-
-    public static final String SERIALIZED_NAME_PRICE = "price";
-
-    @SerializedName(SERIALIZED_NAME_PRICE)
-    @jakarta.annotation.Nonnull
-    private Double price;
-
-    public static final String SERIALIZED_NAME_QUANTITY = "quantity";
-
-    @SerializedName(SERIALIZED_NAME_QUANTITY)
-    @jakarta.annotation.Nonnull
-    private Double quantity;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -83,7 +57,7 @@ public class NewBlockTradeOrderRequest {
 
     public NewBlockTradeOrderRequest() {}
 
-    public NewBlockTradeOrderRequest liquidity(@jakarta.annotation.Nonnull String liquidity) {
+    public NewBlockTradeOrderRequest liquidity(@jakarta.annotation.Nonnull Liquidity liquidity) {
         this.liquidity = liquidity;
         return this;
     }
@@ -95,11 +69,12 @@ public class NewBlockTradeOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getLiquidity() {
+    @Valid
+    public Liquidity getLiquidity() {
         return liquidity;
     }
 
-    public void setLiquidity(@jakarta.annotation.Nonnull String liquidity) {
+    public void setLiquidity(@jakarta.annotation.Nonnull Liquidity liquidity) {
         this.liquidity = liquidity;
     }
 
@@ -124,100 +99,18 @@ public class NewBlockTradeOrderRequest {
         this.legs = legs;
     }
 
-    public NewBlockTradeOrderRequest symbol(@jakarta.annotation.Nonnull String symbol) {
-        this.symbol = symbol;
-        return this;
-    }
-
-    /**
-     * Get symbol
-     *
-     * @return symbol
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
-        this.symbol = symbol;
-    }
-
-    public NewBlockTradeOrderRequest side(@jakarta.annotation.Nonnull Side side) {
-        this.side = side;
-        return this;
-    }
-
-    /**
-     * Get side
-     *
-     * @return side
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    @Valid
-    public Side getSide() {
-        return side;
-    }
-
-    public void setSide(@jakarta.annotation.Nonnull Side side) {
-        this.side = side;
-    }
-
-    public NewBlockTradeOrderRequest price(@jakarta.annotation.Nonnull Double price) {
-        this.price = price;
-        return this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return price
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    @Valid
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(@jakarta.annotation.Nonnull Double price) {
-        this.price = price;
-    }
-
-    public NewBlockTradeOrderRequest quantity(@jakarta.annotation.Nonnull Double quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return quantity
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    @Valid
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(@jakarta.annotation.Nonnull Double quantity) {
-        this.quantity = quantity;
-    }
-
     public NewBlockTradeOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -237,16 +130,12 @@ public class NewBlockTradeOrderRequest {
         NewBlockTradeOrderRequest newBlockTradeOrderRequest = (NewBlockTradeOrderRequest) o;
         return Objects.equals(this.liquidity, newBlockTradeOrderRequest.liquidity)
                 && Objects.equals(this.legs, newBlockTradeOrderRequest.legs)
-                && Objects.equals(this.symbol, newBlockTradeOrderRequest.symbol)
-                && Objects.equals(this.side, newBlockTradeOrderRequest.side)
-                && Objects.equals(this.price, newBlockTradeOrderRequest.price)
-                && Objects.equals(this.quantity, newBlockTradeOrderRequest.quantity)
                 && Objects.equals(this.recvWindow, newBlockTradeOrderRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(liquidity, legs, symbol, side, price, quantity, recvWindow);
+        return Objects.hash(liquidity, legs, recvWindow);
     }
 
     @Override
@@ -255,10 +144,6 @@ public class NewBlockTradeOrderRequest {
         sb.append("class NewBlockTradeOrderRequest {\n");
         sb.append("		liquidity: ").append(toIndentedString(liquidity)).append("\n");
         sb.append("		legs: ").append(toIndentedString(legs)).append("\n");
-        sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
-        sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -275,22 +160,6 @@ public class NewBlockTradeOrderRequest {
         String legsValueAsString = "";
         legsValueAsString = legsValue.toString();
         sb.append("legs=").append(urlEncode(legsValueAsString)).append("");
-        Object symbolValue = getSymbol();
-        String symbolValueAsString = "";
-        symbolValueAsString = symbolValue.toString();
-        sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
-        Object sideValue = getSide();
-        String sideValueAsString = "";
-        sideValueAsString = sideValue.toString();
-        sb.append("side=").append(urlEncode(sideValueAsString)).append("");
-        Object priceValue = getPrice();
-        String priceValueAsString = "";
-        priceValueAsString = priceValue.toString();
-        sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object quantityValue = getQuantity();
-        String quantityValueAsString = "";
-        quantityValueAsString = quantityValue.toString();
-        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -325,20 +194,12 @@ public class NewBlockTradeOrderRequest {
         openapiFields = new HashSet<String>();
         openapiFields.add("liquidity");
         openapiFields.add("legs");
-        openapiFields.add("symbol");
-        openapiFields.add("side");
-        openapiFields.add("price");
-        openapiFields.add("quantity");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
         openapiRequiredFields.add("liquidity");
         openapiRequiredFields.add("legs");
-        openapiRequiredFields.add("symbol");
-        openapiRequiredFields.add("side");
-        openapiRequiredFields.add("price");
-        openapiRequiredFields.add("quantity");
     }
 
     /**
@@ -359,18 +220,6 @@ public class NewBlockTradeOrderRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NewBlockTradeOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NewBlockTradeOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : NewBlockTradeOrderRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -381,22 +230,8 @@ public class NewBlockTradeOrderRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("liquidity").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `liquidity` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("liquidity").toString()));
-        }
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `symbol` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("symbol").toString()));
-        }
-        // validate the required field `side`
-        Side.validateJsonElement(jsonObj.get("side"));
+        // validate the required field `liquidity`
+        Liquidity.validateJsonElement(jsonObj.get("liquidity"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -416,7 +251,7 @@ public class NewBlockTradeOrderRequest {
                         @Override
                         public void write(JsonWriter out, NewBlockTradeOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

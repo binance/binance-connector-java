@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,59 +37,33 @@ import org.hibernate.validator.constraints.*;
 /** IndexPriceStreamsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndexPriceStreamsRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
-
-    public static final String SERIALIZED_NAME_SYMBOL = "symbol";
-
-    @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
-    private String symbol;
+    private Integer id;
 
     public IndexPriceStreamsRequest() {}
 
-    public IndexPriceStreamsRequest id(@jakarta.annotation.Nullable String id) {
+    public IndexPriceStreamsRequest id(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Integer id) {
         this.id = id;
-    }
-
-    public IndexPriceStreamsRequest symbol(@jakarta.annotation.Nonnull String symbol) {
-        this.symbol = symbol;
-        return this;
-    }
-
-    /**
-     * Get symbol
-     *
-     * @return symbol
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
-        this.symbol = symbol;
     }
 
     @Override
@@ -101,13 +75,12 @@ public class IndexPriceStreamsRequest extends BaseDTO {
             return false;
         }
         IndexPriceStreamsRequest indexPriceStreamsRequest = (IndexPriceStreamsRequest) o;
-        return Objects.equals(this.id, indexPriceStreamsRequest.id)
-                && Objects.equals(this.symbol, indexPriceStreamsRequest.symbol);
+        return Objects.equals(this.id, indexPriceStreamsRequest.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, symbol);
+        return Objects.hash(id);
     }
 
     @Override
@@ -115,7 +88,6 @@ public class IndexPriceStreamsRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         sb.append("class IndexPriceStreamsRequest {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -124,15 +96,10 @@ public class IndexPriceStreamsRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String idValue = getId();
+        Integer idValue = getId();
         if (idValue != null) {
             String idValueAsString = idValue.toString();
             valMap.put("id", idValueAsString);
-        }
-        String symbolValue = getSymbol();
-        if (symbolValue != null) {
-            String symbolValueAsString = symbolValue.toString();
-            valMap.put("symbol", symbolValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -148,10 +115,6 @@ public class IndexPriceStreamsRequest extends BaseDTO {
         Object idValue = getId();
         if (idValue != null) {
             valMap.put("id", idValue);
-        }
-        Object symbolValue = getSymbol();
-        if (symbolValue != null) {
-            valMap.put("symbol", symbolValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -180,11 +143,9 @@ public class IndexPriceStreamsRequest extends BaseDTO {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
-        openapiFields.add("symbol");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("symbol");
     }
 
     /**
@@ -216,32 +177,7 @@ public class IndexPriceStreamsRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : IndexPriceStreamsRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `symbol` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("symbol").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -261,7 +197,7 @@ public class IndexPriceStreamsRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, IndexPriceStreamsRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**dualSidePosition** | **String** |  |  |
+|**dualSidePosition** | **DualSidePosition** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

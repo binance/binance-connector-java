@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,22 +33,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetUmAccountDetailV2Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmAccountDetailV2Response {
     public static final String SERIALIZED_NAME_ASSETS = "assets";
 
     @SerializedName(SERIALIZED_NAME_ASSETS)
     @jakarta.annotation.Nullable
-    private List<@Valid GetUmAccountDetailV2ResponseAssetsInner> assets;
+    private List<@Valid GetUmAccountDetailResponseAssetsInner> assets;
 
     public static final String SERIALIZED_NAME_POSITIONS = "positions";
 
@@ -60,13 +58,13 @@ public class GetUmAccountDetailV2Response {
 
     public GetUmAccountDetailV2Response assets(
             @jakarta.annotation.Nullable
-                    List<@Valid GetUmAccountDetailV2ResponseAssetsInner> assets) {
+                    List<@Valid GetUmAccountDetailResponseAssetsInner> assets) {
         this.assets = assets;
         return this;
     }
 
     public GetUmAccountDetailV2Response addAssetsItem(
-            GetUmAccountDetailV2ResponseAssetsInner assetsItem) {
+            GetUmAccountDetailResponseAssetsInner assetsItem) {
         if (this.assets == null) {
             this.assets = new ArrayList<>();
         }
@@ -75,19 +73,19 @@ public class GetUmAccountDetailV2Response {
     }
 
     /**
-     * Get assets
+     * Assets.
      *
      * @return assets
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetUmAccountDetailV2ResponseAssetsInner> getAssets() {
+    public List<@Valid GetUmAccountDetailResponseAssetsInner> getAssets() {
         return assets;
     }
 
     public void setAssets(
             @jakarta.annotation.Nullable
-                    List<@Valid GetUmAccountDetailV2ResponseAssetsInner> assets) {
+                    List<@Valid GetUmAccountDetailResponseAssetsInner> assets) {
         this.assets = assets;
     }
 
@@ -108,7 +106,7 @@ public class GetUmAccountDetailV2Response {
     }
 
     /**
-     * Get positions
+     * positions of all symbols in the market are returned
      *
      * @return positions
      */
@@ -223,18 +221,6 @@ public class GetUmAccountDetailV2Response {
                                 GetUmAccountDetailV2Response.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetUmAccountDetailV2Response.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetUmAccountDetailV2Response` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("assets") != null && !jsonObj.get("assets").isJsonNull()) {
             JsonArray jsonArrayassets = jsonObj.getAsJsonArray("assets");
@@ -250,7 +236,7 @@ public class GetUmAccountDetailV2Response {
 
                 // validate the optional field `assets` (array)
                 for (int i = 0; i < jsonArrayassets.size(); i++) {
-                    GetUmAccountDetailV2ResponseAssetsInner.validateJsonElement(
+                    GetUmAccountDetailResponseAssetsInner.validateJsonElement(
                             jsonArrayassets.get(i));
                 }
                 ;
@@ -296,7 +282,7 @@ public class GetUmAccountDetailV2Response {
                         @Override
                         public void write(JsonWriter out, GetUmAccountDetailV2Response value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

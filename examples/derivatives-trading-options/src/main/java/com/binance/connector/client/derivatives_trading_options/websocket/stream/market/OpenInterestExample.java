@@ -1,0 +1,41 @@
+package com.binance.connector.client.derivatives_trading_options.websocket.stream.market;
+
+import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.DerivativesTradingOptionsWebSocketStreamsUtil;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.api.DerivativesTradingOptionsWebSocketStreams;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestResponse;
+
+/** API examples for MarketApi */
+public class OpenInterestExample {
+    private DerivativesTradingOptionsWebSocketStreams api;
+
+    public DerivativesTradingOptionsWebSocketStreams getApi() {
+        if (api == null) {
+            WebSocketClientConfiguration clientConfiguration =
+                    DerivativesTradingOptionsWebSocketStreamsUtil.getClientConfiguration();
+            api = new DerivativesTradingOptionsWebSocketStreams(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * Open Interest
+     *
+     * <p>Option open interest for specific underlying asset on specific expiration date.
+     * E.g.[ethusdt@openInterest@221125](wss://fstream.binance.com/market/stream?streams&#x3D;ethusdt@openInterest@221125)
+     * Update Speed: 60s
+     *
+     * @throws ApiException if the Api call fails
+     */
+    public void openInterestExample() throws ApiException, InterruptedException {
+        OpenInterestRequest openInterestRequest = new OpenInterestRequest();
+        StreamBlockingQueueWrapper<OpenInterestResponse> response =
+                getApi().openInterest(openInterestRequest);
+        while (true) {
+            System.out.println(response.take());
+        }
+    }
+}

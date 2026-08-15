@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**markPrice** | **String** |  |  [optional] |
-|**indexPrice** | **String** |  |  [optional] |
-|**estimatedSettlePrice** | **String** |  |  [optional] |
-|**lastFundingRate** | **String** |  |  [optional] |
-|**interestRate** | **String** |  |  [optional] |
-|**nextFundingTime** | **Long** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**markPrice** | **String** | mark price |  [optional] |
+|**indexPrice** | **String** | index price |  [optional] |
+|**estimatedSettlePrice** | **String** | Estimated Settle Price, only useful in the last hour before the settlement starts. |  [optional] |
+|**lastFundingRate** | **String** | This is the Latest funding rate |  [optional] |
+|**interestRate** | **String** | Interest Rate. |  [optional] |
+|**nextFundingTime** | **Long** | Next Funding Time. |  [optional] |
+|**time** | **Long** | Time. |  [optional] |
 
 
 

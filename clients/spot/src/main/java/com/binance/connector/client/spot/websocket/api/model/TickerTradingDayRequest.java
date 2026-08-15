@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,8 +38,14 @@ import org.hibernate.validator.constraints.*;
 /** TickerTradingDayRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerTradingDayRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -58,13 +64,38 @@ public class TickerTradingDayRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private String timeZone;
 
-    public static final String SERIALIZED_NAME_TICKER_TYPE = "tickerType";
+    public static final String SERIALIZED_NAME_TYPE = "type";
 
-    @SerializedName(SERIALIZED_NAME_TICKER_TYPE)
+    @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nullable
-    private TickerType tickerType;
+    private TickerType type;
+
+    public static final String SERIALIZED_NAME_SYMBOL_STATUS = "symbolStatus";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL_STATUS)
+    @jakarta.annotation.Nullable
+    private SymbolStatus symbolStatus;
 
     public TickerTradingDayRequest() {}
+
+    public TickerTradingDayRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public TickerTradingDayRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
@@ -111,7 +142,7 @@ public class TickerTradingDayRequest extends BaseDTO {
     }
 
     /**
-     * Get timeZone
+     * Default: 0 (UTC)
      *
      * @return timeZone
      */
@@ -124,24 +155,45 @@ public class TickerTradingDayRequest extends BaseDTO {
         this.timeZone = timeZone;
     }
 
-    public TickerTradingDayRequest tickerType(@jakarta.annotation.Nullable TickerType tickerType) {
-        this.tickerType = tickerType;
+    public TickerTradingDayRequest type(@jakarta.annotation.Nullable TickerType type) {
+        this.type = type;
         return this;
     }
 
     /**
-     * Get tickerType
+     * Get type
      *
-     * @return tickerType
+     * @return type
      */
     @jakarta.annotation.Nullable
     @Valid
-    public TickerType getTickerType() {
-        return tickerType;
+    public TickerType getType() {
+        return type;
     }
 
-    public void setTickerType(@jakarta.annotation.Nullable TickerType tickerType) {
-        this.tickerType = tickerType;
+    public void setType(@jakarta.annotation.Nullable TickerType type) {
+        this.type = type;
+    }
+
+    public TickerTradingDayRequest symbolStatus(
+            @jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
+        return this;
+    }
+
+    /**
+     * Get symbolStatus
+     *
+     * @return symbolStatus
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SymbolStatus getSymbolStatus() {
+        return symbolStatus;
+    }
+
+    public void setSymbolStatus(@jakarta.annotation.Nullable SymbolStatus symbolStatus) {
+        this.symbolStatus = symbolStatus;
     }
 
     @Override
@@ -153,25 +205,29 @@ public class TickerTradingDayRequest extends BaseDTO {
             return false;
         }
         TickerTradingDayRequest tickerTradingDayRequest = (TickerTradingDayRequest) o;
-        return Objects.equals(this.symbol, tickerTradingDayRequest.symbol)
+        return Objects.equals(this.id, tickerTradingDayRequest.id)
+                && Objects.equals(this.symbol, tickerTradingDayRequest.symbol)
                 && Objects.equals(this.symbols, tickerTradingDayRequest.symbols)
                 && Objects.equals(this.timeZone, tickerTradingDayRequest.timeZone)
-                && Objects.equals(this.tickerType, tickerTradingDayRequest.tickerType);
+                && Objects.equals(this.type, tickerTradingDayRequest.type)
+                && Objects.equals(this.symbolStatus, tickerTradingDayRequest.symbolStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, symbols, timeZone, tickerType);
+        return Objects.hash(id, symbol, symbols, timeZone, type, symbolStatus);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class TickerTradingDayRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		symbols: ").append(toIndentedString(symbols)).append("\n");
         sb.append("		timeZone: ").append(toIndentedString(timeZone)).append("\n");
-        sb.append("		tickerType: ").append(toIndentedString(tickerType)).append("\n");
+        sb.append("		type: ").append(toIndentedString(type)).append("\n");
+        sb.append("		symbolStatus: ").append(toIndentedString(symbolStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -180,6 +236,11 @@ public class TickerTradingDayRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -195,10 +256,15 @@ public class TickerTradingDayRequest extends BaseDTO {
             String timeZoneValueAsString = timeZoneValue.toString();
             valMap.put("timeZone", timeZoneValueAsString);
         }
-        TickerType tickerTypeValue = getTickerType();
-        if (tickerTypeValue != null) {
-            String tickerTypeValueAsString = tickerTypeValue.toString();
-            valMap.put("tickerType", tickerTypeValueAsString);
+        TickerType typeValue = getType();
+        if (typeValue != null) {
+            String typeValueAsString = typeValue.toString();
+            valMap.put("type", typeValueAsString);
+        }
+        SymbolStatus symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            String symbolStatusValueAsString = symbolStatusValue.toString();
+            valMap.put("symbolStatus", symbolStatusValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -211,6 +277,10 @@ public class TickerTradingDayRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -223,9 +293,13 @@ public class TickerTradingDayRequest extends BaseDTO {
         if (timeZoneValue != null) {
             valMap.put("timeZone", timeZoneValue);
         }
-        Object tickerTypeValue = getTickerType();
-        if (tickerTypeValue != null) {
-            valMap.put("tickerType", tickerTypeValue);
+        Object typeValue = getType();
+        if (typeValue != null) {
+            valMap.put("type", typeValue);
+        }
+        Object symbolStatusValue = getSymbolStatus();
+        if (symbolStatusValue != null) {
+            valMap.put("symbolStatus", symbolStatusValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -253,10 +327,12 @@ public class TickerTradingDayRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("symbols");
         openapiFields.add("timeZone");
-        openapiFields.add("tickerType");
+        openapiFields.add("type");
+        openapiFields.add("symbolStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -292,6 +368,14 @@ public class TickerTradingDayRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -308,9 +392,13 @@ public class TickerTradingDayRequest extends BaseDTO {
                                     + " string but got `%s`",
                             jsonObj.get("timeZone").toString()));
         }
-        // validate the optional field `tickerType`
-        if (jsonObj.get("tickerType") != null && !jsonObj.get("tickerType").isJsonNull()) {
-            TickerType.validateJsonElement(jsonObj.get("tickerType"));
+        // validate the optional field `type`
+        if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+            TickerType.validateJsonElement(jsonObj.get("type"));
+        }
+        // validate the optional field `symbolStatus`
+        if (jsonObj.get("symbolStatus") != null && !jsonObj.get("symbolStatus").isJsonNull()) {
+            SymbolStatus.validateJsonElement(jsonObj.get("symbolStatus"));
         }
     }
 
@@ -331,7 +419,7 @@ public class TickerTradingDayRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, TickerTradingDayRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

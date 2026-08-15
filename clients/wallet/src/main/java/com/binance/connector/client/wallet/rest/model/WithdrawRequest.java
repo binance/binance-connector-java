@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** WithdrawRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class WithdrawRequest {
     public static final String SERIALIZED_NAME_COIN = "coin";
 
@@ -127,7 +125,8 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get withdrawOrderId
+     * client side id for withdrawal, if provide here, can be used in GET
+     * &#x60;/sapi/v1/capital/withdraw/history&#x60; for query.
      *
      * @return withdrawOrderId
      */
@@ -146,7 +145,7 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get network
+     * Withdrawal network
      *
      * @return network
      */
@@ -165,7 +164,7 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get address
+     * Withdrawal address
      *
      * @return address
      */
@@ -185,7 +184,7 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get addressTag
+     * Secondary address identifier for coins like XRP,XMR etc.
      *
      * @return addressTag
      */
@@ -204,7 +203,7 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get amount
+     * Amount
      *
      * @return amount
      */
@@ -226,7 +225,9 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get transactionFeeFlag
+     * When making internal transfer, &#x60;true&#x60; for returning the fee to the destination
+     * account; &#x60;false&#x60; for returning the fee back to the departure account. Default
+     * &#x60;false&#x60;.
      *
      * @return transactionFeeFlag
      */
@@ -264,7 +265,8 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get walletType
+     * The wallet type for withdraw，0-spot wallet ，1-funding wallet. Default walletType is the
+     * current \&quot;selected wallet\&quot; under wallet-&gt;Fiat and Spot/Funding-&gt;Deposit
      *
      * @return walletType
      */
@@ -283,11 +285,12 @@ public class WithdrawRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -461,18 +464,6 @@ public class WithdrawRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!WithdrawRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `WithdrawRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : WithdrawRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -547,7 +538,7 @@ public class WithdrawRequest {
                         @Override
                         public void write(JsonWriter out, WithdrawRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

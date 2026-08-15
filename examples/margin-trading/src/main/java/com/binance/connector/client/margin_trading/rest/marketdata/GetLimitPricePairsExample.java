@@ -1,0 +1,49 @@
+package com.binance.connector.client.margin_trading.rest.marketdata;
+
+import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.ApiResponse;
+import com.binance.connector.client.common.configuration.ClientConfiguration;
+import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
+import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
+import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairsResponse;
+import java.io.IOException;
+
+/** API examples for MarketDataApi */
+public class GetLimitPricePairsExample {
+    private MarginTradingRestApi api;
+
+    public MarginTradingRestApi getApi() {
+        if (api == null) {
+            ClientConfiguration clientConfiguration =
+                    MarginTradingRestApiUtil.getClientConfiguration();
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            api = new MarginTradingRestApi(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * Get Limit Price Pairs (MARKET_DATA)
+     *
+     * <p>Query trading pairs with restriction on limit price range. In margin trading, you can
+     * place orders with limit price. Limit price should be within (-15%, 15%) of current index
+     * price for a list of margin trading pairs. This rule only impacts limit sell orders with limit
+     * price that is lower than current index price and limit buy orders with limit price that is
+     * higher than current index price. - Buy order: Your order will be rejected with an error
+     * message notification if the limit price is 15% above the index price. - Sell order: Your
+     * order will be rejected with an error message notification if the limit price is 15% below the
+     * index price. Please review the limit price order placing strategy, backtest and calibrate the
+     * planned order size with the trading volume and order book depth to prevent trading loss.
+     * Weight(IP): 1 Security Type: MARKET_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    public void getLimitPricePairsExample() throws ApiException, IOException {
+        ApiResponse<GetLimitPricePairsResponse> response = getApi().getLimitPricePairs();
+        System.out.println(response.getData());
+    }
+}

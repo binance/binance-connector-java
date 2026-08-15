@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**sessionLogon**](AuthApi.md#sessionLogon) | **POST** /session.logon | WebSocket Log in with API key |
-| [**sessionLogout**](AuthApi.md#sessionLogout) | **POST** /session.logout | WebSocket Log out of the session |
-| [**sessionStatus**](AuthApi.md#sessionStatus) | **POST** /session.status | WebSocket Query session status |
+| [**sessionLogon**](AuthApi.md#sessionLogon) | **POST** /session.logon | Log in with API key (USER_DATA) |
+| [**sessionLogout**](AuthApi.md#sessionLogout) | **POST** /session.logout | Log out of the session |
+| [**sessionStatus**](AuthApi.md#sessionStatus) | **POST** /session.status | Query session status |
 
 
 <a id="sessionLogon"></a>
 # **sessionLogon**
 > SessionLogonResponse sessionLogon(sessionLogonRequest)
 
-WebSocket Log in with API key
+Log in with API key (USER_DATA)
 
-Authenticate WebSocket connection using the provided API key.  After calling &#x60;session.logon&#x60;, you can omit &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters for future requests that require them.  Note that only one API key can be authenticated. Calling &#x60;session.logon&#x60; multiple times changes the current authenticated API key. Weight: 2
+Authenticate WebSocket connection using the provided API key.  After calling &#x60;session.logon&#x60;, you can omit &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters for future requests that require them.  Note that only one API key can be authenticated.  Calling &#x60;session.logon&#x60; multiple times changes the current authenticated API key.  **Note:** Only Ed25519 keys are supported for this feature.  Weight(IP): 2  Security Type: USER_DATA  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -51,7 +51,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sessionLogonRequest** | [**SessionLogonRequest**](SessionLogonRequest.md)|  | |
+| **sessionLogonRequest** | [**SessionLogonRequest**](SessionLogonRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -75,9 +75,9 @@ No authorization required
 # **sessionLogout**
 > SessionLogoutResponse sessionLogout()
 
-WebSocket Log out of the session
+Log out of the session
 
-Forget the API key previously authenticated. If the connection is not authenticated, this request does nothing.  Note that the WebSocket connection stays open after &#x60;session.logout&#x60; request. You can continue using the connection, but now you will have to explicitly provide the &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters where needed. Weight: 2
+Forget the API key previously authenticated. If the connection is not authenticated, this request does nothing.  Note that the WebSocket connection stays open after &#x60;session.logout&#x60; request. You can continue using the connection, but now you will have to explicitly provide the &#x60;apiKey&#x60; and &#x60;signature&#x60; parameters where needed.  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -133,9 +133,9 @@ No authorization required
 # **sessionStatus**
 > SessionStatusResponse sessionStatus()
 
-WebSocket Query session status
+Query session status
 
-Query the status of the WebSocket connection, inspecting which API key (if any) is used to authorize requests. Weight: 2
+Query the status of the WebSocket connection, inspecting which API key (if any) is used to authorize requests.  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Memory
 
 ### Example
 ```java

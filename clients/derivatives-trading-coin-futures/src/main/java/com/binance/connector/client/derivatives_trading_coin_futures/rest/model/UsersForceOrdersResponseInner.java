@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** UsersForceOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UsersForceOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -97,6 +95,12 @@ public class UsersForceOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_CUM_BASE)
     @jakarta.annotation.Nullable
     private String cumBase;
+
+    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
+
+    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
+    @jakarta.annotation.Nullable
+    private String cumQuote;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -170,6 +174,12 @@ public class UsersForceOrdersResponseInner {
     @jakarta.annotation.Nullable
     private Long updateTime;
 
+    public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
+
+    @SerializedName(SERIALIZED_NAME_GOOD_TILL_DATE)
+    @jakarta.annotation.Nullable
+    private Long goodTillDate;
+
     public UsersForceOrdersResponseInner() {}
 
     public UsersForceOrdersResponseInner orderId(@jakarta.annotation.Nullable Long orderId) {
@@ -178,7 +188,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -197,7 +207,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -216,7 +226,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -235,7 +245,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -255,7 +265,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -274,7 +284,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -293,7 +303,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -312,7 +322,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -332,7 +342,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -351,7 +361,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get cumBase
+     * Cumulative base asset amount.
      *
      * @return cumBase
      */
@@ -364,6 +374,25 @@ public class UsersForceOrdersResponseInner {
         this.cumBase = cumBase;
     }
 
+    public UsersForceOrdersResponseInner cumQuote(@jakarta.annotation.Nullable String cumQuote) {
+        this.cumQuote = cumQuote;
+        return this;
+    }
+
+    /**
+     * Cumulative quote asset amount.
+     *
+     * @return cumQuote
+     */
+    @jakarta.annotation.Nullable
+    public String getCumQuote() {
+        return cumQuote;
+    }
+
+    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
+        this.cumQuote = cumQuote;
+    }
+
     public UsersForceOrdersResponseInner timeInForce(
             @jakarta.annotation.Nullable String timeInForce) {
         this.timeInForce = timeInForce;
@@ -371,7 +400,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -390,7 +419,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -410,7 +439,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -430,7 +459,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -449,7 +478,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -469,7 +498,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -488,7 +517,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -508,7 +537,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -528,7 +557,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -547,7 +576,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -566,7 +595,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -585,7 +614,7 @@ public class UsersForceOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -596,6 +625,26 @@ public class UsersForceOrdersResponseInner {
 
     public void setUpdateTime(@jakarta.annotation.Nullable Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public UsersForceOrdersResponseInner goodTillDate(
+            @jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
+        return this;
+    }
+
+    /**
+     * order pre-set auto cancel time for TIF GTD order
+     *
+     * @return goodTillDate
+     */
+    @jakarta.annotation.Nullable
+    public Long getGoodTillDate() {
+        return goodTillDate;
+    }
+
+    public void setGoodTillDate(@jakarta.annotation.Nullable Long goodTillDate) {
+        this.goodTillDate = goodTillDate;
     }
 
     @Override
@@ -618,6 +667,7 @@ public class UsersForceOrdersResponseInner {
                 && Objects.equals(this.origQty, usersForceOrdersResponseInner.origQty)
                 && Objects.equals(this.executedQty, usersForceOrdersResponseInner.executedQty)
                 && Objects.equals(this.cumBase, usersForceOrdersResponseInner.cumBase)
+                && Objects.equals(this.cumQuote, usersForceOrdersResponseInner.cumQuote)
                 && Objects.equals(this.timeInForce, usersForceOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, usersForceOrdersResponseInner.type)
                 && Objects.equals(this.reduceOnly, usersForceOrdersResponseInner.reduceOnly)
@@ -629,7 +679,8 @@ public class UsersForceOrdersResponseInner {
                 && Objects.equals(this.priceProtect, usersForceOrdersResponseInner.priceProtect)
                 && Objects.equals(this.origType, usersForceOrdersResponseInner.origType)
                 && Objects.equals(this.time, usersForceOrdersResponseInner.time)
-                && Objects.equals(this.updateTime, usersForceOrdersResponseInner.updateTime);
+                && Objects.equals(this.updateTime, usersForceOrdersResponseInner.updateTime)
+                && Objects.equals(this.goodTillDate, usersForceOrdersResponseInner.goodTillDate);
     }
 
     @Override
@@ -645,6 +696,7 @@ public class UsersForceOrdersResponseInner {
                 origQty,
                 executedQty,
                 cumBase,
+                cumQuote,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -656,7 +708,8 @@ public class UsersForceOrdersResponseInner {
                 priceProtect,
                 origType,
                 time,
-                updateTime);
+                updateTime,
+                goodTillDate);
     }
 
     @Override
@@ -673,6 +726,7 @@ public class UsersForceOrdersResponseInner {
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
+        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -685,6 +739,7 @@ public class UsersForceOrdersResponseInner {
         sb.append("		origType: ").append(toIndentedString(origType)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
+        sb.append("		goodTillDate: ").append(toIndentedString(goodTillDate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -732,6 +787,10 @@ public class UsersForceOrdersResponseInner {
         String cumBaseValueAsString = "";
         cumBaseValueAsString = cumBaseValue.toString();
         sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
+        Object cumQuoteValue = getCumQuote();
+        String cumQuoteValueAsString = "";
+        cumQuoteValueAsString = cumQuoteValue.toString();
+        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
@@ -780,6 +839,10 @@ public class UsersForceOrdersResponseInner {
         String updateTimeValueAsString = "";
         updateTimeValueAsString = updateTimeValue.toString();
         sb.append("updateTime=").append(urlEncode(updateTimeValueAsString)).append("");
+        Object goodTillDateValue = getGoodTillDate();
+        String goodTillDateValueAsString = "";
+        goodTillDateValueAsString = goodTillDateValue.toString();
+        sb.append("goodTillDate=").append(urlEncode(goodTillDateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -818,6 +881,7 @@ public class UsersForceOrdersResponseInner {
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumBase");
+        openapiFields.add("cumQuote");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -830,6 +894,7 @@ public class UsersForceOrdersResponseInner {
         openapiFields.add("origType");
         openapiFields.add("time");
         openapiFields.add("updateTime");
+        openapiFields.add("goodTillDate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -851,18 +916,6 @@ public class UsersForceOrdersResponseInner {
                                 "The required field(s) %s in UsersForceOrdersResponseInner is not"
                                         + " found in the empty JSON string",
                                 UsersForceOrdersResponseInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UsersForceOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `UsersForceOrdersResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -937,6 +990,14 @@ public class UsersForceOrdersResponseInner {
                             "Expected the field `cumBase` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumBase").toString()));
+        }
+        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
+                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cumQuote` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
@@ -1014,7 +1075,7 @@ public class UsersForceOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, UsersForceOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

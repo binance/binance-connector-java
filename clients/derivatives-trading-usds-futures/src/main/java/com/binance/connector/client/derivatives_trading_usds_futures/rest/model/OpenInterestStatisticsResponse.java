@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,8 +14,8 @@ package com.binance.connector.client.derivatives_trading_usds_futures.rest.model
 
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -28,15 +28,13 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OpenInterestStatisticsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenInterestStatisticsResponse extends ArrayList<OpenInterestStatisticsResponseInner> {
     public OpenInterestStatisticsResponse() {}
 
@@ -109,6 +107,18 @@ public class OpenInterestStatisticsResponse extends ArrayList<OpenInterestStatis
      *     OpenInterestStatisticsResponse
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            OpenInterestStatisticsResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!OpenInterestStatisticsResponse.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -117,18 +127,6 @@ public class OpenInterestStatisticsResponse extends ArrayList<OpenInterestStatis
                                 "The required field(s) %s in OpenInterestStatisticsResponse is not"
                                         + " found in the empty JSON string",
                                 OpenInterestStatisticsResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OpenInterestStatisticsResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OpenInterestStatisticsResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }
@@ -151,7 +149,7 @@ public class OpenInterestStatisticsResponse extends ArrayList<OpenInterestStatis
                         @Override
                         public void write(JsonWriter out, OpenInterestStatisticsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

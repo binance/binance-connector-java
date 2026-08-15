@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,6 +33,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.NewOr
 import com.binance.connector.client.derivatives_trading_options.rest.model.NewOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionPositionInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OrderIds;
+import com.binance.connector.client.derivatives_trading_options.rest.model.OrderType;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Orders;
 import com.binance.connector.client.derivatives_trading_options.rest.model.PlaceMultipleOrdersRequest;
 import com.binance.connector.client.derivatives_trading_options.rest.model.PlaceMultipleOrdersResponse;
@@ -40,9 +41,12 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Query
 import com.binance.connector.client.derivatives_trading_options.rest.model.QueryOptionOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.QuerySingleOrderResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Side;
-import com.binance.connector.client.derivatives_trading_options.rest.model.Type;
+import com.binance.connector.client.derivatives_trading_options.rest.model.TradfiOptionsContractRequest;
+import com.binance.connector.client.derivatives_trading_options.rest.model.TradfiOptionsContractResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.UserCommissionResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.UserExerciseRecordResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -96,17 +100,17 @@ public class TradeApiTest {
     /**
      * Account Trade List (USER_DATA)
      *
-     * <p>Get trades for a specific account and symbol. Weight: 5
+     * <p>Get trades for a specific account and symbol. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountTradeListTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void accountTradeListTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
         Long fromId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         Long recvWindow = 5000L;
         ApiResponse<AccountTradeListResponse> response =
                 api.accountTradeList(symbol, fromId, startTime, endTime, limit, recvWindow);
@@ -121,25 +125,23 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTC-200730-9000-C&fromId=1&startTime=1623319461670&endTime=1641782889000&limit=20&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&fromId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "e6c675628031b06a2cee642f08dd8c2ef4f300380d1b62eeeb68aa3dd76194f1",
-                actualRequest.url().queryParameter("signature"));
+                "1dbe50a6cea1c286b3f674578e7ef8f90fd92d8d118db86fbe195f63e76a41d9", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/userTrades", actualRequest.url().encodedPath());
     }
 
     /**
      * Cancel All Option Orders By Underlying (TRADE)
      *
-     * <p>Cancel all active orders on specified underlying. Weight: 1
+     * <p>Cancel all active orders on specified underlying. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelAllOptionOrdersByUnderlyingTest() throws ApiException, CryptoException {
-        String underlying = "";
+    public void cancelAllOptionOrdersByUnderlyingTest()
+            throws ApiException, CryptoException, IOException {
+        String underlying = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<CancelAllOptionOrdersByUnderlyingResponse> response =
                 api.cancelAllOptionOrdersByUnderlying(underlying, recvWindow);
@@ -155,9 +157,9 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "underlying=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+                "underlying=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "b86106356cee58da83b1db58af2ff785ff31edb20e817cebe1782f91df7ddc12",
+                "d075b5b7e700b7c6bb344e5e944793012900ff9089fc4aeb2c9d02b6495f2f20",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/allOpenOrdersByUnderlying", actualRequest.url().encodedPath());
     }
@@ -165,13 +167,14 @@ public class TradeApiTest {
     /**
      * Cancel all Option orders on specific symbol (TRADE)
      *
-     * <p>Cancel all active order on a symbol. Weight: 1
+     * <p>Cancel all active order on a symbol. Weight(IP): 5 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelAllOptionOrdersOnSpecificSymbolTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void cancelAllOptionOrdersOnSpecificSymbolTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
         Long recvWindow = 5000L;
         ApiResponse<CancelAllOptionOrdersOnSpecificSymbolResponse> response =
                 api.cancelAllOptionOrdersOnSpecificSymbol(symbol, recvWindow);
@@ -186,26 +189,29 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "symbol=BTC-200730-9000-C&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "e9fb533126b1380a187a9dcd922a492ccf6f3e6c4d7a3cf69469c112ecee6ee2",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/allOpenOrders", actualRequest.url().encodedPath());
+        assertEquals(
+                "/eapi/v1/allOpenOrders", actualRequest.url().encodedPath());
     }
 
     /**
      * Cancel Multiple Option Orders (TRADE)
      *
-     * <p>Cancel multiple orders. * At least one instance of &#x60;orderId&#x60; and
-     * &#x60;clientOrderId&#x60; must be sent. Weight: 1
+     * <p>Cancel multiple orders. Weight(IP): 5 Security Type: TRADE Notes: - At least one instance
+     * of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelMultipleOptionOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
-        OrderIds orderIds = null;
-        ClientOrderIds clientOrderIds = null;
+    public void cancelMultipleOptionOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        OrderIds orderIds = OrderIds.fromJson("");
+        ClientOrderIds clientOrderIds = ClientOrderIds.fromJson("");
         Long recvWindow = 5000L;
         ApiResponse<CancelMultipleOptionOrdersResponse> response =
                 api.cancelMultipleOptionOrders(symbol, orderIds, clientOrderIds, recvWindow);
@@ -220,9 +226,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTC-200730-9000-C&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "e9fb533126b1380a187a9dcd922a492ccf6f3e6c4d7a3cf69469c112ecee6ee2",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/batchOrders", actualRequest.url().encodedPath());
     }
@@ -230,16 +236,16 @@ public class TradeApiTest {
     /**
      * Cancel Option Order (TRADE)
      *
-     * <p>Cancel an active order. * At least one instance of &#x60;orderId&#x60; and
-     * &#x60;clientOrderId&#x60; must be sent. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - At least one instance
+     * of &#x60;orderId&#x60; and &#x60;clientOrderId&#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelOptionOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
-        String clientOrderId = "1";
+    public void cancelOptionOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long orderId = 4611875134427365000L;
+        String clientOrderId = "10000";
         Long recvWindow = 5000L;
         ApiResponse<CancelOptionOrderResponse> response =
                 api.cancelOptionOrder(symbol, orderId, clientOrderId, recvWindow);
@@ -254,30 +260,28 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTC-200730-9000-C&orderId=4611875134427365000&clientOrderId=10000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&clientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "22bb4aab5007bdfe2006035e30f7f5fe51b409e0fd3e500e4d31970b67154176",
-                actualRequest.url().queryParameter("signature"));
+                "79c073659d2b5a51a7033c935a142d6f0bbed51008b72b31b8acd2d7d4d186e6", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
     }
 
     /**
      * New Order (TRADE)
      *
-     * <p>Send a new order. Weight: 0
+     * <p>Send a new order. Security Type: TRADE Notes: Some parameters are mandatory depending on
+     * the order type as follows: Type | Mandatory parameters ------------ | ------------ LIMIT |
+     * timeInForce, quantity, price
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void newOrderTest() throws ApiException, CryptoException {
+    public void newOrderTest() throws ApiException, CryptoException, IOException {
         NewOrderRequest newOrderRequest = new NewOrderRequest();
-
-        newOrderRequest.symbol("");
+        newOrderRequest.symbol("BTC-200730-9000-C");
         newOrderRequest.side(Side.BUY);
-        newOrderRequest.type(Type.LIMIT);
-        newOrderRequest.quantity(1d);
+        newOrderRequest.type(OrderType.LIMIT);
+        newOrderRequest.quantity(1.0d);
 
         ApiResponse<NewOrderResponse> response = api.newOrder(newOrderRequest);
 
@@ -291,25 +295,21 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=&side=BUY&quantity=1&type=LIMIT",
-                signInputCaptor.getValue());
-        assertEquals(
-                "bd7c3ca01fc9cf18bcbcb549be33525c3f9d56758986c3b229f2a0784fdf9232",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000postOnly=false&symbol=BTC-200730-9000-C&side=BUY&quantity=1&reduceOnly=false&newOrderRespType=ACK&type=LIMIT&timeInForce=GTC", signInputCaptor.getValue());
+        assertEquals("321a0edb87e260766358c165667bfa76114e38305a7a63ae1cd30b058a926f16", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
     }
 
     /**
      * Option Position Information (USER_DATA)
      *
-     * <p>Get current position information. Weight: 5
+     * <p>Get current position information. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void optionPositionInformationTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void optionPositionInformationTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
         Long recvWindow = 5000L;
         ApiResponse<OptionPositionInformationResponse> response =
                 api.optionPositionInformation(symbol, recvWindow);
@@ -324,25 +324,26 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTC-200730-9000-C&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
+                "e9fb533126b1380a187a9dcd922a492ccf6f3e6c4d7a3cf69469c112ecee6ee2",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/position", actualRequest.url().encodedPath());
     }
 
     /**
-     * Place Multiple Orders(TRADE)
+     * Place Multiple Orders (TRADE)
      *
-     * <p>Send multiple option orders. * Parameter rules are same with New Order * Batch orders are
-     * processed concurrently, and the order of matching is not guaranteed. Weight: 5
+     * <p>Send multiple option orders. Weight(IP): 5 Security Type: TRADE Notes: Some parameters are
+     * mandatory depending on the order type as follows: Type | Mandatory parameters ------------ |
+     * ------------ LIMIT | timeInForce, quantity, price - Parameter rules are same with New Order -
+     * Batch orders are processed concurrently, and the order of matching is not guaranteed.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void placeMultipleOrdersTest() throws ApiException, CryptoException {
+    public void placeMultipleOrdersTest() throws ApiException, CryptoException, IOException {
         PlaceMultipleOrdersRequest placeMultipleOrdersRequest = new PlaceMultipleOrdersRequest();
-
         placeMultipleOrdersRequest.orders(new Orders());
 
         ApiResponse<PlaceMultipleOrdersResponse> response =
@@ -360,8 +361,7 @@ public class TradeApiTest {
 
         assertEquals("timestamp=1736393892000orders=%5B%5D", signInputCaptor.getValue());
         assertEquals(
-                "f273926c44bae2debb7be2afff1b241effae47359ba75471bfd81910d65528e2",
-                actualRequest.url().queryParameter("signature"));
+                "f273926c44bae2debb7be2afff1b241effae47359ba75471bfd81910d65528e2", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/batchOrders", actualRequest.url().encodedPath());
     }
 
@@ -369,21 +369,20 @@ public class TradeApiTest {
      * Query Current Open Option Orders (USER_DATA)
      *
      * <p>Query current all open orders, status: ACCEPTED PARTIALLY_FILLED Weight: 1 for a single
-     * symbol; 40 when the symbol parameter is omitted
+     * symbol; 40 when the symbol parameter is omitted Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCurrentOpenOptionOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
+    public void queryCurrentOpenOptionOrdersTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long orderId = 4611875134427365000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentOpenOptionOrdersResponse> response =
-                api.queryCurrentOpenOptionOrders(
-                        symbol, orderId, startTime, endTime, limit, recvWindow);
+                api.queryCurrentOpenOptionOrders(symbol, orderId, startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -395,11 +394,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTC-200730-9000-C&orderId=4611875134427365000&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "dc0808314025fc813dcde0328cd6754c982d28888760fc74b17e072087eb4895",
+                "d9c03fbc0fd57da19a72bdb27ca4318362e2d36beb81689703aa3530b3ffb43b",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/openOrders", actualRequest.url().encodedPath());
     }
@@ -408,17 +405,17 @@ public class TradeApiTest {
      * Query Option Order History (TRADE)
      *
      * <p>Query all finished orders within 5 days, finished status: CANCELLED FILLED REJECTED.
-     * Weight: 3
+     * Weight(IP): 3 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryOptionOrderHistoryTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
+    public void queryOptionOrderHistoryTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long orderId = 4611875134427365000L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         Long recvWindow = 5000L;
         ApiResponse<QueryOptionOrderHistoryResponse> response =
                 api.queryOptionOrderHistory(symbol, orderId, startTime, endTime, limit, recvWindow);
@@ -433,11 +430,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTC-200730-9000-C&orderId=4611875134427365000&startTime=1623319461670&endTime=1641782889000&limit=20&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "dc0808314025fc813dcde0328cd6754c982d28888760fc74b17e072087eb4895",
+                "7dd51f339fcacbbcc0605782a5bf44e72263a6abada2a0ee836c3fa54582d099",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/historyOrders", actualRequest.url().encodedPath());
     }
@@ -447,16 +442,16 @@ public class TradeApiTest {
      *
      * <p>Check an order status. * These orders will not be found: * order status is
      * &#x60;CANCELED&#x60; or &#x60;REJECTED&#x60;, **AND** * order has NO filled trade, **AND** *
-     * created time + 3 days &lt; current time * Either &#x60;orderId&#x60; or &#x60;clientOrderId
-     * &#x60; must be sent. Weight: 1
+     * created time + 3 days &lt; current time Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;orderId&#x60; or &#x60;clientOrderId &#x60; must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySingleOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long orderId = 1L;
-        String clientOrderId = "1";
+    public void querySingleOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long orderId = 4611875134427365000L;
+        String clientOrderId = "abc123";
         Long recvWindow = 5000L;
         ApiResponse<QuerySingleOrderResponse> response =
                 api.querySingleOrder(symbol, orderId, clientOrderId, recvWindow);
@@ -471,28 +466,84 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTC-200730-9000-C&orderId=4611875134427365000&clientOrderId=abc123&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&orderId=1&clientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "22bb4aab5007bdfe2006035e30f7f5fe51b409e0fd3e500e4d31970b67154176",
-                actualRequest.url().queryParameter("signature"));
+                "7994ed1c0e43900900d80fcb7848ca79c3a86e32f87267da10e9fc39c98c9a52", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * TradFi Options Contract (USER_DATA)
+     *
+     * <p>Sign TradFi Options agreement contract Weight(IP): 50 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void tradfiOptionsContractTest() throws ApiException, CryptoException, IOException {
+        TradfiOptionsContractRequest tradfiOptionsContractRequest =
+                new TradfiOptionsContractRequest();
+
+        ApiResponse<TradfiOptionsContractResponse> response =
+                api.tradfiOptionsContract(tradfiOptionsContractRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/eapi/v1/stock/contract", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * User Commission (USER_DATA)
+     *
+     * <p>Get account commission. Weight(IP): 5 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void userCommissionTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<UserCommissionResponse> response = api.userCommission(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/eapi/v1/commission", actualRequest.url().encodedPath());
     }
 
     /**
      * User Exercise Record (USER_DATA)
      *
-     * <p>Get account exercise records. Weight: 5
+     * <p>Get account exercise records. Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void userExerciseRecordTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void userExerciseRecordTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         Long recvWindow = 5000L;
         ApiResponse<UserExerciseRecordResponse> response =
                 api.userExerciseRecord(symbol, startTime, endTime, limit, recvWindow);
@@ -507,12 +558,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTC-200730-9000-C&startTime=1623319461670&endTime=1641782889000&limit=20&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "3d9795ecfdb1326d191e1c4777f0f21d3abe1b7efbde9431ba818a057bd1dd7f",
-                actualRequest.url().queryParameter("signature"));
+                "3c7dee77b6e1738c50cfae5f1f6292eafafe1378c86493bee4f1cc0449502590", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/exerciseRecord", actualRequest.url().encodedPath());
     }
 }

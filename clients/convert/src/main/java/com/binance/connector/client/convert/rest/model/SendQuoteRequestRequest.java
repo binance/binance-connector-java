@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SendQuoteRequestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SendQuoteRequestRequest {
     public static final String SERIALIZED_NAME_FROM_ASSET = "fromAsset";
 
@@ -67,13 +65,13 @@ public class SendQuoteRequestRequest {
 
     @SerializedName(SERIALIZED_NAME_WALLET_TYPE)
     @jakarta.annotation.Nullable
-    private String walletType;
+    private WalletType walletType = WalletType.SPOT;
 
     public static final String SERIALIZED_NAME_VALID_TIME = "validTime";
 
     @SerializedName(SERIALIZED_NAME_VALID_TIME)
     @jakarta.annotation.Nullable
-    private String validTime;
+    private ValidTime validTime = ValidTime.VALID_TIME_10s;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -129,7 +127,7 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get fromAmount
+     * When specified, it is the amount you will be debited after the conversion
      *
      * @return fromAmount
      */
@@ -149,7 +147,7 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get toAmount
+     * When specified, it is the amount you will be credited after the conversion
      *
      * @return toAmount
      */
@@ -163,7 +161,7 @@ public class SendQuoteRequestRequest {
         this.toAmount = toAmount;
     }
 
-    public SendQuoteRequestRequest walletType(@jakarta.annotation.Nullable String walletType) {
+    public SendQuoteRequestRequest walletType(@jakarta.annotation.Nullable WalletType walletType) {
         this.walletType = walletType;
         return this;
     }
@@ -174,15 +172,16 @@ public class SendQuoteRequestRequest {
      * @return walletType
      */
     @jakarta.annotation.Nullable
-    public String getWalletType() {
+    @Valid
+    public WalletType getWalletType() {
         return walletType;
     }
 
-    public void setWalletType(@jakarta.annotation.Nullable String walletType) {
+    public void setWalletType(@jakarta.annotation.Nullable WalletType walletType) {
         this.walletType = walletType;
     }
 
-    public SendQuoteRequestRequest validTime(@jakarta.annotation.Nullable String validTime) {
+    public SendQuoteRequestRequest validTime(@jakarta.annotation.Nullable ValidTime validTime) {
         this.validTime = validTime;
         return this;
     }
@@ -193,11 +192,12 @@ public class SendQuoteRequestRequest {
      * @return validTime
      */
     @jakarta.annotation.Nullable
-    public String getValidTime() {
+    @Valid
+    public ValidTime getValidTime() {
         return validTime;
     }
 
-    public void setValidTime(@jakarta.annotation.Nullable String validTime) {
+    public void setValidTime(@jakarta.annotation.Nullable ValidTime validTime) {
         this.validTime = validTime;
     }
 
@@ -207,11 +207,12 @@ public class SendQuoteRequestRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -350,18 +351,6 @@ public class SendQuoteRequestRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SendQuoteRequestRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SendQuoteRequestRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : SendQuoteRequestRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -386,21 +375,13 @@ public class SendQuoteRequestRequest {
                                     + " but got `%s`",
                             jsonObj.get("toAsset").toString()));
         }
-        if ((jsonObj.get("walletType") != null && !jsonObj.get("walletType").isJsonNull())
-                && !jsonObj.get("walletType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `walletType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("walletType").toString()));
+        // validate the optional field `walletType`
+        if (jsonObj.get("walletType") != null && !jsonObj.get("walletType").isJsonNull()) {
+            WalletType.validateJsonElement(jsonObj.get("walletType"));
         }
-        if ((jsonObj.get("validTime") != null && !jsonObj.get("validTime").isJsonNull())
-                && !jsonObj.get("validTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `validTime` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("validTime").toString()));
+        // validate the optional field `validTime`
+        if (jsonObj.get("validTime") != null && !jsonObj.get("validTime").isJsonNull()) {
+            ValidTime.validateJsonElement(jsonObj.get("validTime"));
         }
     }
 
@@ -421,7 +402,7 @@ public class SendQuoteRequestRequest {
                         @Override
                         public void write(JsonWriter out, SendQuoteRequestRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -19,44 +19,8 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AggregateTradeStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AggregateTradeStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllBookTickersStreamRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllBookTickersStreamResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllMarketLiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllMarketLiquidationOrderStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllMarketMiniTickersStreamRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllMarketMiniTickersStreamResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllMarketTickersStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.AllMarketTickersStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.ContractInfoStreamRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.ContractInfoStreamResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.DiffBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.DiffBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndexKlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndexKlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndexPriceStreamRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndexPriceStreamResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolMiniTickerStreamRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolMiniTickerStreamResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.KlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.LiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.LiquidationOrderStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceKlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceKlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceOfAllSymbolsOfAPairRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceOfAllSymbolsOfAPairResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceStreamRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceStreamResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -78,13 +42,13 @@ import org.skyscreamer.jsonassert.JSONAssert;
 /** API tests for WebsocketMarketStreamsApi */
 public class WebsocketMarketStreamsApiTest {
 
-    private WebsocketMarketStreamsApi api;
+    private DefaultApi api;
     private StreamConnectionWrapper connectionSpy;
     private Session sessionMock;
 
     @BeforeEach
     public void initApiClient() throws Exception {
-        URL resource = WebsocketMarketStreamsApi.class.getResource("/test-ed25519-prv-key.pem");
+        URL resource = DerivativesTradingCoinFuturesWebSocketStreams.class.getResource("/test-ed25519-prv-key.pem");
         SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
         signatureConfiguration.setApiKey("apiKey");
         File file = new File(resource.toURI());
@@ -109,9 +73,10 @@ public class WebsocketMarketStreamsApiTest {
         StreamConnectionWrapper connectionWrapper =
                 new StreamConnectionWrapper(clientConfiguration, webSocketClient);
         connectionSpy = Mockito.spy(connectionWrapper);
+        Mockito.doNothing().when(connectionSpy).setUserAgent(Mockito.anyString());
         Mockito.doReturn(1736393892000L).when(connectionSpy).getTimestamp();
         connectionSpy.connect();
-        WebsocketMarketStreamsApi accountApi = new WebsocketMarketStreamsApi(connectionSpy);
+        DefaultApi accountApi = new DefaultApi(connectionSpy);
         api = Mockito.spy(accountApi);
         Mockito.doReturn("eaf3292c-64b6-4c04-ad4f-4ca2608b42b4").when(api).getRequestID();
     }
@@ -308,8 +273,8 @@ public class WebsocketMarketStreamsApiTest {
                         new ContinuousContractKlineCandlestickStreamsRequest();
 
         continuousContractKlineCandlestickStreamsRequest.pair("btcusdt");
-        continuousContractKlineCandlestickStreamsRequest.contractType("next_quarter");
-        continuousContractKlineCandlestickStreamsRequest.interval("1m");
+        continuousContractKlineCandlestickStreamsRequest.contractType(ContractType.next_quarter);
+        continuousContractKlineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<ContinuousContractKlineCandlestickStreamsResponse> response =
                 api.continuousContractKlineCandlestickStreams(
@@ -418,7 +383,7 @@ public class WebsocketMarketStreamsApiTest {
                 new IndexKlineCandlestickStreamsRequest();
 
         indexKlineCandlestickStreamsRequest.pair("btcusdt");
-        indexKlineCandlestickStreamsRequest.interval("1m");
+        indexKlineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<IndexKlineCandlestickStreamsResponse> response =
                 api.indexKlineCandlestickStreams(indexKlineCandlestickStreamsRequest);
@@ -453,7 +418,7 @@ public class WebsocketMarketStreamsApiTest {
         IndexPriceStreamRequest indexPriceStreamRequest = new IndexPriceStreamRequest();
 
         indexPriceStreamRequest.pair("btcusdt");
-        indexPriceStreamRequest.updateSpeed("100ms");
+        indexPriceStreamRequest.updateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
 
         StreamBlockingQueueWrapper<IndexPriceStreamResponse> response =
                 api.indexPriceStream(indexPriceStreamRequest);
@@ -602,7 +567,7 @@ public class WebsocketMarketStreamsApiTest {
                 new KlineCandlestickStreamsRequest();
 
         klineCandlestickStreamsRequest.symbol("btcusdt");
-        klineCandlestickStreamsRequest.interval("1m");
+        klineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> response =
                 api.klineCandlestickStreams(klineCandlestickStreamsRequest);
@@ -626,44 +591,6 @@ public class WebsocketMarketStreamsApiTest {
     }
 
     /**
-     * Liquidation Order Streams
-     *
-     * <p>The Liquidation Order Snapshot Streams push force liquidation order information for
-     * specific symbol. For each symbol，only the latest one liquidation order within 1000ms will be
-     * pushed as the snapshot. If no liquidation happens in the interval of 1000ms, no stream will
-     * be pushed. Update Speed: 1000ms
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void liquidationOrderStreamsTest() throws ApiException, URISyntaxException, IOException {
-        LiquidationOrderStreamsRequest liquidationOrderStreamsRequest =
-                new LiquidationOrderStreamsRequest();
-
-        liquidationOrderStreamsRequest.symbol("btcusdt");
-
-        StreamBlockingQueueWrapper<LiquidationOrderStreamsResponse> response =
-                api.liquidationOrderStreams(liquidationOrderStreamsRequest);
-        ArgumentCaptor<RequestWrapperDTO<Set<String>, LiquidationOrderStreamsResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<Set<String>, LiquidationOrderStreamsResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        Set<String> params = requestWrapperDTO.getParams();
-        // TODO: test validations
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                WebsocketMarketStreamsApiTest.class.getResource(
-                        "/expected/stream/WebsocketMarketStreamsApi/symbol@forceOrder-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
      * Mark Price Kline/Candlestick Streams
      *
      * <p>Mark Price Kline/Candlestick Streams Update Speed: 250ms
@@ -677,7 +604,7 @@ public class WebsocketMarketStreamsApiTest {
                 new MarkPriceKlineCandlestickStreamsRequest();
 
         markPriceKlineCandlestickStreamsRequest.symbol("btcusdt");
-        markPriceKlineCandlestickStreamsRequest.interval("1m");
+        markPriceKlineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<MarkPriceKlineCandlestickStreamsResponse> response =
                 api.markPriceKlineCandlestickStreams(markPriceKlineCandlestickStreamsRequest);
@@ -714,7 +641,7 @@ public class WebsocketMarketStreamsApiTest {
                 new MarkPriceOfAllSymbolsOfAPairRequest();
 
         markPriceOfAllSymbolsOfAPairRequest.pair("btcusdt");
-        markPriceOfAllSymbolsOfAPairRequest.updateSpeed("100ms");
+        markPriceOfAllSymbolsOfAPairRequest.updateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
 
         StreamBlockingQueueWrapper<MarkPriceOfAllSymbolsOfAPairResponse> response =
                 api.markPriceOfAllSymbolsOfAPair(markPriceOfAllSymbolsOfAPairRequest);
@@ -749,7 +676,7 @@ public class WebsocketMarketStreamsApiTest {
         MarkPriceStreamRequest markPriceStreamRequest = new MarkPriceStreamRequest();
 
         markPriceStreamRequest.symbol("btcusdt");
-        markPriceStreamRequest.setUpdateSpeed("100ms");
+        markPriceStreamRequest.setUpdateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
 
         StreamBlockingQueueWrapper<MarkPriceStreamResponse> response =
                 api.markPriceStream(markPriceStreamRequest);
@@ -786,8 +713,8 @@ public class WebsocketMarketStreamsApiTest {
                 new PartialBookDepthStreamsRequest();
 
         partialBookDepthStreamsRequest.symbol("btcusdt");
-        partialBookDepthStreamsRequest.levels(10L);
-        partialBookDepthStreamsRequest.setUpdateSpeed("100ms");
+        partialBookDepthStreamsRequest.levels(Levels.LEVELS_10);
+        partialBookDepthStreamsRequest.setUpdateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
 
         StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> response =
                 api.partialBookDepthStreams(partialBookDepthStreamsRequest);

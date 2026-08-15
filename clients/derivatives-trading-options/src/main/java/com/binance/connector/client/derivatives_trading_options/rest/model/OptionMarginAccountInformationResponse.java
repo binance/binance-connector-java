@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** OptionMarginAccountInformationResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionMarginAccountInformationResponse {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -54,13 +52,43 @@ public class OptionMarginAccountInformationResponse {
 
     @SerializedName(SERIALIZED_NAME_GREEK)
     @jakarta.annotation.Nullable
-    private List<@Valid OptionAccountInformationResponseGreekInner> greek;
+    private List<@Valid OptionMarginAccountInformationResponseGreekInner> greek;
 
     public static final String SERIALIZED_NAME_TIME = "time";
 
     @SerializedName(SERIALIZED_NAME_TIME)
     @jakarta.annotation.Nullable
     private Long time;
+
+    public static final String SERIALIZED_NAME_CAN_TRADE = "canTrade";
+
+    @SerializedName(SERIALIZED_NAME_CAN_TRADE)
+    @jakarta.annotation.Nullable
+    private Boolean canTrade;
+
+    public static final String SERIALIZED_NAME_CAN_DEPOSIT = "canDeposit";
+
+    @SerializedName(SERIALIZED_NAME_CAN_DEPOSIT)
+    @jakarta.annotation.Nullable
+    private Boolean canDeposit;
+
+    public static final String SERIALIZED_NAME_CAN_WITHDRAW = "canWithdraw";
+
+    @SerializedName(SERIALIZED_NAME_CAN_WITHDRAW)
+    @jakarta.annotation.Nullable
+    private Boolean canWithdraw;
+
+    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
+
+    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
+    @jakarta.annotation.Nullable
+    private Boolean reduceOnly;
+
+    public static final String SERIALIZED_NAME_TRADE_GROUP_ID = "tradeGroupId";
+
+    @SerializedName(SERIALIZED_NAME_TRADE_GROUP_ID)
+    @jakarta.annotation.Nullable
+    private Long tradeGroupId;
 
     public OptionMarginAccountInformationResponse() {}
 
@@ -81,7 +109,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get asset
+     * asset
      *
      * @return asset
      */
@@ -99,13 +127,13 @@ public class OptionMarginAccountInformationResponse {
 
     public OptionMarginAccountInformationResponse greek(
             @jakarta.annotation.Nullable
-                    List<@Valid OptionAccountInformationResponseGreekInner> greek) {
+                    List<@Valid OptionMarginAccountInformationResponseGreekInner> greek) {
         this.greek = greek;
         return this;
     }
 
     public OptionMarginAccountInformationResponse addGreekItem(
-            OptionAccountInformationResponseGreekInner greekItem) {
+            OptionMarginAccountInformationResponseGreekInner greekItem) {
         if (this.greek == null) {
             this.greek = new ArrayList<>();
         }
@@ -114,19 +142,19 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get greek
+     * greek
      *
      * @return greek
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OptionAccountInformationResponseGreekInner> getGreek() {
+    public List<@Valid OptionMarginAccountInformationResponseGreekInner> getGreek() {
         return greek;
     }
 
     public void setGreek(
             @jakarta.annotation.Nullable
-                    List<@Valid OptionAccountInformationResponseGreekInner> greek) {
+                    List<@Valid OptionMarginAccountInformationResponseGreekInner> greek) {
         this.greek = greek;
     }
 
@@ -136,7 +164,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get time
+     * time
      *
      * @return time
      */
@@ -147,6 +175,106 @@ public class OptionMarginAccountInformationResponse {
 
     public void setTime(@jakarta.annotation.Nullable Long time) {
         this.time = time;
+    }
+
+    public OptionMarginAccountInformationResponse canTrade(
+            @jakarta.annotation.Nullable Boolean canTrade) {
+        this.canTrade = canTrade;
+        return this;
+    }
+
+    /**
+     * can Trade
+     *
+     * @return canTrade
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanTrade() {
+        return canTrade;
+    }
+
+    public void setCanTrade(@jakarta.annotation.Nullable Boolean canTrade) {
+        this.canTrade = canTrade;
+    }
+
+    public OptionMarginAccountInformationResponse canDeposit(
+            @jakarta.annotation.Nullable Boolean canDeposit) {
+        this.canDeposit = canDeposit;
+        return this;
+    }
+
+    /**
+     * can Deposit
+     *
+     * @return canDeposit
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanDeposit() {
+        return canDeposit;
+    }
+
+    public void setCanDeposit(@jakarta.annotation.Nullable Boolean canDeposit) {
+        this.canDeposit = canDeposit;
+    }
+
+    public OptionMarginAccountInformationResponse canWithdraw(
+            @jakarta.annotation.Nullable Boolean canWithdraw) {
+        this.canWithdraw = canWithdraw;
+        return this;
+    }
+
+    /**
+     * can Withdraw
+     *
+     * @return canWithdraw
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanWithdraw() {
+        return canWithdraw;
+    }
+
+    public void setCanWithdraw(@jakarta.annotation.Nullable Boolean canWithdraw) {
+        this.canWithdraw = canWithdraw;
+    }
+
+    public OptionMarginAccountInformationResponse reduceOnly(
+            @jakarta.annotation.Nullable Boolean reduceOnly) {
+        this.reduceOnly = reduceOnly;
+        return this;
+    }
+
+    /**
+     * reduce Only
+     *
+     * @return reduceOnly
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getReduceOnly() {
+        return reduceOnly;
+    }
+
+    public void setReduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
+        this.reduceOnly = reduceOnly;
+    }
+
+    public OptionMarginAccountInformationResponse tradeGroupId(
+            @jakarta.annotation.Nullable Long tradeGroupId) {
+        this.tradeGroupId = tradeGroupId;
+        return this;
+    }
+
+    /**
+     * Trade group ID
+     *
+     * @return tradeGroupId
+     */
+    @jakarta.annotation.Nullable
+    public Long getTradeGroupId() {
+        return tradeGroupId;
+    }
+
+    public void setTradeGroupId(@jakarta.annotation.Nullable Long tradeGroupId) {
+        this.tradeGroupId = tradeGroupId;
     }
 
     @Override
@@ -161,12 +289,22 @@ public class OptionMarginAccountInformationResponse {
                 (OptionMarginAccountInformationResponse) o;
         return Objects.equals(this.asset, optionMarginAccountInformationResponse.asset)
                 && Objects.equals(this.greek, optionMarginAccountInformationResponse.greek)
-                && Objects.equals(this.time, optionMarginAccountInformationResponse.time);
+                && Objects.equals(this.time, optionMarginAccountInformationResponse.time)
+                && Objects.equals(this.canTrade, optionMarginAccountInformationResponse.canTrade)
+                && Objects.equals(
+                        this.canDeposit, optionMarginAccountInformationResponse.canDeposit)
+                && Objects.equals(
+                        this.canWithdraw, optionMarginAccountInformationResponse.canWithdraw)
+                && Objects.equals(
+                        this.reduceOnly, optionMarginAccountInformationResponse.reduceOnly)
+                && Objects.equals(
+                        this.tradeGroupId, optionMarginAccountInformationResponse.tradeGroupId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(asset, greek, time);
+        return Objects.hash(
+                asset, greek, time, canTrade, canDeposit, canWithdraw, reduceOnly, tradeGroupId);
     }
 
     @Override
@@ -176,6 +314,11 @@ public class OptionMarginAccountInformationResponse {
         sb.append("		asset: ").append(toIndentedString(asset)).append("\n");
         sb.append("		greek: ").append(toIndentedString(greek)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
+        sb.append("		canTrade: ").append(toIndentedString(canTrade)).append("\n");
+        sb.append("		canDeposit: ").append(toIndentedString(canDeposit)).append("\n");
+        sb.append("		canWithdraw: ").append(toIndentedString(canWithdraw)).append("\n");
+        sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		tradeGroupId: ").append(toIndentedString(tradeGroupId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -201,6 +344,26 @@ public class OptionMarginAccountInformationResponse {
         String timeValueAsString = "";
         timeValueAsString = timeValue.toString();
         sb.append("time=").append(urlEncode(timeValueAsString)).append("");
+        Object canTradeValue = getCanTrade();
+        String canTradeValueAsString = "";
+        canTradeValueAsString = canTradeValue.toString();
+        sb.append("canTrade=").append(urlEncode(canTradeValueAsString)).append("");
+        Object canDepositValue = getCanDeposit();
+        String canDepositValueAsString = "";
+        canDepositValueAsString = canDepositValue.toString();
+        sb.append("canDeposit=").append(urlEncode(canDepositValueAsString)).append("");
+        Object canWithdrawValue = getCanWithdraw();
+        String canWithdrawValueAsString = "";
+        canWithdrawValueAsString = canWithdrawValue.toString();
+        sb.append("canWithdraw=").append(urlEncode(canWithdrawValueAsString)).append("");
+        Object reduceOnlyValue = getReduceOnly();
+        String reduceOnlyValueAsString = "";
+        reduceOnlyValueAsString = reduceOnlyValue.toString();
+        sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object tradeGroupIdValue = getTradeGroupId();
+        String tradeGroupIdValueAsString = "";
+        tradeGroupIdValueAsString = tradeGroupIdValue.toString();
+        sb.append("tradeGroupId=").append(urlEncode(tradeGroupIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -232,6 +395,11 @@ public class OptionMarginAccountInformationResponse {
         openapiFields.add("asset");
         openapiFields.add("greek");
         openapiFields.add("time");
+        openapiFields.add("canTrade");
+        openapiFields.add("canDeposit");
+        openapiFields.add("canWithdraw");
+        openapiFields.add("reduceOnly");
+        openapiFields.add("tradeGroupId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -254,19 +422,6 @@ public class OptionMarginAccountInformationResponse {
                                         + " is not found in the empty JSON string",
                                 OptionMarginAccountInformationResponse.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OptionMarginAccountInformationResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `OptionMarginAccountInformationResponse` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -304,7 +459,7 @@ public class OptionMarginAccountInformationResponse {
 
                 // validate the optional field `greek` (array)
                 for (int i = 0; i < jsonArraygreek.size(); i++) {
-                    OptionAccountInformationResponseGreekInner.validateJsonElement(
+                    OptionMarginAccountInformationResponseGreekInner.validateJsonElement(
                             jsonArraygreek.get(i));
                 }
                 ;
@@ -331,7 +486,7 @@ public class OptionMarginAccountInformationResponse {
                         public void write(
                                 JsonWriter out, OptionMarginAccountInformationResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CancelAllOptionOrdersOnSpecificSymbolResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelAllOptionOrdersOnSpecificSymbolResponse {
     public static final String SERIALIZED_NAME_CODE = "code";
 
     @SerializedName(SERIALIZED_NAME_CODE)
     @jakarta.annotation.Nullable
-    private Long code;
+    private String code;
 
     public static final String SERIALIZED_NAME_MSG = "msg";
 
@@ -53,22 +51,22 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
     public CancelAllOptionOrdersOnSpecificSymbolResponse() {}
 
     public CancelAllOptionOrdersOnSpecificSymbolResponse code(
-            @jakarta.annotation.Nullable Long code) {
+            @jakarta.annotation.Nullable String code) {
         this.code = code;
         return this;
     }
 
     /**
-     * Get code
+     * code
      *
      * @return code
      */
     @jakarta.annotation.Nullable
-    public Long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(@jakarta.annotation.Nullable Long code) {
+    public void setCode(@jakarta.annotation.Nullable String code) {
         this.code = code;
     }
 
@@ -79,7 +77,7 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
     }
 
     /**
-     * Get msg
+     * msg
      *
      * @return msg
      */
@@ -188,21 +186,15 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelAllOptionOrdersOnSpecificSymbolResponse.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `CancelAllOptionOrdersOnSpecificSymbolResponse` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull())
+                && !jsonObj.get("code").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `code` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("code").toString()));
+        }
         if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
                 && !jsonObj.get("msg").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -234,7 +226,7 @@ public class CancelAllOptionOrdersOnSpecificSymbolResponse {
                         public void write(
                                 JsonWriter out, CancelAllOptionOrdersOnSpecificSymbolResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**initialMargin** | **String** |  |  [optional] |
-|**maintMargin** | **String** |  |  [optional] |
-|**unrealizedProfit** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**positionAmt** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**notional** | **String** |  |  [optional] |
+|**symbol** | **String** | symbol name |  [optional] |
+|**initialMargin** | **String** | total initial margin required with current mark price |  [optional] |
+|**maintMargin** | **String** | maintenance margin required |  [optional] |
+|**unrealizedProfit** | **String** | unrealized profit |  [optional] |
+|**positionSide** | **String** | position side |  [optional] |
+|**positionAmt** | **String** | position amount |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
+|**notional** | **String** | Notional. |  [optional] |
 
 
 

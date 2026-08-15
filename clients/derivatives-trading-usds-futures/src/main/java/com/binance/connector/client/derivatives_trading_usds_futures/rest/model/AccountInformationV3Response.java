@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** AccountInformationV3Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV3Response {
     public static final String SERIALIZED_NAME_TOTAL_INITIAL_MARGIN = "totalInitialMargin";
 
@@ -134,7 +132,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalInitialMargin
+     * Total initial margin requirement. USDT only in single-asset mode; the sum of USD value of all
+     * cross positions/open order initial margin in multi-assets mode.
      *
      * @return totalInitialMargin
      */
@@ -154,7 +153,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalMaintMargin
+     * Total maintenance margin requirement. USDT only in single-asset mode; the sum of USD value of
+     * all cross positions maintenance margin in multi-assets mode.
      *
      * @return totalMaintMargin
      */
@@ -174,7 +174,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalWalletBalance
+     * Total wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return totalWalletBalance
      */
@@ -194,7 +194,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalUnrealizedProfit
+     * Total unrealized profit. USDT only in single-asset mode; USD-denominated in multi-assets
+     * mode.
      *
      * @return totalUnrealizedProfit
      */
@@ -215,7 +216,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalMarginBalance
+     * Total margin balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return totalMarginBalance
      */
@@ -235,7 +236,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalPositionInitialMargin
+     * Initial margin required for positions. USDT only in single-asset mode; the sum of USD value
+     * of all cross positions initial margin in multi-assets mode.
      *
      * @return totalPositionInitialMargin
      */
@@ -256,7 +258,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalOpenOrderInitialMargin
+     * Initial margin required for open orders. USDT only in single-asset mode; USD-denominated in
+     * multi-assets mode.
      *
      * @return totalOpenOrderInitialMargin
      */
@@ -277,7 +280,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalCrossWalletBalance
+     * Cross wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return totalCrossWalletBalance
      */
@@ -298,7 +301,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get totalCrossUnPnl
+     * Unrealized PnL for cross positions. USDT only in single-asset mode; USD-denominated in
+     * multi-assets mode.
      *
      * @return totalCrossUnPnl
      */
@@ -318,7 +322,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get availableBalance
+     * Available balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
      *
      * @return availableBalance
      */
@@ -338,7 +342,8 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * Maximum transferable/withdrawable amount. USDT only in single-asset mode; a maximum virtual
+     * USD amount in multi-assets mode.
      *
      * @return maxWithdrawAmount
      */
@@ -368,7 +373,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get assets
+     * Asset-level account details.
      *
      * @return assets
      */
@@ -401,7 +406,7 @@ public class AccountInformationV3Response {
     }
 
     /**
-     * Get positions
+     * Position details for symbols.
      *
      * @return positions
      */
@@ -651,18 +656,6 @@ public class AccountInformationV3Response {
                                 AccountInformationV3Response.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountInformationV3Response.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AccountInformationV3Response` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("totalInitialMargin") != null
                         && !jsonObj.get("totalInitialMargin").isJsonNull())
@@ -822,7 +815,7 @@ public class AccountInformationV3Response {
                         @Override
                         public void write(JsonWriter out, AccountInformationV3Response value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

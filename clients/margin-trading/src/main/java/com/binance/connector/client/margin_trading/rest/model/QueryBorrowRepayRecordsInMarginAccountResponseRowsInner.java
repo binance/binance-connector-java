@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryBorrowRepayRecordsInMarginAccountResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     public static final String SERIALIZED_NAME_TYPE = "type";
 
@@ -101,7 +99,8 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get type
+     * AUTO,MANUAL for Cross Margin Borrow; MANUAL，AUTO，BNB_AUTO_REPAY，POINT_AUTO_REPAY for Cross
+     * Margin Repay; AUTO，MANUAL for Isolated Margin Borrow/Repay;
      *
      * @return type
      */
@@ -121,7 +120,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get isolatedSymbol
+     * isolated symbol, will not be returned for crossed margin
      *
      * @return isolatedSymbol
      */
@@ -141,7 +140,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get amount
+     * Total amount borrowed/repaid
      *
      * @return amount
      */
@@ -161,7 +160,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -181,7 +180,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get interest
+     * Interest repaid
      *
      * @return interest
      */
@@ -201,7 +200,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get principal
+     * Principal repaid
      *
      * @return principal
      */
@@ -221,7 +220,8 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get status
+     * one of PENDING (pending execution), CONFIRMED (successfully execution), FAILED (execution
+     * failed, nothing happened to your account);
      *
      * @return status
      */
@@ -241,7 +241,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get timestamp
+     * timestamp.
      *
      * @return timestamp
      */
@@ -261,7 +261,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get txId
+     * tx Id.
      *
      * @return txId
      */
@@ -434,20 +434,6 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryBorrowRepayRecordsInMarginAccountResponseRowsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryBorrowRepayRecordsInMarginAccountResponseRowsInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
                 && !jsonObj.get("type").isJsonPrimitive()) {
@@ -531,7 +517,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
                                 JsonWriter out,
                                 QueryBorrowRepayRecordsInMarginAccountResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

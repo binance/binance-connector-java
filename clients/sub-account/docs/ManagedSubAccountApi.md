@@ -11,8 +11,8 @@ All URIs are relative to *https://api.binance.com*
 | [**queryManagedSubAccountList**](ManagedSubAccountApi.md#queryManagedSubAccountList) | **GET** /sapi/v1/managed-subaccount/info | Query Managed Sub-account List (For Investor) (USER_DATA) |
 | [**queryManagedSubAccountMarginAssetDetails**](ManagedSubAccountApi.md#queryManagedSubAccountMarginAssetDetails) | **GET** /sapi/v1/managed-subaccount/marginAsset | Query Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA) |
 | [**queryManagedSubAccountSnapshot**](ManagedSubAccountApi.md#queryManagedSubAccountSnapshot) | **GET** /sapi/v1/managed-subaccount/accountSnapshot | Query Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA) |
-| [**queryManagedSubAccountTransferLogMasterAccountInvestor**](ManagedSubAccountApi.md#queryManagedSubAccountTransferLogMasterAccountInvestor) | **GET** /sapi/v1/managed-subaccount/queryTransLogForInvestor | Query Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA) |
-| [**queryManagedSubAccountTransferLogMasterAccountTrading**](ManagedSubAccountApi.md#queryManagedSubAccountTransferLogMasterAccountTrading) | **GET** /sapi/v1/managed-subaccount/queryTransLogForTradeParent | Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA) |
+| [**queryManagedSubAccountTransferLogMasterAccountInvestor**](ManagedSubAccountApi.md#queryManagedSubAccountTransferLogMasterAccountInvestor) | **GET** /sapi/v1/managed-subaccount/queryTransLogForInvestor | Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA) |
+| [**queryManagedSubAccountTransferLogMasterAccountTrading**](ManagedSubAccountApi.md#queryManagedSubAccountTransferLogMasterAccountTrading) | **GET** /sapi/v1/managed-subaccount/queryTransLogForTradeParent | Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA) |
 | [**queryManagedSubAccountTransferLogSubAccountTrading**](ManagedSubAccountApi.md#queryManagedSubAccountTransferLogSubAccountTrading) | **GET** /sapi/v1/managed-subaccount/query-trans-log | Query Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA) |
 | [**withdrawlAssetsFromTheManagedSubAccount**](ManagedSubAccountApi.md#withdrawlAssetsFromTheManagedSubAccount) | **POST** /sapi/v1/managed-subaccount/withdraw | Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA) |
 
@@ -23,7 +23,7 @@ All URIs are relative to *https://api.binance.com*
 
 Deposit Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA)
 
-Deposit Assets Into The Managed Sub-account  * You need to enable &#x60;Enable Spot &amp; Margin Trading&#x60; option for the api key which requests this endpoint  Weight: 1
+Deposit Assets Into The Managed Sub-account  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to enable &#x60;Enable Spot &amp; Margin Trading&#x60; option for the api key which requests this endpoint
 
 ### Example
 ```java
@@ -85,7 +85,7 @@ No authorization required
 
 Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
 
-Get investor&#39;s managed sub-account deposit address.  * If &#x60;network&#x60; is not send, return with default &#x60;network&#x60; of the &#x60;coin&#x60;. * * &#x60;amount&#x60; needs to be sent if using LIGHTNING network  Weight: 1
+Get investor&#39;s managed sub-account deposit address.  Weight(UID): 1  Security Type: USER_DATA  Notes: - If &#x60;network&#x60; is not sent, the default &#x60;network&#x60; for the &#x60;coin&#x60; is returned. - When using &#x60;LIGHTNING&#x60;, &#x60;amount&#x60; must be provided.
 
 ### Example
 ```java
@@ -102,11 +102,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    String coin = "coin_example"; // String | 
-    String network = "network_example"; // String | networks can be found in `GET /sapi/v1/capital/deposit/address`
-    Double amount = 3.4D; // Double | 
-    Long recvWindow = 56L; // Long | 
+    String email = "abc@test.com"; // String | 
+    String coin = "USDT"; // String | 
+    String network = "LIGHTNING"; // String | networks can be found in `GET /sapi/v1/capital/deposit/address`
+    Double amount = 1.0D; // Double | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetManagedSubAccountDepositAddressResponse result = apiInstance.getManagedSubAccountDepositAddress(email, coin, network, amount, recvWindow);
       System.out.println(result);
@@ -125,7 +125,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **coin** | **String**|  | |
 | **network** | **String**| networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60; | [optional] |
 | **amount** | **Double**|  | [optional] |
@@ -155,7 +155,7 @@ No authorization required
 
 Query Managed Sub-account Asset Details (For Investor Master Account) (USER_DATA)
 
-Query Managed Sub-account Asset Details  Weight: 1
+Query Managed Sub-account Asset Details  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -172,8 +172,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "abc@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryManagedSubAccountAssetDetailsResponse result = apiInstance.queryManagedSubAccountAssetDetails(email, recvWindow);
       System.out.println(result);
@@ -192,7 +192,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -219,7 +219,7 @@ No authorization required
 
 Query Managed Sub-account Futures Asset Details (For Investor Master Account) (USER_DATA)
 
-Investor can use this api to query managed sub account futures asset details  Weight: 60
+Investor can use this api to query managed sub account futures asset details  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -236,8 +236,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    String accountType = "accountType_example"; // String | No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details.
+    String email = "abc@test.com"; // String | 
+    String accountType = "MARGIN"; // String | No input or input \"USDT_FUTURE\" to get UM Futures account details. Input \"COIN_FUTURE\" to get CM Futures account details.
     try {
       QueryManagedSubAccountFuturesAssetDetailsResponse result = apiInstance.queryManagedSubAccountFuturesAssetDetails(email, accountType);
       System.out.println(result);
@@ -256,8 +256,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
-| **accountType** | **String**| No input or input \&quot;MARGIN\&quot; to get Cross Margin account details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details. | [optional] |
+| **email** | **String**|  | |
+| **accountType** | **String**| No input or input \&quot;USDT_FUTURE\&quot; to get UM Futures account details. Input \&quot;COIN_FUTURE\&quot; to get CM Futures account details. | [optional] |
 
 ### Return type
 
@@ -283,7 +283,7 @@ No authorization required
 
 Query Managed Sub-account List (For Investor) (USER_DATA)
 
-Get investor&#39;s managed sub-account list.  Weight: 60
+Get investor&#39;s managed sub-account list.  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -300,10 +300,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | Managed sub-account email
-    Long page = 56L; // Long | Default value: 1
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    String email = "abc@test.com"; // String | 
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryManagedSubAccountListResponse result = apiInstance.queryManagedSubAccountList(email, page, limit, recvWindow);
       System.out.println(result);
@@ -322,9 +322,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| Managed sub-account email | [optional] |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **email** | **String**|  | [optional] |
+| **page** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -351,7 +351,7 @@ No authorization required
 
 Query Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
 
-Investor can use this api to query managed sub account margin asset details  Weight: 1
+Investor can use this api to query managed sub account margin asset details  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -368,8 +368,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    String accountType = "accountType_example"; // String | No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details.
+    String email = "abc@test.com"; // String | 
+    String accountType = "MARGIN"; // String | No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details.
     try {
       QueryManagedSubAccountMarginAssetDetailsResponse result = apiInstance.queryManagedSubAccountMarginAssetDetails(email, accountType);
       System.out.println(result);
@@ -388,7 +388,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **accountType** | **String**| No input or input \&quot;MARGIN\&quot; to get Cross Margin account details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details. | [optional] |
 
 ### Return type
@@ -415,7 +415,7 @@ No authorization required
 
 Query Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA)
 
-Query Managed Sub-account Snapshot  * The query time period must be less then 30 days * Support query within the last one month only * If startTimeand endTime not sent, return records of the last 7 days by default  Weight: 2400
+Query Managed Sub-account Snapshot  Weight(IP): 2400  Security Type: USER_DATA  Notes: - The query time range must be less than 30 days. - Only data from the most recent month is supported. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, records from the last 7 days are returned by default.
 
 ### Example
 ```java
@@ -432,12 +432,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    String type = "type_example"; // String | \"SPOT\", \"MARGIN\"（cross）, \"FUTURES\"（UM）
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    String email = "abc@test.com"; // String | 
+    OrderType type = OrderType.fromValue("SPOT"); // OrderType | 
+    Long startTime = 1623319461670L; // Long | Query time range must be within 30 days and only supports data within the last month.
+    Long endTime = 1641782889000L; // Long | If both startTime and endTime are omitted, records from the last 7 days are returned by default.
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryManagedSubAccountSnapshotResponse result = apiInstance.queryManagedSubAccountSnapshot(email, type, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -456,11 +456,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
-| **type** | **String**| \&quot;SPOT\&quot;, \&quot;MARGIN\&quot;（cross）, \&quot;FUTURES\&quot;（UM） | |
-| **startTime** | **Long**|  | [optional] |
-| **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **email** | **String**|  | |
+| **type** | [**OrderType**](.md)|  | [enum: SPOT, MARGIN, FUTURES] |
+| **startTime** | **Long**| Query time range must be within 30 days and only supports data within the last month. | [optional] |
+| **endTime** | **Long**| If both startTime and endTime are omitted, records from the last 7 days are returned by default. | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -485,9 +485,9 @@ No authorization required
 # **queryManagedSubAccountTransferLogMasterAccountInvestor**
 > QueryManagedSubAccountTransferLogMasterAccountInvestorResponse queryManagedSubAccountTransferLogMasterAccountInvestor(email, startTime, endTime, page, limit, transfers, transferFunctionAccountType)
 
-Query Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA)
+Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
 
-Investor can use this api to query managed sub account transfer log. This endpoint is available for investor of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team. Please refer to [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)  Weight: 1
+Query Managed Sub Account Transfer Log For Investor Master Account  Investor can use this api to query managed sub account transfer log. This endpoint is available for investor of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team.  Please refer to [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -504,13 +504,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long startTime = 56L; // Long | Start Time
-    Long endTime = 56L; // Long | End Time (The start time and end time interval cannot exceed half a year)
-    Long page = 56L; // Long | Page
-    Long limit = 56L; // Long | Limit (Max: 500)
+    String email = "abc@test.com"; // String | 
+    Long startTime = 1623319461670L; // Long | Start Time
+    Long endTime = 1641782889000L; // Long | End Time (The start time and end time interval cannot exceed half a year)
+    Long page = 1L; // Long | Page
+    Long limit = 1L; // Long | 
     String transfers = "transfers_example"; // String | Transfer Direction (FROM/TO)
-    String transferFunctionAccountType = "transferFunctionAccountType_example"; // String | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
+    TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.fromValue("SPOT"); // TransferFunctionAccountType | 
     try {
       QueryManagedSubAccountTransferLogMasterAccountInvestorResponse result = apiInstance.queryManagedSubAccountTransferLogMasterAccountInvestor(email, startTime, endTime, page, limit, transfers, transferFunctionAccountType);
       System.out.println(result);
@@ -529,13 +529,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **startTime** | **Long**| Start Time | |
 | **endTime** | **Long**| End Time (The start time and end time interval cannot exceed half a year) | |
 | **page** | **Long**| Page | |
-| **limit** | **Long**| Limit (Max: 500) | |
+| **limit** | **Long**|  | |
 | **transfers** | **String**| Transfer Direction (FROM/TO) | [optional] |
-| **transferFunctionAccountType** | **String**| Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | [optional] |
+| **transferFunctionAccountType** | [**TransferFunctionAccountType**](.md)|  | [optional] [enum: SPOT, MARGIN, ISOLATED_MARGIN, USDT_FUTURE, COIN_FUTURE] |
 
 ### Return type
 
@@ -559,9 +559,9 @@ No authorization required
 # **queryManagedSubAccountTransferLogMasterAccountTrading**
 > QueryManagedSubAccountTransferLogMasterAccountTradingResponse queryManagedSubAccountTransferLogMasterAccountTrading(email, startTime, endTime, page, limit, transfers, transferFunctionAccountType)
 
-Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
 
-Trading team can use this api to query managed sub account transfer log. This endpoint is available for trading team of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team. Please refer to [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)  Weight: 60
+Query Managed Sub Account Transfer Log For Trading Team Master Account  Trading team can use this api to query managed sub account transfer log. This endpoint is available for trading team of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team.  Please refer to [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -578,13 +578,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long startTime = 56L; // Long | Start Time
-    Long endTime = 56L; // Long | End Time (The start time and end time interval cannot exceed half a year)
-    Long page = 56L; // Long | Page
-    Long limit = 56L; // Long | Limit (Max: 500)
+    String email = "abc@test.com"; // String | 
+    Long startTime = 1623319461670L; // Long | Start Time
+    Long endTime = 1641782889000L; // Long | End Time (The start time and end time interval cannot exceed half a year)
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
     String transfers = "transfers_example"; // String | Transfer Direction (FROM/TO)
-    String transferFunctionAccountType = "transferFunctionAccountType_example"; // String | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
+    TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.fromValue("SPOT"); // TransferFunctionAccountType | 
     try {
       QueryManagedSubAccountTransferLogMasterAccountTradingResponse result = apiInstance.queryManagedSubAccountTransferLogMasterAccountTrading(email, startTime, endTime, page, limit, transfers, transferFunctionAccountType);
       System.out.println(result);
@@ -603,13 +603,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **startTime** | **Long**| Start Time | |
 | **endTime** | **Long**| End Time (The start time and end time interval cannot exceed half a year) | |
-| **page** | **Long**| Page | |
-| **limit** | **Long**| Limit (Max: 500) | |
+| **page** | **Long**|  | |
+| **limit** | **Long**|  | |
 | **transfers** | **String**| Transfer Direction (FROM/TO) | [optional] |
-| **transferFunctionAccountType** | **String**| Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | [optional] |
+| **transferFunctionAccountType** | [**TransferFunctionAccountType**](.md)|  | [optional] [enum: SPOT, MARGIN, ISOLATED_MARGIN, USDT_FUTURE, COIN_FUTURE] |
 
 ### Return type
 
@@ -635,7 +635,7 @@ No authorization required
 
 Query Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA)
 
-Query Managed Sub Account Transfer Log (For Trading Team Sub Account)  Weight: 60
+Query Managed Sub Account Transfer Log (For Trading Team Sub Account)  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -652,13 +652,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     ManagedSubAccountApi apiInstance = new ManagedSubAccountApi(defaultClient);
-    Long startTime = 56L; // Long | Start Time
-    Long endTime = 56L; // Long | End Time (The start time and end time interval cannot exceed half a year)
-    Long page = 56L; // Long | Page
-    Long limit = 56L; // Long | Limit (Max: 500)
-    String transfers = "transfers_example"; // String | Transfer Direction (FROM/TO)
-    String transferFunctionAccountType = "transferFunctionAccountType_example"; // String | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Start Time
+    Long endTime = 1641782889000L; // Long | End Time (The start time and end time interval cannot exceed half a year)
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    String transfers = "transfers_example"; // String | Transfer Direction (from/to)
+    TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.fromValue("SPOT"); // TransferFunctionAccountType | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryManagedSubAccountTransferLogSubAccountTradingResponse result = apiInstance.queryManagedSubAccountTransferLogSubAccountTrading(startTime, endTime, page, limit, transfers, transferFunctionAccountType, recvWindow);
       System.out.println(result);
@@ -679,10 +679,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**| Start Time | |
 | **endTime** | **Long**| End Time (The start time and end time interval cannot exceed half a year) | |
-| **page** | **Long**| Page | |
-| **limit** | **Long**| Limit (Max: 500) | |
-| **transfers** | **String**| Transfer Direction (FROM/TO) | [optional] |
-| **transferFunctionAccountType** | **String**| Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | [optional] |
+| **page** | **Long**|  | |
+| **limit** | **Long**|  | |
+| **transfers** | **String**| Transfer Direction (from/to) | [optional] |
+| **transferFunctionAccountType** | [**TransferFunctionAccountType**](.md)|  | [optional] [enum: SPOT, MARGIN, ISOLATED_MARGIN, USDT_FUTURE, COIN_FUTURE] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -709,7 +709,7 @@ No authorization required
 
 Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
 
-Withdrawl Assets From The Managed Sub-account  * You need to enable &#x60;Enable Spot &amp; Margin Trading&#x60; option for the api key which requests this endpoint  Weight: 1
+Withdrawl Assets From The Managed Sub-account  Weight(IP): 1  Security Type: USER_DATA  Notes: - Your API key must have the permission &#x60;Enable Spot &amp; Margin Trading&#x60;.
 
 ### Example
 ```java

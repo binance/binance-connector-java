@@ -13,7 +13,7 @@ All URIs are relative to *https://papi.binance.com*
 
 Test Connectivity
 
-Test connectivity to the Rest API.  Weight: 1
+Test connectivity to the Rest API.  Weight(IP): 1
 
 ### Example
 ```java

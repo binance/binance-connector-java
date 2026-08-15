@@ -75,6 +75,7 @@ public class UserDataStreamsApiTest {
         ConnectionWrapper connectionWrapper =
                 new ConnectionWrapper(clientConfiguration, webSocketClient);
         connectionSpy = Mockito.spy(connectionWrapper);
+        Mockito.doNothing().when(connectionSpy).setUserAgent(Mockito.anyString());
         Mockito.doReturn(1736393892000L).when(connectionSpy).getTimestamp();
         connectionSpy.connect();
         UserDataStreamsApi accountApi = new UserDataStreamsApi(connectionSpy);

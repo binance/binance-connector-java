@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountInformationResponseResultPositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -144,7 +144,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * symbol name
      *
      * @return symbol
      */
@@ -164,7 +164,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get initialMargin
+     * total initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -184,7 +184,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -204,7 +204,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -224,7 +224,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get positionInitialMargin
+     * initial margin required for positions with current mark price
      *
      * @return positionInitialMargin
      */
@@ -245,7 +245,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * initial margin required for open orders with current mark price
      *
      * @return openOrderInitialMargin
      */
@@ -266,7 +266,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -286,7 +286,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get isolated
+     * if the position is isolated
      *
      * @return isolated
      */
@@ -306,7 +306,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -326,7 +326,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get maxNotional
+     * maximum available notional with current leverage
      *
      * @return maxNotional
      */
@@ -346,7 +346,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get bidNotional
+     * bids notional, ignore
      *
      * @return bidNotional
      */
@@ -366,7 +366,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get askNotional
+     * ask notional, ignore
      *
      * @return askNotional
      */
@@ -386,7 +386,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -406,7 +406,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -426,7 +426,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * reserved property, please ignore
      *
      * @return updateTime
      */
@@ -446,7 +446,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
     }
 
     /**
-     * Get breakEvenPrice
+     * average entry price
      *
      * @return breakEvenPrice
      */
@@ -943,7 +943,7 @@ public class AccountInformationResponseResultPositionsInner extends BaseDTO {
                                 JsonWriter out,
                                 AccountInformationResponseResultPositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,33 +37,57 @@ import org.hibernate.validator.constraints.*;
 /** AvgPriceRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AvgPriceRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String symbol;
 
     public AvgPriceRequest() {}
 
-    public AvgPriceRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+    public AvgPriceRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Unique WebSocket request ID.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
+    public AvgPriceRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * Symbol to query
      *
      * @return symbol
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
     }
 
@@ -76,18 +100,20 @@ public class AvgPriceRequest extends BaseDTO {
             return false;
         }
         AvgPriceRequest avgPriceRequest = (AvgPriceRequest) o;
-        return Objects.equals(this.symbol, avgPriceRequest.symbol);
+        return Objects.equals(this.id, avgPriceRequest.id)
+                && Objects.equals(this.symbol, avgPriceRequest.symbol);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol);
+        return Objects.hash(id, symbol);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class AvgPriceRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -97,6 +123,11 @@ public class AvgPriceRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -113,6 +144,10 @@ public class AvgPriceRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -143,11 +178,11 @@ public class AvgPriceRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("symbol");
     }
 
     /**
@@ -179,18 +214,17 @@ public class AvgPriceRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : AvgPriceRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
@@ -215,7 +249,7 @@ public class AvgPriceRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AvgPriceRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

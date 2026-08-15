@@ -4,82 +4,19 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**userDataStreamPing**](UserDataStreamApi.md#userDataStreamPing) | **POST** /userDataStream.ping | WebSocket Ping user data stream |
-| [**userDataStreamStart**](UserDataStreamApi.md#userDataStreamStart) | **POST** /userDataStream.start | WebSocket Start user data stream |
-| [**userDataStreamStop**](UserDataStreamApi.md#userDataStreamStop) | **POST** /userDataStream.stop | WebSocket Stop user data stream |
-| [**userDataStreamSubscribe**](UserDataStreamApi.md#userDataStreamSubscribe) | **POST** /userDataStream.subscribe | WebSocket Subscribe to User Data Stream |
+| [**sessionSubscriptions**](UserDataStreamApi.md#sessionSubscriptions) | **POST** /session.subscriptions | Listing all subscriptions |
+| [**userDataStreamSubscribe**](UserDataStreamApi.md#userDataStreamSubscribe) | **POST** /userDataStream.subscribe | Subscribe to User Data Stream |
+| [**userDataStreamSubscribeSignature**](UserDataStreamApi.md#userDataStreamSubscribeSignature) | **POST** /userDataStream.subscribe.signature | Subscribe to User Data Stream through signature subscription (USER_STREAM) |
 | [**userDataStreamUnsubscribe**](UserDataStreamApi.md#userDataStreamUnsubscribe) | **POST** /userDataStream.unsubscribe | WebSocket Unsubscribe from User Data Stream |
 
 
-<a id="userDataStreamPing"></a>
-# **userDataStreamPing**
-> UserDataStreamPingResponse userDataStreamPing(userDataStreamPingRequest)
+<a id="sessionSubscriptions"></a>
+# **sessionSubscriptions**
+> SessionSubscriptionsResponse sessionSubscriptions()
 
-WebSocket Ping user data stream
+Listing all subscriptions
 
-Ping a user data stream to keep it alive.  User data streams close automatically after 60 minutes, even if you&#39;re listening to them on WebSocket Streams. In order to keep the stream open, you have to regularly send pings using the &#x60;userDataStream.ping&#x60; request.  It is recommended to send a ping once every 30 minutes. Weight: 2
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.spot.ApiClient;
-import com.binance.connector.client.spot.ApiException;
-import com.binance.connector.client.spot.Configuration;
-import com.binance.connector.client.spot.models.*;
-import com.binance.connector.client.spot.websocket.api.api.UserDataStreamApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
-    UserDataStreamPingRequest userDataStreamPingRequest = new UserDataStreamPingRequest(); // UserDataStreamPingRequest | 
-    try {
-      UserDataStreamPingResponse result = apiInstance.userDataStreamPing(userDataStreamPingRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserDataStreamApi#userDataStreamPing");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **userDataStreamPingRequest** | [**UserDataStreamPingRequest**](UserDataStreamPingRequest.md)|  | |
-
-### Return type
-
-[**UserDataStreamPingResponse**](UserDataStreamPingResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Ping user data stream |  -  |
-
-<a id="userDataStreamStart"></a>
-# **userDataStreamStart**
-> UserDataStreamStartResponse userDataStreamStart()
-
-WebSocket Start user data stream
-
-Start a new user data stream. Weight: 2
+**Note:**  * Users should track the corresponding subscription status of related accounts as needed.  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -97,10 +34,10 @@ public class Example {
 
     UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
     try {
-      UserDataStreamStartResponse result = apiInstance.userDataStreamStart();
+      SessionSubscriptionsResponse result = apiInstance.sessionSubscriptions();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserDataStreamApi#userDataStreamStart");
+      System.err.println("Exception when calling UserDataStreamApi#sessionSubscriptions");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -115,7 +52,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserDataStreamStartResponse**](UserDataStreamStartResponse.md)
+[**SessionSubscriptionsResponse**](SessionSubscriptionsResponse.md)
 
 ### Authorization
 
@@ -129,77 +66,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Start user data stream |  -  |
-
-<a id="userDataStreamStop"></a>
-# **userDataStreamStop**
-> UserDataStreamStopResponse userDataStreamStop(userDataStreamStopRequest)
-
-WebSocket Stop user data stream
-
-Explicitly stop and close the user data stream. Weight: 2
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.spot.ApiClient;
-import com.binance.connector.client.spot.ApiException;
-import com.binance.connector.client.spot.Configuration;
-import com.binance.connector.client.spot.models.*;
-import com.binance.connector.client.spot.websocket.api.api.UserDataStreamApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost");
-
-    UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
-    UserDataStreamStopRequest userDataStreamStopRequest = new UserDataStreamStopRequest(); // UserDataStreamStopRequest | 
-    try {
-      UserDataStreamStopResponse result = apiInstance.userDataStreamStop(userDataStreamStopRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserDataStreamApi#userDataStreamStop");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **userDataStreamStopRequest** | [**UserDataStreamStopRequest**](UserDataStreamStopRequest.md)|  | |
-
-### Return type
-
-[**UserDataStreamStopResponse**](UserDataStreamStopResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Stop user data stream |  -  |
+| **200** | Listing all subscriptions |  -  |
 
 <a id="userDataStreamSubscribe"></a>
 # **userDataStreamSubscribe**
 > UserDataStreamSubscribeResponse userDataStreamSubscribe()
 
-WebSocket Subscribe to User Data Stream
+Subscribe to User Data Stream
 
-Subscribe to the User Data Stream in the current WebSocket connection. Weight: 2
+Subscribe to the User Data Stream in the current WebSocket connection.  **Notes:**   - This method requires an authenticated WebSocket connection using Ed25519 keys. Please refer to [&#x60;session.logon&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon).   - To check the subscription status, use [&#x60;session.status&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-status), see the &#x60;userDataStream&#x60; flag indicating you have have an active subscription.   - User Data Stream events are available in both JSON and [SBE](/products/spot/faqs/sbe_faq) sessions.     - Please refer to [User Data Streams](/products/spot/user-data-stream) for the event format details.     - For SBE, only SBE schema 2:1 or later is supported.  Weight(IP): 2  Security Type: NONE
 
 ### Example
 ```java
@@ -251,13 +126,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Subscribe to User Data Stream |  -  |
 
-<a id="userDataStreamUnsubscribe"></a>
-# **userDataStreamUnsubscribe**
-> UserDataStreamUnsubscribeResponse userDataStreamUnsubscribe()
+<a id="userDataStreamSubscribeSignature"></a>
+# **userDataStreamSubscribeSignature**
+> UserDataStreamSubscribeSignatureResponse userDataStreamSubscribeSignature()
 
-WebSocket Unsubscribe from User Data Stream
+Subscribe to User Data Stream through signature subscription (USER_STREAM)
 
-Stop listening to the User Data Stream in the current WebSocket connection. Weight: 2
+Weight(IP): 2  Security Type: USER_STREAM  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -275,10 +150,10 @@ public class Example {
 
     UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
     try {
-      UserDataStreamUnsubscribeResponse result = apiInstance.userDataStreamUnsubscribe();
+      UserDataStreamSubscribeSignatureResponse result = apiInstance.userDataStreamSubscribeSignature();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserDataStreamApi#userDataStreamUnsubscribe");
+      System.err.println("Exception when calling UserDataStreamApi#userDataStreamSubscribeSignature");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -293,7 +168,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserDataStreamUnsubscribeResponse**](UserDataStreamUnsubscribeResponse.md)
+[**UserDataStreamSubscribeSignatureResponse**](UserDataStreamSubscribeSignatureResponse.md)
 
 ### Authorization
 
@@ -302,6 +177,68 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Subscribe to User Data Stream through signature subscription |  -  |
+
+<a id="userDataStreamUnsubscribe"></a>
+# **userDataStreamUnsubscribe**
+> UserDataStreamUnsubscribeResponse userDataStreamUnsubscribe(userDataStreamUnsubscribeRequest)
+
+WebSocket Unsubscribe from User Data Stream
+
+Stop listening to the User Data Stream in the current WebSocket connection.  Note that &#x60;session.logout&#x60; will only close the subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with &#x60;userDataStream.subscribe.signature&#x60;.  Weight(IP): 2
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.spot.ApiClient;
+import com.binance.connector.client.spot.ApiException;
+import com.binance.connector.client.spot.Configuration;
+import com.binance.connector.client.spot.models.*;
+import com.binance.connector.client.spot.websocket.api.api.UserDataStreamApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    UserDataStreamApi apiInstance = new UserDataStreamApi(defaultClient);
+    UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest = new UserDataStreamUnsubscribeRequest(); // UserDataStreamUnsubscribeRequest | 
+    try {
+      UserDataStreamUnsubscribeResponse result = apiInstance.userDataStreamUnsubscribe(userDataStreamUnsubscribeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserDataStreamApi#userDataStreamUnsubscribe");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userDataStreamUnsubscribeRequest** | [**UserDataStreamUnsubscribeRequest**](UserDataStreamUnsubscribeRequest.md)|  | [optional] |
+
+### Return type
+
+[**UserDataStreamUnsubscribeResponse**](UserDataStreamUnsubscribeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

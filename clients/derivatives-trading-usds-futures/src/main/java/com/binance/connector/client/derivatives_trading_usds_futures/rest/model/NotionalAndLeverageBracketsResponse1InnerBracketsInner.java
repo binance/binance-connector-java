@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NotionalAndLeverageBracketsResponse1InnerBracketsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     public static final String SERIALIZED_NAME_BRACKET = "bracket";
 
@@ -73,7 +71,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
 
     @SerializedName(SERIALIZED_NAME_CUM)
     @jakarta.annotation.Nullable
-    private Long cum;
+    private Double cum;
 
     public NotionalAndLeverageBracketsResponse1InnerBracketsInner() {}
 
@@ -84,7 +82,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     /**
-     * Get bracket
+     * Notional bracket
      *
      * @return bracket
      */
@@ -104,7 +102,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     /**
-     * Get initialLeverage
+     * Max initial leverage for this bracket
      *
      * @return initialLeverage
      */
@@ -124,7 +122,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     /**
-     * Get notionalCap
+     * Cap notional of this bracket
      *
      * @return notionalCap
      */
@@ -144,7 +142,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     /**
-     * Get notionalFloor
+     * Notional threshold of this bracket
      *
      * @return notionalFloor
      */
@@ -164,7 +162,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     /**
-     * Get maintMarginRatio
+     * Maintenance ratio for this bracket
      *
      * @return maintMarginRatio
      */
@@ -179,22 +177,23 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
     }
 
     public NotionalAndLeverageBracketsResponse1InnerBracketsInner cum(
-            @jakarta.annotation.Nullable Long cum) {
+            @jakarta.annotation.Nullable Double cum) {
         this.cum = cum;
         return this;
     }
 
     /**
-     * Get cum
+     * Auxiliary number for quick calculation
      *
      * @return cum
      */
     @jakarta.annotation.Nullable
-    public Long getCum() {
+    @Valid
+    public Double getCum() {
         return cum;
     }
 
-    public void setCum(@jakarta.annotation.Nullable Long cum) {
+    public void setCum(@jakarta.annotation.Nullable Double cum) {
         this.cum = cum;
     }
 
@@ -335,20 +334,6 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NotionalAndLeverageBracketsResponse1InnerBracketsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `NotionalAndLeverageBracketsResponse1InnerBracketsInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
     }
 
@@ -376,7 +361,7 @@ public class NotionalAndLeverageBracketsResponse1InnerBracketsInner {
                                 JsonWriter out,
                                 NotionalAndLeverageBracketsResponse1InnerBracketsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ModifyOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyOrderRequest {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -81,6 +79,12 @@ public class ModifyOrderRequest {
     @jakarta.annotation.Nullable
     private PriceMatch priceMatch;
 
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -95,7 +99,7 @@ public class ModifyOrderRequest {
     }
 
     /**
-     * Get orderId
+     * Order ID
      *
      * @return orderId
      */
@@ -115,7 +119,7 @@ public class ModifyOrderRequest {
     }
 
     /**
-     * Get origClientOrderId
+     * Client order ID
      *
      * @return origClientOrderId
      */
@@ -134,7 +138,7 @@ public class ModifyOrderRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -175,7 +179,8 @@ public class ModifyOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;. **After CM
+     * migration, this parameter becomes mandatory** (must be sent together with &#x60;price&#x60;).
      *
      * @return quantity
      */
@@ -195,7 +200,8 @@ public class ModifyOrderRequest {
     }
 
     /**
-     * Get price
+     * Order price. **After CM migration, this parameter becomes mandatory** (must be sent together
+     * with &#x60;quantity&#x60;).
      *
      * @return price
      */
@@ -229,17 +235,38 @@ public class ModifyOrderRequest {
         this.priceMatch = priceMatch;
     }
 
+    public ModifyOrderRequest modifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * User-defined modification identifier, returned as-is in the response. Optional; not validated
+     * for uniqueness.
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+    }
+
     public ModifyOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -264,13 +291,22 @@ public class ModifyOrderRequest {
                 && Objects.equals(this.quantity, modifyOrderRequest.quantity)
                 && Objects.equals(this.price, modifyOrderRequest.price)
                 && Objects.equals(this.priceMatch, modifyOrderRequest.priceMatch)
+                && Objects.equals(this.modifyId, modifyOrderRequest.modifyId)
                 && Objects.equals(this.recvWindow, modifyOrderRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                orderId, origClientOrderId, symbol, side, quantity, price, priceMatch, recvWindow);
+                orderId,
+                origClientOrderId,
+                symbol,
+                side,
+                quantity,
+                price,
+                priceMatch,
+                modifyId,
+                recvWindow);
     }
 
     @Override
@@ -284,6 +320,7 @@ public class ModifyOrderRequest {
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -322,6 +359,10 @@ public class ModifyOrderRequest {
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -361,6 +402,7 @@ public class ModifyOrderRequest {
         openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("priceMatch");
+        openapiFields.add("modifyId");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -384,18 +426,6 @@ public class ModifyOrderRequest {
                                 "The required field(s) %s in ModifyOrderRequest is not found in the"
                                         + " empty JSON string",
                                 ModifyOrderRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ModifyOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ModifyOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -449,7 +479,7 @@ public class ModifyOrderRequest {
                         @Override
                         public void write(JsonWriter out, ModifyOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

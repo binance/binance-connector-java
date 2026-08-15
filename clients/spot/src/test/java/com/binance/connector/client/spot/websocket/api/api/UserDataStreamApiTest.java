@@ -14,26 +14,15 @@ package com.binance.connector.client.spot.websocket.api.api;
 
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
 import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
-
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.concurrent.CompletableFuture;
-
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
@@ -42,6 +31,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.concurrent.CompletableFuture;
 
 /** API tests for UserDataStreamApi */
 public class UserDataStreamApiTest {
@@ -77,107 +74,12 @@ public class UserDataStreamApiTest {
         ConnectionWrapper connectionWrapper =
                 new ConnectionWrapper(clientConfiguration, webSocketClient);
         connectionSpy = Mockito.spy(connectionWrapper);
+        Mockito.doNothing().when(connectionSpy).setUserAgent(Mockito.anyString());
         Mockito.doReturn(1736393892000L).when(connectionSpy).getTimestamp();
         connectionSpy.connect();
         UserDataStreamApi accountApi = new UserDataStreamApi(connectionSpy);
         api = Mockito.spy(accountApi);
         Mockito.doReturn("eaf3292c-64b6-4c04-ad4f-4ca2608b42b4").when(api).getRequestID();
-    }
-
-    /**
-     * WebSocket Ping user data stream
-     *
-     * <p>Ping a user data stream to keep it alive. User data streams close automatically after 60
-     * minutes, even if you&#39;re listening to them on WebSocket Streams. In order to keep the
-     * stream open, you have to regularly send pings using the &#x60;userDataStream.ping&#x60;
-     * request. It is recommended to send a ping once every 30 minutes. Weight: 2
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void userDataStreamPingTest() throws ApiException, URISyntaxException, IOException {
-        UserDataStreamPingRequest userDataStreamPingRequest = new UserDataStreamPingRequest();
-        userDataStreamPingRequest.setListenKey("ABCDEF123456");
-        CompletableFuture<UserDataStreamPingResponse> response =
-                api.userDataStreamPing(userDataStreamPingRequest);
-        ArgumentCaptor<RequestWrapperDTO<UserDataStreamPingRequest, UserDataStreamPingResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<UserDataStreamPingRequest, UserDataStreamPingResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        UserDataStreamPingRequest params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                UserDataStreamApiTest.class.getResource(
-                        "/expected/api/UserDataStreamApi/userDataStream.ping-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * WebSocket Start user data stream
-     *
-     * <p>Start a new user data stream. Weight: 2
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void userDataStreamStartTest() throws ApiException, URISyntaxException, IOException {
-        CompletableFuture<UserDataStreamStartResponse> response = api.userDataStreamStart();
-        ArgumentCaptor<RequestWrapperDTO<BaseRequestDTO, UserDataStreamStartResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<BaseRequestDTO, UserDataStreamStartResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        BaseRequestDTO params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                UserDataStreamApiTest.class.getResource(
-                        "/expected/api/UserDataStreamApi/userDataStream.start-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * WebSocket Stop user data stream
-     *
-     * <p>Explicitly stop and close the user data stream. Weight: 2
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void userDataStreamStopTest() throws ApiException, URISyntaxException, IOException {
-        UserDataStreamStopRequest userDataStreamStopRequest = new UserDataStreamStopRequest();
-        userDataStreamStopRequest.setListenKey("ABCDEF123456");
-        CompletableFuture<UserDataStreamStopResponse> response =
-                api.userDataStreamStop(userDataStreamStopRequest);
-        ArgumentCaptor<RequestWrapperDTO<UserDataStreamStopRequest, UserDataStreamStopResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<UserDataStreamStopRequest, UserDataStreamStopResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        UserDataStreamStopRequest params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                UserDataStreamApiTest.class.getResource(
-                        "/expected/api/UserDataStreamApi/userDataStream.stop-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
 
     /**
@@ -189,7 +91,7 @@ public class UserDataStreamApiTest {
      */
     @Test
     public void userDataStreamSubscribeTest() throws ApiException, URISyntaxException, IOException {
-        CompletableFuture<UserDataStreamSubscribeResponse> response = api.userDataStreamSubscribe();
+        StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse> userDataStreamSubscribe = api.userDataStreamSubscribe();
         ArgumentCaptor<RequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeResponse>>
                 callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
         Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
@@ -220,7 +122,7 @@ public class UserDataStreamApiTest {
     public void userDataStreamUnsubscribeTest()
             throws ApiException, URISyntaxException, IOException {
         CompletableFuture<UserDataStreamUnsubscribeResponse> response =
-                api.userDataStreamUnsubscribe();
+                api.userDataStreamUnsubscribe(new UserDataStreamUnsubscribeRequest());
         ArgumentCaptor<RequestWrapperDTO<BaseRequestDTO, UserDataStreamUnsubscribeResponse>>
                 callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
         Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());

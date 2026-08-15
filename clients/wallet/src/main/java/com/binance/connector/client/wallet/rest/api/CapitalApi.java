@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,6 +28,7 @@ import com.binance.connector.client.wallet.rest.model.FetchWithdrawAddressListRe
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawQuotaResponse;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
+import com.binance.connector.client.wallet.rest.model.Status;
 import com.binance.connector.client.wallet.rest.model.WithdrawHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.WithdrawRequest;
 import com.binance.connector.client.wallet.rest.model.WithdrawResponse;
@@ -40,8 +41,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,7 +55,7 @@ public class CapitalApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/1.1.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,7 +105,8 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> All Coins&#39; Information </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/all-coins-info">All
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#all-coins-information">All
      *     Coins&#39; Information (USER_DATA) Documentation</a>
      */
     private okhttp3.Call allCoinsInformationCall(Long recvWindow) throws ApiException {
@@ -145,15 +147,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -167,7 +165,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -203,7 +201,7 @@ public class CapitalApi {
 
     /**
      * All Coins&#39; Information (USER_DATA) Get information of coins (available for deposit and
-     * withdraw) for user. Weight: 10
+     * withdraw) for user. Weight(IP): 10 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AllCoinsInformationResponse&gt;
@@ -216,11 +214,12 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> All Coins&#39; Information </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/all-coins-info">All
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#all-coins-information">All
      *     Coins&#39; Information (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AllCoinsInformationResponse> allCoinsInformation(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<AllCoinsInformationResponse> allCoinsInformation(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = allCoinsInformationValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AllCoinsInformationResponse>() {}.getType();
@@ -244,7 +243,8 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Deposit Address </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/deposite-address">Deposit
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-address">Deposit
      *     Address(supporting network) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call depositAddressCall(
@@ -300,15 +300,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -322,7 +318,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -364,11 +360,11 @@ public class CapitalApi {
     }
 
     /**
-     * Deposit Address(supporting network) (USER_DATA) Fetch deposit address with network. * If
-     * &#x60;network&#x60; is not send, return with default network of the coin. * You can get
-     * &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; in the response of
-     * &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. * &#x60;amount&#x60; needs to
-     * be sent if using LIGHTNING network Weight: 10
+     * Deposit Address(supporting network) (USER_DATA) Fetch deposit address with network.
+     * Weight(IP): 10 Security Type: USER_DATA Notes: - If &#x60;network&#x60; is not send, return
+     * with default network of the coin. - You can get &#x60;network&#x60; and &#x60;isDefault&#x60;
+     * in &#x60;networkList&#x60; in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC
+     * SHA256)&#x60;. - &#x60;amount&#x60; needs to be sent if using LIGHTNING network
      *
      * @param coin &#x60;coin&#x60; refers to the parent network address format that the address is
      *     using (required)
@@ -385,11 +381,12 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Deposit Address </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/deposite-address">Deposit
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-address">Deposit
      *     Address(supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositAddressResponse> depositAddress(
-            @NotNull String coin, String network, Double amount, Long recvWindow)
+            @NotNull String coin, String network, Double amount, @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 depositAddressValidateBeforeCall(coin, network, amount, recvWindow);
@@ -401,15 +398,15 @@ public class CapitalApi {
     /**
      * Build call for depositHistory
      *
-     * @param includeSource Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when
-     *     set to &#x60;true&#x60; (optional)
-     * @param coin (optional)
-     * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+     * @param includeSource return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
      *     (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param coin (optional)
+     * @param status 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong
+     *     Deposit, 8: Waiting User confirm (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
+     * @param offset (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @param txId (optional)
      * @return Call to execute
@@ -421,13 +418,14 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Deposit History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/deposite-history">Deposit
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-history">Deposit
      *     History (supporting network) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call depositHistoryCall(
             Boolean includeSource,
             String coin,
-            Long status,
+            Status status,
             Long startTime,
             Long endTime,
             Long offset,
@@ -505,15 +503,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -527,14 +521,14 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call depositHistoryValidateBeforeCall(
             Boolean includeSource,
             String coin,
-            Long status,
+            Status status,
             Long startTime,
             Long endTime,
             Long offset,
@@ -560,7 +554,7 @@ public class CapitalApi {
                                     "depositHistory",
                                     Boolean.class,
                                     String.class,
-                                    Long.class,
+                                    Status.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -594,21 +588,21 @@ public class CapitalApi {
     }
 
     /**
-     * Deposit History (supporting network) (USER_DATA) Fetch deposit history. * Please notice the
-     * default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is
-     * within 0-90 days. * If both &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must be less than 90 days. Weight: 1
+     * Deposit History (supporting network) (USER_DATA) Fetch deposit history. Weight(IP): 1
+     * Security Type: USER_DATA Notes: - Please notice the default &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; must be less than 90 days.
      *
-     * @param includeSource Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when
-     *     set to &#x60;true&#x60; (optional)
-     * @param coin (optional)
-     * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+     * @param includeSource return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
      *     (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param coin (optional)
+     * @param status 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong
+     *     Deposit, 8: Waiting User confirm (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
+     * @param offset (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @param txId (optional)
      * @return ApiResponse&lt;DepositHistoryResponse&gt;
@@ -621,18 +615,19 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Deposit History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/deposite-history">Deposit
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-history">Deposit
      *     History (supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositHistoryResponse> depositHistory(
             Boolean includeSource,
             String coin,
-            Long status,
+            Status status,
             Long startTime,
             Long endTime,
             Long offset,
-            Long limit,
-            Long recvWindow,
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow,
             String txId)
             throws ApiException {
         okhttp3.Call localVarCall =
@@ -654,9 +649,10 @@ public class CapitalApi {
     /**
      * Build call for fetchDepositAddressListWithNetwork
      *
-     * @param coin &#x60;coin&#x60; refers to the parent network address format that the address is
-     *     using (required)
-     * @param network (optional)
+     * @param coin Coin name (required)
+     * @param network If network is not send, return with default network of the coin. You can get
+     *     network and isDefault in networkList in the response of &#x60;Get
+     *     /sapi/v1/capital/config/getall&#x60; (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -667,8 +663,8 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/Fetch-deposit-address-list-with-network">Fetch
-     *     deposit address list with network(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-deposit-address-list-with-network">Fetch
+     *     deposit address list with network (USER_DATA) Documentation</a>
      */
     private okhttp3.Call fetchDepositAddressListWithNetworkCall(String coin, String network)
             throws ApiException {
@@ -713,15 +709,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -735,7 +727,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -775,14 +767,13 @@ public class CapitalApi {
     }
 
     /**
-     * Fetch deposit address list with network(USER_DATA) Fetch deposit address list with network. *
-     * If network is not send, return with default network of the coin. * You can get network and
-     * isDefault in networkList in the response of &#x60;Get /sapi/v1/capital/config/getall&#x60;.
-     * Weight: 10
+     * Fetch deposit address list with network (USER_DATA) Fetch deposit address list with network.
+     * Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param coin &#x60;coin&#x60; refers to the parent network address format that the address is
-     *     using (required)
-     * @param network (optional)
+     * @param coin Coin name (required)
+     * @param network If network is not send, return with default network of the coin. You can get
+     *     network and isDefault in networkList in the response of &#x60;Get
+     *     /sapi/v1/capital/config/getall&#x60; (optional)
      * @return ApiResponse&lt;FetchDepositAddressListWithNetworkResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -794,8 +785,8 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/Fetch-deposit-address-list-with-network">Fetch
-     *     deposit address list with network(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-deposit-address-list-with-network">Fetch
+     *     deposit address list with network (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchDepositAddressListWithNetworkResponse>
             fetchDepositAddressListWithNetwork(@NotNull String coin, String network)
@@ -820,7 +811,7 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/fetch-withdraw-address">Fetch
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-address-list">Fetch
      *     withdraw address list (USER_DATA) Documentation</a>
      */
     private okhttp3.Call fetchWithdrawAddressListCall() throws ApiException {
@@ -857,15 +848,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -879,7 +866,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -913,7 +900,8 @@ public class CapitalApi {
     }
 
     /**
-     * Fetch withdraw address list (USER_DATA) Fetch withdraw address list Weight: 10
+     * Fetch withdraw address list (USER_DATA) Fetch withdraw address list Weight(IP): 10 Security
+     * Type: USER_DATA
      *
      * @return ApiResponse&lt;FetchWithdrawAddressListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -926,7 +914,7 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/fetch-withdraw-address">Fetch
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-address-list">Fetch
      *     withdraw address list (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchWithdrawAddressListResponse> fetchWithdrawAddressList()
@@ -949,7 +937,8 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Fetch withdraw quota </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/Fetch-withdraw-quota">Fetch
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-quota">Fetch
      *     withdraw quota (USER_DATA) Documentation</a>
      */
     private okhttp3.Call fetchWithdrawQuotaCall() throws ApiException {
@@ -986,15 +975,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1008,7 +993,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1042,7 +1027,7 @@ public class CapitalApi {
     }
 
     /**
-     * Fetch withdraw quota (USER_DATA) Fetch withdraw quota Weight: 10
+     * Fetch withdraw quota (USER_DATA) Fetch withdraw quota Weight(IP): 10 Security Type: USER_DATA
      *
      * @return ApiResponse&lt;FetchWithdrawQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1054,7 +1039,8 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Fetch withdraw quota </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/Fetch-withdraw-quota">Fetch
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-quota">Fetch
      *     withdraw quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchWithdrawQuotaResponse> fetchWithdrawQuota() throws ApiException {
@@ -1067,7 +1053,7 @@ public class CapitalApi {
     /**
      * Build call for oneClickArrivalDepositApply
      *
-     * @param oneClickArrivalDepositApplyRequest (required)
+     * @param oneClickArrivalDepositApplyRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1078,7 +1064,7 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/one-click-arrival-deposite-apply">One
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#one-click-arrival-deposit-apply">One
      *     click arrival deposit apply (for expired address deposit) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call oneClickArrivalDepositApplyCall(
@@ -1134,15 +1120,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1156,7 +1138,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1197,9 +1179,9 @@ public class CapitalApi {
 
     /**
      * One click arrival deposit apply (for expired address deposit) (USER_DATA) Apply deposit
-     * credit for expired address (One click arrival) * Params need to be in the POST body Weight: 1
+     * credit for expired address (One click arrival) Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param oneClickArrivalDepositApplyRequest (required)
+     * @param oneClickArrivalDepositApplyRequest (optional)
      * @return ApiResponse&lt;OneClickArrivalDepositApplyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1211,11 +1193,11 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/one-click-arrival-deposite-apply">One
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#one-click-arrival-deposit-apply">One
      *     click arrival deposit apply (for expired address deposit) (USER_DATA) Documentation</a>
      */
     public ApiResponse<OneClickArrivalDepositApplyResponse> oneClickArrivalDepositApply(
-            @Valid @NotNull OneClickArrivalDepositApplyRequest oneClickArrivalDepositApplyRequest)
+            @Valid OneClickArrivalDepositApplyRequest oneClickArrivalDepositApplyRequest)
             throws ApiException {
         okhttp3.Call localVarCall =
                 oneClickArrivalDepositApplyValidateBeforeCall(oneClickArrivalDepositApplyRequest);
@@ -1238,8 +1220,8 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/Withdraw">Withdraw(USER_DATA)
-     *     Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw">Withdraw
+     *     (USER_DATA) Documentation</a>
      */
     private okhttp3.Call withdrawCall(WithdrawRequest withdrawRequest) throws ApiException {
         String basePath = null;
@@ -1316,15 +1298,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1338,7 +1316,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1373,10 +1351,22 @@ public class CapitalApi {
     }
 
     /**
-     * Withdraw(USER_DATA) Submit a withdraw request. * If &#x60;network&#x60; not send, return with
-     * default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
-     * &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall
-     * (HMAC SHA256)&#x60;. Weight: 900
+     * Withdraw (USER_DATA) Submit a withdraw request Weight(UID): 900 Security Type: USER_DATA
+     * Notes: - If &#x60;network&#x60; not send, return with default network of the coin. - You can
+     * get &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the
+     * response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - To check if
+     * travel rule is required, by using &#x60;GET
+     * /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than
+     * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
+     * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
+     * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
+     * travel rule please refer to the Travel Rule SAPI. - \&quot;For networks that do not support
+     * memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return
+     * error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60;
+     * field for such networks. You can check whether a network requires a tag via &#x60;GET
+     * /sapi/v1/capital/config/getall&#x60;: If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; →
+     * memo/tag is required. If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not
+     * supported; omit &#x60;addressTag&#x60;.\&quot;
      *
      * @param withdrawRequest (required)
      * @return ApiResponse&lt;WithdrawResponse&gt;
@@ -1390,8 +1380,8 @@ public class CapitalApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/Withdraw">Withdraw(USER_DATA)
-     *     Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw">Withdraw
+     *     (USER_DATA) Documentation</a>
      */
     public ApiResponse<WithdrawResponse> withdraw(@Valid @NotNull WithdrawRequest withdrawRequest)
             throws ApiException {
@@ -1404,15 +1394,16 @@ public class CapitalApi {
      * Build call for withdrawHistory
      *
      * @param coin (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param idList id list returned in the response of POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1423,7 +1414,8 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Withdraw History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/Withdraw-History">Withdraw
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw-history">Withdraw
      *     History (supporting network) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call withdrawHistoryCall(
@@ -1507,15 +1499,11 @@ public class CapitalApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1529,7 +1517,7 @@ public class CapitalApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1596,27 +1584,28 @@ public class CapitalApi {
     }
 
     /**
-     * Withdraw History (supporting network) (USER_DATA) Fetch withdraw history. *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90
-     * days. * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. * If
-     * &#x60;withdrawOrderId&#x60; is sent, time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; must be less than 7 days. * If &#x60;withdrawOrderId&#x60; is sent,
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, will return last 7 days records
-     * by default. * Maximum support &#x60;idList&#x60; number is 45. Weight: 18000 Request limit:
-     * 10 requests per second
+     * Withdraw History (supporting network) (USER_DATA) Fetch withdraw history Weight(UID): 18000
+     * (10 requests per second) Security Type: USER_DATA Notes: - &#x60;network&#x60; may not be in
+     * the response for old withdraw. - Please notice the default &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and
+     * &#x60;endTime&#x60;must be less than 90 days. - If &#x60;withdrawOrderId&#x60; is sent, time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 7 days. - If
+     * &#x60;withdrawOrderId&#x60; is sent, &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, will return last 7 days records by default. - Maximum support &#x60;idList&#x60; number
+     * is 45.
      *
      * @param coin (optional)
-     * @param withdrawOrderId (optional)
+     * @param withdrawOrderId client side id for withdrawal, if provided in POST
+     *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param idList id list returned in the response of POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;WithdrawHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1628,7 +1617,8 @@ public class CapitalApi {
      * <tr><td> 200 </td><td> Withdraw History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/Withdraw-History">Withdraw
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw-history">Withdraw
      *     History (supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<WithdrawHistoryResponse> withdrawHistory(
@@ -1636,11 +1626,11 @@ public class CapitalApi {
             String withdrawOrderId,
             Long status,
             Long offset,
-            Long limit,
+            @Max(1000L) Long limit,
             String idList,
             Long startTime,
             Long endTime,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 withdrawHistoryValidateBeforeCall(

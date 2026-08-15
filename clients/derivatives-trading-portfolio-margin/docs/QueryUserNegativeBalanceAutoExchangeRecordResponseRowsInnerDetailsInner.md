@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**negativeBalance** | **Double** |  |  [optional] |
-|**negativeMaxThreshold** | **Long** |  |  [optional] |
+|**asset** | **String** | asset name |  [optional] |
+|**negativeBalance** | **Double** | negative balance amount |  [optional] |
+|**negativeMaxThreshold** | **Long** | the max negative balance threshold |  [optional] |
 
 
 

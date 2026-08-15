@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**ps** | **String** |  |  [optional] |
-|**ct** | **String** |  |  [optional] |
+|**eLowerCase** | **String** | Event type |  [optional] |
+|**E** | **Long** | Event time |  [optional] |
+|**ps** | **String** | Pair |  [optional] |
+|**ct** | **String** | Contract type |  [optional] |
 |**kLowerCase** | [**ContinuousContractKlineCandlestickStreamsResponseK**](ContinuousContractKlineCandlestickStreamsResponseK.md) |  |  [optional] |
 
 

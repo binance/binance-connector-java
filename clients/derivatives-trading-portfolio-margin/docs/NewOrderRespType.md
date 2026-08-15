@@ -9,5 +9,7 @@
 
 * `RESULT` (value: `"RESULT"`)
 
+* `FULL` (value: `"FULL"`)
+
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetDetailOnSubAccountsFuturesAccountResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetDetailOnSubAccountsFuturesAccountResponse {
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
@@ -60,8 +58,7 @@ public class GetDetailOnSubAccountsFuturesAccountResponse {
 
     @SerializedName(SERIALIZED_NAME_ASSETS)
     @jakarta.annotation.Nullable
-    private List<@Valid GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-            assets;
+    private List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> assets;
 
     public static final String SERIALIZED_NAME_CAN_DEPOSIT = "canDeposit";
 
@@ -187,16 +184,13 @@ public class GetDetailOnSubAccountsFuturesAccountResponse {
 
     public GetDetailOnSubAccountsFuturesAccountResponse assets(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-                            assets) {
+                    List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> assets) {
         this.assets = assets;
         return this;
     }
 
     public GetDetailOnSubAccountsFuturesAccountResponse addAssetsItem(
-            GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner assetsItem) {
+            GetDetailOnSubAccountsFuturesAccountResponseAssetsInner assetsItem) {
         if (this.assets == null) {
             this.assets = new ArrayList<>();
         }
@@ -211,17 +205,13 @@ public class GetDetailOnSubAccountsFuturesAccountResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-            getAssets() {
+    public List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> getAssets() {
         return assets;
     }
 
     public void setAssets(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner>
-                            assets) {
+                    List<@Valid GetDetailOnSubAccountsFuturesAccountResponseAssetsInner> assets) {
         this.assets = assets;
     }
 
@@ -752,20 +742,6 @@ public class GetDetailOnSubAccountsFuturesAccountResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetDetailOnSubAccountsFuturesAccountResponse.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetDetailOnSubAccountsFuturesAccountResponse` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull())
                 && !jsonObj.get("email").isJsonPrimitive()) {
@@ -797,8 +773,8 @@ public class GetDetailOnSubAccountsFuturesAccountResponse {
 
                 // validate the optional field `assets` (array)
                 for (int i = 0; i < jsonArrayassets.size(); i++) {
-                    GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner
-                            .validateJsonElement(jsonArrayassets.get(i));
+                    GetDetailOnSubAccountsFuturesAccountResponseAssetsInner.validateJsonElement(
+                            jsonArrayassets.get(i));
                 }
                 ;
             }
@@ -898,7 +874,7 @@ public class GetDetailOnSubAccountsFuturesAccountResponse {
                         public void write(
                                 JsonWriter out, GetDetailOnSubAccountsFuturesAccountResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

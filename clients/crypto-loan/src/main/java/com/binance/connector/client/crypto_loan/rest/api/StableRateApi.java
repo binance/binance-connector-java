@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,38 +15,25 @@ package com.binance.connector.client.crypto_loan.rest.api;
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
-import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
-import com.binance.connector.client.crypto_loan.rest.model.CheckCollateralRepayRateStableRateResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanAdjustLtvRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanAdjustLtvResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanBorrowRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanBorrowResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanCustomizeMarginCallRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanCustomizeMarginCallResponse;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanRepayRequest;
-import com.binance.connector.client.crypto_loan.rest.model.CryptoLoanRepayResponse;
-import com.binance.connector.client.crypto_loan.rest.model.GetCollateralAssetsDataResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetCryptoLoansIncomeHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanBorrowHistoryResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanLtvAdjustmentHistoryResponse;
-import com.binance.connector.client.crypto_loan.rest.model.GetLoanOngoingOrdersResponse;
 import com.binance.connector.client.crypto_loan.rest.model.GetLoanRepaymentHistoryResponse;
-import com.binance.connector.client.crypto_loan.rest.model.GetLoanableAssetsDataResponse;
+import com.binance.connector.client.crypto_loan.rest.model.OrderType;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Valid;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,7 +46,7 @@ public class StableRateApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-crypto-loan/1.1.0 (Java/%s; %s; %s)",
+                    "binance-crypto-loan/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -97,977 +84,14 @@ public class StableRateApi {
     }
 
     /**
-     * Build call for checkCollateralRepayRateStableRate
-     *
-     * @param loanCoin (required)
-     * @param collateralCoin (required)
-     * @param repayAmount repay amount of loanCoin (required)
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Check Collateral Repay Rate </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Check-Collateral-Repay-Rate">Check
-     *     Collateral Repay Rate(USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call checkCollateralRepayRateStableRateCall(
-            String loanCoin, String collateralCoin, Double repayAmount, Long recvWindow)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/repay/collateral/rate";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (loanCoin != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loanCoin", loanCoin));
-        }
-
-        if (collateralCoin != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("collateralCoin", collateralCoin));
-        }
-
-        if (repayAmount != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair(
-                            "repayAmount", DecimalFormatter.getFormatter().format(repayAmount)));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call checkCollateralRepayRateStableRateValidateBeforeCall(
-            String loanCoin, String collateralCoin, Double repayAmount, Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {loanCoin, collateralCoin, repayAmount, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "checkCollateralRepayRateStableRate",
-                                    String.class,
-                                    String.class,
-                                    Double.class,
-                                    Long.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return checkCollateralRepayRateStableRateCall(
-                        loanCoin, collateralCoin, repayAmount, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Check Collateral Repay Rate(USER_DATA) Get the the rate of collateral coin / loan coin when
-     * using collateral repay, the rate will be valid within 8 second. Weight: 6000
-     *
-     * @param loanCoin (required)
-     * @param collateralCoin (required)
-     * @param repayAmount repay amount of loanCoin (required)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;CheckCollateralRepayRateStableRateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Check Collateral Repay Rate </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Check-Collateral-Repay-Rate">Check
-     *     Collateral Repay Rate(USER_DATA) Documentation</a>
-     */
-    public ApiResponse<CheckCollateralRepayRateStableRateResponse>
-            checkCollateralRepayRateStableRate(
-                    @NotNull String loanCoin,
-                    @NotNull String collateralCoin,
-                    @NotNull Double repayAmount,
-                    Long recvWindow)
-                    throws ApiException {
-        okhttp3.Call localVarCall =
-                checkCollateralRepayRateStableRateValidateBeforeCall(
-                        loanCoin, collateralCoin, repayAmount, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<CheckCollateralRepayRateStableRateResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for cryptoLoanAdjustLtv
-     *
-     * @param cryptoLoanAdjustLtvRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Adjust LTV </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Adjust-LTV">Crypto
-     *     Loan Adjust LTV(TRADE) Documentation</a>
-     */
-    private okhttp3.Call cryptoLoanAdjustLtvCall(
-            CryptoLoanAdjustLtvRequest cryptoLoanAdjustLtvRequest) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/adjust/ltv";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (cryptoLoanAdjustLtvRequest.getOrderId() != null) {
-            localVarFormParams.put("orderId", cryptoLoanAdjustLtvRequest.getOrderId());
-        }
-
-        if (cryptoLoanAdjustLtvRequest.getAmount() != null) {
-            localVarFormParams.put(
-                    "amount",
-                    DecimalFormatter.getFormatter().format(cryptoLoanAdjustLtvRequest.getAmount()));
-        }
-
-        if (cryptoLoanAdjustLtvRequest.getDirection() != null) {
-            localVarFormParams.put("direction", cryptoLoanAdjustLtvRequest.getDirection());
-        }
-
-        if (cryptoLoanAdjustLtvRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", cryptoLoanAdjustLtvRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call cryptoLoanAdjustLtvValidateBeforeCall(
-            CryptoLoanAdjustLtvRequest cryptoLoanAdjustLtvRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {cryptoLoanAdjustLtvRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod("cryptoLoanAdjustLtv", CryptoLoanAdjustLtvRequest.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return cryptoLoanAdjustLtvCall(cryptoLoanAdjustLtvRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Crypto Loan Adjust LTV(TRADE) Crypto Loan Adjust LTV Weight: 6000
-     *
-     * @param cryptoLoanAdjustLtvRequest (required)
-     * @return ApiResponse&lt;CryptoLoanAdjustLtvResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Adjust LTV </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Adjust-LTV">Crypto
-     *     Loan Adjust LTV(TRADE) Documentation</a>
-     */
-    public ApiResponse<CryptoLoanAdjustLtvResponse> cryptoLoanAdjustLtv(
-            @Valid @NotNull CryptoLoanAdjustLtvRequest cryptoLoanAdjustLtvRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                cryptoLoanAdjustLtvValidateBeforeCall(cryptoLoanAdjustLtvRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<CryptoLoanAdjustLtvResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for cryptoLoanBorrow
-     *
-     * @param cryptoLoanBorrowRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Borrow </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Borrow">Crypto
-     *     Loan Borrow(TRADE) Documentation</a>
-     */
-    private okhttp3.Call cryptoLoanBorrowCall(CryptoLoanBorrowRequest cryptoLoanBorrowRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/borrow";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (cryptoLoanBorrowRequest.getLoanCoin() != null) {
-            localVarFormParams.put("loanCoin", cryptoLoanBorrowRequest.getLoanCoin());
-        }
-
-        if (cryptoLoanBorrowRequest.getCollateralCoin() != null) {
-            localVarFormParams.put("collateralCoin", cryptoLoanBorrowRequest.getCollateralCoin());
-        }
-
-        if (cryptoLoanBorrowRequest.getLoanTerm() != null) {
-            localVarFormParams.put("loanTerm", cryptoLoanBorrowRequest.getLoanTerm());
-        }
-
-        if (cryptoLoanBorrowRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", cryptoLoanBorrowRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call cryptoLoanBorrowValidateBeforeCall(
-            CryptoLoanBorrowRequest cryptoLoanBorrowRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {cryptoLoanBorrowRequest};
-            Method method =
-                    this.getClass().getMethod("cryptoLoanBorrow", CryptoLoanBorrowRequest.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return cryptoLoanBorrowCall(cryptoLoanBorrowRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Crypto Loan Borrow(TRADE) Crypto Loan Borrow Weight: 6000
-     *
-     * @param cryptoLoanBorrowRequest (required)
-     * @return ApiResponse&lt;CryptoLoanBorrowResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Borrow </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Borrow">Crypto
-     *     Loan Borrow(TRADE) Documentation</a>
-     */
-    public ApiResponse<CryptoLoanBorrowResponse> cryptoLoanBorrow(
-            @Valid @NotNull CryptoLoanBorrowRequest cryptoLoanBorrowRequest) throws ApiException {
-        okhttp3.Call localVarCall = cryptoLoanBorrowValidateBeforeCall(cryptoLoanBorrowRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<CryptoLoanBorrowResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for cryptoLoanCustomizeMarginCall
-     *
-     * @param cryptoLoanCustomizeMarginCallRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Customize Margin Call </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Customize-Margin-Call">Crypto
-     *     Loan Customize Margin Call(TRADE) Documentation</a>
-     */
-    private okhttp3.Call cryptoLoanCustomizeMarginCallCall(
-            CryptoLoanCustomizeMarginCallRequest cryptoLoanCustomizeMarginCallRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/customize/margin_call";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (cryptoLoanCustomizeMarginCallRequest.getMarginCall() != null) {
-            localVarFormParams.put(
-                    "marginCall",
-                    DecimalFormatter.getFormatter()
-                            .format(cryptoLoanCustomizeMarginCallRequest.getMarginCall()));
-        }
-
-        if (cryptoLoanCustomizeMarginCallRequest.getRecvWindow() != null) {
-            localVarFormParams.put(
-                    "recvWindow", cryptoLoanCustomizeMarginCallRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call cryptoLoanCustomizeMarginCallValidateBeforeCall(
-            CryptoLoanCustomizeMarginCallRequest cryptoLoanCustomizeMarginCallRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {cryptoLoanCustomizeMarginCallRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "cryptoLoanCustomizeMarginCall",
-                                    CryptoLoanCustomizeMarginCallRequest.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return cryptoLoanCustomizeMarginCallCall(cryptoLoanCustomizeMarginCallRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Crypto Loan Customize Margin Call(TRADE) Customize Margin Call Weight: 6000
-     *
-     * @param cryptoLoanCustomizeMarginCallRequest (required)
-     * @return ApiResponse&lt;CryptoLoanCustomizeMarginCallResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Customize Margin Call </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Customize-Margin-Call">Crypto
-     *     Loan Customize Margin Call(TRADE) Documentation</a>
-     */
-    public ApiResponse<CryptoLoanCustomizeMarginCallResponse> cryptoLoanCustomizeMarginCall(
-            @Valid @NotNull
-                    CryptoLoanCustomizeMarginCallRequest cryptoLoanCustomizeMarginCallRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                cryptoLoanCustomizeMarginCallValidateBeforeCall(
-                        cryptoLoanCustomizeMarginCallRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<CryptoLoanCustomizeMarginCallResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for cryptoLoanRepay
-     *
-     * @param cryptoLoanRepayRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Repay </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Repay">Crypto
-     *     Loan Repay(TRADE) Documentation</a>
-     */
-    private okhttp3.Call cryptoLoanRepayCall(CryptoLoanRepayRequest cryptoLoanRepayRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/repay";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (cryptoLoanRepayRequest.getOrderId() != null) {
-            localVarFormParams.put("orderId", cryptoLoanRepayRequest.getOrderId());
-        }
-
-        if (cryptoLoanRepayRequest.getAmount() != null) {
-            localVarFormParams.put(
-                    "amount",
-                    DecimalFormatter.getFormatter().format(cryptoLoanRepayRequest.getAmount()));
-        }
-
-        if (cryptoLoanRepayRequest.getType() != null) {
-            localVarFormParams.put("type", cryptoLoanRepayRequest.getType());
-        }
-
-        if (cryptoLoanRepayRequest.getCollateralReturn() != null) {
-            localVarFormParams.put(
-                    "collateralReturn", cryptoLoanRepayRequest.getCollateralReturn());
-        }
-
-        if (cryptoLoanRepayRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", cryptoLoanRepayRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call cryptoLoanRepayValidateBeforeCall(
-            CryptoLoanRepayRequest cryptoLoanRepayRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {cryptoLoanRepayRequest};
-            Method method =
-                    this.getClass().getMethod("cryptoLoanRepay", CryptoLoanRepayRequest.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return cryptoLoanRepayCall(cryptoLoanRepayRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Crypto Loan Repay(TRADE) Crypto Loan Repay Weight: 6000
-     *
-     * @param cryptoLoanRepayRequest (required)
-     * @return ApiResponse&lt;CryptoLoanRepayResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Crypto Loan Repay </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/trade/Crypto-Loan-Repay">Crypto
-     *     Loan Repay(TRADE) Documentation</a>
-     */
-    public ApiResponse<CryptoLoanRepayResponse> cryptoLoanRepay(
-            @Valid @NotNull CryptoLoanRepayRequest cryptoLoanRepayRequest) throws ApiException {
-        okhttp3.Call localVarCall = cryptoLoanRepayValidateBeforeCall(cryptoLoanRepayRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<CryptoLoanRepayResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for getCollateralAssetsData
-     *
-     * @param collateralCoin (optional)
-     * @param vipLevel Default: user&#39;s vip level. Send \&quot;-1\&quot; to check specified
-     *     configuration (optional)
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Collateral Assets Data </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Collateral-Assets-Data">Get
-     *     Collateral Assets Data(USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call getCollateralAssetsDataCall(
-            String collateralCoin, Long vipLevel, Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/collateral/data";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (collateralCoin != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("collateralCoin", collateralCoin));
-        }
-
-        if (vipLevel != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("vipLevel", vipLevel));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCollateralAssetsDataValidateBeforeCall(
-            String collateralCoin, Long vipLevel, Long recvWindow) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {collateralCoin, vipLevel, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "getCollateralAssetsData",
-                                    String.class,
-                                    Long.class,
-                                    Long.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getCollateralAssetsDataCall(collateralCoin, vipLevel, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Get Collateral Assets Data(USER_DATA) Get LTV information and collateral limit of collateral
-     * assets. The collateral limit is shown in USD value. Weight: 400
-     *
-     * @param collateralCoin (optional)
-     * @param vipLevel Default: user&#39;s vip level. Send \&quot;-1\&quot; to check specified
-     *     configuration (optional)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetCollateralAssetsDataResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Collateral Assets Data </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Collateral-Assets-Data">Get
-     *     Collateral Assets Data(USER_DATA) Documentation</a>
-     */
-    public ApiResponse<GetCollateralAssetsDataResponse> getCollateralAssetsData(
-            String collateralCoin, Long vipLevel, Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall =
-                getCollateralAssetsDataValidateBeforeCall(collateralCoin, vipLevel, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetCollateralAssetsDataResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for getCryptoLoansIncomeHistory
      *
      * @param asset (optional)
-     * @param type All types will be returned by default. Enum：&#x60;borrowIn&#x60;
-     *     ,&#x60;collateralSpent&#x60;, &#x60;repayAmount&#x60;,
-     *     &#x60;collateralReturn&#x60;(Collateral return after repayment),
-     *     &#x60;addCollateral&#x60;, &#x60;removeCollateral&#x60;,
-     *     &#x60;collateralReturnAfterLiquidation&#x60; (optional)
+     * @param type All types will be returned by default. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1078,11 +102,11 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Crypto-Loans-Income-History">Get
-     *     Crypto Loans Income History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-crypto-loans-income-history">Get
+     *     Crypto Loans Income History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getCryptoLoansIncomeHistoryCall(
-            String asset, Long type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String asset, OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1141,15 +165,11 @@ public class StableRateApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1163,12 +183,12 @@ public class StableRateApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getCryptoLoansIncomeHistoryValidateBeforeCall(
-            String asset, Long type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String asset, OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1185,7 +205,7 @@ public class StableRateApi {
                             .getMethod(
                                     "getCryptoLoansIncomeHistory",
                                     String.class,
-                                    Long.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1209,20 +229,17 @@ public class StableRateApi {
     }
 
     /**
-     * Get Crypto Loans Income History(USER_DATA) Get Crypto Loans Income History * If startTime and
-     * endTime are not sent, the recent 7-day data will be returned. * The max interval between
-     * startTime and endTime is 30 days. Weight: 6000
+     * Get Crypto Loans Income History (USER_DATA) Get Crypto Loans Income History Weight(UID): 6000
+     * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * omitted, the most recent 7 days of data are returned. - The maximum interval between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days.
      *
      * @param asset (optional)
-     * @param type All types will be returned by default. Enum：&#x60;borrowIn&#x60;
-     *     ,&#x60;collateralSpent&#x60;, &#x60;repayAmount&#x60;,
-     *     &#x60;collateralReturn&#x60;(Collateral return after repayment),
-     *     &#x60;addCollateral&#x60;, &#x60;removeCollateral&#x60;,
-     *     &#x60;collateralReturnAfterLiquidation&#x60; (optional)
+     * @param type All types will be returned by default. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetCryptoLoansIncomeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1234,11 +251,16 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Crypto-Loans-Income-History">Get
-     *     Crypto Loans Income History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-crypto-loans-income-history">Get
+     *     Crypto Loans Income History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCryptoLoansIncomeHistoryResponse> getCryptoLoansIncomeHistory(
-            String asset, Long type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String asset,
+            OrderType type,
+            Long startTime,
+            Long endTime,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getCryptoLoansIncomeHistoryValidateBeforeCall(
@@ -1256,9 +278,9 @@ public class StableRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1269,8 +291,8 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Borrow-History">Get
-     *     Loan Borrow History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-loan-borrow-history">Get
+     *     Loan Borrow History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLoanBorrowHistoryCall(
             Long orderId,
@@ -1348,15 +370,11 @@ public class StableRateApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1370,7 +388,7 @@ public class StableRateApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1434,18 +452,19 @@ public class StableRateApi {
     }
 
     /**
-     * Get Loan Borrow History(USER_DATA) Get Loan Borrow History * If startTime and endTime are not
-     * sent, the recent 90-day data will be returned. * The max interval between startTime and
-     * endTime is 180 days. Weight: 400
+     * Get Loan Borrow History (USER_DATA) Get Loan Borrow History Weight(IP): 400 Security Type:
+     * USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent
+     * 90-day data is returned. - The max interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 180 days.
      *
      * @param orderId orderId in &#x60;POST /sapi/v1/loan/borrow&#x60; (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetLoanBorrowHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1457,8 +476,8 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Borrow-History">Get
-     *     Loan Borrow History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-loan-borrow-history">Get
+     *     Loan Borrow History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLoanBorrowHistoryResponse> getLoanBorrowHistory(
             Long orderId,
@@ -1466,9 +485,9 @@ public class StableRateApi {
             String collateralCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLoanBorrowHistoryValidateBeforeCall(
@@ -1493,9 +512,9 @@ public class StableRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1506,8 +525,8 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-LTV-Adjustment-History">Get
-     *     Loan LTV Adjustment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-loan-ltv-adjustment-history">Get
+     *     Loan LTV Adjustment History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLoanLtvAdjustmentHistoryCall(
             Long orderId,
@@ -1585,15 +604,11 @@ public class StableRateApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1607,7 +622,7 @@ public class StableRateApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1671,18 +686,19 @@ public class StableRateApi {
     }
 
     /**
-     * Get Loan LTV Adjustment History(USER_DATA) Get Loan LTV Adjustment History * If startTime and
-     * endTime are not sent, the recent 90-day data will be returned. * The max interval between
-     * startTime and endTime is 180 days. Weight: 400
+     * Get Loan LTV Adjustment History (USER_DATA) Get Loan LTV Adjustment History Weight(IP): 400
+     * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, the recent 90-day data is returned. - The max interval between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; is 180 days.
      *
      * @param orderId orderId in &#x60;POST /sapi/v1/loan/borrow&#x60; (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetLoanLtvAdjustmentHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1694,8 +710,8 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-LTV-Adjustment-History">Get
-     *     Loan LTV Adjustment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-loan-ltv-adjustment-history">Get
+     *     Loan LTV Adjustment History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLoanLtvAdjustmentHistoryResponse> getLoanLtvAdjustmentHistory(
             Long orderId,
@@ -1703,9 +719,9 @@ public class StableRateApi {
             String collateralCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLoanLtvAdjustmentHistoryValidateBeforeCall(
@@ -1723,207 +739,6 @@ public class StableRateApi {
     }
 
     /**
-     * Build call for getLoanOngoingOrders
-     *
-     * @param orderId orderId in &#x60;POST /sapi/v1/loan/borrow&#x60; (optional)
-     * @param loanCoin (optional)
-     * @param collateralCoin (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Loan Ongoing Orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Ongoing-Orders">Get
-     *     Loan Ongoing Orders(USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call getLoanOngoingOrdersCall(
-            Long orderId,
-            String loanCoin,
-            String collateralCoin,
-            Long current,
-            Long limit,
-            Long recvWindow)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/ongoing/orders";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (orderId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
-        }
-
-        if (loanCoin != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loanCoin", loanCoin));
-        }
-
-        if (collateralCoin != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("collateralCoin", collateralCoin));
-        }
-
-        if (current != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("current", current));
-        }
-
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getLoanOngoingOrdersValidateBeforeCall(
-            Long orderId,
-            String loanCoin,
-            String collateralCoin,
-            Long current,
-            Long limit,
-            Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {
-                orderId, loanCoin, collateralCoin, current, limit, recvWindow
-            };
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "getLoanOngoingOrders",
-                                    Long.class,
-                                    String.class,
-                                    String.class,
-                                    Long.class,
-                                    Long.class,
-                                    Long.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getLoanOngoingOrdersCall(
-                        orderId, loanCoin, collateralCoin, current, limit, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Get Loan Ongoing Orders(USER_DATA) Get Loan Ongoing Orders Weight: 300
-     *
-     * @param orderId orderId in &#x60;POST /sapi/v1/loan/borrow&#x60; (optional)
-     * @param loanCoin (optional)
-     * @param collateralCoin (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetLoanOngoingOrdersResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Loan Ongoing Orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Ongoing-Orders">Get
-     *     Loan Ongoing Orders(USER_DATA) Documentation</a>
-     */
-    public ApiResponse<GetLoanOngoingOrdersResponse> getLoanOngoingOrders(
-            Long orderId,
-            String loanCoin,
-            String collateralCoin,
-            Long current,
-            Long limit,
-            Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                getLoanOngoingOrdersValidateBeforeCall(
-                        orderId, loanCoin, collateralCoin, current, limit, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetLoanOngoingOrdersResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for getLoanRepaymentHistory
      *
      * @param orderId orderId in &#x60;POST /sapi/v1/loan/borrow&#x60; (optional)
@@ -1931,9 +746,9 @@ public class StableRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1944,8 +759,8 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Repayment-History">Get
-     *     Loan Repayment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-loan-repayment-history">Get
+     *     Loan Repayment History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLoanRepaymentHistoryCall(
             Long orderId,
@@ -2023,15 +838,11 @@ public class StableRateApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2045,7 +856,7 @@ public class StableRateApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2109,18 +920,19 @@ public class StableRateApi {
     }
 
     /**
-     * Get Loan Repayment History(USER_DATA) Get Loan Repayment History * If startTime and endTime
-     * are not sent, the recent 90-day data will be returned. * The max interval between startTime
-     * and endTime is 180 days. Weight: 400
+     * Get Loan Repayment History (USER_DATA) Get Loan Repayment History Weight(IP): 400 Security
+     * Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the
+     * recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 180 days.
      *
      * @param orderId orderId in &#x60;POST /sapi/v1/loan/borrow&#x60; (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetLoanRepaymentHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2132,8 +944,8 @@ public class StableRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/user-information/Get-Loan-Repayment-History">Get
-     *     Loan Repayment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/stable-rate#get-loan-repayment-history">Get
+     *     Loan Repayment History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLoanRepaymentHistoryResponse> getLoanRepaymentHistory(
             Long orderId,
@@ -2141,9 +953,9 @@ public class StableRateApi {
             String collateralCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLoanRepaymentHistoryValidateBeforeCall(
@@ -2157,163 +969,6 @@ public class StableRateApi {
                         recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetLoanRepaymentHistoryResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for getLoanableAssetsData
-     *
-     * @param loanCoin (optional)
-     * @param vipLevel Default: user&#39;s vip level. Send \&quot;-1\&quot; to check specified
-     *     configuration (optional)
-     * @param recvWindow (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Loanable Assets Data </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Loanable-Assets-Data">Get
-     *     Loanable Assets Data(USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call getLoanableAssetsDataCall(String loanCoin, Long vipLevel, Long recvWindow)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/loan/loanable/data";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (loanCoin != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loanCoin", loanCoin));
-        }
-
-        if (vipLevel != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("vipLevel", vipLevel));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getLoanableAssetsDataValidateBeforeCall(
-            String loanCoin, Long vipLevel, Long recvWindow) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {loanCoin, vipLevel, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "getLoanableAssetsData", String.class, Long.class, Long.class);
-            Set<ConstraintViolation<StableRateApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getLoanableAssetsDataCall(loanCoin, vipLevel, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Get Loanable Assets Data(USER_DATA) Get interest rate and borrow limit of loanable assets.
-     * The borrow limit is shown in USD value. Weight: 400
-     *
-     * @param loanCoin (optional)
-     * @param vipLevel Default: user&#39;s vip level. Send \&quot;-1\&quot; to check specified
-     *     configuration (optional)
-     * @param recvWindow (optional)
-     * @return ApiResponse&lt;GetLoanableAssetsDataResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get Loanable Assets Data </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/stable-rate/market-data/Get-Loanable-Assets-Data">Get
-     *     Loanable Assets Data(USER_DATA) Documentation</a>
-     */
-    public ApiResponse<GetLoanableAssetsDataResponse> getLoanableAssetsData(
-            String loanCoin, Long vipLevel, Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall =
-                getLoanableAssetsDataValidateBeforeCall(loanCoin, vipLevel, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetLoanableAssetsDataResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

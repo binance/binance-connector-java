@@ -1,5 +1,65 @@
 # Changelog
 
+## 5.0.0 - 2026-07-29
+
+### Changed (1)
+
+- Modified response for `getPayTradeHistory()` (`GET /sapi/v1/pay/transactions`):
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+
+## 4.0.0 - 2026-05-04
+
+### Changed (1)
+
+- Modified response for `getPayTradeHistory()` (`GET /sapi/v1/pay/transactions`):
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: type `array` → `object`
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` added
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` added
+
+## 3.0.1 - 2026-04-30
+
+- Update `binance/common` module to version `2.4.2`.
+
+## 3.0.0 - 2025-09-22
+
+### Changed (1)
+
+- Modified response for `getPayTradeHistory()` (`GET /sapi/v1/pay/transactions`):
+  - `data`.`payerInfo`: property `accountId` deleted
+
+## 2.1.1 - 2025-08-07
+
+- Update `binance/common` module to version `2.0.0`.
+- Add `Content-Type` header only if there is a body.
+
+## 2.1.0 - 2025-07-08
+
+- Update `binance/common` module to version `1.3.0`.
+- Added `customHeaders` configuration.
+
+## 2.0.0 - 2025-05-28
+
+### Changed (1)
+
+- Marked as signed the following endpoints:
+  - `GET /sapi/v1/pay/transactions`
+
 ## 1.1.0 - 2025-05-02
 
 - Update `binance/common` module to version `1.1.0`.

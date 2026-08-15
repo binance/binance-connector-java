@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** KlineCandlestickStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlineCandlestickStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -73,7 +73,7 @@ public class KlineCandlestickStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * event type
      *
      * @return eLowerCase
      */
@@ -92,7 +92,7 @@ public class KlineCandlestickStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * event time
      *
      * @return E
      */
@@ -112,7 +112,7 @@ public class KlineCandlestickStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option trading symbol
      *
      * @return sLowerCase
      */
@@ -337,7 +337,7 @@ public class KlineCandlestickStreamsResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, KlineCandlestickStreamsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

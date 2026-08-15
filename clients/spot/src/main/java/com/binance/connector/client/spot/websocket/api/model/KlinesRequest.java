@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,8 +38,14 @@ import org.hibernate.validator.constraints.*;
 /** KlinesRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlinesRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -77,6 +83,25 @@ public class KlinesRequest extends BaseDTO {
     private Integer limit;
 
     public KlinesRequest() {}
+
+    public KlinesRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public KlinesRequest symbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
@@ -163,7 +188,7 @@ public class KlinesRequest extends BaseDTO {
     }
 
     /**
-     * Get timeZone
+     * Default: 0 (UTC)
      *
      * @return timeZone
      */
@@ -182,11 +207,12 @@ public class KlinesRequest extends BaseDTO {
     }
 
     /**
-     * Get limit
+     * Get limit maximum: 1000
      *
      * @return limit
      */
     @jakarta.annotation.Nullable
+    @Max(1000)
     public Integer getLimit() {
         return limit;
     }
@@ -204,7 +230,8 @@ public class KlinesRequest extends BaseDTO {
             return false;
         }
         KlinesRequest klinesRequest = (KlinesRequest) o;
-        return Objects.equals(this.symbol, klinesRequest.symbol)
+        return Objects.equals(this.id, klinesRequest.id)
+                && Objects.equals(this.symbol, klinesRequest.symbol)
                 && Objects.equals(this.interval, klinesRequest.interval)
                 && Objects.equals(this.startTime, klinesRequest.startTime)
                 && Objects.equals(this.endTime, klinesRequest.endTime)
@@ -214,13 +241,14 @@ public class KlinesRequest extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, interval, startTime, endTime, timeZone, limit);
+        return Objects.hash(id, symbol, interval, startTime, endTime, timeZone, limit);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class KlinesRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		interval: ").append(toIndentedString(interval)).append("\n");
         sb.append("		startTime: ").append(toIndentedString(startTime)).append("\n");
@@ -235,6 +263,11 @@ public class KlinesRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -276,6 +309,10 @@ public class KlinesRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -326,6 +363,7 @@ public class KlinesRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("interval");
         openapiFields.add("startTime");
@@ -379,6 +417,14 @@ public class KlinesRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
@@ -413,7 +459,7 @@ public class KlinesRequest extends BaseDTO {
                     new TypeAdapter<KlinesRequest>() {
                         @Override
                         public void write(JsonWriter out, KlinesRequest value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

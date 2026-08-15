@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,79 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** Ticker24hrResponse2Inner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrResponse2Inner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
+
+    public static final String SERIALIZED_NAME_PRICE_CHANGE = "priceChange";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_CHANGE)
+    @jakarta.annotation.Nullable
+    private String priceChange;
+
+    public static final String SERIALIZED_NAME_PRICE_CHANGE_PERCENT = "priceChangePercent";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_CHANGE_PERCENT)
+    @jakarta.annotation.Nullable
+    private String priceChangePercent;
+
+    public static final String SERIALIZED_NAME_WEIGHTED_AVG_PRICE = "weightedAvgPrice";
+
+    @SerializedName(SERIALIZED_NAME_WEIGHTED_AVG_PRICE)
+    @jakarta.annotation.Nullable
+    private String weightedAvgPrice;
+
+    public static final String SERIALIZED_NAME_PREV_CLOSE_PRICE = "prevClosePrice";
+
+    @SerializedName(SERIALIZED_NAME_PREV_CLOSE_PRICE)
+    @jakarta.annotation.Nullable
+    private String prevClosePrice;
+
+    public static final String SERIALIZED_NAME_LAST_PRICE = "lastPrice";
+
+    @SerializedName(SERIALIZED_NAME_LAST_PRICE)
+    @jakarta.annotation.Nullable
+    private String lastPrice;
+
+    public static final String SERIALIZED_NAME_LAST_QTY = "lastQty";
+
+    @SerializedName(SERIALIZED_NAME_LAST_QTY)
+    @jakarta.annotation.Nullable
+    private String lastQty;
+
+    public static final String SERIALIZED_NAME_BID_PRICE = "bidPrice";
+
+    @SerializedName(SERIALIZED_NAME_BID_PRICE)
+    @jakarta.annotation.Nullable
+    private String bidPrice;
+
+    public static final String SERIALIZED_NAME_BID_QTY = "bidQty";
+
+    @SerializedName(SERIALIZED_NAME_BID_QTY)
+    @jakarta.annotation.Nullable
+    private String bidQty;
+
+    public static final String SERIALIZED_NAME_ASK_PRICE = "askPrice";
+
+    @SerializedName(SERIALIZED_NAME_ASK_PRICE)
+    @jakarta.annotation.Nullable
+    private String askPrice;
+
+    public static final String SERIALIZED_NAME_ASK_QTY = "askQty";
+
+    @SerializedName(SERIALIZED_NAME_ASK_QTY)
+    @jakarta.annotation.Nullable
+    private String askQty;
 
     public static final String SERIALIZED_NAME_OPEN_PRICE = "openPrice";
 
@@ -61,12 +119,6 @@ public class Ticker24hrResponse2Inner {
     @SerializedName(SERIALIZED_NAME_LOW_PRICE)
     @jakarta.annotation.Nullable
     private String lowPrice;
-
-    public static final String SERIALIZED_NAME_LAST_PRICE = "lastPrice";
-
-    @SerializedName(SERIALIZED_NAME_LAST_PRICE)
-    @jakarta.annotation.Nullable
-    private String lastPrice;
 
     public static final String SERIALIZED_NAME_VOLUME = "volume";
 
@@ -118,7 +170,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get symbol
+     * Symbol Name
      *
      * @return symbol
      */
@@ -131,13 +183,206 @@ public class Ticker24hrResponse2Inner {
         this.symbol = symbol;
     }
 
+    public Ticker24hrResponse2Inner priceChange(@jakarta.annotation.Nullable String priceChange) {
+        this.priceChange = priceChange;
+        return this;
+    }
+
+    /**
+     * Get priceChange
+     *
+     * @return priceChange
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceChange() {
+        return priceChange;
+    }
+
+    public void setPriceChange(@jakarta.annotation.Nullable String priceChange) {
+        this.priceChange = priceChange;
+    }
+
+    public Ticker24hrResponse2Inner priceChangePercent(
+            @jakarta.annotation.Nullable String priceChangePercent) {
+        this.priceChangePercent = priceChangePercent;
+        return this;
+    }
+
+    /**
+     * Get priceChangePercent
+     *
+     * @return priceChangePercent
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceChangePercent() {
+        return priceChangePercent;
+    }
+
+    public void setPriceChangePercent(@jakarta.annotation.Nullable String priceChangePercent) {
+        this.priceChangePercent = priceChangePercent;
+    }
+
+    public Ticker24hrResponse2Inner weightedAvgPrice(
+            @jakarta.annotation.Nullable String weightedAvgPrice) {
+        this.weightedAvgPrice = weightedAvgPrice;
+        return this;
+    }
+
+    /**
+     * Get weightedAvgPrice
+     *
+     * @return weightedAvgPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getWeightedAvgPrice() {
+        return weightedAvgPrice;
+    }
+
+    public void setWeightedAvgPrice(@jakarta.annotation.Nullable String weightedAvgPrice) {
+        this.weightedAvgPrice = weightedAvgPrice;
+    }
+
+    public Ticker24hrResponse2Inner prevClosePrice(
+            @jakarta.annotation.Nullable String prevClosePrice) {
+        this.prevClosePrice = prevClosePrice;
+        return this;
+    }
+
+    /**
+     * Get prevClosePrice
+     *
+     * @return prevClosePrice
+     */
+    @jakarta.annotation.Nullable
+    public String getPrevClosePrice() {
+        return prevClosePrice;
+    }
+
+    public void setPrevClosePrice(@jakarta.annotation.Nullable String prevClosePrice) {
+        this.prevClosePrice = prevClosePrice;
+    }
+
+    public Ticker24hrResponse2Inner lastPrice(@jakarta.annotation.Nullable String lastPrice) {
+        this.lastPrice = lastPrice;
+        return this;
+    }
+
+    /**
+     * Closing price of the interval
+     *
+     * @return lastPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getLastPrice() {
+        return lastPrice;
+    }
+
+    public void setLastPrice(@jakarta.annotation.Nullable String lastPrice) {
+        this.lastPrice = lastPrice;
+    }
+
+    public Ticker24hrResponse2Inner lastQty(@jakarta.annotation.Nullable String lastQty) {
+        this.lastQty = lastQty;
+        return this;
+    }
+
+    /**
+     * Get lastQty
+     *
+     * @return lastQty
+     */
+    @jakarta.annotation.Nullable
+    public String getLastQty() {
+        return lastQty;
+    }
+
+    public void setLastQty(@jakarta.annotation.Nullable String lastQty) {
+        this.lastQty = lastQty;
+    }
+
+    public Ticker24hrResponse2Inner bidPrice(@jakarta.annotation.Nullable String bidPrice) {
+        this.bidPrice = bidPrice;
+        return this;
+    }
+
+    /**
+     * Get bidPrice
+     *
+     * @return bidPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getBidPrice() {
+        return bidPrice;
+    }
+
+    public void setBidPrice(@jakarta.annotation.Nullable String bidPrice) {
+        this.bidPrice = bidPrice;
+    }
+
+    public Ticker24hrResponse2Inner bidQty(@jakarta.annotation.Nullable String bidQty) {
+        this.bidQty = bidQty;
+        return this;
+    }
+
+    /**
+     * Get bidQty
+     *
+     * @return bidQty
+     */
+    @jakarta.annotation.Nullable
+    public String getBidQty() {
+        return bidQty;
+    }
+
+    public void setBidQty(@jakarta.annotation.Nullable String bidQty) {
+        this.bidQty = bidQty;
+    }
+
+    public Ticker24hrResponse2Inner askPrice(@jakarta.annotation.Nullable String askPrice) {
+        this.askPrice = askPrice;
+        return this;
+    }
+
+    /**
+     * Get askPrice
+     *
+     * @return askPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getAskPrice() {
+        return askPrice;
+    }
+
+    public void setAskPrice(@jakarta.annotation.Nullable String askPrice) {
+        this.askPrice = askPrice;
+    }
+
+    public Ticker24hrResponse2Inner askQty(@jakarta.annotation.Nullable String askQty) {
+        this.askQty = askQty;
+        return this;
+    }
+
+    /**
+     * Get askQty
+     *
+     * @return askQty
+     */
+    @jakarta.annotation.Nullable
+    public String getAskQty() {
+        return askQty;
+    }
+
+    public void setAskQty(@jakarta.annotation.Nullable String askQty) {
+        this.askQty = askQty;
+    }
+
     public Ticker24hrResponse2Inner openPrice(@jakarta.annotation.Nullable String openPrice) {
         this.openPrice = openPrice;
         return this;
     }
 
     /**
-     * Get openPrice
+     * Opening price of the Interval
      *
      * @return openPrice
      */
@@ -156,7 +401,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get highPrice
+     * Highest price in the interval
      *
      * @return highPrice
      */
@@ -175,7 +420,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get lowPrice
+     * Lowest price in the interval
      *
      * @return lowPrice
      */
@@ -188,32 +433,13 @@ public class Ticker24hrResponse2Inner {
         this.lowPrice = lowPrice;
     }
 
-    public Ticker24hrResponse2Inner lastPrice(@jakarta.annotation.Nullable String lastPrice) {
-        this.lastPrice = lastPrice;
-        return this;
-    }
-
-    /**
-     * Get lastPrice
-     *
-     * @return lastPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getLastPrice() {
-        return lastPrice;
-    }
-
-    public void setLastPrice(@jakarta.annotation.Nullable String lastPrice) {
-        this.lastPrice = lastPrice;
-    }
-
     public Ticker24hrResponse2Inner volume(@jakarta.annotation.Nullable String volume) {
         this.volume = volume;
         return this;
     }
 
     /**
-     * Get volume
+     * Total trade volume (in base asset)
      *
      * @return volume
      */
@@ -232,7 +458,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get quoteVolume
+     * Total trade volume (in quote asset)
      *
      * @return quoteVolume
      */
@@ -251,7 +477,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get openTime
+     * Start of the ticker interval
      *
      * @return openTime
      */
@@ -270,7 +496,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get closeTime
+     * End of the ticker interval
      *
      * @return closeTime
      */
@@ -289,7 +515,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get firstId
+     * First tradeId
      *
      * @return firstId
      */
@@ -308,7 +534,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get lastId
+     * Last tradeId
      *
      * @return lastId
      */
@@ -327,7 +553,7 @@ public class Ticker24hrResponse2Inner {
     }
 
     /**
-     * Get count
+     * Trade count
      *
      * @return count
      */
@@ -350,10 +576,20 @@ public class Ticker24hrResponse2Inner {
         }
         Ticker24hrResponse2Inner ticker24hrResponse2Inner = (Ticker24hrResponse2Inner) o;
         return Objects.equals(this.symbol, ticker24hrResponse2Inner.symbol)
+                && Objects.equals(this.priceChange, ticker24hrResponse2Inner.priceChange)
+                && Objects.equals(
+                        this.priceChangePercent, ticker24hrResponse2Inner.priceChangePercent)
+                && Objects.equals(this.weightedAvgPrice, ticker24hrResponse2Inner.weightedAvgPrice)
+                && Objects.equals(this.prevClosePrice, ticker24hrResponse2Inner.prevClosePrice)
+                && Objects.equals(this.lastPrice, ticker24hrResponse2Inner.lastPrice)
+                && Objects.equals(this.lastQty, ticker24hrResponse2Inner.lastQty)
+                && Objects.equals(this.bidPrice, ticker24hrResponse2Inner.bidPrice)
+                && Objects.equals(this.bidQty, ticker24hrResponse2Inner.bidQty)
+                && Objects.equals(this.askPrice, ticker24hrResponse2Inner.askPrice)
+                && Objects.equals(this.askQty, ticker24hrResponse2Inner.askQty)
                 && Objects.equals(this.openPrice, ticker24hrResponse2Inner.openPrice)
                 && Objects.equals(this.highPrice, ticker24hrResponse2Inner.highPrice)
                 && Objects.equals(this.lowPrice, ticker24hrResponse2Inner.lowPrice)
-                && Objects.equals(this.lastPrice, ticker24hrResponse2Inner.lastPrice)
                 && Objects.equals(this.volume, ticker24hrResponse2Inner.volume)
                 && Objects.equals(this.quoteVolume, ticker24hrResponse2Inner.quoteVolume)
                 && Objects.equals(this.openTime, ticker24hrResponse2Inner.openTime)
@@ -367,10 +603,19 @@ public class Ticker24hrResponse2Inner {
     public int hashCode() {
         return Objects.hash(
                 symbol,
+                priceChange,
+                priceChangePercent,
+                weightedAvgPrice,
+                prevClosePrice,
+                lastPrice,
+                lastQty,
+                bidPrice,
+                bidQty,
+                askPrice,
+                askQty,
                 openPrice,
                 highPrice,
                 lowPrice,
-                lastPrice,
                 volume,
                 quoteVolume,
                 openTime,
@@ -385,10 +630,21 @@ public class Ticker24hrResponse2Inner {
         StringBuilder sb = new StringBuilder();
         sb.append("class Ticker24hrResponse2Inner {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		priceChange: ").append(toIndentedString(priceChange)).append("\n");
+        sb.append("		priceChangePercent: ")
+                .append(toIndentedString(priceChangePercent))
+                .append("\n");
+        sb.append("		weightedAvgPrice: ").append(toIndentedString(weightedAvgPrice)).append("\n");
+        sb.append("		prevClosePrice: ").append(toIndentedString(prevClosePrice)).append("\n");
+        sb.append("		lastPrice: ").append(toIndentedString(lastPrice)).append("\n");
+        sb.append("		lastQty: ").append(toIndentedString(lastQty)).append("\n");
+        sb.append("		bidPrice: ").append(toIndentedString(bidPrice)).append("\n");
+        sb.append("		bidQty: ").append(toIndentedString(bidQty)).append("\n");
+        sb.append("		askPrice: ").append(toIndentedString(askPrice)).append("\n");
+        sb.append("		askQty: ").append(toIndentedString(askQty)).append("\n");
         sb.append("		openPrice: ").append(toIndentedString(openPrice)).append("\n");
         sb.append("		highPrice: ").append(toIndentedString(highPrice)).append("\n");
         sb.append("		lowPrice: ").append(toIndentedString(lowPrice)).append("\n");
-        sb.append("		lastPrice: ").append(toIndentedString(lastPrice)).append("\n");
         sb.append("		volume: ").append(toIndentedString(volume)).append("\n");
         sb.append("		quoteVolume: ").append(toIndentedString(quoteVolume)).append("\n");
         sb.append("		openTime: ").append(toIndentedString(openTime)).append("\n");
@@ -407,6 +663,48 @@ public class Ticker24hrResponse2Inner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object priceChangeValue = getPriceChange();
+        String priceChangeValueAsString = "";
+        priceChangeValueAsString = priceChangeValue.toString();
+        sb.append("priceChange=").append(urlEncode(priceChangeValueAsString)).append("");
+        Object priceChangePercentValue = getPriceChangePercent();
+        String priceChangePercentValueAsString = "";
+        priceChangePercentValueAsString = priceChangePercentValue.toString();
+        sb.append("priceChangePercent=")
+                .append(urlEncode(priceChangePercentValueAsString))
+                .append("");
+        Object weightedAvgPriceValue = getWeightedAvgPrice();
+        String weightedAvgPriceValueAsString = "";
+        weightedAvgPriceValueAsString = weightedAvgPriceValue.toString();
+        sb.append("weightedAvgPrice=").append(urlEncode(weightedAvgPriceValueAsString)).append("");
+        Object prevClosePriceValue = getPrevClosePrice();
+        String prevClosePriceValueAsString = "";
+        prevClosePriceValueAsString = prevClosePriceValue.toString();
+        sb.append("prevClosePrice=").append(urlEncode(prevClosePriceValueAsString)).append("");
+        Object lastPriceValue = getLastPrice();
+        String lastPriceValueAsString = "";
+        lastPriceValueAsString = lastPriceValue.toString();
+        sb.append("lastPrice=").append(urlEncode(lastPriceValueAsString)).append("");
+        Object lastQtyValue = getLastQty();
+        String lastQtyValueAsString = "";
+        lastQtyValueAsString = lastQtyValue.toString();
+        sb.append("lastQty=").append(urlEncode(lastQtyValueAsString)).append("");
+        Object bidPriceValue = getBidPrice();
+        String bidPriceValueAsString = "";
+        bidPriceValueAsString = bidPriceValue.toString();
+        sb.append("bidPrice=").append(urlEncode(bidPriceValueAsString)).append("");
+        Object bidQtyValue = getBidQty();
+        String bidQtyValueAsString = "";
+        bidQtyValueAsString = bidQtyValue.toString();
+        sb.append("bidQty=").append(urlEncode(bidQtyValueAsString)).append("");
+        Object askPriceValue = getAskPrice();
+        String askPriceValueAsString = "";
+        askPriceValueAsString = askPriceValue.toString();
+        sb.append("askPrice=").append(urlEncode(askPriceValueAsString)).append("");
+        Object askQtyValue = getAskQty();
+        String askQtyValueAsString = "";
+        askQtyValueAsString = askQtyValue.toString();
+        sb.append("askQty=").append(urlEncode(askQtyValueAsString)).append("");
         Object openPriceValue = getOpenPrice();
         String openPriceValueAsString = "";
         openPriceValueAsString = openPriceValue.toString();
@@ -419,10 +717,6 @@ public class Ticker24hrResponse2Inner {
         String lowPriceValueAsString = "";
         lowPriceValueAsString = lowPriceValue.toString();
         sb.append("lowPrice=").append(urlEncode(lowPriceValueAsString)).append("");
-        Object lastPriceValue = getLastPrice();
-        String lastPriceValueAsString = "";
-        lastPriceValueAsString = lastPriceValue.toString();
-        sb.append("lastPrice=").append(urlEncode(lastPriceValueAsString)).append("");
         Object volumeValue = getVolume();
         String volumeValueAsString = "";
         volumeValueAsString = volumeValue.toString();
@@ -480,10 +774,19 @@ public class Ticker24hrResponse2Inner {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
+        openapiFields.add("priceChange");
+        openapiFields.add("priceChangePercent");
+        openapiFields.add("weightedAvgPrice");
+        openapiFields.add("prevClosePrice");
+        openapiFields.add("lastPrice");
+        openapiFields.add("lastQty");
+        openapiFields.add("bidPrice");
+        openapiFields.add("bidQty");
+        openapiFields.add("askPrice");
+        openapiFields.add("askQty");
         openapiFields.add("openPrice");
         openapiFields.add("highPrice");
         openapiFields.add("lowPrice");
-        openapiFields.add("lastPrice");
         openapiFields.add("volume");
         openapiFields.add("quoteVolume");
         openapiFields.add("openTime");
@@ -513,18 +816,6 @@ public class Ticker24hrResponse2Inner {
                                 Ticker24hrResponse2Inner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Ticker24hrResponse2Inner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `Ticker24hrResponse2Inner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -533,6 +824,88 @@ public class Ticker24hrResponse2Inner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("priceChange") != null && !jsonObj.get("priceChange").isJsonNull())
+                && !jsonObj.get("priceChange").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceChange` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("priceChange").toString()));
+        }
+        if ((jsonObj.get("priceChangePercent") != null
+                        && !jsonObj.get("priceChangePercent").isJsonNull())
+                && !jsonObj.get("priceChangePercent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceChangePercent` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("priceChangePercent").toString()));
+        }
+        if ((jsonObj.get("weightedAvgPrice") != null
+                        && !jsonObj.get("weightedAvgPrice").isJsonNull())
+                && !jsonObj.get("weightedAvgPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `weightedAvgPrice` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("weightedAvgPrice").toString()));
+        }
+        if ((jsonObj.get("prevClosePrice") != null && !jsonObj.get("prevClosePrice").isJsonNull())
+                && !jsonObj.get("prevClosePrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `prevClosePrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("prevClosePrice").toString()));
+        }
+        if ((jsonObj.get("lastPrice") != null && !jsonObj.get("lastPrice").isJsonNull())
+                && !jsonObj.get("lastPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `lastPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("lastPrice").toString()));
+        }
+        if ((jsonObj.get("lastQty") != null && !jsonObj.get("lastQty").isJsonNull())
+                && !jsonObj.get("lastQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `lastQty` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("lastQty").toString()));
+        }
+        if ((jsonObj.get("bidPrice") != null && !jsonObj.get("bidPrice").isJsonNull())
+                && !jsonObj.get("bidPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `bidPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("bidPrice").toString()));
+        }
+        if ((jsonObj.get("bidQty") != null && !jsonObj.get("bidQty").isJsonNull())
+                && !jsonObj.get("bidQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `bidQty` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("bidQty").toString()));
+        }
+        if ((jsonObj.get("askPrice") != null && !jsonObj.get("askPrice").isJsonNull())
+                && !jsonObj.get("askPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `askPrice` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("askPrice").toString()));
+        }
+        if ((jsonObj.get("askQty") != null && !jsonObj.get("askQty").isJsonNull())
+                && !jsonObj.get("askQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `askQty` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("askQty").toString()));
         }
         if ((jsonObj.get("openPrice") != null && !jsonObj.get("openPrice").isJsonNull())
                 && !jsonObj.get("openPrice").isJsonPrimitive()) {
@@ -557,14 +930,6 @@ public class Ticker24hrResponse2Inner {
                             "Expected the field `lowPrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("lowPrice").toString()));
-        }
-        if ((jsonObj.get("lastPrice") != null && !jsonObj.get("lastPrice").isJsonNull())
-                && !jsonObj.get("lastPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `lastPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("lastPrice").toString()));
         }
         if ((jsonObj.get("volume") != null && !jsonObj.get("volume").isJsonNull())
                 && !jsonObj.get("volume").isJsonPrimitive()) {
@@ -601,7 +966,7 @@ public class Ticker24hrResponse2Inner {
                         @Override
                         public void write(JsonWriter out, Ticker24hrResponse2Inner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

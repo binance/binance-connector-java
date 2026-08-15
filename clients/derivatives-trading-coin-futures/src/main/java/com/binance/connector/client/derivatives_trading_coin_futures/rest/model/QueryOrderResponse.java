@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryOrderResponse {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -97,6 +95,12 @@ public class QueryOrderResponse {
     @SerializedName(SERIALIZED_NAME_SIDE)
     @jakarta.annotation.Nullable
     private String side;
+
+    public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
+
+    @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
+    @jakarta.annotation.Nullable
+    private String positionSide;
 
     public static final String SERIALIZED_NAME_STATUS = "status";
 
@@ -197,7 +201,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -216,7 +220,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -235,7 +239,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get cumBase
+     * Cumulative base asset amount.
      *
      * @return cumBase
      */
@@ -254,7 +258,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -273,7 +277,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -292,7 +296,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -311,7 +315,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -330,7 +334,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -349,7 +353,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -368,7 +372,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -381,13 +385,32 @@ public class QueryOrderResponse {
         this.side = side;
     }
 
+    public QueryOrderResponse positionSide(@jakarta.annotation.Nullable String positionSide) {
+        this.positionSide = positionSide;
+        return this;
+    }
+
+    /**
+     * Position side
+     *
+     * @return positionSide
+     */
+    @jakarta.annotation.Nullable
+    public String getPositionSide() {
+        return positionSide;
+    }
+
+    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
+        this.positionSide = positionSide;
+    }
+
     public QueryOrderResponse status(@jakarta.annotation.Nullable String status) {
         this.status = status;
         return this;
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -406,7 +429,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -425,7 +448,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -444,7 +467,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -463,7 +486,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -482,7 +505,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -501,7 +524,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -520,7 +543,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -539,7 +562,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -558,7 +581,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -577,7 +600,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -596,7 +619,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -615,7 +638,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -634,7 +657,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -654,7 +677,7 @@ public class QueryOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -687,6 +710,7 @@ public class QueryOrderResponse {
                 && Objects.equals(this.price, queryOrderResponse.price)
                 && Objects.equals(this.reduceOnly, queryOrderResponse.reduceOnly)
                 && Objects.equals(this.side, queryOrderResponse.side)
+                && Objects.equals(this.positionSide, queryOrderResponse.positionSide)
                 && Objects.equals(this.status, queryOrderResponse.status)
                 && Objects.equals(this.stopPrice, queryOrderResponse.stopPrice)
                 && Objects.equals(this.closePosition, queryOrderResponse.closePosition)
@@ -718,6 +742,7 @@ public class QueryOrderResponse {
                 price,
                 reduceOnly,
                 side,
+                positionSide,
                 status,
                 stopPrice,
                 closePosition,
@@ -749,6 +774,7 @@ public class QueryOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
+        sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
@@ -813,6 +839,10 @@ public class QueryOrderResponse {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
+        Object positionSideValue = getPositionSide();
+        String positionSideValueAsString = "";
+        positionSideValueAsString = positionSideValue.toString();
+        sb.append("positionSide=").append(urlEncode(positionSideValueAsString)).append("");
         Object statusValue = getStatus();
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
@@ -913,6 +943,7 @@ public class QueryOrderResponse {
         openapiFields.add("price");
         openapiFields.add("reduceOnly");
         openapiFields.add("side");
+        openapiFields.add("positionSide");
         openapiFields.add("status");
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
@@ -948,18 +979,6 @@ public class QueryOrderResponse {
                                 "The required field(s) %s in QueryOrderResponse is not found in the"
                                         + " empty JSON string",
                                 QueryOrderResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1026,6 +1045,14 @@ public class QueryOrderResponse {
                             "Expected the field `side` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
+        }
+        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
+                && !jsonObj.get("positionSide").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `positionSide` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("positionSide").toString()));
         }
         if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
                 && !jsonObj.get("status").isJsonPrimitive()) {
@@ -1134,7 +1161,7 @@ public class QueryOrderResponse {
                         @Override
                         public void write(JsonWriter out, QueryOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

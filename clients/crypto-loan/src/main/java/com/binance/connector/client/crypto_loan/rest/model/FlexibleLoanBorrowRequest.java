@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,21 +22,20 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** FlexibleLoanBorrowRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FlexibleLoanBorrowRequest {
     public static final String SERIALIZED_NAME_LOAN_COIN = "loanCoin";
 
@@ -44,11 +43,23 @@ public class FlexibleLoanBorrowRequest {
     @jakarta.annotation.Nonnull
     private String loanCoin;
 
+    public static final String SERIALIZED_NAME_LOAN_AMOUNT = "loanAmount";
+
+    @SerializedName(SERIALIZED_NAME_LOAN_AMOUNT)
+    @jakarta.annotation.Nullable
+    private Double loanAmount;
+
     public static final String SERIALIZED_NAME_COLLATERAL_COIN = "collateralCoin";
 
     @SerializedName(SERIALIZED_NAME_COLLATERAL_COIN)
     @jakarta.annotation.Nonnull
     private String collateralCoin;
+
+    public static final String SERIALIZED_NAME_COLLATERAL_AMOUNT = "collateralAmount";
+
+    @SerializedName(SERIALIZED_NAME_COLLATERAL_AMOUNT)
+    @jakarta.annotation.Nullable
+    private Double collateralAmount;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -78,6 +89,26 @@ public class FlexibleLoanBorrowRequest {
         this.loanCoin = loanCoin;
     }
 
+    public FlexibleLoanBorrowRequest loanAmount(@jakarta.annotation.Nullable Double loanAmount) {
+        this.loanAmount = loanAmount;
+        return this;
+    }
+
+    /**
+     * Mandatory when collateralAmount is empty
+     *
+     * @return loanAmount
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(@jakarta.annotation.Nullable Double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
     public FlexibleLoanBorrowRequest collateralCoin(
             @jakarta.annotation.Nonnull String collateralCoin) {
         this.collateralCoin = collateralCoin;
@@ -99,17 +130,39 @@ public class FlexibleLoanBorrowRequest {
         this.collateralCoin = collateralCoin;
     }
 
+    public FlexibleLoanBorrowRequest collateralAmount(
+            @jakarta.annotation.Nullable Double collateralAmount) {
+        this.collateralAmount = collateralAmount;
+        return this;
+    }
+
+    /**
+     * Mandatory when loanAmount is empty
+     *
+     * @return collateralAmount
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getCollateralAmount() {
+        return collateralAmount;
+    }
+
+    public void setCollateralAmount(@jakarta.annotation.Nullable Double collateralAmount) {
+        this.collateralAmount = collateralAmount;
+    }
+
     public FlexibleLoanBorrowRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -128,13 +181,15 @@ public class FlexibleLoanBorrowRequest {
         }
         FlexibleLoanBorrowRequest flexibleLoanBorrowRequest = (FlexibleLoanBorrowRequest) o;
         return Objects.equals(this.loanCoin, flexibleLoanBorrowRequest.loanCoin)
+                && Objects.equals(this.loanAmount, flexibleLoanBorrowRequest.loanAmount)
                 && Objects.equals(this.collateralCoin, flexibleLoanBorrowRequest.collateralCoin)
+                && Objects.equals(this.collateralAmount, flexibleLoanBorrowRequest.collateralAmount)
                 && Objects.equals(this.recvWindow, flexibleLoanBorrowRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(loanCoin, collateralCoin, recvWindow);
+        return Objects.hash(loanCoin, loanAmount, collateralCoin, collateralAmount, recvWindow);
     }
 
     @Override
@@ -142,7 +197,9 @@ public class FlexibleLoanBorrowRequest {
         StringBuilder sb = new StringBuilder();
         sb.append("class FlexibleLoanBorrowRequest {\n");
         sb.append("		loanCoin: ").append(toIndentedString(loanCoin)).append("\n");
+        sb.append("		loanAmount: ").append(toIndentedString(loanAmount)).append("\n");
         sb.append("		collateralCoin: ").append(toIndentedString(collateralCoin)).append("\n");
+        sb.append("		collateralAmount: ").append(toIndentedString(collateralAmount)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -155,10 +212,18 @@ public class FlexibleLoanBorrowRequest {
         String loanCoinValueAsString = "";
         loanCoinValueAsString = loanCoinValue.toString();
         sb.append("loanCoin=").append(urlEncode(loanCoinValueAsString)).append("");
+        Object loanAmountValue = getLoanAmount();
+        String loanAmountValueAsString = "";
+        loanAmountValueAsString = loanAmountValue.toString();
+        sb.append("loanAmount=").append(urlEncode(loanAmountValueAsString)).append("");
         Object collateralCoinValue = getCollateralCoin();
         String collateralCoinValueAsString = "";
         collateralCoinValueAsString = collateralCoinValue.toString();
         sb.append("collateralCoin=").append(urlEncode(collateralCoinValueAsString)).append("");
+        Object collateralAmountValue = getCollateralAmount();
+        String collateralAmountValueAsString = "";
+        collateralAmountValueAsString = collateralAmountValue.toString();
+        sb.append("collateralAmount=").append(urlEncode(collateralAmountValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -192,7 +257,9 @@ public class FlexibleLoanBorrowRequest {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("loanCoin");
+        openapiFields.add("loanAmount");
         openapiFields.add("collateralCoin");
+        openapiFields.add("collateralAmount");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -216,18 +283,6 @@ public class FlexibleLoanBorrowRequest {
                                 "The required field(s) %s in FlexibleLoanBorrowRequest is not found"
                                         + " in the empty JSON string",
                                 FlexibleLoanBorrowRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!FlexibleLoanBorrowRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `FlexibleLoanBorrowRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -274,7 +329,7 @@ public class FlexibleLoanBorrowRequest {
                         @Override
                         public void write(JsonWriter out, FlexibleLoanBorrowRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

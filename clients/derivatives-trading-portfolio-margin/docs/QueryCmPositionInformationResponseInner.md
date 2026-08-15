@@ -7,17 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**positionAmt** | **String** |  |  [optional] |
-|**entryPrice** | **String** |  |  [optional] |
-|**markPrice** | **String** |  |  [optional] |
-|**unRealizedProfit** | **String** |  |  [optional] |
-|**liquidationPrice** | **String** |  |  [optional] |
-|**leverage** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**maxQty** | **String** |  |  [optional] |
-|**notionalValue** | **String** |  |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**positionAmt** | **String** | position amount |  [optional] |
+|**entryPrice** | **String** | average entry price |  [optional] |
+|**markPrice** | **String** | Mark Price. |  [optional] |
+|**unRealizedProfit** | **String** | Un Realized Profit. |  [optional] |
+|**liquidationPrice** | **String** | Liquidation Price. |  [optional] |
+|**leverage** | **String** | current initial leverage |  [optional] |
+|**positionSide** | **String** | BOTH means that it is the position of One-way Mode |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
+|**maxQty** | **String** | maximum quantity of base asset |  [optional] |
+|**notionalValue** | **String** | Notional Value. |  [optional] |
 
 
 

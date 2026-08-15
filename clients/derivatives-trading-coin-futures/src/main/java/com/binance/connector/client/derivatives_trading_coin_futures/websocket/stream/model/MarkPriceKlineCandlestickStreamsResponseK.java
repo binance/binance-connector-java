@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** MarkPriceKlineCandlestickStreamsResponseK */
+/** Kline payload */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -150,7 +150,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Kline start time
      *
      * @return tLowerCase
      */
@@ -169,7 +169,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Kline close time
      *
      * @return T
      */
@@ -189,7 +189,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -209,7 +209,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Interval
      *
      * @return iLowerCase
      */
@@ -229,7 +229,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * ignore
      *
      * @return fLowerCase
      */
@@ -248,7 +248,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get L
+     * ignore
      *
      * @return L
      */
@@ -268,7 +268,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Open price
      *
      * @return oLowerCase
      */
@@ -288,7 +288,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Close price
      *
      * @return cLowerCase
      */
@@ -308,7 +308,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * High price
      *
      * @return hLowerCase
      */
@@ -328,7 +328,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Low price
      *
      * @return lLowerCase
      */
@@ -348,7 +348,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * ignore
      *
      * @return vLowerCase
      */
@@ -368,7 +368,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Number of basic data
      *
      * @return nLowerCase
      */
@@ -388,7 +388,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Is this kline closed?
      *
      * @return xLowerCase
      */
@@ -408,7 +408,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * ignore
      *
      * @return qLowerCase
      */
@@ -427,7 +427,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get V
+     * ignore
      *
      * @return V
      */
@@ -446,7 +446,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * ignore
      *
      * @return Q
      */
@@ -465,7 +465,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get B
+     * ignore
      *
      * @return B
      */
@@ -925,7 +925,7 @@ public class MarkPriceKlineCandlestickStreamsResponseK extends BaseDTO {
                         public void write(
                                 JsonWriter out, MarkPriceKlineCandlestickStreamsResponseK value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

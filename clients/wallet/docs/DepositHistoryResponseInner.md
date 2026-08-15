@@ -21,6 +21,7 @@
 |**confirmTimes** | **String** |  |  [optional] |
 |**unlockConfirm** | **Long** |  |  [optional] |
 |**walletType** | **Long** |  |  [optional] |
+|**travelRuleStatus** | **Long** |  |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,7 +15,6 @@ package com.binance.connector.client.derivatives_trading_usds_futures.websocket.
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -36,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** MarkPriceStreamForAllMarketResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarkPriceStreamForAllMarketResponse
         extends ArrayList<MarkPriceStreamForAllMarketResponseInner> {
     public MarkPriceStreamForAllMarketResponse() {}
@@ -159,7 +158,7 @@ public class MarkPriceStreamForAllMarketResponse
                         @Override
                         public void write(JsonWriter out, MarkPriceStreamForAllMarketResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OldTradesLookupResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OldTradesLookupResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -74,6 +72,12 @@ public class OldTradesLookupResponseInner {
     @jakarta.annotation.Nullable
     private Boolean isBuyerMaker;
 
+    public static final String SERIALIZED_NAME_IS_R_P_I_TRADE = "isRPITrade";
+
+    @SerializedName(SERIALIZED_NAME_IS_R_P_I_TRADE)
+    @jakarta.annotation.Nullable
+    private Boolean isRPITrade;
+
     public OldTradesLookupResponseInner() {}
 
     public OldTradesLookupResponseInner id(@jakarta.annotation.Nullable Long id) {
@@ -82,7 +86,7 @@ public class OldTradesLookupResponseInner {
     }
 
     /**
-     * Get id
+     * Id.
      *
      * @return id
      */
@@ -101,7 +105,7 @@ public class OldTradesLookupResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -120,7 +124,7 @@ public class OldTradesLookupResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -139,7 +143,7 @@ public class OldTradesLookupResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Quote Qty.
      *
      * @return quoteQty
      */
@@ -158,7 +162,7 @@ public class OldTradesLookupResponseInner {
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */
@@ -178,7 +182,7 @@ public class OldTradesLookupResponseInner {
     }
 
     /**
-     * Get isBuyerMaker
+     * Is Buyer Maker.
      *
      * @return isBuyerMaker
      */
@@ -189,6 +193,26 @@ public class OldTradesLookupResponseInner {
 
     public void setIsBuyerMaker(@jakarta.annotation.Nullable Boolean isBuyerMaker) {
         this.isBuyerMaker = isBuyerMaker;
+    }
+
+    public OldTradesLookupResponseInner isRPITrade(
+            @jakarta.annotation.Nullable Boolean isRPITrade) {
+        this.isRPITrade = isRPITrade;
+        return this;
+    }
+
+    /**
+     * Is RPITrade.
+     *
+     * @return isRPITrade
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getIsRPITrade() {
+        return isRPITrade;
+    }
+
+    public void setIsRPITrade(@jakarta.annotation.Nullable Boolean isRPITrade) {
+        this.isRPITrade = isRPITrade;
     }
 
     @Override
@@ -206,12 +230,13 @@ public class OldTradesLookupResponseInner {
                 && Objects.equals(this.qty, oldTradesLookupResponseInner.qty)
                 && Objects.equals(this.quoteQty, oldTradesLookupResponseInner.quoteQty)
                 && Objects.equals(this.time, oldTradesLookupResponseInner.time)
-                && Objects.equals(this.isBuyerMaker, oldTradesLookupResponseInner.isBuyerMaker);
+                && Objects.equals(this.isBuyerMaker, oldTradesLookupResponseInner.isBuyerMaker)
+                && Objects.equals(this.isRPITrade, oldTradesLookupResponseInner.isRPITrade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, qty, quoteQty, time, isBuyerMaker);
+        return Objects.hash(id, price, qty, quoteQty, time, isBuyerMaker, isRPITrade);
     }
 
     @Override
@@ -224,6 +249,7 @@ public class OldTradesLookupResponseInner {
         sb.append("		quoteQty: ").append(toIndentedString(quoteQty)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		isBuyerMaker: ").append(toIndentedString(isBuyerMaker)).append("\n");
+        sb.append("		isRPITrade: ").append(toIndentedString(isRPITrade)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -255,6 +281,10 @@ public class OldTradesLookupResponseInner {
         String isBuyerMakerValueAsString = "";
         isBuyerMakerValueAsString = isBuyerMakerValue.toString();
         sb.append("isBuyerMaker=").append(urlEncode(isBuyerMakerValueAsString)).append("");
+        Object isRPITradeValue = getIsRPITrade();
+        String isRPITradeValueAsString = "";
+        isRPITradeValueAsString = isRPITradeValue.toString();
+        sb.append("isRPITrade=").append(urlEncode(isRPITradeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -289,6 +319,7 @@ public class OldTradesLookupResponseInner {
         openapiFields.add("quoteQty");
         openapiFields.add("time");
         openapiFields.add("isBuyerMaker");
+        openapiFields.add("isRPITrade");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -310,18 +341,6 @@ public class OldTradesLookupResponseInner {
                                 "The required field(s) %s in OldTradesLookupResponseInner is not"
                                         + " found in the empty JSON string",
                                 OldTradesLookupResponseInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OldTradesLookupResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OldTradesLookupResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -369,7 +388,7 @@ public class OldTradesLookupResponseInner {
                         @Override
                         public void write(JsonWriter out, OldTradesLookupResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

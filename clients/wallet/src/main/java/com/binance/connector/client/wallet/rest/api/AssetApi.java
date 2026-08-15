@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,20 +20,29 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.wallet.rest.model.AccountType;
 import com.binance.connector.client.wallet.rest.model.AssetDetailResponse;
 import com.binance.connector.client.wallet.rest.model.AssetDividendRecordResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsResponse;
 import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
 import com.binance.connector.client.wallet.rest.model.DustlogResponse;
+import com.binance.connector.client.wallet.rest.model.FromSymbol;
 import com.binance.connector.client.wallet.rest.model.FundingWalletRequest;
 import com.binance.connector.client.wallet.rest.model.FundingWalletResponse;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbRequest;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbResponse;
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
+import com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponse;
+import com.binance.connector.client.wallet.rest.model.OrderType;
 import com.binance.connector.client.wallet.rest.model.QueryUserDelegationHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserUniversalTransferHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserWalletBalanceResponse;
+import com.binance.connector.client.wallet.rest.model.ToSymbol;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestRequest;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse;
 import com.binance.connector.client.wallet.rest.model.TradeFeeResponse;
@@ -50,8 +59,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -64,7 +73,7 @@ public class AssetApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/1.1.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -104,6 +113,7 @@ public class AssetApi {
     /**
      * Build call for assetDetail
      *
+     * @param asset (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -114,10 +124,11 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Asset Detail </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Asset-Detail">Asset Detail
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-detail">Asset
+     *     Detail (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call assetDetailCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call assetDetailCall(String asset, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -142,6 +153,10 @@ public class AssetApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (asset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("asset", asset));
+        }
+
         if (recvWindow != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
         }
@@ -155,15 +170,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -177,11 +188,12 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call assetDetailValidateBeforeCall(Long recvWindow) throws ApiException {
+    private okhttp3.Call assetDetailValidateBeforeCall(String asset, Long recvWindow)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -191,13 +203,13 @@ public class AssetApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("assetDetail", Long.class);
+            Object[] parameterValues = {asset, recvWindow};
+            Method method = this.getClass().getMethod("assetDetail", String.class, Long.class);
             Set<ConstraintViolation<AssetApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return assetDetailCall(recvWindow);
+                return assetDetailCall(asset, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -211,10 +223,11 @@ public class AssetApi {
     }
 
     /**
-     * Asset Detail (USER_DATA) Fetch details of assets supported on Binance. * Please get network
-     * and other deposit or withdraw details from &#x60;&#x60;GET
-     * /sapi/v1/capital/config/getall&#x60;&#x60;. Weight: 1
+     * Asset Detail (USER_DATA) Fetch details of assets supported on Binance. Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - Please get network and other deposit or withdraw details from
+     * &#x60;GET /sapi/v1/capital/config/getall&#x60;.
      *
+     * @param asset (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AssetDetailResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -226,11 +239,13 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Asset Detail </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Asset-Detail">Asset Detail
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-detail">Asset
+     *     Detail (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AssetDetailResponse> assetDetail(Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall = assetDetailValidateBeforeCall(recvWindow);
+    public ApiResponse<AssetDetailResponse> assetDetail(String asset, @Max(60000L) Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall = assetDetailValidateBeforeCall(asset, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AssetDetailResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -242,7 +257,7 @@ public class AssetApi {
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -253,7 +268,8 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Asset Dividend Record </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/assets-divided-record">Asset
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-dividend-record">Asset
      *     Dividend Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call assetDividendRecordCall(
@@ -312,15 +328,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -334,7 +346,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -378,13 +390,14 @@ public class AssetApi {
     }
 
     /**
-     * Asset Dividend Record (USER_DATA) Query asset dividend record. * There cannot be more than
-     * 180 days between parameter &#x60;startTime&#x60; and &#x60;endTime&#x60;. Weight: 10
+     * Asset Dividend Record (USER_DATA) Query asset dividend record. Weight(IP): 10 Security Type:
+     * USER_DATA Notes: - There cannot be more than 180 days between parameter &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60;.
      *
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AssetDividendRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -396,16 +409,331 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Asset Dividend Record </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/assets-divided-record">Asset
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-dividend-record">Asset
      *     Dividend Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<AssetDividendRecordResponse> assetDividendRecord(
-            String asset, Long startTime, Long endTime, Long limit, Long recvWindow)
+            String asset,
+            Long startTime,
+            Long endTime,
+            @Max(500L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 assetDividendRecordValidateBeforeCall(asset, startTime, endTime, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<AssetDividendRecordResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for dustConvert
+     *
+     * @param dustConvertRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convert </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convert">Dust
+     *     Convert (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call dustConvertCall(DustConvertRequest dustConvertRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/asset/dust-convert/convert";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (dustConvertRequest.getAsset() != null) {
+            localVarFormParams.put("asset", dustConvertRequest.getAsset());
+        }
+
+        if (dustConvertRequest.getAccountType() != null) {
+            localVarFormParams.put("accountType", dustConvertRequest.getAccountType());
+        }
+
+        if (dustConvertRequest.getClientId() != null) {
+            localVarFormParams.put("clientId", dustConvertRequest.getClientId());
+        }
+
+        if (dustConvertRequest.getTargetAsset() != null) {
+            localVarFormParams.put("targetAsset", dustConvertRequest.getTargetAsset());
+        }
+
+        if (dustConvertRequest.getThirdPartyClientId() != null) {
+            localVarFormParams.put(
+                    "thirdPartyClientId", dustConvertRequest.getThirdPartyClientId());
+        }
+
+        if (dustConvertRequest.getDustQuotaAssetToTargetAssetPrice() != null) {
+            localVarFormParams.put(
+                    "dustQuotaAssetToTargetAssetPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(dustConvertRequest.getDustQuotaAssetToTargetAssetPrice()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call dustConvertValidateBeforeCall(DustConvertRequest dustConvertRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {dustConvertRequest};
+            Method method = this.getClass().getMethod("dustConvert", DustConvertRequest.class);
+            Set<ConstraintViolation<AssetApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return dustConvertCall(dustConvertRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Dust Convert (USER_DATA) Convert dust assets Weight(UID): 10 Security Type: USER_DATA
+     *
+     * @param dustConvertRequest (required)
+     * @return ApiResponse&lt;DustConvertResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convert </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convert">Dust
+     *     Convert (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DustConvertResponse> dustConvert(
+            @Valid @NotNull DustConvertRequest dustConvertRequest) throws ApiException {
+        okhttp3.Call localVarCall = dustConvertValidateBeforeCall(dustConvertRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<DustConvertResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for dustConvertibleAssets
+     *
+     * @param dustConvertibleAssetsRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convertible Assets </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convertible-assets">Dust
+     *     Convertible Assets (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call dustConvertibleAssetsCall(
+            DustConvertibleAssetsRequest dustConvertibleAssetsRequest) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/asset/dust-convert/query-convertible-assets";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (dustConvertibleAssetsRequest.getAccountType() != null) {
+            localVarFormParams.put("accountType", dustConvertibleAssetsRequest.getAccountType());
+        }
+
+        if (dustConvertibleAssetsRequest.getTargetAsset() != null) {
+            localVarFormParams.put("targetAsset", dustConvertibleAssetsRequest.getTargetAsset());
+        }
+
+        if (dustConvertibleAssetsRequest.getDustQuotaAssetToTargetAssetPrice() != null) {
+            localVarFormParams.put(
+                    "dustQuotaAssetToTargetAssetPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(
+                                    dustConvertibleAssetsRequest
+                                            .getDustQuotaAssetToTargetAssetPrice()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call dustConvertibleAssetsValidateBeforeCall(
+            DustConvertibleAssetsRequest dustConvertibleAssetsRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {dustConvertibleAssetsRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod("dustConvertibleAssets", DustConvertibleAssetsRequest.class);
+            Set<ConstraintViolation<AssetApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return dustConvertibleAssetsCall(dustConvertibleAssetsRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Dust Convertible Assets (USER_DATA) Query dust convertible assets Weight(IP): 1 Security
+     * Type: USER_DATA
+     *
+     * @param dustConvertibleAssetsRequest (required)
+     * @return ApiResponse&lt;DustConvertibleAssetsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Dust Convertible Assets </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convertible-assets">Dust
+     *     Convertible Assets (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<DustConvertibleAssetsResponse> dustConvertibleAssets(
+            @Valid @NotNull DustConvertibleAssetsRequest dustConvertibleAssetsRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                dustConvertibleAssetsValidateBeforeCall(dustConvertibleAssetsRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<DustConvertibleAssetsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -422,8 +750,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Dust Transfer </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Transfer">Dust Transfer
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-transfer">Dust
+     *     Transfer (USER_DATA) Documentation</a>
      */
     private okhttp3.Call dustTransferCall(DustTransferRequest dustTransferRequest)
             throws ApiException {
@@ -472,15 +801,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -494,7 +819,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -529,9 +854,9 @@ public class AssetApi {
     }
 
     /**
-     * Dust Transfer (USER_DATA) Convert dust assets to BNB. * You need to open&#x60;Enable Spot
-     * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight:
-     * 10
+     * Dust Transfer (USER_DATA) Convert dust assets to BNB. Weight(UID): 10 Security Type:
+     * USER_DATA Notes: - You need to open&#x60;Enable Spot &amp; Margin Trading&#x60; permission
+     * for the API Key which requests this endpoint.
      *
      * @param dustTransferRequest (required)
      * @return ApiResponse&lt;DustTransferResponse&gt;
@@ -544,8 +869,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Dust Transfer </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Transfer">Dust Transfer
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-transfer">Dust
+     *     Transfer (USER_DATA) Documentation</a>
      */
     public ApiResponse<DustTransferResponse> dustTransfer(
             @Valid @NotNull DustTransferRequest dustTransferRequest) throws ApiException {
@@ -558,6 +884,7 @@ public class AssetApi {
     /**
      * Build call for dustlog
      *
+     * @param accountType (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -570,10 +897,12 @@ public class AssetApi {
      * <tr><td> 200 </td><td> DustLog </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/dust-log">DustLog(USER_DATA)
-     *     Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dustlog">DustLog
+     *     (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call dustlogCall(Long startTime, Long endTime, Long recvWindow)
+    private okhttp3.Call dustlogCall(
+            AccountType accountType, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -599,6 +928,11 @@ public class AssetApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (accountType != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("accountType", accountType));
+        }
+
         if (startTime != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
         }
@@ -620,15 +954,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -642,11 +972,12 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call dustlogValidateBeforeCall(Long startTime, Long endTime, Long recvWindow)
+    private okhttp3.Call dustlogValidateBeforeCall(
+            AccountType accountType, Long startTime, Long endTime, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -657,14 +988,20 @@ public class AssetApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {startTime, endTime, recvWindow};
+            Object[] parameterValues = {accountType, startTime, endTime, recvWindow};
             Method method =
-                    this.getClass().getMethod("dustlog", Long.class, Long.class, Long.class);
+                    this.getClass()
+                            .getMethod(
+                                    "dustlog",
+                                    AccountType.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
             Set<ConstraintViolation<AssetApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return dustlogCall(startTime, endTime, recvWindow);
+                return dustlogCall(accountType, startTime, endTime, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -678,9 +1015,10 @@ public class AssetApi {
     }
 
     /**
-     * DustLog(USER_DATA) Dustlog * Only return last 100 records * Only return records after
-     * 2020/12/01 Weight: 1
+     * DustLog (USER_DATA) Dustlog Weight(IP): 1 Security Type: USER_DATA Notes: - Only return last
+     * 100 records - Only return records after 2020/12/01
      *
+     * @param accountType (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -694,12 +1032,15 @@ public class AssetApi {
      * <tr><td> 200 </td><td> DustLog </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/dust-log">DustLog(USER_DATA)
-     *     Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dustlog">DustLog
+     *     (USER_DATA) Documentation</a>
      */
-    public ApiResponse<DustlogResponse> dustlog(Long startTime, Long endTime, Long recvWindow)
+    public ApiResponse<DustlogResponse> dustlog(
+            AccountType accountType, Long startTime, Long endTime, @Max(60000L) Long recvWindow)
             throws ApiException {
-        okhttp3.Call localVarCall = dustlogValidateBeforeCall(startTime, endTime, recvWindow);
+        okhttp3.Call localVarCall =
+                dustlogValidateBeforeCall(accountType, startTime, endTime, recvWindow);
         java.lang.reflect.Type localVarReturnType = new TypeToken<DustlogResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -707,7 +1048,7 @@ public class AssetApi {
     /**
      * Build call for fundingWallet
      *
-     * @param fundingWalletRequest (required)
+     * @param fundingWalletRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -717,8 +1058,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Funding Wallet </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Funding-Wallet">Funding Wallet
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#funding-wallet">Funding
+     *     Wallet (USER_DATA) Documentation</a>
      */
     private okhttp3.Call fundingWalletCall(FundingWalletRequest fundingWalletRequest)
             throws ApiException {
@@ -767,15 +1109,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -789,7 +1127,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -824,10 +1162,11 @@ public class AssetApi {
     }
 
     /**
-     * Funding Wallet (USER_DATA) Query Funding Wallet * Currently supports querying the following
-     * business assets：Binance Pay, Binance Card, Binance Gift Card, Stock Token Weight: 1
+     * Funding Wallet (USER_DATA) Query Funding Wallet Weight(IP): 1 Security Type: USER_DATA Notes:
+     * - Currently supports querying the following business assets：Binance Pay, Binance Card,
+     * Binance Gift Card, Stock Token
      *
-     * @param fundingWalletRequest (required)
+     * @param fundingWalletRequest (optional)
      * @return ApiResponse&lt;FundingWalletResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -838,11 +1177,12 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Funding Wallet </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Funding-Wallet">Funding Wallet
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#funding-wallet">Funding
+     *     Wallet (USER_DATA) Documentation</a>
      */
     public ApiResponse<FundingWalletResponse> fundingWallet(
-            @Valid @NotNull FundingWalletRequest fundingWalletRequest) throws ApiException {
+            @Valid FundingWalletRequest fundingWalletRequest) throws ApiException {
         okhttp3.Call localVarCall = fundingWalletValidateBeforeCall(fundingWalletRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<FundingWalletResponse>() {}.getType();
@@ -852,7 +1192,7 @@ public class AssetApi {
     /**
      * Build call for getAssetsThatCanBeConvertedIntoBnb
      *
-     * @param getAssetsThatCanBeConvertedIntoBnbRequest (required)
+     * @param getAssetsThatCanBeConvertedIntoBnbRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -862,7 +1202,8 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Get Assets That Can Be Converted Into BNB </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/assets-can-convert-bnb">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-assets-that-can-be-converted-into-bnb">Get
      *     Assets That Can Be Converted Into BNB (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getAssetsThatCanBeConvertedIntoBnbCall(
@@ -911,15 +1252,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -933,7 +1270,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -975,9 +1312,9 @@ public class AssetApi {
 
     /**
      * Get Assets That Can Be Converted Into BNB (USER_DATA) Get Assets That Can Be Converted Into
-     * BNB Weight: 1
+     * BNB Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param getAssetsThatCanBeConvertedIntoBnbRequest (required)
+     * @param getAssetsThatCanBeConvertedIntoBnbRequest (optional)
      * @return ApiResponse&lt;GetAssetsThatCanBeConvertedIntoBnbResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -988,12 +1325,13 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Get Assets That Can Be Converted Into BNB </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/assets-can-convert-bnb">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-assets-that-can-be-converted-into-bnb">Get
      *     Assets That Can Be Converted Into BNB (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetAssetsThatCanBeConvertedIntoBnbResponse>
             getAssetsThatCanBeConvertedIntoBnb(
-                    @Valid @NotNull
+                    @Valid
                             GetAssetsThatCanBeConvertedIntoBnbRequest
                                     getAssetsThatCanBeConvertedIntoBnbRequest)
                     throws ApiException {
@@ -1008,13 +1346,13 @@ public class AssetApi {
     /**
      * Build call for getCloudMiningPaymentAndRefundHistory
      *
-     * @param startTime (required)
-     * @param endTime (required)
+     * @param startTime inclusive, unit: ms (required)
+     * @param endTime exclusive, unit: ms (required)
      * @param tranId The transaction id (optional)
      * @param clientTranId The unique flag (optional)
-     * @param asset (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param asset If it is blank, we will query all assets (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1025,7 +1363,7 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/cloud-mining-payment-and-refund-history">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-cloud-mining-payment-and-refund-history">Get
      *     Cloud-Mining payment and refund history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getCloudMiningPaymentAndRefundHistoryCall(
@@ -1099,15 +1437,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1121,7 +1455,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1177,17 +1511,17 @@ public class AssetApi {
 
     /**
      * Get Cloud-Mining payment and refund history (USER_DATA) The query of Cloud-Mining payment and
-     * refund history * Just return the SUCCESS records of payment and refund. * For response, type
-     * &#x3D; 248 means payment, type &#x3D; 249 means refund, status &#x3D;S means SUCCESS. Weight:
-     * 600
+     * refund history Weight(UID): 600 Security Type: USER_DATA Notes: - Just return the SUCCESS
+     * records of payment and refund. - For response, type &#x3D; 248 means payment, type &#x3D; 249
+     * means refund, status &#x3D;S means SUCCESS.
      *
-     * @param startTime (required)
-     * @param endTime (required)
+     * @param startTime inclusive, unit: ms (required)
+     * @param endTime exclusive, unit: ms (required)
      * @param tranId The transaction id (optional)
      * @param clientTranId The unique flag (optional)
-     * @param asset (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param asset If it is blank, we will query all assets (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @return ApiResponse&lt;GetCloudMiningPaymentAndRefundHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1199,7 +1533,7 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/cloud-mining-payment-and-refund-history">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-cloud-mining-payment-and-refund-history">Get
      *     Cloud-Mining payment and refund history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCloudMiningPaymentAndRefundHistoryResponse>
@@ -1209,8 +1543,8 @@ public class AssetApi {
                     Long tranId,
                     String clientTranId,
                     String asset,
-                    Long current,
-                    Long size)
+                    @Min(1L) Long current,
+                    @Max(100L) Long size)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getCloudMiningPaymentAndRefundHistoryValidateBeforeCall(
@@ -1232,8 +1566,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Get Open Symbol List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/open-symbol-list">Get Open
-     *     Symbol List (MARKET_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-open-symbol-list">Get
+     *     Open Symbol List (MARKET_DATA) Documentation</a>
      */
     private okhttp3.Call getOpenSymbolListCall() throws ApiException {
         String basePath = null;
@@ -1269,11 +1604,10 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(Arrays.asList(new String[] {}));
+        Set<String> localVarAuthNames = new HashSet<>();
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1287,7 +1621,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1322,7 +1656,7 @@ public class AssetApi {
 
     /**
      * Get Open Symbol List (MARKET_DATA) Get the list of symbols that are scheduled to be opened
-     * for trading in the market. Weight: 100
+     * for trading in the market. Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;GetOpenSymbolListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1334,8 +1668,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Get Open Symbol List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/open-symbol-list">Get Open
-     *     Symbol List (MARKET_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-open-symbol-list">Get
+     *     Open Symbol List (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetOpenSymbolListResponse> getOpenSymbolList() throws ApiException {
         okhttp3.Call localVarCall = getOpenSymbolListValidateBeforeCall();
@@ -1345,15 +1680,150 @@ public class AssetApi {
     }
 
     /**
+     * Build call for getSpotAssetTags
+     *
+     * @param tag Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is
+     *     returned if it matches any one tag); leading/trailing whitespace around each tag is
+     *     ignored. Returns all eligible assets when omitted. (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Spot Asset Tags </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags">Get
+     *     Spot Asset Tags (MARKET_DATA) Documentation</a>
+     */
+    private okhttp3.Call getSpotAssetTagsCall(String tag) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/spot/asset/tags";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (tag != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSpotAssetTagsValidateBeforeCall(String tag) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {tag};
+            Method method = this.getClass().getMethod("getSpotAssetTags", String.class);
+            Set<ConstraintViolation<AssetApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getSpotAssetTagsCall(tag);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get Spot Asset Tags (MARKET_DATA) Get the tags configured for spot-tradable assets.
+     * Weight(IP): 100 Security Type: MARKET_DATA
+     *
+     * @param tag Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is
+     *     returned if it matches any one tag); leading/trailing whitespace around each tag is
+     *     ignored. Returns all eligible assets when omitted. (optional)
+     * @return ApiResponse&lt;GetSpotAssetTagsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Spot Asset Tags </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags">Get
+     *     Spot Asset Tags (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetSpotAssetTagsResponse> getSpotAssetTags(String tag) throws ApiException {
+        okhttp3.Call localVarCall = getSpotAssetTagsValidateBeforeCall(tag);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetSpotAssetTagsResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryUserDelegationHistory
      *
      * @param email (required)
      * @param startTime (required)
      * @param endTime (required)
-     * @param type Delegate/Undelegate (optional)
+     * @param type (optional)
      * @param asset (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1364,14 +1834,15 @@ public class AssetApi {
      * <tr><td> 200 </td><td> User Delegation History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/query-user-delegation">Query
-     *     User Delegation History(For Master Account)(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-delegation-history">Query
+     *     User Delegation History(For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryUserDelegationHistoryCall(
             String email,
             Long startTime,
             Long endTime,
-            String type,
+            OrderType type,
             String asset,
             Long current,
             Long size,
@@ -1442,15 +1913,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1464,7 +1931,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1472,7 +1939,7 @@ public class AssetApi {
             String email,
             Long startTime,
             Long endTime,
-            String type,
+            OrderType type,
             String asset,
             Long current,
             Long size,
@@ -1497,7 +1964,7 @@ public class AssetApi {
                                     String.class,
                                     Long.class,
                                     Long.class,
-                                    String.class,
+                                    OrderType.class,
                                     String.class,
                                     Long.class,
                                     Long.class,
@@ -1521,17 +1988,16 @@ public class AssetApi {
     }
 
     /**
-     * Query User Delegation History(For Master Account)(USER_DATA) Query User Delegation History *
-     * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests
-     * this endpoint Weight: 60
+     * Query User Delegation History(For Master Account) (USER_DATA) Query User Delegation History
+     * Weight(IP): 60 Security Type: USER_DATA
      *
      * @param email (required)
      * @param startTime (required)
      * @param endTime (required)
-     * @param type Delegate/Undelegate (optional)
+     * @param type (optional)
      * @param asset (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUserDelegationHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1543,18 +2009,19 @@ public class AssetApi {
      * <tr><td> 200 </td><td> User Delegation History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/query-user-delegation">Query
-     *     User Delegation History(For Master Account)(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-delegation-history">Query
+     *     User Delegation History(For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserDelegationHistoryResponse> queryUserDelegationHistory(
             @NotNull String email,
             @NotNull Long startTime,
             @NotNull Long endTime,
-            String type,
+            OrderType type,
             String asset,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryUserDelegationHistoryValidateBeforeCall(
@@ -1570,8 +2037,8 @@ public class AssetApi {
      * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @param fromSymbol (optional)
      * @param toSymbol (optional)
      * @param recvWindow (optional)
@@ -1585,8 +2052,8 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/query-user-universal-transfer">Query
-     *     User Universal Transfer History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-universal-transfer-history">Query
+     *     User Universal Transfer History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryUserUniversalTransferHistoryCall(
             String type,
@@ -1594,8 +2061,8 @@ public class AssetApi {
             Long endTime,
             Long current,
             Long size,
-            String fromSymbol,
-            String toSymbol,
+            FromSymbol fromSymbol,
+            ToSymbol toSymbol,
             Long recvWindow)
             throws ApiException {
         String basePath = null;
@@ -1663,15 +2130,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1685,7 +2148,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1695,8 +2158,8 @@ public class AssetApi {
             Long endTime,
             Long current,
             Long size,
-            String fromSymbol,
-            String toSymbol,
+            FromSymbol fromSymbol,
+            ToSymbol toSymbol,
             Long recvWindow)
             throws ApiException {
         try {
@@ -1720,8 +2183,8 @@ public class AssetApi {
                                     Long.class,
                                     Long.class,
                                     Long.class,
-                                    String.class,
-                                    String.class,
+                                    FromSymbol.class,
+                                    ToSymbol.class,
                                     Long.class);
             Set<ConstraintViolation<AssetApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
@@ -1742,18 +2205,18 @@ public class AssetApi {
     }
 
     /**
-     * Query User Universal Transfer History(USER_DATA) Query User Universal Transfer History *
-     * &#x60;fromSymbol&#x60; must be sent when type are ISOLATEDMARGIN_MARGIN and
-     * ISOLATEDMARGIN_ISOLATEDMARGIN * &#x60;toSymbol&#x60; must be sent when type are
-     * MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN * Support query within the last 6
-     * months only * If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent, return records of the
-     * last 7 days by default Weight: 1
+     * Query User Universal Transfer History (USER_DATA) Query User Universal Transfer History
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - &#x60;fromSymbol&#x60; must be sent when type
+     * are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN - &#x60;toSymbol&#x60; must be
+     * sent when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN - Support query
+     * within the last 6 months only - If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent,
+     * return records of the last 7 days by default
      *
      * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @param fromSymbol (optional)
      * @param toSymbol (optional)
      * @param recvWindow (optional)
@@ -1768,18 +2231,18 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/query-user-universal-transfer">Query
-     *     User Universal Transfer History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-universal-transfer-history">Query
+     *     User Universal Transfer History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserUniversalTransferHistoryResponse> queryUserUniversalTransferHistory(
             @NotNull String type,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            String fromSymbol,
-            String toSymbol,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            FromSymbol fromSymbol,
+            ToSymbol toSymbol,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryUserUniversalTransferHistoryValidateBeforeCall(
@@ -1792,8 +2255,7 @@ public class AssetApi {
     /**
      * Build call for queryUserWalletBalance
      *
-     * @param quoteAsset &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc.
-     *     default &#x60;BTC&#x60; (optional)
+     * @param quoteAsset (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1805,7 +2267,7 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/Query-User-Wallet-Balance">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-wallet-balance">Query
      *     User Wallet Balance (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryUserWalletBalanceCall(String quoteAsset, Long recvWindow)
@@ -1851,15 +2313,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1873,7 +2331,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1909,11 +2367,10 @@ public class AssetApi {
     }
 
     /**
-     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance * You need to open Permits
-     * Universal Transfer permission for the API Key which requests this endpoint. Weight: 60
+     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance Weight(IP): 60 Security Type:
+     * USER_DATA
      *
-     * @param quoteAsset &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc.
-     *     default &#x60;BTC&#x60; (optional)
+     * @param quoteAsset (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUserWalletBalanceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1926,11 +2383,11 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/Query-User-Wallet-Balance">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-wallet-balance">Query
      *     User Wallet Balance (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserWalletBalanceResponse> queryUserWalletBalance(
-            String quoteAsset, Long recvWindow) throws ApiException {
+            String quoteAsset, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryUserWalletBalanceValidateBeforeCall(quoteAsset, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1941,7 +2398,7 @@ public class AssetApi {
     /**
      * Build call for toggleBnbBurnOnSpotTradeAndMarginInterest
      *
-     * @param toggleBnbBurnOnSpotTradeAndMarginInterestRequest (required)
+     * @param toggleBnbBurnOnSpotTradeAndMarginInterestRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1952,7 +2409,7 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest">Toggle
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#toggle-bnb-burn-on-spot-trade-and-margin-interest">Toggle
      *     BNB Burn On Spot Trade And Margin Interest (USER_DATA) Documentation</a>
      */
     private okhttp3.Call toggleBnbBurnOnSpotTradeAndMarginInterestCall(
@@ -2009,15 +2466,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2031,7 +2484,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2074,10 +2527,10 @@ public class AssetApi {
 
     /**
      * Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA) Toggle BNB Burn On Spot Trade
-     * And Margin Interest * \&quot;spotBNBBurn\&quot; and \&quot;interestBNBBurn\&quot; should be
-     * sent at least one. Weight: 1(IP)
+     * And Margin Interest Weight(IP): 1 Security Type: USER_DATA Notes: - \&quot;spotBNBBurn\&quot;
+     * and \&quot;interestBNBBurn\&quot; should be sent at least one.
      *
-     * @param toggleBnbBurnOnSpotTradeAndMarginInterestRequest (required)
+     * @param toggleBnbBurnOnSpotTradeAndMarginInterestRequest (optional)
      * @return ApiResponse&lt;ToggleBnbBurnOnSpotTradeAndMarginInterestResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2089,12 +2542,12 @@ public class AssetApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest">Toggle
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#toggle-bnb-burn-on-spot-trade-and-margin-interest">Toggle
      *     BNB Burn On Spot Trade And Margin Interest (USER_DATA) Documentation</a>
      */
     public ApiResponse<ToggleBnbBurnOnSpotTradeAndMarginInterestResponse>
             toggleBnbBurnOnSpotTradeAndMarginInterest(
-                    @Valid @NotNull
+                    @Valid
                             ToggleBnbBurnOnSpotTradeAndMarginInterestRequest
                                     toggleBnbBurnOnSpotTradeAndMarginInterestRequest)
                     throws ApiException {
@@ -2120,8 +2573,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Trade Fee </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Trade-Fee">Trade Fee
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#trade-fee">Trade
+     *     Fee (USER_DATA) Documentation</a>
      */
     private okhttp3.Call tradeFeeCall(String symbol, Long recvWindow) throws ApiException {
         String basePath = null;
@@ -2165,15 +2619,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2187,7 +2637,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2222,7 +2672,7 @@ public class AssetApi {
     }
 
     /**
-     * Trade Fee (USER_DATA) Fetch trade fee Weight: 1
+     * Trade Fee (USER_DATA) Fetch trade fee Weight(IP): 1 Security Type: USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -2236,10 +2686,11 @@ public class AssetApi {
      * <tr><td> 200 </td><td> Trade Fee </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Trade-Fee">Trade Fee
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#trade-fee">Trade
+     *     Fee (USER_DATA) Documentation</a>
      */
-    public ApiResponse<TradeFeeResponse> tradeFee(String symbol, Long recvWindow)
+    public ApiResponse<TradeFeeResponse> tradeFee(String symbol, @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = tradeFeeValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType = new TypeToken<TradeFeeResponse>() {}.getType();
@@ -2249,7 +2700,7 @@ public class AssetApi {
     /**
      * Build call for userAsset
      *
-     * @param userAssetRequest (required)
+     * @param userAssetRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2259,8 +2710,9 @@ public class AssetApi {
      * <tr><td> 200 </td><td> User Asset </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/user-assets">User Asset
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-asset">User
+     *     Asset (USER_DATA) Documentation</a>
      */
     private okhttp3.Call userAssetCall(UserAssetRequest userAssetRequest) throws ApiException {
         String basePath = null;
@@ -2308,15 +2760,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2330,7 +2778,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2365,11 +2813,11 @@ public class AssetApi {
     }
 
     /**
-     * User Asset (USER_DATA) Get user assets, just for positive data. * If asset is set, then
-     * return this asset, otherwise return all assets positive. * If needBtcValuation is set, then
-     * return btcValudation. Weight: 5
+     * User Asset (USER_DATA) Get user assets, just for positive data. Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - If asset is set, then return this asset, otherwise return all assets
+     * positive. - If needBtcValuation is set, then return btcValudation.
      *
-     * @param userAssetRequest (required)
+     * @param userAssetRequest (optional)
      * @return ApiResponse&lt;UserAssetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2380,11 +2828,12 @@ public class AssetApi {
      * <tr><td> 200 </td><td> User Asset </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/user-assets">User Asset
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-asset">User
+     *     Asset (USER_DATA) Documentation</a>
      */
-    public ApiResponse<UserAssetResponse> userAsset(
-            @Valid @NotNull UserAssetRequest userAssetRequest) throws ApiException {
+    public ApiResponse<UserAssetResponse> userAsset(@Valid UserAssetRequest userAssetRequest)
+            throws ApiException {
         okhttp3.Call localVarCall = userAssetValidateBeforeCall(userAssetRequest);
         java.lang.reflect.Type localVarReturnType = new TypeToken<UserAssetResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2403,7 +2852,8 @@ public class AssetApi {
      * <tr><td> 200 </td><td> User Universal Transfer </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/User-Universal-Transfer">User
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-universal-transfer">User
      *     Universal Transfer (USER_DATA) Documentation</a>
      */
     private okhttp3.Call userUniversalTransferCall(
@@ -2468,15 +2918,11 @@ public class AssetApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2490,7 +2936,7 @@ public class AssetApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2527,33 +2973,32 @@ public class AssetApi {
     }
 
     /**
-     * User Universal Transfer (USER_DATA) user universal transfer * &#x60;fromSymbol&#x60; must be
-     * sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN *
-     * &#x60;toSymbol&#x60; must be sent when type are MARGIN_ISOLATEDMARGIN and
-     * ISOLATEDMARGIN_ISOLATEDMARGIN * ENUM of transfer types: * MAIN_UMFUTURE Spot account transfer
-     * to USDⓈ-M Futures account * MAIN_CMFUTURE Spot account transfer to COIN-M Futures account *
-     * MAIN_MARGIN Spot account transfer to Margin（cross）account * UMFUTURE_MAIN USDⓈ-M Futures
-     * account transfer to Spot account * UMFUTURE_MARGIN USDⓈ-M Futures account transfer to
-     * Margin（cross）account * CMFUTURE_MAIN COIN-M Futures account transfer to Spot account *
-     * CMFUTURE_MARGIN COIN-M Futures account transfer to Margin(cross) account * MARGIN_MAIN
-     * Margin（cross）account transfer to Spot account * MARGIN_UMFUTURE Margin（cross）account transfer
-     * to USDⓈ-M Futures * MARGIN_CMFUTURE Margin（cross）account transfer to COIN-M Futures *
-     * ISOLATEDMARGIN_MARGIN Isolated margin account transfer to Margin(cross) account *
-     * MARGIN_ISOLATEDMARGIN Margin(cross) account transfer to Isolated margin account *
-     * ISOLATEDMARGIN_ISOLATEDMARGIN Isolated margin account transfer to Isolated margin account *
-     * MAIN_FUNDING Spot account transfer to Funding account * FUNDING_MAIN Funding account transfer
-     * to Spot account * FUNDING_UMFUTURE Funding account transfer to UMFUTURE account *
-     * UMFUTURE_FUNDING UMFUTURE account transfer to Funding account * MARGIN_FUNDING MARGIN account
-     * transfer to Funding account * FUNDING_MARGIN Funding account transfer to Margin account *
-     * FUNDING_CMFUTURE Funding account transfer to CMFUTURE account * CMFUTURE_FUNDING CMFUTURE
-     * account transfer to Funding account * MAIN_OPTION Spot account transfer to Options account *
-     * OPTION_MAIN Options account transfer to Spot account * UMFUTURE_OPTION USDⓈ-M Futures account
-     * transfer to Options account * OPTION_UMFUTURE Options account transfer to USDⓈ-M Futures
-     * account * MARGIN_OPTION Margin（cross）account transfer to Options account * OPTION_MARGIN
-     * Options account transfer to Margin（cross）account * FUNDING_OPTION Funding account transfer to
-     * Options account * OPTION_FUNDING Options account transfer to Funding account *
-     * MAIN_PORTFOLIO_MARGIN Spot account transfer to Portfolio Margin account *
-     * PORTFOLIO_MARGIN_MAIN Portfolio Margin account transfer to Spot account Weight: 900
+     * User Universal Transfer (USER_DATA) User universal transfer Weight(UID): 300 Security Type:
+     * USER_DATA Notes: - You need to enable Permits Universal Transfer option for the API Key that
+     * requests this endpoint. - &#x60;fromSymbol&#x60; must be sent when type is
+     * &#x60;ISOLATEDMARGIN_MARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. -
+     * &#x60;toSymbol&#x60; must be sent when type is &#x60;MARGIN_ISOLATEDMARGIN&#x60; or
+     * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - ENUM of transfer types: -
+     * &#x60;MAIN_UMFUTURE&#x60;: Spot → USDⓈ-M Futures - &#x60;MAIN_CMFUTURE&#x60;: Spot → COIN-M
+     * Futures - &#x60;MAIN_MARGIN&#x60;: Spot → Margin (cross) - &#x60;UMFUTURE_MAIN&#x60;: USDⓈ-M
+     * Futures → Spot - &#x60;UMFUTURE_MARGIN&#x60;: USDⓈ-M Futures → Margin (cross) -
+     * &#x60;CMFUTURE_MAIN&#x60;: COIN-M Futures → Spot - &#x60;CMFUTURE_MARGIN&#x60;: COIN-M
+     * Futures → Margin (cross) - &#x60;MARGIN_MAIN&#x60;: Margin (cross) → Spot -
+     * &#x60;MARGIN_UMFUTURE&#x60;: Margin (cross) → USDⓈ-M Futures - &#x60;MARGIN_CMFUTURE&#x60;:
+     * Margin (cross) → COIN-M Futures - &#x60;ISOLATEDMARGIN_MARGIN&#x60;: Isolated margin → Margin
+     * (cross) - &#x60;MARGIN_ISOLATEDMARGIN&#x60;: Margin (cross) → Isolated margin -
+     * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;: Isolated margin → Isolated margin -
+     * &#x60;MAIN_FUNDING&#x60;: Spot → Funding - &#x60;FUNDING_MAIN&#x60;: Funding → Spot -
+     * &#x60;FUNDING_UMFUTURE&#x60;: Funding → USDⓈ-M Futures - &#x60;UMFUTURE_FUNDING&#x60;: USDⓈ-M
+     * Futures → Funding - &#x60;MARGIN_FUNDING&#x60;: Margin (cross) → Funding -
+     * &#x60;FUNDING_MARGIN&#x60;: Funding → Margin (cross) - &#x60;FUNDING_CMFUTURE&#x60;: Funding
+     * → COIN-M Futures - &#x60;CMFUTURE_FUNDING&#x60;: COIN-M Futures → Funding -
+     * &#x60;MAIN_OPTION&#x60;: Spot → Options - &#x60;OPTION_MAIN&#x60;: Options → Spot -
+     * &#x60;UMFUTURE_OPTION&#x60;: USDⓈ-M Futures → Options - &#x60;OPTION_UMFUTURE&#x60;: Options
+     * → USDⓈ-M Futures - &#x60;MARGIN_OPTION&#x60;: Margin (cross) → Options -
+     * &#x60;OPTION_MARGIN&#x60;: Options → Margin (cross) - &#x60;FUNDING_OPTION&#x60;: Funding →
+     * Options - &#x60;OPTION_FUNDING&#x60;: Options → Funding - &#x60;MAIN_PORTFOLIO_MARGIN&#x60;:
+     * Spot → Portfolio Margin - &#x60;PORTFOLIO_MARGIN_MAIN&#x60;: Portfolio Margin → Spot
      *
      * @param userUniversalTransferRequest (required)
      * @return ApiResponse&lt;UserUniversalTransferResponse&gt;
@@ -2566,7 +3011,8 @@ public class AssetApi {
      * <tr><td> 200 </td><td> User Universal Transfer </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/User-Universal-Transfer">User
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-universal-transfer">User
      *     Universal Transfer (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserUniversalTransferResponse> userUniversalTransfer(

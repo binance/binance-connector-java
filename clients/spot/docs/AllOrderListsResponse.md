@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | [**List&lt;OrderListStatusResponseResult&gt;**](OrderListStatusResponseResult.md) |  |  [optional] |
+|**result** | [**List&lt;AllOrderListsResponseResultInner&gt;**](AllOrderListsResponseResultInner.md) |  |  [optional] |
 |**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
 
 

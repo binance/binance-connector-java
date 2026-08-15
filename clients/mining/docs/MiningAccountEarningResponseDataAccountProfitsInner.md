@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**time** | **Long** |  |  [optional] |
-|**coinName** | **String** |  |  [optional] |
-|**type** | **Long** |  |  [optional] |
-|**puid** | **Long** |  |  [optional] |
-|**subName** | **String** |  |  [optional] |
-|**amount** | **Double** |  |  [optional] |
+|**time** | **Long** | Time |  [optional] |
+|**coinName** | **String** | Coin |  [optional] |
+|**type** | **Long** | 0: Referral, 1: Refund, 2: Rebate |  [optional] |
+|**puid** | **Long** | Mining sub-account ID |  [optional] |
+|**subName** | **String** | Mining account |  [optional] |
+|**amount** | **Double** | Amount |  [optional] |
 
 
 

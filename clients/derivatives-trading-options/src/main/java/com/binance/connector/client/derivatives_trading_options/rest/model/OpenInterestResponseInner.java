@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OpenInterestResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OpenInterestResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -70,7 +68,7 @@ public class OpenInterestResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -90,7 +88,7 @@ public class OpenInterestResponseInner {
     }
 
     /**
-     * Get sumOpenInterest
+     * sum Open Interest
      *
      * @return sumOpenInterest
      */
@@ -110,7 +108,7 @@ public class OpenInterestResponseInner {
     }
 
     /**
-     * Get sumOpenInterestUsd
+     * sum Open Interest Usd
      *
      * @return sumOpenInterestUsd
      */
@@ -129,7 +127,7 @@ public class OpenInterestResponseInner {
     }
 
     /**
-     * Get timestamp
+     * timestamp
      *
      * @return timestamp
      */
@@ -252,18 +250,6 @@ public class OpenInterestResponseInner {
                                 OpenInterestResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OpenInterestResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OpenInterestResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -317,7 +303,7 @@ public class OpenInterestResponseInner {
                         @Override
                         public void write(JsonWriter out, OpenInterestResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

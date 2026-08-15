@@ -7,9 +7,9 @@
 
 * `GTC` (value: `"GTC"`)
 
-* `FOK` (value: `"FOK"`)
-
 * `IOC` (value: `"IOC"`)
+
+* `FOK` (value: `"FOK"`)
 
 
 

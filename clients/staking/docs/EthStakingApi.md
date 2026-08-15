@@ -4,26 +4,26 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**ethStakingAccount**](EthStakingApi.md#ethStakingAccount) | **GET** /sapi/v2/eth-staking/account | ETH Staking account(USER_DATA) |
-| [**getCurrentEthStakingQuota**](EthStakingApi.md#getCurrentEthStakingQuota) | **GET** /sapi/v1/eth-staking/eth/quota | Get current ETH staking quota(USER_DATA) |
-| [**getEthRedemptionHistory**](EthStakingApi.md#getEthRedemptionHistory) | **GET** /sapi/v1/eth-staking/eth/history/redemptionHistory | Get ETH redemption history(USER_DATA) |
-| [**getEthStakingHistory**](EthStakingApi.md#getEthStakingHistory) | **GET** /sapi/v1/eth-staking/eth/history/stakingHistory | Get ETH staking history(USER_DATA) |
-| [**getWbethRateHistory**](EthStakingApi.md#getWbethRateHistory) | **GET** /sapi/v1/eth-staking/eth/history/rateHistory | Get WBETH Rate History(USER_DATA) |
-| [**getWbethRewardsHistory**](EthStakingApi.md#getWbethRewardsHistory) | **GET** /sapi/v1/eth-staking/eth/history/wbethRewardsHistory | Get WBETH rewards history(USER_DATA) |
-| [**getWbethUnwrapHistory**](EthStakingApi.md#getWbethUnwrapHistory) | **GET** /sapi/v1/eth-staking/wbeth/history/unwrapHistory | Get WBETH unwrap history(USER_DATA) |
-| [**getWbethWrapHistory**](EthStakingApi.md#getWbethWrapHistory) | **GET** /sapi/v1/eth-staking/wbeth/history/wrapHistory | Get WBETH wrap history(USER_DATA) |
-| [**redeemEth**](EthStakingApi.md#redeemEth) | **POST** /sapi/v1/eth-staking/eth/redeem | Redeem ETH(TRADE) |
-| [**subscribeEthStaking**](EthStakingApi.md#subscribeEthStaking) | **POST** /sapi/v2/eth-staking/eth/stake | Subscribe ETH Staking(TRADE) |
-| [**wrapBeth**](EthStakingApi.md#wrapBeth) | **POST** /sapi/v1/eth-staking/wbeth/wrap | Wrap BETH(TRADE) |
+| [**ethStakingAccount**](EthStakingApi.md#ethStakingAccount) | **GET** /sapi/v2/eth-staking/account | ETH Staking account (USER_DATA) |
+| [**getCurrentEthStakingQuota**](EthStakingApi.md#getCurrentEthStakingQuota) | **GET** /sapi/v1/eth-staking/eth/quota | Get current ETH staking quota (USER_DATA) |
+| [**getEthRedemptionHistory**](EthStakingApi.md#getEthRedemptionHistory) | **GET** /sapi/v1/eth-staking/eth/history/redemptionHistory | Get ETH redemption history (USER_DATA) |
+| [**getEthStakingHistory**](EthStakingApi.md#getEthStakingHistory) | **GET** /sapi/v1/eth-staking/eth/history/stakingHistory | Get ETH staking history (USER_DATA) |
+| [**getWbethRateHistory**](EthStakingApi.md#getWbethRateHistory) | **GET** /sapi/v1/eth-staking/eth/history/rateHistory | Get WBETH Rate History (USER_DATA) |
+| [**getWbethRewardsHistory**](EthStakingApi.md#getWbethRewardsHistory) | **GET** /sapi/v1/eth-staking/eth/history/wbethRewardsHistory | Get WBETH rewards history (USER_DATA) |
+| [**getWbethUnwrapHistory**](EthStakingApi.md#getWbethUnwrapHistory) | **GET** /sapi/v1/eth-staking/wbeth/history/unwrapHistory | Get WBETH unwrap history (USER_DATA) |
+| [**getWbethWrapHistory**](EthStakingApi.md#getWbethWrapHistory) | **GET** /sapi/v1/eth-staking/wbeth/history/wrapHistory | Get WBETH wrap history (USER_DATA) |
+| [**redeemEth**](EthStakingApi.md#redeemEth) | **POST** /sapi/v1/eth-staking/eth/redeem | Redeem ETH (TRADE) |
+| [**subscribeEthStaking**](EthStakingApi.md#subscribeEthStaking) | **POST** /sapi/v2/eth-staking/eth/stake | Subscribe ETH Staking (TRADE) |
+| [**wrapBeth**](EthStakingApi.md#wrapBeth) | **POST** /sapi/v1/eth-staking/wbeth/wrap | Wrap BETH (TRADE) |
 
 
 <a id="ethStakingAccount"></a>
 # **ethStakingAccount**
 > EthStakingAccountResponse ethStakingAccount(recvWindow)
 
-ETH Staking account(USER_DATA)
+ETH Staking account (USER_DATA)
 
-ETH Staking account  Weight: 150
+ETH Staking account  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -40,7 +40,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       EthStakingAccountResponse result = apiInstance.ethStakingAccount(recvWindow);
       System.out.println(result);
@@ -59,7 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -83,9 +83,9 @@ No authorization required
 # **getCurrentEthStakingQuota**
 > GetCurrentEthStakingQuotaResponse getCurrentEthStakingQuota(recvWindow)
 
-Get current ETH staking quota(USER_DATA)
+Get current ETH staking quota (USER_DATA)
 
-Get current ETH staking quota  Weight: 150
+Get current ETH staking quota  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -102,7 +102,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetCurrentEthStakingQuotaResponse result = apiInstance.getCurrentEthStakingQuota(recvWindow);
       System.out.println(result);
@@ -121,7 +121,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -143,11 +143,11 @@ No authorization required
 
 <a id="getEthRedemptionHistory"></a>
 # **getEthRedemptionHistory**
-> GetEthRedemptionHistoryResponse getEthRedemptionHistory(startTime, endTime, current, size, recvWindow)
+> GetEthRedemptionHistoryResponse getEthRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow)
 
-Get ETH redemption history(USER_DATA)
+Get ETH redemption history (USER_DATA)
 
-Get ETH redemption history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get ETH redemption history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -164,13 +164,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long redeemId = 1234567L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
-      GetEthRedemptionHistoryResponse result = apiInstance.getEthRedemptionHistory(startTime, endTime, current, size, recvWindow);
+      GetEthRedemptionHistoryResponse result = apiInstance.getEthRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EthStakingApi#getEthRedemptionHistory");
@@ -187,11 +188,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **redeemId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -213,11 +215,11 @@ No authorization required
 
 <a id="getEthStakingHistory"></a>
 # **getEthStakingHistory**
-> GetEthStakingHistoryResponse getEthStakingHistory(startTime, endTime, current, size, recvWindow)
+> GetEthStakingHistoryResponse getEthStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow)
 
-Get ETH staking history(USER_DATA)
+Get ETH staking history (USER_DATA)
 
-Get ETH staking history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get ETH staking history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -234,13 +236,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long purchaseId = 1234567L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
-      GetEthStakingHistoryResponse result = apiInstance.getEthStakingHistory(startTime, endTime, current, size, recvWindow);
+      GetEthStakingHistoryResponse result = apiInstance.getEthStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EthStakingApi#getEthStakingHistory");
@@ -257,11 +260,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **purchaseId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -285,9 +289,9 @@ No authorization required
 # **getWbethRateHistory**
 > GetWbethRateHistoryResponse getWbethRateHistory(startTime, endTime, current, size, recvWindow)
 
-Get WBETH Rate History(USER_DATA)
+Get WBETH Rate History (USER_DATA)
 
-Get WBETH Rate History  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get WBETH Rate History  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -304,11 +308,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetWbethRateHistoryResponse result = apiInstance.getWbethRateHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -329,9 +333,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -355,9 +359,9 @@ No authorization required
 # **getWbethRewardsHistory**
 > GetWbethRewardsHistoryResponse getWbethRewardsHistory(startTime, endTime, current, size, recvWindow)
 
-Get WBETH rewards history(USER_DATA)
+Get WBETH rewards history (USER_DATA)
 
-Get WBETH rewards history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get WBETH rewards history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -374,11 +378,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetWbethRewardsHistoryResponse result = apiInstance.getWbethRewardsHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -399,9 +403,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -425,9 +429,9 @@ No authorization required
 # **getWbethUnwrapHistory**
 > GetWbethUnwrapHistoryResponse getWbethUnwrapHistory(startTime, endTime, current, size, recvWindow)
 
-Get WBETH unwrap history(USER_DATA)
+Get WBETH unwrap history (USER_DATA)
 
-Get WBETH unwrap history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get WBETH unwrap history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -444,11 +448,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetWbethUnwrapHistoryResponse result = apiInstance.getWbethUnwrapHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -469,9 +473,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -495,9 +499,9 @@ No authorization required
 # **getWbethWrapHistory**
 > GetWbethWrapHistoryResponse getWbethWrapHistory(startTime, endTime, current, size, recvWindow)
 
-Get WBETH wrap history(USER_DATA)
+Get WBETH wrap history (USER_DATA)
 
-Get WBETH wrap history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get WBETH wrap history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -514,11 +518,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     EthStakingApi apiInstance = new EthStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetWbethWrapHistoryResponse result = apiInstance.getWbethWrapHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -539,9 +543,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -565,9 +569,9 @@ No authorization required
 # **redeemEth**
 > RedeemEthResponse redeemEth(redeemEthRequest)
 
-Redeem ETH(TRADE)
+Redeem ETH (TRADE)
 
-Redeem WBETH or BETH and get ETH  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Redeem WBETH or BETH and get ETH  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -627,9 +631,9 @@ No authorization required
 # **subscribeEthStaking**
 > SubscribeEthStakingResponse subscribeEthStaking(subscribeEthStakingRequest)
 
-Subscribe ETH Staking(TRADE)
+Subscribe ETH Staking (TRADE)
 
-Subscribe ETH Staking  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Subscribe ETH Staking  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -689,9 +693,9 @@ No authorization required
 # **wrapBeth**
 > WrapBethResponse wrapBeth(wrapBethRequest)
 
-Wrap BETH(TRADE)
+Wrap BETH (TRADE)
 
-Wrap BETH  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Wrap BETH  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java

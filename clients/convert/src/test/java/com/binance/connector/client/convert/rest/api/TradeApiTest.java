@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -27,15 +27,17 @@ import com.binance.connector.client.convert.rest.model.AcceptQuoteRequest;
 import com.binance.connector.client.convert.rest.model.AcceptQuoteResponse;
 import com.binance.connector.client.convert.rest.model.CancelLimitOrderRequest;
 import com.binance.connector.client.convert.rest.model.CancelLimitOrderResponse;
+import com.binance.connector.client.convert.rest.model.ExpiredType;
 import com.binance.connector.client.convert.rest.model.GetConvertTradeHistoryResponse;
 import com.binance.connector.client.convert.rest.model.OrderStatusResponse;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderRequest;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderResponse;
-import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest;
 import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestResponse;
+import com.binance.connector.client.convert.rest.model.Side;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -89,14 +91,13 @@ public class TradeApiTest {
     /**
      * Accept Quote (TRADE)
      *
-     * <p>Accept the offered quote by quote ID. Weight: 500(UID)
+     * <p>Accept the offered quote by quote ID. Weight(UID): 500 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void acceptQuoteTest() throws ApiException, CryptoException {
+    public void acceptQuoteTest() throws ApiException, CryptoException, IOException {
         AcceptQuoteRequest acceptQuoteRequest = new AcceptQuoteRequest();
-
         acceptQuoteRequest.quoteId("1");
 
         ApiResponse<AcceptQuoteResponse> response = api.acceptQuote(acceptQuoteRequest);
@@ -112,24 +113,21 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("timestamp=1736393892000quoteId=1", signInputCaptor.getValue());
-        assertEquals(
-                "0624eea4af8a8321e2c84e368ed873d71a9a5c971e629175b93556bd22fc325d",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("0624eea4af8a8321e2c84e368ed873d71a9a5c971e629175b93556bd22fc325d", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/acceptQuote", actualRequest.url().encodedPath());
     }
 
     /**
-     * Cancel limit order (USER_DATA)
+     * Cancel limit order (TRADE)
      *
-     * <p>Enable users to cancel a limit order Weight: 200(UID)
+     * <p>Enable users to cancel a limit order Weight(UID): 200 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelLimitOrderTest() throws ApiException, CryptoException {
+    public void cancelLimitOrderTest() throws ApiException, CryptoException, IOException {
         CancelLimitOrderRequest cancelLimitOrderRequest = new CancelLimitOrderRequest();
-
-        cancelLimitOrderRequest.orderId("1");
+        cancelLimitOrderRequest.orderId(1603680255057330400L);
 
         ApiResponse<CancelLimitOrderResponse> response =
                 api.cancelLimitOrder(cancelLimitOrderRequest);
@@ -144,23 +142,22 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000orderId=1", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000orderId=1603680255057330400", signInputCaptor.getValue());
         assertEquals(
-                "ad8bc32c069fb75b8afba1bc7d8f4dc63cd336877366a3b3bc88918201410d88",
-                actualRequest.url().queryParameter("signature"));
+                "83424da7c2b384ef0fb39fe576358ccb7a47a64b02d6ebc41e84c2f76333d777", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/limit/cancelOrder", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Convert Trade History(USER_DATA)
+     * Get Convert Trade History (USER_DATA)
      *
-     * <p>Get Convert Trade History * The max interval between startTime and endTime is 30 days.
-     * Weight: 3000
+     * <p>Get Convert Trade History Weight(UID): 3000 Security Type: USER_DATA Notes: - The max
+     * interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getConvertTradeHistoryTest() throws ApiException, CryptoException {
+    public void getConvertTradeHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long limit = 100L;
@@ -178,9 +175,7 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "23689f3330f331d9db9c46c9dc87d2217486442f1746adfdda02c10e3dbde13e",
                 actualRequest.url().queryParameter("signature"));
@@ -188,14 +183,14 @@ public class TradeApiTest {
     }
 
     /**
-     * Order status(USER_DATA)
+     * Order status (USER_DATA)
      *
-     * <p>Query order status by order ID. Weight: 100(UID)
+     * <p>Query order status by order ID. Weight(UID): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderStatusTest() throws ApiException, CryptoException {
+    public void orderStatusTest() throws ApiException, CryptoException, IOException {
         String orderId = "1";
         String quoteId = "1";
         ApiResponse<OrderStatusResponse> response = api.orderStatus(orderId, quoteId);
@@ -211,31 +206,29 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("orderId=1&quoteId=1&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "c8ea02b290636497dfc9f4f59d01ea6ceff503bf1955b020615bd7bb133a81c4",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("c8ea02b290636497dfc9f4f59d01ea6ceff503bf1955b020615bd7bb133a81c4", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/orderStatus", actualRequest.url().encodedPath());
     }
 
     /**
-     * Place limit order (USER_DATA)
+     * Place limit order (TRADE)
      *
-     * <p>Enable users to place a limit order * &#x60;baseAsset&#x60; or &#x60;quoteAsset&#x60; can
-     * be determined via &#x60;exchangeInfo&#x60; endpoint. * Limit price is defined from
-     * &#x60;baseAsset&#x60; to &#x60;quoteAsset&#x60;. * Either &#x60;baseAmount&#x60; or
-     * &#x60;quoteAmount&#x60; is used. Weight: 500(UID)
+     * <p>Enable users to place a limit order Weight(UID): 500 Security Type: TRADE Notes: -
+     * &#x60;baseAsset&#x60; and &#x60;quoteAsset&#x60; can be determined via the
+     * &#x60;exchangeInfo&#x60; endpoint. - Limit price is defined from &#x60;baseAsset&#x60; to
+     * &#x60;quoteAsset&#x60;. - Exactly one of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60;
+     * should be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void placeLimitOrderTest() throws ApiException, CryptoException {
+    public void placeLimitOrderTest() throws ApiException, CryptoException, IOException {
         PlaceLimitOrderRequest placeLimitOrderRequest = new PlaceLimitOrderRequest();
-
-        placeLimitOrderRequest.baseAsset("");
-        placeLimitOrderRequest.quoteAsset("");
+        placeLimitOrderRequest.baseAsset("BTC");
+        placeLimitOrderRequest.quoteAsset("USDT");
         placeLimitOrderRequest.limitPrice(1d);
-        placeLimitOrderRequest.side("BUY");
-        placeLimitOrderRequest.expiredType("");
+        placeLimitOrderRequest.side(Side.BUY);
+        placeLimitOrderRequest.expiredType(ExpiredType.EXPIRED_TYPE_1_D);
 
         ApiResponse<PlaceLimitOrderResponse> response = api.placeLimitOrder(placeLimitOrderRequest);
 
@@ -249,28 +242,23 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000side=BUY&expiredType=1_D&limitPrice=1&walletType=SPOT&baseAsset=BTC&quoteAsset=USDT", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000side=BUY&expiredType=&limitPrice=1&baseAsset=&quoteAsset=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "0b0040dc5224dd86dca84f3c74daab95c4ea74140366237133aac2bf814f1f91",
-                actualRequest.url().queryParameter("signature"));
+                "c81e0902397aa66deaa3db6a952fd561a8876e267b910bb198db369ea62e0068", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/limit/placeOrder", actualRequest.url().encodedPath());
     }
 
     /**
      * Query limit open orders (USER_DATA)
      *
-     * <p>Request a quote for the requested token pairs Weight: 3000(UID)
+     * <p>Query current open limit orders Weight(UID): 3000 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryLimitOpenOrdersTest() throws ApiException, CryptoException {
-        QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest = new QueryLimitOpenOrdersRequest();
-
-        ApiResponse<QueryLimitOpenOrdersResponse> response =
-                api.queryLimitOpenOrders(queryLimitOpenOrdersRequest);
+    public void queryLimitOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<QueryLimitOpenOrdersResponse> response = api.queryLimitOpenOrders(recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -282,28 +270,27 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/limit/queryOpenOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Send Quote Request(USER_DATA)
+     * Send Quote Request (TRADE)
      *
-     * <p>Request a quote for the requested token pairs * Either fromAmount or toAmount should be
-     * sent * &#x60;quoteId&#x60; will be returned only if you have enough funds to convert Weight:
-     * 200(UID)
+     * <p>Request a quote for the requested token pairs Weight(UID): 200 Security Type: TRADE Notes:
+     * - Either &#x60;fromAmount&#x60; or &#x60;toAmount&#x60; should be sent. - &#x60;quoteId&#x60;
+     * is returned only if you have enough funds to convert.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void sendQuoteRequestTest() throws ApiException, CryptoException {
+    public void sendQuoteRequestTest() throws ApiException, CryptoException, IOException {
         SendQuoteRequestRequest sendQuoteRequestRequest = new SendQuoteRequestRequest();
-
-        sendQuoteRequestRequest.fromAsset("");
-        sendQuoteRequestRequest.toAsset("");
+        sendQuoteRequestRequest.fromAsset("BTC");
+        sendQuoteRequestRequest.toAsset("USDT");
 
         ApiResponse<SendQuoteRequestResponse> response =
                 api.sendQuoteRequest(sendQuoteRequestRequest);
@@ -318,10 +305,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000toAsset=&fromAsset=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000toAsset=USDT&walletType=SPOT&validTime=10s&fromAsset=BTC", signInputCaptor.getValue());
         assertEquals(
-                "b018f458ed01eaa557ea9adbacf293f684bee81ed29da077d1a5e54a264000c3",
-                actualRequest.url().queryParameter("signature"));
+                "a87b4d643bd96609d7656c396eff6bae425242c552cf59a60f70cac71b38187c", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/getQuote", actualRequest.url().encodedPath());
     }
 }

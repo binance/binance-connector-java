@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** MarginAccountNewOtocoResponseOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOtocoResponseOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -138,7 +136,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -158,7 +156,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -178,7 +176,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -198,7 +196,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -218,7 +216,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get transactTime
+     * transact Time.
      *
      * @return transactTime
      */
@@ -238,7 +236,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -258,7 +256,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -278,7 +276,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -298,7 +296,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -318,7 +316,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -338,7 +336,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -358,7 +356,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -378,7 +376,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -398,7 +396,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */
@@ -419,7 +417,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
     }
 
     /**
-     * Get stopPrice
+     * stop Price.
      *
      * @return stopPrice
      */
@@ -660,20 +658,6 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountNewOtocoResponseOrderReportsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `MarginAccountNewOtocoResponseOrderReportsInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -797,7 +781,7 @@ public class MarginAccountNewOtocoResponseOrderReportsInner {
                                 JsonWriter out,
                                 MarginAccountNewOtocoResponseOrderReportsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

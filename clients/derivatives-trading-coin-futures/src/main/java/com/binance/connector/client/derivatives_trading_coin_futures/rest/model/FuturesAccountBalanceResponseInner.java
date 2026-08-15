@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** FuturesAccountBalanceResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesAccountBalanceResponseInner {
     public static final String SERIALIZED_NAME_ACCOUNT_ALIAS = "accountAlias";
 
@@ -95,7 +93,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get accountAlias
+     * unique account code
      *
      * @return accountAlias
      */
@@ -114,7 +112,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -133,7 +131,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get balance
+     * Account balance.
      *
      * @return balance
      */
@@ -153,7 +151,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get withdrawAvailable
+     * Available amount for withdrawal.
      *
      * @return withdrawAvailable
      */
@@ -173,7 +171,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * wallet balance for crossed margin
      *
      * @return crossWalletBalance
      */
@@ -193,7 +191,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossUnPnl
+     * total unrealized profit or loss of crossed positions
      *
      * @return crossUnPnl
      */
@@ -213,7 +211,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get availableBalance
+     * available margin balance
      *
      * @return availableBalance
      */
@@ -233,7 +231,7 @@ public class FuturesAccountBalanceResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -401,18 +399,6 @@ public class FuturesAccountBalanceResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!FuturesAccountBalanceResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `FuturesAccountBalanceResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("accountAlias") != null && !jsonObj.get("accountAlias").isJsonNull())
                 && !jsonObj.get("accountAlias").isJsonPrimitive()) {
@@ -493,7 +479,7 @@ public class FuturesAccountBalanceResponseInner {
                         @Override
                         public void write(JsonWriter out, FuturesAccountBalanceResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

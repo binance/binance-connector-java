@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** RedeemEthRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemEthRequest {
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -49,7 +47,7 @@ public class RedeemEthRequest {
 
     @SerializedName(SERIALIZED_NAME_ASSET)
     @jakarta.annotation.Nullable
-    private String asset;
+    private Asset asset = Asset.BETH;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -65,7 +63,7 @@ public class RedeemEthRequest {
     }
 
     /**
-     * Get amount
+     * Amount in BETH, limit 8 decimals
      *
      * @return amount
      */
@@ -80,7 +78,7 @@ public class RedeemEthRequest {
         this.amount = amount;
     }
 
-    public RedeemEthRequest asset(@jakarta.annotation.Nullable String asset) {
+    public RedeemEthRequest asset(@jakarta.annotation.Nullable Asset asset) {
         this.asset = asset;
         return this;
     }
@@ -91,11 +89,12 @@ public class RedeemEthRequest {
      * @return asset
      */
     @jakarta.annotation.Nullable
-    public String getAsset() {
+    @Valid
+    public Asset getAsset() {
         return asset;
     }
 
-    public void setAsset(@jakarta.annotation.Nullable String asset) {
+    public void setAsset(@jakarta.annotation.Nullable Asset asset) {
         this.asset = asset;
     }
 
@@ -105,11 +104,12 @@ public class RedeemEthRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -218,18 +218,6 @@ public class RedeemEthRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RedeemEthRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `RedeemEthRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : RedeemEthRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -240,13 +228,9 @@ public class RedeemEthRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
-                && !jsonObj.get("asset").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `asset` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("asset").toString()));
+        // validate the optional field `asset`
+        if (jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull()) {
+            Asset.validateJsonElement(jsonObj.get("asset"));
         }
     }
 
@@ -266,7 +250,7 @@ public class RedeemEthRequest {
                         @Override
                         public void write(JsonWriter out, RedeemEthRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

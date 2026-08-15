@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** MarginAccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_COMMISSION = "commission";
 
@@ -113,7 +111,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Commission.
      *
      * @return commission
      */
@@ -133,7 +131,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission Asset.
      *
      * @return commissionAsset
      */
@@ -152,7 +150,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * ID.
      *
      * @return id
      */
@@ -172,7 +170,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get isBestMatch
+     * Is Best Match.
      *
      * @return isBestMatch
      */
@@ -192,7 +190,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get isBuyer
+     * Is Buyer.
      *
      * @return isBuyer
      */
@@ -212,7 +210,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get isMaker
+     * Is Maker.
      *
      * @return isMaker
      */
@@ -231,7 +229,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -250,7 +248,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -269,7 +267,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -288,7 +286,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -307,7 +305,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -489,18 +487,6 @@ public class MarginAccountTradeListResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountTradeListResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `MarginAccountTradeListResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("commission") != null && !jsonObj.get("commission").isJsonNull())
                 && !jsonObj.get("commission").isJsonPrimitive()) {
@@ -562,7 +548,7 @@ public class MarginAccountTradeListResponseInner {
                         @Override
                         public void write(JsonWriter out, MarginAccountTradeListResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

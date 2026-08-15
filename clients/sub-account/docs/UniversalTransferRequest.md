@@ -9,10 +9,10 @@
 |------------ | ------------- | ------------- | -------------|
 |**fromEmail** | **String** |  |  [optional] |
 |**toEmail** | **String** |  |  [optional] |
-|**fromAccountType** | **String** |  |  |
-|**toAccountType** | **String** |  |  |
-|**clientTranId** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
+|**fromAccountType** | **FromAccountType** |  |  |
+|**toAccountType** | **ToAccountType** |  |  |
+|**clientTranId** | **String** | Must be unique |  [optional] |
+|**symbol** | **String** | Only supported under ISOLATED_MARGIN type |  [optional] |
 |**asset** | **String** |  |  |
 |**amount** | **Double** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |

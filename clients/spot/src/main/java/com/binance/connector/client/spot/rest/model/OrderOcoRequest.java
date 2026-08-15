@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OrderOcoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderOcoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -158,7 +156,7 @@ public class OrderOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderOcoRequest() {}
 
@@ -189,7 +187,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * A unique Id for the entire orderList
      *
      * @return listClientOrderId
      */
@@ -251,7 +249,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get limitClientOrderId
+     * A unique Id for the limit order
      *
      * @return limitClientOrderId
      */
@@ -311,7 +309,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get limitStrategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return limitStrategyType
      */
@@ -330,7 +328,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get limitIcebergQty
+     * Used to make the &#x60;LIMIT_MAKER&#x60; leg an iceberg order.
      *
      * @return limitIcebergQty
      */
@@ -370,7 +368,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get stopClientOrderId
+     * A unique Id for the stop loss/stop loss limit leg
      *
      * @return stopClientOrderId
      */
@@ -429,7 +427,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get stopStrategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return stopStrategyType
      */
@@ -448,7 +446,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get stopLimitPrice
+     * If provided, &#x60;stopLimitTimeInForce&#x60; is required.
      *
      * @return stopLimitPrice
      */
@@ -468,7 +466,7 @@ public class OrderOcoRequest {
     }
 
     /**
-     * Get stopIcebergQty
+     * Used with &#x60;STOP_LOSS_LIMIT&#x60; leg to make an iceberg order.
      *
      * @return stopIcebergQty
      */
@@ -548,22 +546,24 @@ public class OrderOcoRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public OrderOcoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderOcoRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal
+     * places of precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -829,18 +829,6 @@ public class OrderOcoRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderOcoRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderOcoRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : OrderOcoRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -920,7 +908,7 @@ public class OrderOcoRequest {
                         @Override
                         public void write(JsonWriter out, OrderOcoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

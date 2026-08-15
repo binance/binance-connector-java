@@ -84,6 +84,14 @@ public class StreamConnectionPoolWrapper implements StreamConnectionInterface {
         isConnected = true;
     }
 
+    @Override
+    public void disconnect() {
+        for (ConnectionWrapper connectionWrapper : connectionList) {
+            connectionWrapper.disconnect();
+        }
+        isConnected = false;
+    }
+
     public Map<String, StreamBlockingQueue<String>> subscribe(
             RequestWrapperDTO<Set<String>, Object> requestWrapperDTO) {
         Set<String> params = requestWrapperDTO.getParams();
@@ -145,5 +153,13 @@ public class StreamConnectionPoolWrapper implements StreamConnectionInterface {
     @Override
     public boolean isConnected() {
         return isConnected;
+    }
+
+    @Override
+    public void stop() throws Exception {
+        for (ConnectionWrapper connectionWrapper : connectionList) {
+            connectionWrapper.stop();
+        }
+        isConnected = false;
     }
 }

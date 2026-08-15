@@ -1,5 +1,114 @@
 # Changelog
 
+## 8.0.0 - 2026-07-29
+
+### Changed (6)
+
+#### REST API
+
+- Modified parameter `asset`:
+  - enum added: `LDUSDT`, `RWUSD`
+  - affected methods:
+    - `transferLdusdtRwusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/earn-asset-transfer`)
+- Modified parameter `autoRepay`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `changeAutoRepayFuturesStatus()` (`POST /sapi/v1/portfolio/repay-futures-switch`)
+- Modified parameter `deltaEnabled`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `switchDeltaMode()` (`POST /sapi/v1/portfolio/delta-mode`)
+- Modified parameter `from`:
+  - enum added: `SPOT`, `MARGIN`
+  - affected methods:
+    - `portfolioMarginProBankruptcyLoanRepay()` (`POST /sapi/v1/portfolio/repay`)
+    - `repayFuturesNegativeBalance()` (`POST /sapi/v1/portfolio/repay-futures-negative-balance`)
+- Modified parameter `transferSide`:
+  - enum added: `TO_UM`, `FROM_UM`
+  - affected methods:
+    - `bnbTransfer()` (`POST /sapi/v1/portfolio/bnb-transfer`)
+- Modified parameter `transferType`:
+  - enum added: `EARN_TO_FUTURE`, `FUTURE_TO_EARN`
+  - affected methods:
+    - `getTransferableEarnAssetBalanceForPortfolioMargin()` (`GET /sapi/v1/portfolio/earn-asset-balance`)
+    - `transferLdusdtRwusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/earn-asset-transfer`)
+
+## 7.0.0 - 2026-05-04
+
+- Added stop method for WebSocket
+
+### Added (3)
+
+#### REST API
+
+- `deleteMarginCallLevel()` (`DELETE /sapi/v1/portfolio/margin-call-level`)
+- `getMarginCallLevel()` (`GET /sapi/v1/portfolio/margin-call-level`)
+- `setMarginCallLevel()` (`POST /sapi/v1/portfolio/margin-call-level`)
+
+## 6.0.1 - 2026-04-30
+
+- Update `binance/common` module to version `2.4.2`.
+
+## 6.0.0 - 2026-02-12
+
+### Added (2)
+
+#### REST API
+
+- `getDeltaModeStatus()` (`GET /sapi/v1/portfolio/delta-mode`)
+- `switchDeltaMode()` (`POST /sapi/v1/portfolio/delta-mode`)
+
+## 5.0.0 - 2025-12-16
+
+### Removed (2)
+
+#### REST API
+
+- `mintBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/mint`)
+- `redeemBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/redeem`)
+
+## 4.0.0 - 2025-10-21
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `mintBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/mint`):
+  - property `mintRate` added
+  - property `rate` deleted
+
+- Modified response for `redeemBfusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/redeem`):
+  - property `redeemRate` added
+  - property `rate` deleted
+
+## 3.0.1 - 2025-08-07
+
+- Update `binance/common` module to version `2.0.0`.
+- Add `Content-Type` header only if there is a body.
+
+## 3.0.0 - 2025-07-16
+
+### Added (1)
+
+- Support User Data Streams.
+
+### Changed (1)
+
+- Update `binance/common` module to version `1.4.0`.
+
+## 2.1.0 - 2025-07-08
+
+- Update `binance/common` module to version `1.3.0`.
+- Added `customHeaders` configuration.
+
+## 2.0.0 - 2025-05-26
+
+### Changed (1)
+
+- `queryPortfolioMarginProBankruptcyLoanRepayHistory()` (`GET /sapi/v1/portfolio/pmLoan-history` has been updated to `GET /sapi/v1/portfolio/pmloan-history`)
+- Marked as signed the following endpoints:
+    - `POST /sapi/v1/portfolio/repay`
+
 ## 1.1.0 - 2025-05-02
 
 - Update `binance/common` module to version `1.1.0`.

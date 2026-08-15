@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,25 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** RecentTradesListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RecentTradesListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
     @SerializedName(SERIALIZED_NAME_ID)
     @jakarta.annotation.Nullable
-    private String id;
+    private Long id;
+
+    public static final String SERIALIZED_NAME_TRADE_ID = "tradeId";
+
+    @SerializedName(SERIALIZED_NAME_TRADE_ID)
+    @jakarta.annotation.Nullable
+    private Long tradeId;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -82,23 +86,42 @@ public class RecentTradesListResponseInner {
 
     public RecentTradesListResponseInner() {}
 
-    public RecentTradesListResponseInner id(@jakarta.annotation.Nullable String id) {
+    public RecentTradesListResponseInner id(@jakarta.annotation.Nullable Long id) {
         this.id = id;
         return this;
     }
 
     /**
-     * Get id
+     * id
      *
      * @return id
      */
     @jakarta.annotation.Nullable
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(@jakarta.annotation.Nullable String id) {
+    public void setId(@jakarta.annotation.Nullable Long id) {
         this.id = id;
+    }
+
+    public RecentTradesListResponseInner tradeId(@jakarta.annotation.Nullable Long tradeId) {
+        this.tradeId = tradeId;
+        return this;
+    }
+
+    /**
+     * TradeId
+     *
+     * @return tradeId
+     */
+    @jakarta.annotation.Nullable
+    public Long getTradeId() {
+        return tradeId;
+    }
+
+    public void setTradeId(@jakarta.annotation.Nullable Long tradeId) {
+        this.tradeId = tradeId;
     }
 
     public RecentTradesListResponseInner symbol(@jakarta.annotation.Nullable String symbol) {
@@ -107,7 +130,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -126,7 +149,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get price
+     * Completed trade price
      *
      * @return price
      */
@@ -145,7 +168,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get qty
+     * Completed trade quantity
      *
      * @return qty
      */
@@ -164,7 +187,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Completed trade amount
      *
      * @return quoteQty
      */
@@ -183,7 +206,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get side
+     * Completed trade direction（-1 Sell，1 Buy）
      *
      * @return side
      */
@@ -202,7 +225,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -226,6 +249,7 @@ public class RecentTradesListResponseInner {
         RecentTradesListResponseInner recentTradesListResponseInner =
                 (RecentTradesListResponseInner) o;
         return Objects.equals(this.id, recentTradesListResponseInner.id)
+                && Objects.equals(this.tradeId, recentTradesListResponseInner.tradeId)
                 && Objects.equals(this.symbol, recentTradesListResponseInner.symbol)
                 && Objects.equals(this.price, recentTradesListResponseInner.price)
                 && Objects.equals(this.qty, recentTradesListResponseInner.qty)
@@ -236,7 +260,7 @@ public class RecentTradesListResponseInner {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, symbol, price, qty, quoteQty, side, time);
+        return Objects.hash(id, tradeId, symbol, price, qty, quoteQty, side, time);
     }
 
     @Override
@@ -244,6 +268,7 @@ public class RecentTradesListResponseInner {
         StringBuilder sb = new StringBuilder();
         sb.append("class RecentTradesListResponseInner {\n");
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
+        sb.append("		tradeId: ").append(toIndentedString(tradeId)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		qty: ").append(toIndentedString(qty)).append("\n");
@@ -261,6 +286,10 @@ public class RecentTradesListResponseInner {
         String idValueAsString = "";
         idValueAsString = idValue.toString();
         sb.append("id=").append(urlEncode(idValueAsString)).append("");
+        Object tradeIdValue = getTradeId();
+        String tradeIdValueAsString = "";
+        tradeIdValueAsString = tradeIdValue.toString();
+        sb.append("tradeId=").append(urlEncode(tradeIdValueAsString)).append("");
         Object symbolValue = getSymbol();
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
@@ -314,6 +343,7 @@ public class RecentTradesListResponseInner {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
+        openapiFields.add("tradeId");
         openapiFields.add("symbol");
         openapiFields.add("price");
         openapiFields.add("qty");
@@ -343,27 +373,7 @@ public class RecentTradesListResponseInner {
                                 RecentTradesListResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RecentTradesListResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `RecentTradesListResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -416,7 +426,7 @@ public class RecentTradesListResponseInner {
                         @Override
                         public void write(JsonWriter out, RecentTradesListResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

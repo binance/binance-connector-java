@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ModifyIsolatedPositionMarginResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyIsolatedPositionMarginResponse {
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -71,7 +69,7 @@ public class ModifyIsolatedPositionMarginResponse {
     }
 
     /**
-     * Get amount
+     * Amount.
      *
      * @return amount
      */
@@ -91,7 +89,7 @@ public class ModifyIsolatedPositionMarginResponse {
     }
 
     /**
-     * Get code
+     * API response code. \&quot;000000\&quot; indicates success.
      *
      * @return code
      */
@@ -110,7 +108,7 @@ public class ModifyIsolatedPositionMarginResponse {
     }
 
     /**
-     * Get msg
+     * Message details.
      *
      * @return msg
      */
@@ -129,7 +127,7 @@ public class ModifyIsolatedPositionMarginResponse {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -250,19 +248,6 @@ public class ModifyIsolatedPositionMarginResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ModifyIsolatedPositionMarginResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ModifyIsolatedPositionMarginResponse` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
                 && !jsonObj.get("msg").isJsonPrimitive()) {
@@ -293,7 +278,7 @@ public class ModifyIsolatedPositionMarginResponse {
                         public void write(
                                 JsonWriter out, ModifyIsolatedPositionMarginResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

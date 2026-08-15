@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** UserCommissionRateResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserCommissionRateResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -55,6 +53,12 @@ public class UserCommissionRateResponse {
     @SerializedName(SERIALIZED_NAME_TAKER_COMMISSION_RATE)
     @jakarta.annotation.Nullable
     private String takerCommissionRate;
+
+    public static final String SERIALIZED_NAME_RPI_COMMISSION_RATE = "rpiCommissionRate";
+
+    @SerializedName(SERIALIZED_NAME_RPI_COMMISSION_RATE)
+    @jakarta.annotation.Nullable
+    private String rpiCommissionRate;
 
     public UserCommissionRateResponse() {}
 
@@ -84,7 +88,7 @@ public class UserCommissionRateResponse {
     }
 
     /**
-     * Get makerCommissionRate
+     * 0.02%
      *
      * @return makerCommissionRate
      */
@@ -104,7 +108,7 @@ public class UserCommissionRateResponse {
     }
 
     /**
-     * Get takerCommissionRate
+     * 0.04%
      *
      * @return takerCommissionRate
      */
@@ -115,6 +119,26 @@ public class UserCommissionRateResponse {
 
     public void setTakerCommissionRate(@jakarta.annotation.Nullable String takerCommissionRate) {
         this.takerCommissionRate = takerCommissionRate;
+    }
+
+    public UserCommissionRateResponse rpiCommissionRate(
+            @jakarta.annotation.Nullable String rpiCommissionRate) {
+        this.rpiCommissionRate = rpiCommissionRate;
+        return this;
+    }
+
+    /**
+     * 0.005%
+     *
+     * @return rpiCommissionRate
+     */
+    @jakarta.annotation.Nullable
+    public String getRpiCommissionRate() {
+        return rpiCommissionRate;
+    }
+
+    public void setRpiCommissionRate(@jakarta.annotation.Nullable String rpiCommissionRate) {
+        this.rpiCommissionRate = rpiCommissionRate;
     }
 
     @Override
@@ -130,12 +154,14 @@ public class UserCommissionRateResponse {
                 && Objects.equals(
                         this.makerCommissionRate, userCommissionRateResponse.makerCommissionRate)
                 && Objects.equals(
-                        this.takerCommissionRate, userCommissionRateResponse.takerCommissionRate);
+                        this.takerCommissionRate, userCommissionRateResponse.takerCommissionRate)
+                && Objects.equals(
+                        this.rpiCommissionRate, userCommissionRateResponse.rpiCommissionRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, makerCommissionRate, takerCommissionRate);
+        return Objects.hash(symbol, makerCommissionRate, takerCommissionRate, rpiCommissionRate);
     }
 
     @Override
@@ -149,6 +175,7 @@ public class UserCommissionRateResponse {
         sb.append("		takerCommissionRate: ")
                 .append(toIndentedString(takerCommissionRate))
                 .append("\n");
+        sb.append("		rpiCommissionRate: ").append(toIndentedString(rpiCommissionRate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -171,6 +198,12 @@ public class UserCommissionRateResponse {
         takerCommissionRateValueAsString = takerCommissionRateValue.toString();
         sb.append("takerCommissionRate=")
                 .append(urlEncode(takerCommissionRateValueAsString))
+                .append("");
+        Object rpiCommissionRateValue = getRpiCommissionRate();
+        String rpiCommissionRateValueAsString = "";
+        rpiCommissionRateValueAsString = rpiCommissionRateValue.toString();
+        sb.append("rpiCommissionRate=")
+                .append(urlEncode(rpiCommissionRateValueAsString))
                 .append("");
         return sb.toString();
     }
@@ -203,6 +236,7 @@ public class UserCommissionRateResponse {
         openapiFields.add("symbol");
         openapiFields.add("makerCommissionRate");
         openapiFields.add("takerCommissionRate");
+        openapiFields.add("rpiCommissionRate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -223,18 +257,6 @@ public class UserCommissionRateResponse {
                                 "The required field(s) %s in UserCommissionRateResponse is not"
                                         + " found in the empty JSON string",
                                 UserCommissionRateResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UserCommissionRateResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `UserCommissionRateResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -264,6 +286,15 @@ public class UserCommissionRateResponse {
                                     + " JSON string but got `%s`",
                             jsonObj.get("takerCommissionRate").toString()));
         }
+        if ((jsonObj.get("rpiCommissionRate") != null
+                        && !jsonObj.get("rpiCommissionRate").isJsonNull())
+                && !jsonObj.get("rpiCommissionRate").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `rpiCommissionRate` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("rpiCommissionRate").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -283,7 +314,7 @@ public class UserCommissionRateResponse {
                         @Override
                         public void write(JsonWriter out, UserCommissionRateResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

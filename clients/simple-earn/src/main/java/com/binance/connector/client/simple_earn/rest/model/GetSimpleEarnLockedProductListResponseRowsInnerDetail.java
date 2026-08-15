@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetSimpleEarnLockedProductListResponseRowsInnerDetail */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -84,7 +82,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
 
     @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_START_TIME)
     @jakarta.annotation.Nullable
-    private String subscriptionStartTime;
+    private Long subscriptionStartTime;
 
     public static final String SERIALIZED_NAME_EXTRA_REWARD_ASSET = "extraRewardAsset";
 
@@ -114,7 +112,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
 
     @SerializedName(SERIALIZED_NAME_BOOST_END_TIME)
     @jakarta.annotation.Nullable
-    private String boostEndTime;
+    private Long boostEndTime;
 
     public GetSimpleEarnLockedProductListResponseRowsInnerDetail() {}
 
@@ -259,7 +257,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
     }
 
     public GetSimpleEarnLockedProductListResponseRowsInnerDetail subscriptionStartTime(
-            @jakarta.annotation.Nullable String subscriptionStartTime) {
+            @jakarta.annotation.Nullable Long subscriptionStartTime) {
         this.subscriptionStartTime = subscriptionStartTime;
         return this;
     }
@@ -270,12 +268,11 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
      * @return subscriptionStartTime
      */
     @jakarta.annotation.Nullable
-    public String getSubscriptionStartTime() {
+    public Long getSubscriptionStartTime() {
         return subscriptionStartTime;
     }
 
-    public void setSubscriptionStartTime(
-            @jakarta.annotation.Nullable String subscriptionStartTime) {
+    public void setSubscriptionStartTime(@jakarta.annotation.Nullable Long subscriptionStartTime) {
         this.subscriptionStartTime = subscriptionStartTime;
     }
 
@@ -360,7 +357,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
     }
 
     public GetSimpleEarnLockedProductListResponseRowsInnerDetail boostEndTime(
-            @jakarta.annotation.Nullable String boostEndTime) {
+            @jakarta.annotation.Nullable Long boostEndTime) {
         this.boostEndTime = boostEndTime;
         return this;
     }
@@ -371,11 +368,11 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
      * @return boostEndTime
      */
     @jakarta.annotation.Nullable
-    public String getBoostEndTime() {
+    public Long getBoostEndTime() {
         return boostEndTime;
     }
 
-    public void setBoostEndTime(@jakarta.annotation.Nullable String boostEndTime) {
+    public void setBoostEndTime(@jakarta.annotation.Nullable Long boostEndTime) {
         this.boostEndTime = boostEndTime;
     }
 
@@ -593,20 +590,6 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetSimpleEarnLockedProductListResponseRowsInnerDetail.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetSimpleEarnLockedProductListResponseRowsInnerDetail`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -639,15 +622,6 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
                             "Expected the field `status` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("status").toString()));
-        }
-        if ((jsonObj.get("subscriptionStartTime") != null
-                        && !jsonObj.get("subscriptionStartTime").isJsonNull())
-                && !jsonObj.get("subscriptionStartTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `subscriptionStartTime` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("subscriptionStartTime").toString()));
         }
         if ((jsonObj.get("extraRewardAsset") != null
                         && !jsonObj.get("extraRewardAsset").isJsonNull())
@@ -683,14 +657,6 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
                                     + " string but got `%s`",
                             jsonObj.get("boostApr").toString()));
         }
-        if ((jsonObj.get("boostEndTime") != null && !jsonObj.get("boostEndTime").isJsonNull())
-                && !jsonObj.get("boostEndTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `boostEndTime` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("boostEndTime").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -717,7 +683,7 @@ public class GetSimpleEarnLockedProductListResponseRowsInnerDetail {
                                 JsonWriter out,
                                 GetSimpleEarnLockedProductListResponseRowsInnerDetail value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

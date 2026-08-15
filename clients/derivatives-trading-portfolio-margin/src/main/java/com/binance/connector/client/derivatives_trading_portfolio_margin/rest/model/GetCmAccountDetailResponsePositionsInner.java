@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetCmAccountDetailResponsePositionsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCmAccountDetailResponsePositionsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -119,7 +117,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -139,7 +137,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -159,7 +157,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get initialMargin
+     * total intial margin required with the latest mark price
      *
      * @return initialMargin
      */
@@ -179,7 +177,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin
      *
      * @return maintMargin
      */
@@ -199,7 +197,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * unrealized profit
      *
      * @return unrealizedProfit
      */
@@ -219,7 +217,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * positions margin required with the latest mark price
      *
      * @return positionInitialMargin
      */
@@ -240,7 +238,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * open orders intial margin required with the latest mark price
      *
      * @return openOrderInitialMargin
      */
@@ -261,7 +259,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -281,7 +279,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -301,7 +299,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -321,7 +319,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get maxQty
+     * maximum quantity of base asset
      *
      * @return maxQty
      */
@@ -341,7 +339,7 @@ public class GetCmAccountDetailResponsePositionsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -551,19 +549,6 @@ public class GetCmAccountDetailResponsePositionsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetCmAccountDetailResponsePositionsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetCmAccountDetailResponsePositionsInner` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -678,7 +663,7 @@ public class GetCmAccountDetailResponsePositionsInner {
                         public void write(
                                 JsonWriter out, GetCmAccountDetailResponsePositionsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

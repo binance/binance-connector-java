@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** RecentTradesListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RecentTradesListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -82,7 +80,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get id
+     * positionId
      *
      * @return id
      */
@@ -101,7 +99,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -120,7 +118,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get qty
+     * Quantity.
      *
      * @return qty
      */
@@ -139,7 +137,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get baseQty
+     * Base asset quantity.
      *
      * @return baseQty
      */
@@ -158,7 +156,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -178,7 +176,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get isBuyerMaker
+     * Whether buyer is market maker.
      *
      * @return isBuyerMaker
      */
@@ -312,18 +310,6 @@ public class RecentTradesListResponseInner {
                                 RecentTradesListResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RecentTradesListResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `RecentTradesListResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
                 && !jsonObj.get("price").isJsonPrimitive()) {
@@ -369,7 +355,7 @@ public class RecentTradesListResponseInner {
                         @Override
                         public void write(JsonWriter out, RecentTradesListResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,22 +22,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** StatisticListResponseData */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class StatisticListResponseData {
     public static final String SERIALIZED_NAME_FIFTEEN_MIN_HASH_RATE = "fifteenMinHashRate";
 
@@ -67,13 +66,13 @@ public class StatisticListResponseData {
 
     @SerializedName(SERIALIZED_NAME_PROFIT_TODAY)
     @jakarta.annotation.Nullable
-    private StatisticListResponseDataProfitToday profitToday;
+    private Map<String, String> profitToday;
 
     public static final String SERIALIZED_NAME_PROFIT_YESTERDAY = "profitYesterday";
 
     @SerializedName(SERIALIZED_NAME_PROFIT_YESTERDAY)
     @jakarta.annotation.Nullable
-    private StatisticListResponseDataProfitToday profitYesterday;
+    private Map<String, String> profitYesterday;
 
     public static final String SERIALIZED_NAME_USER_NAME = "userName";
 
@@ -102,7 +101,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get fifteenMinHashRate
+     * 15-minute hashrate
      *
      * @return fifteenMinHashRate
      */
@@ -121,7 +120,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get dayHashRate
+     * 24H hashrate
      *
      * @return dayHashRate
      */
@@ -140,7 +139,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get validNum
+     * Effective quantity
      *
      * @return validNum
      */
@@ -159,7 +158,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get invalidNum
+     * Invalid quantity
      *
      * @return invalidNum
      */
@@ -173,46 +172,62 @@ public class StatisticListResponseData {
     }
 
     public StatisticListResponseData profitToday(
-            @jakarta.annotation.Nullable StatisticListResponseDataProfitToday profitToday) {
+            @jakarta.annotation.Nullable Map<String, String> profitToday) {
         this.profitToday = profitToday;
         return this;
     }
 
+    public StatisticListResponseData putProfitTodayItem(String key, String profitTodayItem) {
+        if (this.profitToday == null) {
+            this.profitToday = new HashMap<>();
+        }
+        this.profitToday.put(key, profitTodayItem);
+        return this;
+    }
+
     /**
-     * Get profitToday
+     * Today&#39;s estimate. Keys are coin symbols (e.g. BTC, BSV, BCH), values are earning amounts
+     * as strings.
      *
      * @return profitToday
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public StatisticListResponseDataProfitToday getProfitToday() {
+    public Map<String, String> getProfitToday() {
         return profitToday;
     }
 
-    public void setProfitToday(
-            @jakarta.annotation.Nullable StatisticListResponseDataProfitToday profitToday) {
+    public void setProfitToday(@jakarta.annotation.Nullable Map<String, String> profitToday) {
         this.profitToday = profitToday;
     }
 
     public StatisticListResponseData profitYesterday(
-            @jakarta.annotation.Nullable StatisticListResponseDataProfitToday profitYesterday) {
+            @jakarta.annotation.Nullable Map<String, String> profitYesterday) {
         this.profitYesterday = profitYesterday;
         return this;
     }
 
+    public StatisticListResponseData putProfitYesterdayItem(
+            String key, String profitYesterdayItem) {
+        if (this.profitYesterday == null) {
+            this.profitYesterday = new HashMap<>();
+        }
+        this.profitYesterday.put(key, profitYesterdayItem);
+        return this;
+    }
+
     /**
-     * Get profitYesterday
+     * Yesterday&#39;s earnings. Keys are coin symbols (e.g. BTC, BSV, BCH), values are earning
+     * amounts as strings.
      *
      * @return profitYesterday
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public StatisticListResponseDataProfitToday getProfitYesterday() {
+    public Map<String, String> getProfitYesterday() {
         return profitYesterday;
     }
 
     public void setProfitYesterday(
-            @jakarta.annotation.Nullable StatisticListResponseDataProfitToday profitYesterday) {
+            @jakarta.annotation.Nullable Map<String, String> profitYesterday) {
         this.profitYesterday = profitYesterday;
     }
 
@@ -222,7 +237,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get userName
+     * Mining account
      *
      * @return userName
      */
@@ -241,7 +256,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get unit
+     * Unit
      *
      * @return unit
      */
@@ -260,7 +275,7 @@ public class StatisticListResponseData {
     }
 
     /**
-     * Get algo
+     * Algorithm
      *
      * @return algo
      */
@@ -426,18 +441,6 @@ public class StatisticListResponseData {
                                 StatisticListResponseData.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!StatisticListResponseData.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `StatisticListResponseData` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("fifteenMinHashRate") != null
                         && !jsonObj.get("fifteenMinHashRate").isJsonNull())
@@ -455,16 +458,6 @@ public class StatisticListResponseData {
                             "Expected the field `dayHashRate` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("dayHashRate").toString()));
-        }
-        // validate the optional field `profitToday`
-        if (jsonObj.get("profitToday") != null && !jsonObj.get("profitToday").isJsonNull()) {
-            StatisticListResponseDataProfitToday.validateJsonElement(jsonObj.get("profitToday"));
-        }
-        // validate the optional field `profitYesterday`
-        if (jsonObj.get("profitYesterday") != null
-                && !jsonObj.get("profitYesterday").isJsonNull()) {
-            StatisticListResponseDataProfitToday.validateJsonElement(
-                    jsonObj.get("profitYesterday"));
         }
         if ((jsonObj.get("userName") != null && !jsonObj.get("userName").isJsonNull())
                 && !jsonObj.get("userName").isJsonPrimitive()) {
@@ -509,7 +502,7 @@ public class StatisticListResponseData {
                         @Override
                         public void write(JsonWriter out, StatisticListResponseData value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

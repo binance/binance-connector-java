@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** BrokerWithdrawResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BrokerWithdrawResponse {
     public static final String SERIALIZED_NAME_TR_ID = "trId";
 
@@ -44,11 +42,11 @@ public class BrokerWithdrawResponse {
     @jakarta.annotation.Nullable
     private Long trId;
 
-    public static final String SERIALIZED_NAME_ACCPTED = "accpted";
+    public static final String SERIALIZED_NAME_ACCEPTED = "accepted";
 
-    @SerializedName(SERIALIZED_NAME_ACCPTED)
+    @SerializedName(SERIALIZED_NAME_ACCEPTED)
     @jakarta.annotation.Nullable
-    private Boolean accpted;
+    private Boolean accepted;
 
     public static final String SERIALIZED_NAME_INFO = "info";
 
@@ -77,23 +75,23 @@ public class BrokerWithdrawResponse {
         this.trId = trId;
     }
 
-    public BrokerWithdrawResponse accpted(@jakarta.annotation.Nullable Boolean accpted) {
-        this.accpted = accpted;
+    public BrokerWithdrawResponse accepted(@jakarta.annotation.Nullable Boolean accepted) {
+        this.accepted = accepted;
         return this;
     }
 
     /**
-     * Get accpted
+     * Get accepted
      *
-     * @return accpted
+     * @return accepted
      */
     @jakarta.annotation.Nullable
-    public Boolean getAccpted() {
-        return accpted;
+    public Boolean getAccepted() {
+        return accepted;
     }
 
-    public void setAccpted(@jakarta.annotation.Nullable Boolean accpted) {
-        this.accpted = accpted;
+    public void setAccepted(@jakarta.annotation.Nullable Boolean accepted) {
+        this.accepted = accepted;
     }
 
     public BrokerWithdrawResponse info(@jakarta.annotation.Nullable String info) {
@@ -125,13 +123,13 @@ public class BrokerWithdrawResponse {
         }
         BrokerWithdrawResponse brokerWithdrawResponse = (BrokerWithdrawResponse) o;
         return Objects.equals(this.trId, brokerWithdrawResponse.trId)
-                && Objects.equals(this.accpted, brokerWithdrawResponse.accpted)
+                && Objects.equals(this.accepted, brokerWithdrawResponse.accepted)
                 && Objects.equals(this.info, brokerWithdrawResponse.info);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trId, accpted, info);
+        return Objects.hash(trId, accepted, info);
     }
 
     @Override
@@ -139,7 +137,7 @@ public class BrokerWithdrawResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class BrokerWithdrawResponse {\n");
         sb.append("		trId: ").append(toIndentedString(trId)).append("\n");
-        sb.append("		accpted: ").append(toIndentedString(accpted)).append("\n");
+        sb.append("		accepted: ").append(toIndentedString(accepted)).append("\n");
         sb.append("		info: ").append(toIndentedString(info)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -152,10 +150,10 @@ public class BrokerWithdrawResponse {
         String trIdValueAsString = "";
         trIdValueAsString = trIdValue.toString();
         sb.append("trId=").append(urlEncode(trIdValueAsString)).append("");
-        Object accptedValue = getAccpted();
-        String accptedValueAsString = "";
-        accptedValueAsString = accptedValue.toString();
-        sb.append("accpted=").append(urlEncode(accptedValueAsString)).append("");
+        Object acceptedValue = getAccepted();
+        String acceptedValueAsString = "";
+        acceptedValueAsString = acceptedValue.toString();
+        sb.append("accepted=").append(urlEncode(acceptedValueAsString)).append("");
         Object infoValue = getInfo();
         String infoValueAsString = "";
         infoValueAsString = infoValue.toString();
@@ -189,7 +187,7 @@ public class BrokerWithdrawResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("trId");
-        openapiFields.add("accpted");
+        openapiFields.add("accepted");
         openapiFields.add("info");
 
         // a set of required properties/fields (JSON key names)
@@ -211,18 +209,6 @@ public class BrokerWithdrawResponse {
                                 "The required field(s) %s in BrokerWithdrawResponse is not found in"
                                         + " the empty JSON string",
                                 BrokerWithdrawResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!BrokerWithdrawResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `BrokerWithdrawResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -252,7 +238,7 @@ public class BrokerWithdrawResponse {
                         @Override
                         public void write(JsonWriter out, BrokerWithdrawResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

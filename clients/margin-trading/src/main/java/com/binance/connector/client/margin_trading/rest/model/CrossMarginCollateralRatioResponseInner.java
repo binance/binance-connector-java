@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** CrossMarginCollateralRatioResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CrossMarginCollateralRatioResponseInner {
     public static final String SERIALIZED_NAME_COLLATERALS = "collaterals";
 
@@ -76,7 +74,7 @@ public class CrossMarginCollateralRatioResponseInner {
     }
 
     /**
-     * Get collaterals
+     * collaterals list.
      *
      * @return collaterals
      */
@@ -108,7 +106,7 @@ public class CrossMarginCollateralRatioResponseInner {
     }
 
     /**
-     * Get assetNames
+     * asset Names list.
      *
      * @return assetNames
      */
@@ -223,19 +221,6 @@ public class CrossMarginCollateralRatioResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CrossMarginCollateralRatioResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `CrossMarginCollateralRatioResponseInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("collaterals") != null && !jsonObj.get("collaterals").isJsonNull()) {
             JsonArray jsonArraycollaterals = jsonObj.getAsJsonArray("collaterals");
@@ -289,7 +274,7 @@ public class CrossMarginCollateralRatioResponseInner {
                         public void write(
                                 JsonWriter out, CrossMarginCollateralRatioResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryBlockTradeDetailsResponseLegsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryBlockTradeDetailsResponseLegsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -71,7 +69,7 @@ public class QueryBlockTradeDetailsResponseLegsInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -90,7 +88,7 @@ public class QueryBlockTradeDetailsResponseLegsInner {
     }
 
     /**
-     * Get side
+     * side
      *
      * @return side
      */
@@ -110,7 +108,7 @@ public class QueryBlockTradeDetailsResponseLegsInner {
     }
 
     /**
-     * Get quantity
+     * quantity
      *
      * @return quantity
      */
@@ -130,7 +128,7 @@ public class QueryBlockTradeDetailsResponseLegsInner {
     }
 
     /**
-     * Get price
+     * price
      *
      * @return price
      */
@@ -252,19 +250,6 @@ public class QueryBlockTradeDetailsResponseLegsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryBlockTradeDetailsResponseLegsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryBlockTradeDetailsResponseLegsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -320,7 +305,7 @@ public class QueryBlockTradeDetailsResponseLegsInner {
                         public void write(
                                 JsonWriter out, QueryBlockTradeDetailsResponseLegsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AccountInformationV2ResponseAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationV2ResponseAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -131,7 +129,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get asset
+     * Asset name.
      *
      * @return asset
      */
@@ -151,7 +149,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get walletBalance
+     * Wallet balance.
      *
      * @return walletBalance
      */
@@ -171,7 +169,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get unrealizedProfit
+     * Unrealized profit.
      *
      * @return unrealizedProfit
      */
@@ -191,7 +189,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get marginBalance
+     * Margin balance.
      *
      * @return marginBalance
      */
@@ -211,7 +209,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get maintMargin
+     * Maintenance margin requirement.
      *
      * @return maintMargin
      */
@@ -231,7 +229,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get initialMargin
+     * Total initial margin requirement.
      *
      * @return initialMargin
      */
@@ -251,7 +249,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * Initial margin required for positions.
      *
      * @return positionInitialMargin
      */
@@ -272,7 +270,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * Initial margin required for open orders.
      *
      * @return openOrderInitialMargin
      */
@@ -293,7 +291,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * Cross wallet balance.
      *
      * @return crossWalletBalance
      */
@@ -313,7 +311,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get crossUnPnl
+     * Unrealized PnL for cross positions.
      *
      * @return crossUnPnl
      */
@@ -333,7 +331,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get availableBalance
+     * Available balance.
      *
      * @return availableBalance
      */
@@ -353,7 +351,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * Maximum transferable/withdrawable amount.
      *
      * @return maxWithdrawAmount
      */
@@ -373,7 +371,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get marginAvailable
+     * Whether the asset can be used as margin in multi-assets mode.
      *
      * @return marginAvailable
      */
@@ -393,7 +391,7 @@ public class AccountInformationV2ResponseAssetsInner {
     }
 
     /**
-     * Get updateTime
+     * Last update time in milliseconds.
      *
      * @return updateTime
      */
@@ -633,19 +631,6 @@ public class AccountInformationV2ResponseAssetsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountInformationV2ResponseAssetsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AccountInformationV2ResponseAssetsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -771,7 +756,7 @@ public class AccountInformationV2ResponseAssetsInner {
                         public void write(
                                 JsonWriter out, AccountInformationV2ResponseAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

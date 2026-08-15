@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** UsersForceOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UsersForceOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -49,6 +47,12 @@ public class UsersForceOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
+
+    public static final String SERIALIZED_NAME_PAIR = "pair";
+
+    @SerializedName(SERIALIZED_NAME_PAIR)
+    @jakarta.annotation.Nullable
+    private String pair;
 
     public static final String SERIALIZED_NAME_STATUS = "status";
 
@@ -91,6 +95,12 @@ public class UsersForceOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
     @jakarta.annotation.Nullable
     private String cumQuote;
+
+    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
+
+    @SerializedName(SERIALIZED_NAME_CUM_BASE)
+    @jakarta.annotation.Nullable
+    private String cumBase;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -196,6 +206,25 @@ public class UsersForceOrdersResponseInner {
 
     public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
+    }
+
+    public UsersForceOrdersResponseInner pair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+        return this;
+    }
+
+    /**
+     * Pair.
+     *
+     * @return pair
+     */
+    @jakarta.annotation.Nullable
+    public String getPair() {
+        return pair;
+    }
+
+    public void setPair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
     }
 
     public UsersForceOrdersResponseInner status(@jakarta.annotation.Nullable String status) {
@@ -331,6 +360,25 @@ public class UsersForceOrdersResponseInner {
 
     public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
         this.cumQuote = cumQuote;
+    }
+
+    public UsersForceOrdersResponseInner cumBase(@jakarta.annotation.Nullable String cumBase) {
+        this.cumBase = cumBase;
+        return this;
+    }
+
+    /**
+     * Cum Base.
+     *
+     * @return cumBase
+     */
+    @jakarta.annotation.Nullable
+    public String getCumBase() {
+        return cumBase;
+    }
+
+    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
+        this.cumBase = cumBase;
     }
 
     public UsersForceOrdersResponseInner timeInForce(
@@ -559,6 +607,7 @@ public class UsersForceOrdersResponseInner {
                 (UsersForceOrdersResponseInner) o;
         return Objects.equals(this.orderId, usersForceOrdersResponseInner.orderId)
                 && Objects.equals(this.symbol, usersForceOrdersResponseInner.symbol)
+                && Objects.equals(this.pair, usersForceOrdersResponseInner.pair)
                 && Objects.equals(this.status, usersForceOrdersResponseInner.status)
                 && Objects.equals(this.clientOrderId, usersForceOrdersResponseInner.clientOrderId)
                 && Objects.equals(this.price, usersForceOrdersResponseInner.price)
@@ -566,6 +615,7 @@ public class UsersForceOrdersResponseInner {
                 && Objects.equals(this.origQty, usersForceOrdersResponseInner.origQty)
                 && Objects.equals(this.executedQty, usersForceOrdersResponseInner.executedQty)
                 && Objects.equals(this.cumQuote, usersForceOrdersResponseInner.cumQuote)
+                && Objects.equals(this.cumBase, usersForceOrdersResponseInner.cumBase)
                 && Objects.equals(this.timeInForce, usersForceOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, usersForceOrdersResponseInner.type)
                 && Objects.equals(this.reduceOnly, usersForceOrdersResponseInner.reduceOnly)
@@ -584,6 +634,7 @@ public class UsersForceOrdersResponseInner {
         return Objects.hash(
                 orderId,
                 symbol,
+                pair,
                 status,
                 clientOrderId,
                 price,
@@ -591,6 +642,7 @@ public class UsersForceOrdersResponseInner {
                 origQty,
                 executedQty,
                 cumQuote,
+                cumBase,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -610,6 +662,7 @@ public class UsersForceOrdersResponseInner {
         sb.append("class UsersForceOrdersResponseInner {\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
@@ -617,6 +670,7 @@ public class UsersForceOrdersResponseInner {
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
+        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -643,6 +697,10 @@ public class UsersForceOrdersResponseInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object pairValue = getPair();
+        String pairValueAsString = "";
+        pairValueAsString = pairValue.toString();
+        sb.append("pair=").append(urlEncode(pairValueAsString)).append("");
         Object statusValue = getStatus();
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
@@ -671,6 +729,10 @@ public class UsersForceOrdersResponseInner {
         String cumQuoteValueAsString = "";
         cumQuoteValueAsString = cumQuoteValue.toString();
         sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
+        Object cumBaseValue = getCumBase();
+        String cumBaseValueAsString = "";
+        cumBaseValueAsString = cumBaseValue.toString();
+        sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
@@ -745,6 +807,7 @@ public class UsersForceOrdersResponseInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("orderId");
         openapiFields.add("symbol");
+        openapiFields.add("pair");
         openapiFields.add("status");
         openapiFields.add("clientOrderId");
         openapiFields.add("price");
@@ -752,6 +815,7 @@ public class UsersForceOrdersResponseInner {
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumQuote");
+        openapiFields.add("cumBase");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -786,18 +850,6 @@ public class UsersForceOrdersResponseInner {
                                 UsersForceOrdersResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UsersForceOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `UsersForceOrdersResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -806,6 +858,14 @@ public class UsersForceOrdersResponseInner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pair` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("pair").toString()));
         }
         if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
                 && !jsonObj.get("status").isJsonPrimitive()) {
@@ -862,6 +922,14 @@ public class UsersForceOrdersResponseInner {
                             "Expected the field `cumQuote` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("cumQuote").toString()));
+        }
+        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
+                && !jsonObj.get("cumBase").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cumBase` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("cumBase").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
@@ -939,7 +1007,7 @@ public class UsersForceOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, UsersForceOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

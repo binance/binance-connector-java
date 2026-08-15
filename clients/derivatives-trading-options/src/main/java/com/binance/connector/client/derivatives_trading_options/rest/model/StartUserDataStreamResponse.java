@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,25 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** StartUserDataStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class StartUserDataStreamResponse {
     public static final String SERIALIZED_NAME_LISTEN_KEY = "listenKey";
 
     @SerializedName(SERIALIZED_NAME_LISTEN_KEY)
     @jakarta.annotation.Nullable
     private String listenKey;
+
+    public static final String SERIALIZED_NAME_EXPIRATION = "expiration";
+
+    @SerializedName(SERIALIZED_NAME_EXPIRATION)
+    @jakarta.annotation.Nullable
+    private Long expiration;
 
     public StartUserDataStreamResponse() {}
 
@@ -52,7 +56,7 @@ public class StartUserDataStreamResponse {
     }
 
     /**
-     * Get listenKey
+     * listen Key
      *
      * @return listenKey
      */
@@ -65,6 +69,25 @@ public class StartUserDataStreamResponse {
         this.listenKey = listenKey;
     }
 
+    public StartUserDataStreamResponse expiration(@jakarta.annotation.Nullable Long expiration) {
+        this.expiration = expiration;
+        return this;
+    }
+
+    /**
+     * Listen key expiration timestamp in milliseconds
+     *
+     * @return expiration
+     */
+    @jakarta.annotation.Nullable
+    public Long getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(@jakarta.annotation.Nullable Long expiration) {
+        this.expiration = expiration;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -74,12 +97,13 @@ public class StartUserDataStreamResponse {
             return false;
         }
         StartUserDataStreamResponse startUserDataStreamResponse = (StartUserDataStreamResponse) o;
-        return Objects.equals(this.listenKey, startUserDataStreamResponse.listenKey);
+        return Objects.equals(this.listenKey, startUserDataStreamResponse.listenKey)
+                && Objects.equals(this.expiration, startUserDataStreamResponse.expiration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(listenKey);
+        return Objects.hash(listenKey, expiration);
     }
 
     @Override
@@ -87,6 +111,7 @@ public class StartUserDataStreamResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class StartUserDataStreamResponse {\n");
         sb.append("		listenKey: ").append(toIndentedString(listenKey)).append("\n");
+        sb.append("		expiration: ").append(toIndentedString(expiration)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -98,6 +123,10 @@ public class StartUserDataStreamResponse {
         String listenKeyValueAsString = "";
         listenKeyValueAsString = listenKeyValue.toString();
         sb.append("listenKey=").append(urlEncode(listenKeyValueAsString)).append("");
+        Object expirationValue = getExpiration();
+        String expirationValueAsString = "";
+        expirationValueAsString = expirationValue.toString();
+        sb.append("expiration=").append(urlEncode(expirationValueAsString)).append("");
         return sb.toString();
     }
 
@@ -127,6 +156,7 @@ public class StartUserDataStreamResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("listenKey");
+        openapiFields.add("expiration");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -148,18 +178,6 @@ public class StartUserDataStreamResponse {
                                 "The required field(s) %s in StartUserDataStreamResponse is not"
                                         + " found in the empty JSON string",
                                 StartUserDataStreamResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!StartUserDataStreamResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `StartUserDataStreamResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -190,7 +208,7 @@ public class StartUserDataStreamResponse {
                         @Override
                         public void write(JsonWriter out, StartUserDataStreamResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

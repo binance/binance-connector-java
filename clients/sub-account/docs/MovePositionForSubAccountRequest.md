@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**fromUserEmail** | **String** |  |  |
 |**toUserEmail** | **String** |  |  |
-|**productType** | **String** |  |  |
+|**productType** | **ProductType** |  |  |
 |**orderArgs** | **OrderArgs** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 

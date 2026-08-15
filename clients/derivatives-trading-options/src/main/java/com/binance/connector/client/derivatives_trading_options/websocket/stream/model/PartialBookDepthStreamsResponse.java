@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** PartialBookDepthStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PartialBookDepthStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -66,6 +66,12 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String sLowerCase;
 
+    public static final String SERIALIZED_NAME_U = "U";
+
+    @SerializedName(SERIALIZED_NAME_U)
+    @jakarta.annotation.Nullable
+    private Long U;
+
     public static final String SERIALIZED_NAME_U_LOWER_CASE = "u";
 
     @SerializedName(SERIALIZED_NAME_U_LOWER_CASE)
@@ -82,13 +88,13 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_B_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<PartialBookDepthStreamsResponseBItem> bLowerCase;
+    private List<List<String>> bLowerCase;
 
     public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
 
     @SerializedName(SERIALIZED_NAME_A_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<PartialBookDepthStreamsResponseAItem> aLowerCase;
+    private List<List<String>> aLowerCase;
 
     public PartialBookDepthStreamsResponse() {}
 
@@ -99,7 +105,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * event type
      *
      * @return eLowerCase
      */
@@ -118,7 +124,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * event time
      *
      * @return E
      */
@@ -137,7 +143,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * transaction time
      *
      * @return T
      */
@@ -157,7 +163,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option symbol
      *
      * @return sLowerCase
      */
@@ -170,6 +176,25 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         this.sLowerCase = sLowerCase;
     }
 
+    public PartialBookDepthStreamsResponse U(@jakarta.annotation.Nullable Long U) {
+        this.U = U;
+        return this;
+    }
+
+    /**
+     * First update ID in event
+     *
+     * @return U
+     */
+    @jakarta.annotation.Nullable
+    public Long getU() {
+        return U;
+    }
+
+    public void setU(@jakarta.annotation.Nullable Long U) {
+        this.U = U;
+    }
+
     public PartialBookDepthStreamsResponse uLowerCase(
             @jakarta.annotation.Nullable Long uLowerCase) {
         this.uLowerCase = uLowerCase;
@@ -177,7 +202,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * Final update ID in event
      *
      * @return uLowerCase
      */
@@ -196,7 +221,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get pu
+     * Final update Id in last stream(ie &#x60;u&#x60; in last stream)
      *
      * @return pu
      */
@@ -210,13 +235,12 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     public PartialBookDepthStreamsResponse bLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseBItem> bLowerCase) {
+            @jakarta.annotation.Nullable List<List<String>> bLowerCase) {
         this.bLowerCase = bLowerCase;
         return this;
     }
 
-    public PartialBookDepthStreamsResponse addBLowerCaseItem(
-            PartialBookDepthStreamsResponseBItem bLowerCaseItem) {
+    public PartialBookDepthStreamsResponse addBLowerCaseItem(List<String> bLowerCaseItem) {
         if (this.bLowerCase == null) {
             this.bLowerCase = new ArrayList<>();
         }
@@ -225,29 +249,27 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * Buy order
      *
      * @return bLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<PartialBookDepthStreamsResponseBItem> getbLowerCase() {
+    public List<List<String>> getbLowerCase() {
         return bLowerCase;
     }
 
-    public void setbLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseBItem> bLowerCase) {
+    public void setbLowerCase(@jakarta.annotation.Nullable List<List<String>> bLowerCase) {
         this.bLowerCase = bLowerCase;
     }
 
     public PartialBookDepthStreamsResponse aLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseAItem> aLowerCase) {
+            @jakarta.annotation.Nullable List<List<String>> aLowerCase) {
         this.aLowerCase = aLowerCase;
         return this;
     }
 
-    public PartialBookDepthStreamsResponse addALowerCaseItem(
-            PartialBookDepthStreamsResponseAItem aLowerCaseItem) {
+    public PartialBookDepthStreamsResponse addALowerCaseItem(List<String> aLowerCaseItem) {
         if (this.aLowerCase == null) {
             this.aLowerCase = new ArrayList<>();
         }
@@ -256,18 +278,17 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Sell order
      *
      * @return aLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<PartialBookDepthStreamsResponseAItem> getaLowerCase() {
+    public List<List<String>> getaLowerCase() {
         return aLowerCase;
     }
 
-    public void setaLowerCase(
-            @jakarta.annotation.Nullable List<PartialBookDepthStreamsResponseAItem> aLowerCase) {
+    public void setaLowerCase(@jakarta.annotation.Nullable List<List<String>> aLowerCase) {
         this.aLowerCase = aLowerCase;
     }
 
@@ -285,6 +306,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
                 && Objects.equals(this.E, partialBookDepthStreamsResponse.E)
                 && Objects.equals(this.T, partialBookDepthStreamsResponse.T)
                 && Objects.equals(this.sLowerCase, partialBookDepthStreamsResponse.sLowerCase)
+                && Objects.equals(this.U, partialBookDepthStreamsResponse.U)
                 && Objects.equals(this.uLowerCase, partialBookDepthStreamsResponse.uLowerCase)
                 && Objects.equals(this.pu, partialBookDepthStreamsResponse.pu)
                 && Objects.equals(this.bLowerCase, partialBookDepthStreamsResponse.bLowerCase)
@@ -293,7 +315,8 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, T, sLowerCase, uLowerCase, pu, bLowerCase, aLowerCase);
+        return Objects.hash(
+                eLowerCase, E, T, sLowerCase, U, uLowerCase, pu, bLowerCase, aLowerCase);
     }
 
     @Override
@@ -304,6 +327,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
+        sb.append("		U: ").append(toIndentedString(U)).append("\n");
         sb.append("		uLowerCase: ").append(toIndentedString(uLowerCase)).append("\n");
         sb.append("		pu: ").append(toIndentedString(pu)).append("\n");
         sb.append("		bLowerCase: ").append(toIndentedString(bLowerCase)).append("\n");
@@ -336,6 +360,11 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
             String sLowerCaseValueAsString = sLowerCaseValue.toString();
             valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
+        Long UValue = getU();
+        if (UValue != null) {
+            String UValueAsString = UValue.toString();
+            valMap.put("U", UValueAsString);
+        }
         Long uLowerCaseValue = getuLowerCase();
         if (uLowerCaseValue != null) {
             String uLowerCaseValueAsString = uLowerCaseValue.toString();
@@ -346,12 +375,12 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
             String puValueAsString = puValue.toString();
             valMap.put("pu", puValueAsString);
         }
-        List<PartialBookDepthStreamsResponseBItem> bLowerCaseValue = getbLowerCase();
+        List<List<String>> bLowerCaseValue = getbLowerCase();
         if (bLowerCaseValue != null) {
             String bLowerCaseValueAsString = JSON.getGson().toJson(bLowerCaseValue);
             valMap.put("bLowerCase", bLowerCaseValueAsString);
         }
-        List<PartialBookDepthStreamsResponseAItem> aLowerCaseValue = getaLowerCase();
+        List<List<String>> aLowerCaseValue = getaLowerCase();
         if (aLowerCaseValue != null) {
             String aLowerCaseValueAsString = JSON.getGson().toJson(aLowerCaseValue);
             valMap.put("aLowerCase", aLowerCaseValueAsString);
@@ -382,6 +411,10 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         Object sLowerCaseValue = getsLowerCase();
         if (sLowerCaseValue != null) {
             valMap.put("sLowerCase", sLowerCaseValue);
+        }
+        Object UValue = getU();
+        if (UValue != null) {
+            valMap.put("U", UValue);
         }
         Object uLowerCaseValue = getuLowerCase();
         if (uLowerCaseValue != null) {
@@ -429,6 +462,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
         openapiFields.add("E");
         openapiFields.add("T");
         openapiFields.add("s");
+        openapiFields.add("U");
         openapiFields.add("u");
         openapiFields.add("pu");
         openapiFields.add("b");
@@ -523,7 +557,7 @@ public class PartialBookDepthStreamsResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, PartialBookDepthStreamsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

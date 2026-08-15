@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -133,11 +133,29 @@ public class JSON {
                 new com.binance.connector.client.vip_loan.rest.model
                         .GetLoanableAssetsDataResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanAccruedInterestResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanAccruedInterestResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanInterestRateHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanInterestRateHistoryResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model
                         .GetVIPLoanOngoingOrdersResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanRepaymentHistoryResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .GetVIPLoanRepaymentHistoryResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse
                         .CustomTypeAdapterFactory());
@@ -145,10 +163,22 @@ public class JSON {
                 new com.binance.connector.client.vip_loan.rest.model
                         .QueryApplicationStatusResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .QueryVIPLoanFixedRateMarketResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model
+                        .QueryVIPLoanFixedRateMarketResponseRowsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.vip_loan.rest.model.VipLoanRenewRequest

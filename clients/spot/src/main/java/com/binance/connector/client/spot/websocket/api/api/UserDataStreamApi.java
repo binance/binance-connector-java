@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -17,19 +17,24 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.common.websocket.adapter.ConnectionInterface;
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
+import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
+import com.binance.connector.client.spot.websocket.api.JSON;
+import com.binance.connector.client.spot.websocket.api.model.SessionSubscriptionsResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
+import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.constraints.*;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
@@ -42,103 +47,40 @@ public class UserDataStreamApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
-     * WebSocket Ping user data stream Ping a user data stream to keep it alive. User data streams
-     * close automatically after 60 minutes, even if you&#39;re listening to them on WebSocket
-     * Streams. In order to keep the stream open, you have to regularly send pings using the
-     * &#x60;userDataStream.ping&#x60; request. It is recommended to send a ping once every 30
-     * minutes. Weight: 2
+     * Listing all subscriptions **Note:** * Users should track the corresponding subscription
+     * status of related accounts as needed. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
-     * @param userDataStreamPingRequest (required)
-     * @return UserDataStreamPingResponse
+     * @return SessionSubscriptionsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Ping user data stream </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Listing all subscriptions </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#ping-user-data-stream-user_stream">WebSocket
-     *     Ping user data stream Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#session-subscriptions">Listing
+     *     all subscriptions Documentation</a>
      */
-    public CompletableFuture<UserDataStreamPingResponse> userDataStreamPing(
-            UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
-        userDataStreamPingValidateBeforeCall(userDataStreamPingRequest);
-        String methodName = "/userDataStream.ping".substring(1);
-        ApiRequestWrapperDTO<UserDataStreamPingRequest, UserDataStreamPingResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                UserDataStreamPingRequest, UserDataStreamPingResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(userDataStreamPingRequest)
-                        .responseType(UserDataStreamPingResponse.class)
-                        .signed(false)
-                        .apiKeyOnly(true)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void userDataStreamPingValidateBeforeCall(
-            UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<UserDataStreamPingRequest>> violations =
-                    validator.validate(userDataStreamPingRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * WebSocket Start user data stream Start a new user data stream. Weight: 2
-     *
-     * @return UserDataStreamStartResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Start user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#start-user-data-stream-user_stream">WebSocket
-     *     Start user data stream Documentation</a>
-     */
-    public CompletableFuture<UserDataStreamStartResponse> userDataStreamStart()
+    public CompletableFuture<SessionSubscriptionsResponse> sessionSubscriptions()
             throws ApiException {
-        userDataStreamStartValidateBeforeCall();
-        String methodName = "/userDataStream.start".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamStartResponse> build =
-                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, UserDataStreamStartResponse>()
+        sessionSubscriptionsValidateBeforeCall();
+        String methodName = "/session.subscriptions".substring(1);
+        ApiRequestWrapperDTO<BaseRequestDTO, SessionSubscriptionsResponse> build =
+                new ApiRequestWrapperDTO.Builder<BaseRequestDTO, SessionSubscriptionsResponse>()
                         .id(getRequestID())
                         .method(methodName)
                         .params(new BaseRequestDTO())
-                        .responseType(UserDataStreamStartResponse.class)
+                        .responseType(SessionSubscriptionsResponse.class)
                         .signed(false)
-                        .apiKeyOnly(true)
                         .build();
 
         try {
@@ -150,75 +92,20 @@ public class UserDataStreamApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private void userDataStreamStartValidateBeforeCall() throws ApiException {}
+    private void sessionSubscriptionsValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Stop user data stream Explicitly stop and close the user data stream. Weight: 2
-     *
-     * @param userDataStreamStopRequest (required)
-     * @return UserDataStreamStopResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Stop user data stream </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#stop-user-data-stream-user_stream">WebSocket
-     *     Stop user data stream Documentation</a>
-     */
-    public CompletableFuture<UserDataStreamStopResponse> userDataStreamStop(
-            UserDataStreamStopRequest userDataStreamStopRequest) throws ApiException {
-        userDataStreamStopValidateBeforeCall(userDataStreamStopRequest);
-        String methodName = "/userDataStream.stop".substring(1);
-        ApiRequestWrapperDTO<UserDataStreamStopRequest, UserDataStreamStopResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                UserDataStreamStopRequest, UserDataStreamStopResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(userDataStreamStopRequest)
-                        .responseType(UserDataStreamStopResponse.class)
-                        .signed(false)
-                        .apiKeyOnly(true)
-                        .build();
-
-        try {
-            connection.send(build);
-        } catch (InterruptedException e) {
-            throw new ApiException(e);
-        }
-        return build.getResponseCallback();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void userDataStreamStopValidateBeforeCall(
-            UserDataStreamStopRequest userDataStreamStopRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<UserDataStreamStopRequest>> violations =
-                    validator.validate(userDataStreamStopRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * WebSocket Subscribe to User Data Stream Subscribe to the User Data Stream in the current
-     * WebSocket connection. Weight: 2
+     * Subscribe to User Data Stream Subscribe to the User Data Stream in the current WebSocket
+     * connection. **Notes:** - This method requires an authenticated WebSocket connection using
+     * Ed25519 keys. Please refer to
+     * [&#x60;session.logon&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon).
+     * - To check the subscription status, use
+     * [&#x60;session.status&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-status),
+     * see the &#x60;userDataStream&#x60; flag indicating you have have an active subscription. -
+     * User Data Stream events are available in both JSON and [SBE](/products/spot/faqs/sbe_faq)
+     * sessions. - Please refer to [User Data Streams](/products/spot/user-data-stream) for the
+     * event format details. - For SBE, only SBE schema 2:1 or later is supported. Weight(IP): 2
+     * Security Type: NONE
      *
      * @return UserDataStreamSubscribeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -231,11 +118,11 @@ public class UserDataStreamApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-user_stream">WebSocket
-     *     Subscribe to User Data Stream Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe">Subscribe
+     *     to User Data Stream Documentation</a>
      */
-    public CompletableFuture<UserDataStreamSubscribeResponse> userDataStreamSubscribe()
-            throws ApiException {
+    public StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribe() throws ApiException {
         userDataStreamSubscribeValidateBeforeCall();
         String methodName = "/userDataStream.subscribe".substring(1);
         ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeResponse> build =
@@ -248,20 +135,75 @@ public class UserDataStreamApi {
                         .build();
 
         try {
-            connection.send(build);
+            BlockingQueue<String> queue = connection.sendForStream(build);
+            TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
+
+            return new StreamResponse<>(
+                    build.getResponseCallback(),
+                    new StreamBlockingQueueWrapper<>(
+                            new StreamBlockingQueue<>(queue), typeToken, JSON.getGson()));
         } catch (InterruptedException e) {
             throw new ApiException(e);
         }
-        return build.getResponseCallback();
     }
 
     @SuppressWarnings("rawtypes")
     private void userDataStreamSubscribeValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Unsubscribe from User Data Stream Stop listening to the User Data Stream in the
-     * current WebSocket connection. Weight: 2
+     * Subscribe to User Data Stream through signature subscription (USER_STREAM) Weight(IP): 2
+     * Security Type: USER_STREAM Notes: **Data Source:** Memory
      *
+     * @return UserDataStreamSubscribeSignatureResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Subscribe to User Data Stream through signature subscription </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe-signature">Subscribe
+     *     to User Data Stream through signature subscription (USER_STREAM) Documentation</a>
+     */
+    public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribeSignature() throws ApiException {
+        userDataStreamSubscribeSignatureValidateBeforeCall();
+        String methodName = "/userDataStream.subscribe.signature".substring(1);
+        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamSubscribeSignatureResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                BaseRequestDTO, UserDataStreamSubscribeSignatureResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(new BaseRequestDTO())
+                        .responseType(UserDataStreamSubscribeSignatureResponse.class)
+                        .build();
+
+        try {
+            BlockingQueue<String> queue = connection.sendForStream(build);
+            TypeToken<UserDataStreamEventsResponse> typeToken = new TypeToken<>() {};
+
+            return new StreamResponse<>(
+                    build.getResponseCallback(),
+                    new StreamBlockingQueueWrapper<>(
+                            new StreamBlockingQueue<>(queue), typeToken, JSON.getGson()));
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void userDataStreamSubscribeSignatureValidateBeforeCall() throws ApiException {}
+
+    /**
+     * WebSocket Unsubscribe from User Data Stream Stop listening to the User Data Stream in the
+     * current WebSocket connection. Note that &#x60;session.logout&#x60; will only close the
+     * subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened
+     * with &#x60;userDataStream.subscribe.signature&#x60;. Weight(IP): 2
+     *
+     * @param userDataStreamUnsubscribeRequest (optional)
      * @return UserDataStreamUnsubscribeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -273,22 +215,24 @@ public class UserDataStreamApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#unsubscribe-from-user-data-stream-user_stream">WebSocket
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-unsubscribe">WebSocket
      *     Unsubscribe from User Data Stream Documentation</a>
      */
-    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe()
-            throws ApiException {
-        userDataStreamUnsubscribeValidateBeforeCall();
+    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(
+            UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {
+        userDataStreamUnsubscribeValidateBeforeCall(userDataStreamUnsubscribeRequest);
         String methodName = "/userDataStream.unsubscribe".substring(1);
-        ApiRequestWrapperDTO<BaseRequestDTO, UserDataStreamUnsubscribeResponse> build =
-                new ApiRequestWrapperDTO.Builder<
-                                BaseRequestDTO, UserDataStreamUnsubscribeResponse>()
-                        .id(getRequestID())
-                        .method(methodName)
-                        .params(new BaseRequestDTO())
-                        .responseType(UserDataStreamUnsubscribeResponse.class)
-                        .signed(false)
-                        .build();
+        ApiRequestWrapperDTO<UserDataStreamUnsubscribeRequest, UserDataStreamUnsubscribeResponse>
+                build =
+                        new ApiRequestWrapperDTO.Builder<
+                                        UserDataStreamUnsubscribeRequest,
+                                        UserDataStreamUnsubscribeResponse>()
+                                .id(getRequestID())
+                                .method(methodName)
+                                .params(userDataStreamUnsubscribeRequest)
+                                .responseType(UserDataStreamUnsubscribeResponse.class)
+                                .signed(false)
+                                .build();
 
         try {
             connection.send(build);
@@ -299,7 +243,27 @@ public class UserDataStreamApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private void userDataStreamUnsubscribeValidateBeforeCall() throws ApiException {}
+    private void userDataStreamUnsubscribeValidateBeforeCall(
+            UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<UserDataStreamUnsubscribeRequest>> violations =
+                    validator.validate(userDataStreamUnsubscribeRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
 
     public String getRequestID() {
         return UUID.randomUUID().toString();

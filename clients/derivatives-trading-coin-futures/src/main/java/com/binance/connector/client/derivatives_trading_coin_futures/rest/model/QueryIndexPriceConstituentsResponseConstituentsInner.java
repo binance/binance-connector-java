@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryIndexPriceConstituentsResponseConstituentsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIndexPriceConstituentsResponseConstituentsInner {
     public static final String SERIALIZED_NAME_EXCHANGE = "exchange";
 
@@ -50,6 +48,18 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
     @jakarta.annotation.Nullable
     private String symbol;
 
+    public static final String SERIALIZED_NAME_PRICE = "price";
+
+    @SerializedName(SERIALIZED_NAME_PRICE)
+    @jakarta.annotation.Nullable
+    private String price;
+
+    public static final String SERIALIZED_NAME_WEIGHT = "weight";
+
+    @SerializedName(SERIALIZED_NAME_WEIGHT)
+    @jakarta.annotation.Nullable
+    private String weight;
+
     public QueryIndexPriceConstituentsResponseConstituentsInner() {}
 
     public QueryIndexPriceConstituentsResponseConstituentsInner exchange(
@@ -59,7 +69,7 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
     }
 
     /**
-     * Get exchange
+     * Exchange identifier.
      *
      * @return exchange
      */
@@ -79,7 +89,7 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -90,6 +100,46 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
 
     public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
+    }
+
+    public QueryIndexPriceConstituentsResponseConstituentsInner price(
+            @jakarta.annotation.Nullable String price) {
+        this.price = price;
+        return this;
+    }
+
+    /**
+     * Price
+     *
+     * @return price
+     */
+    @jakarta.annotation.Nullable
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(@jakarta.annotation.Nullable String price) {
+        this.price = price;
+    }
+
+    public QueryIndexPriceConstituentsResponseConstituentsInner weight(
+            @jakarta.annotation.Nullable String weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    /**
+     * Weight
+     *
+     * @return weight
+     */
+    @jakarta.annotation.Nullable
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(@jakarta.annotation.Nullable String weight) {
+        this.weight = weight;
     }
 
     @Override
@@ -107,12 +157,16 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
                         this.exchange,
                         queryIndexPriceConstituentsResponseConstituentsInner.exchange)
                 && Objects.equals(
-                        this.symbol, queryIndexPriceConstituentsResponseConstituentsInner.symbol);
+                        this.symbol, queryIndexPriceConstituentsResponseConstituentsInner.symbol)
+                && Objects.equals(
+                        this.price, queryIndexPriceConstituentsResponseConstituentsInner.price)
+                && Objects.equals(
+                        this.weight, queryIndexPriceConstituentsResponseConstituentsInner.weight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exchange, symbol);
+        return Objects.hash(exchange, symbol, price, weight);
     }
 
     @Override
@@ -121,6 +175,8 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         sb.append("class QueryIndexPriceConstituentsResponseConstituentsInner {\n");
         sb.append("		exchange: ").append(toIndentedString(exchange)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		price: ").append(toIndentedString(price)).append("\n");
+        sb.append("		weight: ").append(toIndentedString(weight)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -136,6 +192,14 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object priceValue = getPrice();
+        String priceValueAsString = "";
+        priceValueAsString = priceValue.toString();
+        sb.append("price=").append(urlEncode(priceValueAsString)).append("");
+        Object weightValue = getWeight();
+        String weightValueAsString = "";
+        weightValueAsString = weightValue.toString();
+        sb.append("weight=").append(urlEncode(weightValueAsString)).append("");
         return sb.toString();
     }
 
@@ -166,6 +230,8 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("exchange");
         openapiFields.add("symbol");
+        openapiFields.add("price");
+        openapiFields.add("weight");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -192,20 +258,6 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryIndexPriceConstituentsResponseConstituentsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryIndexPriceConstituentsResponseConstituentsInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("exchange") != null && !jsonObj.get("exchange").isJsonNull())
                 && !jsonObj.get("exchange").isJsonPrimitive()) {
@@ -222,6 +274,22 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
+                && !jsonObj.get("price").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `price` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("price").toString()));
+        }
+        if ((jsonObj.get("weight") != null && !jsonObj.get("weight").isJsonNull())
+                && !jsonObj.get("weight").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `weight` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("weight").toString()));
         }
     }
 
@@ -249,7 +317,7 @@ public class QueryIndexPriceConstituentsResponseConstituentsInner {
                                 JsonWriter out,
                                 QueryIndexPriceConstituentsResponseConstituentsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** NewMarginOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewMarginOrderResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -120,7 +118,7 @@ public class NewMarginOrderResponse {
 
     @SerializedName(SERIALIZED_NAME_MARGIN_BUY_BORROW_AMOUNT)
     @jakarta.annotation.Nullable
-    private Long marginBuyBorrowAmount;
+    private String marginBuyBorrowAmount;
 
     public static final String SERIALIZED_NAME_MARGIN_BUY_BORROW_ASSET = "marginBuyBorrowAsset";
 
@@ -142,7 +140,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -161,7 +159,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -180,7 +178,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -199,7 +197,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get transactTime
+     * Transact Time.
      *
      * @return transactTime
      */
@@ -218,7 +216,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -237,7 +235,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -256,7 +254,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -276,7 +274,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -295,7 +293,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -314,7 +312,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -333,7 +331,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -352,7 +350,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -366,22 +364,23 @@ public class NewMarginOrderResponse {
     }
 
     public NewMarginOrderResponse marginBuyBorrowAmount(
-            @jakarta.annotation.Nullable Long marginBuyBorrowAmount) {
+            @jakarta.annotation.Nullable String marginBuyBorrowAmount) {
         this.marginBuyBorrowAmount = marginBuyBorrowAmount;
         return this;
     }
 
     /**
-     * Get marginBuyBorrowAmount
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAmount
      */
     @jakarta.annotation.Nullable
-    public Long getMarginBuyBorrowAmount() {
+    public String getMarginBuyBorrowAmount() {
         return marginBuyBorrowAmount;
     }
 
-    public void setMarginBuyBorrowAmount(@jakarta.annotation.Nullable Long marginBuyBorrowAmount) {
+    public void setMarginBuyBorrowAmount(
+            @jakarta.annotation.Nullable String marginBuyBorrowAmount) {
         this.marginBuyBorrowAmount = marginBuyBorrowAmount;
     }
 
@@ -392,7 +391,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get marginBuyBorrowAsset
+     * will not return if no margin trade happens
      *
      * @return marginBuyBorrowAsset
      */
@@ -420,7 +419,7 @@ public class NewMarginOrderResponse {
     }
 
     /**
-     * Get fills
+     * Fills.
      *
      * @return fills
      */
@@ -650,18 +649,6 @@ public class NewMarginOrderResponse {
                                 NewMarginOrderResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NewMarginOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NewMarginOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -744,6 +731,15 @@ public class NewMarginOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
+        if ((jsonObj.get("marginBuyBorrowAmount") != null
+                        && !jsonObj.get("marginBuyBorrowAmount").isJsonNull())
+                && !jsonObj.get("marginBuyBorrowAmount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `marginBuyBorrowAmount` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("marginBuyBorrowAmount").toString()));
+        }
         if ((jsonObj.get("marginBuyBorrowAsset") != null
                         && !jsonObj.get("marginBuyBorrowAsset").isJsonNull())
                 && !jsonObj.get("marginBuyBorrowAsset").isJsonPrimitive()) {
@@ -790,7 +786,7 @@ public class NewMarginOrderResponse {
                         @Override
                         public void write(JsonWriter out, NewMarginOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

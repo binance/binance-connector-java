@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QuerySubOrdersFutureAlgoResponseSubOrdersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -131,7 +129,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get algoId
+     * Algo order ID
      *
      * @return algoId
      */
@@ -151,7 +149,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -171,7 +169,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get orderStatus
+     * Sub-order status
      *
      * @return orderStatus
      */
@@ -191,7 +189,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -211,7 +209,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get executedAmt
+     * Executed amount
      *
      * @return executedAmt
      */
@@ -231,7 +229,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get feeAmt
+     * Fee amount
      *
      * @return feeAmt
      */
@@ -251,7 +249,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get feeAsset
+     * Fee asset
      *
      * @return feeAsset
      */
@@ -271,7 +269,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get bookTime
+     * Order creation time
      *
      * @return bookTime
      */
@@ -291,7 +289,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -311,7 +309,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -331,7 +329,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -351,7 +349,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get subId
+     * Sub-order execution sequence ID
      *
      * @return subId
      */
@@ -371,7 +369,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -391,7 +389,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -613,20 +611,6 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QuerySubOrdersFutureAlgoResponseSubOrdersInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QuerySubOrdersFutureAlgoResponseSubOrdersInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("orderStatus") != null && !jsonObj.get("orderStatus").isJsonNull())
                 && !jsonObj.get("orderStatus").isJsonPrimitive()) {
@@ -732,7 +716,7 @@ public class QuerySubOrdersFutureAlgoResponseSubOrdersInner {
                                 JsonWriter out,
                                 QuerySubOrdersFutureAlgoResponseSubOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

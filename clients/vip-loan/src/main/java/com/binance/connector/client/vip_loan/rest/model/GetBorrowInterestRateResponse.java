@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,8 +14,8 @@ package com.binance.connector.client.vip_loan.rest.model;
 
 import com.binance.connector.client.vip_loan.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -28,15 +28,13 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetBorrowInterestRateResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetBorrowInterestRateResponse extends ArrayList<GetBorrowInterestRateResponseInner> {
     public GetBorrowInterestRateResponse() {}
 
@@ -109,6 +107,18 @@ public class GetBorrowInterestRateResponse extends ArrayList<GetBorrowInterestRa
      *     GetBorrowInterestRateResponse
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (!jsonElement.isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected json element to be a array type in the JSON string but got"
+                                    + " `%s`",
+                            jsonElement.toString()));
+        }
+        JsonArray array = jsonElement.getAsJsonArray();
+        // validate array items
+        for (JsonElement element : array) {
+            GetBorrowInterestRateResponseInner.validateJsonElement(element);
+        }
         if (jsonElement == null) {
             if (!GetBorrowInterestRateResponse.openapiRequiredFields
                     .isEmpty()) { // has required fields but JSON element is null
@@ -117,18 +127,6 @@ public class GetBorrowInterestRateResponse extends ArrayList<GetBorrowInterestRa
                                 "The required field(s) %s in GetBorrowInterestRateResponse is not"
                                         + " found in the empty JSON string",
                                 GetBorrowInterestRateResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetBorrowInterestRateResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetBorrowInterestRateResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
     }
@@ -151,7 +149,7 @@ public class GetBorrowInterestRateResponse extends ArrayList<GetBorrowInterestRa
                         @Override
                         public void write(JsonWriter out, GetBorrowInterestRateResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonArray();
                             elementAdapter.write(out, obj);
                         }
 

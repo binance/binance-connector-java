@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,16 +26,17 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_options.rest.model.CheckServerTimeResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.Interval;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.OldTradesLookupResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarkPriceResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OrderBookResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentBlockTradesListResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.RecentTradesListResponse;
-import com.binance.connector.client.derivatives_trading_options.rest.model.SymbolPriceTickerResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.Ticker24hrPriceChangeStatisticsResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -89,12 +90,12 @@ public class MarketDataApiTest {
     /**
      * Check Server Time
      *
-     * <p>Test connectivity to the Rest API and get the current server time. Weight: 1
+     * <p>Test connectivity to the Rest API and get the current server time. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void checkServerTimeTest() throws ApiException, CryptoException {
+    public void checkServerTimeTest() throws ApiException, CryptoException, IOException {
         ApiResponse<CheckServerTimeResponse> response = api.checkServerTime();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -104,19 +105,20 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/time", actualRequest.url().encodedPath());
     }
 
     /**
      * Exchange Information
      *
-     * <p>Current exchange trading rules and symbol information Weight: 1
+     * <p>Current exchange trading rules and symbol information Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void exchangeInformationTest() throws ApiException, CryptoException {
+    public void exchangeInformationTest() throws ApiException, CryptoException, IOException {
         ApiResponse<ExchangeInformationResponse> response = api.exchangeInformation();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -126,7 +128,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/exchangeInfo", actualRequest.url().encodedPath());
     }
 
@@ -134,16 +137,16 @@ public class MarketDataApiTest {
      * Historical Exercise Records
      *
      * <p>Get historical exercise records. * REALISTIC_VALUE_STRICKEN -&gt; Exercised *
-     * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM Weight: 3
+     * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM Weight(IP): 3
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void historicalExerciseRecordsTest() throws ApiException, CryptoException {
-        String underlying = "";
+    public void historicalExerciseRecordsTest() throws ApiException, CryptoException, IOException {
+        String underlying = "BTCUSDT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         ApiResponse<HistoricalExerciseRecordsResponse> response =
                 api.historicalExerciseRecords(underlying, startTime, endTime, limit);
 
@@ -154,25 +157,51 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/exerciseHistory", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Index Price
+     *
+     * <p>Get spot index price for option underlying. Weight(IP): 1
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void indexPriceTest() throws ApiException, CryptoException, IOException {
+        String underlying = "BTCUSDT";
+        ApiResponse<IndexPriceResponse> response = api.indexPrice(underlying);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("/eapi/v1/index", actualRequest.url().encodedPath());
     }
 
     /**
      * Kline/Candlestick Data
      *
      * <p>Kline/candlestick bars for an option symbol. Klines are uniquely identified by their open
-     * time. * If startTime and endTime are not sent, the most recent klines are returned. Weight: 1
+     * time. Weight(IP): 1 Notes: - If startTime and endTime are not sent, the most recent klines
+     * are returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void klineCandlestickDataTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String interval = "";
+    public void klineCandlestickDataTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 100L;
+        Long limit = 20L;
         ApiResponse<KlineCandlestickDataResponse> response =
                 api.klineCandlestickData(symbol, interval, startTime, endTime, limit);
 
@@ -183,46 +212,23 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/klines", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Old Trades Lookup (MARKET_DATA)
-     *
-     * <p>Get older market historical trades. Weight: 20
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void oldTradesLookupTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long fromId = 1L;
-        Long limit = 100L;
-        ApiResponse<OldTradesLookupResponse> response = api.oldTradesLookup(symbol, fromId, limit);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/historicalTrades", actualRequest.url().encodedPath());
     }
 
     /**
      * Open Interest
      *
-     * <p>Get open interest for specific underlying asset on specific expiration date. Weight: 0
+     * <p>Get open interest for specific underlying asset on specific expiration date. Weight(IP): 0
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void openInterestTest() throws ApiException, CryptoException {
-        String underlyingAsset = "";
-        String expiration = "";
+    public void openInterestTest() throws ApiException, CryptoException, IOException {
+        String underlyingAsset = "ETH/BTC";
+        String expiration = "221225";
         ApiResponse<OpenInterestResponse> response = api.openInterest(underlyingAsset, expiration);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -239,13 +245,13 @@ public class MarketDataApiTest {
     /**
      * Option Mark Price
      *
-     * <p>Option mark price and greek info. Weight: 5
+     * <p>Option mark price and greek info. Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void optionMarkPriceTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void optionMarkPriceTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
         ApiResponse<OptionMarkPriceResponse> response = api.optionMarkPrice(symbol);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -255,7 +261,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/mark", actualRequest.url().encodedPath());
     }
 
@@ -263,14 +270,14 @@ public class MarketDataApiTest {
      * Order Book
      *
      * <p>Check orderbook depth on specific symbol Weight: limit | weight ------------ |
-     * ------------ 5, 10, 20, 50 | 2 100 | 5 500 | 10 1000 | 20
+     * ------------ 5, 10, 20, 50 | 1 100 | 5 500 | 10 1000 | 20
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderBookTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long limit = 100L;
+    public void orderBookTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long limit = 20L;
         ApiResponse<OrderBookResponse> response = api.orderBook(symbol, limit);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -287,14 +294,14 @@ public class MarketDataApiTest {
     /**
      * Recent Block Trades List
      *
-     * <p>Get recent block trades Weight: 5
+     * <p>Get recent block trades Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void recentBlockTradesListTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long limit = 100L;
+    public void recentBlockTradesListTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long limit = 20L;
         ApiResponse<RecentBlockTradesListResponse> response =
                 api.recentBlockTradesList(symbol, limit);
 
@@ -305,21 +312,23 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/blockTrades", actualRequest.url().encodedPath());
     }
 
     /**
      * Recent Trades List
      *
-     * <p>Get recent market trades Weight: 5
+     * <p>Get recent market trades Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void recentTradesListTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long limit = 100L;
+    public void recentTradesListTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
+        Long limit = 20L;
         ApiResponse<RecentTradesListResponse> response = api.recentTradesList(symbol, limit);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -329,42 +338,20 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/trades", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Symbol Price Ticker
-     *
-     * <p>Get spot index price for option underlying. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void symbolPriceTickerTest() throws ApiException, CryptoException {
-        String underlying = "";
-        ApiResponse<SymbolPriceTickerResponse> response = api.symbolPriceTicker(underlying);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
-        assertEquals("/eapi/v1/index", actualRequest.url().encodedPath());
     }
 
     /**
      * Test Connectivity
      *
-     * <p>Test connectivity to the Rest API. Weight: 1
+     * <p>Test connectivity to the Rest API. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void testConnectivityTest() throws ApiException, CryptoException {
+    public void testConnectivityTest() throws ApiException, CryptoException, IOException {
         api.testConnectivity();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -373,20 +360,22 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/ping", actualRequest.url().encodedPath());
     }
 
     /**
      * 24hr Ticker Price Change Statistics
      *
-     * <p>24 hour rolling window price change statistics. Weight: 5
+     * <p>24 hour rolling window price change statistics. Weight(IP): 5
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void ticker24hrPriceChangeStatisticsTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void ticker24hrPriceChangeStatisticsTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTC-200730-9000-C";
         ApiResponse<Ticker24hrPriceChangeStatisticsResponse> response =
                 api.ticker24hrPriceChangeStatistics(symbol);
 
@@ -397,7 +386,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/ticker", actualRequest.url().encodedPath());
     }
 }

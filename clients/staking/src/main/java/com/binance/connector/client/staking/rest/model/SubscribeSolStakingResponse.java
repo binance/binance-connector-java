@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SubscribeSolStakingResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeSolStakingResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -49,6 +47,12 @@ public class SubscribeSolStakingResponse {
     @SerializedName(SERIALIZED_NAME_BNSOL_AMOUNT)
     @jakarta.annotation.Nullable
     private String bnsolAmount;
+
+    public static final String SERIALIZED_NAME_PURCHASE_ID = "purchaseId";
+
+    @SerializedName(SERIALIZED_NAME_PURCHASE_ID)
+    @jakarta.annotation.Nullable
+    private Long purchaseId;
 
     public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchangeRate";
 
@@ -97,6 +101,25 @@ public class SubscribeSolStakingResponse {
         this.bnsolAmount = bnsolAmount;
     }
 
+    public SubscribeSolStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+        return this;
+    }
+
+    /**
+     * Get purchaseId
+     *
+     * @return purchaseId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
     public SubscribeSolStakingResponse exchangeRate(
             @jakarta.annotation.Nullable String exchangeRate) {
         this.exchangeRate = exchangeRate;
@@ -128,12 +151,13 @@ public class SubscribeSolStakingResponse {
         SubscribeSolStakingResponse subscribeSolStakingResponse = (SubscribeSolStakingResponse) o;
         return Objects.equals(this.success, subscribeSolStakingResponse.success)
                 && Objects.equals(this.bnsolAmount, subscribeSolStakingResponse.bnsolAmount)
+                && Objects.equals(this.purchaseId, subscribeSolStakingResponse.purchaseId)
                 && Objects.equals(this.exchangeRate, subscribeSolStakingResponse.exchangeRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, bnsolAmount, exchangeRate);
+        return Objects.hash(success, bnsolAmount, purchaseId, exchangeRate);
     }
 
     @Override
@@ -142,6 +166,7 @@ public class SubscribeSolStakingResponse {
         sb.append("class SubscribeSolStakingResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		bnsolAmount: ").append(toIndentedString(bnsolAmount)).append("\n");
+        sb.append("		purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
         sb.append("		exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -158,6 +183,10 @@ public class SubscribeSolStakingResponse {
         String bnsolAmountValueAsString = "";
         bnsolAmountValueAsString = bnsolAmountValue.toString();
         sb.append("bnsolAmount=").append(urlEncode(bnsolAmountValueAsString)).append("");
+        Object purchaseIdValue = getPurchaseId();
+        String purchaseIdValueAsString = "";
+        purchaseIdValueAsString = purchaseIdValue.toString();
+        sb.append("purchaseId=").append(urlEncode(purchaseIdValueAsString)).append("");
         Object exchangeRateValue = getExchangeRate();
         String exchangeRateValueAsString = "";
         exchangeRateValueAsString = exchangeRateValue.toString();
@@ -192,6 +221,7 @@ public class SubscribeSolStakingResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("bnsolAmount");
+        openapiFields.add("purchaseId");
         openapiFields.add("exchangeRate");
 
         // a set of required properties/fields (JSON key names)
@@ -214,18 +244,6 @@ public class SubscribeSolStakingResponse {
                                 "The required field(s) %s in SubscribeSolStakingResponse is not"
                                         + " found in the empty JSON string",
                                 SubscribeSolStakingResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SubscribeSolStakingResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SubscribeSolStakingResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -264,7 +282,7 @@ public class SubscribeSolStakingResponse {
                         @Override
                         public void write(JsonWriter out, SubscribeSolStakingResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,31 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QuerySubAccountListResponseSubAccountsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QuerySubAccountListResponseSubAccountsInner {
+    public static final String SERIALIZED_NAME_SUB_USER_ID = "subUserId";
+
+    @SerializedName(SERIALIZED_NAME_SUB_USER_ID)
+    @jakarta.annotation.Nullable
+    private Long subUserId;
+
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
     @SerializedName(SERIALIZED_NAME_EMAIL)
     @jakarta.annotation.Nullable
     private String email;
+
+    public static final String SERIALIZED_NAME_REMARK = "remark";
+
+    @SerializedName(SERIALIZED_NAME_REMARK)
+    @jakarta.annotation.Nullable
+    private String remark;
 
     public static final String SERIALIZED_NAME_IS_FREEZE = "isFreeze";
 
@@ -71,6 +81,26 @@ public class QuerySubAccountListResponseSubAccountsInner {
 
     public QuerySubAccountListResponseSubAccountsInner() {}
 
+    public QuerySubAccountListResponseSubAccountsInner subUserId(
+            @jakarta.annotation.Nullable Long subUserId) {
+        this.subUserId = subUserId;
+        return this;
+    }
+
+    /**
+     * Get subUserId
+     *
+     * @return subUserId
+     */
+    @jakarta.annotation.Nullable
+    public Long getSubUserId() {
+        return subUserId;
+    }
+
+    public void setSubUserId(@jakarta.annotation.Nullable Long subUserId) {
+        this.subUserId = subUserId;
+    }
+
     public QuerySubAccountListResponseSubAccountsInner email(
             @jakarta.annotation.Nullable String email) {
         this.email = email;
@@ -89,6 +119,26 @@ public class QuerySubAccountListResponseSubAccountsInner {
 
     public void setEmail(@jakarta.annotation.Nullable String email) {
         this.email = email;
+    }
+
+    public QuerySubAccountListResponseSubAccountsInner remark(
+            @jakarta.annotation.Nullable String remark) {
+        this.remark = remark;
+        return this;
+    }
+
+    /**
+     * Get remark
+     *
+     * @return remark
+     */
+    @jakarta.annotation.Nullable
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(@jakarta.annotation.Nullable String remark) {
+        this.remark = remark;
     }
 
     public QuerySubAccountListResponseSubAccountsInner isFreeze(
@@ -182,7 +232,9 @@ public class QuerySubAccountListResponseSubAccountsInner {
         }
         QuerySubAccountListResponseSubAccountsInner querySubAccountListResponseSubAccountsInner =
                 (QuerySubAccountListResponseSubAccountsInner) o;
-        return Objects.equals(this.email, querySubAccountListResponseSubAccountsInner.email)
+        return Objects.equals(this.subUserId, querySubAccountListResponseSubAccountsInner.subUserId)
+                && Objects.equals(this.email, querySubAccountListResponseSubAccountsInner.email)
+                && Objects.equals(this.remark, querySubAccountListResponseSubAccountsInner.remark)
                 && Objects.equals(
                         this.isFreeze, querySubAccountListResponseSubAccountsInner.isFreeze)
                 && Objects.equals(
@@ -198,14 +250,22 @@ public class QuerySubAccountListResponseSubAccountsInner {
     @Override
     public int hashCode() {
         return Objects.hash(
-                email, isFreeze, createTime, isManagedSubAccount, isAssetManagementSubAccount);
+                subUserId,
+                email,
+                remark,
+                isFreeze,
+                createTime,
+                isManagedSubAccount,
+                isAssetManagementSubAccount);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class QuerySubAccountListResponseSubAccountsInner {\n");
+        sb.append("		subUserId: ").append(toIndentedString(subUserId)).append("\n");
         sb.append("		email: ").append(toIndentedString(email)).append("\n");
+        sb.append("		remark: ").append(toIndentedString(remark)).append("\n");
         sb.append("		isFreeze: ").append(toIndentedString(isFreeze)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		isManagedSubAccount: ")
@@ -221,10 +281,18 @@ public class QuerySubAccountListResponseSubAccountsInner {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
+        Object subUserIdValue = getSubUserId();
+        String subUserIdValueAsString = "";
+        subUserIdValueAsString = subUserIdValue.toString();
+        sb.append("subUserId=").append(urlEncode(subUserIdValueAsString)).append("");
         Object emailValue = getEmail();
         String emailValueAsString = "";
         emailValueAsString = emailValue.toString();
         sb.append("email=").append(urlEncode(emailValueAsString)).append("");
+        Object remarkValue = getRemark();
+        String remarkValueAsString = "";
+        remarkValueAsString = remarkValue.toString();
+        sb.append("remark=").append(urlEncode(remarkValueAsString)).append("");
         Object isFreezeValue = getIsFreeze();
         String isFreezeValueAsString = "";
         isFreezeValueAsString = isFreezeValue.toString();
@@ -273,7 +341,9 @@ public class QuerySubAccountListResponseSubAccountsInner {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("subUserId");
         openapiFields.add("email");
+        openapiFields.add("remark");
         openapiFields.add("isFreeze");
         openapiFields.add("createTime");
         openapiFields.add("isManagedSubAccount");
@@ -303,20 +373,6 @@ public class QuerySubAccountListResponseSubAccountsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QuerySubAccountListResponseSubAccountsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QuerySubAccountListResponseSubAccountsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull())
                 && !jsonObj.get("email").isJsonPrimitive()) {
@@ -325,6 +381,14 @@ public class QuerySubAccountListResponseSubAccountsInner {
                             "Expected the field `email` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("email").toString()));
+        }
+        if ((jsonObj.get("remark") != null && !jsonObj.get("remark").isJsonNull())
+                && !jsonObj.get("remark").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `remark` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("remark").toString()));
         }
     }
 
@@ -348,7 +412,7 @@ public class QuerySubAccountListResponseSubAccountsInner {
                         public void write(
                                 JsonWriter out, QuerySubAccountListResponseSubAccountsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

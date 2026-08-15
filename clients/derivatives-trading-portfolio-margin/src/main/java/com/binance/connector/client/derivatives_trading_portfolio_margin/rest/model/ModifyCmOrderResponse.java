@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ModifyCmOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyCmOrderResponse {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -68,17 +66,17 @@ public class ModifyCmOrderResponse {
     @jakarta.annotation.Nullable
     private String clientOrderId;
 
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
+
     public static final String SERIALIZED_NAME_PRICE = "price";
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
     private String price;
-
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
 
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
@@ -97,12 +95,6 @@ public class ModifyCmOrderResponse {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
-
-    @SerializedName(SERIALIZED_NAME_CUM_BASE)
-    @jakarta.annotation.Nullable
-    private String cumBase;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -154,7 +146,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -173,7 +165,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -192,7 +184,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get pair
+     * Pair.
      *
      * @return pair
      */
@@ -211,7 +203,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -230,7 +222,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -243,13 +235,32 @@ public class ModifyCmOrderResponse {
         this.clientOrderId = clientOrderId;
     }
 
+    public ModifyCmOrderResponse modifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * user-defined modification identifier, only returned if provided in the request
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+    }
+
     public ModifyCmOrderResponse price(@jakarta.annotation.Nullable String price) {
         this.price = price;
         return this;
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -262,32 +273,13 @@ public class ModifyCmOrderResponse {
         this.price = price;
     }
 
-    public ModifyCmOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public ModifyCmOrderResponse origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -306,7 +298,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -325,7 +317,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get cumQty
+     * Cum Qty.
      *
      * @return cumQty
      */
@@ -338,32 +330,13 @@ public class ModifyCmOrderResponse {
         this.cumQty = cumQty;
     }
 
-    public ModifyCmOrderResponse cumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-        return this;
-    }
-
-    /**
-     * Get cumBase
-     *
-     * @return cumBase
-     */
-    @jakarta.annotation.Nullable
-    public String getCumBase() {
-        return cumBase;
-    }
-
-    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-    }
-
     public ModifyCmOrderResponse timeInForce(@jakarta.annotation.Nullable String timeInForce) {
         this.timeInForce = timeInForce;
         return this;
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -382,7 +355,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -401,7 +374,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -420,7 +393,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -439,7 +412,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -458,7 +431,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -477,7 +450,7 @@ public class ModifyCmOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -504,12 +477,11 @@ public class ModifyCmOrderResponse {
                 && Objects.equals(this.pair, modifyCmOrderResponse.pair)
                 && Objects.equals(this.status, modifyCmOrderResponse.status)
                 && Objects.equals(this.clientOrderId, modifyCmOrderResponse.clientOrderId)
+                && Objects.equals(this.modifyId, modifyCmOrderResponse.modifyId)
                 && Objects.equals(this.price, modifyCmOrderResponse.price)
-                && Objects.equals(this.avgPrice, modifyCmOrderResponse.avgPrice)
                 && Objects.equals(this.origQty, modifyCmOrderResponse.origQty)
                 && Objects.equals(this.executedQty, modifyCmOrderResponse.executedQty)
                 && Objects.equals(this.cumQty, modifyCmOrderResponse.cumQty)
-                && Objects.equals(this.cumBase, modifyCmOrderResponse.cumBase)
                 && Objects.equals(this.timeInForce, modifyCmOrderResponse.timeInForce)
                 && Objects.equals(this.type, modifyCmOrderResponse.type)
                 && Objects.equals(this.reduceOnly, modifyCmOrderResponse.reduceOnly)
@@ -527,12 +499,11 @@ public class ModifyCmOrderResponse {
                 pair,
                 status,
                 clientOrderId,
+                modifyId,
                 price,
-                avgPrice,
                 origQty,
                 executedQty,
                 cumQty,
-                cumBase,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -551,12 +522,11 @@ public class ModifyCmOrderResponse {
         sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -591,14 +561,14 @@ public class ModifyCmOrderResponse {
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
         sb.append("clientOrderId=").append(urlEncode(clientOrderIdValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         Object priceValue = getPrice();
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object origQtyValue = getOrigQty();
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
@@ -611,10 +581,6 @@ public class ModifyCmOrderResponse {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumBaseValue = getCumBase();
-        String cumBaseValueAsString = "";
-        cumBaseValueAsString = cumBaseValue.toString();
-        sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString = timeInForceValue.toString();
@@ -676,12 +642,11 @@ public class ModifyCmOrderResponse {
         openapiFields.add("pair");
         openapiFields.add("status");
         openapiFields.add("clientOrderId");
+        openapiFields.add("modifyId");
         openapiFields.add("price");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumQty");
-        openapiFields.add("cumBase");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -709,18 +674,6 @@ public class ModifyCmOrderResponse {
                                 "The required field(s) %s in ModifyCmOrderResponse is not found in"
                                         + " the empty JSON string",
                                 ModifyCmOrderResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ModifyCmOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ModifyCmOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -764,14 +717,6 @@ public class ModifyCmOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
         }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
-        }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -795,14 +740,6 @@ public class ModifyCmOrderResponse {
                             "Expected the field `cumQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
-        }
-        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
-                && !jsonObj.get("cumBase").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumBase` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("cumBase").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
@@ -862,7 +799,7 @@ public class ModifyCmOrderResponse {
                         @Override
                         public void write(JsonWriter out, ModifyCmOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

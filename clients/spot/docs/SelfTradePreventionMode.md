@@ -15,7 +15,7 @@
 
 * `DECREMENT` (value: `"DECREMENT"`)
 
-* `NON_REPRESENTABLE` (value: `"NON_REPRESENTABLE"`)
+* `TRANSFER` (value: `"TRANSFER"`)
 
 
 

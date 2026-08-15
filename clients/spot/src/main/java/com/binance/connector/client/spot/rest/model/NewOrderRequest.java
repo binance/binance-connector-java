@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -130,11 +128,29 @@ public class NewOrderRequest {
     @jakarta.annotation.Nullable
     private SelfTradePreventionMode selfTradePreventionMode;
 
+    public static final String SERIALIZED_NAME_PEG_PRICE_TYPE = "pegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PegPriceType pegPriceType;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_VALUE = "pegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pegOffsetValue;
+
+    public static final String SERIALIZED_NAME_PEG_OFFSET_TYPE = "pegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PegOffsetType pegOffsetType;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public NewOrderRequest() {}
 
@@ -286,7 +302,9 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with
+     * the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled,
+     * otherwise the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -324,11 +342,12 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;. minimum: 1000000
      *
      * @return strategyType
      */
     @jakarta.annotation.Nullable
+    @Min(1000000)
     public Integer getStrategyType() {
         return strategyType;
     }
@@ -343,7 +362,8 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -363,7 +383,7 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get trailingDelta
+     * See Trailing Stop order FAQ
      *
      * @return trailingDelta
      */
@@ -382,7 +402,8 @@ public class NewOrderRequest {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -440,22 +461,85 @@ public class NewOrderRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public NewOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public NewOrderRequest pegPriceType(@jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pegPriceType
+     *
+     * @return pegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegPriceType getPegPriceType() {
+        return pegPriceType;
+    }
+
+    public void setPegPriceType(@jakarta.annotation.Nullable PegPriceType pegPriceType) {
+        this.pegPriceType = pegPriceType;
+    }
+
+    public NewOrderRequest pegOffsetValue(@jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Price level to peg the price to (max: 100). See Pegged Orders Info maximum: 100
+     *
+     * @return pegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    @Max(100)
+    public Integer getPegOffsetValue() {
+        return pegOffsetValue;
+    }
+
+    public void setPegOffsetValue(@jakarta.annotation.Nullable Integer pegOffsetValue) {
+        this.pegOffsetValue = pegOffsetValue;
+    }
+
+    public NewOrderRequest pegOffsetType(@jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pegOffsetType
+     *
+     * @return pegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PegOffsetType getPegOffsetType() {
+        return pegOffsetType;
+    }
+
+    public void setPegOffsetType(@jakarta.annotation.Nullable PegOffsetType pegOffsetType) {
+        this.pegOffsetType = pegOffsetType;
+    }
+
+    public NewOrderRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    @DecimalMax("60000")
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -484,6 +568,9 @@ public class NewOrderRequest {
                 && Objects.equals(this.newOrderRespType, newOrderRequest.newOrderRespType)
                 && Objects.equals(
                         this.selfTradePreventionMode, newOrderRequest.selfTradePreventionMode)
+                && Objects.equals(this.pegPriceType, newOrderRequest.pegPriceType)
+                && Objects.equals(this.pegOffsetValue, newOrderRequest.pegOffsetValue)
+                && Objects.equals(this.pegOffsetType, newOrderRequest.pegOffsetType)
                 && Objects.equals(this.recvWindow, newOrderRequest.recvWindow);
     }
 
@@ -505,6 +592,9 @@ public class NewOrderRequest {
                 icebergQty,
                 newOrderRespType,
                 selfTradePreventionMode,
+                pegPriceType,
+                pegOffsetValue,
+                pegOffsetType,
                 recvWindow);
     }
 
@@ -529,6 +619,9 @@ public class NewOrderRequest {
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
+        sb.append("		pegPriceType: ").append(toIndentedString(pegPriceType)).append("\n");
+        sb.append("		pegOffsetValue: ").append(toIndentedString(pegOffsetValue)).append("\n");
+        sb.append("		pegOffsetType: ").append(toIndentedString(pegOffsetType)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -599,6 +692,18 @@ public class NewOrderRequest {
         sb.append("selfTradePreventionMode=")
                 .append(urlEncode(selfTradePreventionModeValueAsString))
                 .append("");
+        Object pegPriceTypeValue = getPegPriceType();
+        String pegPriceTypeValueAsString = "";
+        pegPriceTypeValueAsString = pegPriceTypeValue.toString();
+        sb.append("pegPriceType=").append(urlEncode(pegPriceTypeValueAsString)).append("");
+        Object pegOffsetValueValue = getPegOffsetValue();
+        String pegOffsetValueValueAsString = "";
+        pegOffsetValueValueAsString = pegOffsetValueValue.toString();
+        sb.append("pegOffsetValue=").append(urlEncode(pegOffsetValueValueAsString)).append("");
+        Object pegOffsetTypeValue = getPegOffsetType();
+        String pegOffsetTypeValueAsString = "";
+        pegOffsetTypeValueAsString = pegOffsetTypeValue.toString();
+        sb.append("pegOffsetType=").append(urlEncode(pegOffsetTypeValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -646,6 +751,9 @@ public class NewOrderRequest {
         openapiFields.add("icebergQty");
         openapiFields.add("newOrderRespType");
         openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("pegPriceType");
+        openapiFields.add("pegOffsetValue");
+        openapiFields.add("pegOffsetType");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -670,18 +778,6 @@ public class NewOrderRequest {
                                 "The required field(s) %s in NewOrderRequest is not found in the"
                                         + " empty JSON string",
                                 NewOrderRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NewOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NewOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -729,6 +825,14 @@ public class NewOrderRequest {
                 && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
             SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
+        // validate the optional field `pegPriceType`
+        if (jsonObj.get("pegPriceType") != null && !jsonObj.get("pegPriceType").isJsonNull()) {
+            PegPriceType.validateJsonElement(jsonObj.get("pegPriceType"));
+        }
+        // validate the optional field `pegOffsetType`
+        if (jsonObj.get("pegOffsetType") != null && !jsonObj.get("pegOffsetType").isJsonNull()) {
+            PegOffsetType.validateJsonElement(jsonObj.get("pegOffsetType"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -747,7 +851,7 @@ public class NewOrderRequest {
                         @Override
                         public void write(JsonWriter out, NewOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

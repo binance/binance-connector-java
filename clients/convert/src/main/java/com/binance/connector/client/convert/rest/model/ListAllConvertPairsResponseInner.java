@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ListAllConvertPairsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ListAllConvertPairsResponseInner {
     public static final String SERIALIZED_NAME_FROM_ASSET = "fromAsset";
 
@@ -182,7 +180,7 @@ public class ListAllConvertPairsResponseInner {
     }
 
     /**
-     * Get toAssetMaxAmount
+     * 9E+24 signals that this symbol has a very large upper limit close to infinity
      *
      * @return toAssetMaxAmount
      */
@@ -336,18 +334,6 @@ public class ListAllConvertPairsResponseInner {
                                 ListAllConvertPairsResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ListAllConvertPairsResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ListAllConvertPairsResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("fromAsset") != null && !jsonObj.get("fromAsset").isJsonNull())
                 && !jsonObj.get("fromAsset").isJsonPrimitive()) {
@@ -421,7 +407,7 @@ public class ListAllConvertPairsResponseInner {
                         @Override
                         public void write(JsonWriter out, ListAllConvertPairsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

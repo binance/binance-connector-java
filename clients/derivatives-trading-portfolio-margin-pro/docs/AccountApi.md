@@ -1,35 +1,38 @@
 # AccountApi
 
-All URIs are relative to *https://fapi.binance.com*
+All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**bnbTransfer**](AccountApi.md#bnbTransfer) | **POST** /sapi/v1/portfolio/bnb-transfer | BNB transfer(USER_DATA) |
-| [**changeAutoRepayFuturesStatus**](AccountApi.md#changeAutoRepayFuturesStatus) | **POST** /sapi/v1/portfolio/repay-futures-switch | Change Auto-repay-futures Status(TRADE) |
-| [**fundAutoCollection**](AccountApi.md#fundAutoCollection) | **POST** /sapi/v1/portfolio/auto-collection | Fund Auto-collection(USER_DATA) |
-| [**fundCollectionByAsset**](AccountApi.md#fundCollectionByAsset) | **POST** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset(USER_DATA) |
-| [**getAutoRepayFuturesStatus**](AccountApi.md#getAutoRepayFuturesStatus) | **GET** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status(USER_DATA) |
-| [**getPortfolioMarginProAccountBalance**](AccountApi.md#getPortfolioMarginProAccountBalance) | **GET** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance(USER_DATA) |
-| [**getPortfolioMarginProAccountInfo**](AccountApi.md#getPortfolioMarginProAccountInfo) | **GET** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info(USER_DATA) |
-| [**getPortfolioMarginProSpanAccountInfo**](AccountApi.md#getPortfolioMarginProSpanAccountInfo) | **GET** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info(USER_DATA) |
+| [**bnbTransfer**](AccountApi.md#bnbTransfer) | **POST** /sapi/v1/portfolio/bnb-transfer | BNB transfer (USER_DATA) |
+| [**changeAutoRepayFuturesStatus**](AccountApi.md#changeAutoRepayFuturesStatus) | **POST** /sapi/v1/portfolio/repay-futures-switch | Change Auto-repay-futures Status (TRADE) |
+| [**deleteMarginCallLevel**](AccountApi.md#deleteMarginCallLevel) | **DELETE** /sapi/v1/portfolio/margin-call-level | Delete Margin Call Level (USER_DATA) |
+| [**fundAutoCollection**](AccountApi.md#fundAutoCollection) | **POST** /sapi/v1/portfolio/auto-collection | Fund Auto-collection (USER_DATA) |
+| [**fundCollectionByAsset**](AccountApi.md#fundCollectionByAsset) | **POST** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset (USER_DATA) |
+| [**getAutoRepayFuturesStatus**](AccountApi.md#getAutoRepayFuturesStatus) | **GET** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status (USER_DATA) |
+| [**getDeltaModeStatus**](AccountApi.md#getDeltaModeStatus) | **GET** /sapi/v1/portfolio/delta-mode | Get Delta Mode Status (USER_DATA) |
+| [**getMarginCallLevel**](AccountApi.md#getMarginCallLevel) | **GET** /sapi/v1/portfolio/margin-call-level | Get Margin Call Level (USER_DATA) |
+| [**getPortfolioMarginProAccountBalance**](AccountApi.md#getPortfolioMarginProAccountBalance) | **GET** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance (USER_DATA) |
+| [**getPortfolioMarginProAccountInfo**](AccountApi.md#getPortfolioMarginProAccountInfo) | **GET** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info (USER_DATA) |
+| [**getPortfolioMarginProSpanAccountInfo**](AccountApi.md#getPortfolioMarginProSpanAccountInfo) | **GET** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info (USER_DATA) |
 | [**getTransferableEarnAssetBalanceForPortfolioMargin**](AccountApi.md#getTransferableEarnAssetBalanceForPortfolioMargin) | **GET** /sapi/v1/portfolio/earn-asset-balance | Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA) |
-| [**mintBfusdForPortfolioMargin**](AccountApi.md#mintBfusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/mint | Mint BFUSD for Portfolio Margin(TRADE) |
-| [**portfolioMarginProBankruptcyLoanRepay**](AccountApi.md#portfolioMarginProBankruptcyLoanRepay) | **POST** /sapi/v1/portfolio/repay | Portfolio Margin Pro Bankruptcy Loan Repay |
-| [**queryPortfolioMarginProBankruptcyLoanAmount**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanAmount) | **GET** /sapi/v1/portfolio/pmLoan | Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA) |
-| [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmLoan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA) |
-| [**queryPortfolioMarginProNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginProNegativeBalanceInterestHistory) | **GET** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA) |
-| [**redeemBfusdForPortfolioMargin**](AccountApi.md#redeemBfusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/redeem | Redeem BFUSD for Portfolio Margin(TRADE) |
-| [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA) |
-| [**transferLdusdtForPortfolioMargin**](AccountApi.md#transferLdusdtForPortfolioMargin) | **POST** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT for Portfolio Margin(TRADE) |
+| [**portfolioMarginProBankruptcyLoanRepay**](AccountApi.md#portfolioMarginProBankruptcyLoanRepay) | **POST** /sapi/v1/portfolio/repay | Portfolio Margin Pro Bankruptcy Loan Repay (TRADE) |
+| [**queryPortfolioMarginProBankruptcyLoanAmount**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanAmount) | **GET** /sapi/v1/portfolio/pmLoan | Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA) |
+| [**queryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountApi.md#queryPortfolioMarginProBankruptcyLoanRepayHistory) | **GET** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA) |
+| [**queryPortfolioMarginProNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginProNegativeBalanceInterestHistory) | **GET** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA) |
+| [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance (USER_DATA) |
+| [**setMarginCallLevel**](AccountApi.md#setMarginCallLevel) | **POST** /sapi/v1/portfolio/margin-call-level | Set Margin Call Level (USER_DATA) |
+| [**switchDeltaMode**](AccountApi.md#switchDeltaMode) | **POST** /sapi/v1/portfolio/delta-mode | Switch Delta Mode (TRADE) |
+| [**transferLdusdtRwusdForPortfolioMargin**](AccountApi.md#transferLdusdtRwusdForPortfolioMargin) | **POST** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE) |
 
 
 <a id="bnbTransfer"></a>
 # **bnbTransfer**
 > BnbTransferResponse bnbTransfer(bnbTransferRequest)
 
-BNB transfer(USER_DATA)
+BNB transfer (USER_DATA)
 
-BNB transfer can be between Margin Account and USDM Account   * You can only use this function 2 times per 10 minutes in a rolling manner  Weight: 1500
+BNB transfer can be between Margin Account and USDM Account  Weight(IP): 1500  Security Type: USER_DATA  Notes: - You can only use this function 2 times per 10 minutes in a rolling manner
 
 ### Example
 ```java
@@ -43,7 +46,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     BnbTransferRequest bnbTransferRequest = new BnbTransferRequest(); // BnbTransferRequest | 
@@ -89,9 +92,9 @@ No authorization required
 # **changeAutoRepayFuturesStatus**
 > ChangeAutoRepayFuturesStatusResponse changeAutoRepayFuturesStatus(changeAutoRepayFuturesStatusRequest)
 
-Change Auto-repay-futures Status(TRADE)
+Change Auto-repay-futures Status (TRADE)
 
-Change Auto-repay-futures Status  Weight: 1500
+Change Auto-repay-futures Status  Weight(IP): 1500  Security Type: TRADE
 
 ### Example
 ```java
@@ -105,7 +108,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest = new ChangeAutoRepayFuturesStatusRequest(); // ChangeAutoRepayFuturesStatusRequest | 
@@ -147,13 +150,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Change Auto-repay-futures Status |  -  |
 
-<a id="fundAutoCollection"></a>
-# **fundAutoCollection**
-> FundAutoCollectionResponse fundAutoCollection(fundAutoCollectionRequest)
+<a id="deleteMarginCallLevel"></a>
+# **deleteMarginCallLevel**
+> DeleteMarginCallLevelResponse deleteMarginCallLevel(recvWindow)
 
-Fund Auto-collection(USER_DATA)
+Delete Margin Call Level (USER_DATA)
 
-Transfers all assets from Futures Account to Margin account  * The BNB would not be collected from UM-PM account to the Portfolio Margin account. * You can only use this function 500 times per hour in a rolling manner.  Weight: 1500
+Delete the margin call level for a Portfolio Margin account.  Weight(IP): 1500  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -167,7 +170,69 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
+    try {
+      DeleteMarginCallLevelResponse result = apiInstance.deleteMarginCallLevel(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#deleteMarginCallLevel");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
+
+### Return type
+
+[**DeleteMarginCallLevelResponse**](DeleteMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Delete Margin Call Level |  -  |
+
+<a id="fundAutoCollection"></a>
+# **fundAutoCollection**
+> FundAutoCollectionResponse fundAutoCollection(fundAutoCollectionRequest)
+
+Fund Auto-collection (USER_DATA)
+
+Transfers all assets from Futures Account to Margin account  Weight(IP): 1500  Security Type: USER_DATA  Notes: - The BNB would not be collected from UM-PM account to the Portfolio Margin account. - You can only use this function 500 times per hour in a rolling manner.
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     FundAutoCollectionRequest fundAutoCollectionRequest = new FundAutoCollectionRequest(); // FundAutoCollectionRequest | 
@@ -189,7 +254,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **fundAutoCollectionRequest** | [**FundAutoCollectionRequest**](FundAutoCollectionRequest.md)|  | |
+| **fundAutoCollectionRequest** | [**FundAutoCollectionRequest**](FundAutoCollectionRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -213,9 +278,9 @@ No authorization required
 # **fundCollectionByAsset**
 > FundCollectionByAssetResponse fundCollectionByAsset(fundCollectionByAssetRequest)
 
-Fund Collection by Asset(USER_DATA)
+Fund Collection by Asset (USER_DATA)
 
-Transfers specific asset from Futures Account to Margin account  * The BNB transfer is not be supported  Weight: 60
+Transfers specific asset from Futures Account to Margin account  Weight(IP): 60  Security Type: USER_DATA  Notes: - The BNB transfer is not be supported
 
 ### Example
 ```java
@@ -229,7 +294,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     FundCollectionByAssetRequest fundCollectionByAssetRequest = new FundCollectionByAssetRequest(); // FundCollectionByAssetRequest | 
@@ -275,9 +340,9 @@ No authorization required
 # **getAutoRepayFuturesStatus**
 > GetAutoRepayFuturesStatusResponse getAutoRepayFuturesStatus(recvWindow)
 
-Get Auto-repay-futures Status(USER_DATA)
+Get Auto-repay-futures Status (USER_DATA)
 
-Query Auto-repay-futures Status  Weight: 30
+Query Auto-repay-futures Status  Weight(IP): 30  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -291,10 +356,10 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetAutoRepayFuturesStatusResponse result = apiInstance.getAutoRepayFuturesStatus(recvWindow);
       System.out.println(result);
@@ -333,13 +398,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Get Auto-repay-futures Status |  -  |
 
-<a id="getPortfolioMarginProAccountBalance"></a>
-# **getPortfolioMarginProAccountBalance**
-> GetPortfolioMarginProAccountBalanceResponse getPortfolioMarginProAccountBalance(asset, recvWindow)
+<a id="getDeltaModeStatus"></a>
+# **getDeltaModeStatus**
+> GetDeltaModeStatusResponse getDeltaModeStatus(recvWindow)
 
-Get Portfolio Margin Pro Account Balance(USER_DATA)
+Get Delta Mode Status (USER_DATA)
 
-Query Portfolio Margin Pro account balance  Weight: 20
+Query the Delta mode status of current account.  Weight(IP): 1500  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -353,11 +418,135 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
+    try {
+      GetDeltaModeStatusResponse result = apiInstance.getDeltaModeStatus(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#getDeltaModeStatus");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**GetDeltaModeStatusResponse**](GetDeltaModeStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Delta Mode Status |  -  |
+
+<a id="getMarginCallLevel"></a>
+# **getMarginCallLevel**
+> GetMarginCallLevelResponse getMarginCallLevel(recvWindow)
+
+Get Margin Call Level (USER_DATA)
+
+Get the margin call level for a Portfolio Margin account.  Weight(IP): 1500  Security Type: USER_DATA
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
+    try {
+      GetMarginCallLevelResponse result = apiInstance.getMarginCallLevel(recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#getMarginCallLevel");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
+
+### Return type
+
+[**GetMarginCallLevelResponse**](GetMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get Margin Call Level |  -  |
+
+<a id="getPortfolioMarginProAccountBalance"></a>
+# **getPortfolioMarginProAccountBalance**
+> GetPortfolioMarginProAccountBalanceResponse getPortfolioMarginProAccountBalance(asset, recvWindow)
+
+Get Portfolio Margin Pro Account Balance (USER_DATA)
+
+Query Portfolio Margin Pro account balance  Weight(IP): 20  Security Type: USER_DATA
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    String asset = "BTC"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetPortfolioMarginProAccountBalanceResponse result = apiInstance.getPortfolioMarginProAccountBalance(asset, recvWindow);
       System.out.println(result);
@@ -401,9 +590,9 @@ No authorization required
 # **getPortfolioMarginProAccountInfo**
 > GetPortfolioMarginProAccountInfoResponse getPortfolioMarginProAccountInfo(recvWindow)
 
-Get Portfolio Margin Pro Account Info(USER_DATA)
+Get Portfolio Margin Pro Account Info (USER_DATA)
 
-Get Portfolio Margin Pro Account Info  Weight: 5
+Get Portfolio Margin Pro Account Info  Weight(UID): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -417,10 +606,10 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetPortfolioMarginProAccountInfoResponse result = apiInstance.getPortfolioMarginProAccountInfo(recvWindow);
       System.out.println(result);
@@ -463,9 +652,9 @@ No authorization required
 # **getPortfolioMarginProSpanAccountInfo**
 > GetPortfolioMarginProSpanAccountInfoResponse getPortfolioMarginProSpanAccountInfo(recvWindow)
 
-Get Portfolio Margin Pro SPAN Account Info(USER_DATA)
+Get Portfolio Margin Pro SPAN Account Info (USER_DATA)
 
-Get Portfolio Margin Pro SPAN Account Info (For Portfolio Margin Pro SPAN users only)  Weight: 5
+Get Portfolio Margin Pro SPAN Account Info (For Portfolio Margin Pro SPAN users only)  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -479,10 +668,10 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetPortfolioMarginProSpanAccountInfoResponse result = apiInstance.getPortfolioMarginProSpanAccountInfo(recvWindow);
       System.out.println(result);
@@ -527,7 +716,7 @@ No authorization required
 
 Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA)
 
-Get transferable earn asset balance for all types of Portfolio Margin account  Weight: 1500
+Get transferable earn asset balance for all types of Portfolio Margin account  Weight(IP): 1500  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -541,12 +730,12 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | `LDUSDT` only
-    String transferType = "transferType_example"; // String | `EARN_TO_FUTURE` /`FUTURE_TO_EARN`
-    Long recvWindow = 56L; // Long | 
+    String asset = "LDUSDT"; // String | `LDUSDT` only
+    TransferType transferType = TransferType.fromValue("EARN_TO_FUTURE"); // TransferType | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetTransferableEarnAssetBalanceForPortfolioMarginResponse result = apiInstance.getTransferableEarnAssetBalanceForPortfolioMargin(asset, transferType, recvWindow);
       System.out.println(result);
@@ -566,7 +755,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**| &#x60;LDUSDT&#x60; only | |
-| **transferType** | **String**| &#x60;EARN_TO_FUTURE&#x60; /&#x60;FUTURE_TO_EARN&#x60; | |
+| **transferType** | [**TransferType**](.md)|  | [enum: EARN_TO_FUTURE, FUTURE_TO_EARN] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -587,75 +776,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Get Transferable Earn Asset Balance for Portfolio Margin |  -  |
 
-<a id="mintBfusdForPortfolioMargin"></a>
-# **mintBfusdForPortfolioMargin**
-> MintBfusdForPortfolioMarginResponse mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest)
-
-Mint BFUSD for Portfolio Margin(TRADE)
-
-Mint BFUSD for all types of Portfolio Margin account  Weight: 1500
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
-
-    AccountApi apiInstance = new AccountApi(defaultClient);
-    MintBfusdForPortfolioMarginRequest mintBfusdForPortfolioMarginRequest = new MintBfusdForPortfolioMarginRequest(); // MintBfusdForPortfolioMarginRequest | 
-    try {
-      MintBfusdForPortfolioMarginResponse result = apiInstance.mintBfusdForPortfolioMargin(mintBfusdForPortfolioMarginRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountApi#mintBfusdForPortfolioMargin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **mintBfusdForPortfolioMarginRequest** | [**MintBfusdForPortfolioMarginRequest**](MintBfusdForPortfolioMarginRequest.md)|  | |
-
-### Return type
-
-[**MintBfusdForPortfolioMarginResponse**](MintBfusdForPortfolioMarginResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Mint BFUSD for Portfolio Margin |  -  |
-
 <a id="portfolioMarginProBankruptcyLoanRepay"></a>
 # **portfolioMarginProBankruptcyLoanRepay**
 > PortfolioMarginProBankruptcyLoanRepayResponse portfolioMarginProBankruptcyLoanRepay(portfolioMarginProBankruptcyLoanRepayRequest)
 
-Portfolio Margin Pro Bankruptcy Loan Repay
+Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
 
-Repay Portfolio Margin Pro Bankruptcy Loan  Weight: 3000
+Repay Portfolio Margin Pro Bankruptcy Loan  Weight(UID): 3000  Security Type: TRADE  Notes: - Please note that the API Key has enabled Spot &amp; Margin Trading permissions to access this endpoint.
 
 ### Example
 ```java
@@ -669,7 +796,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     PortfolioMarginProBankruptcyLoanRepayRequest portfolioMarginProBankruptcyLoanRepayRequest = new PortfolioMarginProBankruptcyLoanRepayRequest(); // PortfolioMarginProBankruptcyLoanRepayRequest | 
@@ -691,7 +818,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **portfolioMarginProBankruptcyLoanRepayRequest** | [**PortfolioMarginProBankruptcyLoanRepayRequest**](PortfolioMarginProBankruptcyLoanRepayRequest.md)|  | |
+| **portfolioMarginProBankruptcyLoanRepayRequest** | [**PortfolioMarginProBankruptcyLoanRepayRequest**](PortfolioMarginProBankruptcyLoanRepayRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -715,9 +842,9 @@ No authorization required
 # **queryPortfolioMarginProBankruptcyLoanAmount**
 > QueryPortfolioMarginProBankruptcyLoanAmountResponse queryPortfolioMarginProBankruptcyLoanAmount(recvWindow)
 
-Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA)
+Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA)
 
-Query Portfolio Margin Pro Bankruptcy Loan Amount  * If there’s no classic portfolio margin bankruptcy loan, the amount would be 0  Weight: 500
+Query Portfolio Margin Pro Bankruptcy Loan Amount  Weight(UID): 500  Security Type: USER_DATA  Notes: - If there’s no classic portfolio margin bankruptcy loan, the amount would be 0
 
 ### Example
 ```java
@@ -731,10 +858,10 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryPortfolioMarginProBankruptcyLoanAmountResponse result = apiInstance.queryPortfolioMarginProBankruptcyLoanAmount(recvWindow);
       System.out.println(result);
@@ -775,11 +902,11 @@ No authorization required
 
 <a id="queryPortfolioMarginProBankruptcyLoanRepayHistory"></a>
 # **queryPortfolioMarginProBankruptcyLoanRepayHistory**
-> QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse queryPortfolioMarginProBankruptcyLoanRepayHistory(startTime, endTime, current, size, recvWindow)
+> QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse queryPortfolioMarginProBankruptcyLoanRepayHistory(startTime, endTime, size, current, recvWindow)
 
-Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA)
+Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA)
 
-Query repay history of pmloan for portfolio margin pro.  * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 360 days * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 30 days by default. * If &#x60;startTime&#x60;is sent and &#x60;endTime&#x60; is not sent, return records of [startTime, startTime+30d]. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of [endTime-30d, endTime].  Weight: 500
+Query repay history of pmloan for portfolio margin pro.  Weight(IP): 500  Security Type: USER_DATA  Notes: - &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 360 days - If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 30 days by default. - If &#x60;startTime&#x60;is sent and &#x60;endTime&#x60; is not sent, return records of [startTime, startTime+30d]. - If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of [endTime-30d, endTime].
 
 ### Example
 ```java
@@ -793,16 +920,16 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10 Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Start time
+    Long endTime = 1641782889000L; // Long | End time
+    Long size = 10L; // Long | Number of results returned.
+    Long current = 1L; // Long | Currently querying page. Start from 1.
+    Long recvWindow = 5000L; // Long | 
     try {
-      QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse result = apiInstance.queryPortfolioMarginProBankruptcyLoanRepayHistory(startTime, endTime, current, size, recvWindow);
+      QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse result = apiInstance.queryPortfolioMarginProBankruptcyLoanRepayHistory(startTime, endTime, size, current, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AccountApi#queryPortfolioMarginProBankruptcyLoanRepayHistory");
@@ -819,10 +946,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**|  | [optional] |
-| **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
+| **startTime** | **Long**| Start time | [optional] |
+| **endTime** | **Long**| End time | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
+| **current** | **Long**| Currently querying page. Start from 1. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -847,9 +974,9 @@ No authorization required
 # **queryPortfolioMarginProNegativeBalanceInterestHistory**
 > QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse queryPortfolioMarginProNegativeBalanceInterestHistory(asset, startTime, endTime, size, recvWindow)
 
-Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
+Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA)
 
-Query interest history of negative balance for portfolio margin.  Weight: 50
+Query interest history of negative balance for portfolio margin.  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -863,14 +990,14 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long size = 56L; // Long | Default:10 Max:100
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long startTime = 1623319461670L; // Long | Start time
+    Long endTime = 1641782889000L; // Long | End time
+    Long size = 10L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse result = apiInstance.queryPortfolioMarginProNegativeBalanceInterestHistory(asset, startTime, endTime, size, recvWindow);
       System.out.println(result);
@@ -890,9 +1017,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
-| **startTime** | **Long**|  | [optional] |
-| **endTime** | **Long**|  | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
+| **startTime** | **Long**| Start time | [optional] |
+| **endTime** | **Long**| End time | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -913,75 +1040,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Portfolio Margin Pro Negative Balance Interest History |  -  |
 
-<a id="redeemBfusdForPortfolioMargin"></a>
-# **redeemBfusdForPortfolioMargin**
-> RedeemBfusdForPortfolioMarginResponse redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest)
-
-Redeem BFUSD for Portfolio Margin(TRADE)
-
-Redeem BFUSD for all types of Portfolio Margin account  Weight: 1500
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
-
-    AccountApi apiInstance = new AccountApi(defaultClient);
-    RedeemBfusdForPortfolioMarginRequest redeemBfusdForPortfolioMarginRequest = new RedeemBfusdForPortfolioMarginRequest(); // RedeemBfusdForPortfolioMarginRequest | 
-    try {
-      RedeemBfusdForPortfolioMarginResponse result = apiInstance.redeemBfusdForPortfolioMargin(redeemBfusdForPortfolioMarginRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountApi#redeemBfusdForPortfolioMargin");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **redeemBfusdForPortfolioMarginRequest** | [**RedeemBfusdForPortfolioMarginRequest**](RedeemBfusdForPortfolioMarginRequest.md)|  | |
-
-### Return type
-
-[**RedeemBfusdForPortfolioMarginResponse**](RedeemBfusdForPortfolioMarginResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Redeem BFUSD for Portfolio Margin |  -  |
-
 <a id="repayFuturesNegativeBalance"></a>
 # **repayFuturesNegativeBalance**
 > RepayFuturesNegativeBalanceResponse repayFuturesNegativeBalance(repayFuturesNegativeBalanceRequest)
 
-Repay futures Negative Balance(USER_DATA)
+Repay futures Negative Balance (USER_DATA)
 
-Repay futures Negative Balance  Weight: 1500
+Repay futures Negative Balance  Weight(IP): 1500  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -995,7 +1060,7 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest = new RepayFuturesNegativeBalanceRequest(); // RepayFuturesNegativeBalanceRequest | 
@@ -1017,7 +1082,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **repayFuturesNegativeBalanceRequest** | [**RepayFuturesNegativeBalanceRequest**](RepayFuturesNegativeBalanceRequest.md)|  | |
+| **repayFuturesNegativeBalanceRequest** | [**RepayFuturesNegativeBalanceRequest**](RepayFuturesNegativeBalanceRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1037,13 +1102,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Repay futures Negative Balance |  -  |
 
-<a id="transferLdusdtForPortfolioMargin"></a>
-# **transferLdusdtForPortfolioMargin**
-> TransferLdusdtForPortfolioMarginResponse transferLdusdtForPortfolioMargin(transferLdusdtForPortfolioMarginRequest)
+<a id="setMarginCallLevel"></a>
+# **setMarginCallLevel**
+> SetMarginCallLevelResponse setMarginCallLevel(setMarginCallLevelRequest)
 
-Transfer LDUSDT for Portfolio Margin(TRADE)
+Set Margin Call Level (USER_DATA)
 
-Transfer LDUSDT as collateral for all types of Portfolio Margin account  Weight: 1500
+Set the margin call level for a Portfolio Margin account. When the account&#39;s uniMMR drops to the specified level, a notification will be sent via email and SMS.  Weight(IP): 1500  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1057,15 +1122,15 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fapi.binance.com");
+    defaultClient.setBasePath("https://api.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    TransferLdusdtForPortfolioMarginRequest transferLdusdtForPortfolioMarginRequest = new TransferLdusdtForPortfolioMarginRequest(); // TransferLdusdtForPortfolioMarginRequest | 
+    SetMarginCallLevelRequest setMarginCallLevelRequest = new SetMarginCallLevelRequest(); // SetMarginCallLevelRequest | 
     try {
-      TransferLdusdtForPortfolioMarginResponse result = apiInstance.transferLdusdtForPortfolioMargin(transferLdusdtForPortfolioMarginRequest);
+      SetMarginCallLevelResponse result = apiInstance.setMarginCallLevel(setMarginCallLevelRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AccountApi#transferLdusdtForPortfolioMargin");
+      System.err.println("Exception when calling AccountApi#setMarginCallLevel");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1079,11 +1144,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **transferLdusdtForPortfolioMarginRequest** | [**TransferLdusdtForPortfolioMarginRequest**](TransferLdusdtForPortfolioMarginRequest.md)|  | |
+| **setMarginCallLevelRequest** | [**SetMarginCallLevelRequest**](SetMarginCallLevelRequest.md)|  | |
 
 ### Return type
 
-[**TransferLdusdtForPortfolioMarginResponse**](TransferLdusdtForPortfolioMarginResponse.md)
+[**SetMarginCallLevelResponse**](SetMarginCallLevelResponse.md)
 
 ### Authorization
 
@@ -1097,5 +1162,129 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Transfer LDUSDT for Portfolio Margin |  -  |
+| **200** | Set Margin Call Level |  -  |
+
+<a id="switchDeltaMode"></a>
+# **switchDeltaMode**
+> SwitchDeltaModeResponse switchDeltaMode(switchDeltaModeRequest)
+
+Switch Delta Mode (TRADE)
+
+Switch the Delta mode for existing PM PRO / PM RETAIL accounts.  Weight(IP): 1500  Security Type: TRADE
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    SwitchDeltaModeRequest switchDeltaModeRequest = new SwitchDeltaModeRequest(); // SwitchDeltaModeRequest | 
+    try {
+      SwitchDeltaModeResponse result = apiInstance.switchDeltaMode(switchDeltaModeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#switchDeltaMode");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **switchDeltaModeRequest** | [**SwitchDeltaModeRequest**](SwitchDeltaModeRequest.md)|  | |
+
+### Return type
+
+[**SwitchDeltaModeResponse**](SwitchDeltaModeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Switch Delta Mode |  -  |
+
+<a id="transferLdusdtRwusdForPortfolioMargin"></a>
+# **transferLdusdtRwusdForPortfolioMargin**
+> TransferLdusdtRwusdForPortfolioMarginResponse transferLdusdtRwusdForPortfolioMargin(transferLdusdtRwusdForPortfolioMarginRequest)
+
+Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE)
+
+Transfer LDUSDT/RWUSD as collateral for all types of Portfolio Margin account  Weight(UID): 1500  Security Type: TRADE
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiClient;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.ApiException;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.Configuration;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.models.*;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api.AccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+    TransferLdusdtRwusdForPortfolioMarginRequest transferLdusdtRwusdForPortfolioMarginRequest = new TransferLdusdtRwusdForPortfolioMarginRequest(); // TransferLdusdtRwusdForPortfolioMarginRequest | 
+    try {
+      TransferLdusdtRwusdForPortfolioMarginResponse result = apiInstance.transferLdusdtRwusdForPortfolioMargin(transferLdusdtRwusdForPortfolioMarginRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AccountApi#transferLdusdtRwusdForPortfolioMargin");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **transferLdusdtRwusdForPortfolioMarginRequest** | [**TransferLdusdtRwusdForPortfolioMarginRequest**](TransferLdusdtRwusdForPortfolioMarginRequest.md)|  | |
+
+### Return type
+
+[**TransferLdusdtRwusdForPortfolioMarginResponse**](TransferLdusdtRwusdForPortfolioMarginResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Transfer LDUSDT/RWUSD for Portfolio Margin |  -  |
 

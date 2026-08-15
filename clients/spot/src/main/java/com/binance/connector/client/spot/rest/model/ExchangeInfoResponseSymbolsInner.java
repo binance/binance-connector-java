@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInfoResponseSymbolsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInfoResponseSymbolsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -124,6 +122,12 @@ public class ExchangeInfoResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private Boolean otoAllowed;
 
+    public static final String SERIALIZED_NAME_OPO_ALLOWED = "opoAllowed";
+
+    @SerializedName(SERIALIZED_NAME_OPO_ALLOWED)
+    @jakarta.annotation.Nullable
+    private Boolean opoAllowed;
+
     public static final String SERIALIZED_NAME_QUOTE_ORDER_QTY_MARKET_ALLOWED =
             "quoteOrderQtyMarketAllowed";
 
@@ -143,11 +147,17 @@ public class ExchangeInfoResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private Boolean cancelReplaceAllowed;
 
-    public static final String SERIALIZED_NAME_ALLOW_AMEND = "allowAmend";
+    public static final String SERIALIZED_NAME_AMEND_ALLOWED = "amendAllowed";
 
-    @SerializedName(SERIALIZED_NAME_ALLOW_AMEND)
+    @SerializedName(SERIALIZED_NAME_AMEND_ALLOWED)
     @jakarta.annotation.Nullable
-    private Boolean allowAmend;
+    private Boolean amendAllowed;
+
+    public static final String SERIALIZED_NAME_PEG_INSTRUCTIONS_ALLOWED = "pegInstructionsAllowed";
+
+    @SerializedName(SERIALIZED_NAME_PEG_INSTRUCTIONS_ALLOWED)
+    @jakarta.annotation.Nullable
+    private Boolean pegInstructionsAllowed;
 
     public static final String SERIALIZED_NAME_IS_SPOT_TRADING_ALLOWED = "isSpotTradingAllowed";
 
@@ -165,7 +175,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
     @SerializedName(SERIALIZED_NAME_FILTERS)
     @jakarta.annotation.Nullable
-    private List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters;
+    private List<MyFiltersResponseSymbolFiltersInner> filters;
 
     public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
 
@@ -463,6 +473,26 @@ public class ExchangeInfoResponseSymbolsInner {
         this.otoAllowed = otoAllowed;
     }
 
+    public ExchangeInfoResponseSymbolsInner opoAllowed(
+            @jakarta.annotation.Nullable Boolean opoAllowed) {
+        this.opoAllowed = opoAllowed;
+        return this;
+    }
+
+    /**
+     * Get opoAllowed
+     *
+     * @return opoAllowed
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getOpoAllowed() {
+        return opoAllowed;
+    }
+
+    public void setOpoAllowed(@jakarta.annotation.Nullable Boolean opoAllowed) {
+        this.opoAllowed = opoAllowed;
+    }
+
     public ExchangeInfoResponseSymbolsInner quoteOrderQtyMarketAllowed(
             @jakarta.annotation.Nullable Boolean quoteOrderQtyMarketAllowed) {
         this.quoteOrderQtyMarketAllowed = quoteOrderQtyMarketAllowed;
@@ -524,24 +554,45 @@ public class ExchangeInfoResponseSymbolsInner {
         this.cancelReplaceAllowed = cancelReplaceAllowed;
     }
 
-    public ExchangeInfoResponseSymbolsInner allowAmend(
-            @jakarta.annotation.Nullable Boolean allowAmend) {
-        this.allowAmend = allowAmend;
+    public ExchangeInfoResponseSymbolsInner amendAllowed(
+            @jakarta.annotation.Nullable Boolean amendAllowed) {
+        this.amendAllowed = amendAllowed;
         return this;
     }
 
     /**
-     * Get allowAmend
+     * Get amendAllowed
      *
-     * @return allowAmend
+     * @return amendAllowed
      */
     @jakarta.annotation.Nullable
-    public Boolean getAllowAmend() {
-        return allowAmend;
+    public Boolean getAmendAllowed() {
+        return amendAllowed;
     }
 
-    public void setAllowAmend(@jakarta.annotation.Nullable Boolean allowAmend) {
-        this.allowAmend = allowAmend;
+    public void setAmendAllowed(@jakarta.annotation.Nullable Boolean amendAllowed) {
+        this.amendAllowed = amendAllowed;
+    }
+
+    public ExchangeInfoResponseSymbolsInner pegInstructionsAllowed(
+            @jakarta.annotation.Nullable Boolean pegInstructionsAllowed) {
+        this.pegInstructionsAllowed = pegInstructionsAllowed;
+        return this;
+    }
+
+    /**
+     * Get pegInstructionsAllowed
+     *
+     * @return pegInstructionsAllowed
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getPegInstructionsAllowed() {
+        return pegInstructionsAllowed;
+    }
+
+    public void setPegInstructionsAllowed(
+            @jakarta.annotation.Nullable Boolean pegInstructionsAllowed) {
+        this.pegInstructionsAllowed = pegInstructionsAllowed;
     }
 
     public ExchangeInfoResponseSymbolsInner isSpotTradingAllowed(
@@ -586,14 +637,13 @@ public class ExchangeInfoResponseSymbolsInner {
     }
 
     public ExchangeInfoResponseSymbolsInner filters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters) {
+            @jakarta.annotation.Nullable List<MyFiltersResponseSymbolFiltersInner> filters) {
         this.filters = filters;
         return this;
     }
 
     public ExchangeInfoResponseSymbolsInner addFiltersItem(
-            ExchangeInfoResponseExchangeFiltersInner filtersItem) {
+            MyFiltersResponseSymbolFiltersInner filtersItem) {
         if (this.filters == null) {
             this.filters = new ArrayList<>();
         }
@@ -608,13 +658,12 @@ public class ExchangeInfoResponseSymbolsInner {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid ExchangeInfoResponseExchangeFiltersInner> getFilters() {
+    public List<MyFiltersResponseSymbolFiltersInner> getFilters() {
         return filters;
     }
 
     public void setFilters(
-            @jakarta.annotation.Nullable
-                    List<@Valid ExchangeInfoResponseExchangeFiltersInner> filters) {
+            @jakarta.annotation.Nullable List<MyFiltersResponseSymbolFiltersInner> filters) {
         this.filters = filters;
     }
 
@@ -759,6 +808,7 @@ public class ExchangeInfoResponseSymbolsInner {
                         this.icebergAllowed, exchangeInfoResponseSymbolsInner.icebergAllowed)
                 && Objects.equals(this.ocoAllowed, exchangeInfoResponseSymbolsInner.ocoAllowed)
                 && Objects.equals(this.otoAllowed, exchangeInfoResponseSymbolsInner.otoAllowed)
+                && Objects.equals(this.opoAllowed, exchangeInfoResponseSymbolsInner.opoAllowed)
                 && Objects.equals(
                         this.quoteOrderQtyMarketAllowed,
                         exchangeInfoResponseSymbolsInner.quoteOrderQtyMarketAllowed)
@@ -767,7 +817,10 @@ public class ExchangeInfoResponseSymbolsInner {
                 && Objects.equals(
                         this.cancelReplaceAllowed,
                         exchangeInfoResponseSymbolsInner.cancelReplaceAllowed)
-                && Objects.equals(this.allowAmend, exchangeInfoResponseSymbolsInner.allowAmend)
+                && Objects.equals(this.amendAllowed, exchangeInfoResponseSymbolsInner.amendAllowed)
+                && Objects.equals(
+                        this.pegInstructionsAllowed,
+                        exchangeInfoResponseSymbolsInner.pegInstructionsAllowed)
                 && Objects.equals(
                         this.isSpotTradingAllowed,
                         exchangeInfoResponseSymbolsInner.isSpotTradingAllowed)
@@ -802,10 +855,12 @@ public class ExchangeInfoResponseSymbolsInner {
                 icebergAllowed,
                 ocoAllowed,
                 otoAllowed,
+                opoAllowed,
                 quoteOrderQtyMarketAllowed,
                 allowTrailingStop,
                 cancelReplaceAllowed,
-                allowAmend,
+                amendAllowed,
+                pegInstructionsAllowed,
                 isSpotTradingAllowed,
                 isMarginTradingAllowed,
                 filters,
@@ -840,6 +895,7 @@ public class ExchangeInfoResponseSymbolsInner {
         sb.append("		icebergAllowed: ").append(toIndentedString(icebergAllowed)).append("\n");
         sb.append("		ocoAllowed: ").append(toIndentedString(ocoAllowed)).append("\n");
         sb.append("		otoAllowed: ").append(toIndentedString(otoAllowed)).append("\n");
+        sb.append("		opoAllowed: ").append(toIndentedString(opoAllowed)).append("\n");
         sb.append("		quoteOrderQtyMarketAllowed: ")
                 .append(toIndentedString(quoteOrderQtyMarketAllowed))
                 .append("\n");
@@ -847,7 +903,10 @@ public class ExchangeInfoResponseSymbolsInner {
         sb.append("		cancelReplaceAllowed: ")
                 .append(toIndentedString(cancelReplaceAllowed))
                 .append("\n");
-        sb.append("		allowAmend: ").append(toIndentedString(allowAmend)).append("\n");
+        sb.append("		amendAllowed: ").append(toIndentedString(amendAllowed)).append("\n");
+        sb.append("		pegInstructionsAllowed: ")
+                .append(toIndentedString(pegInstructionsAllowed))
+                .append("\n");
         sb.append("		isSpotTradingAllowed: ")
                 .append(toIndentedString(isSpotTradingAllowed))
                 .append("\n");
@@ -933,6 +992,10 @@ public class ExchangeInfoResponseSymbolsInner {
         String otoAllowedValueAsString = "";
         otoAllowedValueAsString = otoAllowedValue.toString();
         sb.append("otoAllowed=").append(urlEncode(otoAllowedValueAsString)).append("");
+        Object opoAllowedValue = getOpoAllowed();
+        String opoAllowedValueAsString = "";
+        opoAllowedValueAsString = opoAllowedValue.toString();
+        sb.append("opoAllowed=").append(urlEncode(opoAllowedValueAsString)).append("");
         Object quoteOrderQtyMarketAllowedValue = getQuoteOrderQtyMarketAllowed();
         String quoteOrderQtyMarketAllowedValueAsString = "";
         quoteOrderQtyMarketAllowedValueAsString = quoteOrderQtyMarketAllowedValue.toString();
@@ -951,10 +1014,16 @@ public class ExchangeInfoResponseSymbolsInner {
         sb.append("cancelReplaceAllowed=")
                 .append(urlEncode(cancelReplaceAllowedValueAsString))
                 .append("");
-        Object allowAmendValue = getAllowAmend();
-        String allowAmendValueAsString = "";
-        allowAmendValueAsString = allowAmendValue.toString();
-        sb.append("allowAmend=").append(urlEncode(allowAmendValueAsString)).append("");
+        Object amendAllowedValue = getAmendAllowed();
+        String amendAllowedValueAsString = "";
+        amendAllowedValueAsString = amendAllowedValue.toString();
+        sb.append("amendAllowed=").append(urlEncode(amendAllowedValueAsString)).append("");
+        Object pegInstructionsAllowedValue = getPegInstructionsAllowed();
+        String pegInstructionsAllowedValueAsString = "";
+        pegInstructionsAllowedValueAsString = pegInstructionsAllowedValue.toString();
+        sb.append("pegInstructionsAllowed=")
+                .append(urlEncode(pegInstructionsAllowedValueAsString))
+                .append("");
         Object isSpotTradingAllowedValue = getIsSpotTradingAllowed();
         String isSpotTradingAllowedValueAsString = "";
         isSpotTradingAllowedValueAsString = isSpotTradingAllowedValue.toString();
@@ -1045,10 +1114,12 @@ public class ExchangeInfoResponseSymbolsInner {
         openapiFields.add("icebergAllowed");
         openapiFields.add("ocoAllowed");
         openapiFields.add("otoAllowed");
+        openapiFields.add("opoAllowed");
         openapiFields.add("quoteOrderQtyMarketAllowed");
         openapiFields.add("allowTrailingStop");
         openapiFields.add("cancelReplaceAllowed");
-        openapiFields.add("allowAmend");
+        openapiFields.add("amendAllowed");
+        openapiFields.add("pegInstructionsAllowed");
         openapiFields.add("isSpotTradingAllowed");
         openapiFields.add("isMarginTradingAllowed");
         openapiFields.add("filters");
@@ -1077,18 +1148,6 @@ public class ExchangeInfoResponseSymbolsInner {
                                 "The required field(s) %s in ExchangeInfoResponseSymbolsInner is"
                                         + " not found in the empty JSON string",
                                 ExchangeInfoResponseSymbolsInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInfoResponseSymbolsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ExchangeInfoResponseSymbolsInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1148,7 +1207,7 @@ public class ExchangeInfoResponseSymbolsInner {
 
                 // validate the optional field `filters` (array)
                 for (int i = 0; i < jsonArrayfilters.size(); i++) {
-                    ExchangeInfoResponseExchangeFiltersInner.validateJsonElement(
+                    MyFiltersResponseSymbolFiltersInner.validateJsonElement(
                             jsonArrayfilters.get(i));
                 }
                 ;
@@ -1213,7 +1272,7 @@ public class ExchangeInfoResponseSymbolsInner {
                         @Override
                         public void write(JsonWriter out, ExchangeInfoResponseSymbolsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

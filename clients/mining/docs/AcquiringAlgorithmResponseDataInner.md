@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**algoName** | **String** |  |  [optional] |
-|**algoId** | **Long** |  |  [optional] |
-|**poolIndex** | **Long** |  |  [optional] |
-|**unit** | **String** |  |  [optional] |
+|**algoName** | **String** | Algorithm name |  [optional] |
+|**algoId** | **Long** | Algorithm ID |  [optional] |
+|**poolIndex** | **Long** | Sequence |  [optional] |
+|**unit** | **String** | Unit |  [optional] |
 
 
 

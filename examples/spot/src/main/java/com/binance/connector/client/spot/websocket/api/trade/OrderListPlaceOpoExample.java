@@ -1,0 +1,84 @@
+package com.binance.connector.client.spot.websocket.api.trade;
+
+import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.spot.websocket.api.SpotWebSocketApiUtil;
+import com.binance.connector.client.spot.websocket.api.api.SpotWebSocketApi;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoResponse;
+import com.binance.connector.client.spot.websocket.api.model.PendingSide;
+import com.binance.connector.client.spot.websocket.api.model.PendingType;
+import com.binance.connector.client.spot.websocket.api.model.WorkingSide;
+import com.binance.connector.client.spot.websocket.api.model.WorkingType;
+import java.util.concurrent.CompletableFuture;
+
+/** API examples for TradeApi */
+public class OrderListPlaceOpoExample {
+    private SpotWebSocketApi api;
+
+    public SpotWebSocketApi getApi() {
+        if (api == null) {
+            WebSocketClientConfiguration clientConfiguration =
+                    SpotWebSocketApiUtil.getClientConfiguration();
+            // if you want the connection to be auto logged on:
+            // https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests
+            clientConfiguration.setAutoLogon(true);
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("/path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            api = new SpotWebSocketApi(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * OPO (TRADE)
+     *
+     * <p>Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
+     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     */
+    public void orderListPlaceOpoExampleAsync() {
+        OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest();
+        orderListPlaceOpoRequest.symbol("BNBUSDT");
+        orderListPlaceOpoRequest.workingType(WorkingType.LIMIT);
+        orderListPlaceOpoRequest.workingSide(WorkingSide.BUY);
+        orderListPlaceOpoRequest.workingPrice(1d);
+        orderListPlaceOpoRequest.workingQuantity(1d);
+        orderListPlaceOpoRequest.pendingType(PendingType.LIMIT);
+        orderListPlaceOpoRequest.pendingSide(PendingSide.BUY);
+        CompletableFuture<OrderListPlaceOpoResponse> future =
+                getApi().orderListPlaceOpo(orderListPlaceOpoRequest);
+        future.handle(
+                (response, error) -> {
+                    if (error != null) {
+                        System.err.println(error);
+                    }
+                    System.out.println(response);
+                    return response;
+                });
+    }
+
+    /**
+     * OPO (TRADE)
+     *
+     * <p>Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
+     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
+     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     */
+    public void orderListPlaceOpoExampleSync() {
+        OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest();
+        orderListPlaceOpoRequest.symbol("BNBUSDT");
+        orderListPlaceOpoRequest.workingType(WorkingType.LIMIT);
+        orderListPlaceOpoRequest.workingSide(WorkingSide.BUY);
+        orderListPlaceOpoRequest.workingPrice(1d);
+        orderListPlaceOpoRequest.workingQuantity(1d);
+        orderListPlaceOpoRequest.pendingType(PendingType.LIMIT);
+        orderListPlaceOpoRequest.pendingSide(PendingSide.BUY);
+        CompletableFuture<OrderListPlaceOpoResponse> future =
+                getApi().orderListPlaceOpo(orderListPlaceOpoRequest);
+        OrderListPlaceOpoResponse response = future.join();
+        System.out.println(response);
+    }
+}

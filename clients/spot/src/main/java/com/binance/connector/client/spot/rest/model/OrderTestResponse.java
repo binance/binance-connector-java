@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OrderTestResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTestResponse {
     public static final String SERIALIZED_NAME_STANDARD_COMMISSION_FOR_ORDER =
             "standardCommissionForOrder";
@@ -46,11 +44,18 @@ public class OrderTestResponse {
     @jakarta.annotation.Nullable
     private OrderTestResponseStandardCommissionForOrder standardCommissionForOrder;
 
+    public static final String SERIALIZED_NAME_SPECIAL_COMMISSION_FOR_ORDER =
+            "specialCommissionForOrder";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_COMMISSION_FOR_ORDER)
+    @jakarta.annotation.Nullable
+    private OrderTestResponseSpecialCommissionForOrder specialCommissionForOrder;
+
     public static final String SERIALIZED_NAME_TAX_COMMISSION_FOR_ORDER = "taxCommissionForOrder";
 
     @SerializedName(SERIALIZED_NAME_TAX_COMMISSION_FOR_ORDER)
     @jakarta.annotation.Nullable
-    private OrderTestResponseStandardCommissionForOrder taxCommissionForOrder;
+    private OrderTestResponseTaxCommissionForOrder taxCommissionForOrder;
 
     public static final String SERIALIZED_NAME_DISCOUNT = "discount";
 
@@ -84,9 +89,33 @@ public class OrderTestResponse {
         this.standardCommissionForOrder = standardCommissionForOrder;
     }
 
+    public OrderTestResponse specialCommissionForOrder(
+            @jakarta.annotation.Nullable
+                    OrderTestResponseSpecialCommissionForOrder specialCommissionForOrder) {
+        this.specialCommissionForOrder = specialCommissionForOrder;
+        return this;
+    }
+
+    /**
+     * Get specialCommissionForOrder
+     *
+     * @return specialCommissionForOrder
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public OrderTestResponseSpecialCommissionForOrder getSpecialCommissionForOrder() {
+        return specialCommissionForOrder;
+    }
+
+    public void setSpecialCommissionForOrder(
+            @jakarta.annotation.Nullable
+                    OrderTestResponseSpecialCommissionForOrder specialCommissionForOrder) {
+        this.specialCommissionForOrder = specialCommissionForOrder;
+    }
+
     public OrderTestResponse taxCommissionForOrder(
             @jakarta.annotation.Nullable
-                    OrderTestResponseStandardCommissionForOrder taxCommissionForOrder) {
+                    OrderTestResponseTaxCommissionForOrder taxCommissionForOrder) {
         this.taxCommissionForOrder = taxCommissionForOrder;
         return this;
     }
@@ -98,13 +127,13 @@ public class OrderTestResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public OrderTestResponseStandardCommissionForOrder getTaxCommissionForOrder() {
+    public OrderTestResponseTaxCommissionForOrder getTaxCommissionForOrder() {
         return taxCommissionForOrder;
     }
 
     public void setTaxCommissionForOrder(
             @jakarta.annotation.Nullable
-                    OrderTestResponseStandardCommissionForOrder taxCommissionForOrder) {
+                    OrderTestResponseTaxCommissionForOrder taxCommissionForOrder) {
         this.taxCommissionForOrder = taxCommissionForOrder;
     }
 
@@ -142,13 +171,19 @@ public class OrderTestResponse {
                         this.standardCommissionForOrder,
                         orderTestResponse.standardCommissionForOrder)
                 && Objects.equals(
+                        this.specialCommissionForOrder, orderTestResponse.specialCommissionForOrder)
+                && Objects.equals(
                         this.taxCommissionForOrder, orderTestResponse.taxCommissionForOrder)
                 && Objects.equals(this.discount, orderTestResponse.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(standardCommissionForOrder, taxCommissionForOrder, discount);
+        return Objects.hash(
+                standardCommissionForOrder,
+                specialCommissionForOrder,
+                taxCommissionForOrder,
+                discount);
     }
 
     @Override
@@ -157,6 +192,9 @@ public class OrderTestResponse {
         sb.append("class OrderTestResponse {\n");
         sb.append("		standardCommissionForOrder: ")
                 .append(toIndentedString(standardCommissionForOrder))
+                .append("\n");
+        sb.append("		specialCommissionForOrder: ")
+                .append(toIndentedString(specialCommissionForOrder))
                 .append("\n");
         sb.append("		taxCommissionForOrder: ")
                 .append(toIndentedString(taxCommissionForOrder))
@@ -174,6 +212,12 @@ public class OrderTestResponse {
         standardCommissionForOrderValueAsString = standardCommissionForOrderValue.toString();
         sb.append("standardCommissionForOrder=")
                 .append(urlEncode(standardCommissionForOrderValueAsString))
+                .append("");
+        Object specialCommissionForOrderValue = getSpecialCommissionForOrder();
+        String specialCommissionForOrderValueAsString = "";
+        specialCommissionForOrderValueAsString = specialCommissionForOrderValue.toString();
+        sb.append("specialCommissionForOrder=")
+                .append(urlEncode(specialCommissionForOrderValueAsString))
                 .append("");
         Object taxCommissionForOrderValue = getTaxCommissionForOrder();
         String taxCommissionForOrderValueAsString = "";
@@ -214,6 +258,7 @@ public class OrderTestResponse {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("standardCommissionForOrder");
+        openapiFields.add("specialCommissionForOrder");
         openapiFields.add("taxCommissionForOrder");
         openapiFields.add("discount");
 
@@ -238,18 +283,6 @@ public class OrderTestResponse {
                                 OrderTestResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderTestResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderTestResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         // validate the optional field `standardCommissionForOrder`
         if (jsonObj.get("standardCommissionForOrder") != null
@@ -257,10 +290,16 @@ public class OrderTestResponse {
             OrderTestResponseStandardCommissionForOrder.validateJsonElement(
                     jsonObj.get("standardCommissionForOrder"));
         }
+        // validate the optional field `specialCommissionForOrder`
+        if (jsonObj.get("specialCommissionForOrder") != null
+                && !jsonObj.get("specialCommissionForOrder").isJsonNull()) {
+            OrderTestResponseSpecialCommissionForOrder.validateJsonElement(
+                    jsonObj.get("specialCommissionForOrder"));
+        }
         // validate the optional field `taxCommissionForOrder`
         if (jsonObj.get("taxCommissionForOrder") != null
                 && !jsonObj.get("taxCommissionForOrder").isJsonNull()) {
-            OrderTestResponseStandardCommissionForOrder.validateJsonElement(
+            OrderTestResponseTaxCommissionForOrder.validateJsonElement(
                     jsonObj.get("taxCommissionForOrder"));
         }
         // validate the optional field `discount`
@@ -285,7 +324,7 @@ public class OrderTestResponse {
                         @Override
                         public void write(JsonWriter out, OrderTestResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,27 +22,26 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ChangeUmPositionModeRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ChangeUmPositionModeRequest {
     public static final String SERIALIZED_NAME_DUAL_SIDE_POSITION = "dualSidePosition";
 
     @SerializedName(SERIALIZED_NAME_DUAL_SIDE_POSITION)
     @jakarta.annotation.Nonnull
-    private String dualSidePosition;
+    private DualSidePosition dualSidePosition;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -53,7 +52,7 @@ public class ChangeUmPositionModeRequest {
     public ChangeUmPositionModeRequest() {}
 
     public ChangeUmPositionModeRequest dualSidePosition(
-            @jakarta.annotation.Nonnull String dualSidePosition) {
+            @jakarta.annotation.Nonnull DualSidePosition dualSidePosition) {
         this.dualSidePosition = dualSidePosition;
         return this;
     }
@@ -65,11 +64,12 @@ public class ChangeUmPositionModeRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getDualSidePosition() {
+    @Valid
+    public DualSidePosition getDualSidePosition() {
         return dualSidePosition;
     }
 
-    public void setDualSidePosition(@jakarta.annotation.Nonnull String dualSidePosition) {
+    public void setDualSidePosition(@jakarta.annotation.Nonnull DualSidePosition dualSidePosition) {
         this.dualSidePosition = dualSidePosition;
     }
 
@@ -186,18 +186,6 @@ public class ChangeUmPositionModeRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ChangeUmPositionModeRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ChangeUmPositionModeRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : ChangeUmPositionModeRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -208,13 +196,8 @@ public class ChangeUmPositionModeRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("dualSidePosition").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `dualSidePosition` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("dualSidePosition").toString()));
-        }
+        // validate the required field `dualSidePosition`
+        DualSidePosition.validateJsonElement(jsonObj.get("dualSidePosition"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -234,7 +217,7 @@ public class ChangeUmPositionModeRequest {
                         @Override
                         public void write(JsonWriter out, ChangeUmPositionModeRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

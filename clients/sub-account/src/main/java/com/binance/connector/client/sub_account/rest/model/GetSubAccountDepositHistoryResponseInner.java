@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetSubAccountDepositHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSubAccountDepositHistoryResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -203,7 +201,8 @@ public class GetSubAccountDepositHistoryResponseInner {
     }
 
     /**
-     * Get status
+     * Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw, 7&#x3D;wrong deposit,
+     * 8&#x3D;waiting user confirmation, 1&#x3D;success.
      *
      * @return status
      */
@@ -566,19 +565,6 @@ public class GetSubAccountDepositHistoryResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetSubAccountDepositHistoryResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetSubAccountDepositHistoryResponseInner` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
                 && !jsonObj.get("id").isJsonPrimitive()) {
@@ -666,7 +652,7 @@ public class GetSubAccountDepositHistoryResponseInner {
                         public void write(
                                 JsonWriter out, GetSubAccountDepositHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

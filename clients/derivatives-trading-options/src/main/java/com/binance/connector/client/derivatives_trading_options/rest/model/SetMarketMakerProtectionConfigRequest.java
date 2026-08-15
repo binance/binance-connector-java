@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,46 +29,44 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SetMarketMakerProtectionConfigRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SetMarketMakerProtectionConfigRequest {
     public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
     @SerializedName(SERIALIZED_NAME_UNDERLYING)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private String underlying;
 
     public static final String SERIALIZED_NAME_WINDOW_TIME_IN_MILLISECONDS =
             "windowTimeInMilliseconds";
 
     @SerializedName(SERIALIZED_NAME_WINDOW_TIME_IN_MILLISECONDS)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private Long windowTimeInMilliseconds;
 
     public static final String SERIALIZED_NAME_FROZEN_TIME_IN_MILLISECONDS =
             "frozenTimeInMilliseconds";
 
     @SerializedName(SERIALIZED_NAME_FROZEN_TIME_IN_MILLISECONDS)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private Long frozenTimeInMilliseconds;
 
     public static final String SERIALIZED_NAME_QTY_LIMIT = "qtyLimit";
 
     @SerializedName(SERIALIZED_NAME_QTY_LIMIT)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private Double qtyLimit;
 
     public static final String SERIALIZED_NAME_DELTA_LIMIT = "deltaLimit";
 
     @SerializedName(SERIALIZED_NAME_DELTA_LIMIT)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private Double deltaLimit;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
@@ -80,7 +78,7 @@ public class SetMarketMakerProtectionConfigRequest {
     public SetMarketMakerProtectionConfigRequest() {}
 
     public SetMarketMakerProtectionConfigRequest underlying(
-            @jakarta.annotation.Nullable String underlying) {
+            @jakarta.annotation.Nonnull String underlying) {
         this.underlying = underlying;
         return this;
     }
@@ -90,96 +88,103 @@ public class SetMarketMakerProtectionConfigRequest {
      *
      * @return underlying
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     public String getUnderlying() {
         return underlying;
     }
 
-    public void setUnderlying(@jakarta.annotation.Nullable String underlying) {
+    public void setUnderlying(@jakarta.annotation.Nonnull String underlying) {
         this.underlying = underlying;
     }
 
     public SetMarketMakerProtectionConfigRequest windowTimeInMilliseconds(
-            @jakarta.annotation.Nullable Long windowTimeInMilliseconds) {
+            @jakarta.annotation.Nonnull Long windowTimeInMilliseconds) {
         this.windowTimeInMilliseconds = windowTimeInMilliseconds;
         return this;
     }
 
     /**
-     * Get windowTimeInMilliseconds
+     * MMP Interval in milliseconds minimum: 0 maximum: 5000
      *
      * @return windowTimeInMilliseconds
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Min(0L)
+    @Max(5000L)
     public Long getWindowTimeInMilliseconds() {
         return windowTimeInMilliseconds;
     }
 
     public void setWindowTimeInMilliseconds(
-            @jakarta.annotation.Nullable Long windowTimeInMilliseconds) {
+            @jakarta.annotation.Nonnull Long windowTimeInMilliseconds) {
         this.windowTimeInMilliseconds = windowTimeInMilliseconds;
     }
 
     public SetMarketMakerProtectionConfigRequest frozenTimeInMilliseconds(
-            @jakarta.annotation.Nullable Long frozenTimeInMilliseconds) {
+            @jakarta.annotation.Nonnull Long frozenTimeInMilliseconds) {
         this.frozenTimeInMilliseconds = frozenTimeInMilliseconds;
         return this;
     }
 
     /**
-     * Get frozenTimeInMilliseconds
+     * MMP frozen time in milliseconds, if set to 0 manual reset is required
      *
      * @return frozenTimeInMilliseconds
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     public Long getFrozenTimeInMilliseconds() {
         return frozenTimeInMilliseconds;
     }
 
     public void setFrozenTimeInMilliseconds(
-            @jakarta.annotation.Nullable Long frozenTimeInMilliseconds) {
+            @jakarta.annotation.Nonnull Long frozenTimeInMilliseconds) {
         this.frozenTimeInMilliseconds = frozenTimeInMilliseconds;
     }
 
     public SetMarketMakerProtectionConfigRequest qtyLimit(
-            @jakarta.annotation.Nullable Double qtyLimit) {
+            @jakarta.annotation.Nonnull Double qtyLimit) {
         this.qtyLimit = qtyLimit;
         return this;
     }
 
     /**
-     * Get qtyLimit
+     * quantity limit
      *
      * @return qtyLimit
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     @Valid
     public Double getQtyLimit() {
         return qtyLimit;
     }
 
-    public void setQtyLimit(@jakarta.annotation.Nullable Double qtyLimit) {
+    public void setQtyLimit(@jakarta.annotation.Nonnull Double qtyLimit) {
         this.qtyLimit = qtyLimit;
     }
 
     public SetMarketMakerProtectionConfigRequest deltaLimit(
-            @jakarta.annotation.Nullable Double deltaLimit) {
+            @jakarta.annotation.Nonnull Double deltaLimit) {
         this.deltaLimit = deltaLimit;
         return this;
     }
 
     /**
-     * Get deltaLimit
+     * net delta limit
      *
      * @return deltaLimit
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     @Valid
     public Double getDeltaLimit() {
         return deltaLimit;
     }
 
-    public void setDeltaLimit(@jakarta.annotation.Nullable Double deltaLimit) {
+    public void setDeltaLimit(@jakarta.annotation.Nonnull Double deltaLimit) {
         this.deltaLimit = deltaLimit;
     }
 
@@ -323,6 +328,11 @@ public class SetMarketMakerProtectionConfigRequest {
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("underlying");
+        openapiRequiredFields.add("windowTimeInMilliseconds");
+        openapiRequiredFields.add("frozenTimeInMilliseconds");
+        openapiRequiredFields.add("qtyLimit");
+        openapiRequiredFields.add("deltaLimit");
     }
 
     /**
@@ -345,21 +355,17 @@ public class SetMarketMakerProtectionConfigRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SetMarketMakerProtectionConfigRequest.openapiFields.contains(entry.getKey())) {
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : SetMarketMakerProtectionConfigRequest.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `SetMarketMakerProtectionConfigRequest` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
+                                "The required field `%s` is not found in the JSON string: %s",
+                                requiredField, jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("underlying") != null && !jsonObj.get("underlying").isJsonNull())
-                && !jsonObj.get("underlying").isJsonPrimitive()) {
+        if (!jsonObj.get("underlying").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `underlying` to be a primitive type in the JSON"
@@ -387,7 +393,7 @@ public class SetMarketMakerProtectionConfigRequest {
                         public void write(
                                 JsonWriter out, SetMarketMakerProtectionConfigRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

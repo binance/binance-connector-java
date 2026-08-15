@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AvgPriceResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AvgPriceResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -83,7 +83,7 @@ public class AvgPriceResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -102,7 +102,7 @@ public class AvgPriceResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -121,7 +121,7 @@ public class AvgPriceResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -140,7 +140,7 @@ public class AvgPriceResponse extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Average price interval
      *
      * @return iLowerCase
      */
@@ -159,7 +159,7 @@ public class AvgPriceResponse extends BaseDTO {
     }
 
     /**
-     * Get wLowerCase
+     * Average price
      *
      * @return wLowerCase
      */
@@ -178,7 +178,7 @@ public class AvgPriceResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Last trade time
      *
      * @return T
      */
@@ -413,7 +413,7 @@ public class AvgPriceResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AvgPriceResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

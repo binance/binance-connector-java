@@ -2,21 +2,22 @@
 
 # QueryIsolatedMarginAccountInfoResponseAssetsInnerBaseAsset
 
+base Asset object.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**borrowEnabled** | **Boolean** |  |  [optional] |
-|**borrowed** | **String** |  |  [optional] |
-|**free** | **String** |  |  [optional] |
-|**interest** | **String** |  |  [optional] |
-|**locked** | **String** |  |  [optional] |
-|**netAsset** | **String** |  |  [optional] |
-|**netAssetOfBtc** | **String** |  |  [optional] |
-|**repayEnabled** | **Boolean** |  |  [optional] |
-|**totalAsset** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**borrowEnabled** | **Boolean** | borrow Enabled. |  [optional] |
+|**borrowed** | **String** | borrowed. |  [optional] |
+|**free** | **String** | free. |  [optional] |
+|**interest** | **String** | interest. |  [optional] |
+|**locked** | **String** | locked. |  [optional] |
+|**netAsset** | **String** | net Asset. |  [optional] |
+|**netAssetOfBtc** | **String** | net Asset Of Btc. |  [optional] |
+|**repayEnabled** | **Boolean** | repay Enabled. |  [optional] |
+|**totalAsset** | **String** | total Asset. |  [optional] |
 
 
 

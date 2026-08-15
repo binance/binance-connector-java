@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,6 +14,7 @@ package com.binance.connector.client.derivatives_trading_options.websocket.strea
 
 import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.websocket.service.DeserializeExclusionStrategy;
+import com.binance.connector.client.common.websocket.service.RequestIdModifierFactory;
 import com.binance.connector.client.common.websocket.service.SerializeExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,6 +27,7 @@ import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.gsonfire.GsonFireBuilder;
+import io.gsonfire.TypeSelector;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Type;
@@ -37,6 +39,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import okio.ByteString;
 
@@ -58,7 +61,66 @@ public class JSON {
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
-        GsonFireBuilder fireBuilder = new GsonFireBuilder();
+        GsonFireBuilder fireBuilder =
+                new GsonFireBuilder()
+                        .registerTypeSelector(
+                                com.binance.connector.client.derivatives_trading_options.websocket
+                                        .stream.model.UserDataStreamEventsResponse.class,
+                                new TypeSelector<
+                                        com.binance.connector.client.derivatives_trading_options
+                                                .websocket.stream.model
+                                                .UserDataStreamEventsResponse>() {
+                                    @Override
+                                    public Class<
+                                                    ? extends
+                                                            com.binance.connector.client
+                                                                    .derivatives_trading_options
+                                                                    .websocket.stream.model
+                                                                    .UserDataStreamEventsResponse>
+                                            getClassForElement(JsonElement readElement) {
+                                        Map<String, Class> classByDiscriminatorValue =
+                                                new HashMap<String, Class>();
+                                        classByDiscriminatorValue.put(
+                                                "ACCOUNT_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.AccountUpdate.class);
+                                        classByDiscriminatorValue.put(
+                                                "BALANCE_POSITION_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.BalancePositionUpdate.class);
+                                        classByDiscriminatorValue.put(
+                                                "GREEK_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.GreekUpdate.class);
+                                        classByDiscriminatorValue.put(
+                                                "ORDER_TRADE_UPDATE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.OrderTradeUpdate.class);
+                                        classByDiscriminatorValue.put(
+                                                "RISK_LEVEL_CHANGE",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.RiskLevelChange.class);
+                                        classByDiscriminatorValue.put(
+                                                "listenKeyExpired",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.ListenKeyExpired.class);
+                                        classByDiscriminatorValue.put(
+                                                "UserDataStreamEventsResponse",
+                                                com.binance.connector.client
+                                                        .derivatives_trading_options.websocket
+                                                        .stream.model.UserDataStreamEventsResponse
+                                                        .class);
+                                        return getClassByDiscriminator(
+                                                classByDiscriminatorValue,
+                                                getDiscriminatorValue(readElement, "e"));
+                                    }
+                                });
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;
     }
@@ -110,10 +172,49 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .AccountUpdate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .BalancePositionUpdate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .BalancePositionUpdateBInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .BalancePositionUpdatePInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .DiffBookDepthStreamsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .DiffBookDepthStreamsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .GreekUpdate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .GreekUpdateGInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .Hour24TickerRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .Hour24TickerResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .IndexPriceStreamsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .IndexPriceStreamsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .IndexPriceStreamsResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .IndividualSymbolBookTickerStreamsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .IndividualSymbolBookTickerStreamsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .KlineCandlestickStreamsRequest.CustomTypeAdapterFactory());
@@ -125,13 +226,7 @@ public class JSON {
                         .KlineCandlestickStreamsResponseK.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .MarkPriceRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .MarkPriceResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .MarkPriceResponseInner.CustomTypeAdapterFactory());
+                        .ListenKeyExpired.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .NewSymbolInfoRequest.CustomTypeAdapterFactory());
@@ -149,40 +244,38 @@ public class JSON {
                         .OpenInterestResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .OptionMarkPriceRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .OptionMarkPriceResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .OptionMarkPriceResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .OrderTradeUpdate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .OrderTradeUpdateO.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .PartialBookDepthStreamsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .PartialBookDepthStreamsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .PartialBookDepthStreamsResponseAItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .PartialBookDepthStreamsResponseBItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .Ticker24HourByUnderlyingAssetAndExpirationDataRequest
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .Ticker24HourByUnderlyingAssetAndExpirationDataResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .Ticker24HourByUnderlyingAssetAndExpirationDataResponseInner
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .Ticker24HourRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
-                        .Ticker24HourResponse.CustomTypeAdapterFactory());
+                        .RiskLevelChange.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .TradeStreamsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
                         .TradeStreamsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.websocket.stream.model
+                        .UserDataStreamEventsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new RequestIdModifierFactory());
         gson = gsonBuilder.create();
     }
 

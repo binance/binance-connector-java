@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tranId** | **Long** |  |  [optional] |
+|**tranId** | **Long** | tran Id. |  [optional] |
 
 
 

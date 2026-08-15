@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,13 +40,19 @@ public class MarketDataApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
      * Order Book Get current order book. Note that this request returns limited market depth. If
      * you need to continuously monitor order book updates, please consider using Websocket Market
      * Streams: * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; * &#x60;&lt;symbol&gt;@depth&#x60;
      * You can use &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams
-     * to maintain a local order book. Weight: Adjusted based on the limit: | Limit | Weight | |
-     * ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 | 20 |
+     * to maintain a local order book. **Note:** - Retail Price Improvement(RPI) orders are not
+     * visible and excluded in the response message. Weight: Adjusted based on the limit: | Limit |
+     * Weight | | ------------- | ------ | | 5, 10, 20, 50 | 2 | | 100 | 5 | | 500 | 10 | | 1000 |
+     * 20 |
      *
      * @param orderBookRequest (required)
      * @return OrderBookResponse
@@ -60,7 +66,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Order-Book">Order
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/market-data#order-book">Order
      *     Book Documentation</a>
      */
     public CompletableFuture<OrderBookResponse> orderBook(OrderBookRequest orderBookRequest)
@@ -108,12 +114,14 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. * If the
-     * symbol is not sent, bookTickers for all symbols will be returned in an array. * The field
+     * Symbol Order Book Ticker Best price/qty on the order book for a symbol or symbols. **Note:**
+     * - Retail Price Improvement(RPI) orders are not visible and excluded in the response message.
+     * Weight: **2** for a single symbol; **5** when the symbol parameter is omitted Notes: - If the
+     * symbol is not sent, bookTickers for all symbols will be returned in an array. - The field
      * &#x60;X-MBX-USED-WEIGHT-1M&#x60; in response header is not accurate from this endpoint,
-     * please ignore. Weight: 2 for a single symbol; 5 when the symbol parameter is omitted
+     * please ignore.
      *
-     * @param symbolOrderBookTickerRequest (required)
+     * @param symbolOrderBookTickerRequest (optional)
      * @return SymbolOrderBookTickerResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -125,7 +133,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Order-Book-Ticker">Symbol
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/market-data#symbol-order-book-ticker">Symbol
      *     Order Book Ticker Documentation</a>
      */
     public CompletableFuture<SymbolOrderBookTickerResponse> symbolOrderBookTicker(
@@ -174,11 +182,11 @@ public class MarketDataApi {
     }
 
     /**
-     * Symbol Price Ticker Latest price for a symbol or symbols. * If the symbol is not sent, prices
-     * for all symbols will be returned in an array. Weight: 1 for a single symbol; 2 when the
-     * symbol parameter is omitted
+     * Symbol Price Ticker Latest price for a symbol or symbols. Weight: **1** for a single symbol;
+     * **2** when the symbol parameter is omitted Notes: - If the symbol is not sent, prices for all
+     * symbols will be returned in an array.
      *
-     * @param symbolPriceTickerRequest (required)
+     * @param symbolPriceTickerRequest (optional)
      * @return SymbolPriceTickerResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -190,7 +198,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Price-Ticker">Symbol
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/market-data#symbol-price-ticker">Symbol
      *     Price Ticker Documentation</a>
      */
     public CompletableFuture<SymbolPriceTickerResponse> symbolPriceTicker(

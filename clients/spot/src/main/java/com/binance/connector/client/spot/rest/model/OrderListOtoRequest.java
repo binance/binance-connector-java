@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OrderListOtoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOtoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -124,6 +122,24 @@ public class OrderListOtoRequest {
     @jakarta.annotation.Nonnull
     private PendingType pendingType;
 
+    public static final String SERIALIZED_NAME_WORKING_PEG_PRICE_TYPE = "workingPegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private WorkingPegPriceType workingPegPriceType;
+
+    public static final String SERIALIZED_NAME_WORKING_PEG_OFFSET_TYPE = "workingPegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private WorkingPegOffsetType workingPegOffsetType;
+
+    public static final String SERIALIZED_NAME_WORKING_PEG_OFFSET_VALUE = "workingPegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_WORKING_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer workingPegOffsetValue;
+
     public static final String SERIALIZED_NAME_PENDING_SIDE = "pendingSide";
 
     @SerializedName(SERIALIZED_NAME_PENDING_SIDE)
@@ -184,11 +200,29 @@ public class OrderListOtoRequest {
     @jakarta.annotation.Nullable
     private Integer pendingStrategyType;
 
+    public static final String SERIALIZED_NAME_PENDING_PEG_PRICE_TYPE = "pendingPegPriceType";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_PEG_PRICE_TYPE)
+    @jakarta.annotation.Nullable
+    private PendingPegPriceType pendingPegPriceType;
+
+    public static final String SERIALIZED_NAME_PENDING_PEG_OFFSET_TYPE = "pendingPegOffsetType";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_PEG_OFFSET_TYPE)
+    @jakarta.annotation.Nullable
+    private PendingPegOffsetType pendingPegOffsetType;
+
+    public static final String SERIALIZED_NAME_PENDING_PEG_OFFSET_VALUE = "pendingPegOffsetValue";
+
+    @SerializedName(SERIALIZED_NAME_PENDING_PEG_OFFSET_VALUE)
+    @jakarta.annotation.Nullable
+    private Integer pendingPegOffsetValue;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public OrderListOtoRequest() {}
 
@@ -219,7 +253,10 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order
+     * list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is
+     * filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the
+     * &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -325,7 +362,8 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get workingClientOrderId
+     * Arbitrary unique ID among open orders for the working order. Automatically generated if not
+     * sent.
      *
      * @return workingClientOrderId
      */
@@ -365,7 +403,7 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get workingQuantity
+     * Sets the quantity for the working order.
      *
      * @return workingQuantity
      */
@@ -387,7 +425,8 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get workingIcebergQty
+     * This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if
+     * &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return workingIcebergQty
      */
@@ -430,7 +469,7 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get workingStrategyId
+     * Arbitrary numeric value identifying the working order within an order strategy.
      *
      * @return workingStrategyId
      */
@@ -450,7 +489,8 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get workingStrategyType
+     * Arbitrary numeric value identifying the working order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return workingStrategyType
      */
@@ -484,6 +524,71 @@ public class OrderListOtoRequest {
         this.pendingType = pendingType;
     }
 
+    public OrderListOtoRequest workingPegPriceType(
+            @jakarta.annotation.Nullable WorkingPegPriceType workingPegPriceType) {
+        this.workingPegPriceType = workingPegPriceType;
+        return this;
+    }
+
+    /**
+     * Get workingPegPriceType
+     *
+     * @return workingPegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public WorkingPegPriceType getWorkingPegPriceType() {
+        return workingPegPriceType;
+    }
+
+    public void setWorkingPegPriceType(
+            @jakarta.annotation.Nullable WorkingPegPriceType workingPegPriceType) {
+        this.workingPegPriceType = workingPegPriceType;
+    }
+
+    public OrderListOtoRequest workingPegOffsetType(
+            @jakarta.annotation.Nullable WorkingPegOffsetType workingPegOffsetType) {
+        this.workingPegOffsetType = workingPegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get workingPegOffsetType
+     *
+     * @return workingPegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public WorkingPegOffsetType getWorkingPegOffsetType() {
+        return workingPegOffsetType;
+    }
+
+    public void setWorkingPegOffsetType(
+            @jakarta.annotation.Nullable WorkingPegOffsetType workingPegOffsetType) {
+        this.workingPegOffsetType = workingPegOffsetType;
+    }
+
+    public OrderListOtoRequest workingPegOffsetValue(
+            @jakarta.annotation.Nullable Integer workingPegOffsetValue) {
+        this.workingPegOffsetValue = workingPegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get workingPegOffsetValue
+     *
+     * @return workingPegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getWorkingPegOffsetValue() {
+        return workingPegOffsetValue;
+    }
+
+    public void setWorkingPegOffsetValue(
+            @jakarta.annotation.Nullable Integer workingPegOffsetValue) {
+        this.workingPegOffsetValue = workingPegOffsetValue;
+    }
+
     public OrderListOtoRequest pendingSide(@jakarta.annotation.Nonnull PendingSide pendingSide) {
         this.pendingSide = pendingSide;
         return this;
@@ -512,7 +617,8 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get pendingClientOrderId
+     * Arbitrary unique ID among open orders for the pending order. Automatically generated if not
+     * sent.
      *
      * @return pendingClientOrderId
      */
@@ -593,7 +699,7 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get pendingQuantity
+     * Sets the quantity for the pending order.
      *
      * @return pendingQuantity
      */
@@ -615,7 +721,8 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get pendingIcebergQty
+     * This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if
+     * &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return pendingIcebergQty
      */
@@ -658,7 +765,7 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get pendingStrategyId
+     * Arbitrary numeric value identifying the pending order within an order strategy.
      *
      * @return pendingStrategyId
      */
@@ -678,7 +785,8 @@ public class OrderListOtoRequest {
     }
 
     /**
-     * Get pendingStrategyType
+     * Arbitrary numeric value identifying the pending order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return pendingStrategyType
      */
@@ -691,22 +799,89 @@ public class OrderListOtoRequest {
         this.pendingStrategyType = pendingStrategyType;
     }
 
-    public OrderListOtoRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public OrderListOtoRequest pendingPegPriceType(
+            @jakarta.annotation.Nullable PendingPegPriceType pendingPegPriceType) {
+        this.pendingPegPriceType = pendingPegPriceType;
+        return this;
+    }
+
+    /**
+     * Get pendingPegPriceType
+     *
+     * @return pendingPegPriceType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PendingPegPriceType getPendingPegPriceType() {
+        return pendingPegPriceType;
+    }
+
+    public void setPendingPegPriceType(
+            @jakarta.annotation.Nullable PendingPegPriceType pendingPegPriceType) {
+        this.pendingPegPriceType = pendingPegPriceType;
+    }
+
+    public OrderListOtoRequest pendingPegOffsetType(
+            @jakarta.annotation.Nullable PendingPegOffsetType pendingPegOffsetType) {
+        this.pendingPegOffsetType = pendingPegOffsetType;
+        return this;
+    }
+
+    /**
+     * Get pendingPegOffsetType
+     *
+     * @return pendingPegOffsetType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public PendingPegOffsetType getPendingPegOffsetType() {
+        return pendingPegOffsetType;
+    }
+
+    public void setPendingPegOffsetType(
+            @jakarta.annotation.Nullable PendingPegOffsetType pendingPegOffsetType) {
+        this.pendingPegOffsetType = pendingPegOffsetType;
+    }
+
+    public OrderListOtoRequest pendingPegOffsetValue(
+            @jakarta.annotation.Nullable Integer pendingPegOffsetValue) {
+        this.pendingPegOffsetValue = pendingPegOffsetValue;
+        return this;
+    }
+
+    /**
+     * Get pendingPegOffsetValue
+     *
+     * @return pendingPegOffsetValue
+     */
+    @jakarta.annotation.Nullable
+    public Integer getPendingPegOffsetValue() {
+        return pendingPegOffsetValue;
+    }
+
+    public void setPendingPegOffsetValue(
+            @jakarta.annotation.Nullable Integer pendingPegOffsetValue) {
+        this.pendingPegOffsetValue = pendingPegOffsetValue;
+    }
+
+    public OrderListOtoRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -735,6 +910,11 @@ public class OrderListOtoRequest {
                 && Objects.equals(this.workingStrategyId, orderListOtoRequest.workingStrategyId)
                 && Objects.equals(this.workingStrategyType, orderListOtoRequest.workingStrategyType)
                 && Objects.equals(this.pendingType, orderListOtoRequest.pendingType)
+                && Objects.equals(this.workingPegPriceType, orderListOtoRequest.workingPegPriceType)
+                && Objects.equals(
+                        this.workingPegOffsetType, orderListOtoRequest.workingPegOffsetType)
+                && Objects.equals(
+                        this.workingPegOffsetValue, orderListOtoRequest.workingPegOffsetValue)
                 && Objects.equals(this.pendingSide, orderListOtoRequest.pendingSide)
                 && Objects.equals(
                         this.pendingClientOrderId, orderListOtoRequest.pendingClientOrderId)
@@ -747,6 +927,11 @@ public class OrderListOtoRequest {
                 && Objects.equals(this.pendingTimeInForce, orderListOtoRequest.pendingTimeInForce)
                 && Objects.equals(this.pendingStrategyId, orderListOtoRequest.pendingStrategyId)
                 && Objects.equals(this.pendingStrategyType, orderListOtoRequest.pendingStrategyType)
+                && Objects.equals(this.pendingPegPriceType, orderListOtoRequest.pendingPegPriceType)
+                && Objects.equals(
+                        this.pendingPegOffsetType, orderListOtoRequest.pendingPegOffsetType)
+                && Objects.equals(
+                        this.pendingPegOffsetValue, orderListOtoRequest.pendingPegOffsetValue)
                 && Objects.equals(this.recvWindow, orderListOtoRequest.recvWindow);
     }
 
@@ -767,6 +952,9 @@ public class OrderListOtoRequest {
                 workingStrategyId,
                 workingStrategyType,
                 pendingType,
+                workingPegPriceType,
+                workingPegOffsetType,
+                workingPegOffsetValue,
                 pendingSide,
                 pendingClientOrderId,
                 pendingPrice,
@@ -777,6 +965,9 @@ public class OrderListOtoRequest {
                 pendingTimeInForce,
                 pendingStrategyId,
                 pendingStrategyType,
+                pendingPegPriceType,
+                pendingPegOffsetType,
+                pendingPegOffsetValue,
                 recvWindow);
     }
 
@@ -806,6 +997,15 @@ public class OrderListOtoRequest {
                 .append(toIndentedString(workingStrategyType))
                 .append("\n");
         sb.append("		pendingType: ").append(toIndentedString(pendingType)).append("\n");
+        sb.append("		workingPegPriceType: ")
+                .append(toIndentedString(workingPegPriceType))
+                .append("\n");
+        sb.append("		workingPegOffsetType: ")
+                .append(toIndentedString(workingPegOffsetType))
+                .append("\n");
+        sb.append("		workingPegOffsetValue: ")
+                .append(toIndentedString(workingPegOffsetValue))
+                .append("\n");
         sb.append("		pendingSide: ").append(toIndentedString(pendingSide)).append("\n");
         sb.append("		pendingClientOrderId: ")
                 .append(toIndentedString(pendingClientOrderId))
@@ -823,6 +1023,15 @@ public class OrderListOtoRequest {
         sb.append("		pendingStrategyId: ").append(toIndentedString(pendingStrategyId)).append("\n");
         sb.append("		pendingStrategyType: ")
                 .append(toIndentedString(pendingStrategyType))
+                .append("\n");
+        sb.append("		pendingPegPriceType: ")
+                .append(toIndentedString(pendingPegPriceType))
+                .append("\n");
+        sb.append("		pendingPegOffsetType: ")
+                .append(toIndentedString(pendingPegOffsetType))
+                .append("\n");
+        sb.append("		pendingPegOffsetValue: ")
+                .append(toIndentedString(pendingPegOffsetValue))
                 .append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
@@ -902,6 +1111,24 @@ public class OrderListOtoRequest {
         String pendingTypeValueAsString = "";
         pendingTypeValueAsString = pendingTypeValue.toString();
         sb.append("pendingType=").append(urlEncode(pendingTypeValueAsString)).append("");
+        Object workingPegPriceTypeValue = getWorkingPegPriceType();
+        String workingPegPriceTypeValueAsString = "";
+        workingPegPriceTypeValueAsString = workingPegPriceTypeValue.toString();
+        sb.append("workingPegPriceType=")
+                .append(urlEncode(workingPegPriceTypeValueAsString))
+                .append("");
+        Object workingPegOffsetTypeValue = getWorkingPegOffsetType();
+        String workingPegOffsetTypeValueAsString = "";
+        workingPegOffsetTypeValueAsString = workingPegOffsetTypeValue.toString();
+        sb.append("workingPegOffsetType=")
+                .append(urlEncode(workingPegOffsetTypeValueAsString))
+                .append("");
+        Object workingPegOffsetValueValue = getWorkingPegOffsetValue();
+        String workingPegOffsetValueValueAsString = "";
+        workingPegOffsetValueValueAsString = workingPegOffsetValueValue.toString();
+        sb.append("workingPegOffsetValue=")
+                .append(urlEncode(workingPegOffsetValueValueAsString))
+                .append("");
         Object pendingSideValue = getPendingSide();
         String pendingSideValueAsString = "";
         pendingSideValueAsString = pendingSideValue.toString();
@@ -954,6 +1181,24 @@ public class OrderListOtoRequest {
         sb.append("pendingStrategyType=")
                 .append(urlEncode(pendingStrategyTypeValueAsString))
                 .append("");
+        Object pendingPegPriceTypeValue = getPendingPegPriceType();
+        String pendingPegPriceTypeValueAsString = "";
+        pendingPegPriceTypeValueAsString = pendingPegPriceTypeValue.toString();
+        sb.append("pendingPegPriceType=")
+                .append(urlEncode(pendingPegPriceTypeValueAsString))
+                .append("");
+        Object pendingPegOffsetTypeValue = getPendingPegOffsetType();
+        String pendingPegOffsetTypeValueAsString = "";
+        pendingPegOffsetTypeValueAsString = pendingPegOffsetTypeValue.toString();
+        sb.append("pendingPegOffsetType=")
+                .append(urlEncode(pendingPegOffsetTypeValueAsString))
+                .append("");
+        Object pendingPegOffsetValueValue = getPendingPegOffsetValue();
+        String pendingPegOffsetValueValueAsString = "";
+        pendingPegOffsetValueValueAsString = pendingPegOffsetValueValue.toString();
+        sb.append("pendingPegOffsetValue=")
+                .append(urlEncode(pendingPegOffsetValueValueAsString))
+                .append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -1000,6 +1245,9 @@ public class OrderListOtoRequest {
         openapiFields.add("workingStrategyId");
         openapiFields.add("workingStrategyType");
         openapiFields.add("pendingType");
+        openapiFields.add("workingPegPriceType");
+        openapiFields.add("workingPegOffsetType");
+        openapiFields.add("workingPegOffsetValue");
         openapiFields.add("pendingSide");
         openapiFields.add("pendingClientOrderId");
         openapiFields.add("pendingPrice");
@@ -1010,6 +1258,9 @@ public class OrderListOtoRequest {
         openapiFields.add("pendingTimeInForce");
         openapiFields.add("pendingStrategyId");
         openapiFields.add("pendingStrategyType");
+        openapiFields.add("pendingPegPriceType");
+        openapiFields.add("pendingPegOffsetType");
+        openapiFields.add("pendingPegOffsetValue");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -1039,18 +1290,6 @@ public class OrderListOtoRequest {
                                 "The required field(s) %s in OrderListOtoRequest is not found in"
                                         + " the empty JSON string",
                                 OrderListOtoRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OrderListOtoRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `OrderListOtoRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -1110,6 +1349,16 @@ public class OrderListOtoRequest {
         }
         // validate the required field `pendingType`
         PendingType.validateJsonElement(jsonObj.get("pendingType"));
+        // validate the optional field `workingPegPriceType`
+        if (jsonObj.get("workingPegPriceType") != null
+                && !jsonObj.get("workingPegPriceType").isJsonNull()) {
+            WorkingPegPriceType.validateJsonElement(jsonObj.get("workingPegPriceType"));
+        }
+        // validate the optional field `workingPegOffsetType`
+        if (jsonObj.get("workingPegOffsetType") != null
+                && !jsonObj.get("workingPegOffsetType").isJsonNull()) {
+            WorkingPegOffsetType.validateJsonElement(jsonObj.get("workingPegOffsetType"));
+        }
         // validate the required field `pendingSide`
         PendingSide.validateJsonElement(jsonObj.get("pendingSide"));
         if ((jsonObj.get("pendingClientOrderId") != null
@@ -1125,6 +1374,16 @@ public class OrderListOtoRequest {
         if (jsonObj.get("pendingTimeInForce") != null
                 && !jsonObj.get("pendingTimeInForce").isJsonNull()) {
             PendingTimeInForce.validateJsonElement(jsonObj.get("pendingTimeInForce"));
+        }
+        // validate the optional field `pendingPegPriceType`
+        if (jsonObj.get("pendingPegPriceType") != null
+                && !jsonObj.get("pendingPegPriceType").isJsonNull()) {
+            PendingPegPriceType.validateJsonElement(jsonObj.get("pendingPegPriceType"));
+        }
+        // validate the optional field `pendingPegOffsetType`
+        if (jsonObj.get("pendingPegOffsetType") != null
+                && !jsonObj.get("pendingPegOffsetType").isJsonNull()) {
+            PendingPegOffsetType.validateJsonElement(jsonObj.get("pendingPegOffsetType"));
         }
     }
 
@@ -1144,7 +1403,7 @@ public class OrderListOtoRequest {
                         @Override
                         public void write(JsonWriter out, OrderListOtoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

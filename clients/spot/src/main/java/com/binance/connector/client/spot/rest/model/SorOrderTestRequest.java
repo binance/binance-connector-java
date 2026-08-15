@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,27 +22,105 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SorOrderTestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SorOrderTestRequest {
     public static final String SERIALIZED_NAME_COMPUTE_COMMISSION_RATES = "computeCommissionRates";
 
     @SerializedName(SERIALIZED_NAME_COMPUTE_COMMISSION_RATES)
     @jakarta.annotation.Nullable
-    private Boolean computeCommissionRates;
+    private Boolean computeCommissionRates = false;
+
+    public static final String SERIALIZED_NAME_SYMBOL = "symbol";
+
+    @SerializedName(SERIALIZED_NAME_SYMBOL)
+    @jakarta.annotation.Nonnull
+    private String symbol;
+
+    public static final String SERIALIZED_NAME_SIDE = "side";
+
+    @SerializedName(SERIALIZED_NAME_SIDE)
+    @jakarta.annotation.Nonnull
+    private Side side;
+
+    public static final String SERIALIZED_NAME_TYPE = "type";
+
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    @jakarta.annotation.Nonnull
+    private OrderType type;
+
+    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
+
+    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
+    @jakarta.annotation.Nullable
+    private TimeInForce timeInForce;
+
+    public static final String SERIALIZED_NAME_QUANTITY = "quantity";
+
+    @SerializedName(SERIALIZED_NAME_QUANTITY)
+    @jakarta.annotation.Nonnull
+    private Double quantity;
+
+    public static final String SERIALIZED_NAME_PRICE = "price";
+
+    @SerializedName(SERIALIZED_NAME_PRICE)
+    @jakarta.annotation.Nullable
+    private Double price;
+
+    public static final String SERIALIZED_NAME_NEW_CLIENT_ORDER_ID = "newClientOrderId";
+
+    @SerializedName(SERIALIZED_NAME_NEW_CLIENT_ORDER_ID)
+    @jakarta.annotation.Nullable
+    private String newClientOrderId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_ID = "strategyId";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_ID)
+    @jakarta.annotation.Nullable
+    private Long strategyId;
+
+    public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
+
+    @SerializedName(SERIALIZED_NAME_STRATEGY_TYPE)
+    @jakarta.annotation.Nullable
+    private Integer strategyType;
+
+    public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
+
+    @SerializedName(SERIALIZED_NAME_ICEBERG_QTY)
+    @jakarta.annotation.Nullable
+    private Double icebergQty;
+
+    public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
+
+    @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
+    @jakarta.annotation.Nullable
+    private NewOrderRespType newOrderRespType;
+
+    public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
+            "selfTradePreventionMode";
+
+    @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
+    @jakarta.annotation.Nullable
+    private SelfTradePreventionMode selfTradePreventionMode;
+
+    public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
+
+    @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
+    @jakarta.annotation.Nullable
+    private Double recvWindow;
 
     public SorOrderTestRequest() {}
 
@@ -67,6 +145,274 @@ public class SorOrderTestRequest {
         this.computeCommissionRates = computeCommissionRates;
     }
 
+    public SorOrderTestRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+        this.symbol = symbol;
+        return this;
+    }
+
+    /**
+     * Get symbol
+     *
+     * @return symbol
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+        this.symbol = symbol;
+    }
+
+    public SorOrderTestRequest side(@jakarta.annotation.Nonnull Side side) {
+        this.side = side;
+        return this;
+    }
+
+    /**
+     * Get side
+     *
+     * @return side
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public Side getSide() {
+        return side;
+    }
+
+    public void setSide(@jakarta.annotation.Nonnull Side side) {
+        this.side = side;
+    }
+
+    public SorOrderTestRequest type(@jakarta.annotation.Nonnull OrderType type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public OrderType getType() {
+        return type;
+    }
+
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
+        this.type = type;
+    }
+
+    public SorOrderTestRequest timeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+        return this;
+    }
+
+    /**
+     * Get timeInForce
+     *
+     * @return timeInForce
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TimeInForce getTimeInForce() {
+        return timeInForce;
+    }
+
+    public void setTimeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+    }
+
+    public SorOrderTestRequest quantity(@jakarta.annotation.Nonnull Double quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return quantity
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(@jakarta.annotation.Nonnull Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public SorOrderTestRequest price(@jakarta.annotation.Nullable Double price) {
+        this.price = price;
+        return this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return price
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(@jakarta.annotation.Nullable Double price) {
+        this.price = price;
+    }
+
+    public SorOrderTestRequest newClientOrderId(
+            @jakarta.annotation.Nullable String newClientOrderId) {
+        this.newClientOrderId = newClientOrderId;
+        return this;
+    }
+
+    /**
+     * A unique id among open orders. Automatically generated if not sent. Orders with the same
+     * &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise
+     * the order will be rejected.
+     *
+     * @return newClientOrderId
+     */
+    @jakarta.annotation.Nullable
+    public String getNewClientOrderId() {
+        return newClientOrderId;
+    }
+
+    public void setNewClientOrderId(@jakarta.annotation.Nullable String newClientOrderId) {
+        this.newClientOrderId = newClientOrderId;
+    }
+
+    public SorOrderTestRequest strategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+        return this;
+    }
+
+    /**
+     * Get strategyId
+     *
+     * @return strategyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(@jakarta.annotation.Nullable Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public SorOrderTestRequest strategyType(@jakarta.annotation.Nullable Integer strategyType) {
+        this.strategyType = strategyType;
+        return this;
+    }
+
+    /**
+     * The value cannot be less than &#x60;1000000&#x60;.
+     *
+     * @return strategyType
+     */
+    @jakarta.annotation.Nullable
+    public Integer getStrategyType() {
+        return strategyType;
+    }
+
+    public void setStrategyType(@jakarta.annotation.Nullable Integer strategyType) {
+        this.strategyType = strategyType;
+    }
+
+    public SorOrderTestRequest icebergQty(@jakarta.annotation.Nullable Double icebergQty) {
+        this.icebergQty = icebergQty;
+        return this;
+    }
+
+    /**
+     * Used with &#x60;LIMIT&#x60; to create an iceberg order.
+     *
+     * @return icebergQty
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getIcebergQty() {
+        return icebergQty;
+    }
+
+    public void setIcebergQty(@jakarta.annotation.Nullable Double icebergQty) {
+        this.icebergQty = icebergQty;
+    }
+
+    public SorOrderTestRequest newOrderRespType(
+            @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
+        this.newOrderRespType = newOrderRespType;
+        return this;
+    }
+
+    /**
+     * Get newOrderRespType
+     *
+     * @return newOrderRespType
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public NewOrderRespType getNewOrderRespType() {
+        return newOrderRespType;
+    }
+
+    public void setNewOrderRespType(
+            @jakarta.annotation.Nullable NewOrderRespType newOrderRespType) {
+        this.newOrderRespType = newOrderRespType;
+    }
+
+    public SorOrderTestRequest selfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+        return this;
+    }
+
+    /**
+     * Get selfTradePreventionMode
+     *
+     * @return selfTradePreventionMode
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
+        return selfTradePreventionMode;
+    }
+
+    public void setSelfTradePreventionMode(
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
+        this.selfTradePreventionMode = selfTradePreventionMode;
+    }
+
+    public SorOrderTestRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
+        this.recvWindow = recvWindow;
+        return this;
+    }
+
+    /**
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
+     *
+     * @return recvWindow
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public Double getRecvWindow() {
+        return recvWindow;
+    }
+
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
+        this.recvWindow = recvWindow;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -77,12 +423,40 @@ public class SorOrderTestRequest {
         }
         SorOrderTestRequest sorOrderTestRequest = (SorOrderTestRequest) o;
         return Objects.equals(
-                this.computeCommissionRates, sorOrderTestRequest.computeCommissionRates);
+                        this.computeCommissionRates, sorOrderTestRequest.computeCommissionRates)
+                && Objects.equals(this.symbol, sorOrderTestRequest.symbol)
+                && Objects.equals(this.side, sorOrderTestRequest.side)
+                && Objects.equals(this.type, sorOrderTestRequest.type)
+                && Objects.equals(this.timeInForce, sorOrderTestRequest.timeInForce)
+                && Objects.equals(this.quantity, sorOrderTestRequest.quantity)
+                && Objects.equals(this.price, sorOrderTestRequest.price)
+                && Objects.equals(this.newClientOrderId, sorOrderTestRequest.newClientOrderId)
+                && Objects.equals(this.strategyId, sorOrderTestRequest.strategyId)
+                && Objects.equals(this.strategyType, sorOrderTestRequest.strategyType)
+                && Objects.equals(this.icebergQty, sorOrderTestRequest.icebergQty)
+                && Objects.equals(this.newOrderRespType, sorOrderTestRequest.newOrderRespType)
+                && Objects.equals(
+                        this.selfTradePreventionMode, sorOrderTestRequest.selfTradePreventionMode)
+                && Objects.equals(this.recvWindow, sorOrderTestRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(computeCommissionRates);
+        return Objects.hash(
+                computeCommissionRates,
+                symbol,
+                side,
+                type,
+                timeInForce,
+                quantity,
+                price,
+                newClientOrderId,
+                strategyId,
+                strategyType,
+                icebergQty,
+                newOrderRespType,
+                selfTradePreventionMode,
+                recvWindow);
     }
 
     @Override
@@ -92,6 +466,21 @@ public class SorOrderTestRequest {
         sb.append("		computeCommissionRates: ")
                 .append(toIndentedString(computeCommissionRates))
                 .append("\n");
+        sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		side: ").append(toIndentedString(side)).append("\n");
+        sb.append("		type: ").append(toIndentedString(type)).append("\n");
+        sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
+        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
+        sb.append("		price: ").append(toIndentedString(price)).append("\n");
+        sb.append("		newClientOrderId: ").append(toIndentedString(newClientOrderId)).append("\n");
+        sb.append("		strategyId: ").append(toIndentedString(strategyId)).append("\n");
+        sb.append("		strategyType: ").append(toIndentedString(strategyType)).append("\n");
+        sb.append("		icebergQty: ").append(toIndentedString(icebergQty)).append("\n");
+        sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
+        sb.append("		selfTradePreventionMode: ")
+                .append(toIndentedString(selfTradePreventionMode))
+                .append("\n");
+        sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -105,6 +494,60 @@ public class SorOrderTestRequest {
         sb.append("computeCommissionRates=")
                 .append(urlEncode(computeCommissionRatesValueAsString))
                 .append("");
+        Object symbolValue = getSymbol();
+        String symbolValueAsString = "";
+        symbolValueAsString = symbolValue.toString();
+        sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object sideValue = getSide();
+        String sideValueAsString = "";
+        sideValueAsString = sideValue.toString();
+        sb.append("side=").append(urlEncode(sideValueAsString)).append("");
+        Object typeValue = getType();
+        String typeValueAsString = "";
+        typeValueAsString = typeValue.toString();
+        sb.append("type=").append(urlEncode(typeValueAsString)).append("");
+        Object timeInForceValue = getTimeInForce();
+        String timeInForceValueAsString = "";
+        timeInForceValueAsString = timeInForceValue.toString();
+        sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
+        Object quantityValue = getQuantity();
+        String quantityValueAsString = "";
+        quantityValueAsString = quantityValue.toString();
+        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
+        Object priceValue = getPrice();
+        String priceValueAsString = "";
+        priceValueAsString = priceValue.toString();
+        sb.append("price=").append(urlEncode(priceValueAsString)).append("");
+        Object newClientOrderIdValue = getNewClientOrderId();
+        String newClientOrderIdValueAsString = "";
+        newClientOrderIdValueAsString = newClientOrderIdValue.toString();
+        sb.append("newClientOrderId=").append(urlEncode(newClientOrderIdValueAsString)).append("");
+        Object strategyIdValue = getStrategyId();
+        String strategyIdValueAsString = "";
+        strategyIdValueAsString = strategyIdValue.toString();
+        sb.append("strategyId=").append(urlEncode(strategyIdValueAsString)).append("");
+        Object strategyTypeValue = getStrategyType();
+        String strategyTypeValueAsString = "";
+        strategyTypeValueAsString = strategyTypeValue.toString();
+        sb.append("strategyType=").append(urlEncode(strategyTypeValueAsString)).append("");
+        Object icebergQtyValue = getIcebergQty();
+        String icebergQtyValueAsString = "";
+        icebergQtyValueAsString = icebergQtyValue.toString();
+        sb.append("icebergQty=").append(urlEncode(icebergQtyValueAsString)).append("");
+        Object newOrderRespTypeValue = getNewOrderRespType();
+        String newOrderRespTypeValueAsString = "";
+        newOrderRespTypeValueAsString = newOrderRespTypeValue.toString();
+        sb.append("newOrderRespType=").append(urlEncode(newOrderRespTypeValueAsString)).append("");
+        Object selfTradePreventionModeValue = getSelfTradePreventionMode();
+        String selfTradePreventionModeValueAsString = "";
+        selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
+        sb.append("selfTradePreventionMode=")
+                .append(urlEncode(selfTradePreventionModeValueAsString))
+                .append("");
+        Object recvWindowValue = getRecvWindow();
+        String recvWindowValueAsString = "";
+        recvWindowValueAsString = recvWindowValue.toString();
+        sb.append("recvWindow=").append(urlEncode(recvWindowValueAsString)).append("");
         return sb.toString();
     }
 
@@ -134,9 +577,26 @@ public class SorOrderTestRequest {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("computeCommissionRates");
+        openapiFields.add("symbol");
+        openapiFields.add("side");
+        openapiFields.add("type");
+        openapiFields.add("timeInForce");
+        openapiFields.add("quantity");
+        openapiFields.add("price");
+        openapiFields.add("newClientOrderId");
+        openapiFields.add("strategyId");
+        openapiFields.add("strategyType");
+        openapiFields.add("icebergQty");
+        openapiFields.add("newOrderRespType");
+        openapiFields.add("selfTradePreventionMode");
+        openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("symbol");
+        openapiRequiredFields.add("side");
+        openapiRequiredFields.add("type");
+        openapiRequiredFields.add("quantity");
     }
 
     /**
@@ -157,18 +617,50 @@ public class SorOrderTestRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SorOrderTestRequest.openapiFields.contains(entry.getKey())) {
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : SorOrderTestRequest.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SorOrderTestRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
+                                "The required field `%s` is not found in the JSON string: %s",
+                                requiredField, jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `symbol` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("symbol").toString()));
+        }
+        // validate the required field `side`
+        Side.validateJsonElement(jsonObj.get("side"));
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
+        // validate the optional field `timeInForce`
+        if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
+            TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
+        }
+        if ((jsonObj.get("newClientOrderId") != null
+                        && !jsonObj.get("newClientOrderId").isJsonNull())
+                && !jsonObj.get("newClientOrderId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `newClientOrderId` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("newClientOrderId").toString()));
+        }
+        // validate the optional field `newOrderRespType`
+        if (jsonObj.get("newOrderRespType") != null
+                && !jsonObj.get("newOrderRespType").isJsonNull()) {
+            NewOrderRespType.validateJsonElement(jsonObj.get("newOrderRespType"));
+        }
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -187,7 +679,7 @@ public class SorOrderTestRequest {
                         @Override
                         public void write(JsonWriter out, SorOrderTestRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

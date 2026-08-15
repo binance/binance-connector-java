@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** AllOrderListsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllOrderListsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,7 +59,7 @@ public class AllOrderListsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<@Valid OrderListStatusResponseResult> result;
+    private List<@Valid AllOrderListsResponseResultInner> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
@@ -108,12 +108,12 @@ public class AllOrderListsResponse extends BaseDTO {
     }
 
     public AllOrderListsResponse result(
-            @jakarta.annotation.Nullable List<@Valid OrderListStatusResponseResult> result) {
+            @jakarta.annotation.Nullable List<@Valid AllOrderListsResponseResultInner> result) {
         this.result = result;
         return this;
     }
 
-    public AllOrderListsResponse addResultItem(OrderListStatusResponseResult resultItem) {
+    public AllOrderListsResponse addResultItem(AllOrderListsResponseResultInner resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -128,12 +128,12 @@ public class AllOrderListsResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OrderListStatusResponseResult> getResult() {
+    public List<@Valid AllOrderListsResponseResultInner> getResult() {
         return result;
     }
 
     public void setResult(
-            @jakarta.annotation.Nullable List<@Valid OrderListStatusResponseResult> result) {
+            @jakarta.annotation.Nullable List<@Valid AllOrderListsResponseResultInner> result) {
         this.result = result;
     }
 
@@ -216,7 +216,7 @@ public class AllOrderListsResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<@Valid OrderListStatusResponseResult> resultValue = getResult();
+        List<@Valid AllOrderListsResponseResultInner> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
@@ -340,7 +340,7 @@ public class AllOrderListsResponse extends BaseDTO {
 
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    OrderListStatusResponseResult.validateJsonElement(jsonArrayresult.get(i));
+                    AllOrderListsResponseResultInner.validateJsonElement(jsonArrayresult.get(i));
                 }
                 ;
             }
@@ -383,7 +383,7 @@ public class AllOrderListsResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AllOrderListsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

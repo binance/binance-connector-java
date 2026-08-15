@@ -9,10 +9,16 @@ import com.binance.connector.client.vip_loan.rest.model.CheckVIPLoanCollateralAc
 import com.binance.connector.client.vip_loan.rest.model.GetBorrowInterestRateResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetCollateralAssetDataResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetLoanableAssetsDataResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanAccruedInterestResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanInterestRateHistoryResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanRepaymentHistoryResponse;
 import com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse;
+import com.binance.connector.client.vip_loan.rest.model.QueryVIPLoanFixedRateMarketResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowResponse;
+import com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowRequest;
+import com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRepayRequest;
@@ -35,7 +41,8 @@ public class VipLoanRestApi {
     }
 
     /**
-     * Get Borrow Interest Rate(USER_DATA) Get Borrow Interest Rate Weight: 400
+     * Get Borrow Interest Rate (USER_DATA) Get Borrow Interest Rate Weight(IP): 400 Security Type:
+     * USER_DATA
      *
      * @param loanCoin Max 10 assets, Multiple split by \&quot;,\&quot; (required)
      * @param recvWindow (optional)
@@ -50,8 +57,8 @@ public class VipLoanRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/market-data/Get-Borrow-Interest-Rate">Get
-     *     Borrow Interest Rate(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-borrow-interest-rate">Get
+     *     Borrow Interest Rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBorrowInterestRateResponse> getBorrowInterestRate(
             String loanCoin, Long recvWindow) throws ApiException {
@@ -59,7 +66,8 @@ public class VipLoanRestApi {
     }
 
     /**
-     * Get Collateral Asset Data(USER_DATA) Get Collateral Asset Data Weight: 400
+     * Get Collateral Asset Data (USER_DATA) Get Collateral Asset Data Weight(IP): 400 Security
+     * Type: USER_DATA
      *
      * @param collateralCoin (optional)
      * @param recvWindow (optional)
@@ -74,8 +82,8 @@ public class VipLoanRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/market-data/Get-Collateral-Asset-Data">Get
-     *     Collateral Asset Data(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-collateral-asset-data">Get
+     *     Collateral Asset Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCollateralAssetDataResponse> getCollateralAssetData(
             String collateralCoin, Long recvWindow) throws ApiException {
@@ -83,11 +91,11 @@ public class VipLoanRestApi {
     }
 
     /**
-     * Get Loanable Assets Data(USER_DATA) Get interest rate and borrow limit of loanable assets.
-     * The borrow limit is shown in USD value. Weight: 400
+     * Get Loanable Assets Data (USER_DATA) Get interest rate and borrow limit of loanable assets.
+     * The borrow limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA
      *
      * @param loanCoin (optional)
-     * @param vipLevel default:user&#39;s vip level (optional)
+     * @param vipLevel Defaults to the user&#39;s VIP level. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetLoanableAssetsDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -100,8 +108,8 @@ public class VipLoanRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/market-data/Get-Loanable-Assets-Data">Get
-     *     Loanable Assets Data(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-loanable-assets-data">Get
+     *     Loanable Assets Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLoanableAssetsDataResponse> getLoanableAssetsData(
             String loanCoin, Long vipLevel, Long recvWindow) throws ApiException {
@@ -109,10 +117,76 @@ public class VipLoanRestApi {
     }
 
     /**
-     * VIP Loan Borrow(TRADE) VIP loan is available for VIP users only. * loanAccountId refer to
-     * loan receiving account * Only master account applications are supported * loanAccountId and
-     * collateralAccountId under same master account * loanTerm is mandatory if user choose stable
-     * rate Weight: 0
+     * Get VIP Loan Interest Rate History (USER_DATA) Check VIP Loan flexible interest rate history
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, recent 90-day data is returned. - The maximum interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days. - Time is based on UTC+0.
+     *
+     * @param coin (required)
+     * @param recvWindow (required)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 180 days. Time is based on
+     *     UTC+0. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
+     * @return ApiResponse&lt;GetVIPLoanInterestRateHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Interest Rate History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-viploan-interest-rate-history">Get
+     *     VIP Loan Interest Rate History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanInterestRateHistoryResponse> getVIPLoanInterestRateHistory(
+            String coin, Long recvWindow, Long startTime, Long endTime, Long current, Long limit)
+            throws ApiException {
+        return marketDataApi.getVIPLoanInterestRateHistory(
+                coin, recvWindow, startTime, endTime, current, limit);
+    }
+
+    /**
+     * Query VIP Loan Fixed Rate Market (USER_DATA) Query the VIP Loan fixed rate market. Returns a
+     * paginated list of fixed-rate supply orders. Weight(IP): 6000 Security Type: USER_DATA
+     *
+     * @param loanCoin Loan coin (required)
+     * @param duration Duration in days, minimum 1 (optional)
+     * @param current Page number, default 1, minimum 1 (optional)
+     * @param size Page size, default 10, range [1, 100] (optional)
+     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @return ApiResponse&lt;QueryVIPLoanFixedRateMarketResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query VIP Loan Fixed Rate Market </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#query-viploan-fixed-rate-market">Query
+     *     VIP Loan Fixed Rate Market (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryVIPLoanFixedRateMarketResponse> queryVIPLoanFixedRateMarket(
+            String loanCoin, Long duration, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        return marketDataApi.queryVIPLoanFixedRateMarket(
+                loanCoin, duration, current, size, recvWindow);
+    }
+
+    /**
+     * VIP Loan Borrow (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
+     * Type: TRADE Notes: - &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only
+     * master account applications are supported. - &#x60;loanAccountId&#x60; and
+     * &#x60;collateralAccountId&#x60; must be under the same master account. - &#x60;loanTerm&#x60;
+     * is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
      *
      * @param vipLoanBorrowRequest (required)
      * @return ApiResponse&lt;VipLoanBorrowResponse&gt;
@@ -125,8 +199,9 @@ public class VipLoanRestApi {
      * <tr><td> 200 </td><td> VIP Loan Borrow </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Borrow">VIP Loan
-     *     Borrow(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-borrow">VIP
+     *     Loan Borrow (TRADE) Documentation</a>
      */
     public ApiResponse<VipLoanBorrowResponse> vipLoanBorrow(
             VipLoanBorrowRequest vipLoanBorrowRequest) throws ApiException {
@@ -134,7 +209,35 @@ public class VipLoanRestApi {
     }
 
     /**
-     * VIP Loan Renew(TRADE) VIP loan is available for VIP users only. Weight: 6000
+     * VIP Loan Fixed Rate Borrow (TRADE) Submit a fixed rate borrow request by matching market
+     * supply orders. Weight(UID): 6000 Security Type: TRADE Notes: - **Rate limit:** 2 requests per
+     * second per account. - When multiple &#x60;supplyRequest&#x60; entries are provided, all
+     * &#x60;requestId&#x60; values must correspond to the same &#x60;borrowCoin&#x60; and
+     * &#x60;loanTerm&#x60; (validated by collateral facade).
+     *
+     * @param vipLoanFixedRateBorrowRequest (required)
+     * @return ApiResponse&lt;VipLoanFixedRateBorrowResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> VIP Loan Fixed Rate Borrow </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-fixed-rate-borrow">VIP
+     *     Loan Fixed Rate Borrow (TRADE) Documentation</a>
+     */
+    public ApiResponse<VipLoanFixedRateBorrowResponse> vipLoanFixedRateBorrow(
+            VipLoanFixedRateBorrowRequest vipLoanFixedRateBorrowRequest) throws ApiException {
+        return tradeApi.vipLoanFixedRateBorrow(vipLoanFixedRateBorrowRequest);
+    }
+
+    /**
+     * VIP Loan Renew (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
+     * Type: TRADE
      *
      * @param vipLoanRenewRequest (required)
      * @return ApiResponse&lt;VipLoanRenewResponse&gt;
@@ -147,8 +250,9 @@ public class VipLoanRestApi {
      * <tr><td> 200 </td><td> VIP Loan Renew </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Renew">VIP Loan
-     *     Renew(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-renew">VIP
+     *     Loan Renew (TRADE) Documentation</a>
      */
     public ApiResponse<VipLoanRenewResponse> vipLoanRenew(VipLoanRenewRequest vipLoanRenewRequest)
             throws ApiException {
@@ -156,7 +260,8 @@ public class VipLoanRestApi {
     }
 
     /**
-     * VIP Loan Repay(TRADE) VIP loan is available for VIP users only. Weight: 6000
+     * VIP Loan Repay (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
+     * Type: TRADE
      *
      * @param vipLoanRepayRequest (required)
      * @return ApiResponse&lt;VipLoanRepayResponse&gt;
@@ -169,8 +274,9 @@ public class VipLoanRestApi {
      * <tr><td> 200 </td><td> VIP Loan Repay </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/vip_loan/trade/VIP-Loan-Repay">VIP Loan
-     *     Repay(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/trade#vip-loan-repay">VIP
+     *     Loan Repay (TRADE) Documentation</a>
      */
     public ApiResponse<VipLoanRepayResponse> vipLoanRepay(VipLoanRepayRequest vipLoanRepayRequest)
             throws ApiException {
@@ -178,10 +284,11 @@ public class VipLoanRestApi {
     }
 
     /**
-     * Check VIP Loan Collateral Account (USER_DATA) VIP loan is available for VIP users only * If
-     * the login account is loan account, all collateral accounts under the loan account can be
-     * queried. * If the login account is collateral account, only the current collateral account
-     * can be queried. Weight: 6000
+     * Check VIP Loan Collateral Account (USER_DATA) VIP loan is available for VIP users only
+     * Weight(IP): 6000 Security Type: USER_DATA Notes: - If the logged-in account is a borrowing
+     * account, all collateral accounts bound to that borrowing account can be queried. - If the
+     * logged-in account is a collateral account, only collateral assets under that account can be
+     * queried.
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
@@ -197,7 +304,7 @@ public class VipLoanRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account">Check
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#check-viploan-collateral-account">Check
      *     VIP Loan Collateral Account (USER_DATA) Documentation</a>
      */
     public ApiResponse<CheckVIPLoanCollateralAccountResponse> checkVIPLoanCollateralAccount(
@@ -207,14 +314,56 @@ public class VipLoanRestApi {
     }
 
     /**
-     * Get VIP Loan Ongoing Orders(USER_DATA) VIP loan is available for VIP users only. Weight: 400
+     * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record Weight(IP): 400
+     * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, recent 90-day data is returned. - The maximum interval between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; is 90 days.
+     *
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 90 days. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetVIPLoanAccruedInterestResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Accrued Interest </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-accrued-interest">Get
+     *     VIP Loan Accrued Interest (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanAccruedInterestResponse> getVIPLoanAccruedInterest(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        return userInformationApi.getVIPLoanAccruedInterest(
+                orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+    }
+
+    /**
+     * Get VIP Loan Ongoing Orders (USER_DATA) VIP loan is available for VIP users only. Weight(IP):
+     * 400 Security Type: USER_DATA
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param current (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetVIPLoanOngoingOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -227,8 +376,8 @@ public class VipLoanRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders">Get
-     *     VIP Loan Ongoing Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-ongoing-orders">Get
+     *     VIP Loan Ongoing Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetVIPLoanOngoingOrdersResponse> getVIPLoanOngoingOrders(
             Long orderId,
@@ -244,10 +393,52 @@ public class VipLoanRestApi {
     }
 
     /**
-     * Query Application Status(USER_DATA) Query Application Status Weight: 400
+     * Get VIP Loan Repayment History (USER_DATA) VIP Loans are available only to VIP users.
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, recent 90-day data is returned. - The maximum interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
      *
-     * @param current Currently querying page. Start from 1, Default:1, Max: 1000. (optional)
-     * @param limit Default: 10, Max: 100 (optional)
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 180 days. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetVIPLoanRepaymentHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Repayment History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-repayment-history">Get
+     *     VIP Loan Repayment History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanRepaymentHistoryResponse> getVIPLoanRepaymentHistory(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        return userInformationApi.getVIPLoanRepaymentHistory(
+                orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+    }
+
+    /**
+     * Query Application Status (USER_DATA) Query Application Status Weight(UID): 400 Security Type:
+     * USER_DATA
+     *
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryApplicationStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -260,8 +451,8 @@ public class VipLoanRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status">Query
-     *     Application Status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#query-application-status">Query
+     *     Application Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryApplicationStatusResponse> queryApplicationStatus(
             Long current, Long limit, Long recvWindow) throws ApiException {

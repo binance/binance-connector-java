@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,16 +21,16 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets cancelRestrictions */
+/**
+ * Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will succeed if the order status is
+ * &#x60;NEW&#x60;.&lt;br&gt; &#x60;ONLY_PARTIALLY_FILLED &#x60; - Cancel will succeed if order
+ * status is &#x60;PARTIALLY_FILLED&#x60;.
+ */
 @JsonAdapter(CancelRestrictions.Adapter.class)
 public enum CancelRestrictions {
     ONLY_NEW("ONLY_NEW"),
 
-    NEW("NEW"),
-
-    ONLY_PARTIALLY_FILLED("ONLY_PARTIALLY_FILLED"),
-
-    PARTIALLY_FILLED("PARTIALLY_FILLED");
+    ONLY_PARTIALLY_FILLED("ONLY_PARTIALLY_FILLED");
 
     private String value;
 

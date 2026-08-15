@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**interval** | **String** |  |  [optional] |
-|**intervalNum** | **Long** |  |  [optional] |
-|**limit** | **Long** |  |  [optional] |
-|**rateLimitType** | **String** |  |  [optional] |
+|**interval** | **String** | Rate limit interval. |  [optional] |
+|**intervalNum** | **Long** | Rate limit interval multiplier. |  [optional] |
+|**limit** | **Long** | Maximum allowed orders for this rule. |  [optional] |
+|**rateLimitType** | **String** | Rate limit type. |  [optional] |
 
 
 

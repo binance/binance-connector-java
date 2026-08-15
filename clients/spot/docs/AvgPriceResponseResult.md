@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mins** | **Long** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**closeTime** | **Long** |  |  [optional] |
+|**mins** | **Long** | Average price interval (in minutes) |  [optional] |
+|**price** | **String** | Average price |  [optional] |
+|**closeTime** | **Long** | Last trade time |  [optional] |
 
 
 

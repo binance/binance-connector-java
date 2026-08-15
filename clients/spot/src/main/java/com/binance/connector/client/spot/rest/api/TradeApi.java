@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,24 +20,22 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
-import com.binance.connector.client.spot.rest.model.AllOrderListResponse;
-import com.binance.connector.client.spot.rest.model.AllOrdersResponse;
 import com.binance.connector.client.spot.rest.model.CancelRestrictions;
 import com.binance.connector.client.spot.rest.model.DeleteOpenOrdersResponse;
 import com.binance.connector.client.spot.rest.model.DeleteOrderListResponse;
 import com.binance.connector.client.spot.rest.model.DeleteOrderResponse;
-import com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse;
-import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
-import com.binance.connector.client.spot.rest.model.GetOrderResponse;
 import com.binance.connector.client.spot.rest.model.NewOrderRequest;
 import com.binance.connector.client.spot.rest.model.NewOrderResponse;
-import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
 import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityRequest;
 import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityResponse;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceRequest;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOcoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOcoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOtoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtocoRequest;
@@ -59,8 +57,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -73,7 +71,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/2.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -111,381 +109,11 @@ public class TradeApi {
     }
 
     /**
-     * Build call for allOrderList
-     *
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-     * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query all Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-all-order-lists-user_data">Query
-     *     all Order lists Documentation</a>
-     */
-    private okhttp3.Call allOrderListCall(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v3/allOrderList";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (fromId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fromId", fromId));
-        }
-
-        if (startTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
-        }
-
-        if (endTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
-        }
-
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call allOrderListValidateBeforeCall(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {fromId, startTime, endTime, limit, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "allOrderList",
-                                    Long.class,
-                                    Long.class,
-                                    Long.class,
-                                    Integer.class,
-                                    Long.class);
-            Set<ConstraintViolation<TradeApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return allOrderListCall(fromId, startTime, endTime, limit, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Query all Order lists Retrieves all order lists based on provided optional parameters. Note
-     * that the time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than
-     * 24 hours. Weight: 20
-     *
-     * @param fromId ID to get aggregate trades from INCLUSIVE. (optional)
-     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-     * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;AllOrderListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query all Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-all-order-lists-user_data">Query
-     *     all Order lists Documentation</a>
-     */
-    public ApiResponse<AllOrderListResponse> allOrderList(
-            Long fromId, Long startTime, Long endTime, Integer limit, Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                allOrderListValidateBeforeCall(fromId, startTime, endTime, limit, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<AllOrderListResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for allOrders
-     *
-     * @param symbol (required)
-     * @param orderId (optional)
-     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-     * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> All orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#all-orders-user_data">All
-     *     orders Documentation</a>
-     */
-    private okhttp3.Call allOrdersCall(
-            String symbol,
-            Long orderId,
-            Long startTime,
-            Long endTime,
-            Integer limit,
-            Long recvWindow)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v3/allOrders";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (symbol != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
-        }
-
-        if (orderId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
-        }
-
-        if (startTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
-        }
-
-        if (endTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
-        }
-
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call allOrdersValidateBeforeCall(
-            String symbol,
-            Long orderId,
-            Long startTime,
-            Long endTime,
-            Integer limit,
-            Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {symbol, orderId, startTime, endTime, limit, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "allOrders",
-                                    String.class,
-                                    Long.class,
-                                    Long.class,
-                                    Long.class,
-                                    Integer.class,
-                                    Long.class);
-            Set<ConstraintViolation<TradeApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return allOrdersCall(symbol, orderId, startTime, endTime, limit, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * All orders Get all account orders; active, canceled, or filled. Weight: 20
-     *
-     * @param symbol (required)
-     * @param orderId (optional)
-     * @param startTime Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-     * @param endTime Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-     * @param limit Default: 500; Maximum: 1000. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;AllOrdersResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> All orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#all-orders-user_data">All
-     *     orders Documentation</a>
-     */
-    public ApiResponse<AllOrdersResponse> allOrders(
-            @NotNull String symbol,
-            Long orderId,
-            Long startTime,
-            Long endTime,
-            Integer limit,
-            Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                allOrdersValidateBeforeCall(symbol, orderId, startTime, endTime, limit, recvWindow);
-        java.lang.reflect.Type localVarReturnType = new TypeToken<AllOrdersResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
      * Build call for deleteOpenOrders
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -496,10 +124,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
-     *     All Open Orders on a Symbol Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-open-orders">Cancel
+     *     All Open Orders on a Symbol (TRADE) Documentation</a>
      */
-    private okhttp3.Call deleteOpenOrdersCall(String symbol, Long recvWindow) throws ApiException {
+    private okhttp3.Call deleteOpenOrdersCall(String symbol, Double recvWindow)
+            throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -529,7 +158,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -541,15 +172,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -563,11 +190,11 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
+    private okhttp3.Call deleteOpenOrdersValidateBeforeCall(String symbol, Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -579,7 +206,8 @@ public class TradeApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {symbol, recvWindow};
-            Method method = this.getClass().getMethod("deleteOpenOrders", String.class, Long.class);
+            Method method =
+                    this.getClass().getMethod("deleteOpenOrders", String.class, Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -598,11 +226,13 @@ public class TradeApi {
     }
 
     /**
-     * Cancel All Open Orders on a Symbol Cancels all active orders on a symbol. This includes
-     * orders that are part of an order list. Weight: 1
+     * Cancel All Open Orders on a Symbol (TRADE) Cancels all active orders on a symbol. This
+     * includes orders that are part of an order list. Weight(IP): 1 Security Type: TRADE Notes:
+     * **Data Source:** Matching Engine
      *
      * @param symbol (required)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -614,11 +244,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-all-open-orders-on-a-symbol-trade">Cancel
-     *     All Open Orders on a Symbol Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-open-orders">Cancel
+     *     All Open Orders on a Symbol (TRADE) Documentation</a>
      */
     public ApiResponse<DeleteOpenOrdersResponse> deleteOpenOrders(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, @DecimalMax("60000") Double recvWindow) throws ApiException {
         okhttp3.Call localVarCall = deleteOpenOrdersValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<DeleteOpenOrdersResponse>() {}.getType();
@@ -631,11 +261,14 @@ public class TradeApi {
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param cancelRestrictions Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will
+     *     succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt;
+     *     &#x60;ONLY_PARTIALLY_FILLED&#x60; - Cancel will succeed if order status is
+     *     &#x60;PARTIALLY_FILLED&#x60;. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -646,8 +279,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade">Cancel
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order">Cancel
+     *     order (TRADE) Documentation</a>
      */
     private okhttp3.Call deleteOrderCall(
             String symbol,
@@ -655,7 +288,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -705,7 +338,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -717,15 +352,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -739,7 +370,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -749,7 +380,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -772,7 +403,7 @@ public class TradeApi {
                                     String.class,
                                     String.class,
                                     CancelRestrictions.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -797,16 +428,27 @@ public class TradeApi {
     }
 
     /**
-     * Cancel order Cancel an active order. Weight: 1
+     * Cancel order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: **Data
+     * Source:** Matching Engine - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must
+     * be sent. - If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the
+     * &#x60;orderId&#x60; is searched first, then the &#x60;origClientOrderId&#x60; from that
+     * result is checked against that order. If both conditions are not met the request will be
+     * rejected. - The performance for canceling an order (single cancel or as part of a
+     * cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
+     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
+     * will be slower.
      *
      * @param symbol (required)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param cancelRestrictions (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param cancelRestrictions Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will
+     *     succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt;
+     *     &#x60;ONLY_PARTIALLY_FILLED&#x60; - Cancel will succeed if order status is
+     *     &#x60;PARTIALLY_FILLED&#x60;. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -818,8 +460,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-trade">Cancel
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order">Cancel
+     *     order (TRADE) Documentation</a>
      */
     public ApiResponse<DeleteOrderResponse> deleteOrder(
             @NotNull String symbol,
@@ -827,7 +469,7 @@ public class TradeApi {
             String origClientOrderId,
             String newClientOrderId,
             CancelRestrictions cancelRestrictions,
-            Long recvWindow)
+            @DecimalMax("60000") Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderValidateBeforeCall(
@@ -848,11 +490,12 @@ public class TradeApi {
      * @param symbol (required)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
-     * @param listClientOrderId A unique Id for the entire orderList (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
+     *     be provided (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -863,15 +506,15 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade">Cancel
-     *     Order list Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order-list">Cancel
+     *     Order list (TRADE) Documentation</a>
      */
     private okhttp3.Call deleteOrderListCall(
             String symbol,
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -917,7 +560,9 @@ public class TradeApi {
         }
 
         if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair(
+                            "recvWindow", DecimalFormatter.getFormatter().format(recvWindow)));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -929,15 +574,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -951,7 +592,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -960,7 +601,7 @@ public class TradeApi {
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            Double recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -982,7 +623,7 @@ public class TradeApi {
                                     Long.class,
                                     String.class,
                                     String.class,
-                                    Long.class);
+                                    Double.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1002,16 +643,22 @@ public class TradeApi {
     }
 
     /**
-     * Cancel Order list Cancel an entire Order list Weight: 1
+     * Cancel Order list (TRADE) Cancel an entire Order list Weight(IP): 1 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine **Notes:** - Canceling an individual order from an
+     * order list will cancel the entire order list. - If both orderListId and listClientOrderId
+     * parameters are provided, the orderListId is searched first, then the listClientOrderId from
+     * that result is checked against that order. If both conditions are not met the request will be
+     * rejected.
      *
      * @param symbol (required)
      * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
      *     provided (optional)
-     * @param listClientOrderId A unique Id for the entire orderList (optional)
-     * @param newClientOrderId A unique id among open orders. Automatically generated if not
-     *     sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only
-     *     when the previous one is filled, otherwise the order will be rejected. (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
+     * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
+     *     be provided (optional)
+     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
+     *     default. (optional)
+     * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
+     *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOrderListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1023,485 +670,21 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-order-list-trade">Cancel
-     *     Order list Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#delete-order-list">Cancel
+     *     Order list (TRADE) Documentation</a>
      */
     public ApiResponse<DeleteOrderListResponse> deleteOrderList(
             @NotNull String symbol,
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            @DecimalMax("60000") Double recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 deleteOrderListValidateBeforeCall(
                         symbol, orderListId, listClientOrderId, newClientOrderId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<DeleteOrderListResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for getOpenOrders
-     *
-     * @param symbol Symbol to query (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#current-open-orders-user_data">Current
-     *     open orders Documentation</a>
-     */
-    private okhttp3.Call getOpenOrdersCall(String symbol, Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v3/openOrders";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (symbol != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOpenOrdersValidateBeforeCall(String symbol, Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {symbol, recvWindow};
-            Method method = this.getClass().getMethod("getOpenOrders", String.class, Long.class);
-            Set<ConstraintViolation<TradeApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getOpenOrdersCall(symbol, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Current open orders Get all open orders on a symbol. **Careful** when accessing this with no
-     * symbol. Weight: 6 for a single symbol; **80** when the symbol parameter is omitted
-     *
-     * @param symbol Symbol to query (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;GetOpenOrdersResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#current-open-orders-user_data">Current
-     *     open orders Documentation</a>
-     */
-    public ApiResponse<GetOpenOrdersResponse> getOpenOrders(String symbol, Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall = getOpenOrdersValidateBeforeCall(symbol, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetOpenOrdersResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for getOrder
-     *
-     * @param symbol (required)
-     * @param orderId (optional)
-     * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-user_data">Query
-     *     order Documentation</a>
-     */
-    private okhttp3.Call getOrderCall(
-            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v3/order";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (symbol != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
-        }
-
-        if (orderId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
-        }
-
-        if (origClientOrderId != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("origClientOrderId", origClientOrderId));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOrderValidateBeforeCall(
-            String symbol, Long orderId, String origClientOrderId, Long recvWindow)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {symbol, orderId, origClientOrderId, recvWindow};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "getOrder", String.class, Long.class, String.class, Long.class);
-            Set<ConstraintViolation<TradeApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getOrderCall(symbol, orderId, origClientOrderId, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Query order Check an order&#39;s status. Weight: 4
-     *
-     * @param symbol (required)
-     * @param orderId (optional)
-     * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;GetOrderResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-user_data">Query
-     *     order Documentation</a>
-     */
-    public ApiResponse<GetOrderResponse> getOrder(
-            @NotNull String symbol, Long orderId, String origClientOrderId, Long recvWindow)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                getOrderValidateBeforeCall(symbol, orderId, origClientOrderId, recvWindow);
-        java.lang.reflect.Type localVarReturnType = new TypeToken<GetOrderResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for getOrderList
-     *
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
-     * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data">Query
-     *     Order list Documentation</a>
-     */
-    private okhttp3.Call getOrderListCall(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v3/orderList";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (orderListId != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("orderListId", orderListId));
-        }
-
-        if (origClientOrderId != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("origClientOrderId", origClientOrderId));
-        }
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOrderListValidateBeforeCall(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {orderListId, origClientOrderId, recvWindow};
-            Method method =
-                    this.getClass().getMethod("getOrderList", Long.class, String.class, Long.class);
-            Set<ConstraintViolation<TradeApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return getOrderListCall(orderListId, origClientOrderId, recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Query Order list Retrieves a specific order list based on provided optional parameters.
-     * Weight: 4
-     *
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
-     * @param origClientOrderId (optional)
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;GetOrderListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-order-list-user_data">Query
-     *     Order list Documentation</a>
-     */
-    public ApiResponse<GetOrderListResponse> getOrderList(
-            Long orderListId, String origClientOrderId, Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall =
-                getOrderListValidateBeforeCall(orderListId, origClientOrderId, recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<GetOrderListResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1519,8 +702,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade">New
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#new-order">New
+     *     order (TRADE) Documentation</a>
      */
     private okhttp3.Call newOrderCall(NewOrderRequest newOrderRequest) throws ApiException {
         String basePath = null;
@@ -1617,8 +800,22 @@ public class TradeApi {
                     "selfTradePreventionMode", newOrderRequest.getSelfTradePreventionMode());
         }
 
+        if (newOrderRequest.getPegPriceType() != null) {
+            localVarFormParams.put("pegPriceType", newOrderRequest.getPegPriceType());
+        }
+
+        if (newOrderRequest.getPegOffsetValue() != null) {
+            localVarFormParams.put("pegOffsetValue", newOrderRequest.getPegOffsetValue());
+        }
+
+        if (newOrderRequest.getPegOffsetType() != null) {
+            localVarFormParams.put("pegOffsetType", newOrderRequest.getPegOffsetType());
+        }
+
         if (newOrderRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", newOrderRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(newOrderRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1630,15 +827,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1652,7 +845,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1687,8 +880,54 @@ public class TradeApi {
     }
 
     /**
-     * New order Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60;
-     * filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * New order (TRADE) Send in a new order. This adds 1 order to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
+     * 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine Some
+     * additional mandatory parameters based on order &#x60;type&#x60;: Type | Additional mandatory
+     * parameters | Additional Information ------------ | ------------| ------ &#x60;LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;| &#x60;MARKET&#x60; |
+     * &#x60;quantity&#x60; or &#x60;quoteOrderQty&#x60;| &#x60;MARKET&#x60; orders using the
+     * &#x60;quantity&#x60; field specifies the amount of the &#x60;base asset&#x60; the user wants
+     * to buy or sell at the market price. &lt;br/&gt; E.g. MARKET order on BTCUSDT will specify how
+     * much BTC the user is buying or selling. &lt;br/&gt;&lt;br/&gt; &#x60;MARKET&#x60; orders
+     * using &#x60;quoteOrderQty&#x60; specifies the amount the user wants to spend (when buying) or
+     * receive (when selling) the &#x60;quote&#x60; asset; the correct &#x60;quantity&#x60; will be
+     * determined based on the market liquidity and &#x60;quoteOrderQty&#x60;. &lt;br/&gt; E.g.
+     * Using the symbol BTCUSDT: &lt;br/&gt; &#x60;BUY&#x60; side, the order will buy as many BTC as
+     * &#x60;quoteOrderQty&#x60; USDT can. &lt;br/&gt; &#x60;SELL&#x60; side, the order will sell as
+     * much BTC needed to receive &#x60;quoteOrderQty&#x60; USDT. &#x60;STOP_LOSS&#x60; |
+     * &#x60;quantity&#x60;, &#x60;stopPrice&#x60; or &#x60;trailingDelta&#x60;| This will execute a
+     * &#x60;MARKET&#x60; order when the conditions are met. (e.g. &#x60;stopPrice&#x60; is met or
+     * &#x60;trailingDelta&#x60; is activated) &#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60; or
+     * &#x60;trailingDelta&#x60; &#x60;TAKE_PROFIT&#x60; | &#x60;quantity&#x60;,
+     * &#x60;stopPrice&#x60; or &#x60;trailingDelta&#x60; | This will execute a &#x60;MARKET&#x60;
+     * order when the conditions are met. (e.g. &#x60;stopPrice&#x60; is met or
+     * &#x60;trailingDelta&#x60; is activated) &#x60;TAKE_PROFIT_LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60; or
+     * &#x60;trailingDelta&#x60; | &#x60;LIMIT_MAKER&#x60; | &#x60;quantity&#x60;,
+     * &#x60;price&#x60;| This is a &#x60;LIMIT&#x60; order that will be rejected if the order
+     * immediately matches and trades as a taker. &lt;br/&gt; This is also known as a POST-ONLY
+     * order. Notes on using parameters for Pegged Orders: * These parameters are allowed for
+     * &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders. * If &#x60;pegPriceType&#x60; is specified,
+     * &#x60;price&#x60; becomes optional. Otherwise, it is still mandatory. *
+     * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that is the best price on
+     * the same side of the order book as your order. * &#x60;pegPriceType&#x3D;MARKET_PEG&#x60;
+     * means the market peg, that is the best price on the opposite side of the order book from your
+     * order. * Use &#x60;pegOffsetType&#x60; and &#x60;pegOffsetValue&#x60; to request a price
+     * level other than the best one. These parameters must be specified together. Other info: * Any
+     * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; type order can be made an iceberg order by
+     * sending an &#x60;icebergQty&#x60;. * Any order with an &#x60;icebergQty&#x60; MUST have
+     * &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * For &#x60;STOP_LOSS&#x60;,
+     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; and &#x60;TAKE_PROFIT&#x60;
+     * orders, &#x60;trailingDelta&#x60; can be combined with &#x60;stopPrice&#x60;. *
+     * &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; will not break &#x60;LOT_SIZE&#x60;
+     * filter rules; the order will execute a &#x60;quantity&#x60; that will have the notional value
+     * as close as possible to &#x60;quoteOrderQty&#x60;. Trigger order price rules against market
+     * price for both MARKET and LIMIT versions: * Price above market price: &#x60;STOP_LOSS&#x60;
+     * &#x60;BUY&#x60;, &#x60;TAKE_PROFIT&#x60; &#x60;SELL&#x60; * Price below market price:
+     * &#x60;STOP_LOSS&#x60; &#x60;SELL&#x60;, &#x60;TAKE_PROFIT&#x60; &#x60;BUY&#x60;
      *
      * @param newOrderRequest (required)
      * @return ApiResponse&lt;NewOrderResponse&gt;
@@ -1702,148 +941,13 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade">New
-     *     order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#new-order">New
+     *     order (TRADE) Documentation</a>
      */
     public ApiResponse<NewOrderResponse> newOrder(@Valid @NotNull NewOrderRequest newOrderRequest)
             throws ApiException {
         okhttp3.Call localVarCall = newOrderValidateBeforeCall(newOrderRequest);
         java.lang.reflect.Type localVarReturnType = new TypeToken<NewOrderResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for openOrderList
-     *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Open Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data">Query
-     *     Open Order lists Documentation</a>
-     */
-    private okhttp3.Call openOrderListCall(Long recvWindow) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v3/openOrderList";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call openOrderListValidateBeforeCall(Long recvWindow) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {recvWindow};
-            Method method = this.getClass().getMethod("openOrderList", Long.class);
-            Set<ConstraintViolation<TradeApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return openOrderListCall(recvWindow);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Query Open Order lists Weight: 6
-     *
-     * @param recvWindow The value cannot be greater than &#x60;60000&#x60; (optional)
-     * @return ApiResponse&lt;OpenOrderListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Open Order lists </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#query-open-order-lists-user_data">Query
-     *     Open Order lists Documentation</a>
-     */
-    public ApiResponse<OpenOrderListResponse> openOrderList(Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall = openOrderListValidateBeforeCall(recvWindow);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<OpenOrderListResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1861,8 +965,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade">Order
-     *     Amend Keep Priority Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-amend-keep-priority">Order
+     *     Amend Keep Priority (TRADE) Documentation</a>
      */
     private okhttp3.Call orderAmendKeepPriorityCall(
             OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest) throws ApiException {
@@ -1916,7 +1020,10 @@ public class TradeApi {
         }
 
         if (orderAmendKeepPriorityRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderAmendKeepPriorityRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter()
+                            .format(orderAmendKeepPriorityRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -1928,15 +1035,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1950,7 +1053,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1988,9 +1091,10 @@ public class TradeApi {
     }
 
     /**
-     * Order Amend Keep Priority Reduce the quantity of an existing open order. This adds 0 orders
-     * to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read
-     * [Order Amend Keep Priority FAQ](faqs/order_amend_keep_priority.md) to learn more. Weight: 4
+     * Order Amend Keep Priority (TRADE) Reduce the quantity of an existing open order. This adds 0
+     * orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Read Order Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count:
+     * 0 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @param orderAmendKeepPriorityRequest (required)
      * @return ApiResponse&lt;OrderAmendKeepPriorityResponse&gt;
@@ -2004,8 +1108,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#order-amend-keep-priority-trade">Order
-     *     Amend Keep Priority Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-amend-keep-priority">Order
+     *     Amend Keep Priority (TRADE) Documentation</a>
      */
     public ApiResponse<OrderAmendKeepPriorityResponse> orderAmendKeepPriority(
             @Valid @NotNull OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest)
@@ -2027,12 +1131,12 @@ public class TradeApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Cancel an Existing Order and Send a New Order </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Both cancel and new order succeed </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade">Cancel
-     *     an Existing Order and Send a New Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-cancel-replace">Cancel
+     *     an Existing Order and Send a New Order (TRADE) Documentation</a>
      */
     private okhttp3.Call orderCancelReplaceCall(OrderCancelReplaceRequest orderCancelReplaceRequest)
             throws ApiException {
@@ -2170,8 +1274,23 @@ public class TradeApi {
                     orderCancelReplaceRequest.getOrderRateLimitExceededMode());
         }
 
+        if (orderCancelReplaceRequest.getPegPriceType() != null) {
+            localVarFormParams.put("pegPriceType", orderCancelReplaceRequest.getPegPriceType());
+        }
+
+        if (orderCancelReplaceRequest.getPegOffsetValue() != null) {
+            localVarFormParams.put("pegOffsetValue", orderCancelReplaceRequest.getPegOffsetValue());
+        }
+
+        if (orderCancelReplaceRequest.getPegOffsetType() != null) {
+            localVarFormParams.put("pegOffsetType", orderCancelReplaceRequest.getPegOffsetType());
+        }
+
         if (orderCancelReplaceRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderCancelReplaceRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter()
+                            .format(orderCancelReplaceRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2183,15 +1302,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2205,7 +1320,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2242,11 +1357,117 @@ public class TradeApi {
     }
 
     /**
-     * Cancel an Existing Order and Send a New Order Cancels an existing order and places a new
-     * order on the same symbol. Filters and Order Count are evaluated before the processing of the
-     * cancellation and order placement occurs. A new order that was not attempted (i.e. when
-     * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
-     * 1. Weight: 1
+     * Cancel an Existing Order and Send a New Order (TRADE) - Cancels an existing order and places
+     * a new order on the same symbol. - Filters and Order Count are evaluated before the processing
+     * of the cancellation and order placement occurs. - A new order that was not attempted (i.e.
+     * when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count
+     * by 1. - You can only cancel an individual order from an orderList using this endpoint, but
+     * the result is the same as canceling the entire orderList. Weight(IP): 1 Unfilled Order Count:
+     * 1 Security Type: TRADE Notes: **Data Source:** Matching Engine Similar to &#x60;POST
+     * /api/v3/order&#x60;, additional mandatory parameters are determined by &#x60;type&#x60;.
+     * Response format varies depending on whether the processing of the message succeeded,
+     * partially succeeded, or failed. &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3
+     * align&#x3D;left&gt;Request&lt;/th&gt; &lt;th colspan&#x3D;3
+     * align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;th&gt;&lt;code&gt;cancelReplaceMode&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;orderRateLimitExceededMode&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Unfilled
+     * Order Count&lt;/th&gt; &lt;th&gt;&lt;code&gt;cancelResult&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;newOrderResult&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;status&lt;/code&gt;&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt;
+     * &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;11\&quot;&gt;&lt;code&gt;STOP_ON_FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;6\&quot;&gt;&lt;code&gt;DO_NOTHING&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;5\&quot;&gt;&lt;code&gt;CANCEL_ONLY&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;2\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;429&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;429&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;16\&quot;&gt;&lt;code&gt;ALLOW_FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;8\&quot;&gt;&lt;code&gt;DO_NOTHING&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;8\&quot;&gt;&lt;CODE&gt;CANCEL_ONLY&lt;/CODE&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;N/A&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt;
+     * &lt;/table&gt; **Notes:** - The performance for canceling an order (single cancel or as part
+     * of a cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
+     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
+     * will be slower.
      *
      * @param orderCancelReplaceRequest (required)
      * @return ApiResponse&lt;OrderCancelReplaceResponse&gt;
@@ -2256,12 +1477,12 @@ public class TradeApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Cancel an Existing Order and Send a New Order </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Both cancel and new order succeed </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#cancel-an-existing-order-and-send-a-new-order-trade">Cancel
-     *     an Existing Order and Send a New Order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-cancel-replace">Cancel
+     *     an Existing Order and Send a New Order (TRADE) Documentation</a>
      */
     public ApiResponse<OrderCancelReplaceResponse> orderCancelReplace(
             @Valid @NotNull OrderCancelReplaceRequest orderCancelReplaceRequest)
@@ -2286,8 +1507,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oco-trade">New
-     *     Order list - OCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oco">New
+     *     Order list - OCO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOcoCall(OrderListOcoRequest orderListOcoRequest)
             throws ApiException {
@@ -2365,10 +1586,7 @@ public class TradeApi {
         }
 
         if (orderListOcoRequest.getAboveTimeInForce() != null) {
-            localVarFormParams.put(
-                    "aboveTimeInForce",
-                    DecimalFormatter.getFormatter()
-                            .format(orderListOcoRequest.getAboveTimeInForce()));
+            localVarFormParams.put("aboveTimeInForce", orderListOcoRequest.getAboveTimeInForce());
         }
 
         if (orderListOcoRequest.getAboveStrategyId() != null) {
@@ -2377,6 +1595,20 @@ public class TradeApi {
 
         if (orderListOcoRequest.getAboveStrategyType() != null) {
             localVarFormParams.put("aboveStrategyType", orderListOcoRequest.getAboveStrategyType());
+        }
+
+        if (orderListOcoRequest.getAbovePegPriceType() != null) {
+            localVarFormParams.put("abovePegPriceType", orderListOcoRequest.getAbovePegPriceType());
+        }
+
+        if (orderListOcoRequest.getAbovePegOffsetType() != null) {
+            localVarFormParams.put(
+                    "abovePegOffsetType", orderListOcoRequest.getAbovePegOffsetType());
+        }
+
+        if (orderListOcoRequest.getAbovePegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "abovePegOffsetValue", orderListOcoRequest.getAbovePegOffsetValue());
         }
 
         if (orderListOcoRequest.getBelowType() != null) {
@@ -2422,6 +1654,20 @@ public class TradeApi {
             localVarFormParams.put("belowStrategyType", orderListOcoRequest.getBelowStrategyType());
         }
 
+        if (orderListOcoRequest.getBelowPegPriceType() != null) {
+            localVarFormParams.put("belowPegPriceType", orderListOcoRequest.getBelowPegPriceType());
+        }
+
+        if (orderListOcoRequest.getBelowPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "belowPegOffsetType", orderListOcoRequest.getBelowPegOffsetType());
+        }
+
+        if (orderListOcoRequest.getBelowPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "belowPegOffsetValue", orderListOcoRequest.getBelowPegOffsetValue());
+        }
+
         if (orderListOcoRequest.getNewOrderRespType() != null) {
             localVarFormParams.put("newOrderRespType", orderListOcoRequest.getNewOrderRespType());
         }
@@ -2432,7 +1678,9 @@ public class TradeApi {
         }
 
         if (orderListOcoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOcoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOcoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2444,15 +1692,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2466,7 +1710,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2501,20 +1745,22 @@ public class TradeApi {
     }
 
     /**
-     * New Order list - OCO Send in an one-cancels-the-other (OCO) pair, where activation of one
-     * order immediately cancels the other. * An OCO has 2 orders called the **above order** and
-     * **below order**. * One of the orders must be a
+     * New Order list - OCO (TRADE) Send in an one-cancels-the-other (OCO) pair, where activation of
+     * one order immediately cancels the other. - An OCO has 2 orders called the **above order** and
+     * **below order**. - One of the orders must be a
      * &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and the other must be
-     * &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price restrictions * If the OCO
-     * is on the &#x60;SELL&#x60; side: * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60;
+     * &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. - Price restrictions - If the OCO
+     * is on the &#x60;SELL&#x60; side: - &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60;
      * &#x60;price&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt;
-     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * If the OCO is on the &#x60;BUY&#x60; side:
-     * * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60; &lt; Last Traded Price &lt;
-     * &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &lt; Last Traded Price &lt;
+     * &#x60;stopPrice&#x60; - &#x60;TAKE_PROFIT stopPrice&#x60; &gt; Last Traded Price &gt;
+     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; - If the OCO is on the &#x60;BUY&#x60; side:
+     * - &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60; &lt; Last Traded Price &lt;
+     * &#x60;stopPrice&#x60; - &#x60;TAKE_PROFIT stopPrice&#x60; &lt; Last Traded Price &lt;
      * &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2 orders** to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
-     * Unfilled Order Count: 2
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. - OCOs add
+     * 2 orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine
      *
      * @param orderListOcoRequest (required)
      * @return ApiResponse&lt;OrderListOcoResponse&gt;
@@ -2528,14 +1774,669 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oco-trade">New
-     *     Order list - OCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oco">New
+     *     Order list - OCO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOcoResponse> orderListOco(
             @Valid @NotNull OrderListOcoRequest orderListOcoRequest) throws ApiException {
         okhttp3.Call localVarCall = orderListOcoValidateBeforeCall(orderListOcoRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<OrderListOcoResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for orderListOpo
+     *
+     * @param orderListOpoRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opo">New
+     *     Order List - OPO (TRADE) Documentation</a>
+     */
+    private okhttp3.Call orderListOpoCall(OrderListOpoRequest orderListOpoRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/orderList/opo";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderListOpoRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", orderListOpoRequest.getSymbol());
+        }
+
+        if (orderListOpoRequest.getListClientOrderId() != null) {
+            localVarFormParams.put("listClientOrderId", orderListOpoRequest.getListClientOrderId());
+        }
+
+        if (orderListOpoRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", orderListOpoRequest.getNewOrderRespType());
+        }
+
+        if (orderListOpoRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", orderListOpoRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderListOpoRequest.getWorkingType() != null) {
+            localVarFormParams.put("workingType", orderListOpoRequest.getWorkingType());
+        }
+
+        if (orderListOpoRequest.getWorkingSide() != null) {
+            localVarFormParams.put("workingSide", orderListOpoRequest.getWorkingSide());
+        }
+
+        if (orderListOpoRequest.getWorkingClientOrderId() != null) {
+            localVarFormParams.put(
+                    "workingClientOrderId", orderListOpoRequest.getWorkingClientOrderId());
+        }
+
+        if (orderListOpoRequest.getWorkingPrice() != null) {
+            localVarFormParams.put(
+                    "workingPrice",
+                    DecimalFormatter.getFormatter().format(orderListOpoRequest.getWorkingPrice()));
+        }
+
+        if (orderListOpoRequest.getWorkingQuantity() != null) {
+            localVarFormParams.put(
+                    "workingQuantity",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getWorkingQuantity()));
+        }
+
+        if (orderListOpoRequest.getWorkingIcebergQty() != null) {
+            localVarFormParams.put(
+                    "workingIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getWorkingIcebergQty()));
+        }
+
+        if (orderListOpoRequest.getWorkingTimeInForce() != null) {
+            localVarFormParams.put(
+                    "workingTimeInForce", orderListOpoRequest.getWorkingTimeInForce());
+        }
+
+        if (orderListOpoRequest.getWorkingStrategyId() != null) {
+            localVarFormParams.put("workingStrategyId", orderListOpoRequest.getWorkingStrategyId());
+        }
+
+        if (orderListOpoRequest.getWorkingStrategyType() != null) {
+            localVarFormParams.put(
+                    "workingStrategyType", orderListOpoRequest.getWorkingStrategyType());
+        }
+
+        if (orderListOpoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOpoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOpoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOpoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOpoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOpoRequest.getWorkingPegOffsetValue());
+        }
+
+        if (orderListOpoRequest.getPendingType() != null) {
+            localVarFormParams.put("pendingType", orderListOpoRequest.getPendingType());
+        }
+
+        if (orderListOpoRequest.getPendingSide() != null) {
+            localVarFormParams.put("pendingSide", orderListOpoRequest.getPendingSide());
+        }
+
+        if (orderListOpoRequest.getPendingClientOrderId() != null) {
+            localVarFormParams.put(
+                    "pendingClientOrderId", orderListOpoRequest.getPendingClientOrderId());
+        }
+
+        if (orderListOpoRequest.getPendingPrice() != null) {
+            localVarFormParams.put(
+                    "pendingPrice",
+                    DecimalFormatter.getFormatter().format(orderListOpoRequest.getPendingPrice()));
+        }
+
+        if (orderListOpoRequest.getPendingStopPrice() != null) {
+            localVarFormParams.put(
+                    "pendingStopPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getPendingStopPrice()));
+        }
+
+        if (orderListOpoRequest.getPendingTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "pendingTrailingDelta",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getPendingTrailingDelta()));
+        }
+
+        if (orderListOpoRequest.getPendingIcebergQty() != null) {
+            localVarFormParams.put(
+                    "pendingIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpoRequest.getPendingIcebergQty()));
+        }
+
+        if (orderListOpoRequest.getPendingTimeInForce() != null) {
+            localVarFormParams.put(
+                    "pendingTimeInForce", orderListOpoRequest.getPendingTimeInForce());
+        }
+
+        if (orderListOpoRequest.getPendingStrategyId() != null) {
+            localVarFormParams.put("pendingStrategyId", orderListOpoRequest.getPendingStrategyId());
+        }
+
+        if (orderListOpoRequest.getPendingStrategyType() != null) {
+            localVarFormParams.put(
+                    "pendingStrategyType", orderListOpoRequest.getPendingStrategyType());
+        }
+
+        if (orderListOpoRequest.getPendingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingPegPriceType", orderListOpoRequest.getPendingPegPriceType());
+        }
+
+        if (orderListOpoRequest.getPendingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetType", orderListOpoRequest.getPendingPegOffsetType());
+        }
+
+        if (orderListOpoRequest.getPendingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetValue", orderListOpoRequest.getPendingPegOffsetValue());
+        }
+
+        if (orderListOpoRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOpoRequest.getRecvWindow()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call orderListOpoValidateBeforeCall(OrderListOpoRequest orderListOpoRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {orderListOpoRequest};
+            Method method = this.getClass().getMethod("orderListOpo", OrderListOpoRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return orderListOpoCall(orderListOpoRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New Order List - OPO (TRADE) Place an [OPO](/products/spot/faqs/opo). - OPOs add 2 orders to
+     * the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine
+     *
+     * @param orderListOpoRequest (required)
+     * @return ApiResponse&lt;OrderListOpoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opo">New
+     *     Order List - OPO (TRADE) Documentation</a>
+     */
+    public ApiResponse<OrderListOpoResponse> orderListOpo(
+            @Valid @NotNull OrderListOpoRequest orderListOpoRequest) throws ApiException {
+        okhttp3.Call localVarCall = orderListOpoValidateBeforeCall(orderListOpoRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<OrderListOpoResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for orderListOpoco
+     *
+     * @param orderListOpocoRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opoco">New
+     *     Order List - OPOCO (TRADE) Documentation</a>
+     */
+    private okhttp3.Call orderListOpocoCall(OrderListOpocoRequest orderListOpocoRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v3/orderList/opoco";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderListOpocoRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", orderListOpocoRequest.getSymbol());
+        }
+
+        if (orderListOpocoRequest.getListClientOrderId() != null) {
+            localVarFormParams.put(
+                    "listClientOrderId", orderListOpocoRequest.getListClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", orderListOpocoRequest.getNewOrderRespType());
+        }
+
+        if (orderListOpocoRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", orderListOpocoRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderListOpocoRequest.getWorkingType() != null) {
+            localVarFormParams.put("workingType", orderListOpocoRequest.getWorkingType());
+        }
+
+        if (orderListOpocoRequest.getWorkingSide() != null) {
+            localVarFormParams.put("workingSide", orderListOpocoRequest.getWorkingSide());
+        }
+
+        if (orderListOpocoRequest.getWorkingClientOrderId() != null) {
+            localVarFormParams.put(
+                    "workingClientOrderId", orderListOpocoRequest.getWorkingClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getWorkingPrice() != null) {
+            localVarFormParams.put(
+                    "workingPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getWorkingPrice()));
+        }
+
+        if (orderListOpocoRequest.getWorkingQuantity() != null) {
+            localVarFormParams.put(
+                    "workingQuantity",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getWorkingQuantity()));
+        }
+
+        if (orderListOpocoRequest.getWorkingIcebergQty() != null) {
+            localVarFormParams.put(
+                    "workingIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getWorkingIcebergQty()));
+        }
+
+        if (orderListOpocoRequest.getWorkingTimeInForce() != null) {
+            localVarFormParams.put(
+                    "workingTimeInForce", orderListOpocoRequest.getWorkingTimeInForce());
+        }
+
+        if (orderListOpocoRequest.getWorkingStrategyId() != null) {
+            localVarFormParams.put(
+                    "workingStrategyId", orderListOpocoRequest.getWorkingStrategyId());
+        }
+
+        if (orderListOpocoRequest.getWorkingStrategyType() != null) {
+            localVarFormParams.put(
+                    "workingStrategyType", orderListOpocoRequest.getWorkingStrategyType());
+        }
+
+        if (orderListOpocoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOpocoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOpocoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOpocoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOpocoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOpocoRequest.getWorkingPegOffsetValue());
+        }
+
+        if (orderListOpocoRequest.getPendingSide() != null) {
+            localVarFormParams.put("pendingSide", orderListOpocoRequest.getPendingSide());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveType() != null) {
+            localVarFormParams.put("pendingAboveType", orderListOpocoRequest.getPendingAboveType());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveClientOrderId() != null) {
+            localVarFormParams.put(
+                    "pendingAboveClientOrderId",
+                    orderListOpocoRequest.getPendingAboveClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePrice() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAbovePrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveStopPrice() != null) {
+            localVarFormParams.put(
+                    "pendingAboveStopPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAboveStopPrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "pendingAboveTrailingDelta",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAboveTrailingDelta()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveIcebergQty() != null) {
+            localVarFormParams.put(
+                    "pendingAboveIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingAboveIcebergQty()));
+        }
+
+        if (orderListOpocoRequest.getPendingAboveTimeInForce() != null) {
+            localVarFormParams.put(
+                    "pendingAboveTimeInForce", orderListOpocoRequest.getPendingAboveTimeInForce());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveStrategyId() != null) {
+            localVarFormParams.put(
+                    "pendingAboveStrategyId", orderListOpocoRequest.getPendingAboveStrategyId());
+        }
+
+        if (orderListOpocoRequest.getPendingAboveStrategyType() != null) {
+            localVarFormParams.put(
+                    "pendingAboveStrategyType",
+                    orderListOpocoRequest.getPendingAboveStrategyType());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegPriceType",
+                    orderListOpocoRequest.getPendingAbovePegPriceType());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetType",
+                    orderListOpocoRequest.getPendingAbovePegOffsetType());
+        }
+
+        if (orderListOpocoRequest.getPendingAbovePegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetValue",
+                    orderListOpocoRequest.getPendingAbovePegOffsetValue());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowType() != null) {
+            localVarFormParams.put("pendingBelowType", orderListOpocoRequest.getPendingBelowType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowClientOrderId() != null) {
+            localVarFormParams.put(
+                    "pendingBelowClientOrderId",
+                    orderListOpocoRequest.getPendingBelowClientOrderId());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPrice() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowPrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowStopPrice() != null) {
+            localVarFormParams.put(
+                    "pendingBelowStopPrice",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowStopPrice()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "pendingBelowTrailingDelta",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowTrailingDelta()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowIcebergQty() != null) {
+            localVarFormParams.put(
+                    "pendingBelowIcebergQty",
+                    DecimalFormatter.getFormatter()
+                            .format(orderListOpocoRequest.getPendingBelowIcebergQty()));
+        }
+
+        if (orderListOpocoRequest.getPendingBelowTimeInForce() != null) {
+            localVarFormParams.put(
+                    "pendingBelowTimeInForce", orderListOpocoRequest.getPendingBelowTimeInForce());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowStrategyId() != null) {
+            localVarFormParams.put(
+                    "pendingBelowStrategyId", orderListOpocoRequest.getPendingBelowStrategyId());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowStrategyType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowStrategyType",
+                    orderListOpocoRequest.getPendingBelowStrategyType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegPriceType",
+                    orderListOpocoRequest.getPendingBelowPegPriceType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetType",
+                    orderListOpocoRequest.getPendingBelowPegOffsetType());
+        }
+
+        if (orderListOpocoRequest.getPendingBelowPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetValue",
+                    orderListOpocoRequest.getPendingBelowPegOffsetValue());
+        }
+
+        if (orderListOpocoRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOpocoRequest.getRecvWindow()));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call orderListOpocoValidateBeforeCall(
+            OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {orderListOpocoRequest};
+            Method method =
+                    this.getClass().getMethod("orderListOpoco", OrderListOpocoRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return orderListOpocoCall(orderListOpocoRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * New Order List - OPOCO (TRADE) Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1
+     * Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     *
+     * @param orderListOpocoRequest (required)
+     * @return ApiResponse&lt;OrderListOpocoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> New Order List - OPOCO </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-opoco">New
+     *     Order List - OPOCO (TRADE) Documentation</a>
+     */
+    public ApiResponse<OrderListOpocoResponse> orderListOpoco(
+            @Valid @NotNull OrderListOpocoRequest orderListOpocoRequest) throws ApiException {
+        okhttp3.Call localVarCall = orderListOpocoValidateBeforeCall(orderListOpocoRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<OrderListOpocoResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -2553,8 +2454,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oto-trade">New
-     *     Order list - OTO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oto">New
+     *     Order list - OTO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOtoCall(OrderListOtoRequest orderListOtoRequest)
             throws ApiException {
@@ -2650,6 +2551,21 @@ public class TradeApi {
             localVarFormParams.put("pendingType", orderListOtoRequest.getPendingType());
         }
 
+        if (orderListOtoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOtoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOtoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOtoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOtoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOtoRequest.getWorkingPegOffsetValue());
+        }
+
         if (orderListOtoRequest.getPendingSide() != null) {
             localVarFormParams.put("pendingSide", orderListOtoRequest.getPendingSide());
         }
@@ -2707,8 +2623,25 @@ public class TradeApi {
                     "pendingStrategyType", orderListOtoRequest.getPendingStrategyType());
         }
 
+        if (orderListOtoRequest.getPendingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingPegPriceType", orderListOtoRequest.getPendingPegPriceType());
+        }
+
+        if (orderListOtoRequest.getPendingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetType", orderListOtoRequest.getPendingPegOffsetType());
+        }
+
+        if (orderListOtoRequest.getPendingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingPegOffsetValue", orderListOtoRequest.getPendingPegOffsetValue());
+        }
+
         if (orderListOtoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOtoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOtoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -2720,15 +2653,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2742,7 +2671,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2777,19 +2706,30 @@ public class TradeApi {
     }
 
     /**
-     * New Order list - OTO Places an OTO. * An OTO (One-Triggers-the-Other) is an order list
-     * comprised of 2 orders. * The first order is called the **working order** and must be
+     * New Order list - OTO (TRADE) Place an OTO. - An OTO (One-Triggers-the-Other) is an order list
+     * comprised of 2 orders. - The first order is called the **working order** and must be
      * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the
-     * order book. * The second order is called the **pending order**. It can be any order type
+     * order book. - The second order is called the **pending order**. It can be any order type
      * except for &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending
-     * order is only placed on the order book when the working order gets **fully filled**. * If
+     * order is only placed on the order book when the working order gets **fully filled**. - If
      * either the working order or the pending order is cancelled individually, the other order in
-     * the order list will also be canceled or expired. * When the order list is placed, if the
+     * the order list will also be canceled or expired. - When the order list is placed, if the
      * working order gets **immediately fully filled**, the placement response will show the working
      * order as &#x60;FILLED&#x60; but the pending order will still appear as
      * &#x60;PENDING_NEW&#x60;. You need to query the status of the pending order again to see its
-     * updated status. * OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1 Unfilled Order Count: 2
+     * updated status. - OTOs add **2 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine **Mandatory parameters based on
+     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;** Depending on the &#x60;pendingType&#x60;
+     * or &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; | |&#x60;pendingType&#x60; &#x3D;
+     * &#x60;LIMIT&#x60; |&#x60;pendingPrice&#x60;, &#x60;pendingTimeInForce&#x60; |
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or &#x60;TAKE_PROFIT&#x60;
+     * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS_LIMIT&#x60; or
+     * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
      *
      * @param orderListOtoRequest (required)
      * @return ApiResponse&lt;OrderListOtoResponse&gt;
@@ -2803,8 +2743,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---oto-trade">New
-     *     Order list - OTO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-oto">New
+     *     Order list - OTO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOtoResponse> orderListOto(
             @Valid @NotNull OrderListOtoRequest orderListOtoRequest) throws ApiException {
@@ -2828,8 +2768,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---otoco-trade">New
-     *     Order list - OTOCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-otoco">New
+     *     Order list - OTOCO (TRADE) Documentation</a>
      */
     private okhttp3.Call orderListOtocoCall(OrderListOtocoRequest orderListOtocoRequest)
             throws ApiException {
@@ -2924,6 +2864,21 @@ public class TradeApi {
                     "workingStrategyType", orderListOtocoRequest.getWorkingStrategyType());
         }
 
+        if (orderListOtocoRequest.getWorkingPegPriceType() != null) {
+            localVarFormParams.put(
+                    "workingPegPriceType", orderListOtocoRequest.getWorkingPegPriceType());
+        }
+
+        if (orderListOtocoRequest.getWorkingPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetType", orderListOtocoRequest.getWorkingPegOffsetType());
+        }
+
+        if (orderListOtocoRequest.getWorkingPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "workingPegOffsetValue", orderListOtocoRequest.getWorkingPegOffsetValue());
+        }
+
         if (orderListOtocoRequest.getPendingSide() != null) {
             localVarFormParams.put("pendingSide", orderListOtocoRequest.getPendingSide());
         }
@@ -2989,6 +2944,24 @@ public class TradeApi {
                     orderListOtocoRequest.getPendingAboveStrategyType());
         }
 
+        if (orderListOtocoRequest.getPendingAbovePegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegPriceType",
+                    orderListOtocoRequest.getPendingAbovePegPriceType());
+        }
+
+        if (orderListOtocoRequest.getPendingAbovePegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetType",
+                    orderListOtocoRequest.getPendingAbovePegOffsetType());
+        }
+
+        if (orderListOtocoRequest.getPendingAbovePegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingAbovePegOffsetValue",
+                    orderListOtocoRequest.getPendingAbovePegOffsetValue());
+        }
+
         if (orderListOtocoRequest.getPendingBelowType() != null) {
             localVarFormParams.put("pendingBelowType", orderListOtocoRequest.getPendingBelowType());
         }
@@ -3043,8 +3016,28 @@ public class TradeApi {
                     orderListOtocoRequest.getPendingBelowStrategyType());
         }
 
+        if (orderListOtocoRequest.getPendingBelowPegPriceType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegPriceType",
+                    orderListOtocoRequest.getPendingBelowPegPriceType());
+        }
+
+        if (orderListOtocoRequest.getPendingBelowPegOffsetType() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetType",
+                    orderListOtocoRequest.getPendingBelowPegOffsetType());
+        }
+
+        if (orderListOtocoRequest.getPendingBelowPegOffsetValue() != null) {
+            localVarFormParams.put(
+                    "pendingBelowPegOffsetValue",
+                    orderListOtocoRequest.getPendingBelowPegOffsetValue());
+        }
+
         if (orderListOtocoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderListOtocoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderListOtocoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -3056,15 +3049,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -3078,7 +3067,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -3114,16 +3103,34 @@ public class TradeApi {
     }
 
     /**
-     * New Order list - OTOCO Place an OTOCO. * An OTOCO (One-Triggers-One-Cancels-the-Other) is an
-     * order list comprised of 3 orders. * The first order is called the **working order** and must
-     * be &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on
-     * the order book. * The behavior of the working order is the same as the
-     * [OTO](#new-order-list---oto-trade). * OTOCO has 2 pending orders (pending above and pending
-     * below), forming an OCO pair. The pending orders are only placed on the order book when the
-     * working order gets **fully filled**. * The rules of the pending above and pending below
-     * follow the same rules as the [Order list OCO](#new-order-list---oco-trade). * OTOCOs add **3
-     * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Weight: 1 Unfilled Order Count: 3
+     * New Order list - OTOCO (TRADE) Place an OTOCO. - An OTOCO
+     * (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders. - The first
+     * order is called the **working order** and must be &#x60;LIMIT&#x60; or
+     * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. - The
+     * behavior of the working order is the same as the [OTO](#order-list-oto). - OTOCO has 2
+     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
+     * only placed on the order book when the working order gets **fully filled**. - The rules of
+     * the pending above and pending below follow the same rules as the [Order list
+     * OCO](#order-list-oco). - OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;
+     * filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine **Mandatory parameters based on
+     * &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;**
+     * Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; |
+     * |&#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingAbovePrice&#x60; |
+     * |&#x60;pendingAboveType&#x60; &#x3D; &#x60;STOP_LOSS/TAKE_PROFIT&#x60;
+     * |&#x60;pendingAboveStopPrice&#x60; and/or &#x60;pendingAboveTrailingDelta&#x60;|
+     * |&#x60;pendingAboveType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
+     * |&#x60;pendingAbovePrice&#x60;, &#x60;pendingAboveStopPrice&#x60; and/or
+     * &#x60;pendingAboveTrailingDelta&#x60;, &#x60;pendingAboveTimeInForce&#x60;|
+     * |&#x60;pendingBelowType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingBelowPrice&#x60; |
+     * |&#x60;pendingBelowType&#x3D; STOP_LOSS/TAKE_PROFIT&#x60; |&#x60;pendingBelowStopPrice&#x60;
+     * and/or &#x60;pendingBelowTrailingDelta&#x60;|
+     * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
+     * |&#x60;pendingBelowPrice&#x60;, &#x60;pendingBelowStopPrice&#x60; and/or
+     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60;|
      *
      * @param orderListOtocoRequest (required)
      * @return ApiResponse&lt;OrderListOtocoResponse&gt;
@@ -3137,8 +3144,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-list---otoco-trade">New
-     *     Order list - OTOCO Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-list-otoco">New
+     *     Order list - OTOCO (TRADE) Documentation</a>
      */
     public ApiResponse<OrderListOtocoResponse> orderListOtoco(
             @Valid @NotNull OrderListOtocoRequest orderListOtocoRequest) throws ApiException {
@@ -3161,10 +3168,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
-     *     OCO - Deprecated Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-oco">New
+     *     OCO - Deprecated (TRADE) Documentation</a>
      */
+    @Deprecated
     private okhttp3.Call orderOcoCall(OrderOcoRequest orderOcoRequest) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -3280,7 +3289,9 @@ public class TradeApi {
         }
 
         if (orderOcoRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", orderOcoRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderOcoRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -3292,15 +3303,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -3314,9 +3321,10 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call orderOcoValidateBeforeCall(OrderOcoRequest orderOcoRequest)
             throws ApiException {
@@ -3349,12 +3357,13 @@ public class TradeApi {
     }
 
     /**
-     * New OCO - Deprecated Send in a new OCO. * Price Restrictions: * &#x60;SELL&#x60;: Limit Price
-     * &gt; Last Price &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop
-     * Price * Quantity Restrictions: * Both legs must have the same quantity. * &#x60;ICEBERG&#x60;
-     * quantities however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
-     * Unfilled Order Count: 2
+     * New OCO - Deprecated (TRADE) Send in a new OCO. - Price Restrictions: - &#x60;SELL&#x60;:
+     * Limit Price &gt; Last Price &gt; Stop Price - &#x60;BUY&#x60;: Limit Price &lt; Last Price
+     * &lt; Stop Price - Quantity Restrictions: - Both legs must have the same quantity. -
+     * &#x60;ICEBERG&#x60; quantities however do not have to be the same - &#x60;OCO&#x60; adds **2
+     * orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine
      *
      * @param orderOcoRequest (required)
      * @return ApiResponse&lt;OrderOcoResponse&gt;
@@ -3367,10 +3376,12 @@ public class TradeApi {
      * <tr><td> 200 </td><td> New OCO - Deprecated </td><td>  -  </td></tr>
      * </table>
      *
+     * @deprecated
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-oco---deprecated-trade">New
-     *     OCO - Deprecated Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-oco">New
+     *     OCO - Deprecated (TRADE) Documentation</a>
      */
+    @Deprecated
     public ApiResponse<OrderOcoResponse> orderOco(@Valid @NotNull OrderOcoRequest orderOcoRequest)
             throws ApiException {
         okhttp3.Call localVarCall = orderOcoValidateBeforeCall(orderOcoRequest);
@@ -3392,8 +3403,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade">Test
-     *     new order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-test">Test
+     *     new order (TRADE) Documentation</a>
      */
     private okhttp3.Call orderTestCall(OrderTestRequest orderTestRequest) throws ApiException {
         String basePath = null;
@@ -3425,6 +3436,94 @@ public class TradeApi {
                     "computeCommissionRates", orderTestRequest.getComputeCommissionRates());
         }
 
+        if (orderTestRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", orderTestRequest.getSymbol());
+        }
+
+        if (orderTestRequest.getSide() != null) {
+            localVarFormParams.put("side", orderTestRequest.getSide());
+        }
+
+        if (orderTestRequest.getType() != null) {
+            localVarFormParams.put("type", orderTestRequest.getType());
+        }
+
+        if (orderTestRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", orderTestRequest.getTimeInForce());
+        }
+
+        if (orderTestRequest.getQuantity() != null) {
+            localVarFormParams.put(
+                    "quantity",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getQuantity()));
+        }
+
+        if (orderTestRequest.getQuoteOrderQty() != null) {
+            localVarFormParams.put(
+                    "quoteOrderQty",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getQuoteOrderQty()));
+        }
+
+        if (orderTestRequest.getPrice() != null) {
+            localVarFormParams.put(
+                    "price", DecimalFormatter.getFormatter().format(orderTestRequest.getPrice()));
+        }
+
+        if (orderTestRequest.getNewClientOrderId() != null) {
+            localVarFormParams.put("newClientOrderId", orderTestRequest.getNewClientOrderId());
+        }
+
+        if (orderTestRequest.getStrategyId() != null) {
+            localVarFormParams.put("strategyId", orderTestRequest.getStrategyId());
+        }
+
+        if (orderTestRequest.getStrategyType() != null) {
+            localVarFormParams.put("strategyType", orderTestRequest.getStrategyType());
+        }
+
+        if (orderTestRequest.getStopPrice() != null) {
+            localVarFormParams.put(
+                    "stopPrice",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getStopPrice()));
+        }
+
+        if (orderTestRequest.getTrailingDelta() != null) {
+            localVarFormParams.put("trailingDelta", orderTestRequest.getTrailingDelta());
+        }
+
+        if (orderTestRequest.getIcebergQty() != null) {
+            localVarFormParams.put(
+                    "icebergQty",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getIcebergQty()));
+        }
+
+        if (orderTestRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", orderTestRequest.getNewOrderRespType());
+        }
+
+        if (orderTestRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", orderTestRequest.getSelfTradePreventionMode());
+        }
+
+        if (orderTestRequest.getPegPriceType() != null) {
+            localVarFormParams.put("pegPriceType", orderTestRequest.getPegPriceType());
+        }
+
+        if (orderTestRequest.getPegOffsetValue() != null) {
+            localVarFormParams.put("pegOffsetValue", orderTestRequest.getPegOffsetValue());
+        }
+
+        if (orderTestRequest.getPegOffsetType() != null) {
+            localVarFormParams.put("pegOffsetType", orderTestRequest.getPegOffsetType());
+        }
+
+        if (orderTestRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(orderTestRequest.getRecvWindow()));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3434,15 +3533,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -3456,7 +3551,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -3491,10 +3586,10 @@ public class TradeApi {
     }
 
     /**
-     * Test new order Test new order creation and signature/recvWindow long. Creates and validates a
-     * new order but does not send it into the matching engine. Weight: |Condition| Request Weight|
-     * |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1| |With
-     * &#x60;computeCommissionRates&#x60;|20|
+     * Test new order (TRADE) Test new order creation and signature/recvWindow long. Creates and
+     * validates a new order but does not send it into the matching engine. Weight:
+     * |Condition|Weight| |---|---| |Without &#x60;computeCommissionRates&#x60;|1| |With
+     * &#x60;computeCommissionRates&#x60;|20| Security Type: TRADE Notes: **Data Source:** Memory
      *
      * @param orderTestRequest (required)
      * @return ApiResponse&lt;OrderTestResponse&gt;
@@ -3508,8 +3603,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-trade">Test
-     *     new order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#order-test">Test
+     *     new order (TRADE) Documentation</a>
      */
     public ApiResponse<OrderTestResponse> orderTest(
             @Valid @NotNull OrderTestRequest orderTestRequest) throws ApiException {
@@ -3532,8 +3627,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade">New
-     *     order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order">New
+     *     order using SOR (TRADE) Documentation</a>
      */
     private okhttp3.Call sorOrderCall(SorOrderRequest sorOrderRequest) throws ApiException {
         String basePath = null;
@@ -3615,7 +3710,9 @@ public class TradeApi {
         }
 
         if (sorOrderRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", sorOrderRequest.getRecvWindow());
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(sorOrderRequest.getRecvWindow()));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -3627,15 +3724,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -3649,7 +3742,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -3684,9 +3777,12 @@ public class TradeApi {
     }
 
     /**
-     * New order using SOR Places an order using smart order routing (SOR). This adds 1 order to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [SOR
-     * FAQ](faqs/sor_faq.md) to learn more. Weight: 1 Unfilled Order Count: 1
+     * New order using SOR (TRADE) Places an order using smart order routing (SOR). This adds 1
+     * order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Read [SOR FAQ](/products/spot/faqs/sor_faq) to learn more. Weight(IP): 1 Unfilled
+     * Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine **Note:**
+     * &#x60;POST /api/v3/sor/order&#x60; only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60;
+     * orders. &#x60;quoteOrderQty&#x60; is not supported.
      *
      * @param sorOrderRequest (required)
      * @return ApiResponse&lt;SorOrderResponse&gt;
@@ -3700,8 +3796,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-using-sor-trade">New
-     *     order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order">New
+     *     order using SOR (TRADE) Documentation</a>
      */
     public ApiResponse<SorOrderResponse> sorOrder(@Valid @NotNull SorOrderRequest sorOrderRequest)
             throws ApiException {
@@ -3724,8 +3820,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade">Test
-     *     new order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order-test">Test
+     *     new order using SOR (TRADE) Documentation</a>
      */
     private okhttp3.Call sorOrderTestCall(SorOrderTestRequest sorOrderTestRequest)
             throws ApiException {
@@ -3758,6 +3854,67 @@ public class TradeApi {
                     "computeCommissionRates", sorOrderTestRequest.getComputeCommissionRates());
         }
 
+        if (sorOrderTestRequest.getSymbol() != null) {
+            localVarFormParams.put("symbol", sorOrderTestRequest.getSymbol());
+        }
+
+        if (sorOrderTestRequest.getSide() != null) {
+            localVarFormParams.put("side", sorOrderTestRequest.getSide());
+        }
+
+        if (sorOrderTestRequest.getType() != null) {
+            localVarFormParams.put("type", sorOrderTestRequest.getType());
+        }
+
+        if (sorOrderTestRequest.getTimeInForce() != null) {
+            localVarFormParams.put("timeInForce", sorOrderTestRequest.getTimeInForce());
+        }
+
+        if (sorOrderTestRequest.getQuantity() != null) {
+            localVarFormParams.put(
+                    "quantity",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getQuantity()));
+        }
+
+        if (sorOrderTestRequest.getPrice() != null) {
+            localVarFormParams.put(
+                    "price",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getPrice()));
+        }
+
+        if (sorOrderTestRequest.getNewClientOrderId() != null) {
+            localVarFormParams.put("newClientOrderId", sorOrderTestRequest.getNewClientOrderId());
+        }
+
+        if (sorOrderTestRequest.getStrategyId() != null) {
+            localVarFormParams.put("strategyId", sorOrderTestRequest.getStrategyId());
+        }
+
+        if (sorOrderTestRequest.getStrategyType() != null) {
+            localVarFormParams.put("strategyType", sorOrderTestRequest.getStrategyType());
+        }
+
+        if (sorOrderTestRequest.getIcebergQty() != null) {
+            localVarFormParams.put(
+                    "icebergQty",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getIcebergQty()));
+        }
+
+        if (sorOrderTestRequest.getNewOrderRespType() != null) {
+            localVarFormParams.put("newOrderRespType", sorOrderTestRequest.getNewOrderRespType());
+        }
+
+        if (sorOrderTestRequest.getSelfTradePreventionMode() != null) {
+            localVarFormParams.put(
+                    "selfTradePreventionMode", sorOrderTestRequest.getSelfTradePreventionMode());
+        }
+
+        if (sorOrderTestRequest.getRecvWindow() != null) {
+            localVarFormParams.put(
+                    "recvWindow",
+                    DecimalFormatter.getFormatter().format(sorOrderTestRequest.getRecvWindow()));
+        }
+
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3767,15 +3924,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -3789,7 +3942,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -3824,10 +3977,11 @@ public class TradeApi {
     }
 
     /**
-     * Test new order using SOR Test new order creation and signature/recvWindow using smart order
-     * routing (SOR). Creates and validates a new order but does not send it into the matching
-     * engine. Weight: | Condition | Request Weight | | --------- | -------------- | | Without
-     * &#x60;computeCommissionRates&#x60; | 1 | | With &#x60;computeCommissionRates&#x60; | 20 |
+     * Test new order using SOR (TRADE) Test new order creation and signature/recvWindow using smart
+     * order routing (SOR). Creates and validates a new order but does not send it into the matching
+     * engine. Weight: |Condition|Weight| |---|---| |Without &#x60;computeCommissionRates&#x60;|1|
+     * |With &#x60;computeCommissionRates&#x60;|20| Security Type: TRADE Notes: **Data Source:**
+     * Memory
      *
      * @param sorOrderTestRequest (required)
      * @return ApiResponse&lt;SorOrderTestResponse&gt;
@@ -3841,8 +3995,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#test-new-order-using-sor-trade">Test
-     *     new order using SOR Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/trade#sor-order-test">Test
+     *     new order using SOR (TRADE) Documentation</a>
      */
     public ApiResponse<SorOrderTestResponse> sorOrderTest(
             @Valid @NotNull SorOrderTestRequest sorOrderTestRequest) throws ApiException {

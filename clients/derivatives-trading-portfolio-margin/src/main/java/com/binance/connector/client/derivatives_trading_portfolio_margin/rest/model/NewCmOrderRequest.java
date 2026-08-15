@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NewCmOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewCmOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -55,13 +53,13 @@ public class NewCmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide;
+    private PositionSide positionSide = PositionSide.BOTH;
 
     public static final String SERIALIZED_NAME_TYPE = "type";
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private Type type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -79,7 +77,7 @@ public class NewCmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly;
+    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -103,7 +101,7 @@ public class NewCmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -119,7 +117,7 @@ public class NewCmOrderRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -174,7 +172,7 @@ public class NewCmOrderRequest {
         this.positionSide = positionSide;
     }
 
-    public NewCmOrderRequest type(@jakarta.annotation.Nonnull Type type) {
+    public NewCmOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -187,11 +185,11 @@ public class NewCmOrderRequest {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public Type getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull Type type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -221,7 +219,7 @@ public class NewCmOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Place amount
      *
      * @return quantity
      */
@@ -235,7 +233,7 @@ public class NewCmOrderRequest {
         this.quantity = quantity;
     }
 
-    public NewCmOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public NewCmOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -246,11 +244,12 @@ public class NewCmOrderRequest {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public String getReduceOnly() {
+    @Valid
+    public ReduceOnly getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
@@ -260,7 +259,7 @@ public class NewCmOrderRequest {
     }
 
     /**
-     * Get price
+     * Order price
      *
      * @return price
      */
@@ -301,7 +300,8 @@ public class NewCmOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60;
      *
      * @return newClientOrderId
      */
@@ -532,18 +532,6 @@ public class NewCmOrderRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NewCmOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NewCmOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : NewCmOrderRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -568,18 +556,14 @@ public class NewCmOrderRequest {
             PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
         // validate the required field `type`
-        Type.validateJsonElement(jsonObj.get("type"));
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         // validate the optional field `priceMatch`
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
@@ -617,7 +601,7 @@ public class NewCmOrderRequest {
                         @Override
                         public void write(JsonWriter out, NewCmOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

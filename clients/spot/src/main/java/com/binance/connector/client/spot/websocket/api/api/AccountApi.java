@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,12 +28,22 @@ import com.binance.connector.client.spot.websocket.api.model.AllOrdersRequest;
 import com.binance.connector.client.spot.websocket.api.model.AllOrdersResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersRequest;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyTradesRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyTradesResponse;
+import com.binance.connector.client.spot.websocket.api.model.OpenOrderListsStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OpenOrderListsStatusResponse;
+import com.binance.connector.client.spot.websocket.api.model.OpenOrdersStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OpenOrdersStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderAmendmentsRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderAmendmentsResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListStatusResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderStatusRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderStatusResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -52,8 +62,13 @@ public class AccountApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
-     * WebSocket Account Commission Rates Get current account commission rates. Weight: 20
+     * Account Commission Rates (USER_DATA) Get current account commission rates. Weight(IP): 20
+     * Security Type: USER_DATA Notes: **Data Source:** Database
      *
      * @param accountCommissionRequest (required)
      * @return AccountCommissionResponse
@@ -67,8 +82,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-commission-rates-user_data">WebSocket
-     *     Account Commission Rates Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-commission">Account
+     *     Commission Rates (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountCommissionResponse> accountCommission(
             AccountCommissionRequest accountCommissionRequest) throws ApiException {
@@ -115,10 +130,10 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Unfilled Order Count Query your current unfilled order count for all intervals.
-     * Weight: 40
+     * Unfilled Order Count (USER_DATA) Query your current unfilled order count for all intervals.
+     * Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      *
-     * @param accountRateLimitsOrdersRequest (required)
+     * @param accountRateLimitsOrdersRequest (optional)
      * @return AccountRateLimitsOrdersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -130,8 +145,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#unfilled-order-count-user_data">WebSocket
-     *     Unfilled Order Count Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-rate-limits-orders">Unfilled
+     *     Order Count (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountRateLimitsOrdersResponse> accountRateLimitsOrders(
             AccountRateLimitsOrdersRequest accountRateLimitsOrdersRequest) throws ApiException {
@@ -180,9 +195,10 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account information Query information about your account. Weight: 20
+     * Account information (USER_DATA) Query information about your account. Weight(IP): 20 Security
+     * Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database
      *
-     * @param accountStatusRequest (required)
+     * @param accountStatusRequest (optional)
      * @return AccountStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -194,8 +210,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-information-user_data">WebSocket
-     *     Account information Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-status">Account
+     *     information (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountStatusResponse> accountStatus(
             AccountStatusRequest accountStatusRequest) throws ApiException {
@@ -241,10 +257,16 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account Order list history Query information about all your order lists, filtered
-     * by time range. Weight: 20
+     * Account order list history (USER_DATA) Query information about all your order lists, filtered
+     * by time range. Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database
+     * Notes: * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified,
+     * &#x60;fromId&#x60; is ignored. Order lists are filtered by &#x60;transactionTime&#x60; of the
+     * last order list execution status update. * If &#x60;fromId&#x60; is specified, return order
+     * lists with order list ID &gt;&#x3D; &#x60;fromId&#x60;. * If no condition is specified, the
+     * most recent order lists are returned. * The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      *
-     * @param allOrderListsRequest (required)
+     * @param allOrderListsRequest (optional)
      * @return AllOrderListsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -252,12 +274,12 @@ public class AccountApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Account Order list history </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Account order list history </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-list-history-user_data">WebSocket
-     *     Account Order list history Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#all-order-lists">Account
+     *     order list history (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AllOrderListsResponse> allOrderLists(
             AllOrderListsRequest allOrderListsRequest) throws ApiException {
@@ -303,8 +325,15 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account order history Query information about all your orders – active, canceled,
-     * filled – filtered by time range. Weight: 20
+     * Account order history (USER_DATA) Query information about all your orders – active, canceled,
+     * filled – filtered by time range. Weight(IP): 20 Security Type: USER_DATA Notes: **Data
+     * Source:** Database Notes: * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are
+     * specified, &#x60;orderId&#x60; is ignored. Orders are filtered by &#x60;time&#x60; of the
+     * last execution status update. * If &#x60;orderId&#x60; is specified, return orders with order
+     * ID &gt;&#x3D; &#x60;orderId&#x60;. * If no condition is specified, the most recent orders are
+     * returned. * For some historical orders the &#x60;cummulativeQuoteQty&#x60; response field may
+     * be negative, meaning the data is not available at this time. * The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      *
      * @param allOrdersRequest (required)
      * @return AllOrdersResponse
@@ -318,8 +347,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-history-user_data">WebSocket
-     *     Account order history Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#all-orders">Account
+     *     order history (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AllOrdersResponse> allOrders(AllOrdersRequest allOrdersRequest)
             throws ApiException {
@@ -365,8 +394,18 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account allocations Retrieves allocations resulting from SOR order placement.
-     * Weight: 20
+     * Account allocations (USER_DATA) Retrieves allocations resulting from SOR order placement.
+     * Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database Supported parameter
+     * combinations: Parameters | Response | ------------------------------------------- | --------
+     * | &#x60;symbol&#x60; | allocations from oldest to newest | &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; | oldest allocations since &#x60;startTime&#x60; | &#x60;symbol&#x60; +
+     * &#x60;endTime&#x60; | newest allocations until &#x60;endTime&#x60; | &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; + &#x60;endTime&#x60; | allocations within the time range |
+     * &#x60;symbol&#x60; + &#x60;fromAllocationId&#x60; | allocations by allocation ID |
+     * &#x60;symbol&#x60; + &#x60;orderId&#x60; | allocations related to an order starting with
+     * oldest | &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromAllocationId&#x60; |
+     * allocations related to an order by allocation ID | **Note:** The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      *
      * @param myAllocationsRequest (required)
      * @return MyAllocationsResponse
@@ -380,8 +419,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-allocations-user_data">WebSocket
-     *     Account allocations Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-allocations">Account
+     *     allocations (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyAllocationsResponse> myAllocations(
             MyAllocationsRequest myAllocationsRequest) throws ApiException {
@@ -427,13 +466,78 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account prevented matches Displays the list of orders that were expired due to STP.
-     * These are the combinations supported: * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; *
-     * &#x60;symbol&#x60; + &#x60;orderId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; +
-     * &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60;
-     * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case |
-     * Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2 Querying by
-     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20
+     * Query Relevant Filters (USER_DATA) Retrieves the list of [filters](/products/spot/filters)
+     * relevant to an account on a given symbol. This is the only method that shows if an account
+     * has [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it.
+     * Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
+     *
+     * @param myFiltersRequest (required)
+     * @return MyFiltersResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Relevant Filters </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-filters">Query
+     *     Relevant Filters (USER_DATA) Documentation</a>
+     */
+    public CompletableFuture<MyFiltersResponse> myFilters(MyFiltersRequest myFiltersRequest)
+            throws ApiException {
+        myFiltersValidateBeforeCall(myFiltersRequest);
+        String methodName = "/myFilters".substring(1);
+        ApiRequestWrapperDTO<MyFiltersRequest, MyFiltersResponse> build =
+                new ApiRequestWrapperDTO.Builder<MyFiltersRequest, MyFiltersResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(myFiltersRequest)
+                        .responseType(MyFiltersResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void myFiltersValidateBeforeCall(MyFiltersRequest myFiltersRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<MyFiltersRequest>> violations =
+                    validator.validate(myFiltersRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Account prevented matches (USER_DATA) Displays the list of orders that were expired due to
+     * STP. These are the combinations supported: * &#x60;symbol&#x60; +
+     * &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; * &#x60;symbol&#x60;
+     * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to
+     * 500) * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; +
+     * &#x60;limit&#x60; Weight: Case | Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2
+     * Querying by &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20 Security
+     * Type: USER_DATA Notes: **Data Source:** Database
      *
      * @param myPreventedMatchesRequest (required)
      * @return MyPreventedMatchesResponse
@@ -447,8 +551,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-prevented-matches-user_data">WebSocket
-     *     Account prevented matches Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-prevented-matches">Account
+     *     prevented matches (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyPreventedMatchesResponse> myPreventedMatches(
             MyPreventedMatchesRequest myPreventedMatchesRequest) throws ApiException {
@@ -495,8 +599,17 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account trade history Query information about all your trades, filtered by time
-     * range. Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5|
+     * Account trade history (USER_DATA) Query information about all your trades, filtered by time
+     * range. Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5| Security
+     * Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60;
+     * is specified, return trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If
+     * &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, trades are filtered by
+     * execution time (&#x60;time&#x60;). - &#x60;fromId&#x60; cannot be used together with
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If &#x60;orderId&#x60; is specified, only
+     * trades related to that order are returned. - &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be used together with &#x60;orderId&#x60;. - If no condition is specified, the most
+     * recent trades are returned. - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * can&#39;t be longer than 24 hours.
      *
      * @param myTradesRequest (required)
      * @return MyTradesResponse
@@ -510,8 +623,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-trade-history-user_data">WebSocket
-     *     Account trade history Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-trades">Account
+     *     trade history (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyTradesResponse> myTrades(MyTradesRequest myTradesRequest)
             throws ApiException {
@@ -556,7 +669,141 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Query Order Amendments Queries all amendments of a single order. Weight: 4
+     * Current open Order lists (USER_DATA) Query execution status of all open order lists. If you
+     * need to continuously monitor order status updates, please consider using WebSocket Streams: *
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight(IP): 6 Security Type: USER_DATA Notes: **Data Source:** Memory -&gt; Database
+     *
+     * @param openOrderListsStatusRequest (optional)
+     * @return OpenOrderListsStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current open Order lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-order-lists-status">Current
+     *     open Order lists (USER_DATA) Documentation</a>
+     */
+    public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
+            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
+        openOrderListsStatusValidateBeforeCall(openOrderListsStatusRequest);
+        String methodName = "/openOrderLists.status".substring(1);
+        ApiRequestWrapperDTO<OpenOrderListsStatusRequest, OpenOrderListsStatusResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                OpenOrderListsStatusRequest, OpenOrderListsStatusResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(openOrderListsStatusRequest)
+                        .responseType(OpenOrderListsStatusResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void openOrderListsStatusValidateBeforeCall(
+            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OpenOrderListsStatusRequest>> violations =
+                    validator.validate(openOrderListsStatusRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Current open orders (USER_DATA) Query execution status of all open orders. If you need to
+     * continuously monitor order status updates, please consider using WebSocket Streams: *
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
+     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
+     *
+     * @param openOrdersStatusRequest (optional)
+     * @return OpenOrdersStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current open orders </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-orders-status">Current
+     *     open orders (USER_DATA) Documentation</a>
+     */
+    public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
+            OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
+        openOrdersStatusValidateBeforeCall(openOrdersStatusRequest);
+        String methodName = "/openOrders.status".substring(1);
+        ApiRequestWrapperDTO<OpenOrdersStatusRequest, OpenOrdersStatusResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                OpenOrdersStatusRequest, OpenOrdersStatusResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(openOrdersStatusRequest)
+                        .responseType(OpenOrdersStatusResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void openOrdersStatusValidateBeforeCall(OpenOrdersStatusRequest openOrdersStatusRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OpenOrdersStatusRequest>> violations =
+                    validator.validate(openOrdersStatusRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Order Amendments (USER_DATA) Queries all amendments of a single order. Weight(IP): 4
+     * Security Type: USER_DATA Notes: **Data Source:** Database
      *
      * @param orderAmendmentsRequest (required)
      * @return OrderAmendmentsResponse
@@ -570,8 +817,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-amendments-user_data">WebSocket
-     *     Query Order Amendments Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-amendments">Query
+     *     Order Amendments (USER_DATA) Documentation</a>
      */
     public CompletableFuture<OrderAmendmentsResponse> orderAmendments(
             OrderAmendmentsRequest orderAmendmentsRequest) throws ApiException {
@@ -606,6 +853,139 @@ public class AccountApi {
 
             Set<ConstraintViolation<OrderAmendmentsRequest>> violations =
                     validator.validate(orderAmendmentsRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Order list (USER_DATA) Check execution status of an Order list. For execution status of
+     * individual orders, use &#x60;order.status&#x60;. Weight(IP): 4 Security Type: USER_DATA
+     * Notes: **Data Source:** Database Notes: * &#x60;origClientOrderId&#x60; refers to
+     * &#x60;listClientOrderId&#x60; of the order list itself. * If both
+     * &#x60;origClientOrderId&#x60; and &#x60;orderListId&#x60; parameters are specified, only
+     * &#x60;origClientOrderId&#x60; is used and &#x60;orderListId&#x60; is ignored.
+     *
+     * @param orderListStatusRequest (optional)
+     * @return OrderListStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Order list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-list-status">Query
+     *     Order list (USER_DATA) Documentation</a>
+     */
+    public CompletableFuture<OrderListStatusResponse> orderListStatus(
+            OrderListStatusRequest orderListStatusRequest) throws ApiException {
+        orderListStatusValidateBeforeCall(orderListStatusRequest);
+        String methodName = "/orderList.status".substring(1);
+        ApiRequestWrapperDTO<OrderListStatusRequest, OrderListStatusResponse> build =
+                new ApiRequestWrapperDTO.Builder<OrderListStatusRequest, OrderListStatusResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(orderListStatusRequest)
+                        .responseType(OrderListStatusResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void orderListStatusValidateBeforeCall(OrderListStatusRequest orderListStatusRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OrderListStatusRequest>> violations =
+                    validator.validate(orderListStatusRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query order (USER_DATA) Check execution status of an order. Weight(IP): 4 Security Type:
+     * USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database Notes: * If both
+     * &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60;
+     * is searched first, then the &#x60;origClientOrderId&#x60; from that result is checked against
+     * that order. If both conditions are not met the request will be rejected. * For some
+     * historical orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning
+     * the data is not available at this time.
+     *
+     * @param orderStatusRequest (required)
+     * @return OrderStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query order </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-status">Query
+     *     order (USER_DATA) Documentation</a>
+     */
+    public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
+            throws ApiException {
+        orderStatusValidateBeforeCall(orderStatusRequest);
+        String methodName = "/order.status".substring(1);
+        ApiRequestWrapperDTO<OrderStatusRequest, OrderStatusResponse> build =
+                new ApiRequestWrapperDTO.Builder<OrderStatusRequest, OrderStatusResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(orderStatusRequest)
+                        .responseType(OrderStatusResponse.class)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void orderStatusValidateBeforeCall(OrderStatusRequest orderStatusRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<OrderStatusRequest>> violations =
+                    validator.validate(orderStatusRequest);
 
             if (!violations.isEmpty()) {
                 throw new ConstraintViolationException(violations);

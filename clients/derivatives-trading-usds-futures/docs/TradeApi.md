@@ -4,13 +4,77 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**cancelAlgoOrder**](TradeApi.md#cancelAlgoOrder) | **POST** /algoOrder.cancel | Cancel Algo Order (TRADE) |
 | [**cancelOrder**](TradeApi.md#cancelOrder) | **POST** /order.cancel | Cancel Order (TRADE) |
 | [**modifyOrder**](TradeApi.md#modifyOrder) | **POST** /order.modify | Modify Order (TRADE) |
-| [**newOrder**](TradeApi.md#newOrder) | **POST** /order.place | New Order(TRADE) |
+| [**newAlgoOrder**](TradeApi.md#newAlgoOrder) | **POST** /algoOrder.place | New Algo Order (TRADE) |
+| [**newOrder**](TradeApi.md#newOrder) | **POST** /order.place | New Order (TRADE) |
 | [**positionInformation**](TradeApi.md#positionInformation) | **POST** /account.position | Position Information (USER_DATA) |
 | [**positionInformationV2**](TradeApi.md#positionInformationV2) | **POST** /v2/account.position | Position Information V2 (USER_DATA) |
 | [**queryOrder**](TradeApi.md#queryOrder) | **POST** /order.status | Query Order (USER_DATA) |
 
+
+<a id="cancelAlgoOrder"></a>
+# **cancelAlgoOrder**
+> CancelAlgoOrderResponse cancelAlgoOrder(cancelAlgoOrderRequest)
+
+Cancel Algo Order (TRADE)
+
+Cancel an active algo order.  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiClient;
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiException;
+import com.binance.connector.client.derivatives_trading_usds_futures.Configuration;
+import com.binance.connector.client.derivatives_trading_usds_futures.models.*;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    CancelAlgoOrderRequest cancelAlgoOrderRequest = new CancelAlgoOrderRequest(); // CancelAlgoOrderRequest | 
+    try {
+      CancelAlgoOrderResponse result = apiInstance.cancelAlgoOrder(cancelAlgoOrderRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#cancelAlgoOrder");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **cancelAlgoOrderRequest** | [**CancelAlgoOrderRequest**](CancelAlgoOrderRequest.md)|  | [optional] |
+
+### Return type
+
+[**CancelAlgoOrderResponse**](CancelAlgoOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Cancel Algo Order |  -  |
 
 <a id="cancelOrder"></a>
 # **cancelOrder**
@@ -18,7 +82,7 @@ All URIs are relative to *http://localhost*
 
 Cancel Order (TRADE)
 
-Cancel an active order.  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.  Weight: 1
+Cancel an active order.  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
 
 ### Example
 ```java
@@ -80,7 +144,7 @@ No authorization required
 
 Modify Order (TRADE)
 
-Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent. * Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is different from dapi modify order endpoint. * When the new &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. * However the order will be cancelled by the amendment in the following situations: * when the order is in partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately * One order can only be modfied for less than 10000 times  Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 1 on IP rate limit(x-mbx-used-weight-1m)
+Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight: 1 on 10s order rate limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 0 on IP rate limit(x-mbx-used-weight-1m)  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent.  - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent. *(After CM migration, the dapi modify order endpoint follows the same rule.)*  - When the new &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is.  - However the order will be cancelled by the amendment in the following situations:  - when the order is in partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60;  - When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately  - One order can only be modfied for less than 10000 times
 
 ### Example
 ```java
@@ -136,13 +200,75 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Modify Order |  -  |
 
+<a id="newAlgoOrder"></a>
+# **newAlgoOrder**
+> NewAlgoOrderResponse newAlgoOrder(newAlgoOrderRequest)
+
+New Algo Order (TRADE)
+
+Send in a new algo order.  Weight(IP): 0  Security Type: TRADE  Notes: - Condition orders will be triggered when:  &gt;  - If parameter&#x60;priceProtect&#x60;is sent as true:  - when price reaches the &#x60;triggerPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the symbol  - \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET /fapi/v1/exchangeInfo&#x60;  &gt;  - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;:  - BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;triggerPrice&#x60;  - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60;  - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;:  - BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60;  - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;triggerPrice&#x60;  - &#x60;TRAILING_STOP_MARKET&#x60;:  - BUY: the lowest price after order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &gt;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;)  - SELL: the highest price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 - &#x60;callbackRate&#x60;)  &gt;  - For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code.  &gt;   &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60;&#x60;  &gt;   means that the parameters you send do not meet the following requirements:  - BUY: &#x60;activatePrice&#x60; should be smaller than latest price.  - SELL: &#x60;activatePrice&#x60; should be larger than latest price.  &gt;  - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;:  - Follow the same rules for condition orders.  - If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;).  - Cannot be used with &#x60;quantity&#x60; paremeter  - Cannot be used with &#x60;reduceOnly&#x60; parameter  - In Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side  - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiClient;
+import com.binance.connector.client.derivatives_trading_usds_futures.ApiException;
+import com.binance.connector.client.derivatives_trading_usds_futures.Configuration;
+import com.binance.connector.client.derivatives_trading_usds_futures.models.*;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.api.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    NewAlgoOrderRequest newAlgoOrderRequest = new NewAlgoOrderRequest(); // NewAlgoOrderRequest | 
+    try {
+      NewAlgoOrderResponse result = apiInstance.newAlgoOrder(newAlgoOrderRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#newAlgoOrder");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **newAlgoOrderRequest** | [**NewAlgoOrderRequest**](NewAlgoOrderRequest.md)|  | |
+
+### Return type
+
+[**NewAlgoOrderResponse**](NewAlgoOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | New Algo Order |  -  |
+
 <a id="newOrder"></a>
 # **newOrder**
 > NewOrderResponse newOrder(newOrderRequest)
 
-New Order(TRADE)
+New Order (TRADE)
 
-Send in a new order.  * Order with type &#x60;STOP&#x60;,  parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Order with type &#x60;TAKE_PROFIT&#x60;,  parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be triggered when:  * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET /fapi/v1/exchangeInfo&#x60;  * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &#x60;&lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x60;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 - &#x60;callbackRate&#x60;)  * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL: &#x60;activationPrice&#x60; should be larger than latest price.  * If &#x60;newOrderRespType &#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly. * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be returned directly.  * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition orders. * If triggered，**close all** current long position( if &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side  Weight: 0
+Send in a new order.  Weight(IP): 0  Security Type: TRADE  Notes: Additional mandatory parameters based on &#x60;type&#x60;:  - &#x60;LIMIT&#x60;: &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60; - &#x60;MARKET&#x60;: &#x60;quantity&#x60;  &gt; * If &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60;: &gt;   * &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly. &gt;   * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be returned directly. &gt; &gt; * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. &gt; * In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;
 
 ### Example
 ```java
@@ -204,7 +330,7 @@ No authorization required
 
 Position Information (USER_DATA)
 
-Get current position information.  * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.  Weight: 5
+Get current position information.  Weight(IP): 5  Security Type: USER_DATA  Notes: - Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.
 
 ### Example
 ```java
@@ -240,7 +366,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **positionInformationRequest** | [**PositionInformationRequest**](PositionInformationRequest.md)|  | |
+| **positionInformationRequest** | [**PositionInformationRequest**](PositionInformationRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -266,7 +392,7 @@ No authorization required
 
 Position Information V2 (USER_DATA)
 
-Get current position information(only symbol that has position or open orders will be returned).  * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.  Weight: 5
+Get current position information(only symbol that has position or open orders will be returned).  Weight(IP): 5  Security Type: USER_DATA  Notes: - Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.
 
 ### Example
 ```java
@@ -302,7 +428,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **positionInformationV2Request** | [**PositionInformationV2Request**](PositionInformationV2Request.md)|  | |
+| **positionInformationV2Request** | [**PositionInformationV2Request**](PositionInformationV2Request.md)|  | [optional] |
 
 ### Return type
 
@@ -328,7 +454,7 @@ No authorization required
 
 Query Order (USER_DATA)
 
-Check an order&#39;s status.  * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt; current time * order create time + 90 days &lt; current time  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * &#x60;orderId&#x60; is self-increment for each specific &#x60;symbol&#x60;  Weight: 1
+Check an order&#39;s status.  * These orders will not be found:   * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt; current time   * order create time + 90 days &lt; current time  Weight(IP): 1  Security Type: USER_DATA  Notes: Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. - &#x60;orderId&#x60; is self-increment for each specific &#x60;symbol&#x60;
 
 ### Example
 ```java
@@ -382,5 +508,5 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Order |  -  |
+| **200** | Order Status |  -  |
 

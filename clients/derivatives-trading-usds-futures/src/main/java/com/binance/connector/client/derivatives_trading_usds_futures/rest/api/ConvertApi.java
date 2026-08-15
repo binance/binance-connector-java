@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,8 +35,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,7 +49,7 @@ public class ConvertApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/1.2.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,7 +100,7 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Accept-Quote">Accept
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#accept-the-offered-quote">Accept
      *     the offered quote (USER_DATA) Documentation</a>
      */
     private okhttp3.Call acceptTheOfferedQuoteCall(
@@ -146,15 +146,11 @@ public class ConvertApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -168,7 +164,7 @@ public class ConvertApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -205,7 +201,8 @@ public class ConvertApi {
     }
 
     /**
-     * Accept the offered quote (USER_DATA) Accept the offered quote by quote ID. Weight: 200(IP)
+     * Accept the offered quote (USER_DATA) Accept the offered quote by quote ID. Weight(IP): 200
+     * Security Type: USER_DATA
      *
      * @param acceptTheOfferedQuoteRequest (required)
      * @return ApiResponse&lt;AcceptTheOfferedQuoteResponse&gt;
@@ -219,7 +216,7 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Accept-Quote">Accept
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#accept-the-offered-quote">Accept
      *     the offered quote (USER_DATA) Documentation</a>
      */
     public ApiResponse<AcceptTheOfferedQuoteResponse> acceptTheOfferedQuote(
@@ -247,7 +244,7 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/List-All-Convert-Pairs">List
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#list-all-convert-pairs">List
      *     All Convert Pairs Documentation</a>
      */
     private okhttp3.Call listAllConvertPairsCall(String fromAsset, String toAsset)
@@ -293,11 +290,10 @@ public class ConvertApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(Arrays.asList(new String[] {}));
+        Set<String> localVarAuthNames = new HashSet<>();
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -311,7 +307,7 @@ public class ConvertApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -348,9 +344,9 @@ public class ConvertApi {
 
     /**
      * List All Convert Pairs Query for all convertible token pairs and the tokens’ respective
-     * upper/lower limits * User needs to supply either or both of the input parameter * If not
-     * defined for both fromAsset and toAsset, only partial token pairs will be returned * Asset
-     * BNFCR is only available to convert for MICA region users. Weight: 20(IP)
+     * upper/lower limits Weight(IP): 20 Notes: - User needs to supply either or both of the input
+     * parameter - If not defined for both fromAsset and toAsset, only partial token pairs will be
+     * returned - Asset BNFCR is only available to convert for MICA region users.
      *
      * @param fromAsset User spends coin (optional)
      * @param toAsset User receives coin (optional)
@@ -365,7 +361,7 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/List-All-Convert-Pairs">List
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#list-all-convert-pairs">List
      *     All Convert Pairs Documentation</a>
      */
     public ApiResponse<ListAllConvertPairsResponse> listAllConvertPairs(
@@ -391,10 +387,10 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Order-Status">Order
-     *     status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#order-status">Order
+     *     status (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call orderStatusCall(Long orderId, String quoteId) throws ApiException {
+    private okhttp3.Call orderStatusCall(String orderId, String quoteId) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -436,15 +432,11 @@ public class ConvertApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -458,11 +450,11 @@ public class ConvertApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call orderStatusValidateBeforeCall(Long orderId, String quoteId)
+    private okhttp3.Call orderStatusValidateBeforeCall(String orderId, String quoteId)
             throws ApiException {
         try {
             Validator validator =
@@ -474,7 +466,7 @@ public class ConvertApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {orderId, quoteId};
-            Method method = this.getClass().getMethod("orderStatus", Long.class, String.class);
+            Method method = this.getClass().getMethod("orderStatus", String.class, String.class);
             Set<ConstraintViolation<ConvertApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -493,7 +485,8 @@ public class ConvertApi {
     }
 
     /**
-     * Order status(USER_DATA) Query order status by order ID. Weight: 50(IP)
+     * Order status (USER_DATA) Query order status by order ID. Weight(IP): 50 Security Type:
+     * USER_DATA
      *
      * @param orderId Either orderId or quoteId is required (optional)
      * @param quoteId Either orderId or quoteId is required (optional)
@@ -508,10 +501,10 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Order-Status">Order
-     *     status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#order-status">Order
+     *     status (USER_DATA) Documentation</a>
      */
-    public ApiResponse<OrderStatusResponse> orderStatus(Long orderId, String quoteId)
+    public ApiResponse<OrderStatusResponse> orderStatus(String orderId, String quoteId)
             throws ApiException {
         okhttp3.Call localVarCall = orderStatusValidateBeforeCall(orderId, quoteId);
         java.lang.reflect.Type localVarReturnType =
@@ -533,8 +526,8 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Send-quote-request">Send
-     *     Quote Request(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#send-quote-request">Send
+     *     Quote Request (USER_DATA) Documentation</a>
      */
     private okhttp3.Call sendQuoteRequestCall(SendQuoteRequestRequest sendQuoteRequestRequest)
             throws ApiException {
@@ -600,15 +593,11 @@ public class ConvertApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -622,7 +611,7 @@ public class ConvertApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -658,9 +647,9 @@ public class ConvertApi {
     }
 
     /**
-     * Send Quote Request(USER_DATA) Request a quote for the requested token pairs * Either
-     * fromAmount or toAmount should be sent * &#x60;quoteId&#x60; will be returned only if you have
-     * enough funds to convert Weight: 50(IP)
+     * Send Quote Request (USER_DATA) Request a quote for the requested token pairs Weight: 50(IP)
+     * 360/hour, 500/day Security Type: USER_DATA Notes: - Either fromAmount or toAmount should be
+     * sent - &#x60;quoteId&#x60; will be returned only if you have enough funds to convert
      *
      * @param sendQuoteRequestRequest (required)
      * @return ApiResponse&lt;SendQuoteRequestResponse&gt;
@@ -674,8 +663,8 @@ public class ConvertApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Send-quote-request">Send
-     *     Quote Request(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#send-quote-request">Send
+     *     Quote Request (USER_DATA) Documentation</a>
      */
     public ApiResponse<SendQuoteRequestResponse> sendQuoteRequest(
             @Valid @NotNull SendQuoteRequestRequest sendQuoteRequestRequest) throws ApiException {

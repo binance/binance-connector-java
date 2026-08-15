@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInformationResponseOptionSymbolsInnerFiltersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     public static final String SERIALIZED_NAME_FILTER_TYPE = "filterType";
 
@@ -89,7 +87,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get filterType
+     * filter Type
      *
      * @return filterType
      */
@@ -109,7 +107,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minPrice
+     * min Price
      *
      * @return minPrice
      */
@@ -129,7 +127,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxPrice
+     * max Price
      *
      * @return maxPrice
      */
@@ -149,7 +147,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get tickSize
+     * tick Size
      *
      * @return tickSize
      */
@@ -169,7 +167,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minQty
+     * Minimum order quantity
      *
      * @return minQty
      */
@@ -189,7 +187,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxQty
+     * Maximum order quantity
      *
      * @return maxQty
      */
@@ -209,7 +207,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get stepSize
+     * step Size
      *
      * @return stepSize
      */
@@ -368,20 +366,6 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInformationResponseOptionSymbolsInnerFiltersInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ExchangeInformationResponseOptionSymbolsInnerFiltersInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("filterType") != null && !jsonObj.get("filterType").isJsonNull())
                 && !jsonObj.get("filterType").isJsonPrimitive()) {
@@ -467,7 +451,7 @@ public class ExchangeInformationResponseOptionSymbolsInnerFiltersInner {
                                 JsonWriter out,
                                 ExchangeInformationResponseOptionSymbolsInnerFiltersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

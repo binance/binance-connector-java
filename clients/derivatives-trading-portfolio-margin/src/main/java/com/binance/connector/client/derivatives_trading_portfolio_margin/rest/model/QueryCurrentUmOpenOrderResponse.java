@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryCurrentUmOpenOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentUmOpenOrderResponse {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -167,7 +165,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -187,7 +185,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -206,7 +204,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -226,7 +224,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -245,7 +243,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -264,7 +262,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -283,7 +281,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -302,7 +300,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -322,7 +320,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -341,7 +339,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -361,7 +359,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -380,7 +378,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -399,7 +397,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -418,7 +416,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get time
+     * order time
      *
      * @return time
      */
@@ -438,7 +436,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -457,7 +455,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -477,7 +475,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -497,7 +495,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -518,7 +516,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -538,7 +536,7 @@ public class QueryCurrentUmOpenOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */
@@ -796,18 +794,6 @@ public class QueryCurrentUmOpenOrderResponse {
                                 QueryCurrentUmOpenOrderResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryCurrentUmOpenOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryCurrentUmOpenOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
                 && !jsonObj.get("avgPrice").isJsonPrimitive()) {
@@ -950,7 +936,7 @@ public class QueryCurrentUmOpenOrderResponse {
                         @Override
                         public void write(JsonWriter out, QueryCurrentUmOpenOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

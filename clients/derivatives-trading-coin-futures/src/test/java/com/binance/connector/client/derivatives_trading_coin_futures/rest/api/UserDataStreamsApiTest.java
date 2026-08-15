@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,8 +23,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.KeepaliveUserDataStreamResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.StartUserDataStreamResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -76,14 +78,14 @@ public class UserDataStreamsApiTest {
     }
 
     /**
-     * Close User Data Stream(USER_STREAM)
+     * Close User Data Stream (USER_STREAM)
      *
-     * <p>Close out a user data stream. Weight: 1
+     * <p>Close out a user data stream. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void closeUserDataStreamTest() throws ApiException, CryptoException {
+    public void closeUserDataStreamTest() throws ApiException, CryptoException, IOException {
         api.closeUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -92,7 +94,8 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/listenKey", actualRequest.url().encodedPath());
     }
 
@@ -100,21 +103,24 @@ public class UserDataStreamsApiTest {
      * Keepalive User Data Stream (USER_STREAM)
      *
      * <p>Keepalive a user data stream to prevent a time out. User data streams will close after 60
-     * minutes. Weight: 1
+     * minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void keepaliveUserDataStreamTest() throws ApiException, CryptoException {
-        api.keepaliveUserDataStream();
+    public void keepaliveUserDataStreamTest() throws ApiException, CryptoException, IOException {
+        ApiResponse<KeepaliveUserDataStreamResponse> response = api.keepaliveUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture());
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/listenKey", actualRequest.url().encodedPath());
     }
 
@@ -123,12 +129,13 @@ public class UserDataStreamsApiTest {
      *
      * <p>Start a new user data stream. The stream will close after 60 minutes unless a keepalive is
      * sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be
-     * returned and its validity will be extended for 60 minutes. Weight: 1
+     * returned and its validity will be extended for 60 minutes. Weight(IP): 1 Security Type:
+     * USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void startUserDataStreamTest() throws ApiException, CryptoException {
+    public void startUserDataStreamTest() throws ApiException, CryptoException, IOException {
         ApiResponse<StartUserDataStreamResponse> response = api.startUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -138,7 +145,8 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/listenKey", actualRequest.url().encodedPath());
     }
 }

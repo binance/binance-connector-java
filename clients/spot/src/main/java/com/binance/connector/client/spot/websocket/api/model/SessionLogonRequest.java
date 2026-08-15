@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -12,6 +12,7 @@
 
 package com.binance.connector.client.spot.websocket.api.model;
 
+import com.binance.connector.client.common.DecimalFormatter;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
@@ -23,6 +24,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,32 +39,60 @@ import org.hibernate.validator.constraints.*;
 /** SessionLogonRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SessionLogonRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public SessionLogonRequest() {}
 
-    public SessionLogonRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public SessionLogonRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
+    public SessionLogonRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    @DecimalMax("60000")
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -75,18 +105,20 @@ public class SessionLogonRequest extends BaseDTO {
             return false;
         }
         SessionLogonRequest sessionLogonRequest = (SessionLogonRequest) o;
-        return Objects.equals(this.recvWindow, sessionLogonRequest.recvWindow);
+        return Objects.equals(this.id, sessionLogonRequest.id)
+                && Objects.equals(this.recvWindow, sessionLogonRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(recvWindow);
+        return Objects.hash(id, recvWindow);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class SessionLogonRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -96,9 +128,15 @@ public class SessionLogonRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        Long recvWindowValue = getRecvWindow();
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
+        Double recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
-            String recvWindowValueAsString = recvWindowValue.toString();
+            String recvWindowValueAsString =
+                    DecimalFormatter.getFormatter().format(recvWindowValue);
             valMap.put("recvWindow", recvWindowValueAsString);
         }
 
@@ -112,6 +150,10 @@ public class SessionLogonRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             valMap.put("recvWindow", recvWindowValue);
@@ -142,6 +184,7 @@ public class SessionLogonRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -178,6 +221,14 @@ public class SessionLogonRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -196,7 +247,7 @@ public class SessionLogonRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, SessionLogonRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

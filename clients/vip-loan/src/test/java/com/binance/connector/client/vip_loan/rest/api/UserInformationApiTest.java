@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,9 +24,12 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.vip_loan.rest.model.CheckVIPLoanCollateralAccountResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanAccruedInterestResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanRepaymentHistoryResponse;
 import com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -80,14 +83,16 @@ public class UserInformationApiTest {
     /**
      * Check VIP Loan Collateral Account (USER_DATA)
      *
-     * <p>VIP loan is available for VIP users only * If the login account is loan account, all
-     * collateral accounts under the loan account can be queried. * If the login account is
-     * collateral account, only the current collateral account can be queried. Weight: 6000
+     * <p>VIP loan is available for VIP users only Weight(IP): 6000 Security Type: USER_DATA Notes:
+     * - If the logged-in account is a borrowing account, all collateral accounts bound to that
+     * borrowing account can be queried. - If the logged-in account is a collateral account, only
+     * collateral assets under that account can be queried.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void checkVIPLoanCollateralAccountTest() throws ApiException, CryptoException {
+    public void checkVIPLoanCollateralAccountTest()
+            throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
         Long collateralAccountId = 1L;
         Long recvWindow = 5000L;
@@ -104,9 +109,7 @@ public class UserInformationApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "orderId=1&collateralAccountId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("orderId=1&collateralAccountId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "28bfbd8d6c88334e71162a34415d7ceee70f9d0f71d87896faa7ae90ffa43745",
                 actualRequest.url().queryParameter("signature"));
@@ -114,18 +117,57 @@ public class UserInformationApiTest {
     }
 
     /**
-     * Get VIP Loan Ongoing Orders(USER_DATA)
+     * Get VIP Loan Accrued Interest (USER_DATA)
      *
-     * <p>VIP loan is available for VIP users only. Weight: 400
+     * <p>Check VIP Loan interest record Weight(IP): 400 Security Type: USER_DATA Notes: - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is returned. -
+     * The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getVIPLoanOngoingOrdersTest() throws ApiException, CryptoException {
+    public void getVIPLoanAccruedInterestTest() throws ApiException, CryptoException, IOException {
+        Long orderId = 1L;
+        String loanCoin = "BTC";
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long current = 1L;
+        Long limit = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetVIPLoanAccruedInterestResponse> response =
+                api.getVIPLoanAccruedInterest(
+                        orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("orderId=1&loanCoin=BTC&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "f5d4ed07d31ac96cb53cbf3ffe13c38d7d92c6d9f61fc4e7f767e3a0e72c98cb",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/loan/vip/accruedInterest", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get VIP Loan Ongoing Orders (USER_DATA)
+     *
+     * <p>VIP loan is available for VIP users only. Weight(IP): 400 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getVIPLoanOngoingOrdersTest() throws ApiException, CryptoException, IOException {
         Long orderId = 1L;
         Long collateralAccountId = 1L;
-        String loanCoin = "";
-        String collateralCoin = "";
+        String loanCoin = "BUSD";
+        String collateralCoin = "BNB,BTC,ETH";
         Long current = 1L;
         Long limit = 10L;
         Long recvWindow = 5000L;
@@ -149,24 +191,62 @@ public class UserInformationApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("orderId=1&collateralAccountId=1&loanCoin=BUSD&collateralCoin=BNB%2CBTC%2CETH&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "orderId=1&collateralAccountId=1&loanCoin=&collateralCoin=&current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "34489dba1699cfdcba96f141e403abef1f0835d89a8c2bb504f5b9557cb8017a",
+                "1a94168923a63f80d345cd72d6b964f85a84d975813a31768c464e98e276a1d2",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/ongoing/orders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Application Status(USER_DATA)
+     * Get VIP Loan Repayment History (USER_DATA)
      *
-     * <p>Query Application Status Weight: 400
+     * <p>VIP Loans are available only to VIP users. Weight(IP): 400 Security Type: USER_DATA Notes:
+     * - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is
+     * returned. - The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryApplicationStatusTest() throws ApiException, CryptoException {
+    public void getVIPLoanRepaymentHistoryTest() throws ApiException, CryptoException, IOException {
+        Long orderId = 1L;
+        String loanCoin = "BUSD";
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        Long current = 1L;
+        Long limit = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetVIPLoanRepaymentHistoryResponse> response =
+                api.getVIPLoanRepaymentHistory(
+                        orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("orderId=1&loanCoin=BUSD&startTime=1623319461670&endTime=1641782889000&current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "676297b00401e29332c61933826f410efa70464f7a540389c0f5d8a6f950ad60",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/loan/vip/repay/history", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Application Status (USER_DATA)
+     *
+     * <p>Query Application Status Weight(UID): 400 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryApplicationStatusTest() throws ApiException, CryptoException, IOException {
         Long current = 1L;
         Long limit = 10L;
         Long recvWindow = 5000L;
@@ -183,9 +263,7 @@ public class UserInformationApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "current=1&limit=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("current=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "b3723d8a4f7ae362bec968406a2a68bdebe8825ae14b03114d3c9b3a4ff37904",
                 actualRequest.url().queryParameter("signature"));

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** Ticker24hrPriceChangeStatisticsResponse2Inner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -163,7 +161,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get priceChange
+     * Price Change.
      *
      * @return priceChange
      */
@@ -183,7 +181,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get priceChangePercent
+     * Price Change Percent.
      *
      * @return priceChangePercent
      */
@@ -203,7 +201,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get weightedAvgPrice
+     * Weighted Avg Price.
      *
      * @return weightedAvgPrice
      */
@@ -223,7 +221,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get lastPrice
+     * Last Price.
      *
      * @return lastPrice
      */
@@ -243,7 +241,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get lastQty
+     * Last Qty.
      *
      * @return lastQty
      */
@@ -263,7 +261,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get openPrice
+     * Open Price.
      *
      * @return openPrice
      */
@@ -283,7 +281,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get highPrice
+     * High Price.
      *
      * @return highPrice
      */
@@ -303,7 +301,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get lowPrice
+     * Low Price.
      *
      * @return lowPrice
      */
@@ -323,7 +321,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get volume
+     * Volume.
      *
      * @return volume
      */
@@ -343,7 +341,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get quoteVolume
+     * Quote Volume.
      *
      * @return quoteVolume
      */
@@ -363,7 +361,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get openTime
+     * Open Time.
      *
      * @return openTime
      */
@@ -383,7 +381,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get closeTime
+     * Close Time.
      *
      * @return closeTime
      */
@@ -403,7 +401,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get firstId
+     * First tradeId
      *
      * @return firstId
      */
@@ -423,7 +421,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get lastId
+     * Last tradeId
      *
      * @return lastId
      */
@@ -443,7 +441,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
     }
 
     /**
-     * Get count
+     * Trade count
      *
      * @return count
      */
@@ -684,20 +682,6 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Ticker24hrPriceChangeStatisticsResponse2Inner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `Ticker24hrPriceChangeStatisticsResponse2Inner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -812,7 +796,7 @@ public class Ticker24hrPriceChangeStatisticsResponse2Inner {
                         public void write(
                                 JsonWriter out, Ticker24hrPriceChangeStatisticsResponse2Inner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

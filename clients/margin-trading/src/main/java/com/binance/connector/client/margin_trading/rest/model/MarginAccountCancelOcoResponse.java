@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** MarginAccountCancelOcoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelOcoResponse {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -113,7 +111,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -133,7 +131,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get contingencyType
+     * contingency Type.
      *
      * @return contingencyType
      */
@@ -153,7 +151,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get listStatusType
+     * list Status Type.
      *
      * @return listStatusType
      */
@@ -173,7 +171,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get listOrderStatus
+     * list Order Status.
      *
      * @return listOrderStatus
      */
@@ -193,7 +191,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get listClientOrderId
+     * list Client Order Id.
      *
      * @return listClientOrderId
      */
@@ -213,7 +211,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get transactionTime
+     * transaction Time.
      *
      * @return transactionTime
      */
@@ -232,7 +230,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -252,7 +250,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get isIsolated
+     * if isolated margin
      *
      * @return isIsolated
      */
@@ -282,7 +280,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get orders
+     * orders list.
      *
      * @return orders
      */
@@ -315,7 +313,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get orderReports
+     * order Reports.
      *
      * @return orderReports
      */
@@ -503,18 +501,6 @@ public class MarginAccountCancelOcoResponse {
                                 MarginAccountCancelOcoResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountCancelOcoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `MarginAccountCancelOcoResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("contingencyType") != null && !jsonObj.get("contingencyType").isJsonNull())
                 && !jsonObj.get("contingencyType").isJsonPrimitive()) {
@@ -617,7 +603,7 @@ public class MarginAccountCancelOcoResponse {
                         @Override
                         public void write(JsonWriter out, MarginAccountCancelOcoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

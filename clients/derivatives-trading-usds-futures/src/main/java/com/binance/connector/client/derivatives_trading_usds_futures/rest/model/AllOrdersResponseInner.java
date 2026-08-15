@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AllOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllOrdersResponseInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -55,6 +53,12 @@ public class AllOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
     @jakarta.annotation.Nullable
     private String cumQuote;
+
+    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
+
+    @SerializedName(SERIALIZED_NAME_CUM_BASE)
+    @jakarta.annotation.Nullable
+    private String cumBase;
 
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
@@ -127,6 +131,12 @@ public class AllOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
+
+    public static final String SERIALIZED_NAME_PAIR = "pair";
+
+    @SerializedName(SERIALIZED_NAME_PAIR)
+    @jakarta.annotation.Nullable
+    private String pair;
 
     public static final String SERIALIZED_NAME_TIME = "time";
 
@@ -203,7 +213,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -222,7 +232,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order Id.
      *
      * @return clientOrderId
      */
@@ -241,7 +251,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -254,13 +264,32 @@ public class AllOrdersResponseInner {
         this.cumQuote = cumQuote;
     }
 
+    public AllOrdersResponseInner cumBase(@jakarta.annotation.Nullable String cumBase) {
+        this.cumBase = cumBase;
+        return this;
+    }
+
+    /**
+     * Cum Base.
+     *
+     * @return cumBase
+     */
+    @jakarta.annotation.Nullable
+    public String getCumBase() {
+        return cumBase;
+    }
+
+    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
+        this.cumBase = cumBase;
+    }
+
     public AllOrdersResponseInner executedQty(@jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -279,7 +308,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -298,7 +327,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -317,7 +346,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -336,7 +365,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -355,7 +384,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -374,7 +403,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -393,7 +422,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -412,7 +441,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -431,7 +460,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -451,7 +480,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -470,7 +499,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -483,13 +512,32 @@ public class AllOrdersResponseInner {
         this.symbol = symbol;
     }
 
+    public AllOrdersResponseInner pair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+        return this;
+    }
+
+    /**
+     * Pair.
+     *
+     * @return pair
+     */
+    @jakarta.annotation.Nullable
+    public String getPair() {
+        return pair;
+    }
+
+    public void setPair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+    }
+
     public AllOrdersResponseInner time(@jakarta.annotation.Nullable Long time) {
         this.time = time;
         return this;
     }
 
     /**
-     * Get time
+     * order time
      *
      * @return time
      */
@@ -508,7 +556,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -527,7 +575,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Type.
      *
      * @return type
      */
@@ -546,7 +594,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -565,7 +613,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -584,7 +632,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -603,7 +651,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -622,7 +670,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -641,7 +689,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -661,7 +709,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -681,7 +729,7 @@ public class AllOrdersResponseInner {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -706,6 +754,7 @@ public class AllOrdersResponseInner {
         return Objects.equals(this.avgPrice, allOrdersResponseInner.avgPrice)
                 && Objects.equals(this.clientOrderId, allOrdersResponseInner.clientOrderId)
                 && Objects.equals(this.cumQuote, allOrdersResponseInner.cumQuote)
+                && Objects.equals(this.cumBase, allOrdersResponseInner.cumBase)
                 && Objects.equals(this.executedQty, allOrdersResponseInner.executedQty)
                 && Objects.equals(this.orderId, allOrdersResponseInner.orderId)
                 && Objects.equals(this.origQty, allOrdersResponseInner.origQty)
@@ -718,6 +767,7 @@ public class AllOrdersResponseInner {
                 && Objects.equals(this.stopPrice, allOrdersResponseInner.stopPrice)
                 && Objects.equals(this.closePosition, allOrdersResponseInner.closePosition)
                 && Objects.equals(this.symbol, allOrdersResponseInner.symbol)
+                && Objects.equals(this.pair, allOrdersResponseInner.pair)
                 && Objects.equals(this.time, allOrdersResponseInner.time)
                 && Objects.equals(this.timeInForce, allOrdersResponseInner.timeInForce)
                 && Objects.equals(this.type, allOrdersResponseInner.type)
@@ -739,6 +789,7 @@ public class AllOrdersResponseInner {
                 avgPrice,
                 clientOrderId,
                 cumQuote,
+                cumBase,
                 executedQty,
                 orderId,
                 origQty,
@@ -751,6 +802,7 @@ public class AllOrdersResponseInner {
                 stopPrice,
                 closePosition,
                 symbol,
+                pair,
                 time,
                 timeInForce,
                 type,
@@ -771,6 +823,7 @@ public class AllOrdersResponseInner {
         sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
+        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
@@ -783,6 +836,7 @@ public class AllOrdersResponseInner {
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
@@ -815,6 +869,10 @@ public class AllOrdersResponseInner {
         String cumQuoteValueAsString = "";
         cumQuoteValueAsString = cumQuoteValue.toString();
         sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
+        Object cumBaseValue = getCumBase();
+        String cumBaseValueAsString = "";
+        cumBaseValueAsString = cumBaseValue.toString();
+        sb.append("cumBase=").append(urlEncode(cumBaseValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -863,6 +921,10 @@ public class AllOrdersResponseInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object pairValue = getPair();
+        String pairValueAsString = "";
+        pairValueAsString = pairValue.toString();
+        sb.append("pair=").append(urlEncode(pairValueAsString)).append("");
         Object timeValue = getTime();
         String timeValueAsString = "";
         timeValueAsString = timeValue.toString();
@@ -940,6 +1002,7 @@ public class AllOrdersResponseInner {
         openapiFields.add("avgPrice");
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQuote");
+        openapiFields.add("cumBase");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
         openapiFields.add("origQty");
@@ -952,6 +1015,7 @@ public class AllOrdersResponseInner {
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
         openapiFields.add("symbol");
+        openapiFields.add("pair");
         openapiFields.add("time");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
@@ -985,18 +1049,6 @@ public class AllOrdersResponseInner {
                                 AllOrdersResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AllOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AllOrdersResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
                 && !jsonObj.get("avgPrice").isJsonPrimitive()) {
@@ -1021,6 +1073,14 @@ public class AllOrdersResponseInner {
                             "Expected the field `cumQuote` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("cumQuote").toString()));
+        }
+        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
+                && !jsonObj.get("cumBase").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `cumBase` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("cumBase").toString()));
         }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
@@ -1093,6 +1153,14 @@ public class AllOrdersResponseInner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pair` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("pair").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
@@ -1169,7 +1237,7 @@ public class AllOrdersResponseInner {
                         @Override
                         public void write(JsonWriter out, AllOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

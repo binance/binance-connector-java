@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** QueryLimitOpenOrdersResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryLimitOpenOrdersResponse {
     public static final String SERIALIZED_NAME_LIST = "list";
 
@@ -172,18 +170,6 @@ public class QueryLimitOpenOrdersResponse {
                                 QueryLimitOpenOrdersResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryLimitOpenOrdersResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryLimitOpenOrdersResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("list") != null && !jsonObj.get("list").isJsonNull()) {
             JsonArray jsonArray_list = jsonObj.getAsJsonArray("list");
@@ -225,7 +211,7 @@ public class QueryLimitOpenOrdersResponse {
                         @Override
                         public void write(JsonWriter out, QueryLimitOpenOrdersResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

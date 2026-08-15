@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetCmAccountDetailResponseAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCmAccountDetailResponseAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -94,7 +92,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -114,7 +112,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * total wallet balance
      *
      * @return crossWalletBalance
      */
@@ -134,7 +132,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get crossUnPnl
+     * unrealized profit or loss
      *
      * @return crossUnPnl
      */
@@ -154,7 +152,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin
      *
      * @return maintMargin
      */
@@ -174,7 +172,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get initialMargin
+     * total intial margin required with the latest mark price
      *
      * @return initialMargin
      */
@@ -194,7 +192,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * positions margin required with the latest mark price
      *
      * @return positionInitialMargin
      */
@@ -215,7 +213,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * open orders intial margin required with the latest mark price
      *
      * @return openOrderInitialMargin
      */
@@ -236,7 +234,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -414,19 +412,6 @@ public class GetCmAccountDetailResponseAssetsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetCmAccountDetailResponseAssetsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetCmAccountDetailResponseAssetsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -508,7 +493,7 @@ public class GetCmAccountDetailResponseAssetsInner {
                         public void write(
                                 JsonWriter out, GetCmAccountDetailResponseAssetsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

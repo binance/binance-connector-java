@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NewUmOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewUmOrderResponse {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -50,12 +48,6 @@ public class NewUmOrderResponse {
     @jakarta.annotation.Nullable
     private String cumQty;
 
-    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
-
-    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
-    @jakarta.annotation.Nullable
-    private String cumQuote;
-
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
     @SerializedName(SERIALIZED_NAME_EXECUTED_QTY)
@@ -67,12 +59,6 @@ public class NewUmOrderResponse {
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nullable
     private Long orderId;
-
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
 
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
@@ -161,7 +147,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -180,7 +166,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get cumQty
+     * Cum Qty.
      *
      * @return cumQty
      */
@@ -193,32 +179,13 @@ public class NewUmOrderResponse {
         this.cumQty = cumQty;
     }
 
-    public NewUmOrderResponse cumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-        return this;
-    }
-
-    /**
-     * Get cumQuote
-     *
-     * @return cumQuote
-     */
-    @jakarta.annotation.Nullable
-    public String getCumQuote() {
-        return cumQuote;
-    }
-
-    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-    }
-
     public NewUmOrderResponse executedQty(@jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -237,7 +204,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -250,32 +217,13 @@ public class NewUmOrderResponse {
         this.orderId = orderId;
     }
 
-    public NewUmOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public NewUmOrderResponse origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -294,7 +242,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -313,7 +261,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -332,7 +280,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -351,7 +299,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -370,7 +318,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -389,7 +337,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -408,7 +356,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -427,7 +375,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -447,7 +395,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -467,7 +415,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -486,7 +434,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -505,7 +453,7 @@ public class NewUmOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */
@@ -529,10 +477,8 @@ public class NewUmOrderResponse {
         NewUmOrderResponse newUmOrderResponse = (NewUmOrderResponse) o;
         return Objects.equals(this.clientOrderId, newUmOrderResponse.clientOrderId)
                 && Objects.equals(this.cumQty, newUmOrderResponse.cumQty)
-                && Objects.equals(this.cumQuote, newUmOrderResponse.cumQuote)
                 && Objects.equals(this.executedQty, newUmOrderResponse.executedQty)
                 && Objects.equals(this.orderId, newUmOrderResponse.orderId)
-                && Objects.equals(this.avgPrice, newUmOrderResponse.avgPrice)
                 && Objects.equals(this.origQty, newUmOrderResponse.origQty)
                 && Objects.equals(this.price, newUmOrderResponse.price)
                 && Objects.equals(this.reduceOnly, newUmOrderResponse.reduceOnly)
@@ -554,10 +500,8 @@ public class NewUmOrderResponse {
         return Objects.hash(
                 clientOrderId,
                 cumQty,
-                cumQuote,
                 executedQty,
                 orderId,
-                avgPrice,
                 origQty,
                 price,
                 reduceOnly,
@@ -579,10 +523,8 @@ public class NewUmOrderResponse {
         sb.append("class NewUmOrderResponse {\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -613,10 +555,6 @@ public class NewUmOrderResponse {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumQuoteValue = getCumQuote();
-        String cumQuoteValueAsString = "";
-        cumQuoteValueAsString = cumQuoteValue.toString();
-        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -625,10 +563,6 @@ public class NewUmOrderResponse {
         String orderIdValueAsString = "";
         orderIdValueAsString = orderIdValue.toString();
         sb.append("orderId=").append(urlEncode(orderIdValueAsString)).append("");
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object origQtyValue = getOrigQty();
         String origQtyValueAsString = "";
         origQtyValueAsString = origQtyValue.toString();
@@ -713,10 +647,8 @@ public class NewUmOrderResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQty");
-        openapiFields.add("cumQuote");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("price");
         openapiFields.add("reduceOnly");
@@ -752,18 +684,6 @@ public class NewUmOrderResponse {
                                 NewUmOrderResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NewUmOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NewUmOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
@@ -781,14 +701,6 @@ public class NewUmOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
         }
-        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
-                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumQuote` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("cumQuote").toString()));
-        }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -796,14 +708,6 @@ public class NewUmOrderResponse {
                             "Expected the field `executedQty` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("executedQty").toString()));
-        }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
         }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {
@@ -904,7 +808,7 @@ public class NewUmOrderResponse {
                         @Override
                         public void write(JsonWriter out, NewUmOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

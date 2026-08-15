@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,43 +38,67 @@ import org.hibernate.validator.constraints.*;
 /** DiffBookDepthRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DiffBookDepthRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String symbol;
 
     public static final String SERIALIZED_NAME_UPDATE_SPEED = "updateSpeed";
 
     @SerializedName(SERIALIZED_NAME_UPDATE_SPEED)
     @jakarta.annotation.Nullable
-    private String updateSpeed;
+    private UpdateSpeed updateSpeed;
 
     public DiffBookDepthRequest() {}
 
-    public DiffBookDepthRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+    public DiffBookDepthRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Unique WebSocket request ID.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
+    public DiffBookDepthRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * Symbol to query
      *
      * @return symbol
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
     }
 
-    public DiffBookDepthRequest updateSpeed(@jakarta.annotation.Nullable String updateSpeed) {
+    public DiffBookDepthRequest updateSpeed(@jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
         return this;
     }
@@ -84,11 +109,12 @@ public class DiffBookDepthRequest extends BaseDTO {
      * @return updateSpeed
      */
     @jakarta.annotation.Nullable
-    public String getUpdateSpeed() {
+    @Valid
+    public UpdateSpeed getUpdateSpeed() {
         return updateSpeed;
     }
 
-    public void setUpdateSpeed(@jakarta.annotation.Nullable String updateSpeed) {
+    public void setUpdateSpeed(@jakarta.annotation.Nullable UpdateSpeed updateSpeed) {
         this.updateSpeed = updateSpeed;
     }
 
@@ -101,19 +127,21 @@ public class DiffBookDepthRequest extends BaseDTO {
             return false;
         }
         DiffBookDepthRequest diffBookDepthRequest = (DiffBookDepthRequest) o;
-        return Objects.equals(this.symbol, diffBookDepthRequest.symbol)
+        return Objects.equals(this.id, diffBookDepthRequest.id)
+                && Objects.equals(this.symbol, diffBookDepthRequest.symbol)
                 && Objects.equals(this.updateSpeed, diffBookDepthRequest.updateSpeed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, updateSpeed);
+        return Objects.hash(id, symbol, updateSpeed);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class DiffBookDepthRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		updateSpeed: ").append(toIndentedString(updateSpeed)).append("\n");
         sb.append("}");
@@ -124,12 +152,17 @@ public class DiffBookDepthRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
             valMap.put("symbol", symbolValueAsString);
         }
-        String updateSpeedValue = getUpdateSpeed();
+        UpdateSpeed updateSpeedValue = getUpdateSpeed();
         if (updateSpeedValue != null) {
             String updateSpeedValueAsString = updateSpeedValue.toString();
             valMap.put("updateSpeed", updateSpeedValueAsString);
@@ -145,6 +178,10 @@ public class DiffBookDepthRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -179,12 +216,12 @@ public class DiffBookDepthRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("updateSpeed");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("symbol");
     }
 
     /**
@@ -216,31 +253,26 @@ public class DiffBookDepthRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : DiffBookDepthRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull())
-                && !jsonObj.get("updateSpeed").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `updateSpeed` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("updateSpeed").toString()));
+        // validate the optional field `updateSpeed`
+        if (jsonObj.get("updateSpeed") != null && !jsonObj.get("updateSpeed").isJsonNull()) {
+            UpdateSpeed.validateJsonElement(jsonObj.get("updateSpeed"));
         }
     }
 
@@ -260,7 +292,7 @@ public class DiffBookDepthRequest extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, DiffBookDepthRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

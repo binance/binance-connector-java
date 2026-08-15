@@ -4,18 +4,18 @@ All URIs are relative to *https://papi.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**closeUserDataStream**](UserDataStreamsApi.md#closeUserDataStream) | **DELETE** /papi/v1/listenKey | Close User Data Stream(USER_STREAM) |
+| [**closeUserDataStream**](UserDataStreamsApi.md#closeUserDataStream) | **DELETE** /papi/v1/listenKey | Close User Data Stream (USER_STREAM) |
 | [**keepaliveUserDataStream**](UserDataStreamsApi.md#keepaliveUserDataStream) | **PUT** /papi/v1/listenKey | Keepalive User Data Stream (USER_STREAM) |
-| [**startUserDataStream**](UserDataStreamsApi.md#startUserDataStream) | **POST** /papi/v1/listenKey | Start User Data Stream(USER_STREAM) |
+| [**startUserDataStream**](UserDataStreamsApi.md#startUserDataStream) | **POST** /papi/v1/listenKey | Start User Data Stream (USER_STREAM) |
 
 
 <a id="closeUserDataStream"></a>
 # **closeUserDataStream**
 > closeUserDataStream()
 
-Close User Data Stream(USER_STREAM)
+Close User Data Stream (USER_STREAM)
 
-Close out a user data stream.  Weight: 1
+Close out a user data stream.  Weight(IP): 1  Security Type: USER_STREAM
 
 ### Example
 ```java
@@ -72,7 +72,7 @@ No authorization required
 
 Keepalive User Data Stream (USER_STREAM)
 
-Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It&#39;s recommended to send a ping about every 60 minutes.  Weight: 1
+Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It&#39;s recommended to send a ping about every 60 minutes.  Weight(IP): 1  Security Type: USER_STREAM
 
 ### Example
 ```java
@@ -127,9 +127,9 @@ No authorization required
 # **startUserDataStream**
 > StartUserDataStreamResponse startUserDataStream()
 
-Start User Data Stream(USER_STREAM)
+Start User Data Stream (USER_STREAM)
 
-Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be extended for 60 minutes.  Weight: 1
+Start a new user data stream. The stream will close after 60 minutes unless a keepalive is sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be extended for 60 minutes.  Weight(IP): 1  Security Type: USER_STREAM
 
 ### Example
 ```java

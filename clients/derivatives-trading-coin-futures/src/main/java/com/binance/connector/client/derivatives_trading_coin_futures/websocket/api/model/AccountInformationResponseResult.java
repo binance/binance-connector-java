@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,10 +38,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** AccountInformationResponseResult */
+/** Indicates that combined is set to true. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountInformationResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_FEE_TIER = "feeTier";
 
@@ -93,7 +93,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get feeTier
+     * Fee tier level.
      *
      * @return feeTier
      */
@@ -113,7 +113,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get canTrade
+     * Whether trading is enabled.
      *
      * @return canTrade
      */
@@ -133,7 +133,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get canDeposit
+     * Whether deposits are enabled.
      *
      * @return canDeposit
      */
@@ -153,7 +153,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get canWithdraw
+     * Whether withdrawals are enabled.
      *
      * @return canWithdraw
      */
@@ -173,7 +173,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -203,7 +203,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get assets
+     * Supported assets.
      *
      * @return assets
      */
@@ -236,7 +236,7 @@ public class AccountInformationResponseResult extends BaseDTO {
     }
 
     /**
-     * Get positions
+     * Position list.
      *
      * @return positions
      */
@@ -499,7 +499,7 @@ public class AccountInformationResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, AccountInformationResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

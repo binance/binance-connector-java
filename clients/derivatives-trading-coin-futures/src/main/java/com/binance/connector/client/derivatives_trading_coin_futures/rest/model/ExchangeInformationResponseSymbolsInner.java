@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** ExchangeInformationResponseSymbolsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseSymbolsInner {
     public static final String SERIALIZED_NAME_FILTERS = "filters";
 
@@ -50,11 +48,11 @@ public class ExchangeInformationResponseSymbolsInner {
     @jakarta.annotation.Nullable
     private List<@Valid ExchangeInformationResponseSymbolsInnerFiltersInner> filters;
 
-    public static final String SERIALIZED_NAME_ORDER_TYPE = "OrderType";
+    public static final String SERIALIZED_NAME_ORDER_TYPES = "orderTypes";
 
-    @SerializedName(SERIALIZED_NAME_ORDER_TYPE)
+    @SerializedName(SERIALIZED_NAME_ORDER_TYPES)
     @jakarta.annotation.Nullable
-    private List<String> orderType;
+    private List<String> orderTypes;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -213,7 +211,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get filters
+     * Trading filters and constraints.
      *
      * @return filters
      */
@@ -229,32 +227,32 @@ public class ExchangeInformationResponseSymbolsInner {
         this.filters = filters;
     }
 
-    public ExchangeInformationResponseSymbolsInner orderType(
-            @jakarta.annotation.Nullable List<String> orderType) {
-        this.orderType = orderType;
+    public ExchangeInformationResponseSymbolsInner orderTypes(
+            @jakarta.annotation.Nullable List<String> orderTypes) {
+        this.orderTypes = orderTypes;
         return this;
     }
 
-    public ExchangeInformationResponseSymbolsInner addOrderTypeItem(String orderTypeItem) {
-        if (this.orderType == null) {
-            this.orderType = new ArrayList<>();
+    public ExchangeInformationResponseSymbolsInner addOrderTypesItem(String orderTypesItem) {
+        if (this.orderTypes == null) {
+            this.orderTypes = new ArrayList<>();
         }
-        this.orderType.add(orderTypeItem);
+        this.orderTypes.add(orderTypesItem);
         return this;
     }
 
     /**
-     * Get orderType
+     * Supported order types.
      *
-     * @return orderType
+     * @return orderTypes
      */
     @jakarta.annotation.Nullable
-    public List<String> getOrderType() {
-        return orderType;
+    public List<String> getOrderTypes() {
+        return orderTypes;
     }
 
-    public void setOrderType(@jakarta.annotation.Nullable List<String> orderType) {
-        this.orderType = orderType;
+    public void setOrderTypes(@jakarta.annotation.Nullable List<String> orderTypes) {
+        this.orderTypes = orderTypes;
     }
 
     public ExchangeInformationResponseSymbolsInner timeInForce(
@@ -272,7 +270,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -292,7 +290,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get liquidationFee
+     * liquidation fee rate
      *
      * @return liquidationFee
      */
@@ -312,7 +310,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get marketTakeBound
+     * the max price difference rate( from mark price) a market order can make
      *
      * @return marketTakeBound
      */
@@ -332,7 +330,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -351,7 +349,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -371,7 +369,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractType
+     * Contract type.
      *
      * @return contractType
      */
@@ -391,7 +389,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get deliveryDate
+     * Delivery timestamp.
      *
      * @return deliveryDate
      */
@@ -411,7 +409,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get onboardDate
+     * Onboard timestamp.
      *
      * @return onboardDate
      */
@@ -431,7 +429,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractStatus
+     * Contract status.
      *
      * @return contractStatus
      */
@@ -451,7 +449,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get contractSize
+     * Contract size.
      *
      * @return contractSize
      */
@@ -471,7 +469,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quote asset symbol.
      *
      * @return quoteAsset
      */
@@ -491,7 +489,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get baseAsset
+     * Base asset symbol.
      *
      * @return baseAsset
      */
@@ -511,7 +509,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get marginAsset
+     * Margin asset.
      *
      * @return marginAsset
      */
@@ -531,7 +529,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get pricePrecision
+     * please do not use it as tickSize
      *
      * @return pricePrecision
      */
@@ -551,7 +549,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quantityPrecision
+     * please do not use it as stepSize
      *
      * @return quantityPrecision
      */
@@ -571,7 +569,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get baseAssetPrecision
+     * Base asset precision.
      *
      * @return baseAssetPrecision
      */
@@ -591,7 +589,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get quotePrecision
+     * Quote asset precision.
      *
      * @return quotePrecision
      */
@@ -611,7 +609,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get equalQtyPrecision
+     * ignore
      *
      * @return equalQtyPrecision
      */
@@ -631,7 +629,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get triggerProtect
+     * threshold for algo order with \&quot;priceProtect\&quot;
      *
      * @return triggerProtect
      */
@@ -651,7 +649,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get maintMarginPercent
+     * ignore
      *
      * @return maintMarginPercent
      */
@@ -671,7 +669,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get requiredMarginPercent
+     * ignore
      *
      * @return requiredMarginPercent
      */
@@ -692,7 +690,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get underlyingType
+     * Underlying asset type.
      *
      * @return underlyingType
      */
@@ -721,7 +719,7 @@ public class ExchangeInformationResponseSymbolsInner {
     }
 
     /**
-     * Get underlyingSubType
+     * Underlying asset sub-type.
      *
      * @return underlyingSubType
      */
@@ -745,7 +743,8 @@ public class ExchangeInformationResponseSymbolsInner {
         ExchangeInformationResponseSymbolsInner exchangeInformationResponseSymbolsInner =
                 (ExchangeInformationResponseSymbolsInner) o;
         return Objects.equals(this.filters, exchangeInformationResponseSymbolsInner.filters)
-                && Objects.equals(this.orderType, exchangeInformationResponseSymbolsInner.orderType)
+                && Objects.equals(
+                        this.orderTypes, exchangeInformationResponseSymbolsInner.orderTypes)
                 && Objects.equals(
                         this.timeInForce, exchangeInformationResponseSymbolsInner.timeInForce)
                 && Objects.equals(
@@ -802,7 +801,7 @@ public class ExchangeInformationResponseSymbolsInner {
     public int hashCode() {
         return Objects.hash(
                 filters,
-                orderType,
+                orderTypes,
                 timeInForce,
                 liquidationFee,
                 marketTakeBound,
@@ -833,7 +832,7 @@ public class ExchangeInformationResponseSymbolsInner {
         StringBuilder sb = new StringBuilder();
         sb.append("class ExchangeInformationResponseSymbolsInner {\n");
         sb.append("		filters: ").append(toIndentedString(filters)).append("\n");
-        sb.append("		orderType: ").append(toIndentedString(orderType)).append("\n");
+        sb.append("		orderTypes: ").append(toIndentedString(orderTypes)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		liquidationFee: ").append(toIndentedString(liquidationFee)).append("\n");
         sb.append("		marketTakeBound: ").append(toIndentedString(marketTakeBound)).append("\n");
@@ -877,13 +876,13 @@ public class ExchangeInformationResponseSymbolsInner {
                         ((Collection) filtersValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
         sb.append("filters=").append(urlEncode(filtersValueAsString)).append("");
-        Object orderTypeValue = getOrderType();
-        String orderTypeValueAsString = "";
-        orderTypeValueAsString =
+        Object orderTypesValue = getOrderTypes();
+        String orderTypesValueAsString = "";
+        orderTypesValueAsString =
                 (String)
-                        ((Collection) orderTypeValue)
+                        ((Collection) orderTypesValue)
                                 .stream().map(Object::toString).collect(Collectors.joining(","));
-        sb.append("orderType=").append(urlEncode(orderTypeValueAsString)).append("");
+        sb.append("orderTypes=").append(urlEncode(orderTypesValueAsString)).append("");
         Object timeInForceValue = getTimeInForce();
         String timeInForceValueAsString = "";
         timeInForceValueAsString =
@@ -1023,7 +1022,7 @@ public class ExchangeInformationResponseSymbolsInner {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("filters");
-        openapiFields.add("OrderType");
+        openapiFields.add("orderTypes");
         openapiFields.add("timeInForce");
         openapiFields.add("liquidationFee");
         openapiFields.add("marketTakeBound");
@@ -1072,19 +1071,6 @@ public class ExchangeInformationResponseSymbolsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ExchangeInformationResponseSymbolsInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ExchangeInformationResponseSymbolsInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("filters") != null && !jsonObj.get("filters").isJsonNull()) {
             JsonArray jsonArrayfilters = jsonObj.getAsJsonArray("filters");
@@ -1107,14 +1093,14 @@ public class ExchangeInformationResponseSymbolsInner {
             }
         }
         // ensure the optional json data is an array if present
-        if (jsonObj.get("OrderType") != null
-                && !jsonObj.get("OrderType").isJsonNull()
-                && !jsonObj.get("OrderType").isJsonArray()) {
+        if (jsonObj.get("orderTypes") != null
+                && !jsonObj.get("orderTypes").isJsonNull()
+                && !jsonObj.get("orderTypes").isJsonArray()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `OrderType` to be an array in the JSON string but"
+                            "Expected the field `orderTypes` to be an array in the JSON string but"
                                     + " got `%s`",
-                            jsonObj.get("OrderType").toString()));
+                            jsonObj.get("orderTypes").toString()));
         }
         // ensure the optional json data is an array if present
         if (jsonObj.get("timeInForce") != null
@@ -1264,7 +1250,7 @@ public class ExchangeInformationResponseSymbolsInner {
                         public void write(
                                 JsonWriter out, ExchangeInformationResponseSymbolsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

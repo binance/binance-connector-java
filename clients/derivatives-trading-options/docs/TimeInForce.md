@@ -11,5 +11,7 @@
 
 * `FOK` (value: `"FOK"`)
 
+* `GTX` (value: `"GTX"`)
+
 
 

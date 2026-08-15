@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryUmConditionalOrderHistoryResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUmConditionalOrderHistoryResponse {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -192,7 +190,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -212,7 +210,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -232,7 +230,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -252,7 +250,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -272,7 +270,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -291,7 +289,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -311,7 +309,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -330,7 +328,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -350,7 +348,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -370,7 +368,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -390,7 +388,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -410,7 +408,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable，only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -430,7 +428,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get status
+     * Normal order status after trigger if appliable, only have when the strategy is triggered
      *
      * @return status
      */
@@ -450,7 +448,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get bookTime
+     * order time
      *
      * @return bookTime
      */
@@ -470,7 +468,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -490,7 +488,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get triggerTime
+     * Trigger Time.
      *
      * @return triggerTime
      */
@@ -510,7 +508,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -529,7 +527,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -549,7 +547,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -569,7 +567,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -589,7 +587,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -609,7 +607,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get priceProtect
+     * Price Protect.
      *
      * @return priceProtect
      */
@@ -629,7 +627,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -650,7 +648,7 @@ public class QueryUmConditionalOrderHistoryResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -959,19 +957,6 @@ public class QueryUmConditionalOrderHistoryResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryUmConditionalOrderHistoryResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryUmConditionalOrderHistoryResponse` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("newClientStrategyId") != null
                         && !jsonObj.get("newClientStrategyId").isJsonNull())
@@ -1124,7 +1109,7 @@ public class QueryUmConditionalOrderHistoryResponse {
                         public void write(
                                 JsonWriter out, QueryUmConditionalOrderHistoryResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

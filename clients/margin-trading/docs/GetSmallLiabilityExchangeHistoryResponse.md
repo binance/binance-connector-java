@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**total** | **Long** |  |  [optional] |
-|**rows** | [**List&lt;GetSmallLiabilityExchangeHistoryResponseRowsInner&gt;**](GetSmallLiabilityExchangeHistoryResponseRowsInner.md) |  |  [optional] |
+|**total** | **Long** | total. |  [optional] |
+|**rows** | [**List&lt;GetSmallLiabilityExchangeHistoryResponseRowsInner&gt;**](GetSmallLiabilityExchangeHistoryResponseRowsInner.md) | rows list. |  [optional] |
 
 
 

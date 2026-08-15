@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** LongShortRatioResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class LongShortRatioResponseInner {
     public static final String SERIALIZED_NAME_PAIR = "pair";
 
@@ -76,7 +74,7 @@ public class LongShortRatioResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -96,7 +94,7 @@ public class LongShortRatioResponseInner {
     }
 
     /**
-     * Get longShortRatio
+     * Long/short ratio.
      *
      * @return longShortRatio
      */
@@ -116,7 +114,7 @@ public class LongShortRatioResponseInner {
     }
 
     /**
-     * Get longAccount
+     * 64.42%
      *
      * @return longAccount
      */
@@ -136,7 +134,7 @@ public class LongShortRatioResponseInner {
     }
 
     /**
-     * Get shortAccount
+     * 35.58%
      *
      * @return shortAccount
      */
@@ -155,7 +153,7 @@ public class LongShortRatioResponseInner {
     }
 
     /**
-     * Get timestamp
+     * End time of the period, in milliseconds.
      *
      * @return timestamp
      */
@@ -281,18 +279,6 @@ public class LongShortRatioResponseInner {
                                 LongShortRatioResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!LongShortRatioResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `LongShortRatioResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
                 && !jsonObj.get("pair").isJsonPrimitive()) {
@@ -345,7 +331,7 @@ public class LongShortRatioResponseInner {
                         @Override
                         public void write(JsonWriter out, LongShortRatioResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

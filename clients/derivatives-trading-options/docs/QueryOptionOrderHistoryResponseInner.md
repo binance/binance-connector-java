@@ -7,29 +7,25 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**orderId** | **Long** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**quantity** | **String** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**fee** | **String** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**postOnly** | **Boolean** |  |  [optional] |
-|**createTime** | **Long** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**reason** | **String** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
-|**source** | **String** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
-|**priceScale** | **Long** |  |  [optional] |
-|**quantityScale** | **Long** |  |  [optional] |
-|**optionSide** | **String** |  |  [optional] |
-|**quoteAsset** | **String** |  |  [optional] |
-|**mmp** | **Boolean** |  |  [optional] |
+|**orderId** | **Long** | order Id |  [optional] |
+|**symbol** | **String** | symbol |  [optional] |
+|**price** | **String** | price |  [optional] |
+|**quantity** | **String** | quantity |  [optional] |
+|**executedQty** | **String** | executed Qty |  [optional] |
+|**side** | **String** | side |  [optional] |
+|**type** | **String** | type |  [optional] |
+|**timeInForce** | **String** | time In Force |  [optional] |
+|**reduceOnly** | **Boolean** | reduce Only |  [optional] |
+|**createTime** | **Long** | create Time |  [optional] |
+|**updateTime** | **Long** | update Time |  [optional] |
+|**status** | **String** | status |  [optional] |
+|**avgPrice** | **String** | avg Price |  [optional] |
+|**clientOrderId** | **String** | client Order Id |  [optional] |
+|**priceScale** | **Long** | price Scale |  [optional] |
+|**quantityScale** | **Long** | quantity Scale |  [optional] |
+|**optionSide** | **String** | option Side |  [optional] |
+|**quoteAsset** | **String** | quote Asset |  [optional] |
+|**mmp** | **Boolean** | mmp |  [optional] |
 
 
 

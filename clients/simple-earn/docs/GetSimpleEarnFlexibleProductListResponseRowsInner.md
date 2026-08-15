@@ -17,7 +17,7 @@
 |**hot** | **Boolean** |  |  [optional] |
 |**minPurchaseAmount** | **String** |  |  [optional] |
 |**productId** | **String** |  |  [optional] |
-|**subscriptionStartTime** | **String** |  |  [optional] |
+|**subscriptionStartTime** | **Long** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 
 

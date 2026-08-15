@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** BrokerWithdrawRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BrokerWithdrawRequest {
     public static final String SERIALIZED_NAME_ADDRESS = "address";
 
@@ -105,12 +103,6 @@ public class BrokerWithdrawRequest {
     @jakarta.annotation.Nonnull
     private String originatorPii;
 
-    public static final String SERIALIZED_NAME_SIGNATURE = "signature";
-
-    @SerializedName(SERIALIZED_NAME_SIGNATURE)
-    @jakarta.annotation.Nonnull
-    private String signature;
-
     public BrokerWithdrawRequest() {}
 
     public BrokerWithdrawRequest address(@jakarta.annotation.Nonnull String address) {
@@ -139,7 +131,7 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get addressTag
+     * Secondary address identifier for coins like XRP,XMR etc.
      *
      * @return addressTag
      */
@@ -197,7 +189,8 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get addressName
+     * Description of the address. Address book cap is 200, space in name should be encoded into
+     * &#x60;%20&#x60;
      *
      * @return addressName
      */
@@ -238,7 +231,7 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get withdrawOrderId
+     * withdrawID defined by the client (i.e. client&#39;s internal withdrawID)
      *
      * @return withdrawOrderId
      */
@@ -259,7 +252,9 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get transactionFeeFlag
+     * When making internal transfer, &#x60;true&#x60; for returning the fee to the destination
+     * account; &#x60;false&#x60; for returning the fee back to the departure account. Default
+     * &#x60;false&#x60;.
      *
      * @return transactionFeeFlag
      */
@@ -278,7 +273,8 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get walletType
+     * The wallet type for withdraw，0-spot wallet ，1-funding wallet. Default walletType is the
+     * current \&quot;selected wallet\&quot; under wallet-&gt;Fiat and Spot/Funding-&gt;Deposit
      *
      * @return walletType
      */
@@ -297,7 +293,7 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get questionnaire
+     * JSON format questionnaire answers.
      *
      * @return questionnaire
      */
@@ -317,7 +313,7 @@ public class BrokerWithdrawRequest {
     }
 
     /**
-     * Get originatorPii
+     * JSON format originator Pii, see StandardPii section below
      *
      * @return originatorPii
      */
@@ -329,26 +325,6 @@ public class BrokerWithdrawRequest {
 
     public void setOriginatorPii(@jakarta.annotation.Nonnull String originatorPii) {
         this.originatorPii = originatorPii;
-    }
-
-    public BrokerWithdrawRequest signature(@jakarta.annotation.Nonnull String signature) {
-        this.signature = signature;
-        return this;
-    }
-
-    /**
-     * Get signature
-     *
-     * @return signature
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(@jakarta.annotation.Nonnull String signature) {
-        this.signature = signature;
     }
 
     @Override
@@ -370,8 +346,7 @@ public class BrokerWithdrawRequest {
                 && Objects.equals(this.transactionFeeFlag, brokerWithdrawRequest.transactionFeeFlag)
                 && Objects.equals(this.walletType, brokerWithdrawRequest.walletType)
                 && Objects.equals(this.questionnaire, brokerWithdrawRequest.questionnaire)
-                && Objects.equals(this.originatorPii, brokerWithdrawRequest.originatorPii)
-                && Objects.equals(this.signature, brokerWithdrawRequest.signature);
+                && Objects.equals(this.originatorPii, brokerWithdrawRequest.originatorPii);
     }
 
     @Override
@@ -387,8 +362,7 @@ public class BrokerWithdrawRequest {
                 transactionFeeFlag,
                 walletType,
                 questionnaire,
-                originatorPii,
-                signature);
+                originatorPii);
     }
 
     @Override
@@ -408,7 +382,6 @@ public class BrokerWithdrawRequest {
         sb.append("		walletType: ").append(toIndentedString(walletType)).append("\n");
         sb.append("		questionnaire: ").append(toIndentedString(questionnaire)).append("\n");
         sb.append("		originatorPii: ").append(toIndentedString(originatorPii)).append("\n");
-        sb.append("		signature: ").append(toIndentedString(signature)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -462,10 +435,6 @@ public class BrokerWithdrawRequest {
         String originatorPiiValueAsString = "";
         originatorPiiValueAsString = originatorPiiValue.toString();
         sb.append("originatorPii=").append(urlEncode(originatorPiiValueAsString)).append("");
-        Object signatureValue = getSignature();
-        String signatureValueAsString = "";
-        signatureValueAsString = signatureValue.toString();
-        sb.append("signature=").append(urlEncode(signatureValueAsString)).append("");
         return sb.toString();
     }
 
@@ -505,7 +474,6 @@ public class BrokerWithdrawRequest {
         openapiFields.add("walletType");
         openapiFields.add("questionnaire");
         openapiFields.add("originatorPii");
-        openapiFields.add("signature");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -515,7 +483,6 @@ public class BrokerWithdrawRequest {
         openapiRequiredFields.add("withdrawOrderId");
         openapiRequiredFields.add("questionnaire");
         openapiRequiredFields.add("originatorPii");
-        openapiRequiredFields.add("signature");
     }
 
     /**
@@ -533,18 +500,6 @@ public class BrokerWithdrawRequest {
                                 "The required field(s) %s in BrokerWithdrawRequest is not found in"
                                         + " the empty JSON string",
                                 BrokerWithdrawRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!BrokerWithdrawRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `BrokerWithdrawRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
 
@@ -617,13 +572,6 @@ public class BrokerWithdrawRequest {
                                     + " string but got `%s`",
                             jsonObj.get("originatorPii").toString()));
         }
-        if (!jsonObj.get("signature").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `signature` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("signature").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -642,7 +590,7 @@ public class BrokerWithdrawRequest {
                         @Override
                         public void write(JsonWriter out, BrokerWithdrawRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

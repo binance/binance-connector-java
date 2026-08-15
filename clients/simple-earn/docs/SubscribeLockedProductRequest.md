@@ -10,9 +10,9 @@
 |**projectId** | **String** |  |  |
 |**amount** | **Double** |  |  |
 |**autoSubscribe** | **Boolean** |  |  [optional] |
-|**sourceAccount** | **String** |  |  [optional] |
-|**redeemTo** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**sourceAccount** | **SourceAccount** |  |  [optional] |
+|**redeemTo** | **RedeemTo** |  |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

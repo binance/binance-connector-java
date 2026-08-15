@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,43 +38,67 @@ import org.hibernate.validator.constraints.*;
 /** KlineRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlineRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String symbol;
 
     public static final String SERIALIZED_NAME_INTERVAL = "interval";
 
     @SerializedName(SERIALIZED_NAME_INTERVAL)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private Interval interval;
 
     public KlineRequest() {}
 
-    public KlineRequest symbol(@jakarta.annotation.Nonnull String symbol) {
+    public KlineRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Unique WebSocket request ID.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
+    public KlineRequest symbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
         return this;
     }
 
     /**
-     * Get symbol
+     * Symbol to query
      *
      * @return symbol
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
+    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
     }
 
-    public KlineRequest interval(@jakarta.annotation.Nonnull Interval interval) {
+    public KlineRequest interval(@jakarta.annotation.Nullable Interval interval) {
         this.interval = interval;
         return this;
     }
@@ -84,14 +108,13 @@ public class KlineRequest extends BaseDTO {
      *
      * @return interval
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     @Valid
     public Interval getInterval() {
         return interval;
     }
 
-    public void setInterval(@jakarta.annotation.Nonnull Interval interval) {
+    public void setInterval(@jakarta.annotation.Nullable Interval interval) {
         this.interval = interval;
     }
 
@@ -104,19 +127,21 @@ public class KlineRequest extends BaseDTO {
             return false;
         }
         KlineRequest klineRequest = (KlineRequest) o;
-        return Objects.equals(this.symbol, klineRequest.symbol)
+        return Objects.equals(this.id, klineRequest.id)
+                && Objects.equals(this.symbol, klineRequest.symbol)
                 && Objects.equals(this.interval, klineRequest.interval);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, interval);
+        return Objects.hash(id, symbol, interval);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class KlineRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		interval: ").append(toIndentedString(interval)).append("\n");
         sb.append("}");
@@ -127,6 +152,11 @@ public class KlineRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -148,6 +178,10 @@ public class KlineRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -182,13 +216,12 @@ public class KlineRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("interval");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("symbol");
-        openapiRequiredFields.add("interval");
     }
 
     /**
@@ -220,26 +253,27 @@ public class KlineRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : KlineRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("symbol").isJsonPrimitive()) {
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
+        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
+                && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        // validate the required field `interval`
-        Interval.validateJsonElement(jsonObj.get("interval"));
+        // validate the optional field `interval`
+        if (jsonObj.get("interval") != null && !jsonObj.get("interval").isJsonNull()) {
+            Interval.validateJsonElement(jsonObj.get("interval"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -257,7 +291,7 @@ public class KlineRequest extends BaseDTO {
                     new TypeAdapter<KlineRequest>() {
                         @Override
                         public void write(JsonWriter out, KlineRequest value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

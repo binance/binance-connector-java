@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AccountCommissionResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountCommissionResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -50,6 +48,12 @@ public class AccountCommissionResponse {
     @SerializedName(SERIALIZED_NAME_STANDARD_COMMISSION)
     @jakarta.annotation.Nullable
     private AccountCommissionResponseStandardCommission standardCommission;
+
+    public static final String SERIALIZED_NAME_SPECIAL_COMMISSION = "specialCommission";
+
+    @SerializedName(SERIALIZED_NAME_SPECIAL_COMMISSION)
+    @jakarta.annotation.Nullable
+    private AccountCommissionResponseSpecialCommission specialCommission;
 
     public static final String SERIALIZED_NAME_TAX_COMMISSION = "taxCommission";
 
@@ -108,6 +112,30 @@ public class AccountCommissionResponse {
         this.standardCommission = standardCommission;
     }
 
+    public AccountCommissionResponse specialCommission(
+            @jakarta.annotation.Nullable
+                    AccountCommissionResponseSpecialCommission specialCommission) {
+        this.specialCommission = specialCommission;
+        return this;
+    }
+
+    /**
+     * Get specialCommission
+     *
+     * @return specialCommission
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public AccountCommissionResponseSpecialCommission getSpecialCommission() {
+        return specialCommission;
+    }
+
+    public void setSpecialCommission(
+            @jakarta.annotation.Nullable
+                    AccountCommissionResponseSpecialCommission specialCommission) {
+        this.specialCommission = specialCommission;
+    }
+
     public AccountCommissionResponse taxCommission(
             @jakarta.annotation.Nullable AccountCommissionResponseTaxCommission taxCommission) {
         this.taxCommission = taxCommission;
@@ -164,13 +192,15 @@ public class AccountCommissionResponse {
         return Objects.equals(this.symbol, accountCommissionResponse.symbol)
                 && Objects.equals(
                         this.standardCommission, accountCommissionResponse.standardCommission)
+                && Objects.equals(
+                        this.specialCommission, accountCommissionResponse.specialCommission)
                 && Objects.equals(this.taxCommission, accountCommissionResponse.taxCommission)
                 && Objects.equals(this.discount, accountCommissionResponse.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, standardCommission, taxCommission, discount);
+        return Objects.hash(symbol, standardCommission, specialCommission, taxCommission, discount);
     }
 
     @Override
@@ -181,6 +211,7 @@ public class AccountCommissionResponse {
         sb.append("		standardCommission: ")
                 .append(toIndentedString(standardCommission))
                 .append("\n");
+        sb.append("		specialCommission: ").append(toIndentedString(specialCommission)).append("\n");
         sb.append("		taxCommission: ").append(toIndentedString(taxCommission)).append("\n");
         sb.append("		discount: ").append(toIndentedString(discount)).append("\n");
         sb.append("}");
@@ -199,6 +230,12 @@ public class AccountCommissionResponse {
         standardCommissionValueAsString = standardCommissionValue.toString();
         sb.append("standardCommission=")
                 .append(urlEncode(standardCommissionValueAsString))
+                .append("");
+        Object specialCommissionValue = getSpecialCommission();
+        String specialCommissionValueAsString = "";
+        specialCommissionValueAsString = specialCommissionValue.toString();
+        sb.append("specialCommission=")
+                .append(urlEncode(specialCommissionValueAsString))
                 .append("");
         Object taxCommissionValue = getTaxCommission();
         String taxCommissionValueAsString = "";
@@ -238,6 +275,7 @@ public class AccountCommissionResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
         openapiFields.add("standardCommission");
+        openapiFields.add("specialCommission");
         openapiFields.add("taxCommission");
         openapiFields.add("discount");
 
@@ -262,18 +300,6 @@ public class AccountCommissionResponse {
                                 AccountCommissionResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountCommissionResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AccountCommissionResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -288,6 +314,12 @@ public class AccountCommissionResponse {
                 && !jsonObj.get("standardCommission").isJsonNull()) {
             AccountCommissionResponseStandardCommission.validateJsonElement(
                     jsonObj.get("standardCommission"));
+        }
+        // validate the optional field `specialCommission`
+        if (jsonObj.get("specialCommission") != null
+                && !jsonObj.get("specialCommission").isJsonNull()) {
+            AccountCommissionResponseSpecialCommission.validateJsonElement(
+                    jsonObj.get("specialCommission"));
         }
         // validate the optional field `taxCommission`
         if (jsonObj.get("taxCommission") != null && !jsonObj.get("taxCommission").isJsonNull()) {
@@ -317,7 +349,7 @@ public class AccountCommissionResponse {
                         @Override
                         public void write(JsonWriter out, AccountCommissionResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetPayTradeHistoryResponseDataInnerReceiverInfo */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     public static final String SERIALIZED_NAME_NAME = "name";
 
@@ -102,7 +100,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get name
+     * Nickname or merchant name.
      *
      * @return name
      */
@@ -122,7 +120,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get type
+     * Account type: USER for personal, MERCHANT for merchant.
      *
      * @return type
      */
@@ -142,7 +140,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get email
+     * Email.
      *
      * @return email
      */
@@ -162,7 +160,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get binanceId
+     * Binance UID.
      *
      * @return binanceId
      */
@@ -182,7 +180,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get accountId
+     * Binance Pay ID.
      *
      * @return accountId
      */
@@ -202,7 +200,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get countryCode
+     * International area code.
      *
      * @return countryCode
      */
@@ -222,7 +220,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get phoneNumber
+     * Phone number.
      *
      * @return phoneNumber
      */
@@ -242,7 +240,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get mobileCode
+     * Country code.
      *
      * @return mobileCode
      */
@@ -442,20 +440,6 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPayTradeHistoryResponseDataInnerReceiverInfo.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetPayTradeHistoryResponseDataInnerReceiverInfo`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
                 && !jsonObj.get("name").isJsonPrimitive()) {
@@ -550,7 +534,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
                                 JsonWriter out,
                                 GetPayTradeHistoryResponseDataInnerReceiverInfo value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

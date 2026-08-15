@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,13 +23,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -40,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderBookResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderBookResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_LAST_UPDATE_ID = "lastUpdateId";
 
@@ -59,18 +56,6 @@ public class OrderBookResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_T)
     @jakarta.annotation.Nullable
     private Long T;
-
-    public static final String SERIALIZED_NAME_BIDS = "bids";
-
-    @SerializedName(SERIALIZED_NAME_BIDS)
-    @jakarta.annotation.Nullable
-    private List<OrderBookResponseResultBidsItem> bids;
-
-    public static final String SERIALIZED_NAME_ASKS = "asks";
-
-    @SerializedName(SERIALIZED_NAME_ASKS)
-    @jakarta.annotation.Nullable
-    private List<OrderBookResponseResultAsksItem> asks;
 
     public OrderBookResponseResult() {}
 
@@ -99,7 +84,7 @@ public class OrderBookResponseResult extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Message output time
      *
      * @return E
      */
@@ -118,7 +103,7 @@ public class OrderBookResponseResult extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Transaction time
      *
      * @return T
      */
@@ -129,64 +114,6 @@ public class OrderBookResponseResult extends BaseDTO {
 
     public void setT(@jakarta.annotation.Nullable Long T) {
         this.T = T;
-    }
-
-    public OrderBookResponseResult bids(
-            @jakarta.annotation.Nullable List<OrderBookResponseResultBidsItem> bids) {
-        this.bids = bids;
-        return this;
-    }
-
-    public OrderBookResponseResult addBidsItem(OrderBookResponseResultBidsItem bidsItem) {
-        if (this.bids == null) {
-            this.bids = new ArrayList<>();
-        }
-        this.bids.add(bidsItem);
-        return this;
-    }
-
-    /**
-     * Get bids
-     *
-     * @return bids
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public List<OrderBookResponseResultBidsItem> getBids() {
-        return bids;
-    }
-
-    public void setBids(@jakarta.annotation.Nullable List<OrderBookResponseResultBidsItem> bids) {
-        this.bids = bids;
-    }
-
-    public OrderBookResponseResult asks(
-            @jakarta.annotation.Nullable List<OrderBookResponseResultAsksItem> asks) {
-        this.asks = asks;
-        return this;
-    }
-
-    public OrderBookResponseResult addAsksItem(OrderBookResponseResultAsksItem asksItem) {
-        if (this.asks == null) {
-            this.asks = new ArrayList<>();
-        }
-        this.asks.add(asksItem);
-        return this;
-    }
-
-    /**
-     * Get asks
-     *
-     * @return asks
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public List<OrderBookResponseResultAsksItem> getAsks() {
-        return asks;
-    }
-
-    public void setAsks(@jakarta.annotation.Nullable List<OrderBookResponseResultAsksItem> asks) {
-        this.asks = asks;
     }
 
     @Override
@@ -200,14 +127,12 @@ public class OrderBookResponseResult extends BaseDTO {
         OrderBookResponseResult orderBookResponseResult = (OrderBookResponseResult) o;
         return Objects.equals(this.lastUpdateId, orderBookResponseResult.lastUpdateId)
                 && Objects.equals(this.E, orderBookResponseResult.E)
-                && Objects.equals(this.T, orderBookResponseResult.T)
-                && Objects.equals(this.bids, orderBookResponseResult.bids)
-                && Objects.equals(this.asks, orderBookResponseResult.asks);
+                && Objects.equals(this.T, orderBookResponseResult.T);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lastUpdateId, E, T, bids, asks);
+        return Objects.hash(lastUpdateId, E, T);
     }
 
     @Override
@@ -217,8 +142,6 @@ public class OrderBookResponseResult extends BaseDTO {
         sb.append("		lastUpdateId: ").append(toIndentedString(lastUpdateId)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
-        sb.append("		bids: ").append(toIndentedString(bids)).append("\n");
-        sb.append("		asks: ").append(toIndentedString(asks)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -242,16 +165,6 @@ public class OrderBookResponseResult extends BaseDTO {
             String TValueAsString = TValue.toString();
             valMap.put("T", TValueAsString);
         }
-        List<OrderBookResponseResultBidsItem> bidsValue = getBids();
-        if (bidsValue != null) {
-            String bidsValueAsString = JSON.getGson().toJson(bidsValue);
-            valMap.put("bids", bidsValueAsString);
-        }
-        List<OrderBookResponseResultAsksItem> asksValue = getAsks();
-        if (asksValue != null) {
-            String asksValueAsString = JSON.getGson().toJson(asksValue);
-            valMap.put("asks", asksValueAsString);
-        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -274,14 +187,6 @@ public class OrderBookResponseResult extends BaseDTO {
         Object TValue = getT();
         if (TValue != null) {
             valMap.put("T", TValue);
-        }
-        Object bidsValue = getBids();
-        if (bidsValue != null) {
-            valMap.put("bids", bidsValue);
-        }
-        Object asksValue = getAsks();
-        if (asksValue != null) {
-            valMap.put("asks", asksValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -312,8 +217,6 @@ public class OrderBookResponseResult extends BaseDTO {
         openapiFields.add("lastUpdateId");
         openapiFields.add("E");
         openapiFields.add("T");
-        openapiFields.add("bids");
-        openapiFields.add("asks");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -349,26 +252,6 @@ public class OrderBookResponseResult extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("bids") != null
-                && !jsonObj.get("bids").isJsonNull()
-                && !jsonObj.get("bids").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `bids` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("bids").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("asks") != null
-                && !jsonObj.get("asks").isJsonNull()
-                && !jsonObj.get("asks").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `asks` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("asks").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -388,7 +271,7 @@ public class OrderBookResponseResult extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderBookResponseResult value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

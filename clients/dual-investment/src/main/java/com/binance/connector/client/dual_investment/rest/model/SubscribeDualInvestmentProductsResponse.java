@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SubscribeDualInvestmentProductsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeDualInvestmentProductsResponse {
     public static final String SERIALIZED_NAME_POSITION_ID = "positionId";
 
@@ -225,7 +223,7 @@ public class SubscribeDualInvestmentProductsResponse {
     }
 
     /**
-     * Get autoCompoundPlan
+     * STANDARD, ADVANCED, this field won&#39;t display when autocompound is set to None
      *
      * @return autoCompoundPlan
      */
@@ -577,19 +575,6 @@ public class SubscribeDualInvestmentProductsResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SubscribeDualInvestmentProductsResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `SubscribeDualInvestmentProductsResponse` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("investCoin") != null && !jsonObj.get("investCoin").isJsonNull())
                 && !jsonObj.get("investCoin").isJsonPrimitive()) {
@@ -679,7 +664,7 @@ public class SubscribeDualInvestmentProductsResponse {
                         public void write(
                                 JsonWriter out, SubscribeDualInvestmentProductsResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

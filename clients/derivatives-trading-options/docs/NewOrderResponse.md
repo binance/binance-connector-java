@@ -7,28 +7,29 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**orderId** | **Long** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**quantity** | **String** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**createDate** | **Long** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**postOnly** | **Boolean** |  |  [optional] |
-|**mmp** | **Boolean** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**fee** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**createTime** | **Long** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
-|**priceScale** | **Long** |  |  [optional] |
-|**quantityScale** | **Long** |  |  [optional] |
-|**optionSide** | **String** |  |  [optional] |
-|**quoteAsset** | **String** |  |  [optional] |
+|**orderId** | **Long** | System order number |  [optional] |
+|**symbol** | **String** | Option trading pair |  [optional] |
+|**price** | **String** | Order Price |  [optional] |
+|**quantity** | **String** | Order Quantity |  [optional] |
+|**executedQty** | **String** | Number of executed quantity |  [optional] |
+|**fee** | **Long** | fee |  [optional] |
+|**side** | **String** | Buy/sell direction |  [optional] |
+|**type** | **String** | Order type |  [optional] |
+|**timeInForce** | **String** | Time in force method |  [optional] |
+|**reduceOnly** | **Boolean** | Order is reduce only Y/N |  [optional] |
+|**postOnly** | **Boolean** | post Only |  [optional] |
+|**createTime** | **Long** | Order Time |  [optional] |
+|**updateTime** | **Long** | Update time |  [optional] |
+|**status** | **String** | Order status |  [optional] |
+|**avgPrice** | **String** | Average price of completed trade |  [optional] |
+|**source** | **String** | source |  [optional] |
+|**clientOrderId** | **String** | Client order ID |  [optional] |
+|**priceScale** | **Long** | price Scale |  [optional] |
+|**quantityScale** | **Long** | quantity Scale |  [optional] |
+|**optionSide** | **String** | option Side |  [optional] |
+|**quoteAsset** | **String** | quote Asset |  [optional] |
+|**mmp** | **Boolean** | mmp |  [optional] |
+|**selfTradePreventionMode** | **String** | Self-trade prevention mode |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,24 +24,24 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.spot.rest.model.AboveType;
-import com.binance.connector.client.spot.rest.model.AllOrderListResponse;
-import com.binance.connector.client.spot.rest.model.AllOrdersResponse;
 import com.binance.connector.client.spot.rest.model.BelowType;
 import com.binance.connector.client.spot.rest.model.CancelReplaceMode;
 import com.binance.connector.client.spot.rest.model.CancelRestrictions;
 import com.binance.connector.client.spot.rest.model.DeleteOpenOrdersResponse;
 import com.binance.connector.client.spot.rest.model.DeleteOrderListResponse;
 import com.binance.connector.client.spot.rest.model.DeleteOrderResponse;
-import com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse;
-import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
-import com.binance.connector.client.spot.rest.model.GetOrderResponse;
 import com.binance.connector.client.spot.rest.model.NewOrderRequest;
 import com.binance.connector.client.spot.rest.model.NewOrderResponse;
-import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
+import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityRequest;
+import com.binance.connector.client.spot.rest.model.OrderAmendKeepPriorityResponse;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceRequest;
 import com.binance.connector.client.spot.rest.model.OrderCancelReplaceResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOcoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOcoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpoResponse;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoRequest;
+import com.binance.connector.client.spot.rest.model.OrderListOpocoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtoRequest;
 import com.binance.connector.client.spot.rest.model.OrderListOtoResponse;
 import com.binance.connector.client.spot.rest.model.OrderListOtocoRequest;
@@ -62,6 +62,7 @@ import com.binance.connector.client.spot.rest.model.SorOrderTestResponse;
 import com.binance.connector.client.spot.rest.model.WorkingSide;
 import com.binance.connector.client.spot.rest.model.WorkingType;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -113,92 +114,17 @@ public class TradeApiTest {
     }
 
     /**
-     * Query all Order lists
-     *
-     * <p>Retrieves all order lists based on provided optional parameters. Note that the time
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
-     * Weight: 20
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void allOrderListTest() throws ApiException, CryptoException {
-        Long fromId = 1L;
-        Long startTime = 1735693200000L;
-        Long endTime = 1735693200000L;
-        Integer limit = 500;
-        Long recvWindow = 5000L;
-        ApiResponse<AllOrderListResponse> response =
-                api.allOrderList(fromId, startTime, endTime, limit, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "fromId=1&startTime=1735693200000&endTime=1735693200000&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "3f96b521ab45f68dea5e3b363c355bdd37bc2834d4ec7457ac7990d2d75178c2",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/api/v3/allOrderList", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * All orders
-     *
-     * <p>Get all account orders; active, canceled, or filled. Weight: 20
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void allOrdersTest() throws ApiException, CryptoException {
-        String symbol = "BNBUSDT";
-        Long orderId = 1L;
-        Long startTime = 1735693200000L;
-        Long endTime = 1735693200000L;
-        Integer limit = 500;
-        Long recvWindow = 5000L;
-        ApiResponse<AllOrdersResponse> response =
-                api.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "symbol=BNBUSDT&orderId=1&startTime=1735693200000&endTime=1735693200000&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7f857866c2bd2678db911c5a1084412d274ea5c0dca24c8cca5c97ba0bc38ea6",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/api/v3/allOrders", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Cancel All Open Orders on a Symbol
+     * Cancel All Open Orders on a Symbol (TRADE)
      *
      * <p>Cancels all active orders on a symbol. This includes orders that are part of an order
-     * list. Weight: 1
+     * list. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deleteOpenOrdersTest() throws ApiException, CryptoException {
+    public void deleteOpenOrdersTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOpenOrdersResponse> response = api.deleteOpenOrders(symbol, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -211,30 +137,35 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BNBUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=BNBUSDT&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "1c2ec70499498e5c5d2f4e98a7e24c74f2801642a8c3743d289dbfc1ca00c7a8",
-                actualRequest.url().queryParameter("signature"));
+                "1c2ec70499498e5c5d2f4e98a7e24c74f2801642a8c3743d289dbfc1ca00c7a8", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/openOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Cancel order
+     * Cancel order (TRADE)
      *
-     * <p>Cancel an active order. Weight: 1
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. -
+     * If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the
+     * &#x60;orderId&#x60; is searched first, then the &#x60;origClientOrderId&#x60; from that
+     * result is checked against that order. If both conditions are not met the request will be
+     * rejected. - The performance for canceling an order (single cancel or as part of a
+     * cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
+     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
+     * will be slower.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deleteOrderTest() throws ApiException, CryptoException {
+    public void deleteOrderTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
         Long orderId = 1L;
-        String origClientOrderId = "";
-        String newClientOrderId = "";
+        String origClientOrderId = "myOrder1";
+        String newClientOrderId = "cancelMyOrder1";
         CancelRestrictions cancelRestrictions = CancelRestrictions.ONLY_NEW;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOrderResponse> response =
                 api.deleteOrder(
                         symbol,
@@ -254,29 +185,29 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=BNBUSDT&orderId=1&origClientOrderId=&newClientOrderId=&cancelRestrictions=ONLY_NEW&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "1a431901da232e9e41c7ed069d48d6bcdc05e75d38feb868fe574efa38418c52",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=BNBUSDT&orderId=1&origClientOrderId=myOrder1&newClientOrderId=cancelMyOrder1&cancelRestrictions=ONLY_NEW&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("13fd107081705dfeb1904dcff57b10a1d45af1f8616c36391cfd016a00b72419", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Cancel Order list
+     * Cancel Order list (TRADE)
      *
-     * <p>Cancel an entire Order list Weight: 1
+     * <p>Cancel an entire Order list Weight(IP): 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine **Notes:** - Canceling an individual order from an order list will cancel the
+     * entire order list. - If both orderListId and listClientOrderId parameters are provided, the
+     * orderListId is searched first, then the listClientOrderId from that result is checked against
+     * that order. If both conditions are not met the request will be rejected.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deleteOrderListTest() throws ApiException, CryptoException {
+    public void deleteOrderListTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
         Long orderListId = 1L;
-        String listClientOrderId = "";
-        String newClientOrderId = "";
-        Long recvWindow = 5000L;
+        String listClientOrderId = "C3wyj4WVEktd7u9aVBRXcN";
+        String newClientOrderId = "cancelMyOrder1";
+        Double recvWindow = 5000d;
         ApiResponse<DeleteOrderListResponse> response =
                 api.deleteOrderList(
                         symbol, orderListId, listClientOrderId, newClientOrderId, recvWindow);
@@ -291,128 +222,69 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BNBUSDT&orderListId=1&listClientOrderId=C3wyj4WVEktd7u9aVBRXcN&newClientOrderId=cancelMyOrder1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=BNBUSDT&orderListId=1&listClientOrderId=&newClientOrderId=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d9e6088fa5875f4f2e1d36eef74b7b7ac90d41a4e3f0269ff99d18698ddd59a0",
-                actualRequest.url().queryParameter("signature"));
+                "a0abdb95c045544160e5eb2c8d08685ee5e1b00f62939d199b50cb012b88f7a8", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/orderList", actualRequest.url().encodedPath());
     }
 
     /**
-     * Current open orders
+     * New order (TRADE)
      *
-     * <p>Get all open orders on a symbol. **Careful** when accessing this with no symbol. Weight: 6
-     * for a single symbol; **80** when the symbol parameter is omitted
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getOpenOrdersTest() throws ApiException, CryptoException {
-        String symbol = "BNBUSDT";
-        Long recvWindow = 5000L;
-        ApiResponse<GetOpenOrdersResponse> response = api.getOpenOrders(symbol, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "symbol=BNBUSDT&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "1c2ec70499498e5c5d2f4e98a7e24c74f2801642a8c3743d289dbfc1ca00c7a8",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/api/v3/openOrders", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Query order
-     *
-     * <p>Check an order&#39;s status. Weight: 4
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getOrderTest() throws ApiException, CryptoException {
-        String symbol = "BNBUSDT";
-        Long orderId = 1L;
-        String origClientOrderId = "";
-        Long recvWindow = 5000L;
-        ApiResponse<GetOrderResponse> response =
-                api.getOrder(symbol, orderId, origClientOrderId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "symbol=BNBUSDT&orderId=1&origClientOrderId=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7df47f2422bd464ff42ac1a57d75c3296c3fd7867f50fd803ad466992b26ef0c",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/api/v3/order", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Query Order list
-     *
-     * <p>Retrieves a specific order list based on provided optional parameters. Weight: 4
+     * <p>Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
+     * the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
+     * TRADE Notes: **Data Source:** Matching Engine Some additional mandatory parameters based on
+     * order &#x60;type&#x60;: Type | Additional mandatory parameters | Additional Information
+     * ------------ | ------------| ------ &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;,
+     * &#x60;quantity&#x60;, &#x60;price&#x60;| &#x60;MARKET&#x60; | &#x60;quantity&#x60; or
+     * &#x60;quoteOrderQty&#x60;| &#x60;MARKET&#x60; orders using the &#x60;quantity&#x60; field
+     * specifies the amount of the &#x60;base asset&#x60; the user wants to buy or sell at the
+     * market price. &lt;br/&gt; E.g. MARKET order on BTCUSDT will specify how much BTC the user is
+     * buying or selling. &lt;br/&gt;&lt;br/&gt; &#x60;MARKET&#x60; orders using
+     * &#x60;quoteOrderQty&#x60; specifies the amount the user wants to spend (when buying) or
+     * receive (when selling) the &#x60;quote&#x60; asset; the correct &#x60;quantity&#x60; will be
+     * determined based on the market liquidity and &#x60;quoteOrderQty&#x60;. &lt;br/&gt; E.g.
+     * Using the symbol BTCUSDT: &lt;br/&gt; &#x60;BUY&#x60; side, the order will buy as many BTC as
+     * &#x60;quoteOrderQty&#x60; USDT can. &lt;br/&gt; &#x60;SELL&#x60; side, the order will sell as
+     * much BTC needed to receive &#x60;quoteOrderQty&#x60; USDT. &#x60;STOP_LOSS&#x60; |
+     * &#x60;quantity&#x60;, &#x60;stopPrice&#x60; or &#x60;trailingDelta&#x60;| This will execute a
+     * &#x60;MARKET&#x60; order when the conditions are met. (e.g. &#x60;stopPrice&#x60; is met or
+     * &#x60;trailingDelta&#x60; is activated) &#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60; or
+     * &#x60;trailingDelta&#x60; &#x60;TAKE_PROFIT&#x60; | &#x60;quantity&#x60;,
+     * &#x60;stopPrice&#x60; or &#x60;trailingDelta&#x60; | This will execute a &#x60;MARKET&#x60;
+     * order when the conditions are met. (e.g. &#x60;stopPrice&#x60; is met or
+     * &#x60;trailingDelta&#x60; is activated) &#x60;TAKE_PROFIT_LIMIT&#x60; |
+     * &#x60;timeInForce&#x60;, &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60; or
+     * &#x60;trailingDelta&#x60; | &#x60;LIMIT_MAKER&#x60; | &#x60;quantity&#x60;,
+     * &#x60;price&#x60;| This is a &#x60;LIMIT&#x60; order that will be rejected if the order
+     * immediately matches and trades as a taker. &lt;br/&gt; This is also known as a POST-ONLY
+     * order. Notes on using parameters for Pegged Orders: * These parameters are allowed for
+     * &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders. * If &#x60;pegPriceType&#x60; is specified,
+     * &#x60;price&#x60; becomes optional. Otherwise, it is still mandatory. *
+     * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that is the best price on
+     * the same side of the order book as your order. * &#x60;pegPriceType&#x3D;MARKET_PEG&#x60;
+     * means the market peg, that is the best price on the opposite side of the order book from your
+     * order. * Use &#x60;pegOffsetType&#x60; and &#x60;pegOffsetValue&#x60; to request a price
+     * level other than the best one. These parameters must be specified together. Other info: * Any
+     * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; type order can be made an iceberg order by
+     * sending an &#x60;icebergQty&#x60;. * Any order with an &#x60;icebergQty&#x60; MUST have
+     * &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * For &#x60;STOP_LOSS&#x60;,
+     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; and &#x60;TAKE_PROFIT&#x60;
+     * orders, &#x60;trailingDelta&#x60; can be combined with &#x60;stopPrice&#x60;. *
+     * &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; will not break &#x60;LOT_SIZE&#x60;
+     * filter rules; the order will execute a &#x60;quantity&#x60; that will have the notional value
+     * as close as possible to &#x60;quoteOrderQty&#x60;. Trigger order price rules against market
+     * price for both MARKET and LIMIT versions: * Price above market price: &#x60;STOP_LOSS&#x60;
+     * &#x60;BUY&#x60;, &#x60;TAKE_PROFIT&#x60; &#x60;SELL&#x60; * Price below market price:
+     * &#x60;STOP_LOSS&#x60; &#x60;SELL&#x60;, &#x60;TAKE_PROFIT&#x60; &#x60;BUY&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getOrderListTest() throws ApiException, CryptoException {
-        Long orderListId = 1L;
-        String origClientOrderId = "";
-        Long recvWindow = 5000L;
-        ApiResponse<GetOrderListResponse> response =
-                api.getOrderList(orderListId, origClientOrderId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "orderListId=1&origClientOrderId=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "6ec9556d1bd19774835e1c8987ff1d260c57f711747a39d4ea50c5e10b099d72",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/api/v3/orderList", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * New order
-     *
-     * <p>Send in a new order. Weight: 1
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void newOrderTest() throws ApiException, CryptoException {
+    public void newOrderTest() throws ApiException, CryptoException, IOException {
         NewOrderRequest newOrderRequest = new NewOrderRequest();
-
         newOrderRequest.symbol("BNBUSDT");
         newOrderRequest.side(Side.BUY);
         newOrderRequest.type(OrderType.MARKET);
@@ -429,26 +301,30 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&side=BUY&type=MARKET",
-                signInputCaptor.getValue());
-        assertEquals(
-                "6486465768232440fc305256c99d50fa366fe8e7f0e7be813f78507f50e0cb4c",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&type=MARKET", signInputCaptor.getValue());
+        assertEquals("6486465768232440fc305256c99d50fa366fe8e7f0e7be813f78507f50e0cb4c", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Open Order lists
+     * Order Amend Keep Priority (TRADE)
      *
-     * <p>Weight: 6
+     * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read Order
+     * Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count: 0 Security Type:
+     * TRADE Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void openOrderListTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
-        ApiResponse<OpenOrderListResponse> response = api.openOrderList(recvWindow);
+    public void orderAmendKeepPriorityTest() throws ApiException, CryptoException, IOException {
+        OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
+                new OrderAmendKeepPriorityRequest();
+        orderAmendKeepPriorityRequest.symbol("BNBUSDT");
+        orderAmendKeepPriorityRequest.newQty(1d);
+
+        ApiResponse<OrderAmendKeepPriorityResponse> response =
+                api.orderAmendKeepPriority(orderAmendKeepPriorityRequest);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -460,27 +336,132 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&newQty=1", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                "bce2a28518ffdef10f2bab36ddef1de42f72a3ebc64bcbf9438888f6591b7ad8",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/api/v3/openOrderList", actualRequest.url().encodedPath());
+        assertEquals("/api/v3/order/amend/keepPriority", actualRequest.url().encodedPath());
     }
 
     /**
-     * Cancel an Existing Order and Send a New Order
+     * Cancel an Existing Order and Send a New Order (TRADE)
      *
-     * <p>Cancels an existing order and places a new order on the same symbol. Filters and Order
-     * Count are evaluated before the processing of the cancellation and order placement occurs. A
-     * new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60; ), will
-     * still increase the order count by 1. Weight: 1
+     * <p>- Cancels an existing order and places a new order on the same symbol. - Filters and Order
+     * Count are evaluated before the processing of the cancellation and order placement occurs. - A
+     * new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will
+     * still increase the unfilled order count by 1. - You can only cancel an individual order from
+     * an orderList using this endpoint, but the result is the same as canceling the entire
+     * orderList. Weight(IP): 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Similar to &#x60;POST /api/v3/order&#x60;, additional mandatory parameters
+     * are determined by &#x60;type&#x60;. Response format varies depending on whether the
+     * processing of the message succeeded, partially succeeded, or failed. &lt;table&gt;
+     * &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3 align&#x3D;left&gt;Request&lt;/th&gt; &lt;th
+     * colspan&#x3D;3 align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;th&gt;&lt;code&gt;cancelReplaceMode&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;orderRateLimitExceededMode&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Unfilled
+     * Order Count&lt;/th&gt; &lt;th&gt;&lt;code&gt;cancelResult&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;newOrderResult&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;&lt;code&gt;status&lt;/code&gt;&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt;
+     * &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;11\&quot;&gt;&lt;code&gt;STOP_ON_FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;6\&quot;&gt;&lt;code&gt;DO_NOTHING&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;5\&quot;&gt;&lt;code&gt;CANCEL_ONLY&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;3\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;2\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;➖
+     * &lt;code&gt;NOT_ATTEMPTED&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;429&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;429&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;16\&quot;&gt;&lt;code&gt;ALLOW_FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;8\&quot;&gt;&lt;code&gt;DO_NOTHING&lt;/code&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;8\&quot;&gt;&lt;CODE&gt;CANCEL_ONLY&lt;/CODE&gt;&lt;/td&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Within Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;200&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td
+     * rowspan&#x3D;\&quot;4\&quot;&gt;Exceeds Limits&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;N/A&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;400&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+     * &lt;td&gt;❌ &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td&gt;✅
+     * &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td align&#x3D;right&gt;N/A&lt;/td&gt;
+     * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
+     * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
+     * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt;
+     * &lt;/table&gt; **Notes:** - The performance for canceling an order (single cancel or as part
+     * of a cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
+     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
+     * will be slower.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderCancelReplaceTest() throws ApiException, CryptoException {
+    public void orderCancelReplaceTest() throws ApiException, CryptoException, IOException {
         OrderCancelReplaceRequest orderCancelReplaceRequest = new OrderCancelReplaceRequest();
-
         orderCancelReplaceRequest.symbol("BNBUSDT");
         orderCancelReplaceRequest.side(Side.BUY);
         orderCancelReplaceRequest.type(OrderType.MARKET);
@@ -499,38 +480,36 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&type=MARKET&cancelReplaceMode=STOP_ON_FAILURE", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&side=BUY&type=MARKET&cancelReplaceMode=STOP_ON_FAILURE",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b6808573e4dde9e77f712e393259a5802e1ab8bcab3342ac2f50b81cf5c99f38",
-                actualRequest.url().queryParameter("signature"));
+                "b6808573e4dde9e77f712e393259a5802e1ab8bcab3342ac2f50b81cf5c99f38", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/order/cancelReplace", actualRequest.url().encodedPath());
     }
 
     /**
-     * New Order list - OCO
+     * New Order list - OCO (TRADE)
      *
      * <p>Send in an one-cancels-the-other (OCO) pair, where activation of one order immediately
-     * cancels the other. * An OCO has 2 orders called the **above order** and **below order**. *
+     * cancels the other. - An OCO has 2 orders called the **above order** and **below order**. -
      * One of the orders must be a &#x60;LIMIT_MAKER/TAKE_PROFIT/TAKE_PROFIT_LIMIT&#x60; order and
-     * the other must be &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. * Price
-     * restrictions * If the OCO is on the &#x60;SELL&#x60; side: *
+     * the other must be &#x60;STOP_LOSS&#x60; or &#x60;STOP_LOSS_LIMIT&#x60; order. - Price
+     * restrictions - If the OCO is on the &#x60;SELL&#x60; side: -
      * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT&#x60; &#x60;price&#x60; &gt; Last Traded Price &gt;
-     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT
-     * stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; *
-     * If the OCO is on the &#x60;BUY&#x60; side: * &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60;
-     * &lt; Last Traded Price &lt; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT stopPrice&#x60; &lt;
+     * &#x60;STOP_LOSS/STOP_LOSS_LIMIT&#x60; &#x60;stopPrice&#x60; - &#x60;TAKE_PROFIT
+     * stopPrice&#x60; &gt; Last Traded Price &gt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; -
+     * If the OCO is on the &#x60;BUY&#x60; side: - &#x60;LIMIT_MAKER/TAKE_PROFIT_LIMIT price&#x60;
+     * &lt; Last Traded Price &lt; &#x60;stopPrice&#x60; - &#x60;TAKE_PROFIT stopPrice&#x60; &lt;
      * Last Traded Price &lt; &#x60;STOP_LOSS/STOP_LOSS_LIMIT stopPrice&#x60; * OCOs add **2
-     * orders** to the unfilled order count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter, and the
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * orders** to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. - OCOs add 2 orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderListOcoTest() throws ApiException, CryptoException {
+    public void orderListOcoTest() throws ApiException, CryptoException, IOException {
         OrderListOcoRequest orderListOcoRequest = new OrderListOcoRequest();
-
         orderListOcoRequest.symbol("BNBUSDT");
         orderListOcoRequest.side(Side.BUY);
         orderListOcoRequest.quantity(1d);
@@ -549,38 +528,118 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&side=BUY&belowType=STOP_LOSS&quantity=1&aboveType=STOP_LOSS_LIMIT",
-                signInputCaptor.getValue());
-        assertEquals(
-                "db3271912437d1b5378885950c667387550503b3231f8929081cea96b3dd46bd",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&belowType=STOP_LOSS&quantity=1&aboveType=STOP_LOSS_LIMIT", signInputCaptor.getValue());
+        assertEquals("db3271912437d1b5378885950c667387550503b3231f8929081cea96b3dd46bd", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/orderList/oco", actualRequest.url().encodedPath());
     }
 
     /**
-     * New Order list - OTO
+     * New Order List - OPO (TRADE)
      *
-     * <p>Places an OTO. * An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. *
-     * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or
-     * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The
-     * second order is called the **pending order**. It can be any order type except for
-     * &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending order is
-     * only placed on the order book when the working order gets **fully filled**. * If either the
-     * working order or the pending order is cancelled individually, the other order in the order
-     * list will also be canceled or expired. * When the order list is placed, if the working order
-     * gets **immediately fully filled**, the placement response will show the working order as
-     * &#x60;FILLED&#x60; but the pending order will still appear as &#x60;PENDING_NEW&#x60;. You
-     * need to query the status of the pending order again to see its updated status. * OTOs add **2
-     * orders** to the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and
-     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 1
+     * <p>Place an [OPO](/products/spot/faqs/opo). - OPOs add 2 orders to the
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60; filter.
+     * Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:** Matching
+     * Engine
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderListOtoTest() throws ApiException, CryptoException {
-        OrderListOtoRequest orderListOtoRequest = new OrderListOtoRequest();
+    public void orderListOpoTest() throws ApiException, CryptoException, IOException {
+        OrderListOpoRequest orderListOpoRequest = new OrderListOpoRequest();
+        orderListOpoRequest.symbol("BNBUSDT");
+        orderListOpoRequest.workingType(WorkingType.LIMIT);
+        orderListOpoRequest.workingSide(WorkingSide.BUY);
+        orderListOpoRequest.workingPrice(1d);
+        orderListOpoRequest.workingQuantity(1d);
+        orderListOpoRequest.pendingType(PendingType.LIMIT);
+        orderListOpoRequest.pendingSide(PendingSide.BUY);
 
+        ApiResponse<OrderListOpoResponse> response = api.orderListOpo(orderListOpoRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&workingQuantity=1&pendingSide=BUY&pendingType=LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
+        assertEquals("c03aae1a5b89a4016731c8fc6eb025c39b020b0557c81aead5d514431956af22", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/orderList/opo", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * New Order List - OPOCO (TRADE)
+     *
+     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void orderListOpocoTest() throws ApiException, CryptoException, IOException {
+        OrderListOpocoRequest orderListOpocoRequest = new OrderListOpocoRequest();
+        orderListOpocoRequest.symbol("BNBUSDT");
+        orderListOpocoRequest.workingType(WorkingType.LIMIT);
+        orderListOpocoRequest.workingSide(WorkingSide.BUY);
+        orderListOpocoRequest.workingPrice(1d);
+        orderListOpocoRequest.workingQuantity(1d);
+        orderListOpocoRequest.pendingSide(PendingSide.BUY);
+        orderListOpocoRequest.pendingAboveType(PendingAboveType.STOP_LOSS_LIMIT);
+
+        ApiResponse<OrderListOpocoResponse> response = api.orderListOpoco(orderListOpocoRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&workingQuantity=1&pendingSide=BUY&pendingAboveType=STOP_LOSS_LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
+        assertEquals("c73a864db5bba386cda1d3ae78bf1a5a8d17f5ab9c4cd81c0ba66c02d6c04bde", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/orderList/opoco", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * New Order list - OTO (TRADE)
+     *
+     * <p>Place an OTO. - An OTO (One-Triggers-the-Other) is an order list comprised of 2 orders. -
+     * The first order is called the **working order** and must be &#x60;LIMIT&#x60; or
+     * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. - The
+     * second order is called the **pending order**. It can be any order type except for
+     * &#x60;MARKET&#x60; orders using parameter &#x60;quoteOrderQty&#x60;. The pending order is
+     * only placed on the order book when the working order gets **fully filled**. - If either the
+     * working order or the pending order is cancelled individually, the other order in the order
+     * list will also be canceled or expired. - When the order list is placed, if the working order
+     * gets **immediately fully filled**, the placement response will show the working order as
+     * &#x60;FILLED&#x60; but the pending order will still appear as &#x60;PENDING_NEW&#x60;. You
+     * need to query the status of the pending order again to see its updated status. - OTOs add **2
+     * orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine **Mandatory parameters based on &#x60;pendingType&#x60; or
+     * &#x60;workingType&#x60;** Depending on the &#x60;pendingType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; | |&#x60;pendingType&#x60; &#x3D;
+     * &#x60;LIMIT&#x60; |&#x60;pendingPrice&#x60;, &#x60;pendingTimeInForce&#x60; |
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or &#x60;TAKE_PROFIT&#x60;
+     * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
+     * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS_LIMIT&#x60; or
+     * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void orderListOtoTest() throws ApiException, CryptoException, IOException {
+        OrderListOtoRequest orderListOtoRequest = new OrderListOtoRequest();
         orderListOtoRequest.symbol("BNBUSDT");
         orderListOtoRequest.workingType(WorkingType.LIMIT);
         orderListOtoRequest.workingSide(WorkingSide.BUY);
@@ -602,35 +661,47 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingType=LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT",
-                signInputCaptor.getValue());
-        assertEquals(
-                "85369190863be30874db1641d544803113baaf1fa702db81e7c8515e8b4f03e8",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingType=LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
+        assertEquals("85369190863be30874db1641d544803113baaf1fa702db81e7c8515e8b4f03e8", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/orderList/oto", actualRequest.url().encodedPath());
     }
 
     /**
-     * New Order list - OTOCO
+     * New Order list - OTOCO (TRADE)
      *
-     * <p>Place an OTOCO. * An OTOCO (One-Triggers-One-Cancels-the-Other) is an order list comprised
-     * of 3 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60;
-     * or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The
-     * behavior of the working order is the same as the [OTO](#new-order-list---oto-trade). * OTOCO
-     * has 2 pending orders (pending above and pending below), forming an OCO pair. The pending
-     * orders are only placed on the order book when the working order gets **fully filled**. * The
-     * rules of the pending above and pending below follow the same rules as the [Order list
-     * OCO](#new-order-list---oco-trade). * OTOCOs add **3 orders** against the unfilled order
-     * count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter.
-     * Weight: 1
+     * <p>Place an OTOCO. - An OTOCO (One-Triggers-One-Cancels-the-Other) is an order list comprised
+     * of 3 orders. - The first order is called the **working order** and must be &#x60;LIMIT&#x60;
+     * or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. - The
+     * behavior of the working order is the same as the [OTO](#order-list-oto). - OTOCO has 2
+     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
+     * only placed on the order book when the working order gets **fully filled**. - The rules of
+     * the pending above and pending below follow the same rules as the [Order list
+     * OCO](#order-list-oco). - OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;
+     * filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine **Mandatory parameters based on
+     * &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;**
+     * Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
+     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
+     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; |
+     * |&#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingAbovePrice&#x60; |
+     * |&#x60;pendingAboveType&#x60; &#x3D; &#x60;STOP_LOSS/TAKE_PROFIT&#x60;
+     * |&#x60;pendingAboveStopPrice&#x60; and/or &#x60;pendingAboveTrailingDelta&#x60;|
+     * |&#x60;pendingAboveType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
+     * |&#x60;pendingAbovePrice&#x60;, &#x60;pendingAboveStopPrice&#x60; and/or
+     * &#x60;pendingAboveTrailingDelta&#x60;, &#x60;pendingAboveTimeInForce&#x60;|
+     * |&#x60;pendingBelowType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingBelowPrice&#x60; |
+     * |&#x60;pendingBelowType&#x3D; STOP_LOSS/TAKE_PROFIT&#x60; |&#x60;pendingBelowStopPrice&#x60;
+     * and/or &#x60;pendingBelowTrailingDelta&#x60;|
+     * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
+     * |&#x60;pendingBelowPrice&#x60;, &#x60;pendingBelowStopPrice&#x60; and/or
+     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60;|
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderListOtocoTest() throws ApiException, CryptoException {
+    public void orderListOtocoTest() throws ApiException, CryptoException, IOException {
         OrderListOtocoRequest orderListOtocoRequest = new OrderListOtocoRequest();
-
         orderListOtocoRequest.symbol("BNBUSDT");
         orderListOtocoRequest.workingType(WorkingType.LIMIT);
         orderListOtocoRequest.workingSide(WorkingSide.BUY);
@@ -652,35 +723,30 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingAboveType=STOP_LOSS_LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT",
-                signInputCaptor.getValue());
-        assertEquals(
-                "d81e48c1257f42a9565c3e55dd2a40190bc0fe8eca7597fe62031e674a2f7213",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingAboveType=STOP_LOSS_LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
+        assertEquals("d81e48c1257f42a9565c3e55dd2a40190bc0fe8eca7597fe62031e674a2f7213", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/orderList/otoco", actualRequest.url().encodedPath());
     }
 
     /**
-     * New OCO - Deprecated
+     * New OCO - Deprecated (TRADE)
      *
-     * <p>Send in a new OCO. * Price Restrictions: * &#x60;SELL&#x60;: Limit Price &gt; Last Price
-     * &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop Price * Quantity
-     * Restrictions: * Both legs must have the same quantity. * &#x60;ICEBERG&#x60; quantities
-     * however do not have to be the same * &#x60;OCO&#x60; adds **2 orders** to the unfilled order
-     * count, &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter.
-     * Weight: 1
+     * <p>Send in a new OCO. - Price Restrictions: - &#x60;SELL&#x60;: Limit Price &gt; Last Price
+     * &gt; Stop Price - &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop Price - Quantity
+     * Restrictions: - Both legs must have the same quantity. - &#x60;ICEBERG&#x60; quantities
+     * however do not have to be the same - &#x60;OCO&#x60; adds **2 orders** to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
+     * 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderOcoTest() throws ApiException, CryptoException {
+    public void orderOcoTest() throws ApiException, CryptoException, IOException {
         OrderOcoRequest orderOcoRequest = new OrderOcoRequest();
-
         orderOcoRequest.symbol("BNBUSDT");
         orderOcoRequest.side(Side.BUY);
         orderOcoRequest.quantity(1d);
-        orderOcoRequest.price(400d);
+        orderOcoRequest.price(1d);
         orderOcoRequest.stopPrice(1d);
 
         ApiResponse<OrderOcoResponse> response = api.orderOco(orderOcoRequest);
@@ -695,33 +761,33 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&side=BUY&stopPrice=1&quantity=1&price=400",
-                signInputCaptor.getValue());
-        assertEquals(
-                "7a44ec1f11be815620aaa760d66d510d4632c91aedca34aaa382ee4a9ef7f702",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&stopPrice=1&quantity=1&price=1", signInputCaptor.getValue());
+        assertEquals("2c496a64bee80f4bc9fb7035e9a037559bcbabb89a8f21e91f789d1a7bfd320b", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/order/oco", actualRequest.url().encodedPath());
     }
 
     /**
-     * Test new order
+     * Test new order (TRADE)
      *
      * <p>Test new order creation and signature/recvWindow long. Creates and validates a new order
-     * but does not send it into the matching engine. Weight: |Condition| Request Weight|
-     * |------------ | ------------ | |Without &#x60;computeCommissionRates&#x60;| 1| |With
-     * &#x60;computeCommissionRates&#x60;|20|
+     * but does not send it into the matching engine. Weight: |Condition|Weight| |---|---| |Without
+     * &#x60;computeCommissionRates&#x60;|1| |With &#x60;computeCommissionRates&#x60;|20| Security
+     * Type: TRADE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderTestTest() throws ApiException, CryptoException {
+    public void orderTestTest() throws ApiException, CryptoException, IOException {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
+        orderTestRequest.symbol("BNBUSDT");
+        orderTestRequest.side(Side.BUY);
+        orderTestRequest.type(OrderType.MARKET);
 
-        ApiResponse<OrderTestResponse> orderTestResponseApiResponse = api.orderTest(orderTestRequest);
+        ApiResponse<OrderTestResponse> response = api.orderTest(orderTestRequest);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy).execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
         ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
         Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
@@ -729,24 +795,26 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&type=MARKET", signInputCaptor.getValue());
+        assertEquals("6486465768232440fc305256c99d50fa366fe8e7f0e7be813f78507f50e0cb4c", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/order/test", actualRequest.url().encodedPath());
     }
 
     /**
-     * New order using SOR
+     * New order using SOR (TRADE)
      *
-     * <p>Places an order using smart order routing (SOR). Weight: 1
+     * <p>Places an order using smart order routing (SOR). This adds 1 order to the
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [SOR
+     * FAQ](/products/spot/faqs/sor_faq) to learn more. Weight(IP): 1 Unfilled Order Count: 1
+     * Security Type: TRADE Notes: **Data Source:** Matching Engine **Note:** &#x60;POST
+     * /api/v3/sor/order&#x60; only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60; orders.
+     * &#x60;quoteOrderQty&#x60; is not supported.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void sorOrderTest() throws ApiException, CryptoException {
+    public void sorOrderTest() throws ApiException, CryptoException, IOException {
         SorOrderRequest sorOrderRequest = new SorOrderRequest();
-
         sorOrderRequest.symbol("BNBUSDT");
         sorOrderRequest.side(Side.BUY);
         sorOrderRequest.type(OrderType.MARKET);
@@ -764,28 +832,28 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000symbol=BNBUSDT&side=BUY&quantity=1&type=MARKET",
-                signInputCaptor.getValue());
-        assertEquals(
-                "84bb7809eacf584b9d7dccae40864b17ca8fcf3de423b05e0a171b8a0c67ed62",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&quantity=1&type=MARKET", signInputCaptor.getValue());
+        assertEquals("84bb7809eacf584b9d7dccae40864b17ca8fcf3de423b05e0a171b8a0c67ed62", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/sor/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Test new order using SOR
+     * Test new order using SOR (TRADE)
      *
      * <p>Test new order creation and signature/recvWindow using smart order routing (SOR). Creates
-     * and validates a new order but does not send it into the matching engine. Weight: | Condition
-     * | Request Weight | | --------- | -------------- | | Without
-     * &#x60;computeCommissionRates&#x60; | 1 | | With &#x60;computeCommissionRates&#x60; | 20 |
+     * and validates a new order but does not send it into the matching engine. Weight:
+     * |Condition|Weight| |---|---| |Without &#x60;computeCommissionRates&#x60;|1| |With
+     * &#x60;computeCommissionRates&#x60;|20| Security Type: TRADE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void sorOrderTestTest() throws ApiException, CryptoException {
+    public void sorOrderTestTest() throws ApiException, CryptoException, IOException {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
+        sorOrderTestRequest.symbol("BNBUSDT");
+        sorOrderTestRequest.side(Side.BUY);
+        sorOrderTestRequest.type(OrderType.MARKET);
+        sorOrderTestRequest.quantity(1d);
 
         ApiResponse<SorOrderTestResponse> response = api.sorOrderTest(sorOrderTestRequest);
 
@@ -799,10 +867,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000computeCommissionRates=false&symbol=BNBUSDT&side=BUY&quantity=1&type=MARKET", signInputCaptor.getValue());
+        assertEquals("af317a0ac951f12999280aa1c3362b23b02460ff5fe5527e86b375a88cc98554", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/sor/order/test", actualRequest.url().encodedPath());
     }
 }

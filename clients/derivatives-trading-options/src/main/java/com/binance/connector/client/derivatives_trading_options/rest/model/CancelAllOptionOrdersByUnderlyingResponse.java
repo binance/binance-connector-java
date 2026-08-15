@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CancelAllOptionOrdersByUnderlyingResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelAllOptionOrdersByUnderlyingResponse {
     public static final String SERIALIZED_NAME_CODE = "code";
 
@@ -50,12 +48,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
     @jakarta.annotation.Nullable
     private String msg;
 
-    public static final String SERIALIZED_NAME_DATA = "data";
-
-    @SerializedName(SERIALIZED_NAME_DATA)
-    @jakarta.annotation.Nullable
-    private Long data;
-
     public CancelAllOptionOrdersByUnderlyingResponse() {}
 
     public CancelAllOptionOrdersByUnderlyingResponse code(@jakarta.annotation.Nullable Long code) {
@@ -64,7 +56,7 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
     }
 
     /**
-     * Get code
+     * code
      *
      * @return code
      */
@@ -83,7 +75,7 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
     }
 
     /**
-     * Get msg
+     * msg
      *
      * @return msg
      */
@@ -94,25 +86,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
 
     public void setMsg(@jakarta.annotation.Nullable String msg) {
         this.msg = msg;
-    }
-
-    public CancelAllOptionOrdersByUnderlyingResponse data(@jakarta.annotation.Nullable Long data) {
-        this.data = data;
-        return this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return data
-     */
-    @jakarta.annotation.Nullable
-    public Long getData() {
-        return data;
-    }
-
-    public void setData(@jakarta.annotation.Nullable Long data) {
-        this.data = data;
     }
 
     @Override
@@ -126,13 +99,12 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         CancelAllOptionOrdersByUnderlyingResponse cancelAllOptionOrdersByUnderlyingResponse =
                 (CancelAllOptionOrdersByUnderlyingResponse) o;
         return Objects.equals(this.code, cancelAllOptionOrdersByUnderlyingResponse.code)
-                && Objects.equals(this.msg, cancelAllOptionOrdersByUnderlyingResponse.msg)
-                && Objects.equals(this.data, cancelAllOptionOrdersByUnderlyingResponse.data);
+                && Objects.equals(this.msg, cancelAllOptionOrdersByUnderlyingResponse.msg);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, msg, data);
+        return Objects.hash(code, msg);
     }
 
     @Override
@@ -141,7 +113,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         sb.append("class CancelAllOptionOrdersByUnderlyingResponse {\n");
         sb.append("		code: ").append(toIndentedString(code)).append("\n");
         sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
-        sb.append("		data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -157,10 +128,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         String msgValueAsString = "";
         msgValueAsString = msgValue.toString();
         sb.append("msg=").append(urlEncode(msgValueAsString)).append("");
-        Object dataValue = getData();
-        String dataValueAsString = "";
-        dataValueAsString = dataValue.toString();
-        sb.append("data=").append(urlEncode(dataValueAsString)).append("");
         return sb.toString();
     }
 
@@ -191,7 +158,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("code");
         openapiFields.add("msg");
-        openapiFields.add("data");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -215,19 +181,6 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
                                     + " the empty JSON string",
                                 CancelAllOptionOrdersByUnderlyingResponse.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelAllOptionOrdersByUnderlyingResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `CancelAllOptionOrdersByUnderlyingResponse` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -261,7 +214,7 @@ public class CancelAllOptionOrdersByUnderlyingResponse {
                         public void write(
                                 JsonWriter out, CancelAllOptionOrdersByUnderlyingResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

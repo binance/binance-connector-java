@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,7 +28,6 @@ import com.binance.connector.client.convert.rest.model.GetConvertTradeHistoryRes
 import com.binance.connector.client.convert.rest.model.OrderStatusResponse;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderRequest;
 import com.binance.connector.client.convert.rest.model.PlaceLimitOrderResponse;
-import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersRequest;
 import com.binance.connector.client.convert.rest.model.QueryLimitOpenOrdersResponse;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.convert.rest.model.SendQuoteRequestResponse;
@@ -41,8 +40,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -55,7 +54,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-convert/1.1.0 (Java/%s; %s; %s)",
+                    "binance-convert/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -105,8 +104,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Accept Quote </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Accept-Quote">Accept Quote
-     *     (TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#accept-quote">Accept
+     *     Quote (TRADE) Documentation</a>
      */
     private okhttp3.Call acceptQuoteCall(AcceptQuoteRequest acceptQuoteRequest)
             throws ApiException {
@@ -151,15 +151,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -173,7 +169,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -208,7 +204,8 @@ public class TradeApi {
     }
 
     /**
-     * Accept Quote (TRADE) Accept the offered quote by quote ID. Weight: 500(UID)
+     * Accept Quote (TRADE) Accept the offered quote by quote ID. Weight(UID): 500 Security Type:
+     * TRADE
      *
      * @param acceptQuoteRequest (required)
      * @return ApiResponse&lt;AcceptQuoteResponse&gt;
@@ -221,8 +218,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Accept Quote </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Accept-Quote">Accept Quote
-     *     (TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#accept-quote">Accept
+     *     Quote (TRADE) Documentation</a>
      */
     public ApiResponse<AcceptQuoteResponse> acceptQuote(
             @Valid @NotNull AcceptQuoteRequest acceptQuoteRequest) throws ApiException {
@@ -245,8 +243,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Cancel limit order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Cancel-Order">Cancel limit
-     *     order (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#cancel-limit-order">Cancel
+     *     limit order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelLimitOrderCall(CancelLimitOrderRequest cancelLimitOrderRequest)
             throws ApiException {
@@ -291,15 +290,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -313,7 +308,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -349,7 +344,8 @@ public class TradeApi {
     }
 
     /**
-     * Cancel limit order (USER_DATA) Enable users to cancel a limit order Weight: 200(UID)
+     * Cancel limit order (TRADE) Enable users to cancel a limit order Weight(UID): 200 Security
+     * Type: TRADE
      *
      * @param cancelLimitOrderRequest (required)
      * @return ApiResponse&lt;CancelLimitOrderResponse&gt;
@@ -362,8 +358,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Cancel limit order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Cancel-Order">Cancel limit
-     *     order (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#cancel-limit-order">Cancel
+     *     limit order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelLimitOrderResponse> cancelLimitOrder(
             @Valid @NotNull CancelLimitOrderRequest cancelLimitOrderRequest) throws ApiException {
@@ -378,8 +375,8 @@ public class TradeApi {
      *
      * @param startTime (required)
      * @param endTime (required)
-     * @param limit Default 100, Max 1000 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -390,8 +387,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/convert/trade/Get-Convert-Trade-History">Get
-     *     Convert Trade History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#get-convert-trade-history">Get
+     *     Convert Trade History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getConvertTradeHistoryCall(
             Long startTime, Long endTime, Long limit, Long recvWindow) throws ApiException {
@@ -444,15 +441,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -466,7 +459,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -508,13 +501,14 @@ public class TradeApi {
     }
 
     /**
-     * Get Convert Trade History(USER_DATA) Get Convert Trade History * The max interval between
-     * startTime and endTime is 30 days. Weight: 3000
+     * Get Convert Trade History (USER_DATA) Get Convert Trade History Weight(UID): 3000 Security
+     * Type: USER_DATA Notes: - The max interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 30 days.
      *
      * @param startTime (required)
      * @param endTime (required)
-     * @param limit Default 100, Max 1000 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetConvertTradeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -526,11 +520,14 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/convert/trade/Get-Convert-Trade-History">Get
-     *     Convert Trade History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#get-convert-trade-history">Get
+     *     Convert Trade History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetConvertTradeHistoryResponse> getConvertTradeHistory(
-            @NotNull Long startTime, @NotNull Long endTime, Long limit, Long recvWindow)
+            @NotNull Long startTime,
+            @NotNull Long endTime,
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getConvertTradeHistoryValidateBeforeCall(startTime, endTime, limit, recvWindow);
@@ -553,8 +550,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Order status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Order-Status">Order
-     *     status(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#order-status">Order
+     *     status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call orderStatusCall(String orderId, String quoteId) throws ApiException {
         String basePath = null;
@@ -598,15 +596,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -620,7 +614,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -655,7 +649,8 @@ public class TradeApi {
     }
 
     /**
-     * Order status(USER_DATA) Query order status by order ID. Weight: 100(UID)
+     * Order status (USER_DATA) Query order status by order ID. Weight(UID): 100 Security Type:
+     * USER_DATA
      *
      * @param orderId Either orderId or quoteId is required (optional)
      * @param quoteId Either orderId or quoteId is required (optional)
@@ -669,8 +664,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Order status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Order-Status">Order
-     *     status(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#order-status">Order
+     *     status (USER_DATA) Documentation</a>
      */
     public ApiResponse<OrderStatusResponse> orderStatus(String orderId, String quoteId)
             throws ApiException {
@@ -693,8 +689,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Place limit order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Place-Order">Place limit
-     *     order (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#place-limit-order">Place
+     *     limit order (TRADE) Documentation</a>
      */
     private okhttp3.Call placeLimitOrderCall(PlaceLimitOrderRequest placeLimitOrderRequest)
             throws ApiException {
@@ -774,15 +771,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -796,7 +789,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -832,10 +825,11 @@ public class TradeApi {
     }
 
     /**
-     * Place limit order (USER_DATA) Enable users to place a limit order * &#x60;baseAsset&#x60; or
-     * &#x60;quoteAsset&#x60; can be determined via &#x60;exchangeInfo&#x60; endpoint. * Limit price
-     * is defined from &#x60;baseAsset&#x60; to &#x60;quoteAsset&#x60;. * Either
-     * &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is used. Weight: 500(UID)
+     * Place limit order (TRADE) Enable users to place a limit order Weight(UID): 500 Security Type:
+     * TRADE Notes: - &#x60;baseAsset&#x60; and &#x60;quoteAsset&#x60; can be determined via the
+     * &#x60;exchangeInfo&#x60; endpoint. - Limit price is defined from &#x60;baseAsset&#x60; to
+     * &#x60;quoteAsset&#x60;. - Exactly one of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60;
+     * should be sent.
      *
      * @param placeLimitOrderRequest (required)
      * @return ApiResponse&lt;PlaceLimitOrderResponse&gt;
@@ -848,8 +842,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Place limit order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Place-Order">Place limit
-     *     order (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#place-limit-order">Place
+     *     limit order (TRADE) Documentation</a>
      */
     public ApiResponse<PlaceLimitOrderResponse> placeLimitOrder(
             @Valid @NotNull PlaceLimitOrderRequest placeLimitOrderRequest) throws ApiException {
@@ -862,7 +857,7 @@ public class TradeApi {
     /**
      * Build call for queryLimitOpenOrders
      *
-     * @param queryLimitOpenOrdersRequest (required)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -872,11 +867,11 @@ public class TradeApi {
      * <tr><td> 200 </td><td> limit open orders </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Query-Order">Query limit open
-     *     orders (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#query-limit-open-orders">Query
+     *     limit open orders (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call queryLimitOpenOrdersCall(
-            QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest) throws ApiException {
+    private okhttp3.Call queryLimitOpenOrdersCall(Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -901,8 +896,8 @@ public class TradeApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (queryLimitOpenOrdersRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", queryLimitOpenOrdersRequest.getRecvWindow());
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -914,34 +909,30 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
         return localVarApiClient.buildCall(
                 basePath,
                 localVarPath,
-                "POST",
+                "GET",
                 localVarQueryParams,
                 localVarCollectionQueryParams,
                 localVarPostBody,
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call queryLimitOpenOrdersValidateBeforeCall(
-            QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest) throws ApiException {
+    private okhttp3.Call queryLimitOpenOrdersValidateBeforeCall(Long recvWindow)
+            throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -951,15 +942,13 @@ public class TradeApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {queryLimitOpenOrdersRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod("queryLimitOpenOrders", QueryLimitOpenOrdersRequest.class);
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("queryLimitOpenOrders", Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return queryLimitOpenOrdersCall(queryLimitOpenOrdersRequest);
+                return queryLimitOpenOrdersCall(recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -973,10 +962,10 @@ public class TradeApi {
     }
 
     /**
-     * Query limit open orders (USER_DATA) Request a quote for the requested token pairs Weight:
-     * 3000(UID)
+     * Query limit open orders (USER_DATA) Query current open limit orders Weight(UID): 3000
+     * Security Type: USER_DATA
      *
-     * @param queryLimitOpenOrdersRequest (required)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryLimitOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -987,14 +976,13 @@ public class TradeApi {
      * <tr><td> 200 </td><td> limit open orders </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Query-Order">Query limit open
-     *     orders (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#query-limit-open-orders">Query
+     *     limit open orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryLimitOpenOrdersResponse> queryLimitOpenOrders(
-            @Valid @NotNull QueryLimitOpenOrdersRequest queryLimitOpenOrdersRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                queryLimitOpenOrdersValidateBeforeCall(queryLimitOpenOrdersRequest);
+            @Max(60000L) Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = queryLimitOpenOrdersValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryLimitOpenOrdersResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1013,8 +1001,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Send Quote Request </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Send-quote-request">Send
-     *     Quote Request(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#send-quote-request">Send
+     *     Quote Request (TRADE) Documentation</a>
      */
     private okhttp3.Call sendQuoteRequestCall(SendQuoteRequestRequest sendQuoteRequestRequest)
             throws ApiException {
@@ -1084,15 +1073,11 @@ public class TradeApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1106,7 +1091,7 @@ public class TradeApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1142,9 +1127,9 @@ public class TradeApi {
     }
 
     /**
-     * Send Quote Request(USER_DATA) Request a quote for the requested token pairs * Either
-     * fromAmount or toAmount should be sent * &#x60;quoteId&#x60; will be returned only if you have
-     * enough funds to convert Weight: 200(UID)
+     * Send Quote Request (TRADE) Request a quote for the requested token pairs Weight(UID): 200
+     * Security Type: TRADE Notes: - Either &#x60;fromAmount&#x60; or &#x60;toAmount&#x60; should be
+     * sent. - &#x60;quoteId&#x60; is returned only if you have enough funds to convert.
      *
      * @param sendQuoteRequestRequest (required)
      * @return ApiResponse&lt;SendQuoteRequestResponse&gt;
@@ -1157,8 +1142,9 @@ public class TradeApi {
      * <tr><td> 200 </td><td> Send Quote Request </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/trade/Send-quote-request">Send
-     *     Quote Request(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/trade#send-quote-request">Send
+     *     Quote Request (TRADE) Documentation</a>
      */
     public ApiResponse<SendQuoteRequestResponse> sendQuoteRequest(
             @Valid @NotNull SendQuoteRequestRequest sendQuoteRequestRequest) throws ApiException {

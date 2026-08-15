@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,12 +24,21 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.spot.rest.model.AccountCommissionResponse;
+import com.binance.connector.client.spot.rest.model.AllOrderListResponse;
+import com.binance.connector.client.spot.rest.model.AllOrdersResponse;
 import com.binance.connector.client.spot.rest.model.GetAccountResponse;
+import com.binance.connector.client.spot.rest.model.GetOpenOrdersResponse;
+import com.binance.connector.client.spot.rest.model.GetOrderListResponse;
+import com.binance.connector.client.spot.rest.model.GetOrderResponse;
 import com.binance.connector.client.spot.rest.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.rest.model.MyFiltersResponse;
 import com.binance.connector.client.spot.rest.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.rest.model.MyTradesResponse;
+import com.binance.connector.client.spot.rest.model.OpenOrderListResponse;
+import com.binance.connector.client.spot.rest.model.OrderAmendmentsResponse;
 import com.binance.connector.client.spot.rest.model.RateLimitOrderResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -81,15 +90,16 @@ public class AccountApiTest {
     }
 
     /**
-     * Query Commission Rates
+     * Query Commission Rates (USER_DATA)
      *
-     * <p>Get current account commission rates. Weight: 20
+     * <p>Get current account commission rates. Weight(IP): 20 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void accountCommissionTest() throws ApiException, CryptoException {
-        String symbol = "BNBUSDT";
+    public void accountCommissionTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         ApiResponse<AccountCommissionResponse> response = api.accountCommission(symbol);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -102,24 +112,97 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=BNBUSDT&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "0ffc690e548c601c0f1fac6208ae531f94448e66a4126acd33db21b4779d0f72",
-                actualRequest.url().queryParameter("signature"));
+                "d326342fddb7d8574fa355101500c78ab918b5af9854b62a591963c69dc618a3", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/account/commission", actualRequest.url().encodedPath());
     }
 
     /**
-     * Account information
+     * Query all Order lists (USER_DATA)
      *
-     * <p>Get current account information. Weight: 20
+     * <p>Retrieves all order lists based on provided optional parameters. Note that the time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
+     * Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAccountTest() throws ApiException, CryptoException {
+    public void allOrderListTest() throws ApiException, CryptoException, IOException {
+        Long fromId = 1L;
+        Long startTime = 1735693200000L;
+        Long endTime = 1735693200000L;
+        Integer limit = 1;
+        Double recvWindow = 5000d;
+        ApiResponse<AllOrderListResponse> response =
+                api.allOrderList(fromId, startTime, endTime, limit, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("fromId=1&startTime=1735693200000&endTime=1735693200000&limit=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("b0d3d5ea733b29e5bac3bcf00e2abfa9f0676abb83de80942dd3f1b871b491e7", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/allOrderList", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * All orders (USER_DATA)
+     *
+     * <p>Get all account orders; active, canceled, or filled. Weight(IP): 20 Security Type:
+     * USER_DATA Notes: **Data Source:** Database - If &#x60;orderId&#x60; is set, it will get
+     * orders &gt;&#x3D; that &#x60;orderId&#x60;. Otherwise most recent orders are returned. - For
+     * some historical orders &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is
+     * not available at this time. - If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; provided,
+     * &#x60;orderId&#x60; is not required. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void allOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "LTCBTC";
+        Long orderId = 1L;
+        Long startTime = 1735693200000L;
+        Long endTime = 1735693200000L;
+        Integer limit = 1;
+        Double recvWindow = 5000d;
+        ApiResponse<AllOrdersResponse> response =
+                api.allOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=LTCBTC&orderId=1&startTime=1735693200000&endTime=1735693200000&limit=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("87a06f10e7f7606cbf5e45fb676a3e7c8a96d82c7d188ded8f21066621c235de", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/allOrders", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Account information (USER_DATA)
+     *
+     * <p>Get current account information. Weight(IP): 20 Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getAccountTest() throws ApiException, CryptoException, IOException {
         Boolean omitZeroBalances = false;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<GetAccountResponse> response = api.getAccount(omitZeroBalances, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -132,31 +215,138 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "omitZeroBalances=false&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "80eb12d82de3d921dc6a83f98a28a092b813f6946f7ce7c57c0540c86607a60c",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("omitZeroBalances=false&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("80eb12d82de3d921dc6a83f98a28a092b813f6946f7ce7c57c0540c86607a60c", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Allocations
+     * Current open orders (USER_DATA)
      *
-     * <p>Retrieves allocations resulting from SOR order placement. Weight: 20
+     * <p>Get all open orders on a symbol. **Careful** when accessing this with no symbol. Weight: 6
+     * for a single symbol; 80 when the symbol parameter is omitted Security Type: USER_DATA Notes:
+     * **Data Source:** Memory &#x3D;&gt; Database - If the symbol is not sent, orders for all
+     * symbols will be returned in an array.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void myAllocationsTest() throws ApiException, CryptoException {
-        String symbol = "BNBUSDT";
+    public void getOpenOrdersTest() throws ApiException, CryptoException, IOException {
+        String symbol = "LTCBTC";
+        Double recvWindow = 5000d;
+        ApiResponse<GetOpenOrdersResponse> response = api.getOpenOrders(symbol, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=LTCBTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("cdf064a4d97e1bba79b07d4390db761f82d1df0ee1ca8fe41b13d97fabecbc6e", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/openOrders", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query order (USER_DATA)
+     *
+     * <p>Check an order&#39;s status. Weight(IP): 4 Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent. - If both &#x60;orderId&#x60; and
+     * &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60; is searched first, then
+     * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
+     * conditions are not met the request will be rejected. - For some historical orders
+     * &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is not available at this
+     * time.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "LTCBTC";
+        Long orderId = 1L;
+        String origClientOrderId = "myOrder1";
+        Double recvWindow = 5000d;
+        ApiResponse<GetOrderResponse> response =
+                api.getOrder(symbol, orderId, origClientOrderId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=LTCBTC&orderId=1&origClientOrderId=myOrder1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("5f1949c59361dd39e56a028ca51f8a1dc65fa1b26fb3405d698193fc177644ec", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/order", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Order list (USER_DATA)
+     *
+     * <p>Retrieves a specific order list based on provided optional parameters. Weight(IP): 4
+     * Security Type: USER_DATA Notes: **Data Source:** Database
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getOrderListTest() throws ApiException, CryptoException, IOException {
+        Long orderListId = 27L;
+        String origClientOrderId = "1";
+        Double recvWindow = 5000d;
+        ApiResponse<GetOrderListResponse> response =
+                api.getOrderList(orderListId, origClientOrderId, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("orderListId=27&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("9ed59e7e6dee62a3db5f16bff4d8ebbeccc616fa5edad9eca251d0ce04f00b94", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/orderList", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Allocations (USER_DATA)
+     *
+     * <p>Retrieves allocations resulting from SOR order placement. Weight(IP): 20 Security Type:
+     * USER_DATA Notes: **Data Source:** Database\&quot; Supported parameter combinations:
+     * Parameters | Response | ------------------------------------------- | -------- |
+     * &#x60;symbol&#x60; | allocations from oldest to newest | &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; | oldest allocations since &#x60;startTime&#x60; | &#x60;symbol&#x60; +
+     * &#x60;endTime&#x60; | newest allocations until &#x60;endTime&#x60; | &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; + &#x60;endTime&#x60; | allocations within the time range |
+     * &#x60;symbol&#x60; + &#x60;fromAllocationId&#x60; | allocations by allocation ID |
+     * &#x60;symbol&#x60; + &#x60;orderId&#x60; | allocations related to an order starting with
+     * oldest | &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromAllocationId&#x60; |
+     * allocations related to an order by allocation ID | **Note:** The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void myAllocationsTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
-        Integer fromAllocationId = 1;
-        Integer limit = 500;
+        Integer fromAllocationId = 0;
+        Integer limit = 1;
         Long orderId = 1L;
-        Long recvWindow = 5000L;
+        Double recvWindow = 5000d;
         ApiResponse<MyAllocationsResponse> response =
                 api.myAllocations(
                         symbol, startTime, endTime, fromAllocationId, limit, orderId, recvWindow);
@@ -171,36 +361,63 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=BNBUSDT&startTime=1735693200000&endTime=1735693200000&fromAllocationId=1&limit=500&orderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "e6d3c40d9c6d8b9c03d0a66f5f52d4518182d2e02b8a6471ca535a5478cab087",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=BTCUSDT&startTime=1735693200000&endTime=1735693200000&fromAllocationId=0&limit=1&orderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("fc98097d479832d67c4b52869bf1013fc93ce57965f363d1a094abc20e9f34a9", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/myAllocations", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Prevented Matches
+     * Query relevant filters (USER_DATA)
      *
-     * <p>Displays the list of orders that were expired due to STP. These are the combinations
-     * supported: * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; +
-     * &#x60;orderId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; +
-     * &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60;
-     * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case |
-     * Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2 Querying by
-     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20
+     * <p>Retrieves the list of filters relevant to an account on a given symbol. This is the only
+     * endpoint that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it.
+     * Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void myPreventedMatchesTest() throws ApiException, CryptoException {
+    public void myFiltersTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
+        Double recvWindow = 5000d;
+        ApiResponse<MyFiltersResponse> response = api.myFilters(symbol, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=BNBUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("1c2ec70499498e5c5d2f4e98a7e24c74f2801642a8c3743d289dbfc1ca00c7a8", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/myFilters", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Prevented Matches (USER_DATA)
+     *
+     * <p>Displays the list of orders that were expired due to STP. These are the combinations
+     * supported: - &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; - &#x60;symbol&#x60; +
+     * &#x60;orderId&#x60; - &#x60;symbol&#x60; + &#x60;orderId&#x60; +
+     * &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) - &#x60;symbol&#x60;
+     * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case |
+     * Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2 Querying by
+     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20 Security Type:
+     * USER_DATA Notes: **Data Source:** Database
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void myPreventedMatchesTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long preventedMatchId = 1L;
         Long orderId = 1L;
         Long fromPreventedMatchId = 1L;
-        Integer limit = 500;
-        Long recvWindow = 5000L;
+        Integer limit = 1;
+        Double recvWindow = 5000d;
         ApiResponse<MyPreventedMatchesResponse> response =
                 api.myPreventedMatches(
                         symbol, preventedMatchId, orderId, fromPreventedMatchId, limit, recvWindow);
@@ -215,31 +432,37 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&preventedMatchId=1&orderId=1&fromPreventedMatchId=1&limit=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=BNBUSDT&preventedMatchId=1&orderId=1&fromPreventedMatchId=1&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "dba5c1473a22f87a0350c80d3754ff03a7e67b8917be6f0a98959cc4c9263b5d",
-                actualRequest.url().queryParameter("signature"));
+                "7eba6eafa1302197c03ccea24061b3f8c23f72f2cedf275cedc419eb64deb959", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/myPreventedMatches", actualRequest.url().encodedPath());
     }
 
     /**
-     * Account trade list
+     * Account trade list (USER_DATA)
      *
-     * <p>Get trades for a specific account and symbol. Weight: 20
+     * <p>Get trades for a specific account and symbol. Weight: Condition| Weight| ---| --- |Without
+     * orderId|20| |With orderId|5| Security Type: USER_DATA Notes: **Data Source:** Memory
+     * &#x3D;&gt; Database **Notes:**: - If &#x60;fromId&#x60; is set, it will get trades &gt;&#x3D;
+     * that &#x60;fromId&#x60;. Otherwise most recent trades are returned. - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours. - These are
+     * the supported combinations of all parameters: - &#x60;symbol&#x60; - &#x60;symbol&#x60; +
+     * &#x60;orderId&#x60; - &#x60;symbol&#x60; + &#x60;startTime&#x60; - &#x60;symbol&#x60; +
+     * &#x60;endTime&#x60; - &#x60;symbol&#x60; + &#x60;fromId&#x60; - &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; + &#x60;endTime&#x60; - &#x60;symbol&#x60;+ &#x60;orderId&#x60; +
+     * &#x60;fromId&#x60;
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void myTradesTest() throws ApiException, CryptoException {
-        String symbol = "BNBUSDT";
-        Long orderId = 1L;
+    public void myTradesTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
+        Long orderId = 100234L;
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
         Long fromId = 1L;
-        Integer limit = 500;
-        Long recvWindow = 5000L;
+        Integer limit = 1;
+        Double recvWindow = 5000d;
         ApiResponse<MyTradesResponse> response =
                 api.myTrades(symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
 
@@ -253,25 +476,84 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "symbol=BNBUSDT&orderId=1&startTime=1735693200000&endTime=1735693200000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "87114efcf71607d26ebed7c7ffab3ea9497a74121ac06151116831a22b8c8263",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=BNBBTC&orderId=100234&startTime=1735693200000&endTime=1735693200000&fromId=1&limit=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("a86ed34e96642e901be0dd0ac2506285446d4a1989621bf0ec51abd7e7d00dd4", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/myTrades", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Unfilled Order Count
+     * Query Open Order lists (USER_DATA)
      *
-     * <p>Displays the user&#39;s unfilled order count for all intervals. Weight: 40
+     * <p>Query Open Order lists Weight(IP): 6 Security Type: USER_DATA Notes: **Data Source:**
+     * Memory -&gt; Database
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void rateLimitOrderTest() throws ApiException, CryptoException {
-        Long recvWindow = 5000L;
+    public void openOrderListTest() throws ApiException, CryptoException, IOException {
+        Double recvWindow = 5000d;
+        ApiResponse<OpenOrderListResponse> response = api.openOrderList(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/openOrderList", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Order Amendments (USER_DATA)
+     *
+     * <p>Queries all amendments of a single order. Weight(IP): 4 Security Type: USER_DATA Notes:
+     * **Data Source:** Database
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void orderAmendmentsTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long orderId = 9L;
+        Long fromExecutionId = 22L;
+        Long limit = 1L;
+        Double recvWindow = 5000d;
+        ApiResponse<OrderAmendmentsResponse> response =
+                api.orderAmendments(symbol, orderId, fromExecutionId, limit, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=BTCUSDT&orderId=9&fromExecutionId=22&limit=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "956a02bd5b19bdf136f678e9376e6fe3dbb433ed31a3966b1c466353e24156c8", actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/order/amendments", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Unfilled Order Count (USER_DATA)
+     *
+     * <p>Displays the user&#39;s unfilled order count for all intervals. Weight(IP): 40 Security
+     * Type: USER_DATA Notes: **Data Source:** Memory
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void rateLimitOrderTest() throws ApiException, CryptoException, IOException {
+        Double recvWindow = 5000d;
         ApiResponse<RateLimitOrderResponse> response = api.rateLimitOrder(recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -285,9 +567,7 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/rateLimit/order", actualRequest.url().encodedPath());
     }
 }

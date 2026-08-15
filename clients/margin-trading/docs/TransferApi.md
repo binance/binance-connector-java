@@ -14,7 +14,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get Cross Margin Transfer History (USER_DATA)
 
-Get Cross Margin Transfer History  * Response in descending order * The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. * Returns data for last 7 days by default  Weight: 1(IP)
+Get Cross Margin Transfer History  Weight(IP): 1  Security Type: USER_DATA  Notes: - Response in descending order - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. - Returns data for last 7 days by default
 
 ### Example
 ```java
@@ -31,14 +31,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TransferApi apiInstance = new TransferApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    String type = "type_example"; // String | Transfer Type: ROLL_IN, ROLL_OUT
-    Long startTime = 56L; // Long | 只支持查询最近90天的数据
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10 Max:100
-    String isolatedSymbol = "isolatedSymbol_example"; // String | isolated symbol
-    Long recvWindow = 56L; // Long | No more than 60000
+    String asset = "BNB"; // String | 
+    OrderType type = OrderType.fromValue("ROLL_IN"); // OrderType | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | 
+    Long size = 10L; // Long | 
+    String isolatedSymbol = "BNBUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetCrossMarginTransferHistoryResponse result = apiInstance.getCrossMarginTransferHistory(asset, type, startTime, endTime, current, size, isolatedSymbol, recvWindow);
       System.out.println(result);
@@ -58,13 +58,13 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
-| **type** | **String**| Transfer Type: ROLL_IN, ROLL_OUT | [optional] |
-| **startTime** | **Long**| 只支持查询最近90天的数据 | [optional] |
+| **type** | [**OrderType**](.md)|  | [optional] [enum: ROLL_IN, ROLL_OUT] |
+| **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
-| **isolatedSymbol** | **String**| isolated symbol | [optional] |
-| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **current** | **Long**|  | [optional] |
+| **size** | **Long**|  | [optional] |
+| **isolatedSymbol** | **String**|  | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -90,7 +90,7 @@ No authorization required
 
 Query Max Transfer-Out Amount (USER_DATA)
 
-Query Max Transfer-Out Amount  * If isolatedSymbol is not sent, crossed margin data will be sent.  Weight: 50(IP)
+Query Max Transfer-Out Amount  Weight(IP): 50  Security Type: USER_DATA  Notes: - If isolatedSymbol is not sent, crossed margin data will be sent.
 
 ### Example
 ```java
@@ -107,9 +107,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TransferApi apiInstance = new TransferApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    String isolatedSymbol = "isolatedSymbol_example"; // String | isolated symbol
-    Long recvWindow = 56L; // Long | No more than 60000
+    String asset = "BTC"; // String | 
+    String isolatedSymbol = "BTCUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryMaxTransferOutAmountResponse result = apiInstance.queryMaxTransferOutAmount(asset, isolatedSymbol, recvWindow);
       System.out.println(result);
@@ -129,8 +129,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | |
-| **isolatedSymbol** | **String**| isolated symbol | [optional] |
-| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **isolatedSymbol** | **String**|  | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 

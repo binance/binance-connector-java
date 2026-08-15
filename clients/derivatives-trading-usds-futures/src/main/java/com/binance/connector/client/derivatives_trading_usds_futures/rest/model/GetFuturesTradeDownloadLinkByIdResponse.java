@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetFuturesTradeDownloadLinkByIdResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetFuturesTradeDownloadLinkByIdResponse {
     public static final String SERIALIZED_NAME_DOWNLOAD_ID = "downloadId";
 
@@ -83,7 +81,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
     }
 
     /**
-     * Get downloadId
+     * Download Id.
      *
      * @return downloadId
      */
@@ -103,7 +101,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -122,7 +120,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
     }
 
     /**
-     * Get url
+     * The link is mapped to download id
      *
      * @return url
      */
@@ -142,7 +140,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
     }
 
     /**
-     * Get notified
+     * ignore
      *
      * @return notified
      */
@@ -162,7 +160,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
     }
 
     /**
-     * Get expirationTimestamp
+     * The link would expire after this timestamp
      *
      * @return expirationTimestamp
      */
@@ -325,19 +323,6 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetFuturesTradeDownloadLinkByIdResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetFuturesTradeDownloadLinkByIdResponse` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("downloadId") != null && !jsonObj.get("downloadId").isJsonNull())
                 && !jsonObj.get("downloadId").isJsonPrimitive()) {
@@ -393,7 +378,7 @@ public class GetFuturesTradeDownloadLinkByIdResponse {
                         public void write(
                                 JsonWriter out, GetFuturesTradeDownloadLinkByIdResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,14 +21,17 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets belowTimeInForce */
+/**
+ * Required if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or
+ * &#x60;TAKE_PROFIT_LIMIT&#x60;.
+ */
 @JsonAdapter(BelowTimeInForce.Adapter.class)
 public enum BelowTimeInForce {
-    belowType("belowType"),
+    GTC("GTC"),
 
-    STOP_LOSS_LIMIT("STOP_LOSS_LIMIT"),
+    IOC("IOC"),
 
-    TAKE_PROFIT_LIMIT("TAKE_PROFIT_LIMIT");
+    FOK("FOK");
 
     private String value;
 

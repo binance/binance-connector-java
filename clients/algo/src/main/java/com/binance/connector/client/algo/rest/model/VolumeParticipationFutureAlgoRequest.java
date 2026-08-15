@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** VolumeParticipationFutureAlgoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class VolumeParticipationFutureAlgoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -49,13 +47,13 @@ public class VolumeParticipationFutureAlgoRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE)
     @jakarta.annotation.Nonnull
-    private String side;
+    private Side side;
 
     public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private String positionSide;
+    private PositionSide positionSide;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -67,7 +65,7 @@ public class VolumeParticipationFutureAlgoRequest {
 
     @SerializedName(SERIALIZED_NAME_URGENCY)
     @jakarta.annotation.Nonnull
-    private String urgency;
+    private Urgency urgency;
 
     public static final String SERIALIZED_NAME_CLIENT_ALGO_ID = "clientAlgoId";
 
@@ -101,7 +99,7 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     /**
-     * Get symbol
+     * Trading symbol eg. BTCUSDT
      *
      * @return symbol
      */
@@ -115,7 +113,7 @@ public class VolumeParticipationFutureAlgoRequest {
         this.symbol = symbol;
     }
 
-    public VolumeParticipationFutureAlgoRequest side(@jakarta.annotation.Nonnull String side) {
+    public VolumeParticipationFutureAlgoRequest side(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
         return this;
     }
@@ -127,16 +125,17 @@ public class VolumeParticipationFutureAlgoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getSide() {
+    @Valid
+    public Side getSide() {
         return side;
     }
 
-    public void setSide(@jakarta.annotation.Nonnull String side) {
+    public void setSide(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
     }
 
     public VolumeParticipationFutureAlgoRequest positionSide(
-            @jakarta.annotation.Nullable String positionSide) {
+            @jakarta.annotation.Nullable PositionSide positionSide) {
         this.positionSide = positionSide;
         return this;
     }
@@ -147,11 +146,12 @@ public class VolumeParticipationFutureAlgoRequest {
      * @return positionSide
      */
     @jakarta.annotation.Nullable
-    public String getPositionSide() {
+    @Valid
+    public PositionSide getPositionSide() {
         return positionSide;
     }
 
-    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
+    public void setPositionSide(@jakarta.annotation.Nullable PositionSide positionSide) {
         this.positionSide = positionSide;
     }
 
@@ -162,7 +162,9 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     /**
-     * Get quantity
+     * Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base
+     * asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of
+     * 1,000,000 USDT
      *
      * @return quantity
      */
@@ -178,7 +180,7 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     public VolumeParticipationFutureAlgoRequest urgency(
-            @jakarta.annotation.Nonnull String urgency) {
+            @jakarta.annotation.Nonnull Urgency urgency) {
         this.urgency = urgency;
         return this;
     }
@@ -190,11 +192,12 @@ public class VolumeParticipationFutureAlgoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getUrgency() {
+    @Valid
+    public Urgency getUrgency() {
         return urgency;
     }
 
-    public void setUrgency(@jakarta.annotation.Nonnull String urgency) {
+    public void setUrgency(@jakarta.annotation.Nonnull Urgency urgency) {
         this.urgency = urgency;
     }
 
@@ -205,11 +208,13 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     /**
-     * Get clientAlgoId
+     * A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will
+     * give default value
      *
      * @return clientAlgoId
      */
     @jakarta.annotation.Nullable
+    @Size(min = 32, max = 32)
     public String getClientAlgoId() {
         return clientAlgoId;
     }
@@ -225,7 +230,8 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     /**
-     * Get reduceOnly
+     * \&quot;true\&quot; or \&quot;false\&quot;. Default \&quot;false\&quot;; Cannot be sent in
+     * Hedge Mode; Cannot be sent when you open a position
      *
      * @return reduceOnly
      */
@@ -245,7 +251,7 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     /**
-     * Get limitPrice
+     * Limit price of the order; If it is not sent, will place order by market price by default
      *
      * @return limitPrice
      */
@@ -266,11 +272,12 @@ public class VolumeParticipationFutureAlgoRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -438,19 +445,6 @@ public class VolumeParticipationFutureAlgoRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!VolumeParticipationFutureAlgoRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `VolumeParticipationFutureAlgoRequest` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : VolumeParticipationFutureAlgoRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -468,28 +462,14 @@ public class VolumeParticipationFutureAlgoRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if (!jsonObj.get("side").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `side` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("side").toString()));
+        // validate the required field `side`
+        Side.validateJsonElement(jsonObj.get("side"));
+        // validate the optional field `positionSide`
+        if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
+            PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
-        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
-                && !jsonObj.get("positionSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `positionSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("positionSide").toString()));
-        }
-        if (!jsonObj.get("urgency").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `urgency` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("urgency").toString()));
-        }
+        // validate the required field `urgency`
+        Urgency.validateJsonElement(jsonObj.get("urgency"));
         if ((jsonObj.get("clientAlgoId") != null && !jsonObj.get("clientAlgoId").isJsonNull())
                 && !jsonObj.get("clientAlgoId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -519,7 +499,7 @@ public class VolumeParticipationFutureAlgoRequest {
                         public void write(
                                 JsonWriter out, VolumeParticipationFutureAlgoRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

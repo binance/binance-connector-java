@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderListPlaceOcoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListPlaceOcoResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -65,7 +65,7 @@ public class OrderListPlaceOcoResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid OrderListPlaceResponseRateLimitsInner> rateLimits;
+    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
 
     public OrderListPlaceOcoResponse() {}
 
@@ -130,13 +130,13 @@ public class OrderListPlaceOcoResponse extends BaseDTO {
 
     public OrderListPlaceOcoResponse rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid OrderListPlaceResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public OrderListPlaceOcoResponse addRateLimitsItem(
-            OrderListPlaceResponseRateLimitsInner rateLimitsItem) {
+            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -151,13 +151,13 @@ public class OrderListPlaceOcoResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid OrderListPlaceResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid OrderListPlaceResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -212,7 +212,7 @@ public class OrderListPlaceOcoResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid OrderListPlaceResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -335,7 +335,7 @@ public class OrderListPlaceOcoResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    OrderListPlaceResponseRateLimitsInner.validateJsonElement(
+                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;
@@ -360,7 +360,7 @@ public class OrderListPlaceOcoResponse extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, OrderListPlaceOcoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startTime** | **Long** |  |  [optional] |
-|**endTime** | **Long** |  |  [optional] |
-|**details** | [**List&lt;QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner&gt;**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner.md) |  |  [optional] |
+|**startTime** | **Long** | Start Time. |  [optional] |
+|**endTime** | **Long** | End Time. |  [optional] |
+|**details** | [**List&lt;QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner&gt;**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner.md) | Details. |  [optional] |
 
 
 

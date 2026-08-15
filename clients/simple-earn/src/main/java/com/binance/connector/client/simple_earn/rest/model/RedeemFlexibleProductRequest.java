@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** RedeemFlexibleProductRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemFlexibleProductRequest {
     public static final String SERIALIZED_NAME_PRODUCT_ID = "productId";
 
@@ -49,7 +47,7 @@ public class RedeemFlexibleProductRequest {
 
     @SerializedName(SERIALIZED_NAME_REDEEM_ALL)
     @jakarta.annotation.Nullable
-    private Boolean redeemAll;
+    private Boolean redeemAll = false;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -61,7 +59,7 @@ public class RedeemFlexibleProductRequest {
 
     @SerializedName(SERIALIZED_NAME_DEST_ACCOUNT)
     @jakarta.annotation.Nullable
-    private String destAccount;
+    private DestAccount destAccount = DestAccount.SPOT;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -116,7 +114,7 @@ public class RedeemFlexibleProductRequest {
     }
 
     /**
-     * Get amount
+     * if redeemAll is false, amount is mandatory
      *
      * @return amount
      */
@@ -131,7 +129,7 @@ public class RedeemFlexibleProductRequest {
     }
 
     public RedeemFlexibleProductRequest destAccount(
-            @jakarta.annotation.Nullable String destAccount) {
+            @jakarta.annotation.Nullable DestAccount destAccount) {
         this.destAccount = destAccount;
         return this;
     }
@@ -142,11 +140,12 @@ public class RedeemFlexibleProductRequest {
      * @return destAccount
      */
     @jakarta.annotation.Nullable
-    public String getDestAccount() {
+    @Valid
+    public DestAccount getDestAccount() {
         return destAccount;
     }
 
-    public void setDestAccount(@jakarta.annotation.Nullable String destAccount) {
+    public void setDestAccount(@jakarta.annotation.Nullable DestAccount destAccount) {
         this.destAccount = destAccount;
     }
 
@@ -156,11 +155,12 @@ public class RedeemFlexibleProductRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -285,18 +285,6 @@ public class RedeemFlexibleProductRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RedeemFlexibleProductRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `RedeemFlexibleProductRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : RedeemFlexibleProductRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -314,13 +302,9 @@ public class RedeemFlexibleProductRequest {
                                     + " string but got `%s`",
                             jsonObj.get("productId").toString()));
         }
-        if ((jsonObj.get("destAccount") != null && !jsonObj.get("destAccount").isJsonNull())
-                && !jsonObj.get("destAccount").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `destAccount` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("destAccount").toString()));
+        // validate the optional field `destAccount`
+        if (jsonObj.get("destAccount") != null && !jsonObj.get("destAccount").isJsonNull()) {
+            DestAccount.validateJsonElement(jsonObj.get("destAccount"));
         }
     }
 
@@ -342,7 +326,7 @@ public class RedeemFlexibleProductRequest {
                         @Override
                         public void write(JsonWriter out, RedeemFlexibleProductRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

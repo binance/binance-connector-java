@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SubmitDepositQuestionnaireRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubmitDepositQuestionnaireRequest {
     public static final String SERIALIZED_NAME_SUB_ACCOUNT_ID = "subAccountId";
 
@@ -49,7 +47,7 @@ public class SubmitDepositQuestionnaireRequest {
 
     @SerializedName(SERIALIZED_NAME_DEPOSIT_ID)
     @jakarta.annotation.Nonnull
-    private String depositId;
+    private Long depositId;
 
     public static final String SERIALIZED_NAME_QUESTIONNAIRE = "questionnaire";
 
@@ -93,12 +91,6 @@ public class SubmitDepositQuestionnaireRequest {
     @jakarta.annotation.Nullable
     private String addressTag;
 
-    public static final String SERIALIZED_NAME_SIGNATURE = "signature";
-
-    @SerializedName(SERIALIZED_NAME_SIGNATURE)
-    @jakarta.annotation.Nonnull
-    private String signature;
-
     public SubmitDepositQuestionnaireRequest() {}
 
     public SubmitDepositQuestionnaireRequest subAccountId(
@@ -108,7 +100,7 @@ public class SubmitDepositQuestionnaireRequest {
     }
 
     /**
-     * Get subAccountId
+     * External user ID.
      *
      * @return subAccountId
      */
@@ -122,24 +114,23 @@ public class SubmitDepositQuestionnaireRequest {
         this.subAccountId = subAccountId;
     }
 
-    public SubmitDepositQuestionnaireRequest depositId(
-            @jakarta.annotation.Nonnull String depositId) {
+    public SubmitDepositQuestionnaireRequest depositId(@jakarta.annotation.Nonnull Long depositId) {
         this.depositId = depositId;
         return this;
     }
 
     /**
-     * Get depositId
+     * Wallet deposit ID.
      *
      * @return depositId
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getDepositId() {
+    public Long getDepositId() {
         return depositId;
     }
 
-    public void setDepositId(@jakarta.annotation.Nonnull String depositId) {
+    public void setDepositId(@jakarta.annotation.Nonnull Long depositId) {
         this.depositId = depositId;
     }
 
@@ -150,7 +141,7 @@ public class SubmitDepositQuestionnaireRequest {
     }
 
     /**
-     * Get questionnaire
+     * JSON format questionnaire answers.
      *
      * @return questionnaire
      */
@@ -171,7 +162,7 @@ public class SubmitDepositQuestionnaireRequest {
     }
 
     /**
-     * Get beneficiaryPii
+     * JSON format beneficiary Pii.
      *
      * @return beneficiaryPii
      */
@@ -282,27 +273,6 @@ public class SubmitDepositQuestionnaireRequest {
         this.addressTag = addressTag;
     }
 
-    public SubmitDepositQuestionnaireRequest signature(
-            @jakarta.annotation.Nonnull String signature) {
-        this.signature = signature;
-        return this;
-    }
-
-    /**
-     * Get signature
-     *
-     * @return signature
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(@jakarta.annotation.Nonnull String signature) {
-        this.signature = signature;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -323,8 +293,7 @@ public class SubmitDepositQuestionnaireRequest {
                 && Objects.equals(this.coin, submitDepositQuestionnaireRequest.coin)
                 && Objects.equals(this.amount, submitDepositQuestionnaireRequest.amount)
                 && Objects.equals(this.address, submitDepositQuestionnaireRequest.address)
-                && Objects.equals(this.addressTag, submitDepositQuestionnaireRequest.addressTag)
-                && Objects.equals(this.signature, submitDepositQuestionnaireRequest.signature);
+                && Objects.equals(this.addressTag, submitDepositQuestionnaireRequest.addressTag);
     }
 
     @Override
@@ -338,8 +307,7 @@ public class SubmitDepositQuestionnaireRequest {
                 coin,
                 amount,
                 address,
-                addressTag,
-                signature);
+                addressTag);
     }
 
     @Override
@@ -355,7 +323,6 @@ public class SubmitDepositQuestionnaireRequest {
         sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
         sb.append("		address: ").append(toIndentedString(address)).append("\n");
         sb.append("		addressTag: ").append(toIndentedString(addressTag)).append("\n");
-        sb.append("		signature: ").append(toIndentedString(signature)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -399,10 +366,6 @@ public class SubmitDepositQuestionnaireRequest {
         String addressTagValueAsString = "";
         addressTagValueAsString = addressTagValue.toString();
         sb.append("addressTag=").append(urlEncode(addressTagValueAsString)).append("");
-        Object signatureValue = getSignature();
-        String signatureValueAsString = "";
-        signatureValueAsString = signatureValue.toString();
-        sb.append("signature=").append(urlEncode(signatureValueAsString)).append("");
         return sb.toString();
     }
 
@@ -440,7 +403,6 @@ public class SubmitDepositQuestionnaireRequest {
         openapiFields.add("amount");
         openapiFields.add("address");
         openapiFields.add("addressTag");
-        openapiFields.add("signature");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -448,7 +410,6 @@ public class SubmitDepositQuestionnaireRequest {
         openapiRequiredFields.add("depositId");
         openapiRequiredFields.add("questionnaire");
         openapiRequiredFields.add("beneficiaryPii");
-        openapiRequiredFields.add("signature");
     }
 
     /**
@@ -471,18 +432,6 @@ public class SubmitDepositQuestionnaireRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SubmitDepositQuestionnaireRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `SubmitDepositQuestionnaireRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : SubmitDepositQuestionnaireRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -499,13 +448,6 @@ public class SubmitDepositQuestionnaireRequest {
                             "Expected the field `subAccountId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("subAccountId").toString()));
-        }
-        if (!jsonObj.get("depositId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `depositId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("depositId").toString()));
         }
         if (!jsonObj.get("questionnaire").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -553,13 +495,6 @@ public class SubmitDepositQuestionnaireRequest {
                                     + " string but got `%s`",
                             jsonObj.get("addressTag").toString()));
         }
-        if (!jsonObj.get("signature").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `signature` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("signature").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -580,7 +515,7 @@ public class SubmitDepositQuestionnaireRequest {
                         @Override
                         public void write(JsonWriter out, SubmitDepositQuestionnaireRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

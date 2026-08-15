@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -14,7 +14,6 @@ package com.binance.connector.client.pay.rest.model;
 
 import com.binance.connector.client.pay.rest.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -23,26 +22,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetPayTradeHistoryResponseDataInnerFundsDetailInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
 
@@ -60,8 +54,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
 
     @SerializedName(SERIALIZED_NAME_WALLET_ASSET_COST)
     @jakarta.annotation.Nullable
-    private List<@Valid GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
-            walletAssetCost;
+    private Map<String, String> walletAssetCost;
 
     public GetPayTradeHistoryResponseDataInnerFundsDetailInner() {}
 
@@ -72,7 +65,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     }
 
     /**
-     * Get currency
+     * Asset.
      *
      * @return currency
      */
@@ -92,7 +85,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     }
 
     /**
-     * Get amount
+     * Asset amount.
      *
      * @return amount
      */
@@ -106,43 +99,33 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     }
 
     public GetPayTradeHistoryResponseDataInnerFundsDetailInner walletAssetCost(
-            @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
-                            walletAssetCost) {
+            @jakarta.annotation.Nullable Map<String, String> walletAssetCost) {
         this.walletAssetCost = walletAssetCost;
         return this;
     }
 
-    public GetPayTradeHistoryResponseDataInnerFundsDetailInner addWalletAssetCostItem(
-            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
-                    walletAssetCostItem) {
+    public GetPayTradeHistoryResponseDataInnerFundsDetailInner putWalletAssetCostItem(
+            String key, String walletAssetCostItem) {
         if (this.walletAssetCost == null) {
-            this.walletAssetCost = new ArrayList<>();
+            this.walletAssetCost = new HashMap<>();
         }
-        this.walletAssetCost.add(walletAssetCostItem);
+        this.walletAssetCost.put(key, walletAssetCostItem);
         return this;
     }
 
     /**
-     * Get walletAssetCost
+     * Asset cost details per wallet type. Keys are wallet type IDs (e.g. \&quot;1\&quot;,
+     * \&quot;2\&quot;), values are cost amounts.
      *
      * @return walletAssetCost
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public List<@Valid GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
-            getWalletAssetCost() {
+    public Map<String, String> getWalletAssetCost() {
         return walletAssetCost;
     }
 
     public void setWalletAssetCost(
-            @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner>
-                            walletAssetCost) {
+            @jakarta.annotation.Nullable Map<String, String> walletAssetCost) {
         this.walletAssetCost = walletAssetCost;
     }
 
@@ -195,10 +178,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
         sb.append("amount=").append(urlEncode(amountValueAsString)).append("");
         Object walletAssetCostValue = getWalletAssetCost();
         String walletAssetCostValueAsString = "";
-        walletAssetCostValueAsString =
-                (String)
-                        ((Collection) walletAssetCostValue)
-                                .stream().map(Object::toString).collect(Collectors.joining(","));
+        walletAssetCostValueAsString = walletAssetCostValue.toString();
         sb.append("walletAssetCost=").append(urlEncode(walletAssetCostValueAsString)).append("");
         return sb.toString();
     }
@@ -257,20 +237,6 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPayTradeHistoryResponseDataInnerFundsDetailInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetPayTradeHistoryResponseDataInnerFundsDetailInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull())
                 && !jsonObj.get("currency").isJsonPrimitive()) {
@@ -287,27 +253,6 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
                             "Expected the field `amount` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("amount").toString()));
-        }
-        if (jsonObj.get("walletAssetCost") != null
-                && !jsonObj.get("walletAssetCost").isJsonNull()) {
-            JsonArray jsonArraywalletAssetCost = jsonObj.getAsJsonArray("walletAssetCost");
-            if (jsonArraywalletAssetCost != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("walletAssetCost").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `walletAssetCost` to be an array in the"
-                                            + " JSON string but got `%s`",
-                                    jsonObj.get("walletAssetCost").toString()));
-                }
-
-                // validate the optional field `walletAssetCost` (array)
-                for (int i = 0; i < jsonArraywalletAssetCost.size(); i++) {
-                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
-                            .validateJsonElement(jsonArraywalletAssetCost.get(i));
-                }
-                ;
-            }
         }
     }
 
@@ -335,7 +280,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
                                 JsonWriter out,
                                 GetPayTradeHistoryResponseDataInnerFundsDetailInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

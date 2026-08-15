@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** AllMarketLiquidationOrderStreamsResponseO */
+/** Order Type */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
@@ -114,7 +114,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -133,7 +133,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -153,7 +153,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Order Type
      *
      * @return oLowerCase
      */
@@ -173,7 +173,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Time in Force
      *
      * @return fLowerCase
      */
@@ -193,7 +193,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Original Quantity
      *
      * @return qLowerCase
      */
@@ -213,7 +213,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Price
      *
      * @return pLowerCase
      */
@@ -232,7 +232,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get ap
+     * Average Price
      *
      * @return ap
      */
@@ -251,7 +251,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get X
+     * Order Status
      *
      * @return X
      */
@@ -271,7 +271,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Order Last Filled Quantity
      *
      * @return lLowerCase
      */
@@ -291,7 +291,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get zLowerCase
+     * Order Filled Accumulated Quantity
      *
      * @return zLowerCase
      */
@@ -310,7 +310,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Order Trade Time
      *
      * @return T
      */
@@ -679,7 +679,7 @@ public class AllMarketLiquidationOrderStreamsResponseO extends BaseDTO {
                         public void write(
                                 JsonWriter out, AllMarketLiquidationOrderStreamsResponseO value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

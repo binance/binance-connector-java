@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** QueryIsolatedMarginAccountInfoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIsolatedMarginAccountInfoResponse {
     public static final String SERIALIZED_NAME_ASSETS = "assets";
 
@@ -87,7 +85,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get assets
+     * assets list.
      *
      * @return assets
      */
@@ -110,7 +108,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get totalAssetOfBtc
+     * total Asset Of Btc.
      *
      * @return totalAssetOfBtc
      */
@@ -130,7 +128,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get totalLiabilityOfBtc
+     * total Liability Of Btc.
      *
      * @return totalLiabilityOfBtc
      */
@@ -150,7 +148,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
     }
 
     /**
-     * Get totalNetAssetOfBtc
+     * total Net Asset Of Btc.
      *
      * @return totalNetAssetOfBtc
      */
@@ -288,19 +286,6 @@ public class QueryIsolatedMarginAccountInfoResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryIsolatedMarginAccountInfoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryIsolatedMarginAccountInfoResponse` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if (jsonObj.get("assets") != null && !jsonObj.get("assets").isJsonNull()) {
             JsonArray jsonArrayassets = jsonObj.getAsJsonArray("assets");
@@ -369,7 +354,7 @@ public class QueryIsolatedMarginAccountInfoResponse {
                         public void write(
                                 JsonWriter out, QueryIsolatedMarginAccountInfoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

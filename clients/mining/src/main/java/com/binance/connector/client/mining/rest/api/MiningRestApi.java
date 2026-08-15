@@ -23,22 +23,22 @@ import com.binance.connector.client.mining.rest.model.StatisticListResponse;
 
 public class MiningRestApi {
 
-    private final MiningApi miningApi;
+    private final DefaultApi defaultApi;
 
     public MiningRestApi(ClientConfiguration configuration) {
         this(MiningRestApiUtil.getDefaultClient(configuration));
     }
 
     public MiningRestApi(ApiClient apiClient) {
-        this.miningApi = new MiningApi(apiClient);
+        this.defaultApi = new DefaultApi(apiClient);
     }
 
     /**
-     * Account List(USER_DATA) Query Account List Weight: 5
+     * Account List (USER_DATA) Query Account List Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
-     * @param userName Mining account test (required)
-     * @param recvWindow (optional)
+     * @param algo Algorithm name. (required)
+     * @param userName Mining account (required)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;AccountListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -49,16 +49,18 @@ public class MiningRestApi {
      * <tr><td> 200 </td><td> Account List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Account-List">Account
-     *     List(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#account-list">Account
+     *     List (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountListResponse> accountList(
             String algo, String userName, Long recvWindow) throws ApiException {
-        return miningApi.accountList(algo, userName, recvWindow);
+        return defaultApi.accountList(algo, userName, recvWindow);
     }
 
     /**
-     * Acquiring Algorithm(MARKET_DATA) Acquiring Algorithm Weight: 1
+     * Acquiring Algorithm (MARKET_DATA) Acquiring Algorithm Weight(IP): 1 Security Type:
+     * MARKET_DATA
      *
      * @return ApiResponse&lt;AcquiringAlgorithmResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -71,15 +73,15 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Acquiring-Algorithm">Acquiring
-     *     Algorithm(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#acquiring-algorithm">Acquiring
+     *     Algorithm (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<AcquiringAlgorithmResponse> acquiringAlgorithm() throws ApiException {
-        return miningApi.acquiringAlgorithm();
+        return defaultApi.acquiringAlgorithm();
     }
 
     /**
-     * Acquiring CoinName(MARKET_DATA) Acquiring CoinName Weight: 1
+     * Acquiring CoinName (MARKET_DATA) Acquiring CoinName Weight(IP): 1 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;AcquiringCoinnameResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -92,15 +94,16 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Acquiring-CoinName">Acquiring
-     *     CoinName(MARKET_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#acquiring-coinname">Acquiring
+     *     CoinName (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<AcquiringCoinnameResponse> acquiringCoinname() throws ApiException {
-        return miningApi.acquiringCoinname();
+        return defaultApi.acquiringCoinname();
     }
 
     /**
-     * Cancel hashrate resale configuration(USER_DATA) Weight: 5
+     * Cancel hashrate resale configuration (USER_DATA) Cancel hashrate resale configuration
+     * Weight(IP): 1 Security Type: USER_DATA
      *
      * @param cancelHashrateResaleConfigurationRequest (required)
      * @return ApiResponse&lt;CancelHashrateResaleConfigurationResponse&gt;
@@ -114,27 +117,27 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Cancel-hashrate-resale-configuration">Cancel
-     *     hashrate resale configuration(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#cancel-hashrate-resale-configuration">Cancel
+     *     hashrate resale configuration (USER_DATA) Documentation</a>
      */
     public ApiResponse<CancelHashrateResaleConfigurationResponse> cancelHashrateResaleConfiguration(
             CancelHashrateResaleConfigurationRequest cancelHashrateResaleConfigurationRequest)
             throws ApiException {
-        return miningApi.cancelHashrateResaleConfiguration(
+        return defaultApi.cancelHashrateResaleConfiguration(
                 cancelHashrateResaleConfigurationRequest);
     }
 
     /**
-     * Earnings List(USER_DATA) Query Earnings List Weight: 5
+     * Earnings List (USER_DATA) Query Earnings List Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
-     * @param userName Mining account test (required)
-     * @param coin Coin Name (optional)
-     * @param startDate Millisecond timestamp (optional)
-     * @param endDate Millisecond timestamp (optional)
-     * @param pageIndex Page number, empty default first page, starting from 1 (optional)
-     * @param pageSize Min 10,Max 200 (optional)
-     * @param recvWindow (optional)
+     * @param algo Algorithm name. (required)
+     * @param userName Mining account. (required)
+     * @param coin Coin name (optional)
+     * @param startDate Search start time in milliseconds. (optional)
+     * @param endDate Search end time in milliseconds. (optional)
+     * @param pageIndex Page number, starting from 1. (optional)
+     * @param pageSize Number of rows per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;EarningsListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -145,8 +148,9 @@ public class MiningRestApi {
      * <tr><td> 200 </td><td> Earnings List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Earnings-List">Earnings
-     *     List(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#earnings-list">Earnings
+     *     List (USER_DATA) Documentation</a>
      */
     public ApiResponse<EarningsListResponse> earningsList(
             String algo,
@@ -158,21 +162,21 @@ public class MiningRestApi {
             Long pageSize,
             Long recvWindow)
             throws ApiException {
-        return miningApi.earningsList(
+        return defaultApi.earningsList(
                 algo, userName, coin, startDate, endDate, pageIndex, pageSize, recvWindow);
     }
 
     /**
-     * Extra Bonus List(USER_DATA) Extra Bonus List Weight: 5
+     * Extra Bonus List (USER_DATA) Extra Bonus List Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
-     * @param userName Mining account test (required)
-     * @param coin Coin Name (optional)
-     * @param startDate Millisecond timestamp (optional)
-     * @param endDate Millisecond timestamp (optional)
-     * @param pageIndex Page number, empty default first page, starting from 1 (optional)
-     * @param pageSize Min 10,Max 200 (optional)
-     * @param recvWindow (optional)
+     * @param algo Transfer algorithm (required)
+     * @param userName Mining account (required)
+     * @param coin Coin name (optional)
+     * @param startDate Search start time in milliseconds. (optional)
+     * @param endDate Search end time in milliseconds. (optional)
+     * @param pageIndex Page number, starting from 1. (optional)
+     * @param pageSize Number of rows per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;ExtraBonusListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -183,8 +187,9 @@ public class MiningRestApi {
      * <tr><td> 200 </td><td> Extra Bonus List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Extra-Bonus-List">Extra
-     *     Bonus List(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#extra-bonus-list">Extra
+     *     Bonus List (USER_DATA) Documentation</a>
      */
     public ApiResponse<ExtraBonusListResponse> extraBonusList(
             String algo,
@@ -196,18 +201,18 @@ public class MiningRestApi {
             Long pageSize,
             Long recvWindow)
             throws ApiException {
-        return miningApi.extraBonusList(
+        return defaultApi.extraBonusList(
                 algo, userName, coin, startDate, endDate, pageIndex, pageSize, recvWindow);
     }
 
     /**
-     * Hashrate Resale Detail(USER_DATA) Hashrate Resale Detail(USER_DATA) Weight: 5
+     * Hashrate Resale Detail (USER_DATA) Hashrate Resale Detail(USER_DATA) Weight(IP): 1 Security
+     * Type: USER_DATA
      *
-     * @param configId Mining ID 168 (required)
-     * @param userName Mining account test (required)
-     * @param pageIndex Page number, empty default first page, starting from 1 (optional)
-     * @param pageSize Min 10,Max 200 (optional)
-     * @param recvWindow (optional)
+     * @param configId Configuration ID. (required)
+     * @param pageIndex Page number, starting from 1. (optional)
+     * @param pageSize Number of rows per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;HashrateResaleDetailResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -219,21 +224,20 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-Detail">Hashrate
-     *     Resale Detail(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#hashrate-resale-detail">Hashrate
+     *     Resale Detail (USER_DATA) Documentation</a>
      */
     public ApiResponse<HashrateResaleDetailResponse> hashrateResaleDetail(
-            Long configId, String userName, Long pageIndex, Long pageSize, Long recvWindow)
-            throws ApiException {
-        return miningApi.hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow);
+            Long configId, Long pageIndex, Long pageSize, Long recvWindow) throws ApiException {
+        return defaultApi.hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow);
     }
 
     /**
-     * Hashrate Resale List Hashrate Resale List Weight: 5
+     * Hashrate Resale List (USER_DATA) Hashrate Resale List Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param pageIndex Page number, empty default first page, starting from 1 (optional)
-     * @param pageSize Min 10,Max 200 (optional)
-     * @param recvWindow (optional)
+     * @param pageIndex Page number, starting from 1. (optional)
+     * @param pageSize Number of rows per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;HashrateResaleListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -245,16 +249,17 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-List">Hashrate
-     *     Resale List Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#hashrate-resale-list">Hashrate
+     *     Resale List (USER_DATA) Documentation</a>
      */
     public ApiResponse<HashrateResaleListResponse> hashrateResaleList(
             Long pageIndex, Long pageSize, Long recvWindow) throws ApiException {
-        return miningApi.hashrateResaleList(pageIndex, pageSize, recvWindow);
+        return defaultApi.hashrateResaleList(pageIndex, pageSize, recvWindow);
     }
 
     /**
-     * Hashrate Resale Request(USER_DATA) Hashrate Resale Request Weight: 5
+     * Hashrate Resale Request (USER_DATA) Hashrate Resale Request Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param hashrateResaleRequestRequest (required)
      * @return ApiResponse&lt;HashrateResaleRequestResponse&gt;
@@ -268,23 +273,24 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Hashrate-Resale-Request">Hashrate
-     *     Resale Request(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#hashrate-resale-request">Hashrate
+     *     Resale Request (USER_DATA) Documentation</a>
      */
     public ApiResponse<HashrateResaleRequestResponse> hashrateResaleRequest(
             HashrateResaleRequestRequest hashrateResaleRequestRequest) throws ApiException {
-        return miningApi.hashrateResaleRequest(hashrateResaleRequestRequest);
+        return defaultApi.hashrateResaleRequest(hashrateResaleRequestRequest);
     }
 
     /**
-     * Mining Account Earning(USER_DATA) Mining Account Earning Weight: 5
+     * Mining Account Earning (USER_DATA) Mining Account Earning Weight(IP): 1 Security Type:
+     * USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
+     * @param algo Algorithm (required)
      * @param startDate Millisecond timestamp (optional)
      * @param endDate Millisecond timestamp (optional)
-     * @param pageIndex Page number, empty default first page, starting from 1 (optional)
-     * @param pageSize Min 10,Max 200 (optional)
-     * @param recvWindow (optional)
+     * @param pageIndex Page number, starting from 1. (optional)
+     * @param pageSize Number of rows per page. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;MiningAccountEarningResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -296,8 +302,8 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Mining-Account-Earning">Mining
-     *     Account Earning(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#mining-account-earning">Mining
+     *     Account Earning (USER_DATA) Documentation</a>
      */
     public ApiResponse<MiningAccountEarningResponse> miningAccountEarning(
             String algo,
@@ -307,17 +313,18 @@ public class MiningRestApi {
             Long pageSize,
             Long recvWindow)
             throws ApiException {
-        return miningApi.miningAccountEarning(
+        return defaultApi.miningAccountEarning(
                 algo, startDate, endDate, pageIndex, pageSize, recvWindow);
     }
 
     /**
-     * Request for Detail Miner List(USER_DATA) Request for Detail Miner List Weight: 5
+     * Request for Detail Miner List (USER_DATA) Request for Detail Miner List Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
-     * @param userName Mining account test (required)
-     * @param workerName Miner’s name(required) bhdc1.16A10404B (required)
-     * @param recvWindow (optional)
+     * @param algo Algorithm (required)
+     * @param userName Mining account (required)
+     * @param workerName Miner name. (required)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;RequestForDetailMinerListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -329,28 +336,26 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Request-for-Detail-Miner-List">Request
-     *     for Detail Miner List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#request-for-detail-miner-list">Request
+     *     for Detail Miner List (USER_DATA) Documentation</a>
      */
     public ApiResponse<RequestForDetailMinerListResponse> requestForDetailMinerList(
             String algo, String userName, String workerName, Long recvWindow) throws ApiException {
-        return miningApi.requestForDetailMinerList(algo, userName, workerName, recvWindow);
+        return defaultApi.requestForDetailMinerList(algo, userName, workerName, recvWindow);
     }
 
     /**
-     * Request for Miner List(USER_DATA) Request for Miner List Weight: 5
+     * Request for Miner List (USER_DATA) Request for Miner List Weight(IP): 1 Security Type:
+     * USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
-     * @param userName Mining account test (required)
-     * @param pageIndex Page number, empty default first page, starting from 1 (optional)
-     * @param sort sort sequence(default&#x3D;0)0 positive sequence，1 negative sequence (optional)
-     * @param sortColumn Sort by( default 1): &lt;br&gt;&lt;/br&gt;1: miner name,
-     *     &lt;br&gt;&lt;/br&gt;2: real-time computing power, &lt;br&gt;&lt;/br&gt;3: daily average
-     *     computing power, &lt;br&gt;&lt;/br&gt;4: real-time rejection rate,
-     *     &lt;br&gt;&lt;/br&gt;5: last submission time (optional)
-     * @param workerStatus miners status(default&#x3D;0),0 all，1 valid，2 invalid，3 failure
-     *     (optional)
-     * @param recvWindow (optional)
+     * @param algo Algorithm (required)
+     * @param userName Mining account (required)
+     * @param pageIndex Page number, starting from 1. (optional)
+     * @param sort Sort order. 0 for ascending, 1 for descending. (optional)
+     * @param sortColumn Sort by: 1 miner name, 2 real-time hashrate, 3 daily average hashrate, 4
+     *     real-time rejection rate, 5 last submission time (optional)
+     * @param workerStatus Miner status. 0 all, 1 valid, 2 invalid, 3 failure. (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;RequestForMinerListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -362,8 +367,8 @@ public class MiningRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/mining/rest-api/Request-for-Miner-List">Request
-     *     for Miner List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#request-for-miner-list">Request
+     *     for Miner List (USER_DATA) Documentation</a>
      */
     public ApiResponse<RequestForMinerListResponse> requestForMinerList(
             String algo,
@@ -374,16 +379,16 @@ public class MiningRestApi {
             Long workerStatus,
             Long recvWindow)
             throws ApiException {
-        return miningApi.requestForMinerList(
+        return defaultApi.requestForMinerList(
                 algo, userName, pageIndex, sort, sortColumn, workerStatus, recvWindow);
     }
 
     /**
-     * Statistic List(USER_DATA) Statistic List Weight: 5
+     * Statistic List (USER_DATA) Statistic List Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param algo Algorithm(sha256) sha256 (required)
-     * @param userName Mining account test (required)
-     * @param recvWindow (optional)
+     * @param algo Algorithm (required)
+     * @param userName Mining account (required)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;StatisticListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -394,11 +399,12 @@ public class MiningRestApi {
      * <tr><td> 200 </td><td> Statistic List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/mining/rest-api/Statistic-List">Statistic
-     *     List(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-mining/api/rest-api/~#statistic-list">Statistic
+     *     List (USER_DATA) Documentation</a>
      */
     public ApiResponse<StatisticListResponse> statisticList(
             String algo, String userName, Long recvWindow) throws ApiException {
-        return miningApi.statisticList(algo, userName, recvWindow);
+        return defaultApi.statisticList(algo, userName, recvWindow);
     }
 }

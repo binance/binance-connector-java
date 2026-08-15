@@ -13,6 +13,7 @@
 |**divTime** | **Long** |  |  [optional] |
 |**enInfo** | **String** |  |  [optional] |
 |**tranId** | **Long** |  |  [optional] |
+|**direction** | **Long** |  |  [optional] |
 
 
 

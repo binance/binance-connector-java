@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**adlQuantile** | [**CmPositionAdlQuantileEstimationResponseInnerAdlQuantile**](CmPositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**adlQuantile** | [**UmPositionAdlQuantileEstimationResponseInnerAdlQuantile**](UmPositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  |  [optional] |
 
 
 

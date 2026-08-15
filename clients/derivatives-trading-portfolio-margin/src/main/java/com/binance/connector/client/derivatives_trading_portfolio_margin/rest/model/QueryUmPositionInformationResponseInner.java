@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryUmPositionInformationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUmPositionInformationResponseInner {
     public static final String SERIALIZED_NAME_ENTRY_PRICE = "entryPrice";
 
@@ -113,7 +111,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -133,7 +131,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -153,7 +151,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark Price.
      *
      * @return markPrice
      */
@@ -173,7 +171,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get maxNotionalValue
+     * Max Notional Value.
      *
      * @return maxNotionalValue
      */
@@ -193,7 +191,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -213,7 +211,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get notional
+     * Notional.
      *
      * @return notional
      */
@@ -233,7 +231,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -253,7 +251,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * Un Realized Profit.
      *
      * @return unRealizedProfit
      */
@@ -273,7 +271,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation Price.
      *
      * @return liquidationPrice
      */
@@ -293,7 +291,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -313,7 +311,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -504,19 +502,6 @@ public class QueryUmPositionInformationResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryUmPositionInformationResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryUmPositionInformationResponseInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("entryPrice") != null && !jsonObj.get("entryPrice").isJsonNull())
                 && !jsonObj.get("entryPrice").isJsonPrimitive()) {
@@ -623,7 +608,7 @@ public class QueryUmPositionInformationResponseInner {
                         public void write(
                                 JsonWriter out, QueryUmPositionInformationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

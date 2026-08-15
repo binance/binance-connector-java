@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AccountBalanceResponse2 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountBalanceResponse2 {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -118,7 +116,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -138,7 +136,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get totalWalletBalance
+     * Total Wallet Balance.
      *
      * @return totalWalletBalance
      */
@@ -158,7 +156,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get crossMarginBorrowed
+     * Cross Margin Borrowed.
      *
      * @return crossMarginBorrowed
      */
@@ -178,7 +176,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get crossMarginFree
+     * Cross Margin Free.
      *
      * @return crossMarginFree
      */
@@ -198,7 +196,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get crossMarginInterest
+     * Cross Margin Interest.
      *
      * @return crossMarginInterest
      */
@@ -218,7 +216,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get crossMarginLocked
+     * Cross Margin Locked.
      *
      * @return crossMarginLocked
      */
@@ -238,7 +236,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get umWalletBalance
+     * Um Wallet Balance.
      *
      * @return umWalletBalance
      */
@@ -258,7 +256,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get umUnrealizedPNL
+     * Um Unrealized PNL.
      *
      * @return umUnrealizedPNL
      */
@@ -278,7 +276,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get cmWalletBalance
+     * Cm Wallet Balance.
      *
      * @return cmWalletBalance
      */
@@ -298,7 +296,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get cmUnrealizedPNL
+     * Cm Unrealized PNL.
      *
      * @return cmUnrealizedPNL
      */
@@ -317,7 +315,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -337,7 +335,7 @@ public class AccountBalanceResponse2 {
     }
 
     /**
-     * Get negativeBalance
+     * negative balance amount
      *
      * @return negativeBalance
      */
@@ -540,18 +538,6 @@ public class AccountBalanceResponse2 {
                                 AccountBalanceResponse2.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AccountBalanceResponse2.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AccountBalanceResponse2` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -664,7 +650,7 @@ public class AccountBalanceResponse2 {
                         @Override
                         public void write(JsonWriter out, AccountBalanceResponse2 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -6,6 +6,7 @@ import com.binance.connector.client.common.websocket.adapter.ConnectionInterface
 import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
 import com.binance.connector.client.common.websocket.adapter.PoolConnectionWrapper;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
+import com.binance.connector.client.common.websocket.dtos.StreamResponse;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.binance.connector.client.spot.websocket.api.model.AccountCommissionRequest;
 import com.binance.connector.client.spot.websocket.api.model.AccountCommissionResponse;
@@ -19,14 +20,20 @@ import com.binance.connector.client.spot.websocket.api.model.AllOrdersRequest;
 import com.binance.connector.client.spot.websocket.api.model.AllOrdersResponse;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceRequest;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceResponse;
+import com.binance.connector.client.spot.websocket.api.model.BlockTradesHistoricalRequest;
+import com.binance.connector.client.spot.websocket.api.model.BlockTradesHistoricalResponse;
 import com.binance.connector.client.spot.websocket.api.model.DepthRequest;
 import com.binance.connector.client.spot.websocket.api.model.DepthResponse;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoRequest;
 import com.binance.connector.client.spot.websocket.api.model.ExchangeInfoResponse;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesRequest;
+import com.binance.connector.client.spot.websocket.api.model.ExecutionRulesResponse;
 import com.binance.connector.client.spot.websocket.api.model.KlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.KlinesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyAllocationsResponse;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersRequest;
+import com.binance.connector.client.spot.websocket.api.model.MyFiltersResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesRequest;
 import com.binance.connector.client.spot.websocket.api.model.MyPreventedMatchesResponse;
 import com.binance.connector.client.spot.websocket.api.model.MyTradesRequest;
@@ -49,6 +56,10 @@ import com.binance.connector.client.spot.websocket.api.model.OrderListCancelRequ
 import com.binance.connector.client.spot.websocket.api.model.OrderListCancelResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOcoRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOcoResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpoResponse;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpocoRequest;
+import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOpocoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtoResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderListPlaceOtocoRequest;
@@ -63,10 +74,16 @@ import com.binance.connector.client.spot.websocket.api.model.OrderStatusRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderStatusResponse;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestRequest;
 import com.binance.connector.client.spot.websocket.api.model.OrderTestResponse;
+import com.binance.connector.client.spot.websocket.api.model.PingResponse;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceCalculationRequest;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceCalculationResponse;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceRequest;
+import com.binance.connector.client.spot.websocket.api.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonRequest;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogonResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionLogoutResponse;
 import com.binance.connector.client.spot.websocket.api.model.SessionStatusResponse;
+import com.binance.connector.client.spot.websocket.api.model.SessionSubscriptionsResponse;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderPlaceRequest;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderPlaceResponse;
 import com.binance.connector.client.spot.websocket.api.model.SorOrderTestRequest;
@@ -90,20 +107,22 @@ import com.binance.connector.client.spot.websocket.api.model.TradesRecentRequest
 import com.binance.connector.client.spot.websocket.api.model.TradesRecentResponse;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesRequest;
 import com.binance.connector.client.spot.websocket.api.model.UiKlinesResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamPingResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStartResponse;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopRequest;
-import com.binance.connector.client.spot.websocket.api.model.UserDataStreamStopResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamEventsResponse;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamSubscribeSignatureResponse;
+import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeRequest;
 import com.binance.connector.client.spot.websocket.api.model.UserDataStreamUnsubscribeResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class SpotWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/2.0.0 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final ConnectionInterface connection;
 
     private AccountApi accountApi;
     private AuthApi authApi;
@@ -121,6 +140,15 @@ public class SpotWebSocketApi {
 
     public SpotWebSocketApi(ConnectionInterface connection) {
         connection.setUserAgent(USER_AGENT);
+        List<String> logonMethods = new ArrayList<>();
+        List<String> logoutMethods = new ArrayList<>();
+
+        logonMethods.add("/session.logon".substring(1));
+
+        logoutMethods.add("/session.logout".substring(1));
+
+        connection.setLogonMethods(logonMethods);
+        connection.setLogoutMethods(logoutMethods);
         if (!connection.isConnected()) {
             connection.connect();
         }
@@ -131,6 +159,14 @@ public class SpotWebSocketApi {
         this.marketApi = new MarketApi(connection);
         this.tradeApi = new TradeApi(connection);
         this.userDataStreamApi = new UserDataStreamApi(connection);
+
+        this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     public CompletableFuture<AccountCommissionResponse> accountCommission(
@@ -163,6 +199,11 @@ public class SpotWebSocketApi {
         return accountApi.myAllocations(myAllocationsRequest);
     }
 
+    public CompletableFuture<MyFiltersResponse> myFilters(MyFiltersRequest myFiltersRequest)
+            throws ApiException {
+        return accountApi.myFilters(myFiltersRequest);
+    }
+
     public CompletableFuture<MyPreventedMatchesResponse> myPreventedMatches(
             MyPreventedMatchesRequest myPreventedMatchesRequest) throws ApiException {
         return accountApi.myPreventedMatches(myPreventedMatchesRequest);
@@ -173,9 +214,29 @@ public class SpotWebSocketApi {
         return accountApi.myTrades(myTradesRequest);
     }
 
+    public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
+            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
+        return accountApi.openOrderListsStatus(openOrderListsStatusRequest);
+    }
+
+    public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
+            OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
+        return accountApi.openOrdersStatus(openOrdersStatusRequest);
+    }
+
     public CompletableFuture<OrderAmendmentsResponse> orderAmendments(
             OrderAmendmentsRequest orderAmendmentsRequest) throws ApiException {
         return accountApi.orderAmendments(orderAmendmentsRequest);
+    }
+
+    public CompletableFuture<OrderListStatusResponse> orderListStatus(
+            OrderListStatusRequest orderListStatusRequest) throws ApiException {
+        return accountApi.orderListStatus(orderListStatusRequest);
+    }
+
+    public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
+            throws ApiException {
+        return accountApi.orderStatus(orderStatusRequest);
     }
 
     public CompletableFuture<SessionLogonResponse> sessionLogon(
@@ -196,8 +257,13 @@ public class SpotWebSocketApi {
         return generalApi.exchangeInfo(exchangeInfoRequest);
     }
 
-    public void ping() throws ApiException {
-        generalApi.ping();
+    public CompletableFuture<ExecutionRulesResponse> executionRules(
+            ExecutionRulesRequest executionRulesRequest) throws ApiException {
+        return generalApi.executionRules(executionRulesRequest);
+    }
+
+    public CompletableFuture<PingResponse> ping() throws ApiException {
+        return generalApi.ping();
     }
 
     public CompletableFuture<TimeResponse> time() throws ApiException {
@@ -209,6 +275,11 @@ public class SpotWebSocketApi {
         return marketApi.avgPrice(avgPriceRequest);
     }
 
+    public CompletableFuture<BlockTradesHistoricalResponse> blockTradesHistorical(
+            BlockTradesHistoricalRequest blockTradesHistoricalRequest) throws ApiException {
+        return marketApi.blockTradesHistorical(blockTradesHistoricalRequest);
+    }
+
     public CompletableFuture<DepthResponse> depth(DepthRequest depthRequest) throws ApiException {
         return marketApi.depth(depthRequest);
     }
@@ -216,6 +287,16 @@ public class SpotWebSocketApi {
     public CompletableFuture<KlinesResponse> klines(KlinesRequest klinesRequest)
             throws ApiException {
         return marketApi.klines(klinesRequest);
+    }
+
+    public CompletableFuture<ReferencePriceResponse> referencePrice(
+            ReferencePriceRequest referencePriceRequest) throws ApiException {
+        return marketApi.referencePrice(referencePriceRequest);
+    }
+
+    public CompletableFuture<ReferencePriceCalculationResponse> referencePriceCalculation(
+            ReferencePriceCalculationRequest referencePriceCalculationRequest) throws ApiException {
+        return marketApi.referencePriceCalculation(referencePriceCalculationRequest);
     }
 
     public CompletableFuture<TickerResponse> ticker(TickerRequest tickerRequest)
@@ -263,19 +344,9 @@ public class SpotWebSocketApi {
         return marketApi.uiKlines(uiKlinesRequest);
     }
 
-    public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
-            OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
-        return tradeApi.openOrderListsStatus(openOrderListsStatusRequest);
-    }
-
     public CompletableFuture<OpenOrdersCancelAllResponse> openOrdersCancelAll(
             OpenOrdersCancelAllRequest openOrdersCancelAllRequest) throws ApiException {
         return tradeApi.openOrdersCancelAll(openOrdersCancelAllRequest);
-    }
-
-    public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
-            OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
-        return tradeApi.openOrdersStatus(openOrdersStatusRequest);
     }
 
     public CompletableFuture<OrderAmendKeepPriorityResponse> orderAmendKeepPriority(
@@ -308,6 +379,16 @@ public class SpotWebSocketApi {
         return tradeApi.orderListPlaceOco(orderListPlaceOcoRequest);
     }
 
+    public CompletableFuture<OrderListPlaceOpoResponse> orderListPlaceOpo(
+            OrderListPlaceOpoRequest orderListPlaceOpoRequest) throws ApiException {
+        return tradeApi.orderListPlaceOpo(orderListPlaceOpoRequest);
+    }
+
+    public CompletableFuture<OrderListPlaceOpocoResponse> orderListPlaceOpoco(
+            OrderListPlaceOpocoRequest orderListPlaceOpocoRequest) throws ApiException {
+        return tradeApi.orderListPlaceOpoco(orderListPlaceOpocoRequest);
+    }
+
     public CompletableFuture<OrderListPlaceOtoResponse> orderListPlaceOto(
             OrderListPlaceOtoRequest orderListPlaceOtoRequest) throws ApiException {
         return tradeApi.orderListPlaceOto(orderListPlaceOtoRequest);
@@ -318,19 +399,9 @@ public class SpotWebSocketApi {
         return tradeApi.orderListPlaceOtoco(orderListPlaceOtocoRequest);
     }
 
-    public CompletableFuture<OrderListStatusResponse> orderListStatus(
-            OrderListStatusRequest orderListStatusRequest) throws ApiException {
-        return tradeApi.orderListStatus(orderListStatusRequest);
-    }
-
     public CompletableFuture<OrderPlaceResponse> orderPlace(OrderPlaceRequest orderPlaceRequest)
             throws ApiException {
         return tradeApi.orderPlace(orderPlaceRequest);
-    }
-
-    public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
-            throws ApiException {
-        return tradeApi.orderStatus(orderStatusRequest);
     }
 
     public CompletableFuture<OrderTestResponse> orderTest(OrderTestRequest orderTestRequest)
@@ -348,28 +419,23 @@ public class SpotWebSocketApi {
         return tradeApi.sorOrderTest(sorOrderTestRequest);
     }
 
-    public CompletableFuture<UserDataStreamPingResponse> userDataStreamPing(
-            UserDataStreamPingRequest userDataStreamPingRequest) throws ApiException {
-        return userDataStreamApi.userDataStreamPing(userDataStreamPingRequest);
-    }
-
-    public CompletableFuture<UserDataStreamStartResponse> userDataStreamStart()
+    public CompletableFuture<SessionSubscriptionsResponse> sessionSubscriptions()
             throws ApiException {
-        return userDataStreamApi.userDataStreamStart();
+        return userDataStreamApi.sessionSubscriptions();
     }
 
-    public CompletableFuture<UserDataStreamStopResponse> userDataStreamStop(
-            UserDataStreamStopRequest userDataStreamStopRequest) throws ApiException {
-        return userDataStreamApi.userDataStreamStop(userDataStreamStopRequest);
-    }
-
-    public CompletableFuture<UserDataStreamSubscribeResponse> userDataStreamSubscribe()
-            throws ApiException {
+    public StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribe() throws ApiException {
         return userDataStreamApi.userDataStreamSubscribe();
     }
 
-    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe()
-            throws ApiException {
-        return userDataStreamApi.userDataStreamUnsubscribe();
+    public StreamResponse<UserDataStreamSubscribeSignatureResponse, UserDataStreamEventsResponse>
+            userDataStreamSubscribeSignature() throws ApiException {
+        return userDataStreamApi.userDataStreamSubscribeSignature();
+    }
+
+    public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(
+            UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {
+        return userDataStreamApi.userDataStreamUnsubscribe(userDataStreamUnsubscribeRequest);
     }
 }

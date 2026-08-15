@@ -6,8 +6,6 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**createAVirtualSubAccount**](AccountManagementApi.md#createAVirtualSubAccount) | **POST** /sapi/v1/sub-account/virtualSubAccount | Create a Virtual Sub-account (For Master Account) (USER_DATA) |
 | [**enableFuturesForSubAccount**](AccountManagementApi.md#enableFuturesForSubAccount) | **POST** /sapi/v1/sub-account/futures/enable | Enable Futures for Sub-account (For Master Account) (USER_DATA) |
-| [**enableLeverageTokenForSubAccount**](AccountManagementApi.md#enableLeverageTokenForSubAccount) | **POST** /sapi/v1/sub-account/blvt/enable | Enable Leverage Token for Sub-account (For Master Account) (USER_DATA) |
-| [**enableMarginForSubAccount**](AccountManagementApi.md#enableMarginForSubAccount) | **POST** /sapi/v1/sub-account/margin/enable | Enable Margin for Sub-account (For Master Account) (USER_DATA) |
 | [**enableOptionsForSubAccount**](AccountManagementApi.md#enableOptionsForSubAccount) | **POST** /sapi/v1/sub-account/eoptions/enable | Enable Options for Sub-account (For Master Account) (USER_DATA) |
 | [**getFuturesPositionRiskOfSubAccount**](AccountManagementApi.md#getFuturesPositionRiskOfSubAccount) | **GET** /sapi/v1/sub-account/futures/positionRisk | Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) |
 | [**getFuturesPositionRiskOfSubAccountV2**](AccountManagementApi.md#getFuturesPositionRiskOfSubAccountV2) | **GET** /sapi/v2/sub-account/futures/positionRisk | Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA) |
@@ -22,7 +20,7 @@ All URIs are relative to *https://api.binance.com*
 
 Create a Virtual Sub-account (For Master Account) (USER_DATA)
 
-Create a Virtual Sub-account  * This request will generate a virtual sub account under your master account. * You need to enable \&quot;trade\&quot; option for the API Key which requests this endpoint.  Weight: 1
+Create a Virtual Sub-account  Weight(IP): 1  Security Type: USER_DATA  Notes: - This request generates a virtual sub-account under your master account. - The API key used to call this endpoint must have the &#x60;trade&#x60; option enabled.
 
 ### Example
 ```java
@@ -84,7 +82,7 @@ No authorization required
 
 Enable Futures for Sub-account (For Master Account) (USER_DATA)
 
-Enable Futures for Sub-account for Master Account  Weight: 1
+Enable Futures for Sub-account for Master Account  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -140,137 +138,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Enable Futures for Sub-account |  -  |
 
-<a id="enableLeverageTokenForSubAccount"></a>
-# **enableLeverageTokenForSubAccount**
-> EnableLeverageTokenForSubAccountResponse enableLeverageTokenForSubAccount(enableLeverageTokenForSubAccountRequest)
-
-Enable Leverage Token for Sub-account (For Master Account) (USER_DATA)
-
-Enable Leverage Token for Sub-account  Weight: 1
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.sub_account.ApiClient;
-import com.binance.connector.client.sub_account.ApiException;
-import com.binance.connector.client.sub_account.Configuration;
-import com.binance.connector.client.sub_account.models.*;
-import com.binance.connector.client.sub_account.rest.api.AccountManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest = new EnableLeverageTokenForSubAccountRequest(); // EnableLeverageTokenForSubAccountRequest | 
-    try {
-      EnableLeverageTokenForSubAccountResponse result = apiInstance.enableLeverageTokenForSubAccount(enableLeverageTokenForSubAccountRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountManagementApi#enableLeverageTokenForSubAccount");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **enableLeverageTokenForSubAccountRequest** | [**EnableLeverageTokenForSubAccountRequest**](EnableLeverageTokenForSubAccountRequest.md)|  | |
-
-### Return type
-
-[**EnableLeverageTokenForSubAccountResponse**](EnableLeverageTokenForSubAccountResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Enable Leverage Token for Sub-account |  -  |
-
-<a id="enableMarginForSubAccount"></a>
-# **enableMarginForSubAccount**
-> EnableMarginForSubAccountResponse enableMarginForSubAccount(enableMarginForSubAccountRequest)
-
-Enable Margin for Sub-account (For Master Account) (USER_DATA)
-
-Enable Margin for Sub-account  Weight: 1
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.sub_account.ApiClient;
-import com.binance.connector.client.sub_account.ApiException;
-import com.binance.connector.client.sub_account.Configuration;
-import com.binance.connector.client.sub_account.models.*;
-import com.binance.connector.client.sub_account.rest.api.AccountManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.binance.com");
-
-    AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    EnableMarginForSubAccountRequest enableMarginForSubAccountRequest = new EnableMarginForSubAccountRequest(); // EnableMarginForSubAccountRequest | 
-    try {
-      EnableMarginForSubAccountResponse result = apiInstance.enableMarginForSubAccount(enableMarginForSubAccountRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AccountManagementApi#enableMarginForSubAccount");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **enableMarginForSubAccountRequest** | [**EnableMarginForSubAccountRequest**](EnableMarginForSubAccountRequest.md)|  | |
-
-### Return type
-
-[**EnableMarginForSubAccountResponse**](EnableMarginForSubAccountResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Enable Margin for Sub-account |  -  |
-
 <a id="enableOptionsForSubAccount"></a>
 # **enableOptionsForSubAccount**
 > EnableOptionsForSubAccountResponse enableOptionsForSubAccount(enableOptionsForSubAccountRequest)
 
 Enable Options for Sub-account (For Master Account) (USER_DATA)
 
-Enable Options for Sub-account (For Master Account).  Weight: 1
+Enable Options for Sub-account (For Master Account).  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -332,7 +206,7 @@ No authorization required
 
 Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA)
 
-Get Futures Position-Risk of Sub-account  Weight: 10
+Get Futures Position-Risk of Sub-account  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -349,8 +223,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetFuturesPositionRiskOfSubAccountResponse result = apiInstance.getFuturesPositionRiskOfSubAccount(email, recvWindow);
       System.out.println(result);
@@ -369,7 +243,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -396,7 +270,7 @@ No authorization required
 
 Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
 
-Get Futures Position-Risk of Sub-account V2  Weight: 1
+Get Futures Position-Risk of Sub-account V2  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -413,9 +287,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long futuresType = 56L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long recvWindow = 5000L; // Long | 
     try {
       GetFuturesPositionRiskOfSubAccountV2Response result = apiInstance.getFuturesPositionRiskOfSubAccountV2(email, futuresType, recvWindow);
       System.out.println(result);
@@ -434,7 +308,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
 | **recvWindow** | **Long**|  | [optional] |
 
@@ -462,7 +336,7 @@ No authorization required
 
 Get Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA)
 
-Get Sub-account&#39;s Status on Margin Or Futures  * If no email sent, all sub-accounts&#39; information will be returned.  Weight: 10
+Get Sub-account&#39;s Status on Margin Or Futures  Weight(IP): 10  Security Type: USER_DATA  Notes: - If no email sent, all sub-accounts&#39; information will be returned.
 
 ### Example
 ```java
@@ -479,8 +353,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    String email = "email_example"; // String | Managed sub-account email
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetSubAccountsStatusOnMarginOrFuturesResponse result = apiInstance.getSubAccountsStatusOnMarginOrFutures(email, recvWindow);
       System.out.println(result);
@@ -499,7 +373,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| Managed sub-account email | [optional] |
+| **email** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -526,7 +400,7 @@ No authorization required
 
 Query Sub-account List (For Master Account) (USER_DATA)
 
-Query Sub-account List  Weight: 1
+Query Sub-account List  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -543,11 +417,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    String email = "email_example"; // String | Managed sub-account email
-    String isFreeze = "isFreeze_example"; // String | true or false
-    Long page = 56L; // Long | Default value: 1
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    String isFreeze = "true"; // String | 
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountListResponse result = apiInstance.querySubAccountList(email, isFreeze, page, limit, recvWindow);
       System.out.println(result);
@@ -566,10 +440,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| Managed sub-account email | [optional] |
-| **isFreeze** | **String**| true or false | [optional] |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **email** | **String**|  | [optional] |
+| **isFreeze** | **String**|  | [optional] |
+| **page** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -596,7 +470,7 @@ No authorization required
 
 Query Sub-account Transaction Statistics (For Master Account) (USER_DATA)
 
-Query Sub-account Transaction statistics (For Master Account).  Weight: 60
+Query Sub-account Transaction statistics (For Master Account).  Weight(IP): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -613,8 +487,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "abc@test.com"; // String | Managed sub-account email
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountTransactionStatisticsResponse result = apiInstance.querySubAccountTransactionStatistics(email, recvWindow);
       System.out.println(result);
@@ -633,7 +507,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**| Managed sub-account email | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

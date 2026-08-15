@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetPortfolioMarginProAccountInfoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPortfolioMarginProAccountInfoResponse {
     public static final String SERIALIZED_NAME_UNI_M_M_R = "uniMMR";
 
@@ -95,7 +93,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get uniMMR
+     * Classic Portfolio margin account maintenance margin rate
      *
      * @return uniMMR
      */
@@ -115,7 +113,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get accountEquity
+     * Account equity, unit：USD
      *
      * @return accountEquity
      */
@@ -135,7 +133,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get actualEquity
+     * Actual equity, unit：USD
      *
      * @return actualEquity
      */
@@ -155,7 +153,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get accountMaintMargin
+     * Classic Portfolio margin account maintenance margin, unit：USD
      *
      * @return accountMaintMargin
      */
@@ -175,7 +173,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get accountInitialMargin
+     * Ignored for PM PRO and PM PRO SPAN
      *
      * @return accountInitialMargin
      */
@@ -195,7 +193,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get totalAvailableBalance
+     * Ignored for PM PRO and PM PRO SPAN
      *
      * @return totalAvailableBalance
      */
@@ -216,7 +214,9 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get accountStatus
+     * Classic Portfolio margin account status:\&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;,
+     * \&quot;SUPPLY_MARGIN\&quot;, \&quot;REDUCE_ONLY\&quot;, \&quot;ACTIVE_LIQUIDATION\&quot;,
+     * \&quot;FORCE_LIQUIDATION\&quot;, \&quot;BANKRUPTED\&quot;
      *
      * @return accountStatus
      */
@@ -236,7 +236,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
     }
 
     /**
-     * Get accountType
+     * PM_1 for PM PRO, PM_2 for PM, PM_3 for PM PRO SPAN
      *
      * @return accountType
      */
@@ -416,19 +416,6 @@ public class GetPortfolioMarginProAccountInfoResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetPortfolioMarginProAccountInfoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetPortfolioMarginProAccountInfoResponse` properties."
-                                        + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("uniMMR") != null && !jsonObj.get("uniMMR").isJsonNull())
                 && !jsonObj.get("uniMMR").isJsonPrimitive()) {
@@ -519,7 +506,7 @@ public class GetPortfolioMarginProAccountInfoResponse {
                         public void write(
                                 JsonWriter out, GetPortfolioMarginProAccountInfoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

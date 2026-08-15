@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryUsersUmForceOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUsersUmForceOrdersResponseInner {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -148,7 +146,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -167,7 +165,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -186,7 +184,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -206,7 +204,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -225,7 +223,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -245,7 +243,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -265,7 +263,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -285,7 +283,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -305,7 +303,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -325,7 +323,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -344,7 +342,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -364,7 +362,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -383,7 +381,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -403,7 +401,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -423,7 +421,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -442,7 +440,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -462,7 +460,7 @@ public class QueryUsersUmForceOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -695,19 +693,6 @@ public class QueryUsersUmForceOrdersResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryUsersUmForceOrdersResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryUsersUmForceOrdersResponseInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -834,7 +819,7 @@ public class QueryUsersUmForceOrdersResponseInner {
                         public void write(
                                 JsonWriter out, QueryUsersUmForceOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

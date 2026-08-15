@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CancelCmConditionalOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelCmConditionalOrderResponse {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -155,7 +153,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -175,7 +173,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -195,7 +193,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -215,7 +213,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -234,7 +232,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -253,7 +251,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -273,7 +271,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -292,7 +290,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -312,7 +310,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -332,7 +330,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -351,7 +349,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -371,7 +369,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -391,7 +389,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -411,7 +409,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -430,7 +428,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get bookTime
+     * order place time
      *
      * @return bookTime
      */
@@ -450,7 +448,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -470,7 +468,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -490,7 +488,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * Price Protect.
      *
      * @return priceProtect
      */
@@ -734,18 +732,6 @@ public class CancelCmConditionalOrderResponse {
                                 CancelCmConditionalOrderResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelCmConditionalOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `CancelCmConditionalOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("newClientStrategyId") != null
                         && !jsonObj.get("newClientStrategyId").isJsonNull())
@@ -872,7 +858,7 @@ public class CancelCmConditionalOrderResponse {
                         @Override
                         public void write(JsonWriter out, CancelCmConditionalOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

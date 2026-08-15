@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
-/** GetOrderModifyHistoryResponseInnerAmendment */
+/** Order amendment details. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetOrderModifyHistoryResponseInnerAmendment {
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -56,6 +54,12 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
     @SerializedName(SERIALIZED_NAME_COUNT)
     @jakarta.annotation.Nullable
     private Long count;
+
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
 
     public GetOrderModifyHistoryResponseInnerAmendment() {}
 
@@ -112,7 +116,7 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
     }
 
     /**
-     * Get count
+     * Total number of trades in the 24h window.
      *
      * @return count
      */
@@ -123,6 +127,26 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
 
     public void setCount(@jakarta.annotation.Nullable Long count) {
         this.count = count;
+    }
+
+    public GetOrderModifyHistoryResponseInnerAmendment modifyId(
+            @jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * user-defined modification identifier, only returned if provided in the request
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
     }
 
     @Override
@@ -137,12 +161,14 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
                 (GetOrderModifyHistoryResponseInnerAmendment) o;
         return Objects.equals(this.price, getOrderModifyHistoryResponseInnerAmendment.price)
                 && Objects.equals(this.origQty, getOrderModifyHistoryResponseInnerAmendment.origQty)
-                && Objects.equals(this.count, getOrderModifyHistoryResponseInnerAmendment.count);
+                && Objects.equals(this.count, getOrderModifyHistoryResponseInnerAmendment.count)
+                && Objects.equals(
+                        this.modifyId, getOrderModifyHistoryResponseInnerAmendment.modifyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(price, origQty, count);
+        return Objects.hash(price, origQty, count, modifyId);
     }
 
     @Override
@@ -152,6 +178,7 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		count: ").append(toIndentedString(count)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -171,6 +198,10 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
         String countValueAsString = "";
         countValueAsString = countValue.toString();
         sb.append("count=").append(urlEncode(countValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -202,6 +233,7 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
         openapiFields.add("price");
         openapiFields.add("origQty");
         openapiFields.add("count");
+        openapiFields.add("modifyId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -225,20 +257,6 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
                                     + " the empty JSON string",
                                 GetOrderModifyHistoryResponseInnerAmendment.openapiRequiredFields
                                         .toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetOrderModifyHistoryResponseInnerAmendment.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetOrderModifyHistoryResponseInnerAmendment` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -274,7 +292,7 @@ public class GetOrderModifyHistoryResponseInnerAmendment {
                         public void write(
                                 JsonWriter out, GetOrderModifyHistoryResponseInnerAmendment value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

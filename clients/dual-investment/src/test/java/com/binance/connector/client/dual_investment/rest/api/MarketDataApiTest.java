@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,7 +24,9 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentProductListResponse;
+import com.binance.connector.client.dual_investment.rest.model.OptionType;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -78,15 +80,16 @@ public class MarketDataApiTest {
     /**
      * Get Dual Investment product list
      *
-     * <p>Get Dual Investment product list Weight: 1(IP)
+     * <p>Get Dual Investment product list Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDualInvestmentProductListTest() throws ApiException, CryptoException {
-        String optionType = "";
-        String exercisedCoin = "";
-        String investCoin = "";
+    public void getDualInvestmentProductListTest()
+            throws ApiException, CryptoException, IOException {
+        OptionType optionType = OptionType.CALL;
+        String exercisedCoin = "USDT";
+        String investCoin = "BNB";
         Long pageSize = 10L;
         Long pageIndex = 1L;
         Long recvWindow = 5000L;
@@ -101,7 +104,9 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/dci/product/list", actualRequest.url().encodedPath());
     }
 }

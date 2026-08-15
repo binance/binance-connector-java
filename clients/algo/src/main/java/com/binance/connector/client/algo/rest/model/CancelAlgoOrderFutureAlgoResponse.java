@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CancelAlgoOrderFutureAlgoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelAlgoOrderFutureAlgoResponse {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -248,18 +246,6 @@ public class CancelAlgoOrderFutureAlgoResponse {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelAlgoOrderFutureAlgoResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `CancelAlgoOrderFutureAlgoResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("msg") != null && !jsonObj.get("msg").isJsonNull())
                 && !jsonObj.get("msg").isJsonPrimitive()) {
@@ -289,7 +275,7 @@ public class CancelAlgoOrderFutureAlgoResponse {
                         @Override
                         public void write(JsonWriter out, CancelAlgoOrderFutureAlgoResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,0 +1,64 @@
+package com.binance.connector.client.simple_earn.rest.flexiblelocked;
+
+import com.binance.connector.client.common.ApiException;
+import com.binance.connector.client.common.ApiResponse;
+import com.binance.connector.client.common.configuration.ClientConfiguration;
+import com.binance.connector.client.common.configuration.SignatureConfiguration;
+import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
+import com.binance.connector.client.simple_earn.rest.api.SimpleEarnRestApi;
+import com.binance.connector.client.simple_earn.rest.model.GetFlexibleRewardsHistoryResponse;
+import com.binance.connector.client.simple_earn.rest.model.OrderType;
+import java.io.IOException;
+
+/** API examples for FlexibleLockedApi */
+public class GetFlexibleRewardsHistoryExample {
+    private SimpleEarnRestApi api;
+
+    public SimpleEarnRestApi getApi() {
+        if (api == null) {
+            ClientConfiguration clientConfiguration =
+                    SimpleEarnRestApiUtil.getClientConfiguration();
+            SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
+            signatureConfiguration.setApiKey("apiKey");
+            signatureConfiguration.setPrivateKey("path/to/private.key");
+            clientConfiguration.setSignatureConfiguration(signatureConfiguration);
+            api = new SimpleEarnRestApi(clientConfiguration);
+        }
+        return api;
+    }
+
+    /**
+     * Get Flexible Rewards History (USER_DATA)
+     *
+     * <p>Get Flexible Rewards History Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    public void getFlexibleRewardsHistoryExample() throws ApiException, IOException {
+        String productId = "1";
+        String asset = "USDC";
+        Long startTime = 1623319461670L;
+        Long endTime = 1641782889000L;
+        OrderType type = OrderType.FAST;
+        Long current = 1L;
+        Long size = 10L;
+        Long recvWindow = 5000L;
+        ApiResponse<GetFlexibleRewardsHistoryResponse> response =
+                getApi().getFlexibleRewardsHistory(
+                                productId,
+                                asset,
+                                startTime,
+                                endTime,
+                                type,
+                                current,
+                                size,
+                                recvWindow);
+        System.out.println(response.getData());
+    }
+}

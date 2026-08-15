@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -137,7 +135,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -157,7 +155,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get origClientOrderId
+     * orig Client Order Id.
      *
      * @return origClientOrderId
      */
@@ -177,7 +175,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -197,7 +195,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -217,7 +215,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -237,7 +235,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -257,7 +255,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -277,7 +275,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -297,7 +295,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -317,7 +315,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -337,7 +335,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -357,7 +355,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -377,7 +375,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -397,7 +395,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get stopPrice
+     * stop Price.
      *
      * @return stopPrice
      */
@@ -417,7 +415,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get icebergQty
+     * iceberg Qty.
      *
      * @return icebergQty
      */
@@ -687,21 +685,6 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner
-                    .openapiFields
-                    .contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -840,7 +823,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
                                 MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner
                                         value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

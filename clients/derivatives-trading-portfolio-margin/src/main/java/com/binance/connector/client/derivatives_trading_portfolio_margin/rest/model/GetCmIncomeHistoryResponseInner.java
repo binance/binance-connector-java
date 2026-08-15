@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetCmIncomeHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCmIncomeHistoryResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -94,7 +92,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -114,7 +112,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get incomeType
+     * Income type.
      *
      * @return incomeType
      */
@@ -133,7 +131,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get income
+     * Income amount.
      *
      * @return income
      */
@@ -152,7 +150,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get asset
+     * Income asset.
      *
      * @return asset
      */
@@ -171,7 +169,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get info
+     * Extra information.
      *
      * @return info
      */
@@ -190,7 +188,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -209,7 +207,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get tranId
+     * Transaction ID.
      *
      * @return tranId
      */
@@ -228,7 +226,7 @@ public class GetCmIncomeHistoryResponseInner {
     }
 
     /**
-     * Get tradeId
+     * Trade ID, if existing.
      *
      * @return tradeId
      */
@@ -376,18 +374,6 @@ public class GetCmIncomeHistoryResponseInner {
                                 GetCmIncomeHistoryResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetCmIncomeHistoryResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetCmIncomeHistoryResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -465,7 +451,7 @@ public class GetCmIncomeHistoryResponseInner {
                         @Override
                         public void write(JsonWriter out, GetCmIncomeHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

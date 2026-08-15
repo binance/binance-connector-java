@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** PositionInformationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -130,7 +128,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -150,7 +148,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -170,7 +168,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * Position entry price.
      *
      * @return entryPrice
      */
@@ -190,7 +188,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get breakEvenPrice
+     * break-even price
      *
      * @return breakEvenPrice
      */
@@ -210,7 +208,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get markPrice
+     * mark price
      *
      * @return markPrice
      */
@@ -230,7 +228,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * Unrealized profit.
      *
      * @return unRealizedProfit
      */
@@ -250,7 +248,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation price.
      *
      * @return liquidationPrice
      */
@@ -269,7 +267,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get leverage
+     * Leverage value.
      *
      * @return leverage
      */
@@ -288,7 +286,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get maxQty
+     * maximum quantity of base asset
      *
      * @return maxQty
      */
@@ -308,7 +306,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get marginType
+     * Margin type.
      *
      * @return marginType
      */
@@ -328,7 +326,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get isolatedMargin
+     * Isolated margin amount.
      *
      * @return isolatedMargin
      */
@@ -348,7 +346,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get isAutoAddMargin
+     * Whether auto-add margin is enabled.
      *
      * @return isAutoAddMargin
      */
@@ -368,7 +366,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -388,7 +386,7 @@ public class PositionInformationResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -597,18 +595,6 @@ public class PositionInformationResponseInner {
                                 PositionInformationResponseInner.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PositionInformationResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `PositionInformationResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -736,7 +722,7 @@ public class PositionInformationResponseInner {
                         @Override
                         public void write(JsonWriter out, PositionInformationResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

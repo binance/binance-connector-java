@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** DepositHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DepositHistoryResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -121,6 +119,12 @@ public class DepositHistoryResponseInner {
     @SerializedName(SERIALIZED_NAME_WALLET_TYPE)
     @jakarta.annotation.Nullable
     private Long walletType;
+
+    public static final String SERIALIZED_NAME_TRAVEL_RULE_STATUS = "travelRuleStatus";
+
+    @SerializedName(SERIALIZED_NAME_TRAVEL_RULE_STATUS)
+    @jakarta.annotation.Nullable
+    private Long travelRuleStatus;
 
     public DepositHistoryResponseInner() {}
 
@@ -394,6 +398,26 @@ public class DepositHistoryResponseInner {
         this.walletType = walletType;
     }
 
+    public DepositHistoryResponseInner travelRuleStatus(
+            @jakarta.annotation.Nullable Long travelRuleStatus) {
+        this.travelRuleStatus = travelRuleStatus;
+        return this;
+    }
+
+    /**
+     * Get travelRuleStatus
+     *
+     * @return travelRuleStatus
+     */
+    @jakarta.annotation.Nullable
+    public Long getTravelRuleStatus() {
+        return travelRuleStatus;
+    }
+
+    public void setTravelRuleStatus(@jakarta.annotation.Nullable Long travelRuleStatus) {
+        this.travelRuleStatus = travelRuleStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -416,7 +440,9 @@ public class DepositHistoryResponseInner {
                 && Objects.equals(this.transferType, depositHistoryResponseInner.transferType)
                 && Objects.equals(this.confirmTimes, depositHistoryResponseInner.confirmTimes)
                 && Objects.equals(this.unlockConfirm, depositHistoryResponseInner.unlockConfirm)
-                && Objects.equals(this.walletType, depositHistoryResponseInner.walletType);
+                && Objects.equals(this.walletType, depositHistoryResponseInner.walletType)
+                && Objects.equals(
+                        this.travelRuleStatus, depositHistoryResponseInner.travelRuleStatus);
     }
 
     @Override
@@ -435,7 +461,8 @@ public class DepositHistoryResponseInner {
                 transferType,
                 confirmTimes,
                 unlockConfirm,
-                walletType);
+                walletType,
+                travelRuleStatus);
     }
 
     @Override
@@ -456,6 +483,7 @@ public class DepositHistoryResponseInner {
         sb.append("		confirmTimes: ").append(toIndentedString(confirmTimes)).append("\n");
         sb.append("		unlockConfirm: ").append(toIndentedString(unlockConfirm)).append("\n");
         sb.append("		walletType: ").append(toIndentedString(walletType)).append("\n");
+        sb.append("		travelRuleStatus: ").append(toIndentedString(travelRuleStatus)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -519,6 +547,10 @@ public class DepositHistoryResponseInner {
         String walletTypeValueAsString = "";
         walletTypeValueAsString = walletTypeValue.toString();
         sb.append("walletType=").append(urlEncode(walletTypeValueAsString)).append("");
+        Object travelRuleStatusValue = getTravelRuleStatus();
+        String travelRuleStatusValueAsString = "";
+        travelRuleStatusValueAsString = travelRuleStatusValue.toString();
+        sb.append("travelRuleStatus=").append(urlEncode(travelRuleStatusValueAsString)).append("");
         return sb.toString();
     }
 
@@ -561,6 +593,7 @@ public class DepositHistoryResponseInner {
         openapiFields.add("confirmTimes");
         openapiFields.add("unlockConfirm");
         openapiFields.add("walletType");
+        openapiFields.add("travelRuleStatus");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -582,18 +615,6 @@ public class DepositHistoryResponseInner {
                                 "The required field(s) %s in DepositHistoryResponseInner is not"
                                         + " found in the empty JSON string",
                                 DepositHistoryResponseInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!DepositHistoryResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `DepositHistoryResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -680,7 +701,7 @@ public class DepositHistoryResponseInner {
                         @Override
                         public void write(JsonWriter out, DepositHistoryResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

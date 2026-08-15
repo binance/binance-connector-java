@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** OneClickArrivalDepositApplyRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OneClickArrivalDepositApplyRequest {
     public static final String SERIALIZED_NAME_DEPOSIT_ID = "depositId";
 
     @SerializedName(SERIALIZED_NAME_DEPOSIT_ID)
     @jakarta.annotation.Nullable
-    private String depositId;
+    private Long depositId;
 
     public static final String SERIALIZED_NAME_TX_ID = "txId";
 
@@ -65,22 +63,22 @@ public class OneClickArrivalDepositApplyRequest {
     public OneClickArrivalDepositApplyRequest() {}
 
     public OneClickArrivalDepositApplyRequest depositId(
-            @jakarta.annotation.Nullable String depositId) {
+            @jakarta.annotation.Nullable Long depositId) {
         this.depositId = depositId;
         return this;
     }
 
     /**
-     * Get depositId
+     * Deposit record Id, priority use
      *
      * @return depositId
      */
     @jakarta.annotation.Nullable
-    public String getDepositId() {
+    public Long getDepositId() {
         return depositId;
     }
 
-    public void setDepositId(@jakarta.annotation.Nullable String depositId) {
+    public void setDepositId(@jakarta.annotation.Nullable Long depositId) {
         this.depositId = depositId;
     }
 
@@ -90,7 +88,7 @@ public class OneClickArrivalDepositApplyRequest {
     }
 
     /**
-     * Get txId
+     * Deposit txId, used when depositId is not specified
      *
      * @return txId
      */
@@ -110,7 +108,7 @@ public class OneClickArrivalDepositApplyRequest {
     }
 
     /**
-     * Get subAccountId
+     * Sub-accountId of Cloud user
      *
      * @return subAccountId
      */
@@ -130,7 +128,7 @@ public class OneClickArrivalDepositApplyRequest {
     }
 
     /**
-     * Get subUserId
+     * Sub-userId of parent user
      *
      * @return subUserId
      */
@@ -252,27 +250,7 @@ public class OneClickArrivalDepositApplyRequest {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!OneClickArrivalDepositApplyRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `OneClickArrivalDepositApplyRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("depositId") != null && !jsonObj.get("depositId").isJsonNull())
-                && !jsonObj.get("depositId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `depositId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("depositId").toString()));
-        }
         if ((jsonObj.get("txId") != null && !jsonObj.get("txId").isJsonNull())
                 && !jsonObj.get("txId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -309,7 +287,7 @@ public class OneClickArrivalDepositApplyRequest {
                         @Override
                         public void write(JsonWriter out, OneClickArrivalDepositApplyRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**isLocked** | **Boolean** |  |  [optional] |
-|**plannedRecoverTime** | **Long** |  |  [optional] |
-|**indicator** | **String** |  |  [optional] |
-|**value** | **Double** |  |  [optional] |
-|**triggerValue** | **Double** |  |  [optional] |
+|**isLocked** | **Boolean** | Is Locked. |  [optional] |
+|**plannedRecoverTime** | **Long** | Planned Recover Time. |  [optional] |
+|**indicator** | **String** | Indicator. |  [optional] |
+|**value** | **Double** | Value. |  [optional] |
+|**triggerValue** | **Double** | Trigger Value. |  [optional] |
 
 
 

@@ -50,7 +50,7 @@ import org.mockito.Mockito;
 /** API tests for MiningApi */
 public class MiningApiTest {
 
-    private MiningApi api;
+    private MiningRestApi api;
     private ApiClient apiClientSpy;
     private SignatureGenerator signatureGeneratorSpy;
 
@@ -86,7 +86,7 @@ public class MiningApiTest {
         Mockito.doReturn(new ApiResponse<>(200, null)).when(apiClientSpy).execute(Mockito.any());
         Mockito.doReturn("1736393892000").when(apiClientSpy).buildTimestamp();
 
-        api = new MiningApi(apiClientSpy);
+        api = new MiningRestApi(apiClientSpy);
     }
 
     /**
@@ -217,7 +217,7 @@ public class MiningApiTest {
         Long startDate = 0L;
         Long endDate = 0L;
         Long pageIndex = 1L;
-        Long pageSize = 0L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<EarningsListResponse> response =
                 api.earningsList(
@@ -234,10 +234,10 @@ public class MiningApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "algo=&userName=&coin=&startDate=0&endDate=0&pageIndex=1&pageSize=0&recvWindow=5000&timestamp=1736393892000",
+                "algo=&userName=&coin=&startDate=0&endDate=0&pageIndex=1&pageSize=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "7f6636bd78ea170d9f83c50fc67019daf7418a882cd6cbe3004b3e7d9dad6ebe",
+                "f5b5bedc5befc8ec59e483e7124c94ca34e6383e483c18a88164526803e6f9f1",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/mining/payment/list", actualRequest.url().encodedPath());
     }
@@ -257,7 +257,7 @@ public class MiningApiTest {
         Long startDate = 0L;
         Long endDate = 0L;
         Long pageIndex = 1L;
-        Long pageSize = 0L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<ExtraBonusListResponse> response =
                 api.extraBonusList(
@@ -274,10 +274,10 @@ public class MiningApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "algo=&userName=&coin=&startDate=0&endDate=0&pageIndex=1&pageSize=0&recvWindow=5000&timestamp=1736393892000",
+                "algo=&userName=&coin=&startDate=0&endDate=0&pageIndex=1&pageSize=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "7f6636bd78ea170d9f83c50fc67019daf7418a882cd6cbe3004b3e7d9dad6ebe",
+                "f5b5bedc5befc8ec59e483e7124c94ca34e6383e483c18a88164526803e6f9f1",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/mining/payment/other", actualRequest.url().encodedPath());
     }
@@ -292,12 +292,11 @@ public class MiningApiTest {
     @Test
     public void hashrateResaleDetailTest() throws ApiException, CryptoException {
         Long configId = 1L;
-        String userName = "";
         Long pageIndex = 1L;
-        Long pageSize = 0L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<HashrateResaleDetailResponse> response =
-                api.hashrateResaleDetail(configId, userName, pageIndex, pageSize, recvWindow);
+                api.hashrateResaleDetail(configId, pageIndex, pageSize, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -310,10 +309,10 @@ public class MiningApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "configId=1&userName=&pageIndex=1&pageSize=0&recvWindow=5000&timestamp=1736393892000",
+                "configId=1&pageIndex=1&pageSize=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "b103a00035916bdb8dda3e3a55f6af838e11a6a38aab27a2dd32367be83b547b",
+                "246bd97019f10e370218889d8a2e4fe03eac751b4c449b274379f069590220c3",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/mining/hash-transfer/profit/details", actualRequest.url().encodedPath());
@@ -329,7 +328,7 @@ public class MiningApiTest {
     @Test
     public void hashrateResaleListTest() throws ApiException, CryptoException {
         Long pageIndex = 1L;
-        Long pageSize = 0L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<HashrateResaleListResponse> response =
                 api.hashrateResaleList(pageIndex, pageSize, recvWindow);
@@ -341,7 +340,7 @@ public class MiningApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("3afaf7183f03d1042c49aa8527fffd90347a96e61867b5bfd5ae183f8fa1f746", actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/mining/hash-transfer/config/details/list",
                 actualRequest.url().encodedPath());
@@ -401,7 +400,7 @@ public class MiningApiTest {
         Long startDate = 0L;
         Long endDate = 0L;
         Long pageIndex = 1L;
-        Long pageSize = 0L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<MiningAccountEarningResponse> response =
                 api.miningAccountEarning(algo, startDate, endDate, pageIndex, pageSize, recvWindow);
@@ -417,10 +416,10 @@ public class MiningApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "algo=&startDate=0&endDate=0&pageIndex=1&pageSize=0&recvWindow=5000&timestamp=1736393892000",
+                "algo=&startDate=0&endDate=0&pageIndex=1&pageSize=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "6c64a0ee43b62211c4efc572d1e296e39065c906a64f73198a5bf1b4d3669e14",
+                "52dcdeacbc5e9e724af6de40b7c914eab2c7b5717cf2a2f29858475ad412c019",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/mining/payment/uid", actualRequest.url().encodedPath());
     }

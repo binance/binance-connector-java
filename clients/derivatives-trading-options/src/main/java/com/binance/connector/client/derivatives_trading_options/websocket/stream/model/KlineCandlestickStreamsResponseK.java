@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** KlineCandlestickStreamsResponseK */
+/** k */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlineCandlestickStreamsResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -63,11 +63,11 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     @jakarta.annotation.Nullable
     private String iLowerCase;
 
-    public static final String SERIALIZED_NAME_F = "F";
+    public static final String SERIALIZED_NAME_F_LOWER_CASE = "f";
 
-    @SerializedName(SERIALIZED_NAME_F)
+    @SerializedName(SERIALIZED_NAME_F_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private Long F;
+    private Long fLowerCase;
 
     public static final String SERIALIZED_NAME_L = "L";
 
@@ -144,7 +144,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * kline start time
      *
      * @return tLowerCase
      */
@@ -163,7 +163,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get T
+     * kline end time
      *
      * @return T
      */
@@ -183,7 +183,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option trading symbol
      *
      * @return sLowerCase
      */
@@ -203,7 +203,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * candle period
      *
      * @return iLowerCase
      */
@@ -216,23 +216,24 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
         this.iLowerCase = iLowerCase;
     }
 
-    public KlineCandlestickStreamsResponseK F(@jakarta.annotation.Nullable Long F) {
-        this.F = F;
+    public KlineCandlestickStreamsResponseK fLowerCase(
+            @jakarta.annotation.Nullable Long fLowerCase) {
+        this.fLowerCase = fLowerCase;
         return this;
     }
 
     /**
-     * Get F
+     * first trade ID
      *
-     * @return F
+     * @return fLowerCase
      */
     @jakarta.annotation.Nullable
-    public Long getF() {
-        return F;
+    public Long getfLowerCase() {
+        return fLowerCase;
     }
 
-    public void setF(@jakarta.annotation.Nullable Long F) {
-        this.F = F;
+    public void setfLowerCase(@jakarta.annotation.Nullable Long fLowerCase) {
+        this.fLowerCase = fLowerCase;
     }
 
     public KlineCandlestickStreamsResponseK L(@jakarta.annotation.Nullable Long L) {
@@ -241,7 +242,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get L
+     * last trade ID
      *
      * @return L
      */
@@ -261,7 +262,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * open
      *
      * @return oLowerCase
      */
@@ -281,7 +282,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * close
      *
      * @return cLowerCase
      */
@@ -301,7 +302,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * high
      *
      * @return hLowerCase
      */
@@ -321,7 +322,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * low
      *
      * @return lLowerCase
      */
@@ -341,7 +342,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * volume(in contracts)
      *
      * @return vLowerCase
      */
@@ -361,7 +362,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * number of trades
      *
      * @return nLowerCase
      */
@@ -381,7 +382,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * current candle has been completed Y/N
      *
      * @return xLowerCase
      */
@@ -401,7 +402,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * completed trade amount   (in quote asset)
      *
      * @return qLowerCase
      */
@@ -420,7 +421,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get V
+     * taker completed trade volume (in contracts)
      *
      * @return V
      */
@@ -439,7 +440,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * taker trade amount(in quote asset)
      *
      * @return Q
      */
@@ -466,7 +467,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
                 && Objects.equals(this.T, klineCandlestickStreamsResponseK.T)
                 && Objects.equals(this.sLowerCase, klineCandlestickStreamsResponseK.sLowerCase)
                 && Objects.equals(this.iLowerCase, klineCandlestickStreamsResponseK.iLowerCase)
-                && Objects.equals(this.F, klineCandlestickStreamsResponseK.F)
+                && Objects.equals(this.fLowerCase, klineCandlestickStreamsResponseK.fLowerCase)
                 && Objects.equals(this.L, klineCandlestickStreamsResponseK.L)
                 && Objects.equals(this.oLowerCase, klineCandlestickStreamsResponseK.oLowerCase)
                 && Objects.equals(this.cLowerCase, klineCandlestickStreamsResponseK.cLowerCase)
@@ -487,7 +488,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
                 T,
                 sLowerCase,
                 iLowerCase,
-                F,
+                fLowerCase,
                 L,
                 oLowerCase,
                 cLowerCase,
@@ -509,7 +510,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
-        sb.append("		F: ").append(toIndentedString(F)).append("\n");
+        sb.append("		fLowerCase: ").append(toIndentedString(fLowerCase)).append("\n");
         sb.append("		L: ").append(toIndentedString(L)).append("\n");
         sb.append("		oLowerCase: ").append(toIndentedString(oLowerCase)).append("\n");
         sb.append("		cLowerCase: ").append(toIndentedString(cLowerCase)).append("\n");
@@ -549,10 +550,10 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
             String iLowerCaseValueAsString = iLowerCaseValue.toString();
             valMap.put("iLowerCase", iLowerCaseValueAsString);
         }
-        Long FValue = getF();
-        if (FValue != null) {
-            String FValueAsString = FValue.toString();
-            valMap.put("F", FValueAsString);
+        Long fLowerCaseValue = getfLowerCase();
+        if (fLowerCaseValue != null) {
+            String fLowerCaseValueAsString = fLowerCaseValue.toString();
+            valMap.put("fLowerCase", fLowerCaseValueAsString);
         }
         Long LValue = getL();
         if (LValue != null) {
@@ -636,9 +637,9 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
         if (iLowerCaseValue != null) {
             valMap.put("iLowerCase", iLowerCaseValue);
         }
-        Object FValue = getF();
-        if (FValue != null) {
-            valMap.put("F", FValue);
+        Object fLowerCaseValue = getfLowerCase();
+        if (fLowerCaseValue != null) {
+            valMap.put("fLowerCase", fLowerCaseValue);
         }
         Object LValue = getL();
         if (LValue != null) {
@@ -714,7 +715,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
         openapiFields.add("T");
         openapiFields.add("s");
         openapiFields.add("i");
-        openapiFields.add("F");
+        openapiFields.add("f");
         openapiFields.add("L");
         openapiFields.add("o");
         openapiFields.add("c");
@@ -862,7 +863,7 @@ public class KlineCandlestickStreamsResponseK extends BaseDTO {
                         @Override
                         public void write(JsonWriter out, KlineCandlestickStreamsResponseK value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

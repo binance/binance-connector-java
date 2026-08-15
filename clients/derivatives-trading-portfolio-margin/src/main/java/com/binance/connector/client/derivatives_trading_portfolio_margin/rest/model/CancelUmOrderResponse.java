@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,22 +28,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** CancelUmOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelUmOrderResponse {
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
-
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
     @SerializedName(SERIALIZED_NAME_CLIENT_ORDER_ID)
@@ -55,12 +47,6 @@ public class CancelUmOrderResponse {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
-
-    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
-    @jakarta.annotation.Nullable
-    private String cumQuote;
 
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
@@ -155,32 +141,13 @@ public class CancelUmOrderResponse {
 
     public CancelUmOrderResponse() {}
 
-    public CancelUmOrderResponse avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public CancelUmOrderResponse clientOrderId(@jakarta.annotation.Nullable String clientOrderId) {
         this.clientOrderId = clientOrderId;
         return this;
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -199,7 +166,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get cumQty
+     * Cum Qty.
      *
      * @return cumQty
      */
@@ -212,32 +179,13 @@ public class CancelUmOrderResponse {
         this.cumQty = cumQty;
     }
 
-    public CancelUmOrderResponse cumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-        return this;
-    }
-
-    /**
-     * Get cumQuote
-     *
-     * @return cumQuote
-     */
-    @jakarta.annotation.Nullable
-    public String getCumQuote() {
-        return cumQuote;
-    }
-
-    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-    }
-
     public CancelUmOrderResponse executedQty(@jakarta.annotation.Nullable String executedQty) {
         this.executedQty = executedQty;
         return this;
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -256,7 +204,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -275,7 +223,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -294,7 +242,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -313,7 +261,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -332,7 +280,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -351,7 +299,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -370,7 +318,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -389,7 +337,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -408,7 +356,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -427,7 +375,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -446,7 +394,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -466,7 +414,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -486,7 +434,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -505,7 +453,7 @@ public class CancelUmOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */
@@ -527,10 +475,8 @@ public class CancelUmOrderResponse {
             return false;
         }
         CancelUmOrderResponse cancelUmOrderResponse = (CancelUmOrderResponse) o;
-        return Objects.equals(this.avgPrice, cancelUmOrderResponse.avgPrice)
-                && Objects.equals(this.clientOrderId, cancelUmOrderResponse.clientOrderId)
+        return Objects.equals(this.clientOrderId, cancelUmOrderResponse.clientOrderId)
                 && Objects.equals(this.cumQty, cancelUmOrderResponse.cumQty)
-                && Objects.equals(this.cumQuote, cancelUmOrderResponse.cumQuote)
                 && Objects.equals(this.executedQty, cancelUmOrderResponse.executedQty)
                 && Objects.equals(this.orderId, cancelUmOrderResponse.orderId)
                 && Objects.equals(this.origQty, cancelUmOrderResponse.origQty)
@@ -552,10 +498,8 @@ public class CancelUmOrderResponse {
     @Override
     public int hashCode() {
         return Objects.hash(
-                avgPrice,
                 clientOrderId,
                 cumQty,
-                cumQuote,
                 executedQty,
                 orderId,
                 origQty,
@@ -577,10 +521,8 @@ public class CancelUmOrderResponse {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CancelUmOrderResponse {\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
@@ -605,10 +547,6 @@ public class CancelUmOrderResponse {
     public String toUrlQueryString() {
         StringBuilder sb = new StringBuilder();
 
-        Object avgPriceValue = getAvgPrice();
-        String avgPriceValueAsString = "";
-        avgPriceValueAsString = avgPriceValue.toString();
-        sb.append("avgPrice=").append(urlEncode(avgPriceValueAsString)).append("");
         Object clientOrderIdValue = getClientOrderId();
         String clientOrderIdValueAsString = "";
         clientOrderIdValueAsString = clientOrderIdValue.toString();
@@ -617,10 +555,6 @@ public class CancelUmOrderResponse {
         String cumQtyValueAsString = "";
         cumQtyValueAsString = cumQtyValue.toString();
         sb.append("cumQty=").append(urlEncode(cumQtyValueAsString)).append("");
-        Object cumQuoteValue = getCumQuote();
-        String cumQuoteValueAsString = "";
-        cumQuoteValueAsString = cumQuoteValue.toString();
-        sb.append("cumQuote=").append(urlEncode(cumQuoteValueAsString)).append("");
         Object executedQtyValue = getExecutedQty();
         String executedQtyValueAsString = "";
         executedQtyValueAsString = executedQtyValue.toString();
@@ -711,10 +645,8 @@ public class CancelUmOrderResponse {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("avgPrice");
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQty");
-        openapiFields.add("cumQuote");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
         openapiFields.add("origQty");
@@ -752,27 +684,7 @@ public class CancelUmOrderResponse {
                                 CancelUmOrderResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CancelUmOrderResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `CancelUmOrderResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
-        }
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -788,14 +700,6 @@ public class CancelUmOrderResponse {
                             "Expected the field `cumQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
-        }
-        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
-                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumQuote` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {
@@ -904,7 +808,7 @@ public class CancelUmOrderResponse {
                         @Override
                         public void write(JsonWriter out, CancelUmOrderResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

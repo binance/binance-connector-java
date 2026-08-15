@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -44,9 +44,13 @@ public class TradeApi {
         this.connection = connection;
     }
 
+    public ConnectionInterface getConnection() {
+        return connection;
+    }
+
     /**
-     * Cancel Order (TRADE) Cancel an active order. * Either &#x60;orderId&#x60; or
-     * &#x60;origClientOrderId&#x60; must be sent. Weight: 1
+     * Cancel Order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: -
+     * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
      *
      * @param cancelOrderRequest (required)
      * @return CancelOrderResponse
@@ -60,7 +64,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Cancel-Order">Cancel
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#cancel-order">Cancel
      *     Order (TRADE) Documentation</a>
      */
     public CompletableFuture<CancelOrderResponse> cancelOrder(CancelOrderRequest cancelOrderRequest)
@@ -108,18 +112,18 @@ public class TradeApi {
 
     /**
      * Modify Order (TRADE) Order modify function, currently only LIMIT order modification is
-     * supported, modified orders will be reordered in the match queue * Either &#x60;orderId&#x60;
-     * or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if
-     * both are sent. * Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent, which is
-     * different from dapi modify order endpoint. * When the new &#x60;quantity&#x60; or
-     * &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment
-     * will be rejected and the order will stay as it is. * However the order will be cancelled by
-     * the amendment in the following situations: * when the order is in partially filled status and
-     * the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is
-     * &#x60;GTX&#x60; and the new price will cause it to be executed immediately * One order can
-     * only be modfied for less than 10000 times Weight: 1 on 10s order rate
+     * supported, modified orders will be reordered in the match queue Weight: 1 on 10s order rate
      * limit(X-MBX-ORDER-COUNT-10S); 1 on 1min order rate limit(X-MBX-ORDER-COUNT-1M); 1 on IP rate
-     * limit(x-mbx-used-weight-1m)
+     * limit(x-mbx-used-weight-1m) Security Type: TRADE Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both
+     * are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent. - When the new
+     * &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy &#x60;PRICE_FILTER&#x60; /
+     * &#x60;PERCENT_FILTER&#x60; / &#x60;LOT_SIZE&#x60;, amendment will be rejected and the order
+     * will stay as it is. - However the order will be cancelled by the amendment in the following
+     * situations: - when the order is in partially filled status and the new &#x60;quantity&#x60;
+     * &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60; and the new price will
+     * cause it to be executed immediately - One order can only be modified for less than 10000
+     * times.
      *
      * @param modifyOrderRequest (required)
      * @return ModifyOrderResponse
@@ -133,7 +137,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Modify-Order">Modify
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#modify-order">Modify
      *     Order (TRADE) Documentation</a>
      */
     public CompletableFuture<ModifyOrderResponse> modifyOrder(ModifyOrderRequest modifyOrderRequest)
@@ -180,37 +184,43 @@ public class TradeApi {
     }
 
     /**
-     * New Order(TRADE) Send in a new order. * Order with type &#x60;STOP&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Order with type
-     * &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default
-     * &#x60;GTC&#x60;). * Condition orders will be triggered when: * If parameter
-     * &#x60;priceProtect&#x60; is sent as true: * when price reaches the &#x60;stopPrice&#x60;，the
+     * New Order (TRADE) Send in a new order. Weight(IP): 0 Security Type: TRADE Notes: - Additional
+     * mandatory parameters based on &#x60;type&#x60;: | Type | Additional mandatory parameters | |
+     * :---: | --- | | &#x60;LIMIT&#x60; | &#x60;timeInForce&#x60;, &#x60;quantity&#x60;,
+     * &#x60;price&#x60; | | &#x60;MARKET&#x60; | &#x60;quantity&#x60; | |
+     * &#x60;STOP/TAKE_PROFIT&#x60; | &#x60;quantity&#x60;, &#x60;price&#x60;, &#x60;stopPrice&#x60;
+     * | | &#x60;STOP_MARKET/TAKE_PROFIT_MARKET&#x60; | &#x60;stopPrice&#x60; | |
+     * &#x60;TRAILING_STOP_MARKET&#x60; | &#x60;callbackRate&#x60; | - Order with type
+     * &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). *
+     * Order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent (
+     * default &#x60;GTC&#x60;). * Condition orders will be triggered when: - If parameter
+     * &#x60;priceProtect&#x60; is sent as true: - when price reaches the &#x60;stopPrice&#x60;，the
      * difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be
-     * larger than the \&quot;triggerProtect\&quot; of the symbol * \&quot;triggerProtect\&quot; of
-     * a symbol can be got from &#x60;GET /dapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;,
-     * &#x60;STOP_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or
-     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; *
-     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; *
+     * larger than the \&quot;triggerProtect\&quot; of the symbol - \&quot;triggerProtect\&quot; of
+     * a symbol can be got from &#x60;GET /dapi/v1/exchangeInfo&#x60; - &#x60;STOP&#x60;,
+     * &#x60;STOP_MARKET&#x60;: - BUY: latest price (\&quot;MARK_PRICE\&quot; or
+     * \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; - SELL: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; -
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: - BUY: latest price
+     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; -
      * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D;
-     * &#x60;stopPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order
+     * &#x60;stopPrice&#x60; - &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest price after order
      * placed &lt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &gt;&#x3D; the lowest
-     * price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed
+     * price * (1 + &#x60;callbackRate&#x60;) - SELL: the highest price after order placed
      * &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest price &lt;&#x3D; the highest price *
-     * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
-     * code. * BUY: &#x60;activationPrice&#x60; should be smaller than latest price. * SELL:
-     * &#x60;activationPrice&#x60; should be larger than latest price. * If
-     * &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60;: * &#x60;MARKET&#x60; order: the
-     * final FILLED result of the order will be return directly. * &#x60;LIMIT&#x60; order with
+     * (1 - &#x60;callbackRate&#x60;) - For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error
+     * code. - BUY: &#x60;activationPrice&#x60; should be smaller than latest price. - SELL:
+     * &#x60;activationPrice&#x60; should be larger than latest price. - If
+     * &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60;: - &#x60;MARKET&#x60; order: the
+     * final FILLED result of the order will be return directly. - &#x60;LIMIT&#x60; order with
      * special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will
-     * be returned directly. * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
-     * &#x60;closePosition&#x3D;true&#x60;: * Follow the same rules for condition orders. * If
+     * be returned directly. - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x3D;true&#x60;: - Follow the same rules for condition orders. - If
      * triggered，**close all** current long position(if &#x60;SELL&#x60;) or current short
-     * position(if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; parameter * Cannot
-     * be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode, cannot be used with
+     * position(if &#x60;BUY&#x60;). - Cannot be used with &#x60;quantity&#x60; parameter - Cannot
+     * be used with &#x60;reduceOnly&#x60; parameter - In Hedge Mode, cannot be used with
      * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with
-     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side Weight: 0
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side
      *
      * @param newOrderRequest (required)
      * @return NewOrderResponse
@@ -224,8 +234,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/New-Order">New
-     *     Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#new-order">New
+     *     Order (TRADE) Documentation</a>
      */
     public CompletableFuture<NewOrderResponse> newOrder(NewOrderRequest newOrderRequest)
             throws ApiException {
@@ -270,10 +280,11 @@ public class TradeApi {
     }
 
     /**
-     * Position Information(USER_DATA) Get current position information. * Please use with user data
-     * stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. Weight: 5
+     * Position Information (USER_DATA) Get current position information. Weight(IP): 5 Security
+     * Type: USER_DATA Notes: - Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet
+     * your timeliness and accuracy needs.
      *
-     * @param positionInformationRequest (required)
+     * @param positionInformationRequest (optional)
      * @return PositionInformationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -285,8 +296,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Position-Information">Position
-     *     Information(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#position-information">Position
+     *     Information (USER_DATA) Documentation</a>
      */
     public CompletableFuture<PositionInformationResponse> positionInformation(
             PositionInformationRequest positionInformationRequest) throws ApiException {
@@ -336,8 +347,8 @@ public class TradeApi {
      * Query Order (USER_DATA) Check an order&#39;s status. * These orders will not be found: *
      * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade
      * **AND** created time + 3 days &lt; current time * order create time + 90 days &lt; current
-     * time * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. *
-     * &#x60;orderId&#x60; is self-increment for each specific &#x60;symbol&#x60; Weight: 1
+     * time Weight(IP): 1 Security Type: USER_DATA Notes: - Either &#x60;orderId&#x60; or
+     * &#x60;origClientOrderId&#x60; must be sent.
      *
      * @param queryOrderRequest (required)
      * @return QueryOrderResponse
@@ -351,7 +362,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Query-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#query-order">Query
      *     Order (USER_DATA) Documentation</a>
      */
     public CompletableFuture<QueryOrderResponse> queryOrder(QueryOrderRequest queryOrderRequest)

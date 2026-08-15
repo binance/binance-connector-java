@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,27 +22,26 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** MarginManualLiquidationRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginManualLiquidationRequest {
     public static final String SERIALIZED_NAME_TYPE = "type";
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -58,7 +57,7 @@ public class MarginManualLiquidationRequest {
 
     public MarginManualLiquidationRequest() {}
 
-    public MarginManualLiquidationRequest type(@jakarta.annotation.Nonnull String type) {
+    public MarginManualLiquidationRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -70,11 +69,12 @@ public class MarginManualLiquidationRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -84,7 +84,7 @@ public class MarginManualLiquidationRequest {
     }
 
     /**
-     * Get symbol
+     * When type selects &#x60;ISOLATED&#x60;, &#x60;symbol&#x60; must be filled in
      *
      * @return symbol
      */
@@ -103,11 +103,12 @@ public class MarginManualLiquidationRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -218,18 +219,6 @@ public class MarginManualLiquidationRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!MarginManualLiquidationRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `MarginManualLiquidationRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : MarginManualLiquidationRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -240,13 +229,8 @@ public class MarginManualLiquidationRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -275,7 +259,7 @@ public class MarginManualLiquidationRequest {
                         @Override
                         public void write(JsonWriter out, MarginManualLiquidationRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

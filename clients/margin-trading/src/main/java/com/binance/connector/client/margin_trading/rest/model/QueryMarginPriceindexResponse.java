@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryMarginPriceindexResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginPriceindexResponse {
     public static final String SERIALIZED_NAME_CALC_TIME = "calcTime";
 
@@ -64,7 +62,7 @@ public class QueryMarginPriceindexResponse {
     }
 
     /**
-     * Get calcTime
+     * calc Time.
      *
      * @return calcTime
      */
@@ -83,7 +81,7 @@ public class QueryMarginPriceindexResponse {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -102,7 +100,7 @@ public class QueryMarginPriceindexResponse {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -215,18 +213,6 @@ public class QueryMarginPriceindexResponse {
                                 QueryMarginPriceindexResponse.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryMarginPriceindexResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `QueryMarginPriceindexResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
                 && !jsonObj.get("price").isJsonPrimitive()) {
@@ -264,7 +250,7 @@ public class QueryMarginPriceindexResponse {
                         @Override
                         public void write(JsonWriter out, QueryMarginPriceindexResponse value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

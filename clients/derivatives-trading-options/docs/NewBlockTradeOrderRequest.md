@@ -7,12 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**liquidity** | **String** |  |  |
+|**liquidity** | **Liquidity** |  |  |
 |**legs** | **Legs** |  |  |
-|**symbol** | **String** |  |  |
-|**side** | **Side** |  |  |
-|**price** | **Double** |  |  |
-|**quantity** | **Double** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

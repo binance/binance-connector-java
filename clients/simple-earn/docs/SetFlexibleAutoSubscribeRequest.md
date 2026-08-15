@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**productId** | **String** |  |  |
 |**autoSubscribe** | **Boolean** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

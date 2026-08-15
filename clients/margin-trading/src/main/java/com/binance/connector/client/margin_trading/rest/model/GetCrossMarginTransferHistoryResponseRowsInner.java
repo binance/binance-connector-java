@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetCrossMarginTransferHistoryResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCrossMarginTransferHistoryResponseRowsInner {
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -107,7 +105,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get amount
+     * amount.
      *
      * @return amount
      */
@@ -127,7 +125,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -147,7 +145,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -167,7 +165,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get timestamp
+     * timestamp.
      *
      * @return timestamp
      */
@@ -187,7 +185,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get txId
+     * tx Id.
      *
      * @return txId
      */
@@ -207,7 +205,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -227,7 +225,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get transFrom
+     * SPOT,FUTURES,FIAT,DELIVERY,MINING,ISOLATED_MARGIN,FUNDING,MOTHER_SPOT,OPTION,SUB_SPOT,SUB_MARGIN,CROSS_MARGIN
      *
      * @return transFrom
      */
@@ -247,7 +245,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get transTo
+     * SPOT,FUTURES,FIAT,DELIVERY,MINING,ISOLATED_MARGIN,FUNDING,MOTHER_SPOT,OPTION,SUB_SPOT,SUB_MARGIN,CROSS_MARGIN
      *
      * @return transTo
      */
@@ -267,7 +265,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get fromSymbol
+     * from Symbol.
      *
      * @return fromSymbol
      */
@@ -287,7 +285,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
     }
 
     /**
-     * Get toSymbol
+     * to Symbol.
      *
      * @return toSymbol
      */
@@ -468,20 +466,6 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetCrossMarginTransferHistoryResponseRowsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `GetCrossMarginTransferHistoryResponseRowsInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull())
                 && !jsonObj.get("amount").isJsonPrimitive()) {
@@ -571,7 +555,7 @@ public class GetCrossMarginTransferHistoryResponseRowsInner {
                                 JsonWriter out,
                                 GetCrossMarginTransferHistoryResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

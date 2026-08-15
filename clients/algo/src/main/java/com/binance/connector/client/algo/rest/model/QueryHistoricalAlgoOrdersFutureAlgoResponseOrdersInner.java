@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -131,7 +129,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get algoId
+     * Algo order ID
      *
      * @return algoId
      */
@@ -151,7 +149,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -171,7 +169,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -191,7 +189,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -211,7 +209,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get totalQty
+     * Total order quantity
      *
      * @return totalQty
      */
@@ -231,7 +229,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -251,7 +249,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get executedAmt
+     * Executed amount
      *
      * @return executedAmt
      */
@@ -271,7 +269,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -291,7 +289,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get clientAlgoId
+     * Client-defined algo order ID
      *
      * @return clientAlgoId
      */
@@ -311,7 +309,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get bookTime
+     * Order creation time
      *
      * @return bookTime
      */
@@ -331,7 +329,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get endTime
+     * End time
      *
      * @return endTime
      */
@@ -351,7 +349,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get algoStatus
+     * Algo order status
      *
      * @return algoStatus
      */
@@ -371,7 +369,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get algoType
+     * Algo order type
      *
      * @return algoType
      */
@@ -391,7 +389,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
     }
 
     /**
-     * Get urgency
+     * Execution urgency
      *
      * @return urgency
      */
@@ -624,20 +622,6 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -753,7 +737,7 @@ public class QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner {
                                 JsonWriter out,
                                 QueryHistoricalAlgoOrdersFutureAlgoResponseOrdersInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

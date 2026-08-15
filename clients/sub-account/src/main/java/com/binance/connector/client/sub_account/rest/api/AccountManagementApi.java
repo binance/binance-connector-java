@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,10 +23,6 @@ import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAcco
 import com.binance.connector.client.sub_account.rest.model.CreateAVirtualSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableFuturesForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableLeverageTokenForSubAccountResponse;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountRequest;
-import com.binance.connector.client.sub_account.rest.model.EnableMarginForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.EnableOptionsForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.GetFuturesPositionRiskOfSubAccountResponse;
@@ -43,8 +39,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -57,7 +53,7 @@ public class AccountManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/1.1.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -108,7 +104,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account">Create
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#create-avirtual-sub-account">Create
      *     a Virtual Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call createAVirtualSubAccountCall(
@@ -155,15 +151,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -177,7 +169,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -216,9 +208,10 @@ public class AccountManagementApi {
     }
 
     /**
-     * Create a Virtual Sub-account (For Master Account) (USER_DATA) Create a Virtual Sub-account *
-     * This request will generate a virtual sub account under your master account. * You need to
-     * enable \&quot;trade\&quot; option for the API Key which requests this endpoint. Weight: 1
+     * Create a Virtual Sub-account (For Master Account) (USER_DATA) Create a Virtual Sub-account
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - This request generates a virtual sub-account
+     * under your master account. - The API key used to call this endpoint must have the
+     * &#x60;trade&#x60; option enabled.
      *
      * @param createAVirtualSubAccountRequest (required)
      * @return ApiResponse&lt;CreateAVirtualSubAccountResponse&gt;
@@ -232,7 +225,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account">Create
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#create-avirtual-sub-account">Create
      *     a Virtual Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<CreateAVirtualSubAccountResponse> createAVirtualSubAccount(
@@ -259,7 +252,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-futures-for-sub-account">Enable
      *     Futures for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call enableFuturesForSubAccountCall(
@@ -306,15 +299,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -328,7 +317,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -369,7 +358,7 @@ public class AccountManagementApi {
 
     /**
      * Enable Futures for Sub-account (For Master Account) (USER_DATA) Enable Futures for
-     * Sub-account for Master Account Weight: 1
+     * Sub-account for Master Account Weight(IP): 1 Security Type: USER_DATA
      *
      * @param enableFuturesForSubAccountRequest (required)
      * @return ApiResponse&lt;EnableFuturesForSubAccountResponse&gt;
@@ -383,7 +372,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-futures-for-sub-account">Enable
      *     Futures for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<EnableFuturesForSubAccountResponse> enableFuturesForSubAccount(
@@ -393,315 +382,6 @@ public class AccountManagementApi {
                 enableFuturesForSubAccountValidateBeforeCall(enableFuturesForSubAccountRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<EnableFuturesForSubAccountResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for enableLeverageTokenForSubAccount
-     *
-     * @param enableLeverageTokenForSubAccountRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Enable Leverage Token for Sub-account </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Leverage-Token-for-Sub-account">Enable
-     *     Leverage Token for Sub-account (For Master Account) (USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call enableLeverageTokenForSubAccountCall(
-            EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest)
-            throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/sub-account/blvt/enable";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (enableLeverageTokenForSubAccountRequest.getEmail() != null) {
-            localVarFormParams.put("email", enableLeverageTokenForSubAccountRequest.getEmail());
-        }
-
-        if (enableLeverageTokenForSubAccountRequest.getEnableBlvt() != null) {
-            localVarFormParams.put(
-                    "enableBlvt", enableLeverageTokenForSubAccountRequest.getEnableBlvt());
-        }
-
-        if (enableLeverageTokenForSubAccountRequest.getRecvWindow() != null) {
-            localVarFormParams.put(
-                    "recvWindow", enableLeverageTokenForSubAccountRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call enableLeverageTokenForSubAccountValidateBeforeCall(
-            EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {enableLeverageTokenForSubAccountRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "enableLeverageTokenForSubAccount",
-                                    EnableLeverageTokenForSubAccountRequest.class);
-            Set<ConstraintViolation<AccountManagementApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return enableLeverageTokenForSubAccountCall(
-                        enableLeverageTokenForSubAccountRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Enable Leverage Token for Sub-account (For Master Account) (USER_DATA) Enable Leverage Token
-     * for Sub-account Weight: 1
-     *
-     * @param enableLeverageTokenForSubAccountRequest (required)
-     * @return ApiResponse&lt;EnableLeverageTokenForSubAccountResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Enable Leverage Token for Sub-account </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Leverage-Token-for-Sub-account">Enable
-     *     Leverage Token for Sub-account (For Master Account) (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<EnableLeverageTokenForSubAccountResponse> enableLeverageTokenForSubAccount(
-            @Valid @NotNull
-                    EnableLeverageTokenForSubAccountRequest enableLeverageTokenForSubAccountRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                enableLeverageTokenForSubAccountValidateBeforeCall(
-                        enableLeverageTokenForSubAccountRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<EnableLeverageTokenForSubAccountResponse>() {}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Build call for enableMarginForSubAccount
-     *
-     * @param enableMarginForSubAccountRequest (required)
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Enable Margin for Sub-account </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Margin-for-Sub-account">Enable
-     *     Margin for Sub-account (For Master Account) (USER_DATA) Documentation</a>
-     */
-    private okhttp3.Call enableMarginForSubAccountCall(
-            EnableMarginForSubAccountRequest enableMarginForSubAccountRequest) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {};
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
-            basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sapi/v1/sub-account/margin/enable";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (enableMarginForSubAccountRequest.getEmail() != null) {
-            localVarFormParams.put("email", enableMarginForSubAccountRequest.getEmail());
-        }
-
-        if (enableMarginForSubAccountRequest.getRecvWindow() != null) {
-            localVarFormParams.put("recvWindow", enableMarginForSubAccountRequest.getRecvWindow());
-        }
-
-        final String[] localVarAccepts = {"application/json"};
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
-        if (HAS_TIME_UNIT) {
-            localVarAuthNames.add("timeUnit");
-        }
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call enableMarginForSubAccountValidateBeforeCall(
-            EnableMarginForSubAccountRequest enableMarginForSubAccountRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-            ExecutableValidator executableValidator = validator.forExecutables();
-
-            Object[] parameterValues = {enableMarginForSubAccountRequest};
-            Method method =
-                    this.getClass()
-                            .getMethod(
-                                    "enableMarginForSubAccount",
-                                    EnableMarginForSubAccountRequest.class);
-            Set<ConstraintViolation<AccountManagementApi>> violations =
-                    executableValidator.validateParameters(this, method, parameterValues);
-
-            if (violations.size() == 0) {
-                return enableMarginForSubAccountCall(enableMarginForSubAccountRequest);
-            } else {
-                throw new ConstraintViolationException((Set) violations);
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
-     * Enable Margin for Sub-account (For Master Account) (USER_DATA) Enable Margin for Sub-account
-     * Weight: 1
-     *
-     * @param enableMarginForSubAccountRequest (required)
-     * @return ApiResponse&lt;EnableMarginForSubAccountResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Enable Margin for Sub-account </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Margin-for-Sub-account">Enable
-     *     Margin for Sub-account (For Master Account) (USER_DATA) Documentation</a>
-     */
-    public ApiResponse<EnableMarginForSubAccountResponse> enableMarginForSubAccount(
-            @Valid @NotNull EnableMarginForSubAccountRequest enableMarginForSubAccountRequest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                enableMarginForSubAccountValidateBeforeCall(enableMarginForSubAccountRequest);
-        java.lang.reflect.Type localVarReturnType =
-                new TypeToken<EnableMarginForSubAccountResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -719,7 +399,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Options-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-options-for-sub-account">Enable
      *     Options for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call enableOptionsForSubAccountCall(
@@ -766,15 +446,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -788,7 +464,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -829,7 +505,7 @@ public class AccountManagementApi {
 
     /**
      * Enable Options for Sub-account (For Master Account) (USER_DATA) Enable Options for
-     * Sub-account (For Master Account). Weight: 1
+     * Sub-account (For Master Account). Weight(IP): 1 Security Type: USER_DATA
      *
      * @param enableOptionsForSubAccountRequest (required)
      * @return ApiResponse&lt;EnableOptionsForSubAccountResponse&gt;
@@ -843,7 +519,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Enable-Options-for-Sub-account">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-options-for-sub-account">Enable
      *     Options for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<EnableOptionsForSubAccountResponse> enableOptionsForSubAccount(
@@ -859,7 +535,7 @@ public class AccountManagementApi {
     /**
      * Build call for getFuturesPositionRiskOfSubAccount
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -871,7 +547,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account">Get
      *     Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFuturesPositionRiskOfSubAccountCall(String email, Long recvWindow)
@@ -917,15 +593,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -939,7 +611,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -978,9 +650,9 @@ public class AccountManagementApi {
 
     /**
      * Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) Get Futures
-     * Position-Risk of Sub-account Weight: 10
+     * Position-Risk of Sub-account Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFuturesPositionRiskOfSubAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -993,11 +665,11 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account">Get
      *     Futures Position-Risk of Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesPositionRiskOfSubAccountResponse>
-            getFuturesPositionRiskOfSubAccount(@NotNull String email, Long recvWindow)
+            getFuturesPositionRiskOfSubAccount(@NotNull String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesPositionRiskOfSubAccountValidateBeforeCall(email, recvWindow);
@@ -1009,7 +681,7 @@ public class AccountManagementApi {
     /**
      * Build call for getFuturesPositionRiskOfSubAccountV2
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -1022,7 +694,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account-v2">Get
      *     Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1074,15 +746,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1096,7 +764,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1138,9 +806,9 @@ public class AccountManagementApi {
 
     /**
      * Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA) Get Futures
-     * Position-Risk of Sub-account V2 Weight: 1
+     * Position-Risk of Sub-account V2 Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email (required)
      * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFuturesPositionRiskOfSubAccountV2Response&gt;
@@ -1154,13 +822,13 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account-v2">Get
      *     Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetFuturesPositionRiskOfSubAccountV2Response>
             getFuturesPositionRiskOfSubAccountV2(
-                    @NotNull String email, @NotNull Long futuresType, Long recvWindow)
+                    @NotNull String email, @NotNull Long futuresType, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesPositionRiskOfSubAccountV2ValidateBeforeCall(
@@ -1173,7 +841,7 @@ public class AccountManagementApi {
     /**
      * Build call for getSubAccountsStatusOnMarginOrFutures
      *
-     * @param email Managed sub-account email (optional)
+     * @param email (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1185,7 +853,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-sub-accounts-status-on-margin-or-futures">Get
      *     Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
@@ -1232,15 +900,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1254,7 +918,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1295,10 +959,10 @@ public class AccountManagementApi {
 
     /**
      * Get Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA) Get
-     * Sub-account&#39;s Status on Margin Or Futures * If no email sent, all sub-accounts&#39;
-     * information will be returned. Weight: 10
+     * Sub-account&#39;s Status on Margin Or Futures Weight(IP): 10 Security Type: USER_DATA Notes:
+     * - If no email sent, all sub-accounts&#39; information will be returned.
      *
-     * @param email Managed sub-account email (optional)
+     * @param email (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSubAccountsStatusOnMarginOrFuturesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1311,12 +975,12 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures">Get
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-sub-accounts-status-on-margin-or-futures">Get
      *     Sub-account&#39;s Status on Margin Or Futures (For Master Account) (USER_DATA)
      *     Documentation</a>
      */
     public ApiResponse<GetSubAccountsStatusOnMarginOrFuturesResponse>
-            getSubAccountsStatusOnMarginOrFutures(String email, Long recvWindow)
+            getSubAccountsStatusOnMarginOrFutures(String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getSubAccountsStatusOnMarginOrFuturesValidateBeforeCall(email, recvWindow);
@@ -1328,10 +992,10 @@ public class AccountManagementApi {
     /**
      * Build call for querySubAccountList
      *
-     * @param email Managed sub-account email (optional)
-     * @param isFreeze true or false (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (optional)
+     * @param isFreeze (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1343,7 +1007,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-list">Query
      *     Sub-account List (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountListCall(
@@ -1402,15 +1066,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1424,7 +1084,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1468,12 +1128,13 @@ public class AccountManagementApi {
     }
 
     /**
-     * Query Sub-account List (For Master Account) (USER_DATA) Query Sub-account List Weight: 1
+     * Query Sub-account List (For Master Account) (USER_DATA) Query Sub-account List Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param email Managed sub-account email (optional)
-     * @param isFreeze true or false (optional)
-     * @param page Default value: 1 (optional)
-     * @param limit Default value: 1, Max value: 200 (optional)
+     * @param email (optional)
+     * @param isFreeze (optional)
+     * @param page (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1486,11 +1147,15 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-list">Query
      *     Sub-account List (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountListResponse> querySubAccountList(
-            String email, String isFreeze, Long page, Long limit, Long recvWindow)
+            String email,
+            String isFreeze,
+            Long page,
+            @Max(200L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountListValidateBeforeCall(email, isFreeze, page, limit, recvWindow);
@@ -1502,7 +1167,7 @@ public class AccountManagementApi {
     /**
      * Build call for querySubAccountTransactionStatistics
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email Managed sub-account email (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1514,7 +1179,7 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-Transaction-Statistics">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-transaction-statistics">Query
      *     Sub-account Transaction Statistics (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubAccountTransactionStatisticsCall(String email, Long recvWindow)
@@ -1560,15 +1225,11 @@ public class AccountManagementApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1582,7 +1243,7 @@ public class AccountManagementApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1623,9 +1284,9 @@ public class AccountManagementApi {
 
     /**
      * Query Sub-account Transaction Statistics (For Master Account) (USER_DATA) Query Sub-account
-     * Transaction statistics (For Master Account). Weight: 60
+     * Transaction statistics (For Master Account). Weight(IP): 60 Security Type: USER_DATA
      *
-     * @param email [Sub-account email](#email-address) (required)
+     * @param email Managed sub-account email (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySubAccountTransactionStatisticsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1638,11 +1299,11 @@ public class AccountManagementApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-Transaction-Statistics">Query
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-transaction-statistics">Query
      *     Sub-account Transaction Statistics (For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubAccountTransactionStatisticsResponse>
-            querySubAccountTransactionStatistics(@NotNull String email, Long recvWindow)
+            querySubAccountTransactionStatistics(String email, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 querySubAccountTransactionStatisticsValidateBeforeCall(email, recvWindow);

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** UserExerciseRecordResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserExerciseRecordResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -61,12 +59,6 @@ public class UserExerciseRecordResponseInner {
     @SerializedName(SERIALIZED_NAME_EXERCISE_PRICE)
     @jakarta.annotation.Nullable
     private String exercisePrice;
-
-    public static final String SERIALIZED_NAME_MARK_PRICE = "markPrice";
-
-    @SerializedName(SERIALIZED_NAME_MARK_PRICE)
-    @jakarta.annotation.Nullable
-    private String markPrice;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -130,7 +122,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get id
+     * id
      *
      * @return id
      */
@@ -149,7 +141,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get currency
+     * currency
      *
      * @return currency
      */
@@ -168,7 +160,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -188,7 +180,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get exercisePrice
+     * exercise Price
      *
      * @return exercisePrice
      */
@@ -201,33 +193,13 @@ public class UserExerciseRecordResponseInner {
         this.exercisePrice = exercisePrice;
     }
 
-    public UserExerciseRecordResponseInner markPrice(
-            @jakarta.annotation.Nullable String markPrice) {
-        this.markPrice = markPrice;
-        return this;
-    }
-
-    /**
-     * Get markPrice
-     *
-     * @return markPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getMarkPrice() {
-        return markPrice;
-    }
-
-    public void setMarkPrice(@jakarta.annotation.Nullable String markPrice) {
-        this.markPrice = markPrice;
-    }
-
     public UserExerciseRecordResponseInner quantity(@jakarta.annotation.Nullable String quantity) {
         this.quantity = quantity;
         return this;
     }
 
     /**
-     * Get quantity
+     * quantity
      *
      * @return quantity
      */
@@ -246,7 +218,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get amount
+     * amount
      *
      * @return amount
      */
@@ -265,7 +237,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get fee
+     * fee
      *
      * @return fee
      */
@@ -285,7 +257,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get createDate
+     * create Date
      *
      * @return createDate
      */
@@ -305,7 +277,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -325,7 +297,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -345,7 +317,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -365,7 +337,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get positionSide
+     * position Side
      *
      * @return positionSide
      */
@@ -385,7 +357,7 @@ public class UserExerciseRecordResponseInner {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -412,7 +384,6 @@ public class UserExerciseRecordResponseInner {
                 && Objects.equals(this.currency, userExerciseRecordResponseInner.currency)
                 && Objects.equals(this.symbol, userExerciseRecordResponseInner.symbol)
                 && Objects.equals(this.exercisePrice, userExerciseRecordResponseInner.exercisePrice)
-                && Objects.equals(this.markPrice, userExerciseRecordResponseInner.markPrice)
                 && Objects.equals(this.quantity, userExerciseRecordResponseInner.quantity)
                 && Objects.equals(this.amount, userExerciseRecordResponseInner.amount)
                 && Objects.equals(this.fee, userExerciseRecordResponseInner.fee)
@@ -431,7 +402,6 @@ public class UserExerciseRecordResponseInner {
                 currency,
                 symbol,
                 exercisePrice,
-                markPrice,
                 quantity,
                 amount,
                 fee,
@@ -451,7 +421,6 @@ public class UserExerciseRecordResponseInner {
         sb.append("		currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		exercisePrice: ").append(toIndentedString(exercisePrice)).append("\n");
-        sb.append("		markPrice: ").append(toIndentedString(markPrice)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		amount: ").append(toIndentedString(amount)).append("\n");
         sb.append("		fee: ").append(toIndentedString(fee)).append("\n");
@@ -484,10 +453,6 @@ public class UserExerciseRecordResponseInner {
         String exercisePriceValueAsString = "";
         exercisePriceValueAsString = exercisePriceValue.toString();
         sb.append("exercisePrice=").append(urlEncode(exercisePriceValueAsString)).append("");
-        Object markPriceValue = getMarkPrice();
-        String markPriceValueAsString = "";
-        markPriceValueAsString = markPriceValue.toString();
-        sb.append("markPrice=").append(urlEncode(markPriceValueAsString)).append("");
         Object quantityValue = getQuantity();
         String quantityValueAsString = "";
         quantityValueAsString = quantityValue.toString();
@@ -556,7 +521,6 @@ public class UserExerciseRecordResponseInner {
         openapiFields.add("currency");
         openapiFields.add("symbol");
         openapiFields.add("exercisePrice");
-        openapiFields.add("markPrice");
         openapiFields.add("quantity");
         openapiFields.add("amount");
         openapiFields.add("fee");
@@ -587,18 +551,6 @@ public class UserExerciseRecordResponseInner {
                                 "The required field(s) %s in UserExerciseRecordResponseInner is not"
                                         + " found in the empty JSON string",
                                 UserExerciseRecordResponseInner.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UserExerciseRecordResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `UserExerciseRecordResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -633,14 +585,6 @@ public class UserExerciseRecordResponseInner {
                             "Expected the field `exercisePrice` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("exercisePrice").toString()));
-        }
-        if ((jsonObj.get("markPrice") != null && !jsonObj.get("markPrice").isJsonNull())
-                && !jsonObj.get("markPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `markPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("markPrice").toString()));
         }
         if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
                 && !jsonObj.get("quantity").isJsonPrimitive()) {
@@ -710,7 +654,7 @@ public class UserExerciseRecordResponseInner {
                         @Override
                         public void write(JsonWriter out, UserExerciseRecordResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

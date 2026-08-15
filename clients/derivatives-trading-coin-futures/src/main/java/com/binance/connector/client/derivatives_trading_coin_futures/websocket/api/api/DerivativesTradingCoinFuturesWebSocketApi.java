@@ -27,13 +27,17 @@ import com.binance.connector.client.derivatives_trading_coin_futures.websocket.a
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.QueryOrderResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.StartUserDataStreamRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.StartUserDataStreamResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class DerivativesTradingCoinFuturesWebSocketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/1.2.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+
+    private final ConnectionInterface connection;
 
     private AccountApi accountApi;
     private TradeApi tradeApi;
@@ -48,6 +52,11 @@ public class DerivativesTradingCoinFuturesWebSocketApi {
 
     public DerivativesTradingCoinFuturesWebSocketApi(ConnectionInterface connection) {
         connection.setUserAgent(USER_AGENT);
+        List<String> logonMethods = new ArrayList<>();
+        List<String> logoutMethods = new ArrayList<>();
+
+        connection.setLogonMethods(logonMethods);
+        connection.setLogoutMethods(logoutMethods);
         if (!connection.isConnected()) {
             connection.connect();
         }
@@ -55,6 +64,14 @@ public class DerivativesTradingCoinFuturesWebSocketApi {
         this.accountApi = new AccountApi(connection);
         this.tradeApi = new TradeApi(connection);
         this.userDataStreamsApi = new UserDataStreamsApi(connection);
+
+        this.connection = connection;
+    }
+
+    public void stop() throws Exception {
+        if (connection != null && connection.isConnected()) {
+            connection.stop();
+        }
     }
 
     public CompletableFuture<AccountInformationResponse> accountInformation(

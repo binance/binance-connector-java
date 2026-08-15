@@ -111,44 +111,12 @@ public class TradeApiTest {
         ConnectionWrapper connectionWrapper =
                 new ConnectionWrapper(clientConfiguration, webSocketClient);
         connectionSpy = Mockito.spy(connectionWrapper);
+        Mockito.doNothing().when(connectionSpy).setUserAgent(Mockito.anyString());
         Mockito.doReturn(1736393892000L).when(connectionSpy).getTimestamp();
         connectionSpy.connect();
         TradeApi accountApi = new TradeApi(connectionSpy);
         api = Mockito.spy(accountApi);
         Mockito.doReturn("eaf3292c-64b6-4c04-ad4f-4ca2608b42b4").when(api).getRequestID();
-    }
-
-    /**
-     * WebSocket Current open Order lists
-     *
-     * <p>Query execution status of all open order lists. If you need to continuously monitor order
-     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
-     * request * &#x60;executionReport&#x60; user data stream event Weight: 6
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void openOrderListsStatusTest() throws ApiException, URISyntaxException, IOException {
-        OpenOrderListsStatusRequest openOrderListsStatusRequest = new OpenOrderListsStatusRequest();
-        CompletableFuture<OpenOrderListsStatusResponse> response =
-                api.openOrderListsStatus(openOrderListsStatusRequest);
-        ArgumentCaptor<RequestWrapperDTO<OpenOrderListsStatusRequest, OpenOrderListsStatusResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<OpenOrderListsStatusRequest, OpenOrderListsStatusResponse>
-                requestWrapperDTO = callArgumentCaptor.getValue();
-        OpenOrderListsStatusRequest params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                TradeApiTest.class.getResource(
-                        "/expected/api/TradeApi/openOrderLists.status-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
     }
 
     /**
@@ -179,41 +147,6 @@ public class TradeApiTest {
         URL resource =
                 TradeApiTest.class.getResource(
                         "/expected/api/TradeApi/openOrders.cancelAll-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * WebSocket Current open orders
-     *
-     * <p>Query execution status of all open orders. If you need to continuously monitor order
-     * status updates, please consider using WebSocket Streams: * &#x60;userDataStream.start&#x60;
-     * request * &#x60;executionReport&#x60; user data stream event Weight: Adjusted based on the
-     * number of requested symbols: | Parameter | Weight | | --------- | ------ | |
-     * &#x60;symbol&#x60; | 6 | | none | 80 |
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void openOrdersStatusTest() throws ApiException, URISyntaxException, IOException {
-        OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest();
-        CompletableFuture<OpenOrdersStatusResponse> response =
-                api.openOrdersStatus(openOrdersStatusRequest);
-        ArgumentCaptor<RequestWrapperDTO<OpenOrdersStatusRequest, OpenOrdersStatusResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<OpenOrdersStatusRequest, OpenOrdersStatusResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        OpenOrdersStatusRequest params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                TradeApiTest.class.getResource(
-                        "/expected/api/TradeApi/openOrders.status-test.json");
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
 
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
@@ -496,37 +429,6 @@ public class TradeApiTest {
     }
 
     /**
-     * WebSocket Query Order list
-     *
-     * <p>Check execution status of an Order list. For execution status of individual orders, use
-     * &#x60;order.status&#x60;. Weight: 4
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void orderListStatusTest() throws ApiException, URISyntaxException, IOException {
-        OrderListStatusRequest orderListStatusRequest = new OrderListStatusRequest();
-        CompletableFuture<OrderListStatusResponse> response =
-                api.orderListStatus(orderListStatusRequest);
-        ArgumentCaptor<RequestWrapperDTO<OrderListStatusRequest, OrderListStatusResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<OrderListStatusRequest, OrderListStatusResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        OrderListStatusRequest params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                TradeApiTest.class.getResource("/expected/api/TradeApi/orderList.status-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
      * WebSocket Place new order
      *
      * <p>Send in a new order. Weight: 1
@@ -557,36 +459,6 @@ public class TradeApiTest {
     }
 
     /**
-     * WebSocket Query order
-     *
-     * <p>Check execution status of an order. Weight: 4
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void orderStatusTest() throws ApiException, URISyntaxException, IOException {
-        OrderStatusRequest orderStatusRequest = new OrderStatusRequest();
-        orderStatusRequest.setSymbol("BTCUSDT");
-        CompletableFuture<OrderStatusResponse> response = api.orderStatus(orderStatusRequest);
-        ArgumentCaptor<RequestWrapperDTO<OrderStatusRequest, OrderStatusResponse>>
-                callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<OrderStatusRequest, OrderStatusResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        OrderStatusRequest params = requestWrapperDTO.getParams();
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                TradeApiTest.class.getResource("/expected/api/TradeApi/order.status-test.json");
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
      * WebSocket Test new order
      *
      * <p>Test order placement. Validates new order parameters and verifies your signature but does
@@ -599,6 +471,7 @@ public class TradeApiTest {
     @Test
     public void orderTestTest() throws ApiException, URISyntaxException, IOException {
         OrderTestRequest orderTestRequest = new OrderTestRequest();
+        orderTestRequest.symbol("BTCUSDT").quantity(0.00).side(Side.BUY).type(OrderType.LIMIT);
         CompletableFuture<OrderTestResponse> response = api.orderTest(orderTestRequest);
         ArgumentCaptor<RequestWrapperDTO<OrderTestRequest, OrderTestResponse>> callArgumentCaptor =
                 ArgumentCaptor.forClass(RequestWrapperDTO.class);
@@ -661,6 +534,7 @@ public class TradeApiTest {
     @Test
     public void sorOrderTestTest() throws ApiException, URISyntaxException, IOException {
         SorOrderTestRequest sorOrderTestRequest = new SorOrderTestRequest();
+        sorOrderTestRequest.symbol("BTCUSDT").quantity(0.00).side(Side.BUY).type(OrderType.LIMIT);
         CompletableFuture<SorOrderTestResponse> response = api.sorOrderTest(sorOrderTestRequest);
         ArgumentCaptor<RequestWrapperDTO<SorOrderTestRequest, SorOrderTestResponse>>
                 callArgumentCaptor = ArgumentCaptor.forClass(RequestWrapperDTO.class);

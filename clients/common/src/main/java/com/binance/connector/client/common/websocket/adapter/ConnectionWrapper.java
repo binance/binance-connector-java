@@ -10,7 +10,7 @@ import com.binance.connector.client.common.websocket.configuration.WebSocketClie
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.BaseRequestDTO;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
-import com.binance.connector.client.common.websocket.dtos.SessionLogonResponse;
+import com.binance.connector.client.common.websocket.dtos.SessionResponse;
 import com.binance.connector.client.common.websocket.service.DeserializeExclusionStrategy;
 import com.binance.connector.client.common.websocket.service.SerializeExclusionStrategy;
 import com.google.gson.Gson;
@@ -28,6 +28,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.text.DecimalFormat;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -36,8 +37,10 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -46,6 +49,7 @@ import org.bouncycastle.crypto.CryptoException;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.http.HttpField;
 import org.eclipse.jetty.http.HttpHeader;
+import org.eclipse.jetty.util.component.LifeCycle;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
@@ -61,12 +65,12 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     // -2015 for wrong API Keys, -1022 for wrong signature
     private static final List<Integer> ERROR_CODE_WRONG_CREDENTIALS = Arrays.asList(-2015, -1022);
 
-    private static final String LOGON_METHOD = "session.logon";
-    private static final String LOGOUT_METHOD = "session.logout";
-
     protected Map<String, RequestWrapperDTO> pendingRequest = new HashMap<>();
     protected Session session;
     protected Session oldSession;
+
+    protected List<String> logonMethods = new ArrayList<>();
+    protected List<String> logoutMethods = new ArrayList<>();
 
     private String userAgent =
             String.format(
@@ -86,6 +90,10 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     private CountDownLatch countDownLatch;
 
     private boolean pendingReconnect = false;
+
+    private List<BlockingQueue<String>> streamQueues = new ArrayList<>();
+
+    private Timer timer;
 
     public ConnectionWrapper(WebSocketClientConfiguration configuration, Gson gson) {
         this(configuration, null, gson);
@@ -114,13 +122,18 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
             if (configuration.getWebSocketProxy() != null) {
                 httpClient.getProxyConfiguration().addProxy(configuration.getWebSocketProxy());
                 if (configuration.getWebSocketProxyAuthentication() != null) {
-                    httpClient.getAuthenticationStore().addAuthentication(configuration.getWebSocketProxyAuthentication());
+                    httpClient
+                            .getAuthenticationStore()
+                            .addAuthentication(configuration.getWebSocketProxyAuthentication());
                 }
             }
             webSocketClient = new WebSocketClient(httpClient);
         }
 
         webSocketClient.setIdleTimeout(Duration.ZERO);
+        if (configuration.getMessageMaxSize() != null) {
+            webSocketClient.setMaxTextMessageSize(configuration.getMessageMaxSize());
+        }
 
         if (!webSocketClient.isStarted() && !webSocketClient.isStarting()) {
             try {
@@ -150,8 +163,8 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         }
 
         Integer reconnectAfter = configuration.getReconnectIntervalTime();
-        new Timer()
-                .scheduleAtFixedRate(
+        this.timer = new Timer();
+        this.timer.scheduleAtFixedRate(
                         new TimerTask() {
                             @Override
                             public void run() {
@@ -183,7 +196,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
     public void connect(Consumer<Session> customCallback)
             throws IOException, URISyntaxException, InterruptedException {
         pendingReconnect = false;
-        boolean autoLogon = configuration.getAutoLogon();
+        boolean autoLogon = !logonMethods.isEmpty() && (configuration.getAutoLogon() || isLoggedOn);
 
         // For LogOn mode, we need the logon to be completed before changing the session
         countDownLatch = new CountDownLatch(autoLogon ? 1 : 0);
@@ -211,6 +224,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         CompletableFuture<Session> clientSessionPromise =
                 webSocketClient.connect(this, serverURI, clientUpgradeRequest);
         Session session = clientSessionPromise.join();
+
         if (callback != null) {
             callback.accept(session);
         }
@@ -344,6 +358,15 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         innerSend(request);
     }
 
+    @Override
+    public BlockingQueue<String> sendForStream(ApiRequestWrapperDTO request)
+            throws InterruptedException {
+        LinkedBlockingDeque<String> streamQueue = new LinkedBlockingDeque<>();
+        streamQueues.add(streamQueue);
+        send(request);
+        return streamQueue;
+    }
+
     public void innerSend(RequestWrapperDTO requestWrapperDTO) {
         send(requestWrapperDTO);
     }
@@ -380,12 +403,12 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
                         .build();
 
         build.setSignature(signatureGenerator.signAsString(build.toString()));
-        RequestWrapperDTO<? extends BaseRequestDTO, SessionLogonResponse> request =
-                new RequestWrapperDTO.Builder<BaseRequestDTO, SessionLogonResponse>()
+        RequestWrapperDTO<? extends BaseRequestDTO, SessionResponse> request =
+                new RequestWrapperDTO.Builder<BaseRequestDTO, SessionResponse>()
                         .id(UUID.randomUUID().toString())
-                        .method("session.logon")
+                        .method(logonMethods.get(0))
                         .params(build)
-                        .responseType(SessionLogonResponse.class)
+                        .responseType(SessionResponse.class)
                         .build();
 
         request.getResponseCallback()
@@ -424,26 +447,37 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         try {
             JsonElement root = JsonParser.parseString(message);
             JsonObject obj = root.getAsJsonObject();
-            JsonElement idElem = obj.get("id");
-            String id = idElem == null ? null : idElem.getAsString();
 
-            if (id == null) {
+            if (handleShutdownMessage(obj)) {
                 return;
             }
 
-            RequestWrapperDTO requestWrapperDTO = pendingRequest.get(id);
+            JsonElement idElem = obj.get("id");
+            String id = idElem == null ? null : idElem.getAsString();
+            RequestWrapperDTO requestWrapperDTO = null;
+            if (id != null) {
+                requestWrapperDTO = pendingRequest.get(id);
+            }
+
+            if (requestWrapperDTO == null) {
+                JsonElement eventElem = obj.get("event");
+                for (BlockingQueue<String> streamQueue : streamQueues) {
+                    streamQueue.offer(eventElem != null ? eventElem.toString() : message);
+                }
+                return;
+            }
             Type responseType = requestWrapperDTO.getResponseType();
 
             Object responseResult = gson.fromJson(root, responseType);
             pendingRequest.remove(id);
 
-            if (LOGON_METHOD.equals(requestWrapperDTO.getMethod())) {
+            if (this.logonMethods.contains(requestWrapperDTO.getMethod())) {
                 if (obj.get("status").getAsInt() == 200) {
                     isLoggedOn = true;
                 }
             }
 
-            if (LOGOUT_METHOD.equals(requestWrapperDTO.getMethod())) {
+            if (this.logoutMethods.contains(requestWrapperDTO.getMethod())) {
                 if (obj.get("status").getAsInt() == 200) {
                     isLoggedOn = false;
                 }
@@ -464,6 +498,23 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         return isReady && pendingRequest.isEmpty();
     }
 
+    protected boolean handleShutdownMessage(JsonObject jsonObj) {
+        JsonElement eventElem = jsonObj.get("event");
+        if (eventElem != null) {
+            JsonObject eventElemObj = eventElem.getAsJsonObject();
+            JsonElement eElement = eventElemObj.get("e");
+            if (eElement != null && "serverShutdown".equals(eElement.getAsString())) {
+                if (canReconnect()) {
+                    connect();
+                } else {
+                    pendingReconnect = true;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
     protected void beforeConnect() {
         // session exists and is open, it's a reconnect
         if (this.session != null && this.session.isOpen()) {
@@ -476,12 +527,23 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         if (this.oldSession != null) {
             this.oldSession.close(StatusCode.NORMAL, "close after reconnect", WriteCallback.NOOP);
         }
+        canReconnect = true;
         setReady(true);
     }
 
     @Override
     public boolean isConnected() {
         return session != null && session.isOpen();
+    }
+
+    @Override
+    public void setLogonMethods(List<String> logonMethods) {
+        this.logonMethods = logonMethods;
+    }
+
+    @Override
+    public void setLogoutMethods(List<String> logoutMethods) {
+        this.logoutMethods = logoutMethods;
     }
 
     public URI getUri(String uri) throws URISyntaxException {
@@ -508,5 +570,22 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
                 oldUri.getPath(),
                 newQuery,
                 oldUri.getFragment());
+    }
+
+    public void disconnect() {
+        if (this.session != null) {
+            this.session.disconnect();
+        }
+        setReady(false);
+        canReconnect = false;
+    }
+
+    public void stop() throws Exception {
+        if (this.webSocketClient != null) {
+            setReady(false);
+            canReconnect = false;
+            timer.cancel();
+            webSocketClient.stop();
+        }
     }
 }

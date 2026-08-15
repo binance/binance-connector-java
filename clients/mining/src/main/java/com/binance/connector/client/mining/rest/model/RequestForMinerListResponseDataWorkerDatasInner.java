@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** RequestForMinerListResponseDataWorkerDatasInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RequestForMinerListResponseDataWorkerDatasInner {
     public static final String SERIALIZED_NAME_WORKER_ID = "workerId";
 
@@ -90,7 +88,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get workerId
+     * Miner ID
      *
      * @return workerId
      */
@@ -110,7 +108,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get workerName
+     * Miner name
      *
      * @return workerName
      */
@@ -130,7 +128,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get status
+     * Status: 1 Valid, 2 Invalid, 3 No longer valid
      *
      * @return status
      */
@@ -150,7 +148,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get hashRate
+     * Real-time rate
      *
      * @return hashRate
      */
@@ -170,7 +168,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get dayHashRate
+     * 24H hashrate
      *
      * @return dayHashRate
      */
@@ -191,7 +189,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get rejectRate
+     * Real-time rejection rate
      *
      * @return rejectRate
      */
@@ -211,7 +209,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
     }
 
     /**
-     * Get lastShareTime
+     * Last share time
      *
      * @return lastShareTime
      */
@@ -366,20 +364,6 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RequestForMinerListResponseDataWorkerDatasInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `RequestForMinerListResponseDataWorkerDatasInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("workerId") != null && !jsonObj.get("workerId").isJsonNull())
                 && !jsonObj.get("workerId").isJsonPrimitive()) {
@@ -421,7 +405,7 @@ public class RequestForMinerListResponseDataWorkerDatasInner {
                                 JsonWriter out,
                                 RequestForMinerListResponseDataWorkerDatasInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

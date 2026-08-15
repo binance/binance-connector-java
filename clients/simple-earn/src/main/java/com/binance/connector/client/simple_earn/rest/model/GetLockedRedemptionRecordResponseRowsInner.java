@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetLockedRedemptionRecordResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetLockedRedemptionRecordResponseRowsInner {
     public static final String SERIALIZED_NAME_POSITION_ID = "positionId";
 
@@ -90,7 +88,7 @@ public class GetLockedRedemptionRecordResponseRowsInner {
 
     @SerializedName(SERIALIZED_NAME_DELIVER_DATE)
     @jakarta.annotation.Nullable
-    private String deliverDate;
+    private Long deliverDate;
 
     public static final String SERIALIZED_NAME_LOSS_AMOUNT = "lossAmount";
 
@@ -296,7 +294,7 @@ public class GetLockedRedemptionRecordResponseRowsInner {
     }
 
     public GetLockedRedemptionRecordResponseRowsInner deliverDate(
-            @jakarta.annotation.Nullable String deliverDate) {
+            @jakarta.annotation.Nullable Long deliverDate) {
         this.deliverDate = deliverDate;
         return this;
     }
@@ -307,11 +305,11 @@ public class GetLockedRedemptionRecordResponseRowsInner {
      * @return deliverDate
      */
     @jakarta.annotation.Nullable
-    public String getDeliverDate() {
+    public Long getDeliverDate() {
         return deliverDate;
     }
 
-    public void setDeliverDate(@jakarta.annotation.Nullable String deliverDate) {
+    public void setDeliverDate(@jakarta.annotation.Nullable Long deliverDate) {
         this.deliverDate = deliverDate;
     }
 
@@ -680,20 +678,6 @@ public class GetLockedRedemptionRecordResponseRowsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetLockedRedemptionRecordResponseRowsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetLockedRedemptionRecordResponseRowsInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("asset") != null && !jsonObj.get("asset").isJsonNull())
                 && !jsonObj.get("asset").isJsonPrimitive()) {
@@ -734,14 +718,6 @@ public class GetLockedRedemptionRecordResponseRowsInner {
                             "Expected the field `type` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("type").toString()));
-        }
-        if ((jsonObj.get("deliverDate") != null && !jsonObj.get("deliverDate").isJsonNull())
-                && !jsonObj.get("deliverDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `deliverDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("deliverDate").toString()));
         }
         if ((jsonObj.get("lossAmount") != null && !jsonObj.get("lossAmount").isJsonNull())
                 && !jsonObj.get("lossAmount").isJsonPrimitive()) {
@@ -815,7 +791,7 @@ public class GetLockedRedemptionRecordResponseRowsInner {
                         public void write(
                                 JsonWriter out, GetLockedRedemptionRecordResponseRowsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**autoRepay** | **String** |  |  |
+|**autoRepay** | **AutoRepay** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -199,15 +199,7 @@ public class JSON {
                         .GetAutoCancelAllOpenOrdersResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .GetDownloadIdForOptionTransactionHistoryResponse
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
                         .GetMarketMakerProtectionConfigResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .GetOptionTransactionHistoryDownloadLinkByIdResponse
-                        .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
                         .HistoricalExerciseRecordsResponse.CustomTypeAdapterFactory());
@@ -216,12 +208,21 @@ public class JSON {
                         .HistoricalExerciseRecordsResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .KlineCandlestickDataResponse.CustomTypeAdapterFactory());
+                        .IndexPriceResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .KlineCandlestickDataResponseInner.CustomTypeAdapterFactory());
+                        .KlineCandlestickDataItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .KlineCandlestickDataItemInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .KlineCandlestickDataResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model.Legs
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model.LegsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
@@ -237,31 +238,20 @@ public class JSON {
                         .NewOrderResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OldTradesLookupResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OldTradesLookupResponseInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
                         .OpenInterestResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
                         .OpenInterestResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OptionAccountInformationResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OptionAccountInformationResponseAssetInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OptionAccountInformationResponseGreekInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
                         .OptionMarginAccountInformationResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
                         .OptionMarginAccountInformationResponseAssetInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .OptionMarginAccountInformationResponseGreekInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
@@ -278,12 +268,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
                         .OrderBookResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OrderBookResponseAsksItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .OrderBookResponseBidsItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model.OrderIds
                         .CustomTypeAdapterFactory());
@@ -364,13 +348,22 @@ public class JSON {
                         .StartUserDataStreamResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
-                        .SymbolPriceTickerResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_options.rest.model
                         .Ticker24hrPriceChangeStatisticsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
                         .Ticker24hrPriceChangeStatisticsResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .TradfiOptionsContractRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .TradfiOptionsContractResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .UserCommissionResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_options.rest.model
+                        .UserCommissionResponseCommissionsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_options.rest.model
                         .UserExerciseRecordResponse.CustomTypeAdapterFactory());

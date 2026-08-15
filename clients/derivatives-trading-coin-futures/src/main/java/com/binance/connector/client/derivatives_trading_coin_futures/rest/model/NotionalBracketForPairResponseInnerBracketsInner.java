@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** NotionalBracketForPairResponseInnerBracketsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalBracketForPairResponseInnerBracketsInner {
     public static final String SERIALIZED_NAME_BRACKET = "bracket";
 
@@ -84,7 +82,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get bracket
+     * bracket level
      *
      * @return bracket
      */
@@ -104,7 +102,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get initialLeverage
+     * the maximum leverage
      *
      * @return initialLeverage
      */
@@ -124,7 +122,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get qtyCap
+     * upper edge of base asset quantity
      *
      * @return qtyCap
      */
@@ -144,7 +142,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get qtylFloor
+     * lower edge of base asset quantity
      *
      * @return qtylFloor
      */
@@ -164,7 +162,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get maintMarginRatio
+     * Maintenance margin ratio.
      *
      * @return maintMarginRatio
      */
@@ -185,7 +183,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
     }
 
     /**
-     * Get cum
+     * Cumulative value.
      *
      * @return cum
      */
@@ -331,20 +329,6 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NotionalBracketForPairResponseInnerBracketsInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `NotionalBracketForPairResponseInnerBracketsInner`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
     }
 
@@ -370,7 +354,7 @@ public class NotionalBracketForPairResponseInnerBracketsInner {
                                 JsonWriter out,
                                 NotionalBracketForPairResponseInnerBracketsInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

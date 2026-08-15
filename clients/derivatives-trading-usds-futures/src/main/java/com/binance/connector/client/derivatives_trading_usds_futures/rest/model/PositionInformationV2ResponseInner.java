@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** PositionInformationV2ResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationV2ResponseInner {
     public static final String SERIALIZED_NAME_ENTRY_PRICE = "entryPrice";
 
@@ -143,7 +141,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * Entry Price.
      *
      * @return entryPrice
      */
@@ -163,7 +161,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get breakEvenPrice
+     * Break Even Price.
      *
      * @return breakEvenPrice
      */
@@ -183,7 +181,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get marginType
+     * Margin Type.
      *
      * @return marginType
      */
@@ -223,7 +221,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get isolatedMargin
+     * Isolated Margin.
      *
      * @return isolatedMargin
      */
@@ -243,7 +241,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get leverage
+     * Leverage.
      *
      * @return leverage
      */
@@ -263,7 +261,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation Price.
      *
      * @return liquidationPrice
      */
@@ -283,7 +281,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark Price.
      *
      * @return markPrice
      */
@@ -303,7 +301,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get maxNotionalValue
+     * Max Notional Value.
      *
      * @return maxNotionalValue
      */
@@ -323,7 +321,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * Position Amt.
      *
      * @return positionAmt
      */
@@ -382,7 +380,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -402,7 +400,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * Un Realized Profit.
      *
      * @return unRealizedProfit
      */
@@ -422,7 +420,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -442,7 +440,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Update Time.
      *
      * @return updateTime
      */
@@ -671,18 +669,6 @@ public class PositionInformationV2ResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PositionInformationV2ResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `PositionInformationV2ResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("entryPrice") != null && !jsonObj.get("entryPrice").isJsonNull())
                 && !jsonObj.get("entryPrice").isJsonPrimitive()) {
@@ -827,7 +813,7 @@ public class PositionInformationV2ResponseInner {
                         @Override
                         public void write(JsonWriter out, PositionInformationV2ResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

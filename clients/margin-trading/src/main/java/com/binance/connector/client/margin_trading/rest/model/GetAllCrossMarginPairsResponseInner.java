@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetAllCrossMarginPairsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetAllCrossMarginPairsResponseInner {
     public static final String SERIALIZED_NAME_BASE = "base";
 
@@ -94,7 +92,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get base
+     * base.
      *
      * @return base
      */
@@ -113,7 +111,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get id
+     * id.
      *
      * @return id
      */
@@ -133,7 +131,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get isBuyAllowed
+     * is Buy Allowed.
      *
      * @return isBuyAllowed
      */
@@ -153,7 +151,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get isMarginTrade
+     * is Margin Trade.
      *
      * @return isMarginTrade
      */
@@ -173,7 +171,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get isSellAllowed
+     * is Sell Allowed.
      *
      * @return isSellAllowed
      */
@@ -192,7 +190,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get quote
+     * quote.
      *
      * @return quote
      */
@@ -211,7 +209,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -231,7 +229,7 @@ public class GetAllCrossMarginPairsResponseInner {
     }
 
     /**
-     * Get delistTime
+     * delist Time.
      *
      * @return delistTime
      */
@@ -384,18 +382,6 @@ public class GetAllCrossMarginPairsResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetAllCrossMarginPairsResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetAllCrossMarginPairsResponseInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("base") != null && !jsonObj.get("base").isJsonNull())
                 && !jsonObj.get("base").isJsonPrimitive()) {
@@ -441,7 +427,7 @@ public class GetAllCrossMarginPairsResponseInner {
                         @Override
                         public void write(JsonWriter out, GetAllCrossMarginPairsResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

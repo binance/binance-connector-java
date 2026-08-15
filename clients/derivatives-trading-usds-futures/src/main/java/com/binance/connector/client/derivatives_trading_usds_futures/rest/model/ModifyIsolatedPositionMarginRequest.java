@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** ModifyIsolatedPositionMarginRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyIsolatedPositionMarginRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -49,7 +47,7 @@ public class ModifyIsolatedPositionMarginRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide;
+    private String positionSide;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -61,7 +59,7 @@ public class ModifyIsolatedPositionMarginRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private Integer type;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -92,23 +90,23 @@ public class ModifyIsolatedPositionMarginRequest {
     }
 
     public ModifyIsolatedPositionMarginRequest positionSide(
-            @jakarta.annotation.Nullable PositionSide positionSide) {
+            @jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
         return this;
     }
 
     /**
-     * Get positionSide
+     * Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge
+     * Mode. It must be sent with Hedge Mode.
      *
      * @return positionSide
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public PositionSide getPositionSide() {
+    public String getPositionSide() {
         return positionSide;
     }
 
-    public void setPositionSide(@jakarta.annotation.Nullable PositionSide positionSide) {
+    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
     }
 
@@ -118,7 +116,7 @@ public class ModifyIsolatedPositionMarginRequest {
     }
 
     /**
-     * Get amount
+     * Margin asset
      *
      * @return amount
      */
@@ -133,23 +131,23 @@ public class ModifyIsolatedPositionMarginRequest {
         this.amount = amount;
     }
 
-    public ModifyIsolatedPositionMarginRequest type(@jakarta.annotation.Nonnull String type) {
+    public ModifyIsolatedPositionMarginRequest type(@jakarta.annotation.Nonnull Integer type) {
         this.type = type;
         return this;
     }
 
     /**
-     * Get type
+     * 1: Add position margin，2: Reduce position margin
      *
      * @return type
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull Integer type) {
         this.type = type;
     }
 
@@ -160,11 +158,12 @@ public class ModifyIsolatedPositionMarginRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -293,18 +292,6 @@ public class ModifyIsolatedPositionMarginRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ModifyIsolatedPositionMarginRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `ModifyIsolatedPositionMarginRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : ModifyIsolatedPositionMarginRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -322,16 +309,13 @@ public class ModifyIsolatedPositionMarginRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        // validate the optional field `positionSide`
-        if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
-            PositionSide.validateJsonElement(jsonObj.get("positionSide"));
-        }
-        if (!jsonObj.get("type").isJsonPrimitive()) {
+        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
+                && !jsonObj.get("positionSide").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
+                            "Expected the field `positionSide` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("positionSide").toString()));
         }
     }
 
@@ -353,7 +337,7 @@ public class ModifyIsolatedPositionMarginRequest {
                         @Override
                         public void write(JsonWriter out, ModifyIsolatedPositionMarginRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

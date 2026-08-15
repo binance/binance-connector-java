@@ -7,22 +7,22 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**initialMargin** | **String** |  |  [optional] |
-|**maintMargin** | **String** |  |  [optional] |
-|**unrealizedProfit** | **String** |  |  [optional] |
-|**positionInitialMargin** | **String** |  |  [optional] |
-|**openOrderInitialMargin** | **String** |  |  [optional] |
-|**leverage** | **String** |  |  [optional] |
-|**isolated** | **Boolean** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**entryPrice** | **String** |  |  [optional] |
-|**maxQty** | **String** |  |  [optional] |
-|**notionalValue** | **String** |  |  [optional] |
-|**isolatedWallet** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**positionAmt** | **String** |  |  [optional] |
-|**breakEvenPrice** | **String** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**initialMargin** | **String** | total intial margin required with the latest mark price |  [optional] |
+|**maintMargin** | **String** | maintenance margin |  [optional] |
+|**unrealizedProfit** | **String** | unrealized profit or loss |  [optional] |
+|**positionInitialMargin** | **String** | positions margin required with the latest mark price |  [optional] |
+|**openOrderInitialMargin** | **String** | open orders intial margin required with the latest mark price |  [optional] |
+|**leverage** | **String** | Leverage value. |  [optional] |
+|**isolated** | **Boolean** | Whether isolated margin mode is enabled. |  [optional] |
+|**positionSide** | **String** | Position side |  [optional] |
+|**entryPrice** | **String** | Position entry price. |  [optional] |
+|**maxQty** | **String** | maximum quantity of base asset |  [optional] |
+|**notionalValue** | **String** | Notional value. |  [optional] |
+|**isolatedWallet** | **String** | Isolated wallet balance. |  [optional] |
+|**updateTime** | **Long** | update time |  [optional] |
+|**positionAmt** | **String** | position amount |  [optional] |
+|**breakEvenPrice** | **String** | break-even price |  [optional] |
 
 
 

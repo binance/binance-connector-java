@@ -1,5 +1,148 @@
 # Changelog
 
+## 7.0.0 - 2026-07-29
+
+### Changed (11)
+
+- Added parameter `lang`
+  - affected methods:
+    - `getYieldArenaActivities()` (`GET /sapi/v1/earn/arena/activities`)
+- Modified parameter `aprPeriod`:
+  - enum added: `DAY`, `YEAR`
+  - affected methods:
+    - `getRateHistory()` (`GET /sapi/v1/simple-earn/flexible/history/rateHistory`)
+- Modified parameter `asset`:
+  - enum added: `USDC`, `USDT`
+  - affected methods:
+    - `getBfusdSubscriptionHistory()` (`GET /sapi/v1/bfusd/history/subscriptionHistory`)
+    - `getRwusdSubscriptionHistory()` (`GET /sapi/v1/rwusd/history/subscriptionHistory`)
+- Modified parameter `asset`:
+  - enum added: `USDT`, `USDC`
+  - affected methods:
+    - `subscribeRwusd()` (`POST /sapi/v1/rwusd/subscribe`)
+- Modified parameter `destAccount`:
+  - enum added: `SPOT`, `FUND`
+  - affected methods:
+    - `redeemFlexibleProduct()` (`POST /sapi/v1/simple-earn/flexible/redeem`)
+- Modified parameter `positionId`:
+  - type `integer` → `string`
+  - affected methods:
+    - `getLockedRedemptionRecord()` (`GET /sapi/v1/simple-earn/locked/history/redemptionRecord`)
+    - `getLockedRewardsHistory()` (`GET /sapi/v1/simple-earn/locked/history/rewardsRecord`)
+    - `getLockedProductPosition()` (`GET /sapi/v1/simple-earn/locked/position`)
+- Modified parameter `redeemTo`:
+  - enum added: `SPOT`, `FLEXIBLE`
+  - affected methods:
+    - `setLockedProductRedeemOption()` (`POST /sapi/v1/simple-earn/locked/setRedeemOption`)
+- Modified parameter `redeemTo`:
+  - enum added: `SPOT`, `FLEXIBLE`
+  - affected methods:
+    - `subscribeLockedProduct()` (`POST /sapi/v1/simple-earn/locked/subscribe`)
+- Modified parameter `sourceAccount`:
+  - enum added: `SPOT`, `FUND`, `ALL`
+  - affected methods:
+    - `subscribeFlexibleProduct()` (`POST /sapi/v1/simple-earn/flexible/subscribe`)
+    - `subscribeLockedProduct()` (`POST /sapi/v1/simple-earn/locked/subscribe`)
+- Modified parameter `type`:
+  - enum added: `FAST`, `STANDARD`
+  - affected methods:
+    - `redeemBfusd()` (`POST /sapi/v1/bfusd/redeem`)
+    - `redeemRwusd()` (`POST /sapi/v1/rwusd/redeem`)
+- Modified parameter `type`:
+  - required: `true` → `false`
+  - enum added: `BONUS`, `REALTIME`, `REWARDS`, `ALL`
+  - affected methods:
+    - `getFlexibleRewardsHistory()` (`GET /sapi/v1/simple-earn/flexible/history/rewardsRecord`)
+
+## 6.0.1 - 2026-04-30
+
+- Update `binance/common` module to version `2.4.2`.
+
+## 6.0.0 - 2026-03-18
+
+### Changed (1)
+
+- Modified response for `getBfusdQuotaDetails()` (`GET /sapi/v1/bfusd/quota`):
+  - property `subscriptionQuota` added
+
+## 5.0.0 - 2026-02-12
+
+### Changed (1)
+
+- Modified response for `getBfusdQuotaDetails()` (`GET /sapi/v1/bfusd/quota`):
+  - property `redeemEnable` deleted
+  - property `subscribeEnable` deleted
+
+## 4.0.0 - 2025-12-16
+
+### Added (8)
+
+- `getBfusdAccount()` (`GET /sapi/v1/bfusd/account`)
+- `getBfusdQuotaDetails()` (`GET /sapi/v1/bfusd/quota`)
+- `getBfusdRateHistory()` (`GET /sapi/v1/bfusd/history/rateHistory`)
+- `getBfusdRedemptionHistory()` (`GET /sapi/v1/bfusd/history/redemptionHistory`)
+- `getBfusdRewardsHistory()` (`GET /sapi/v1/bfusd/history/rewardsHistory`)
+- `getBfusdSubscriptionHistory()` (`GET /sapi/v1/bfusd/history/subscriptionHistory`)
+- `redeemBfusd()` (`POST /sapi/v1/bfusd/redeem`)
+- `subscribeBfusd()` (`POST /sapi/v1/bfusd/subscribe`)
+
+## 3.0.0 - 2025-09-22
+
+### Added (8)
+
+- `getRwusdAccount()` (`GET /sapi/v1/rwusd/account`)
+- `getRwusdQuotaDetails()` (`GET /sapi/v1/rwusd/quota`)
+- `getRwusdRateHistory()` (`GET /sapi/v1/rwusd/history/rateHistory`)
+- `getRwusdRedemptionHistory()` (`GET /sapi/v1/rwusd/history/redemptionHistory`)
+- `getRwusdRewardsHistory()` (`GET /sapi/v1/rwusd/history/rewardsHistory`)
+- `getRwusdSubscriptionHistory()` (`GET /sapi/v1/rwusd/history/subscriptionHistory`)
+- `redeemRwusd()` (`POST /sapi/v1/rwusd/redeem`)
+- `subscribeRwusd()` (`POST /sapi/v1/rwusd/subscribe`)
+
+### Changed (3)
+
+- Modified parameter `amount`:
+  - affected methods:
+    - `subscribeFlexibleProduct()` (`POST /sapi/v1/simple-earn/flexible/subscribe`)
+    - `getFlexibleSubscriptionPreview()` (`GET /sapi/v1/simple-earn/flexible/subscriptionPreview`)
+    - `subscribeLockedProduct()` (`POST /sapi/v1/simple-earn/locked/subscribe`)
+    - `getLockedSubscriptionPreview()` (`GET /sapi/v1/simple-earn/locked/subscriptionPreview`)
+- Modified parameter `asset`:
+  - affected methods:
+    - `getFlexibleRedemptionRecord()` (`GET /sapi/v1/simple-earn/flexible/history/redemptionRecord`)
+    - `getFlexibleRewardsHistory()` (`GET /sapi/v1/simple-earn/flexible/history/rewardsRecord`)
+    - `getFlexibleSubscriptionRecord()` (`GET /sapi/v1/simple-earn/flexible/history/subscriptionRecord`)
+    - `getSimpleEarnFlexibleProductList()` (`GET /sapi/v1/simple-earn/flexible/list`)
+    - `getFlexibleProductPosition()` (`GET /sapi/v1/simple-earn/flexible/position`)
+    - `getLockedRedemptionRecord()` (`GET /sapi/v1/simple-earn/locked/history/redemptionRecord`)
+    - `getLockedRewardsHistory()` (`GET /sapi/v1/simple-earn/locked/history/rewardsRecord`)
+    - `getLockedSubscriptionRecord()` (`GET /sapi/v1/simple-earn/locked/history/subscriptionRecord`)
+    - `getSimpleEarnLockedProductList()` (`GET /sapi/v1/simple-earn/locked/list`)
+    - `getLockedProductPosition()` (`GET /sapi/v1/simple-earn/locked/position`)
+- Modified parameter `type`:
+  - affected methods:
+    - `getFlexibleRewardsHistory()` (`GET /sapi/v1/simple-earn/flexible/history/rewardsRecord`)
+
+## 2.1.1 - 2025-08-07
+
+- Update `binance/common` module to version `2.0.0`.
+- Add `Content-Type` header only if there is a body.
+
+## 2.1.0 - 2025-07-08
+
+- Update `binance/common` module to version `1.3.0`.
+- Added `customHeaders` configuration.
+
+## 2.0.0 - 2025-05-28
+
+### Changed (2)
+
+- Added parameter `recvWindow`
+  - affected methods:
+    - `getFlexibleRedemptionRecord()` (`GET /sapi/v1/simple-earn/flexible/history/redemptionRecord`)
+- Marked as signed the following endpoints:
+  - `GET /sapi/v1/simple-earn/locked/position`
+
 ## 1.1.0 - 2025-05-02
 
 - Update `binance/common` module to version `1.1.0`.

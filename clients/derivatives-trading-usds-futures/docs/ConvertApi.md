@@ -6,8 +6,8 @@ All URIs are relative to *https://fapi.binance.com*
 |------------- | ------------- | -------------|
 | [**acceptTheOfferedQuote**](ConvertApi.md#acceptTheOfferedQuote) | **POST** /fapi/v1/convert/acceptQuote | Accept the offered quote (USER_DATA) |
 | [**listAllConvertPairs**](ConvertApi.md#listAllConvertPairs) | **GET** /fapi/v1/convert/exchangeInfo | List All Convert Pairs |
-| [**orderStatus**](ConvertApi.md#orderStatus) | **GET** /fapi/v1/convert/orderStatus | Order status(USER_DATA) |
-| [**sendQuoteRequest**](ConvertApi.md#sendQuoteRequest) | **POST** /fapi/v1/convert/getQuote | Send Quote Request(USER_DATA) |
+| [**orderStatus**](ConvertApi.md#orderStatus) | **GET** /fapi/v1/convert/orderStatus | Order status (USER_DATA) |
+| [**sendQuoteRequest**](ConvertApi.md#sendQuoteRequest) | **POST** /fapi/v1/convert/getQuote | Send Quote Request (USER_DATA) |
 
 
 <a id="acceptTheOfferedQuote"></a>
@@ -16,7 +16,7 @@ All URIs are relative to *https://fapi.binance.com*
 
 Accept the offered quote (USER_DATA)
 
-Accept the offered quote by quote ID.  Weight: 200(IP)
+Accept the offered quote by quote ID.  Weight(IP): 200  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -78,7 +78,7 @@ No authorization required
 
 List All Convert Pairs
 
-Query for all convertible token pairs and the tokens’ respective upper/lower limits  * User needs to supply either or both of the input parameter * If not defined for both fromAsset and toAsset, only partial token pairs will be returned * Asset BNFCR is only available to convert for MICA region users.  Weight: 20(IP)
+Query for all convertible token pairs and the tokens’ respective upper/lower limits  Weight(IP): 20  Notes: - User needs to supply either or both of the input parameter - If not defined for both fromAsset and toAsset, only partial token pairs will be returned - Asset BNFCR is only available to convert for MICA region users.
 
 ### Example
 ```java
@@ -95,8 +95,8 @@ public class Example {
     defaultClient.setBasePath("https://fapi.binance.com");
 
     ConvertApi apiInstance = new ConvertApi(defaultClient);
-    String fromAsset = "fromAsset_example"; // String | User spends coin
-    String toAsset = "toAsset_example"; // String | User receives coin
+    String fromAsset = "BTC"; // String | User spends coin
+    String toAsset = "USDT"; // String | User receives coin
     try {
       ListAllConvertPairsResponse result = apiInstance.listAllConvertPairs(fromAsset, toAsset);
       System.out.println(result);
@@ -140,9 +140,9 @@ No authorization required
 # **orderStatus**
 > OrderStatusResponse orderStatus(orderId, quoteId)
 
-Order status(USER_DATA)
+Order status (USER_DATA)
 
-Query order status by order ID.  Weight: 50(IP)
+Query order status by order ID.  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -159,8 +159,8 @@ public class Example {
     defaultClient.setBasePath("https://fapi.binance.com");
 
     ConvertApi apiInstance = new ConvertApi(defaultClient);
-    Long orderId = 56L; // Long | Either orderId or quoteId is required
-    String quoteId = "quoteId_example"; // String | Either orderId or quoteId is required
+    String orderId = "933256278426274400"; // String | Either orderId or quoteId is required
+    String quoteId = "1"; // String | Either orderId or quoteId is required
     try {
       OrderStatusResponse result = apiInstance.orderStatus(orderId, quoteId);
       System.out.println(result);
@@ -179,7 +179,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **orderId** | **Long**| Either orderId or quoteId is required | [optional] |
+| **orderId** | **String**| Either orderId or quoteId is required | [optional] |
 | **quoteId** | **String**| Either orderId or quoteId is required | [optional] |
 
 ### Return type
@@ -204,9 +204,9 @@ No authorization required
 # **sendQuoteRequest**
 > SendQuoteRequestResponse sendQuoteRequest(sendQuoteRequestRequest)
 
-Send Quote Request(USER_DATA)
+Send Quote Request (USER_DATA)
 
-Request a quote for the requested token pairs  * Either fromAmount or toAmount should be sent * &#x60;quoteId&#x60; will be returned only if you have enough funds to convert  Weight: 50(IP)
+Request a quote for the requested token pairs  Weight: 50(IP) 360/hour, 500/day  Security Type: USER_DATA  Notes: - Either fromAmount or toAmount should be sent - &#x60;quoteId&#x60; will be returned only if you have enough funds to convert
 
 ### Example
 ```java

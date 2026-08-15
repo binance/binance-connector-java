@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SubscribeLockedProductRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeLockedProductRequest {
     public static final String SERIALIZED_NAME_PROJECT_ID = "projectId";
 
@@ -55,19 +53,19 @@ public class SubscribeLockedProductRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_SUBSCRIBE)
     @jakarta.annotation.Nullable
-    private Boolean autoSubscribe;
+    private Boolean autoSubscribe = false;
 
     public static final String SERIALIZED_NAME_SOURCE_ACCOUNT = "sourceAccount";
 
     @SerializedName(SERIALIZED_NAME_SOURCE_ACCOUNT)
     @jakarta.annotation.Nullable
-    private String sourceAccount;
+    private SourceAccount sourceAccount = SourceAccount.SPOT;
 
     public static final String SERIALIZED_NAME_REDEEM_TO = "redeemTo";
 
     @SerializedName(SERIALIZED_NAME_REDEEM_TO)
     @jakarta.annotation.Nullable
-    private String redeemTo;
+    private RedeemTo redeemTo = RedeemTo.SPOT;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -139,7 +137,7 @@ public class SubscribeLockedProductRequest {
     }
 
     public SubscribeLockedProductRequest sourceAccount(
-            @jakarta.annotation.Nullable String sourceAccount) {
+            @jakarta.annotation.Nullable SourceAccount sourceAccount) {
         this.sourceAccount = sourceAccount;
         return this;
     }
@@ -150,15 +148,16 @@ public class SubscribeLockedProductRequest {
      * @return sourceAccount
      */
     @jakarta.annotation.Nullable
-    public String getSourceAccount() {
+    @Valid
+    public SourceAccount getSourceAccount() {
         return sourceAccount;
     }
 
-    public void setSourceAccount(@jakarta.annotation.Nullable String sourceAccount) {
+    public void setSourceAccount(@jakarta.annotation.Nullable SourceAccount sourceAccount) {
         this.sourceAccount = sourceAccount;
     }
 
-    public SubscribeLockedProductRequest redeemTo(@jakarta.annotation.Nullable String redeemTo) {
+    public SubscribeLockedProductRequest redeemTo(@jakarta.annotation.Nullable RedeemTo redeemTo) {
         this.redeemTo = redeemTo;
         return this;
     }
@@ -169,11 +168,12 @@ public class SubscribeLockedProductRequest {
      * @return redeemTo
      */
     @jakarta.annotation.Nullable
-    public String getRedeemTo() {
+    @Valid
+    public RedeemTo getRedeemTo() {
         return redeemTo;
     }
 
-    public void setRedeemTo(@jakarta.annotation.Nullable String redeemTo) {
+    public void setRedeemTo(@jakarta.annotation.Nullable RedeemTo redeemTo) {
         this.redeemTo = redeemTo;
     }
 
@@ -183,11 +183,12 @@ public class SubscribeLockedProductRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -320,18 +321,6 @@ public class SubscribeLockedProductRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SubscribeLockedProductRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SubscribeLockedProductRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : SubscribeLockedProductRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -349,21 +338,13 @@ public class SubscribeLockedProductRequest {
                                     + " string but got `%s`",
                             jsonObj.get("projectId").toString()));
         }
-        if ((jsonObj.get("sourceAccount") != null && !jsonObj.get("sourceAccount").isJsonNull())
-                && !jsonObj.get("sourceAccount").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `sourceAccount` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("sourceAccount").toString()));
+        // validate the optional field `sourceAccount`
+        if (jsonObj.get("sourceAccount") != null && !jsonObj.get("sourceAccount").isJsonNull()) {
+            SourceAccount.validateJsonElement(jsonObj.get("sourceAccount"));
         }
-        if ((jsonObj.get("redeemTo") != null && !jsonObj.get("redeemTo").isJsonNull())
-                && !jsonObj.get("redeemTo").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `redeemTo` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("redeemTo").toString()));
+        // validate the optional field `redeemTo`
+        if (jsonObj.get("redeemTo") != null && !jsonObj.get("redeemTo").isJsonNull()) {
+            RedeemTo.validateJsonElement(jsonObj.get("redeemTo"));
         }
     }
 
@@ -385,7 +366,7 @@ public class SubscribeLockedProductRequest {
                         @Override
                         public void write(JsonWriter out, SubscribeLockedProductRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

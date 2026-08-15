@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** NotionalBracketForSymbolResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalBracketForSymbolResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -71,7 +69,7 @@ public class NotionalBracketForSymbolResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -91,7 +89,7 @@ public class NotionalBracketForSymbolResponseInner {
     }
 
     /**
-     * Get notionalCoef
+     * user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted
      *
      * @return notionalCoef
      */
@@ -122,7 +120,7 @@ public class NotionalBracketForSymbolResponseInner {
     }
 
     /**
-     * Get brackets
+     * Leverage bracket details.
      *
      * @return brackets
      */
@@ -243,19 +241,6 @@ public class NotionalBracketForSymbolResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NotionalBracketForSymbolResponseInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `NotionalBracketForSymbolResponseInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -306,7 +291,7 @@ public class NotionalBracketForSymbolResponseInner {
                         public void write(
                                 JsonWriter out, NotionalBracketForSymbolResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

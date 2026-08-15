@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp {
     public static final String SERIALIZED_NAME_TOTAL_INITIAL_MARGIN = "totalInitialMargin";
 
@@ -98,9 +96,7 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
 
     @SerializedName(SERIALIZED_NAME_SUB_ACCOUNT_LIST)
     @jakarta.annotation.Nullable
-    private List<
-                    @Valid
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+    private List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
             subAccountList;
 
     public GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp() {}
@@ -273,9 +269,7 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
 
     public GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp subAccountList(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+                    List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
                             subAccountList) {
         this.subAccountList = subAccountList;
         return this;
@@ -283,7 +277,7 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
 
     public GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
             addSubAccountListItem(
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner
+                    GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner
                             subAccountListItem) {
         if (this.subAccountList == null) {
             this.subAccountList = new ArrayList<>();
@@ -299,18 +293,14 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<
-                    @Valid
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+    public List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
             getSubAccountList() {
         return subAccountList;
     }
 
     public void setSubAccountList(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+                    List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
                             subAccountList) {
         this.subAccountList = subAccountList;
     }
@@ -531,21 +521,6 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
-                    .openapiFields
-                    .contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp`"
-                                    + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("totalInitialMargin") != null
                         && !jsonObj.get("totalInitialMargin").isJsonNull())
@@ -632,7 +607,7 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
 
                 // validate the optional field `subAccountList` (array)
                 for (int i = 0; i < jsonArraysubAccountList.size(); i++) {
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner
+                    GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner
                             .validateJsonElement(jsonArraysubAccountList.get(i));
                 }
                 ;
@@ -669,7 +644,7 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
                                 GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
                                         value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

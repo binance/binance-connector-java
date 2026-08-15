@@ -11,6 +11,10 @@ public class StreamBlockingQueue<T> implements BlockingQueue<T> {
     private final BlockingQueue<T> innerQueue;
     private final String operationId;
 
+    public StreamBlockingQueue(BlockingQueue<T> innerQueue) {
+        this(innerQueue, "");
+    }
+
     public StreamBlockingQueue(BlockingQueue<T> innerQueue, String operationId) {
         this.innerQueue = innerQueue;
         this.operationId = operationId;

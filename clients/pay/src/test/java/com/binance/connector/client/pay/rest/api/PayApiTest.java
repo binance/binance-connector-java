@@ -36,7 +36,7 @@ import org.mockito.Mockito;
 /** API tests for PayApi */
 public class PayApiTest {
 
-    private PayApi api;
+    private PayRestApi api;
     private ApiClient apiClientSpy;
     private SignatureGenerator signatureGeneratorSpy;
 
@@ -72,7 +72,7 @@ public class PayApiTest {
         Mockito.doReturn(new ApiResponse<>(200, null)).when(apiClientSpy).execute(Mockito.any());
         Mockito.doReturn("1736393892000").when(apiClientSpy).buildTimestamp();
 
-        api = new PayApi(apiClientSpy);
+        api = new PayRestApi(apiClientSpy);
     }
 
     /**
@@ -118,7 +118,7 @@ public class PayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("23689f3330f331d9db9c46c9dc87d2217486442f1746adfdda02c10e3dbde13e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/pay/transactions", actualRequest.url().encodedPath());
     }
 }

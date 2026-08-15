@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**success** | **Boolean** |  |  [optional] |
 |**bnsolAmount** | **String** |  |  [optional] |
+|**purchaseId** | **Long** |  |  [optional] |
 |**exchangeRate** | **String** |  |  [optional] |
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,15 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SorOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SorOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -116,7 +114,7 @@ public class SorOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
     @jakarta.annotation.Nullable
-    private Long recvWindow;
+    private Double recvWindow;
 
     public SorOrderRequest() {}
 
@@ -249,7 +247,9 @@ public class SorOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with
+     * the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled,
+     * otherwise the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -287,7 +287,7 @@ public class SorOrderRequest {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return strategyType
      */
@@ -306,7 +306,7 @@ public class SorOrderRequest {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60; to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -364,22 +364,24 @@ public class SorOrderRequest {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
-    public SorOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public SorOrderRequest recvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal
+     * places of precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
-    public Long getRecvWindow() {
+    @Valid
+    public Double getRecvWindow() {
         return recvWindow;
     }
 
-    public void setRecvWindow(@jakarta.annotation.Nullable Long recvWindow) {
+    public void setRecvWindow(@jakarta.annotation.Nullable Double recvWindow) {
         this.recvWindow = recvWindow;
     }
 
@@ -574,18 +576,6 @@ public class SorOrderRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SorOrderRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SorOrderRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : SorOrderRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -648,7 +638,7 @@ public class SorOrderRequest {
                         @Override
                         public void write(JsonWriter out, SorOrderRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** QueryMarginAccountsOpenOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginAccountsOpenOrdersResponseInner {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -156,7 +154,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -176,7 +174,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -196,7 +194,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -216,7 +214,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get icebergQty
+     * iceberg Qty.
      *
      * @return icebergQty
      */
@@ -236,7 +234,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get isWorking
+     * is Working.
      *
      * @return isWorking
      */
@@ -256,7 +254,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -276,7 +274,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -296,7 +294,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -316,7 +314,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -336,7 +334,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -356,7 +354,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * stop Price.
      *
      * @return stopPrice
      */
@@ -376,7 +374,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -396,7 +394,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get isIsolated
+     * is Isolated.
      *
      * @return isIsolated
      */
@@ -415,7 +413,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get time
+     * time.
      *
      * @return time
      */
@@ -435,7 +433,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -455,7 +453,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -475,7 +473,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */
@@ -496,7 +494,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update Time.
      *
      * @return updateTime
      */
@@ -755,20 +753,6 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!QueryMarginAccountsOpenOrdersResponseInner.openapiFields.contains(
-                    entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `QueryMarginAccountsOpenOrdersResponseInner` properties."
-                                    + " JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("clientOrderId") != null && !jsonObj.get("clientOrderId").isJsonNull())
                 && !jsonObj.get("clientOrderId").isJsonPrimitive()) {
@@ -898,7 +882,7 @@ public class QueryMarginAccountsOpenOrdersResponseInner {
                         public void write(
                                 JsonWriter out, QueryMarginAccountsOpenOrdersResponseInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

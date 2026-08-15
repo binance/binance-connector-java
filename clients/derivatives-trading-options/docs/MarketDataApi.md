@@ -7,14 +7,13 @@ All URIs are relative to *https://eapi.binance.com*
 | [**checkServerTime**](MarketDataApi.md#checkServerTime) | **GET** /eapi/v1/time | Check Server Time |
 | [**exchangeInformation**](MarketDataApi.md#exchangeInformation) | **GET** /eapi/v1/exchangeInfo | Exchange Information |
 | [**historicalExerciseRecords**](MarketDataApi.md#historicalExerciseRecords) | **GET** /eapi/v1/exerciseHistory | Historical Exercise Records |
+| [**indexPrice**](MarketDataApi.md#indexPrice) | **GET** /eapi/v1/index | Index Price |
 | [**klineCandlestickData**](MarketDataApi.md#klineCandlestickData) | **GET** /eapi/v1/klines | Kline/Candlestick Data |
-| [**oldTradesLookup**](MarketDataApi.md#oldTradesLookup) | **GET** /eapi/v1/historicalTrades | Old Trades Lookup (MARKET_DATA) |
 | [**openInterest**](MarketDataApi.md#openInterest) | **GET** /eapi/v1/openInterest | Open Interest |
 | [**optionMarkPrice**](MarketDataApi.md#optionMarkPrice) | **GET** /eapi/v1/mark | Option Mark Price |
 | [**orderBook**](MarketDataApi.md#orderBook) | **GET** /eapi/v1/depth | Order Book |
 | [**recentBlockTradesList**](MarketDataApi.md#recentBlockTradesList) | **GET** /eapi/v1/blockTrades | Recent Block Trades List |
 | [**recentTradesList**](MarketDataApi.md#recentTradesList) | **GET** /eapi/v1/trades | Recent Trades List |
-| [**symbolPriceTicker**](MarketDataApi.md#symbolPriceTicker) | **GET** /eapi/v1/index | Symbol Price Ticker |
 | [**testConnectivity**](MarketDataApi.md#testConnectivity) | **GET** /eapi/v1/ping | Test Connectivity |
 | [**ticker24hrPriceChangeStatistics**](MarketDataApi.md#ticker24hrPriceChangeStatistics) | **GET** /eapi/v1/ticker | 24hr Ticker Price Change Statistics |
 
@@ -25,7 +24,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Check Server Time
 
-Test connectivity to the Rest API and get the current server time.  Weight: 1
+Test connectivity to the Rest API and get the current server time.  Weight(IP): 1
 
 ### Example
 ```java
@@ -83,7 +82,7 @@ No authorization required
 
 Exchange Information
 
-Current exchange trading rules and symbol information  Weight: 1
+Current exchange trading rules and symbol information  Weight(IP): 1
 
 ### Example
 ```java
@@ -141,7 +140,7 @@ No authorization required
 
 Historical Exercise Records
 
-Get historical exercise records. * REALISTIC_VALUE_STRICKEN -&gt; Exercised * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM  Weight: 3
+Get historical exercise records.  * REALISTIC_VALUE_STRICKEN -&gt; Exercised * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM  Weight(IP): 3
 
 ### Example
 ```java
@@ -158,10 +157,10 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String underlying = "underlying_example"; // String | underlying, e.g BTCUSDT
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
+    String underlying = "BTCUSDT"; // String | Underlying asset.
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long limit = 20L; // Long | Number of result sets returned
     try {
       HistoricalExerciseRecordsResponse result = apiInstance.historicalExerciseRecords(underlying, startTime, endTime, limit);
       System.out.println(result);
@@ -180,10 +179,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **underlying** | **String**| underlying, e.g BTCUSDT | [optional] |
+| **underlying** | **String**| Underlying asset. | [optional] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
+| **limit** | **Long**| Number of result sets returned | [optional] |
 
 ### Return type
 
@@ -203,13 +202,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Historical Exercise Records |  -  |
 
-<a id="klineCandlestickData"></a>
-# **klineCandlestickData**
-> KlineCandlestickDataResponse klineCandlestickData(symbol, interval, startTime, endTime, limit)
+<a id="indexPrice"></a>
+# **indexPrice**
+> IndexPriceResponse indexPrice(underlying)
 
-Kline/Candlestick Data
+Index Price
 
-Kline/candlestick bars for an option symbol. Klines are uniquely identified by their open time.  * If startTime and endTime are not sent, the most recent klines are returned.  Weight: 1
+Get spot index price for option underlying.  Weight(IP): 1
 
 ### Example
 ```java
@@ -226,11 +225,73 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    String interval = "interval_example"; // String | Time interval
-    Long startTime = 56L; // Long | Start Time, e.g 1593511200000
-    Long endTime = 56L; // Long | End Time, e.g 1593512200000
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
+    String underlying = "BTCUSDT"; // String | Underlying asset.
+    try {
+      IndexPriceResponse result = apiInstance.indexPrice(underlying);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MarketDataApi#indexPrice");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **underlying** | **String**| Underlying asset. | |
+
+### Return type
+
+[**IndexPriceResponse**](IndexPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Index Price |  -  |
+
+<a id="klineCandlestickData"></a>
+# **klineCandlestickData**
+> KlineCandlestickDataResponse klineCandlestickData(symbol, interval, startTime, endTime, limit)
+
+Kline/Candlestick Data
+
+Kline/candlestick bars for an option symbol. Klines are uniquely identified by their open time.  Weight(IP): 1  Notes: - If startTime and endTime are not sent, the most recent klines are returned.
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.derivatives_trading_options.ApiClient;
+import com.binance.connector.client.derivatives_trading_options.ApiException;
+import com.binance.connector.client.derivatives_trading_options.Configuration;
+import com.binance.connector.client.derivatives_trading_options.models.*;
+import com.binance.connector.client.derivatives_trading_options.rest.api.MarketDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://eapi.binance.com");
+
+    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair
+    Interval interval = Interval.fromValue("1m"); // Interval | Time interval
+    Long startTime = 1623319461670L; // Long | Start Time, e.g 1593511200000
+    Long endTime = 1641782889000L; // Long | End Time, e.g 1593512200000
+    Long limit = 20L; // Long | Number of result sets returned
     try {
       KlineCandlestickDataResponse result = apiInstance.klineCandlestickData(symbol, interval, startTime, endTime, limit);
       System.out.println(result);
@@ -249,11 +310,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **interval** | **String**| Time interval | |
+| **symbol** | **String**| Option trading pair | |
+| **interval** | [**Interval**](.md)| Time interval | [enum: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M] |
 | **startTime** | **Long**| Start Time, e.g 1593511200000 | [optional] |
 | **endTime** | **Long**| End Time, e.g 1593512200000 | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
+| **limit** | **Long**| Number of result sets returned | [optional] |
 
 ### Return type
 
@@ -273,79 +334,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Kline/Candlestick Data |  -  |
 
-<a id="oldTradesLookup"></a>
-# **oldTradesLookup**
-> OldTradesLookupResponse oldTradesLookup(symbol, fromId, limit)
-
-Old Trades Lookup (MARKET_DATA)
-
-Get older market historical trades.  Weight: 20
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_options.ApiClient;
-import com.binance.connector.client.derivatives_trading_options.ApiException;
-import com.binance.connector.client.derivatives_trading_options.Configuration;
-import com.binance.connector.client.derivatives_trading_options.models.*;
-import com.binance.connector.client.derivatives_trading_options.rest.api.MarketDataApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://eapi.binance.com");
-
-    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long fromId = 56L; // Long | The UniqueId ID from which to return. The latest deal record is returned by default
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
-    try {
-      OldTradesLookupResponse result = apiInstance.oldTradesLookup(symbol, fromId, limit);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MarketDataApi#oldTradesLookup");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **fromId** | **Long**| The UniqueId ID from which to return. The latest deal record is returned by default | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
-
-### Return type
-
-[**OldTradesLookupResponse**](OldTradesLookupResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Old Trades Lookup |  -  |
-
 <a id="openInterest"></a>
 # **openInterest**
 > OpenInterestResponse openInterest(underlyingAsset, expiration)
 
 Open Interest
 
-Get open interest for specific underlying asset on specific expiration date.  Weight: 0
+Get open interest for specific underlying asset on specific expiration date.  Weight(IP): 0
 
 ### Example
 ```java
@@ -362,8 +357,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String underlyingAsset = "underlyingAsset_example"; // String | underlying asset, e.g ETH/BTC
-    String expiration = "expiration_example"; // String | expiration date, e.g 221225
+    String underlyingAsset = "ETH/BTC"; // String | Underlying asset.
+    String expiration = "221225"; // String | expiration date
     try {
       OpenInterestResponse result = apiInstance.openInterest(underlyingAsset, expiration);
       System.out.println(result);
@@ -382,8 +377,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **underlyingAsset** | **String**| underlying asset, e.g ETH/BTC | |
-| **expiration** | **String**| expiration date, e.g 221225 | |
+| **underlyingAsset** | **String**| Underlying asset. | |
+| **expiration** | **String**| expiration date | |
 
 ### Return type
 
@@ -409,7 +404,7 @@ No authorization required
 
 Option Mark Price
 
-Option mark price and greek info.  Weight: 5
+Option mark price and greek info.  Weight(IP): 5
 
 ### Example
 ```java
@@ -426,7 +421,7 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair
     try {
       OptionMarkPriceResponse result = apiInstance.optionMarkPrice(symbol);
       System.out.println(result);
@@ -445,7 +440,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
+| **symbol** | **String**| Option trading pair | [optional] |
 
 ### Return type
 
@@ -471,7 +466,7 @@ No authorization required
 
 Order Book
 
-Check orderbook depth on specific symbol  Weight: limit         | weight ------------  | ------------ 5, 10, 20, 50 | 2 100           | 5 500           | 10 1000          | 20
+Check orderbook depth on specific symbol  Weight: limit         | weight ------------  | ------------ 5, 10, 20, 50 | 1 100           | 5 500           | 10 1000          | 20
 
 ### Example
 ```java
@@ -488,8 +483,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair
+    Long limit = 20L; // Long | Default:100 Max:1000.Optional value:[10, 20, 50, 100, 500, 1000]
     try {
       OrderBookResponse result = apiInstance.orderBook(symbol, limit);
       System.out.println(result);
@@ -508,8 +503,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
+| **symbol** | **String**| Option trading pair | |
+| **limit** | **Long**| Default:100 Max:1000.Optional value:[10, 20, 50, 100, 500, 1000] | [optional] |
 
 ### Return type
 
@@ -535,7 +530,7 @@ No authorization required
 
 Recent Block Trades List
 
-Get recent block trades  Weight: 5
+Get recent block trades  Weight(IP): 5
 
 ### Example
 ```java
@@ -552,8 +547,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair
+    Long limit = 20L; // Long | Number of records
     try {
       RecentBlockTradesListResponse result = apiInstance.recentBlockTradesList(symbol, limit);
       System.out.println(result);
@@ -572,8 +567,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
+| **symbol** | **String**| Option trading pair | [optional] |
+| **limit** | **Long**| Number of records | [optional] |
 
 ### Return type
 
@@ -599,7 +594,7 @@ No authorization required
 
 Recent Trades List
 
-Get recent market trades  Weight: 5
+Get recent market trades  Weight(IP): 5
 
 ### Example
 ```java
@@ -616,8 +611,8 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
-    Long limit = 56L; // Long | Number of result sets returned Default:100 Max:1000
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair
+    Long limit = 20L; // Long | Number of result sets returned
     try {
       RecentTradesListResponse result = apiInstance.recentTradesList(symbol, limit);
       System.out.println(result);
@@ -636,8 +631,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | |
-| **limit** | **Long**| Number of result sets returned Default:100 Max:1000 | [optional] |
+| **symbol** | **String**| Option trading pair | |
+| **limit** | **Long**| Number of result sets returned | [optional] |
 
 ### Return type
 
@@ -657,75 +652,13 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Recent Trades List |  -  |
 
-<a id="symbolPriceTicker"></a>
-# **symbolPriceTicker**
-> SymbolPriceTickerResponse symbolPriceTicker(underlying)
-
-Symbol Price Ticker
-
-Get spot index price for option underlying.  Weight: 1
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_options.ApiClient;
-import com.binance.connector.client.derivatives_trading_options.ApiException;
-import com.binance.connector.client.derivatives_trading_options.Configuration;
-import com.binance.connector.client.derivatives_trading_options.models.*;
-import com.binance.connector.client.derivatives_trading_options.rest.api.MarketDataApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://eapi.binance.com");
-
-    MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String underlying = "underlying_example"; // String | Option underlying, e.g BTCUSDT
-    try {
-      SymbolPriceTickerResponse result = apiInstance.symbolPriceTicker(underlying);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling MarketDataApi#symbolPriceTicker");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **underlying** | **String**| Option underlying, e.g BTCUSDT | |
-
-### Return type
-
-[**SymbolPriceTickerResponse**](SymbolPriceTickerResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Symbol Price Ticker |  -  |
-
 <a id="testConnectivity"></a>
 # **testConnectivity**
 > testConnectivity()
 
 Test Connectivity
 
-Test connectivity to the Rest API.  Weight: 1
+Test connectivity to the Rest API.  Weight(IP): 1
 
 ### Example
 ```java
@@ -782,7 +715,7 @@ No authorization required
 
 24hr Ticker Price Change Statistics
 
-24 hour rolling window price change statistics.  Weight: 5
+24 hour rolling window price change statistics.  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted
 
 ### Example
 ```java
@@ -799,7 +732,7 @@ public class Example {
     defaultClient.setBasePath("https://eapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Option trading pair, e.g BTC-200730-9000-C
+    String symbol = "BTC-200730-9000-C"; // String | Option trading pair
     try {
       Ticker24hrPriceChangeStatisticsResponse result = apiInstance.ticker24hrPriceChangeStatistics(symbol);
       System.out.println(result);
@@ -818,7 +751,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Option trading pair, e.g BTC-200730-9000-C | [optional] |
+| **symbol** | **String**| Option trading pair | [optional] |
 
 ### Return type
 

@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,21 +28,37 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** TickerResponse1 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerResponse1 {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
     @jakarta.annotation.Nullable
     private String symbol;
+
+    public static final String SERIALIZED_NAME_PRICE_CHANGE = "priceChange";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_CHANGE)
+    @jakarta.annotation.Nullable
+    private String priceChange;
+
+    public static final String SERIALIZED_NAME_PRICE_CHANGE_PERCENT = "priceChangePercent";
+
+    @SerializedName(SERIALIZED_NAME_PRICE_CHANGE_PERCENT)
+    @jakarta.annotation.Nullable
+    private String priceChangePercent;
+
+    public static final String SERIALIZED_NAME_WEIGHTED_AVG_PRICE = "weightedAvgPrice";
+
+    @SerializedName(SERIALIZED_NAME_WEIGHTED_AVG_PRICE)
+    @jakarta.annotation.Nullable
+    private String weightedAvgPrice;
 
     public static final String SERIALIZED_NAME_OPEN_PRICE = "openPrice";
 
@@ -129,6 +145,64 @@ public class TickerResponse1 {
 
     public void setSymbol(@jakarta.annotation.Nullable String symbol) {
         this.symbol = symbol;
+    }
+
+    public TickerResponse1 priceChange(@jakarta.annotation.Nullable String priceChange) {
+        this.priceChange = priceChange;
+        return this;
+    }
+
+    /**
+     * Absolute price change
+     *
+     * @return priceChange
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceChange() {
+        return priceChange;
+    }
+
+    public void setPriceChange(@jakarta.annotation.Nullable String priceChange) {
+        this.priceChange = priceChange;
+    }
+
+    public TickerResponse1 priceChangePercent(
+            @jakarta.annotation.Nullable String priceChangePercent) {
+        this.priceChangePercent = priceChangePercent;
+        return this;
+    }
+
+    /**
+     * Relative price change in percent
+     *
+     * @return priceChangePercent
+     */
+    @jakarta.annotation.Nullable
+    public String getPriceChangePercent() {
+        return priceChangePercent;
+    }
+
+    public void setPriceChangePercent(@jakarta.annotation.Nullable String priceChangePercent) {
+        this.priceChangePercent = priceChangePercent;
+    }
+
+    public TickerResponse1 weightedAvgPrice(@jakarta.annotation.Nullable String weightedAvgPrice) {
+        this.weightedAvgPrice = weightedAvgPrice;
+        return this;
+    }
+
+    /**
+     * QuoteVolume / Volume
+     *
+     * @return weightedAvgPrice
+     */
+    @jakarta.annotation.Nullable
+    public String getWeightedAvgPrice() {
+        return weightedAvgPrice;
+    }
+
+    public void setWeightedAvgPrice(@jakarta.annotation.Nullable String weightedAvgPrice) {
+        this.weightedAvgPrice = weightedAvgPrice;
     }
 
     public TickerResponse1 openPrice(@jakarta.annotation.Nullable String openPrice) {
@@ -232,7 +306,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get quoteVolume
+     * Sum of (price * volume) for all trades
      *
      * @return quoteVolume
      */
@@ -251,7 +325,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get openTime
+     * Open time for ticker window
      *
      * @return openTime
      */
@@ -270,7 +344,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get closeTime
+     * Close time for ticker window
      *
      * @return closeTime
      */
@@ -289,7 +363,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get firstId
+     * Trade IDs
      *
      * @return firstId
      */
@@ -327,7 +401,7 @@ public class TickerResponse1 {
     }
 
     /**
-     * Get count
+     * Number of trades in the interval
      *
      * @return count
      */
@@ -350,6 +424,9 @@ public class TickerResponse1 {
         }
         TickerResponse1 tickerResponse1 = (TickerResponse1) o;
         return Objects.equals(this.symbol, tickerResponse1.symbol)
+                && Objects.equals(this.priceChange, tickerResponse1.priceChange)
+                && Objects.equals(this.priceChangePercent, tickerResponse1.priceChangePercent)
+                && Objects.equals(this.weightedAvgPrice, tickerResponse1.weightedAvgPrice)
                 && Objects.equals(this.openPrice, tickerResponse1.openPrice)
                 && Objects.equals(this.highPrice, tickerResponse1.highPrice)
                 && Objects.equals(this.lowPrice, tickerResponse1.lowPrice)
@@ -367,6 +444,9 @@ public class TickerResponse1 {
     public int hashCode() {
         return Objects.hash(
                 symbol,
+                priceChange,
+                priceChangePercent,
+                weightedAvgPrice,
                 openPrice,
                 highPrice,
                 lowPrice,
@@ -385,6 +465,11 @@ public class TickerResponse1 {
         StringBuilder sb = new StringBuilder();
         sb.append("class TickerResponse1 {\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		priceChange: ").append(toIndentedString(priceChange)).append("\n");
+        sb.append("		priceChangePercent: ")
+                .append(toIndentedString(priceChangePercent))
+                .append("\n");
+        sb.append("		weightedAvgPrice: ").append(toIndentedString(weightedAvgPrice)).append("\n");
         sb.append("		openPrice: ").append(toIndentedString(openPrice)).append("\n");
         sb.append("		highPrice: ").append(toIndentedString(highPrice)).append("\n");
         sb.append("		lowPrice: ").append(toIndentedString(lowPrice)).append("\n");
@@ -407,6 +492,20 @@ public class TickerResponse1 {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object priceChangeValue = getPriceChange();
+        String priceChangeValueAsString = "";
+        priceChangeValueAsString = priceChangeValue.toString();
+        sb.append("priceChange=").append(urlEncode(priceChangeValueAsString)).append("");
+        Object priceChangePercentValue = getPriceChangePercent();
+        String priceChangePercentValueAsString = "";
+        priceChangePercentValueAsString = priceChangePercentValue.toString();
+        sb.append("priceChangePercent=")
+                .append(urlEncode(priceChangePercentValueAsString))
+                .append("");
+        Object weightedAvgPriceValue = getWeightedAvgPrice();
+        String weightedAvgPriceValueAsString = "";
+        weightedAvgPriceValueAsString = weightedAvgPriceValue.toString();
+        sb.append("weightedAvgPrice=").append(urlEncode(weightedAvgPriceValueAsString)).append("");
         Object openPriceValue = getOpenPrice();
         String openPriceValueAsString = "";
         openPriceValueAsString = openPriceValue.toString();
@@ -480,6 +579,9 @@ public class TickerResponse1 {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("symbol");
+        openapiFields.add("priceChange");
+        openapiFields.add("priceChangePercent");
+        openapiFields.add("weightedAvgPrice");
         openapiFields.add("openPrice");
         openapiFields.add("highPrice");
         openapiFields.add("lowPrice");
@@ -513,18 +615,6 @@ public class TickerResponse1 {
                                 TickerResponse1.openapiRequiredFields.toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!TickerResponse1.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `TickerResponse1` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -533,6 +623,32 @@ public class TickerResponse1 {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("priceChange") != null && !jsonObj.get("priceChange").isJsonNull())
+                && !jsonObj.get("priceChange").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceChange` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("priceChange").toString()));
+        }
+        if ((jsonObj.get("priceChangePercent") != null
+                        && !jsonObj.get("priceChangePercent").isJsonNull())
+                && !jsonObj.get("priceChangePercent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `priceChangePercent` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("priceChangePercent").toString()));
+        }
+        if ((jsonObj.get("weightedAvgPrice") != null
+                        && !jsonObj.get("weightedAvgPrice").isJsonNull())
+                && !jsonObj.get("weightedAvgPrice").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `weightedAvgPrice` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("weightedAvgPrice").toString()));
         }
         if ((jsonObj.get("openPrice") != null && !jsonObj.get("openPrice").isJsonNull())
                 && !jsonObj.get("openPrice").isJsonPrimitive()) {
@@ -600,7 +716,7 @@ public class TickerResponse1 {
                         @Override
                         public void write(JsonWriter out, TickerResponse1 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

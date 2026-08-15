@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** GetConvertTradeHistoryResponseListInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetConvertTradeHistoryResponseListInner {
     public static final String SERIALIZED_NAME_QUOTE_ID = "quoteId";
 
@@ -147,7 +145,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get orderStatus
+     * Order status
      *
      * @return orderStatus
      */
@@ -167,7 +165,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get fromAsset
+     * Source asset
      *
      * @return fromAsset
      */
@@ -187,7 +185,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get fromAmount
+     * Source amount
      *
      * @return fromAmount
      */
@@ -207,7 +205,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get toAsset
+     * Destination asset
      *
      * @return toAsset
      */
@@ -227,7 +225,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get toAmount
+     * Destination amount
      *
      * @return toAmount
      */
@@ -247,7 +245,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get ratio
+     * Price ratio
      *
      * @return ratio
      */
@@ -267,7 +265,7 @@ public class GetConvertTradeHistoryResponseListInner {
     }
 
     /**
-     * Get inverseRatio
+     * Inverse price ratio
      *
      * @return inverseRatio
      */
@@ -465,19 +463,6 @@ public class GetConvertTradeHistoryResponseListInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!GetConvertTradeHistoryResponseListInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `GetConvertTradeHistoryResponseListInner` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("quoteId") != null && !jsonObj.get("quoteId").isJsonNull())
                 && !jsonObj.get("quoteId").isJsonPrimitive()) {
@@ -565,7 +550,7 @@ public class GetConvertTradeHistoryResponseListInner {
                         public void write(
                                 JsonWriter out, GetConvertTradeHistoryResponseListInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

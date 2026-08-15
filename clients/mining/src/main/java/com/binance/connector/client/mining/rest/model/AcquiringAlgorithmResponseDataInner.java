@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -28,15 +28,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** AcquiringAlgorithmResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AcquiringAlgorithmResponseDataInner {
     public static final String SERIALIZED_NAME_ALGO_NAME = "algoName";
 
@@ -71,7 +69,7 @@ public class AcquiringAlgorithmResponseDataInner {
     }
 
     /**
-     * Get algoName
+     * Algorithm name
      *
      * @return algoName
      */
@@ -90,7 +88,7 @@ public class AcquiringAlgorithmResponseDataInner {
     }
 
     /**
-     * Get algoId
+     * Algorithm ID
      *
      * @return algoId
      */
@@ -110,7 +108,7 @@ public class AcquiringAlgorithmResponseDataInner {
     }
 
     /**
-     * Get poolIndex
+     * Sequence
      *
      * @return poolIndex
      */
@@ -129,7 +127,7 @@ public class AcquiringAlgorithmResponseDataInner {
     }
 
     /**
-     * Get unit
+     * Unit
      *
      * @return unit
      */
@@ -250,18 +248,6 @@ public class AcquiringAlgorithmResponseDataInner {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AcquiringAlgorithmResponseDataInner.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `AcquiringAlgorithmResponseDataInner` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("algoName") != null && !jsonObj.get("algoName").isJsonNull())
                 && !jsonObj.get("algoName").isJsonPrimitive()) {
@@ -299,7 +285,7 @@ public class AcquiringAlgorithmResponseDataInner {
                         @Override
                         public void write(JsonWriter out, AcquiringAlgorithmResponseDataInner value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

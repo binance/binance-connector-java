@@ -2,6 +2,7 @@
 
 # OrderTestResponseDiscount
 
+Discount on standard commissions when paying in BNB.
 
 ## Properties
 

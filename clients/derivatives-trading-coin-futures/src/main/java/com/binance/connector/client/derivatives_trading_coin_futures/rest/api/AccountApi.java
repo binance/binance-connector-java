@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,6 +29,7 @@ import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetFuturesTradeDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetFuturesTransactionHistoryDownloadLinkByIdResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.GetIncomeHistoryResponse;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.IncomeType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.NotionalBracketForPairResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.NotionalBracketForSymbolResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.UserCommissionRateResponse;
@@ -40,8 +41,8 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,7 +55,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/1.2.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -105,7 +106,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Account-Information">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#account-information">Account
      *     Information (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountInformationCall(Long recvWindow) throws ApiException {
@@ -146,15 +147,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -168,7 +165,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -202,10 +199,10 @@ public class AccountApi {
     }
 
     /**
-     * Account Information (USER_DATA) Get current account information. * for One-way Mode user, the
-     * \&quot;positions\&quot; will only show the \&quot;BOTH\&quot; positions * for Hedge Mode
-     * user, the \&quot;positions\&quot; will show \&quot;BOTH\&quot;, \&quot;LONG\&quot;, and
-     * \&quot;SHORT\&quot; positions. Weight: 5
+     * Account Information (USER_DATA) Get current account information. Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - for One-way Mode user, the \&quot;positions\&quot; will only show the
+     * \&quot;BOTH\&quot; positions - for Hedge Mode user, the \&quot;positions\&quot; will show
+     * \&quot;BOTH\&quot;, \&quot;LONG\&quot;, and \&quot;SHORT\&quot; positions.
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountInformationResponse&gt;
@@ -219,10 +216,10 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Account-Information">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#account-information">Account
      *     Information (USER_DATA) Documentation</a>
      */
-    public ApiResponse<AccountInformationResponse> accountInformation(Long recvWindow)
+    public ApiResponse<AccountInformationResponse> accountInformation(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = accountInformationValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -244,7 +241,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Futures-Account-Balance">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#futures-account-balance">Futures
      *     Account Balance (USER_DATA) Documentation</a>
      */
     private okhttp3.Call futuresAccountBalanceCall(Long recvWindow) throws ApiException {
@@ -285,15 +282,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -307,7 +300,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -342,7 +335,8 @@ public class AccountApi {
     }
 
     /**
-     * Futures Account Balance (USER_DATA) Check futures account balance Weight: 1
+     * Futures Account Balance (USER_DATA) Check futures account balance Weight(IP): 1 Security
+     * Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;FuturesAccountBalanceResponse&gt;
@@ -356,11 +350,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Futures-Account-Balance">Futures
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#futures-account-balance">Futures
      *     Account Balance (USER_DATA) Documentation</a>
      */
-    public ApiResponse<FuturesAccountBalanceResponse> futuresAccountBalance(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<FuturesAccountBalanceResponse> futuresAccountBalance(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = futuresAccountBalanceValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<FuturesAccountBalanceResponse>() {}.getType();
@@ -381,8 +375,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Current-Position-Mode">Get
-     *     Current Position Mode(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-current-position-mode">Get
+     *     Current Position Mode (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getCurrentPositionModeCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -422,15 +416,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -444,7 +434,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -479,8 +469,8 @@ public class AccountApi {
     }
 
     /**
-     * Get Current Position Mode(USER_DATA) Get user&#39;s position mode (Hedge Mode or One-way Mode
-     * ) on ***EVERY symbol*** Weight: 30
+     * Get Current Position Mode (USER_DATA) Get user&#39;s position mode (Hedge Mode or One-way
+     * Mode ) on ***EVERY symbol*** Weight(IP): 30 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetCurrentPositionModeResponse&gt;
@@ -494,11 +484,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Current-Position-Mode">Get
-     *     Current Position Mode(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-current-position-mode">Get
+     *     Current Position Mode (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetCurrentPositionModeResponse> getCurrentPositionMode(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetCurrentPositionModeResponse> getCurrentPositionMode(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getCurrentPositionModeValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetCurrentPositionModeResponse>() {}.getType();
@@ -521,7 +511,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Order-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-order-history">Get
      *     Download Id For Futures Order History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getDownloadIdForFuturesOrderHistoryCall(
@@ -571,15 +561,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -593,7 +579,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -635,9 +621,11 @@ public class AccountApi {
 
     /**
      * Get Download Id For Futures Order History (USER_DATA) Get Download Id For Futures Order
-     * History * Request Limitation is 10 times per month, shared by front end download page and
-     * rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer
-     * than 1 year Weight: 5
+     * History Weight(IP): 1000 Security Type: USER_DATA Notes: - Request Limitation is 8 times per
+     * month, shared by front end download page and rest api - This endpoint uses the IP rate limit
+     * bucket and costs 1000 weight per call. The maximum is 2 calls per minute; the 3rd call within
+     * the same minute will trigger a ban. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @param startTime Timestamp in ms (required)
      * @param endTime Timestamp in ms (required)
@@ -653,12 +641,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Order-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-order-history">Get
      *     Download Id For Futures Order History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDownloadIdForFuturesOrderHistoryResponse>
             getDownloadIdForFuturesOrderHistory(
-                    @NotNull Long startTime, @NotNull Long endTime, Long recvWindow)
+                    @NotNull Long startTime, @NotNull Long endTime, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getDownloadIdForFuturesOrderHistoryValidateBeforeCall(
@@ -684,7 +672,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Trade-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-trade-history">Get
      *     Download Id For Futures Trade History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getDownloadIdForFuturesTradeHistoryCall(
@@ -734,15 +722,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -756,7 +740,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -798,9 +782,11 @@ public class AccountApi {
 
     /**
      * Get Download Id For Futures Trade History (USER_DATA) Get download id for futures trade
-     * history * Request Limitation is 5 times per month, shared by front end download page and rest
-     * api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1
-     * year Weight: 5
+     * history Weight(IP): 1000 Security Type: USER_DATA Notes: - Request Limitation is 8 times per
+     * month, shared by front end download page and rest api - This endpoint uses the IP rate limit
+     * bucket and costs 1000 weight per call. The maximum is 2 calls per minute; the 3rd call within
+     * the same minute will trigger a ban. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @param startTime Timestamp in ms (required)
      * @param endTime Timestamp in ms (required)
@@ -816,12 +802,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Trade-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-trade-history">Get
      *     Download Id For Futures Trade History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDownloadIdForFuturesTradeHistoryResponse>
             getDownloadIdForFuturesTradeHistory(
-                    @NotNull Long startTime, @NotNull Long endTime, Long recvWindow)
+                    @NotNull Long startTime, @NotNull Long endTime, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getDownloadIdForFuturesTradeHistoryValidateBeforeCall(
@@ -847,8 +833,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Transaction-History">Get
-     *     Download Id For Futures Transaction History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-transaction-history">Get
+     *     Download Id For Futures Transaction History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getDownloadIdForFuturesTransactionHistoryCall(
             Long startTime, Long endTime, Long recvWindow) throws ApiException {
@@ -897,15 +883,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -919,7 +901,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -961,10 +943,12 @@ public class AccountApi {
     }
 
     /**
-     * Get Download Id For Futures Transaction History(USER_DATA) Get download id for futures
-     * transaction history * Request Limitation is 5 times per month, shared by front end download
-     * page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be
-     * longer than 1 year Weight: 5
+     * Get Download Id For Futures Transaction History (USER_DATA) Get download id for futures
+     * transaction history Weight(IP): 1000 Security Type: USER_DATA Notes: - Request Limitation is
+     * 8 times per month, shared by front end download page and rest api - This endpoint uses the IP
+     * rate limit bucket and costs 1000 weight per call. The maximum is 2 calls per minute; the 3rd
+     * call within the same minute will trigger a ban. - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can not be longer than 1 year
      *
      * @param startTime Timestamp in ms (required)
      * @param endTime Timestamp in ms (required)
@@ -980,12 +964,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Transaction-History">Get
-     *     Download Id For Futures Transaction History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-transaction-history">Get
+     *     Download Id For Futures Transaction History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDownloadIdForFuturesTransactionHistoryResponse>
             getDownloadIdForFuturesTransactionHistory(
-                    @NotNull Long startTime, @NotNull Long endTime, Long recvWindow)
+                    @NotNull Long startTime, @NotNull Long endTime, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getDownloadIdForFuturesTransactionHistoryValidateBeforeCall(
@@ -1010,7 +994,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Order-History-Download-Link-by-Id">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-order-history-download-link-by-id">Get
      *     Futures Order History Download Link by Id (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFuturesOrderHistoryDownloadLinkByIdCall(
@@ -1056,15 +1040,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1078,7 +1058,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1119,7 +1099,7 @@ public class AccountApi {
 
     /**
      * Get Futures Order History Download Link by Id (USER_DATA) Get futures order history download
-     * link by Id * Download link expiration: 24h Weight: 5
+     * link by Id Weight(IP): 5 Security Type: USER_DATA Notes: - Download link expiration: 7 days
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -1134,12 +1114,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Order-History-Download-Link-by-Id">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-order-history-download-link-by-id">Get
      *     Futures Order History Download Link by Id (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesOrderHistoryDownloadLinkByIdResponse>
-            getFuturesOrderHistoryDownloadLinkById(@NotNull String downloadId, Long recvWindow)
-                    throws ApiException {
+            getFuturesOrderHistoryDownloadLinkById(
+                    @NotNull String downloadId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesOrderHistoryDownloadLinkByIdValidateBeforeCall(downloadId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1162,8 +1142,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Trade-Download-Link-by-Id">Get
-     *     Futures Trade Download Link by Id(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-trade-download-link-by-id">Get
+     *     Futures Trade Download Link by Id (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFuturesTradeDownloadLinkByIdCall(String downloadId, Long recvWindow)
             throws ApiException {
@@ -1208,15 +1188,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1230,7 +1206,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1267,8 +1243,8 @@ public class AccountApi {
     }
 
     /**
-     * Get Futures Trade Download Link by Id(USER_DATA) Get futures trade download link by Id *
-     * Download link expiration: 24h Weight: 5
+     * Get Futures Trade Download Link by Id (USER_DATA) Get futures trade download link by Id
+     * Weight(IP): 5 Security Type: USER_DATA Notes: - Download link expiration: 7 days
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -1283,11 +1259,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Trade-Download-Link-by-Id">Get
-     *     Futures Trade Download Link by Id(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-trade-download-link-by-id">Get
+     *     Futures Trade Download Link by Id (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesTradeDownloadLinkByIdResponse> getFuturesTradeDownloadLinkById(
-            @NotNull String downloadId, Long recvWindow) throws ApiException {
+            @NotNull String downloadId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesTradeDownloadLinkByIdValidateBeforeCall(downloadId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1310,7 +1286,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Transaction-History-Download-Link-by-Id">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-transaction-history-download-link-by-id">Get
      *     Futures Transaction History Download Link by Id (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFuturesTransactionHistoryDownloadLinkByIdCall(
@@ -1356,15 +1332,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1378,7 +1350,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1419,7 +1391,8 @@ public class AccountApi {
 
     /**
      * Get Futures Transaction History Download Link by Id (USER_DATA) Get futures transaction
-     * history download link by Id * Download link expiration: 24h Weight: 5
+     * history download link by Id Weight(IP): 5 Security Type: USER_DATA Notes: - Download link
+     * expiration: 7 days
      *
      * @param downloadId get by download id api (required)
      * @param recvWindow (optional)
@@ -1434,12 +1407,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Transaction-History-Download-Link-by-Id">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-transaction-history-download-link-by-id">Get
      *     Futures Transaction History Download Link by Id (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFuturesTransactionHistoryDownloadLinkByIdResponse>
             getFuturesTransactionHistoryDownloadLinkById(
-                    @NotNull String downloadId, Long recvWindow) throws ApiException {
+                    @NotNull String downloadId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getFuturesTransactionHistoryDownloadLinkByIdValidateBeforeCall(
                         downloadId, recvWindow);
@@ -1451,14 +1424,12 @@ public class AccountApi {
     /**
      * Build call for getIncomeHistory
      *
-     * @param symbol (optional)
-     * @param incomeType \&quot;TRANSFER\&quot;,\&quot;WELCOME_BONUS\&quot;,
-     *     \&quot;FUNDING_FEE\&quot;, \&quot;REALIZED_PNL\&quot;, \&quot;COMMISSION\&quot;,
-     *     \&quot;INSURANCE_CLEAR\&quot;, and \&quot;DELIVERED_SETTELMENT\&quot; (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param page (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param symbol Symbol (optional)
+     * @param incomeType Income type. (optional)
+     * @param startTime Timestamp in ms to get funding from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get funding until INCLUSIVE. (optional)
+     * @param page Page number (optional)
+     * @param limit Maximum number of records to return. (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1470,12 +1441,12 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Income-History">Get
-     *     Income History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-income-history">Get
+     *     Income History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getIncomeHistoryCall(
             String symbol,
-            String incomeType,
+            IncomeType incomeType,
             Long startTime,
             Long endTime,
             Long page,
@@ -1543,15 +1514,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1565,13 +1532,13 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getIncomeHistoryValidateBeforeCall(
             String symbol,
-            String incomeType,
+            IncomeType incomeType,
             Long startTime,
             Long endTime,
             Long page,
@@ -1595,7 +1562,7 @@ public class AccountApi {
                             .getMethod(
                                     "getIncomeHistory",
                                     String.class,
-                                    String.class,
+                                    IncomeType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1620,19 +1587,17 @@ public class AccountApi {
     }
 
     /**
-     * Get Income History(USER_DATA) Get income history * If &#x60;incomeType &#x60; is not sent,
-     * all kinds of flow will be returned * \&quot;trandId\&quot; is unique in the same
-     * \&quot;incomeType\&quot; for a user * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can not be longer than 1 year Weight: 20
+     * Get Income History (USER_DATA) Get income history Weight(IP): 20 Security Type: USER_DATA
+     * Notes: - If &#x60;incomeType &#x60; is not sent, all kinds of flow will be returned -
+     * \&quot;trandId\&quot; is unique in the same \&quot;incomeType\&quot; for a user - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
      *
-     * @param symbol (optional)
-     * @param incomeType \&quot;TRANSFER\&quot;,\&quot;WELCOME_BONUS\&quot;,
-     *     \&quot;FUNDING_FEE\&quot;, \&quot;REALIZED_PNL\&quot;, \&quot;COMMISSION\&quot;,
-     *     \&quot;INSURANCE_CLEAR\&quot;, and \&quot;DELIVERED_SETTELMENT\&quot; (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param page (optional)
-     * @param limit Default 100; max 1000 (optional)
+     * @param symbol Symbol (optional)
+     * @param incomeType Income type. (optional)
+     * @param startTime Timestamp in ms to get funding from INCLUSIVE. (optional)
+     * @param endTime Timestamp in ms to get funding until INCLUSIVE. (optional)
+     * @param page Page number (optional)
+     * @param limit Maximum number of records to return. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetIncomeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1645,17 +1610,17 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Income-History">Get
-     *     Income History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-income-history">Get
+     *     Income History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetIncomeHistoryResponse> getIncomeHistory(
             String symbol,
-            String incomeType,
+            IncomeType incomeType,
             Long startTime,
             Long endTime,
             Long page,
-            Long limit,
-            Long recvWindow)
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getIncomeHistoryValidateBeforeCall(
@@ -1680,8 +1645,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Notional-Bracket-for-Pair">Notional
-     *     Bracket for Pair(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#notional-bracket-for-pair">Notional
+     *     Bracket for Pair (USER_DATA) Documentation</a>
      */
     private okhttp3.Call notionalBracketForPairCall(String pair, Long recvWindow)
             throws ApiException {
@@ -1726,15 +1691,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1748,7 +1709,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1784,11 +1745,11 @@ public class AccountApi {
     }
 
     /**
-     * Notional Bracket for Pair(USER_DATA) **Not recommended to continue using this v1 endpoint**
+     * Notional Bracket for Pair (USER_DATA) **Not recommended to continue using this v1 endpoint**
      * Get the pair&#39;s default notional bracket list, may return ambiguous values when there have
      * been multiple different &#x60;symbol&#x60; brackets under the &#x60;pair&#x60;, suggest using
      * the following &#x60;GET /dapi/v2/leverageBracket&#x60; query instead to get the specific
-     * &#x60;symbol&#x60; notional bracket list. Weight: 1
+     * &#x60;symbol&#x60; notional bracket list. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param pair (optional)
      * @param recvWindow (optional)
@@ -1803,11 +1764,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Notional-Bracket-for-Pair">Notional
-     *     Bracket for Pair(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#notional-bracket-for-pair">Notional
+     *     Bracket for Pair (USER_DATA) Documentation</a>
      */
     public ApiResponse<NotionalBracketForPairResponse> notionalBracketForPair(
-            String pair, Long recvWindow) throws ApiException {
+            String pair, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = notionalBracketForPairValidateBeforeCall(pair, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<NotionalBracketForPairResponse>() {}.getType();
@@ -1829,8 +1790,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Notional-Bracket-for-Symbol">Notional
-     *     Bracket for Symbol(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#notional-bracket-for-symbol">Notional
+     *     Bracket for Symbol (USER_DATA) Documentation</a>
      */
     private okhttp3.Call notionalBracketForSymbolCall(String symbol, Long recvWindow)
             throws ApiException {
@@ -1875,15 +1836,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1897,7 +1854,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1933,7 +1890,9 @@ public class AccountApi {
     }
 
     /**
-     * Notional Bracket for Symbol(USER_DATA) Get the symbol&#39;s notional bracket list. Weight: 1
+     * Notional Bracket for Symbol (USER_DATA) Get the symbol&#39;s notional bracket list. Weight: 1
+     * (after CM migration: 1 with &#x60;symbol&#x60; / 2 without &#x60;symbol&#x60;) Security Type:
+     * USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -1948,11 +1907,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Notional-Bracket-for-Symbol">Notional
-     *     Bracket for Symbol(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#notional-bracket-for-symbol">Notional
+     *     Bracket for Symbol (USER_DATA) Documentation</a>
      */
     public ApiResponse<NotionalBracketForSymbolResponse> notionalBracketForSymbol(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = notionalBracketForSymbolValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<NotionalBracketForSymbolResponse>() {}.getType();
@@ -1962,7 +1921,7 @@ public class AccountApi {
     /**
      * Build call for userCommissionRate
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1974,7 +1933,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/User-Commission-Rate">User
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#user-commission-rate">User
      *     Commission Rate (USER_DATA) Documentation</a>
      */
     private okhttp3.Call userCommissionRateCall(String symbol, Long recvWindow)
@@ -2020,15 +1979,11 @@ public class AccountApi {
         final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
         final String localVarContentType =
                 localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        List<String> localVarAuthNames = new ArrayList<>();
-        localVarAuthNames.addAll(
-                Arrays.asList(
-                        new String[] {
-                            "binanceSignature",
-                        }));
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -2042,7 +1997,7 @@ public class AccountApi {
                 localVarHeaderParams,
                 localVarCookieParams,
                 localVarFormParams,
-                localVarAuthNames.toArray(new String[0]));
+                localVarAuthNames);
     }
 
     @SuppressWarnings("rawtypes")
@@ -2078,9 +2033,10 @@ public class AccountApi {
     }
 
     /**
-     * User Commission Rate (USER_DATA) Query user commission rate Weight: 20
+     * User Commission Rate (USER_DATA) Query user commission rate Weight(IP): 20 Security Type:
+     * USER_DATA
      *
-     * @param symbol (required)
+     * @param symbol Symbol (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;UserCommissionRateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2093,11 +2049,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/User-Commission-Rate">User
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#user-commission-rate">User
      *     Commission Rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserCommissionRateResponse> userCommissionRate(
-            @NotNull String symbol, Long recvWindow) throws ApiException {
+            @NotNull String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = userCommissionRateValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<UserCommissionRateResponse>() {}.getType();

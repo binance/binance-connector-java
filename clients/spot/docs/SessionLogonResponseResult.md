@@ -12,7 +12,7 @@
 |**connectedSince** | **Long** |  |  [optional] |
 |**returnRateLimits** | **Boolean** |  |  [optional] |
 |**serverTime** | **Long** |  |  [optional] |
-|**userDataStream** | **Boolean** |  |  [optional] |
+|**userDataStream** | **Boolean** | Is User Data Stream subscription active? |  [optional] |
 
 
 

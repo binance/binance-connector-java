@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,16 +33,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** NotionalAndLeverageBracketsResponse2 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalAndLeverageBracketsResponse2 {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -60,7 +58,7 @@ public class NotionalAndLeverageBracketsResponse2 {
 
     @SerializedName(SERIALIZED_NAME_BRACKETS)
     @jakarta.annotation.Nullable
-    private List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> brackets;
+    private List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> brackets;
 
     public NotionalAndLeverageBracketsResponse2() {}
 
@@ -90,7 +88,7 @@ public class NotionalAndLeverageBracketsResponse2 {
     }
 
     /**
-     * Get notionalCoef
+     * user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted
      *
      * @return notionalCoef
      */
@@ -106,13 +104,13 @@ public class NotionalAndLeverageBracketsResponse2 {
 
     public NotionalAndLeverageBracketsResponse2 brackets(
             @jakarta.annotation.Nullable
-                    List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> brackets) {
+                    List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> brackets) {
         this.brackets = brackets;
         return this;
     }
 
     public NotionalAndLeverageBracketsResponse2 addBracketsItem(
-            NotionalAndLeverageBracketsResponse1InnerBracketsInner bracketsItem) {
+            NotionalAndLeverageBracketsResponse2BracketsInner bracketsItem) {
         if (this.brackets == null) {
             this.brackets = new ArrayList<>();
         }
@@ -127,13 +125,13 @@ public class NotionalAndLeverageBracketsResponse2 {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> getBrackets() {
+    public List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> getBrackets() {
         return brackets;
     }
 
     public void setBrackets(
             @jakarta.annotation.Nullable
-                    List<@Valid NotionalAndLeverageBracketsResponse1InnerBracketsInner> brackets) {
+                    List<@Valid NotionalAndLeverageBracketsResponse2BracketsInner> brackets) {
         this.brackets = brackets;
     }
 
@@ -242,19 +240,6 @@ public class NotionalAndLeverageBracketsResponse2 {
                                         .toString()));
             }
         }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NotionalAndLeverageBracketsResponse2.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `NotionalAndLeverageBracketsResponse2` properties. JSON:"
-                                    + " %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
                 && !jsonObj.get("symbol").isJsonPrimitive()) {
@@ -278,7 +263,7 @@ public class NotionalAndLeverageBracketsResponse2 {
 
                 // validate the optional field `brackets` (array)
                 for (int i = 0; i < jsonArraybrackets.size(); i++) {
-                    NotionalAndLeverageBracketsResponse1InnerBracketsInner.validateJsonElement(
+                    NotionalAndLeverageBracketsResponse2BracketsInner.validateJsonElement(
                             jsonArraybrackets.get(i));
                 }
                 ;
@@ -305,7 +290,7 @@ public class NotionalAndLeverageBracketsResponse2 {
                         public void write(
                                 JsonWriter out, NotionalAndLeverageBracketsResponse2 value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 

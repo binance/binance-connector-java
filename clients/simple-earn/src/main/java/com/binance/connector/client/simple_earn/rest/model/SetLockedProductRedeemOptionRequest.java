@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,21 +22,20 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import org.hibernate.validator.constraints.*;
 
 /** SetLockedProductRedeemOptionRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SetLockedProductRedeemOptionRequest {
     public static final String SERIALIZED_NAME_POSITION_ID = "positionId";
 
@@ -48,7 +47,7 @@ public class SetLockedProductRedeemOptionRequest {
 
     @SerializedName(SERIALIZED_NAME_REDEEM_TO)
     @jakarta.annotation.Nonnull
-    private String redeemTo;
+    private RedeemTo redeemTo = RedeemTo.SPOT;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -80,7 +79,7 @@ public class SetLockedProductRedeemOptionRequest {
     }
 
     public SetLockedProductRedeemOptionRequest redeemTo(
-            @jakarta.annotation.Nonnull String redeemTo) {
+            @jakarta.annotation.Nonnull RedeemTo redeemTo) {
         this.redeemTo = redeemTo;
         return this;
     }
@@ -92,11 +91,12 @@ public class SetLockedProductRedeemOptionRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getRedeemTo() {
+    @Valid
+    public RedeemTo getRedeemTo() {
         return redeemTo;
     }
 
-    public void setRedeemTo(@jakarta.annotation.Nonnull String redeemTo) {
+    public void setRedeemTo(@jakarta.annotation.Nonnull RedeemTo redeemTo) {
         this.redeemTo = redeemTo;
     }
 
@@ -107,11 +107,12 @@ public class SetLockedProductRedeemOptionRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -224,18 +225,6 @@ public class SetLockedProductRedeemOptionRequest {
             }
         }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SetLockedProductRedeemOptionRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                    + " `SetLockedProductRedeemOptionRequest` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
         // check to make sure all required properties/fields are present in the JSON string
         for (String requiredField : SetLockedProductRedeemOptionRequest.openapiRequiredFields) {
             if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -253,13 +242,8 @@ public class SetLockedProductRedeemOptionRequest {
                                     + " string but got `%s`",
                             jsonObj.get("positionId").toString()));
         }
-        if (!jsonObj.get("redeemTo").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `redeemTo` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("redeemTo").toString()));
-        }
+        // validate the required field `redeemTo`
+        RedeemTo.validateJsonElement(jsonObj.get("redeemTo"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -280,7 +264,7 @@ public class SetLockedProductRedeemOptionRequest {
                         @Override
                         public void write(JsonWriter out, SetLockedProductRedeemOptionRequest value)
                                 throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                             elementAdapter.write(out, obj);
                         }
 
