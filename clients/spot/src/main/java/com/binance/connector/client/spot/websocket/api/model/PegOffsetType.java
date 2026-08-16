@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,12 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets pegOffsetType */
+/**
+ * Only &#x60;PRICE_LEVEL&#x60; is supported. See [Pegged Orders](/products/spot/faqs/pegged_orders)
+ */
 @JsonAdapter(PegOffsetType.Adapter.class)
 public enum PegOffsetType {
-    PRICE_LEVEL("PRICE_LEVEL"),
-
-    NON_REPRESENTABLE("NON_REPRESENTABLE");
+    PRICE_LEVEL("PRICE_LEVEL");
 
     private String value;
 

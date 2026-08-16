@@ -7,8 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**exchange** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
+|**exchange** | **String** | Exchange identifier. |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**price** | **String** | Price |  [optional] |
+|**weight** | **String** | Weight |  [optional] |
 
 
 

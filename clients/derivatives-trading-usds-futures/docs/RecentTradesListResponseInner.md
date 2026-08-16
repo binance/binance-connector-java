@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Long** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**qty** | **String** |  |  [optional] |
-|**quoteQty** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
-|**isBuyerMaker** | **Boolean** |  |  [optional] |
-|**isRPITrade** | **Boolean** |  |  [optional] |
+|**id** | **Long** | Id. |  [optional] |
+|**price** | **String** | Price. |  [optional] |
+|**qty** | **String** | Qty. |  [optional] |
+|**quoteQty** | **String** | Quote Qty. |  [optional] |
+|**time** | **Long** | Time. |  [optional] |
+|**isBuyerMaker** | **Boolean** | Is Buyer Maker. |  [optional] |
+|**isRPITrade** | **Boolean** | Is RPITrade. |  [optional] |
 
 
 

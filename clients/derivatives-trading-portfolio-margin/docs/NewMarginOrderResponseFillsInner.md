@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**price** | **String** |  |  [optional] |
-|**qty** | **String** |  |  [optional] |
-|**commission** | **String** |  |  [optional] |
-|**commissionAsset** | **String** |  |  [optional] |
+|**price** | **String** | Price. |  [optional] |
+|**qty** | **String** | Qty. |  [optional] |
+|**commission** | **String** | Commission. |  [optional] |
+|**commissionAsset** | **String** | Commission Asset. |  [optional] |
 
 
 

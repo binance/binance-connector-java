@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,8 +21,10 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInterestRateResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetInterestHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryBorrowRepayRecordsInMarginAccountResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginInterestRateHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxBorrowResponse;
@@ -49,7 +51,7 @@ public class BorrowRepayApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -89,9 +91,8 @@ public class BorrowRepayApi {
     /**
      * Build call for getFutureHourlyInterestRate
      *
-     * @param assets List of assets, separated by commas, up to 20 (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;
-     *     (required)
+     * @param assets (required)
+     * @param isIsolated (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -102,10 +103,10 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-a-future-hourly-interest-rate">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#get-future-hourly-interest-rate">Get
      *     future hourly interest rate (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call getFutureHourlyInterestRateCall(String assets, String isIsolated)
+    private okhttp3.Call getFutureHourlyInterestRateCall(String assets, IsIsolated isIsolated)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -171,7 +172,7 @@ public class BorrowRepayApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getFutureHourlyInterestRateValidateBeforeCall(
-            String assets, String isIsolated) throws ApiException {
+            String assets, IsIsolated isIsolated) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -184,7 +185,8 @@ public class BorrowRepayApi {
             Object[] parameterValues = {assets, isIsolated};
             Method method =
                     this.getClass()
-                            .getMethod("getFutureHourlyInterestRate", String.class, String.class);
+                            .getMethod(
+                                    "getFutureHourlyInterestRate", String.class, IsIsolated.class);
             Set<ConstraintViolation<BorrowRepayApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -203,11 +205,11 @@ public class BorrowRepayApi {
     }
 
     /**
-     * Get future hourly interest rate (USER_DATA) Get future hourly interest rate Weight: 100
+     * Get future hourly interest rate (USER_DATA) Get future hourly interest rate Weight(IP): 100
+     * Security Type: USER_DATA
      *
-     * @param assets List of assets, separated by commas, up to 20 (required)
-     * @param isIsolated for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;
-     *     (required)
+     * @param assets (required)
+     * @param isIsolated (required)
      * @return ApiResponse&lt;GetFutureHourlyInterestRateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -219,11 +221,11 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-a-future-hourly-interest-rate">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#get-future-hourly-interest-rate">Get
      *     future hourly interest rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFutureHourlyInterestRateResponse> getFutureHourlyInterestRate(
-            @NotNull String assets, @NotNull String isIsolated) throws ApiException {
+            @NotNull String assets, @NotNull IsIsolated isIsolated) throws ApiException {
         okhttp3.Call localVarCall =
                 getFutureHourlyInterestRateValidateBeforeCall(assets, isIsolated);
         java.lang.reflect.Type localVarReturnType =
@@ -235,12 +237,12 @@ public class BorrowRepayApi {
      * Build call for getInterestHistory
      *
      * @param asset (optional)
-     * @param isolatedSymbol isolated symbol (optional)
+     * @param isolatedSymbol (optional)
      * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -251,7 +253,7 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-Interest-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#get-interest-history">Get
      *     Interest History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getInterestHistoryCall(
@@ -398,27 +400,27 @@ public class BorrowRepayApi {
     }
 
     /**
-     * Get Interest History (USER_DATA) Get Interest History * Response in descending order * If
-     * isolatedSymbol is not sent, crossed margin data will be returned * The max interval between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. It is a MUST to ensure data
-     * correctness. * If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent, return records of
-     * the last 7 days by default. * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not
-     * sent, return records of [max(&#x60;startTime&#x60;, now-30d), now]. * If
-     * &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of
-     * [&#x60;endTime&#x60;-7, &#x60;endTime&#x60;] * &#x60;type&#x60; in response has 4 enums: *
-     * &#x60;PERIODIC&#x60; interest charged per hour * &#x60;ON_BORROW&#x60; first interest charged
-     * on borrow * &#x60;PERIODIC_CONVERTED&#x60; interest charged per hour converted into BNB *
-     * &#x60;ON_BORROW_CONVERTED&#x60; first interest charged on borrow converted into BNB *
-     * &#x60;PORTFOLIO&#x60; interest charged daily on the portfolio margin negative balance Weight:
-     * 1(IP)
+     * Get Interest History (USER_DATA) Get Interest History Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - Response in descending order - If isolatedSymbol is not sent, crossed margin data
+     * will be returned - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is
+     * 30 days. It is a MUST to ensure data correctness. - If &#x60;startTime&#x60;and
+     * &#x60;endTime&#x60; not sent, return records of the last 7 days by default. - If
+     * &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return records of
+     * [max(&#x60;startTime&#x60;, now-30d), now]. - If &#x60;startTime&#x60; is not sent and
+     * &#x60;endTime&#x60; is sent, return records of [&#x60;endTime&#x60;-7, &#x60;endTime&#x60;] -
+     * &#x60;type&#x60; in response has 4 enums: - &#x60;PERIODIC&#x60; interest charged per hour -
+     * &#x60;ON_BORROW&#x60; first interest charged on borrow - &#x60;PERIODIC_CONVERTED&#x60;
+     * interest charged per hour converted into BNB - &#x60;ON_BORROW_CONVERTED&#x60; first interest
+     * charged on borrow converted into BNB - &#x60;PORTFOLIO&#x60; interest charged daily on the
+     * portfolio margin negative balance
      *
      * @param asset (optional)
-     * @param isolatedSymbol isolated symbol (optional)
+     * @param isolatedSymbol (optional)
      * @param startTime Only supports querying data from the past 90 days. (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetInterestHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -430,7 +432,7 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-Interest-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#get-interest-history">Get
      *     Interest History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetInterestHistoryResponse> getInterestHistory(
@@ -438,9 +440,9 @@ public class BorrowRepayApi {
             String isolatedSymbol,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getInterestHistoryValidateBeforeCall(
@@ -464,8 +466,8 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Margin-account-borrow-repay">Margin
-     *     account borrow/repay(MARGIN) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#margin-account-borrow-repay">Margin
+     *     account borrow/repay (USER_DATA) Documentation</a>
      */
     private okhttp3.Call marginAccountBorrowRepayCall(
             MarginAccountBorrowRepayRequest marginAccountBorrowRepayRequest) throws ApiException {
@@ -583,7 +585,8 @@ public class BorrowRepayApi {
     }
 
     /**
-     * Margin account borrow/repay(MARGIN) Margin account borrow/repay(MARGIN) Weight: 1500
+     * Margin account borrow/repay (USER_DATA) Margin account borrow/repay Weight(UID): 1500
+     * Security Type: USER_DATA
      *
      * @param marginAccountBorrowRepayRequest (required)
      * @return ApiResponse&lt;MarginAccountBorrowRepayResponse&gt;
@@ -597,8 +600,8 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Margin-account-borrow-repay">Margin
-     *     account borrow/repay(MARGIN) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#margin-account-borrow-repay">Margin
+     *     account borrow/repay (USER_DATA) Documentation</a>
      */
     public ApiResponse<MarginAccountBorrowRepayResponse> marginAccountBorrowRepay(
             @Valid @NotNull MarginAccountBorrowRepayRequest marginAccountBorrowRepayRequest)
@@ -613,15 +616,15 @@ public class BorrowRepayApi {
     /**
      * Build call for queryBorrowRepayRecordsInMarginAccount
      *
-     * @param type MARGIN,ISOLATED (required)
+     * @param type (required)
      * @param asset (optional)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param txId &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param isolatedSymbol (optional)
+     * @param txId (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -632,11 +635,11 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Borrow-Repay">Query
-     *     borrow/repay records in Margin account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-borrow-repay-records-in-margin-account">Query
+     *     borrow/repay records in Margin account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryBorrowRepayRecordsInMarginAccountCall(
-            String type,
+            OrderType type,
             String asset,
             String isolatedSymbol,
             Long txId,
@@ -739,7 +742,7 @@ public class BorrowRepayApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryBorrowRepayRecordsInMarginAccountValidateBeforeCall(
-            String type,
+            OrderType type,
             String asset,
             String isolatedSymbol,
             Long txId,
@@ -765,7 +768,7 @@ public class BorrowRepayApi {
                     this.getClass()
                             .getMethod(
                                     "queryBorrowRepayRecordsInMarginAccount",
-                                    String.class,
+                                    OrderType.class,
                                     String.class,
                                     String.class,
                                     Long.class,
@@ -801,23 +804,24 @@ public class BorrowRepayApi {
     }
 
     /**
-     * Query borrow/repay records in Margin account(USER_DATA) Query borrow/repay records in Margin
-     * account * &#x60;txId&#x60; or &#x60;startTime&#x60; must be sent. &#x60;txId&#x60; takes
-     * precedence. * If an asset is sent, data within 30 days before &#x60;endTime&#x60;; If an
-     * asset is not sent, data within 7 days before &#x60;endTime&#x60; * If neither
+     * Query borrow/repay records in Margin account (USER_DATA) Query borrow/repay records in Margin
+     * account Weight(IP): 10 Security Type: USER_DATA Notes: - &#x60;txId&#x60; or
+     * &#x60;startTime&#x60; must be sent. &#x60;txId&#x60; takes precedence. - Response in
+     * descending order - If an asset is sent, data within 30 days before &#x60;endTime&#x60;; If an
+     * asset is not sent, data within 7 days before &#x60;endTime&#x60; - If neither
      * &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the recent 7-day data will be
-     * returned. * &#x60;startTime&#x60; set as &#x60;endTime&#x60; - 7days by default,
-     * &#x60;endTime&#x60; set as current time by default Weight: 10(IP)
+     * returned. - &#x60;startTime&#x60; set as &#x60;endTime&#x60; - 7 days by default,
+     * &#x60;endTime&#x60; set as current time by default
      *
-     * @param type MARGIN,ISOLATED (required)
+     * @param type (required)
      * @param asset (optional)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param txId &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param isolatedSymbol (optional)
+     * @param txId (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryBorrowRepayRecordsInMarginAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -829,20 +833,20 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Borrow-Repay">Query
-     *     borrow/repay records in Margin account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-borrow-repay-records-in-margin-account">Query
+     *     borrow/repay records in Margin account (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryBorrowRepayRecordsInMarginAccountResponse>
             queryBorrowRepayRecordsInMarginAccount(
-                    @NotNull String type,
+                    @NotNull OrderType type,
                     String asset,
                     String isolatedSymbol,
                     Long txId,
                     Long startTime,
                     Long endTime,
-                    Long current,
-                    Long size,
-                    Long recvWindow)
+                    @Min(1L) Long current,
+                    @Max(100L) Long size,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 queryBorrowRepayRecordsInMarginAccountValidateBeforeCall(
@@ -864,11 +868,10 @@ public class BorrowRepayApi {
      * Build call for queryMarginInterestRateHistory
      *
      * @param asset (required)
-     * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
-     *     omitted (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param vipLevel (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -879,7 +882,7 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Margin-Interest-Rate-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-margin-interest-rate-history">Query
      *     Margin Interest Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginInterestRateHistoryCall(
@@ -1001,15 +1004,14 @@ public class BorrowRepayApi {
     }
 
     /**
-     * Query Margin Interest Rate History (USER_DATA) Query Margin Interest Rate History Weight:
-     * 1(IP)
+     * Query Margin Interest Rate History (USER_DATA) Query Margin Interest Rate History Weight(IP):
+     * 1 Security Type: USER_DATA
      *
      * @param asset (required)
-     * @param vipLevel User&#39;s current specific margin data will be returned if vipLevel is
-     *     omitted (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param vipLevel (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginInterestRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1021,11 +1023,15 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Margin-Interest-Rate-History">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-margin-interest-rate-history">Query
      *     Margin Interest Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginInterestRateHistoryResponse> queryMarginInterestRateHistory(
-            @NotNull String asset, Long vipLevel, Long startTime, Long endTime, Long recvWindow)
+            @NotNull String asset,
+            Long vipLevel,
+            Long startTime,
+            Long endTime,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginInterestRateHistoryValidateBeforeCall(
@@ -1039,8 +1045,8 @@ public class BorrowRepayApi {
      * Build call for queryMaxBorrow
      *
      * @param asset (required)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isolatedSymbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1051,7 +1057,7 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Max-Borrow">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-max-borrow">Query
      *     Max Borrow (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMaxBorrowCall(String asset, String isolatedSymbol, Long recvWindow)
@@ -1157,13 +1163,14 @@ public class BorrowRepayApi {
     }
 
     /**
-     * Query Max Borrow (USER_DATA) Query Max Borrow * If isolatedSymbol is not sent, crossed margin
-     * data will be sent. * &#x60;borrowLimit&#x60; is also available from
-     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee) Weight: 50(IP)
+     * Query Max Borrow (USER_DATA) Query Max Borrow Weight(IP): 50 Security Type: USER_DATA Notes:
+     * - If isolatedSymbol is not sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60;
+     * is also available from
+     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
      *
      * @param asset (required)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isolatedSymbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMaxBorrowResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1175,11 +1182,12 @@ public class BorrowRepayApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Max-Borrow">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-max-borrow">Query
      *     Max Borrow (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMaxBorrowResponse> queryMaxBorrow(
-            @NotNull String asset, String isolatedSymbol, Long recvWindow) throws ApiException {
+            @NotNull String asset, String isolatedSymbol, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryMaxBorrowValidateBeforeCall(asset, isolatedSymbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =

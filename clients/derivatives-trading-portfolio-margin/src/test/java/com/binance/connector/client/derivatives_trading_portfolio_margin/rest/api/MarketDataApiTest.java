@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -24,6 +24,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -77,12 +78,12 @@ public class MarketDataApiTest {
     /**
      * Test Connectivity
      *
-     * <p>Test connectivity to the Rest API. Weight: 1
+     * <p>Test connectivity to the Rest API. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void testConnectivityTest() throws ApiException, CryptoException {
+    public void testConnectivityTest() throws ApiException, CryptoException, IOException {
         api.testConnectivity();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -91,7 +92,8 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/ping", actualRequest.url().encodedPath());
     }
 }

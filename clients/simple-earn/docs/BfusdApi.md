@@ -9,9 +9,9 @@ All URIs are relative to *https://api.binance.com*
 | [**getBfusdRateHistory**](BfusdApi.md#getBfusdRateHistory) | **GET** /sapi/v1/bfusd/history/rateHistory | Get BFUSD Rate History (USER_DATA) |
 | [**getBfusdRedemptionHistory**](BfusdApi.md#getBfusdRedemptionHistory) | **GET** /sapi/v1/bfusd/history/redemptionHistory | Get BFUSD Redemption History (USER_DATA) |
 | [**getBfusdRewardsHistory**](BfusdApi.md#getBfusdRewardsHistory) | **GET** /sapi/v1/bfusd/history/rewardsHistory | Get BFUSD Rewards History (USER_DATA) |
-| [**getBfusdSubscriptionHistory**](BfusdApi.md#getBfusdSubscriptionHistory) | **GET** /sapi/v1/bfusd/history/subscriptionHistory | Get BFUSD subscription history(USER_DATA) |
-| [**redeemBfusd**](BfusdApi.md#redeemBfusd) | **POST** /sapi/v1/bfusd/redeem | Redeem BFUSD(TRADE) |
-| [**subscribeBfusd**](BfusdApi.md#subscribeBfusd) | **POST** /sapi/v1/bfusd/subscribe | Subscribe BFUSD(TRADE) |
+| [**getBfusdSubscriptionHistory**](BfusdApi.md#getBfusdSubscriptionHistory) | **GET** /sapi/v1/bfusd/history/subscriptionHistory | Get BFUSD subscription history (USER_DATA) |
+| [**redeemBfusd**](BfusdApi.md#redeemBfusd) | **POST** /sapi/v1/bfusd/redeem | Redeem BFUSD (TRADE) |
+| [**subscribeBfusd**](BfusdApi.md#subscribeBfusd) | **POST** /sapi/v1/bfusd/subscribe | Subscribe BFUSD (TRADE) |
 
 
 <a id="getBfusdAccount"></a>
@@ -20,7 +20,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get BFUSD Account (USER_DATA)
 
-Get BFUSD account information.  Weight: 150
+Get BFUSD account information.  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -37,7 +37,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BfusdApi apiInstance = new BfusdApi(defaultClient);
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long recvWindow = 5000L; // Long | 
     try {
       GetBfusdAccountResponse result = apiInstance.getBfusdAccount(recvWindow);
       System.out.println(result);
@@ -56,7 +56,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -82,7 +82,7 @@ No authorization required
 
 Get BFUSD Quota Details (USER_DATA)
 
-Get BFUSD quota details including subscription quota, fast redemption quota and standard redemption quota.  Weight: 150
+Get BFUSD quota details including subscription quota, fast redemption quota, and standard redemption quota.  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -99,7 +99,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BfusdApi apiInstance = new BfusdApi(defaultClient);
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long recvWindow = 5000L; // Long | 
     try {
       GetBfusdQuotaDetailsResponse result = apiInstance.getBfusdQuotaDetails(recvWindow);
       System.out.println(result);
@@ -118,7 +118,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -144,7 +144,7 @@ No authorization required
 
 Get BFUSD Rate History (USER_DATA)
 
-Get BFUSD rate history sorted by descending order.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD rate history sorted by descending order.  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and   data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -161,11 +161,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BfusdApi apiInstance = new BfusdApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page. Starts from 1.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | 
     try {
       GetBfusdRateHistoryResponse result = apiInstance.getBfusdRateHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -186,9 +186,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
-| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
+| **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -214,7 +214,7 @@ No authorization required
 
 Get BFUSD Redemption History (USER_DATA)
 
-Get BFUSD redemption history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD redemption history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and   data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -231,11 +231,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BfusdApi apiInstance = new BfusdApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | 
     try {
       GetBfusdRedemptionHistoryResponse result = apiInstance.getBfusdRedemptionHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -256,9 +256,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
-| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
+| **current** | **Long**| Currently querying page. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -284,7 +284,7 @@ No authorization required
 
 Get BFUSD Rewards History (USER_DATA)
 
-Get BFUSD rewards history.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD rewards history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus one month, and   data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -301,11 +301,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BfusdApi apiInstance = new BfusdApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | 
     try {
       GetBfusdRewardsHistoryResponse result = apiInstance.getBfusdRewardsHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -326,9 +326,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
-| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
+| **current** | **Long**| Currently querying page. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -352,9 +352,9 @@ No authorization required
 # **getBfusdSubscriptionHistory**
 > GetBfusdSubscriptionHistoryResponse getBfusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow)
 
-Get BFUSD subscription history(USER_DATA)
+Get BFUSD subscription history (USER_DATA)
 
-Get BFUSD subscription history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BFUSD subscription history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, &#x60;endTime&#x60; will default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If   &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time advanced by one month,   and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -371,12 +371,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BfusdApi apiInstance = new BfusdApi(defaultClient);
-    String asset = "asset_example"; // String | USDC or USDT
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Starts from 1. Default: 1
-    Long size = 56L; // Long | Number of results per page. Default: 10, Max: 100
-    Long recvWindow = 56L; // Long | The value cannot be greater than 60000 (ms)
+    Asset asset = Asset.fromValue("USDT"); // Asset | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page.
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | 
     try {
       GetBfusdSubscriptionHistoryResponse result = apiInstance.getBfusdSubscriptionHistory(asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -395,12 +395,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | **String**| USDC or USDT | [optional] |
+| **asset** | [**Asset**](.md)|  | [optional] [enum: USDT, USDC] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Starts from 1. Default: 1 | [optional] |
-| **size** | **Long**| Number of results per page. Default: 10, Max: 100 | [optional] |
-| **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |
+| **current** | **Long**| Currently querying page. | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -424,9 +424,9 @@ No authorization required
 # **redeemBfusd**
 > RedeemBfusdResponse redeemBfusd(redeemBfusdRequest)
 
-Redeem BFUSD(TRADE)
+Redeem BFUSD (TRADE)
 
-Redeem BFUSD to USDT  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Redeem BFUSD to USDT  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint. - This API only supports BFUSD redemption to the Spot Account. Redemptions to the Funding Account or any other account type are not supported.
 
 ### Example
 ```java
@@ -486,9 +486,9 @@ No authorization required
 # **subscribeBfusd**
 > SubscribeBfusdResponse subscribeBfusd(subscribeBfusdRequest)
 
-Subscribe BFUSD(TRADE)
+Subscribe BFUSD (TRADE)
 
-Subscribe BFUSD  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Subscribe BFUSD  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint. - This API only supports BFUSD subscription using assets held in the Spot Account. Subscriptions initiated from the Funding Account or any other account type are not supported.
 
 ### Example
 ```java

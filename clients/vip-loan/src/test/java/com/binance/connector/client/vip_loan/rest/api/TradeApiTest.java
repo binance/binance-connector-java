@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,11 +25,14 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanBorrowResponse;
+import com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowRequest;
+import com.binance.connector.client.vip_loan.rest.model.VipLoanFixedRateBorrowResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRenewResponse;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRepayRequest;
 import com.binance.connector.client.vip_loan.rest.model.VipLoanRepayResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -81,23 +84,24 @@ public class TradeApiTest {
     }
 
     /**
-     * VIP Loan Borrow(TRADE)
+     * VIP Loan Borrow (TRADE)
      *
-     * <p>VIP loan is available for VIP users only. * loanAccountId refer to loan receiving account
-     * * Only master account applications are supported * loanAccountId and collateralAccountId
-     * under same master account * loanTerm is mandatory if user choose stable rate Weight: 0
+     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE Notes: -
+     * &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only master account
+     * applications are supported. - &#x60;loanAccountId&#x60; and &#x60;collateralAccountId&#x60;
+     * must be under the same master account. - &#x60;loanTerm&#x60; is mandatory if the user
+     * chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void vipLoanBorrowTest() throws ApiException, CryptoException {
+    public void vipLoanBorrowTest() throws ApiException, CryptoException, IOException {
         VipLoanBorrowRequest vipLoanBorrowRequest = new VipLoanBorrowRequest();
-
         vipLoanBorrowRequest.loanAccountId(1L);
-        vipLoanBorrowRequest.loanCoin("");
-        vipLoanBorrowRequest.loanAmount(1d);
-        vipLoanBorrowRequest.collateralAccountId(1L);
-        vipLoanBorrowRequest.collateralCoin("");
+        vipLoanBorrowRequest.loanCoin("BTC");
+        vipLoanBorrowRequest.loanAmount(1.0d);
+        vipLoanBorrowRequest.collateralAccountId("12345678,12345678,12345678");
+        vipLoanBorrowRequest.collateralCoin("BUSD,USDT,ETH");
         vipLoanBorrowRequest.isFlexibleRate(true);
 
         ApiResponse<VipLoanBorrowResponse> response = api.vipLoanBorrow(vipLoanBorrowRequest);
@@ -112,28 +116,65 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "timestamp=1736393892000collateralCoin=&collateralAccountId=1&loanAccountId=1&loanCoin=&isFlexibleRate=true&loanAmount=1",
-                signInputCaptor.getValue());
-        assertEquals(
-                "69452f0036610ef01a7af7050eb1363f515110a778f3f4c67ea6ca5e91279705",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000collateralCoin=BUSD%2CUSDT%2CETH&collateralAccountId=12345678%2C12345678%2C12345678&loanAccountId=1&loanCoin=BTC&isFlexibleRate=true&loanAmount=1", signInputCaptor.getValue());
+        assertEquals("8d7058257e6c970f0f7132432401c9b3db9230d407387745c1ad61e501ffbbc3", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/borrow", actualRequest.url().encodedPath());
     }
 
     /**
-     * VIP Loan Renew(TRADE)
+     * VIP Loan Fixed Rate Borrow (TRADE)
      *
-     * <p>VIP loan is available for VIP users only. Weight: 6000
+     * <p>Submit a fixed rate borrow request by matching market supply orders. Weight(UID): 6000
+     * Security Type: TRADE Notes: - **Rate limit:** 2 requests per second per account. - When
+     * multiple &#x60;supplyRequest&#x60; entries are provided, all &#x60;requestId&#x60; values
+     * must correspond to the same &#x60;borrowCoin&#x60; and &#x60;loanTerm&#x60; (validated by
+     * collateral facade).
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void vipLoanRenewTest() throws ApiException, CryptoException {
-        VipLoanRenewRequest vipLoanRenewRequest = new VipLoanRenewRequest();
+    public void vipLoanFixedRateBorrowTest() throws ApiException, CryptoException, IOException {
+        VipLoanFixedRateBorrowRequest vipLoanFixedRateBorrowRequest =
+                new VipLoanFixedRateBorrowRequest();
+        vipLoanFixedRateBorrowRequest.supplyRequest("1212:0.12:100;3434:0.13:50");
+        vipLoanFixedRateBorrowRequest.borrowCoin("BUSD");
+        vipLoanFixedRateBorrowRequest.loanTerm(30L);
+        vipLoanFixedRateBorrowRequest.borrowUid(12345678L);
+        vipLoanFixedRateBorrowRequest.collateralCoin("BNB,ETH,BTC");
+        vipLoanFixedRateBorrowRequest.collateralAccountId("12345,67890,13579");
 
+        ApiResponse<VipLoanFixedRateBorrowResponse> response =
+                api.vipLoanFixedRateBorrow(vipLoanFixedRateBorrowRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000supplyRequest=1212%3A0.12%3A100%3B3434%3A0.13%3A50&autoRepay=true&loanTerm=30&collateralCoin=BNB%2CETH%2CBTC&collateralAccountId=12345%2C67890%2C13579&borrowCoin=BUSD&borrowUid=12345678", signInputCaptor.getValue());
+        assertEquals(
+                "ff1cf1d7f36839a77ef053ba03056c69ed25c2e80ac7f2589003dd434a94ccde",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/loan/vip/fixed/borrow", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * VIP Loan Renew (TRADE)
+     *
+     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void vipLoanRenewTest() throws ApiException, CryptoException, IOException {
+        VipLoanRenewRequest vipLoanRenewRequest = new VipLoanRenewRequest();
         vipLoanRenewRequest.orderId(1L);
-        vipLoanRenewRequest.loanTerm(0L);
+        vipLoanRenewRequest.loanTerm(30L);
 
         ApiResponse<VipLoanRenewResponse> response = api.vipLoanRenew(vipLoanRenewRequest);
 
@@ -147,26 +188,23 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000loanTerm=0&orderId=1", signInputCaptor.getValue());
-        assertEquals(
-                "4c2f7c6679438a09acf96db4e1389b9d73ed86c0a76563de8618cd98f615f721",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000loanTerm=30&orderId=1", signInputCaptor.getValue());
+        assertEquals("e1985452130441850073d7c7bd5fa20da0bf9d12cefc8e28f3ccacdb6b118890", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/renew", actualRequest.url().encodedPath());
     }
 
     /**
-     * VIP Loan Repay(TRADE)
+     * VIP Loan Repay (TRADE)
      *
-     * <p>VIP loan is available for VIP users only. Weight: 6000
+     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void vipLoanRepayTest() throws ApiException, CryptoException {
+    public void vipLoanRepayTest() throws ApiException, CryptoException, IOException {
         VipLoanRepayRequest vipLoanRepayRequest = new VipLoanRepayRequest();
-
         vipLoanRepayRequest.orderId(1L);
-        vipLoanRepayRequest.amount(1d);
+        vipLoanRepayRequest.amount(1.0d);
 
         ApiResponse<VipLoanRepayResponse> response = api.vipLoanRepay(vipLoanRepayRequest);
 
@@ -181,9 +219,7 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("timestamp=1736393892000amount=1&orderId=1", signInputCaptor.getValue());
-        assertEquals(
-                "63a2bd291c903ff313203c537ae5664fa19322a1cd812a2a5267fc7f3c10ef2f",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("63a2bd291c903ff313203c537ae5664fa19322a1cd812a2a5267fc7f3c10ef2f", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/repay", actualRequest.url().encodedPath());
     }
 }

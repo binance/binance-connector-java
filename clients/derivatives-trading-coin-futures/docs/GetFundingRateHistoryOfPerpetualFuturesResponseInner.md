@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**fundingTime** | **Long** |  |  [optional] |
-|**fundingRate** | **String** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**fundingTime** | **Long** | Funding time. |  [optional] |
+|**fundingRate** | **String** | Funding rate. |  [optional] |
 
 
 

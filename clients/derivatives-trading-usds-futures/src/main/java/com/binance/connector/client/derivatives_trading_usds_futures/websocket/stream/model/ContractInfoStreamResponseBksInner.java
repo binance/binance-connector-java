@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,7 +39,7 @@ import org.hibernate.validator.constraints.*;
 /** ContractInfoStreamResponseBksInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ContractInfoStreamResponseBksInner extends BaseDTO {
     public static final String SERIALIZED_NAME_BS = "bs";
 
@@ -91,7 +91,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get bs
+     * Notional bracket
      *
      * @return bs
      */
@@ -110,7 +110,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get bnf
+     * Floor notional of this bracket
      *
      * @return bnf
      */
@@ -129,7 +129,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get bnc
+     * Cap notional of this bracket
      *
      * @return bnc
      */
@@ -148,7 +148,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get mmr
+     * Maintenance ratio for this bracket
      *
      * @return mmr
      */
@@ -168,7 +168,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get cf
+     * Auxiliary number for quick calculation
      *
      * @return cf
      */
@@ -187,7 +187,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get mi
+     * Min leverage for this bracket
      *
      * @return mi
      */
@@ -206,7 +206,7 @@ public class ContractInfoStreamResponseBksInner extends BaseDTO {
     }
 
     /**
-     * Get ma
+     * Max leverage for this bracket
      *
      * @return ma
      */

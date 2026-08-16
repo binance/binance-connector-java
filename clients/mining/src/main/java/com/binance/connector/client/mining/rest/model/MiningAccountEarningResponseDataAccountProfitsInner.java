@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** MiningAccountEarningResponseDataAccountProfitsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MiningAccountEarningResponseDataAccountProfitsInner {
     public static final String SERIALIZED_NAME_TIME = "time";
 
@@ -82,7 +82,7 @@ public class MiningAccountEarningResponseDataAccountProfitsInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -102,7 +102,7 @@ public class MiningAccountEarningResponseDataAccountProfitsInner {
     }
 
     /**
-     * Get coinName
+     * Coin
      *
      * @return coinName
      */
@@ -122,7 +122,7 @@ public class MiningAccountEarningResponseDataAccountProfitsInner {
     }
 
     /**
-     * Get type
+     * 0: Referral, 1: Refund, 2: Rebate
      *
      * @return type
      */
@@ -142,7 +142,7 @@ public class MiningAccountEarningResponseDataAccountProfitsInner {
     }
 
     /**
-     * Get puid
+     * Mining sub-account ID
      *
      * @return puid
      */
@@ -162,7 +162,7 @@ public class MiningAccountEarningResponseDataAccountProfitsInner {
     }
 
     /**
-     * Get subName
+     * Mining account
      *
      * @return subName
      */
@@ -182,7 +182,7 @@ public class MiningAccountEarningResponseDataAccountProfitsInner {
     }
 
     /**
-     * Get amount
+     * Amount
      *
      * @return amount
      */

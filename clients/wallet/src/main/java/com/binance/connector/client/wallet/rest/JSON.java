@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -307,17 +307,29 @@ public class JSON {
                         .GetCloudMiningPaymentAndRefundHistoryResponseRowsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetCountryListResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .GetCountryListResponseCountriesInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponseInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model.GetSpotDelistScheduleResponse
+                new com.binance.connector.client.wallet.rest.model.GetRegionListResponse
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model
-                        .GetSpotDelistScheduleResponseInner.CustomTypeAdapterFactory());
+                new com.binance.connector.client.wallet.rest.model.GetRegionListResponseRegionsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponseInner
+                        .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model
                         .GetSymbolsDelistScheduleForSpotResponse.CustomTypeAdapterFactory());
@@ -415,10 +427,10 @@ public class JSON {
                 new com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1Response
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response
+                new com.binance.connector.client.wallet.rest.model.WithdrawHistoryV1ResponseInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2ResponseInner
+                new com.binance.connector.client.wallet.rest.model.WithdrawHistoryV2Response
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.WithdrawRequest

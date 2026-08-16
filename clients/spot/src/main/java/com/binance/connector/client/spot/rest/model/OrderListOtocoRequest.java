@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderListOtocoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOtocoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -339,7 +339,10 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order
+     * list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is
+     * filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the
+     * &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -445,7 +448,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get workingClientOrderId
+     * Arbitrary unique ID among open orders for the working order. Automatically generated if not
+     * sent.
      *
      * @return workingClientOrderId
      */
@@ -486,7 +490,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get workingQuantity
+     * Sets the quantity for the working order.
      *
      * @return workingQuantity
      */
@@ -508,7 +512,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get workingIcebergQty
+     * This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if
+     * &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return workingIcebergQty
      */
@@ -551,7 +556,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get workingStrategyId
+     * Arbitrary numeric value identifying the working order within an order strategy.
      *
      * @return workingStrategyId
      */
@@ -571,7 +576,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get workingStrategyType
+     * Arbitrary numeric value identifying the working order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return workingStrategyType
      */
@@ -677,7 +683,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingQuantity
+     * Sets the quantity for the pending orders.
      *
      * @return pendingQuantity
      */
@@ -721,7 +727,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAboveClientOrderId
+     * Arbitrary unique ID among open orders for the pending above order. Automatically generated if
+     * not sent.
      *
      * @return pendingAboveClientOrderId
      */
@@ -742,7 +749,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAbovePrice
+     * Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
      *
      * @return pendingAbovePrice
      */
@@ -763,7 +771,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAboveStopPrice
+     * Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;,
+     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;.
      *
      * @return pendingAboveStopPrice
      */
@@ -785,7 +794,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAboveTrailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return pendingAboveTrailingDelta
      */
@@ -807,7 +816,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAboveIcebergQty
+     * This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or if
+     * &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return pendingAboveIcebergQty
      */
@@ -851,7 +861,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAboveStrategyId
+     * Arbitrary numeric value identifying the pending above order within an order strategy.
      *
      * @return pendingAboveStrategyId
      */
@@ -872,7 +882,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingAboveStrategyType
+     * Arbitrary numeric value identifying the pending above order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return pendingAboveStrategyType
      */
@@ -980,7 +991,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowClientOrderId
+     * Arbitrary unique ID among open orders for the pending below order. Automatically generated if
+     * not sent.
      *
      * @return pendingBelowClientOrderId
      */
@@ -1001,7 +1013,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowPrice
+     * Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
      *
      * @return pendingBelowPrice
      */
@@ -1022,7 +1035,10 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowStopPrice
+     * Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;,
+     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either
+     * &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be
+     * specified.
      *
      * @return pendingBelowStopPrice
      */
@@ -1044,7 +1060,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowTrailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return pendingBelowTrailingDelta
      */
@@ -1066,7 +1082,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowIcebergQty
+     * This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;, or if
+     * &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;.
      *
      * @return pendingBelowIcebergQty
      */
@@ -1110,7 +1127,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowStrategyId
+     * Arbitrary numeric value identifying the pending below order within an order strategy.
      *
      * @return pendingBelowStrategyId
      */
@@ -1131,7 +1148,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get pendingBelowStrategyType
+     * Arbitrary numeric value identifying the pending below order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return pendingBelowStrategyType
      */
@@ -1216,7 +1234,8 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */

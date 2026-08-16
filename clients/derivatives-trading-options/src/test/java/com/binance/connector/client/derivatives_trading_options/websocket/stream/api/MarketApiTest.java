@@ -18,16 +18,7 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndexPriceStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.MarkPriceResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.NewSymbolInfoRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.NewSymbolInfoResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.OpenInterestResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.*;
 import jakarta.validation.constraints.*;
 import java.io.File;
 import java.io.IOException;
@@ -133,7 +124,7 @@ public class MarketApiTest {
         KlineCandlestickStreamsRequest klineCandlestickStreamsRequest =
                 new KlineCandlestickStreamsRequest();
         klineCandlestickStreamsRequest.symbol("btcusdt");
-        klineCandlestickStreamsRequest.interval("1m");
+        klineCandlestickStreamsRequest.interval(Interval.INTERVAL_1m);
 
         StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> response =
                 api.klineCandlestickStreams(klineCandlestickStreamsRequest);
@@ -152,41 +143,6 @@ public class MarketApiTest {
         URL resource =
                 MarketApiTest.class.getResource(
                         "/expected/stream/MarketApi/symbol@kline_interval-test.json");
-
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * Mark Price
-     *
-     * <p>The mark price for all option symbols on specific underlying asset.
-     * E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)
-     * Update Speed: 1000ms
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void markPriceTest() throws ApiException, URISyntaxException, IOException {
-        MarkPriceRequest markPriceRequest = new MarkPriceRequest();
-        markPriceRequest.underlying("example_value");
-
-        StreamBlockingQueueWrapper<MarkPriceResponse> response = api.markPrice(markPriceRequest);
-        ArgumentCaptor<RequestWrapperDTO<Set<String>, MarkPriceResponse>> callArgumentCaptor =
-                ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<Set<String>, MarkPriceResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        Set<String> params = requestWrapperDTO.getParams();
-        // TODO: test validations
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                MarketApiTest.class.getResource(
-                        "/expected/stream/MarketApi/underlying@optionMarkPrice-test.json");
 
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);
@@ -237,6 +193,7 @@ public class MarketApiTest {
     @Test
     public void openInterestTest() throws ApiException, URISyntaxException, IOException {
         OpenInterestRequest openInterestRequest = new OpenInterestRequest();
+        openInterestRequest.setUnderlying("abcdef");
         openInterestRequest.expirationDate("220930");
 
         StreamBlockingQueueWrapper<OpenInterestResponse> response =

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.binance.connector.client.derivatives_trading_options.rest.model.Check
 import com.binance.connector.client.derivatives_trading_options.rest.model.ExchangeInformationResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.HistoricalExerciseRecordsResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.IndexPriceResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.Interval;
 import com.binance.connector.client.derivatives_trading_options.rest.model.KlineCandlestickDataResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OpenInterestResponse;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarkPriceResponse;
@@ -52,7 +53,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -102,7 +103,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Check-Server-Time">Check
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#check-server-time">Check
      *     Server Time Documentation</a>
      */
     private okhttp3.Call checkServerTimeCall() throws ApiException {
@@ -190,8 +191,8 @@ public class MarketDataApi {
     }
 
     /**
-     * Check Server Time Test connectivity to the Rest API and get the current server time. Weight:
-     * 1
+     * Check Server Time Test connectivity to the Rest API and get the current server time.
+     * Weight(IP): 1
      *
      * @return ApiResponse&lt;CheckServerTimeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -204,7 +205,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Check-Server-Time">Check
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#check-server-time">Check
      *     Server Time Documentation</a>
      */
     public ApiResponse<CheckServerTimeResponse> checkServerTime() throws ApiException {
@@ -227,7 +228,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Exchange-Information">Exchange
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#exchange-information">Exchange
      *     Information Documentation</a>
      */
     private okhttp3.Call exchangeInformationCall() throws ApiException {
@@ -315,7 +316,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Exchange Information Current exchange trading rules and symbol information Weight: 1
+     * Exchange Information Current exchange trading rules and symbol information Weight(IP): 1
      *
      * @return ApiResponse&lt;ExchangeInformationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -328,7 +329,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Exchange-Information">Exchange
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#exchange-information">Exchange
      *     Information Documentation</a>
      */
     public ApiResponse<ExchangeInformationResponse> exchangeInformation() throws ApiException {
@@ -341,10 +342,10 @@ public class MarketDataApi {
     /**
      * Build call for historicalExerciseRecords
      *
-     * @param underlying underlying, e.g BTCUSDT (optional)
+     * @param underlying Underlying asset. (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param limit Number of result sets returned (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -355,7 +356,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Historical-Exercise-Records">Historical
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#historical-exercise-records">Historical
      *     Exercise Records Documentation</a>
      */
     private okhttp3.Call historicalExerciseRecordsCall(
@@ -469,12 +470,12 @@ public class MarketDataApi {
 
     /**
      * Historical Exercise Records Get historical exercise records. * REALISTIC_VALUE_STRICKEN -&gt;
-     * Exercised * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM Weight: 3
+     * Exercised * EXTRINSIC_VALUE_EXPIRED -&gt; Expired OTM Weight(IP): 3
      *
-     * @param underlying underlying, e.g BTCUSDT (optional)
+     * @param underlying Underlying asset. (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param limit Number of result sets returned (optional)
      * @return ApiResponse&lt;HistoricalExerciseRecordsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -486,11 +487,12 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Historical-Exercise-Records">Historical
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#historical-exercise-records">Historical
      *     Exercise Records Documentation</a>
      */
     public ApiResponse<HistoricalExerciseRecordsResponse> historicalExerciseRecords(
-            String underlying, Long startTime, Long endTime, Long limit) throws ApiException {
+            String underlying, Long startTime, Long endTime, @Max(100L) Long limit)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 historicalExerciseRecordsValidateBeforeCall(underlying, startTime, endTime, limit);
         java.lang.reflect.Type localVarReturnType =
@@ -501,7 +503,7 @@ public class MarketDataApi {
     /**
      * Build call for indexPrice
      *
-     * @param underlying Option underlying, e.g BTCUSDT (required)
+     * @param underlying Underlying asset. (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -512,7 +514,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Symbol-Price-Ticker">Index
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#index-price">Index
      *     Price Documentation</a>
      */
     private okhttp3.Call indexPriceCall(String underlying) throws ApiException {
@@ -604,9 +606,9 @@ public class MarketDataApi {
     }
 
     /**
-     * Index Price Get spot index price for option underlying. Weight: 1
+     * Index Price Get spot index price for option underlying. Weight(IP): 1
      *
-     * @param underlying Option underlying, e.g BTCUSDT (required)
+     * @param underlying Underlying asset. (required)
      * @return ApiResponse&lt;IndexPriceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -618,7 +620,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Symbol-Price-Ticker">Index
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#index-price">Index
      *     Price Documentation</a>
      */
     public ApiResponse<IndexPriceResponse> indexPrice(@NotNull String underlying)
@@ -632,11 +634,11 @@ public class MarketDataApi {
     /**
      * Build call for klineCandlestickData
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
+     * @param symbol Option trading pair (required)
      * @param interval Time interval (required)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param limit Number of result sets returned (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -647,11 +649,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Kline-Candlestick-Data">Kline/Candlestick
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#kline-candlestick-data">Kline/Candlestick
      *     Data Documentation</a>
      */
     private okhttp3.Call klineCandlestickDataCall(
-            String symbol, String interval, Long startTime, Long endTime, Long limit)
+            String symbol, Interval interval, Long startTime, Long endTime, Long limit)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -728,7 +730,7 @@ public class MarketDataApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call klineCandlestickDataValidateBeforeCall(
-            String symbol, String interval, Long startTime, Long endTime, Long limit)
+            String symbol, Interval interval, Long startTime, Long endTime, Long limit)
             throws ApiException {
         try {
             Validator validator =
@@ -745,7 +747,7 @@ public class MarketDataApi {
                             .getMethod(
                                     "klineCandlestickData",
                                     String.class,
-                                    String.class,
+                                    Interval.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -768,14 +770,14 @@ public class MarketDataApi {
 
     /**
      * Kline/Candlestick Data Kline/candlestick bars for an option symbol. Klines are uniquely
-     * identified by their open time. * If startTime and endTime are not sent, the most recent
-     * klines are returned. Weight: 1
+     * identified by their open time. Weight(IP): 1 Notes: - If startTime and endTime are not sent,
+     * the most recent klines are returned.
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
+     * @param symbol Option trading pair (required)
      * @param interval Time interval (required)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param limit Number of result sets returned (optional)
      * @return ApiResponse&lt;KlineCandlestickDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -787,15 +789,15 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Kline-Candlestick-Data">Kline/Candlestick
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#kline-candlestick-data">Kline/Candlestick
      *     Data Documentation</a>
      */
     public ApiResponse<KlineCandlestickDataResponse> klineCandlestickData(
             @NotNull String symbol,
-            @NotNull String interval,
+            @NotNull Interval interval,
             Long startTime,
             Long endTime,
-            Long limit)
+            @Max(1500L) Long limit)
             throws ApiException {
         okhttp3.Call localVarCall =
                 klineCandlestickDataValidateBeforeCall(symbol, interval, startTime, endTime, limit);
@@ -807,8 +809,8 @@ public class MarketDataApi {
     /**
      * Build call for openInterest
      *
-     * @param underlyingAsset underlying asset, e.g ETH/BTC (required)
-     * @param expiration expiration date, e.g 221225 (required)
+     * @param underlyingAsset Underlying asset. (required)
+     * @param expiration expiration date (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -819,7 +821,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Open-Interest">Open
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#open-interest">Open
      *     Interest Documentation</a>
      */
     private okhttp3.Call openInterestCall(String underlyingAsset, String expiration)
@@ -919,10 +921,10 @@ public class MarketDataApi {
 
     /**
      * Open Interest Get open interest for specific underlying asset on specific expiration date.
-     * Weight: 0
+     * Weight(IP): 0
      *
-     * @param underlyingAsset underlying asset, e.g ETH/BTC (required)
-     * @param expiration expiration date, e.g 221225 (required)
+     * @param underlyingAsset Underlying asset. (required)
+     * @param expiration expiration date (required)
      * @return ApiResponse&lt;OpenInterestResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -934,7 +936,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Open-Interest">Open
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#open-interest">Open
      *     Interest Documentation</a>
      */
     public ApiResponse<OpenInterestResponse> openInterest(
@@ -948,7 +950,7 @@ public class MarketDataApi {
     /**
      * Build call for optionMarkPrice
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
+     * @param symbol Option trading pair (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -959,7 +961,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Option-Mark-Price">Option
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#option-mark-price">Option
      *     Mark Price Documentation</a>
      */
     private okhttp3.Call optionMarkPriceCall(String symbol) throws ApiException {
@@ -1051,9 +1053,9 @@ public class MarketDataApi {
     }
 
     /**
-     * Option Mark Price Option mark price and greek info. Weight: 5
+     * Option Mark Price Option mark price and greek info. Weight(IP): 5
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
+     * @param symbol Option trading pair (optional)
      * @return ApiResponse&lt;OptionMarkPriceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1065,7 +1067,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Option-Mark-Price">Option
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#option-mark-price">Option
      *     Mark Price Documentation</a>
      */
     public ApiResponse<OptionMarkPriceResponse> optionMarkPrice(String symbol) throws ApiException {
@@ -1078,8 +1080,8 @@ public class MarketDataApi {
     /**
      * Build call for orderBook
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param symbol Option trading pair (required)
+     * @param limit Default:100 Max:1000.Optional value:[10, 20, 50, 100, 500, 1000] (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1090,7 +1092,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Order-Book">Order
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#order-book">Order
      *     Book Documentation</a>
      */
     private okhttp3.Call orderBookCall(String symbol, Long limit) throws ApiException {
@@ -1190,8 +1192,8 @@ public class MarketDataApi {
      * Order Book Check orderbook depth on specific symbol Weight: limit | weight ------------ |
      * ------------ 5, 10, 20, 50 | 1 100 | 5 500 | 10 1000 | 20
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param symbol Option trading pair (required)
+     * @param limit Default:100 Max:1000.Optional value:[10, 20, 50, 100, 500, 1000] (optional)
      * @return ApiResponse&lt;OrderBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1203,10 +1205,10 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Order-Book">Order
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#order-book">Order
      *     Book Documentation</a>
      */
-    public ApiResponse<OrderBookResponse> orderBook(@NotNull String symbol, Long limit)
+    public ApiResponse<OrderBookResponse> orderBook(@NotNull String symbol, @Max(1000L) Long limit)
             throws ApiException {
         okhttp3.Call localVarCall = orderBookValidateBeforeCall(symbol, limit);
         java.lang.reflect.Type localVarReturnType = new TypeToken<OrderBookResponse>() {}.getType();
@@ -1216,8 +1218,8 @@ public class MarketDataApi {
     /**
      * Build call for recentBlockTradesList
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param symbol Option trading pair (optional)
+     * @param limit Number of records (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1228,7 +1230,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Recent-Block-Trade-List">Recent
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#recent-block-trades-list">Recent
      *     Block Trades List Documentation</a>
      */
     private okhttp3.Call recentBlockTradesListCall(String symbol, Long limit) throws ApiException {
@@ -1326,10 +1328,10 @@ public class MarketDataApi {
     }
 
     /**
-     * Recent Block Trades List Get recent block trades Weight: 5
+     * Recent Block Trades List Get recent block trades Weight(IP): 5
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param symbol Option trading pair (optional)
+     * @param limit Number of records (optional)
      * @return ApiResponse&lt;RecentBlockTradesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1341,11 +1343,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Recent-Block-Trade-List">Recent
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#recent-block-trades-list">Recent
      *     Block Trades List Documentation</a>
      */
     public ApiResponse<RecentBlockTradesListResponse> recentBlockTradesList(
-            String symbol, Long limit) throws ApiException {
+            String symbol, @Max(500L) Long limit) throws ApiException {
         okhttp3.Call localVarCall = recentBlockTradesListValidateBeforeCall(symbol, limit);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<RecentBlockTradesListResponse>() {}.getType();
@@ -1355,8 +1357,8 @@ public class MarketDataApi {
     /**
      * Build call for recentTradesList
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param symbol Option trading pair (required)
+     * @param limit Number of result sets returned (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1367,7 +1369,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Recent-Trades-List">Recent
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#recent-trades-list">Recent
      *     Trades List Documentation</a>
      */
     private okhttp3.Call recentTradesListCall(String symbol, Long limit) throws ApiException {
@@ -1464,10 +1466,10 @@ public class MarketDataApi {
     }
 
     /**
-     * Recent Trades List Get recent market trades Weight: 5
+     * Recent Trades List Get recent market trades Weight(IP): 5
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (required)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
+     * @param symbol Option trading pair (required)
+     * @param limit Number of result sets returned (optional)
      * @return ApiResponse&lt;RecentTradesListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1479,11 +1481,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Recent-Trades-List">Recent
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#recent-trades-list">Recent
      *     Trades List Documentation</a>
      */
     public ApiResponse<RecentTradesListResponse> recentTradesList(
-            @NotNull String symbol, Long limit) throws ApiException {
+            @NotNull String symbol, @Max(500L) Long limit) throws ApiException {
         okhttp3.Call localVarCall = recentTradesListValidateBeforeCall(symbol, limit);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<RecentTradesListResponse>() {}.getType();
@@ -1503,7 +1505,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Test-Connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#test-connectivity">Test
      *     Connectivity Documentation</a>
      */
     private okhttp3.Call testConnectivityCall() throws ApiException {
@@ -1591,7 +1593,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Test Connectivity Test connectivity to the Rest API. Weight: 1
+     * Test Connectivity Test connectivity to the Rest API. Weight(IP): 1
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1604,7 +1606,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/Test-Connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#test-connectivity">Test
      *     Connectivity Documentation</a>
      */
     public ApiResponse<Void> testConnectivity() throws ApiException {
@@ -1615,7 +1617,7 @@ public class MarketDataApi {
     /**
      * Build call for ticker24hrPriceChangeStatistics
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
+     * @param symbol Option trading pair (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1626,7 +1628,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/24hr-Ticker-Price-Change-Statistics">24hr
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#ticker24hr-price-change-statistics">24hr
      *     Ticker Price Change Statistics Documentation</a>
      */
     private okhttp3.Call ticker24hrPriceChangeStatisticsCall(String symbol) throws ApiException {
@@ -1720,9 +1722,10 @@ public class MarketDataApi {
     }
 
     /**
-     * 24hr Ticker Price Change Statistics 24 hour rolling window price change statistics. Weight: 5
+     * 24hr Ticker Price Change Statistics 24 hour rolling window price change statistics. Weight: 1
+     * for a single symbol; 40 when the symbol parameter is omitted
      *
-     * @param symbol Option trading pair, e.g BTC-200730-9000-C (optional)
+     * @param symbol Option trading pair (optional)
      * @return ApiResponse&lt;Ticker24hrPriceChangeStatisticsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1734,7 +1737,7 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/market-data/24hr-Ticker-Price-Change-Statistics">24hr
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-data#ticker24hr-price-change-statistics">24hr
      *     Ticker Price Change Statistics Documentation</a>
      */
     public ApiResponse<Ticker24hrPriceChangeStatisticsResponse> ticker24hrPriceChangeStatistics(

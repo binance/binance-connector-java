@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**baseAsset** | **String** |  |  [optional] |
-|**quoteAsset** | **String** |  |  [optional] |
-|**weightInQuantity** | **String** |  |  [optional] |
-|**weightInPercentage** | **String** |  |  [optional] |
+|**baseAsset** | **String** | Base Asset. |  [optional] |
+|**quoteAsset** | **String** | Quote Asset. |  [optional] |
+|**weightInQuantity** | **String** | Weight In Quantity. |  [optional] |
+|**weightInPercentage** | **String** | Weight In Percentage. |  [optional] |
 
 
 

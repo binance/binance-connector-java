@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+ * Portfolio Margin WebSocket Market Streams
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** ConditionalOrderTradeUpdateSo */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
@@ -174,7 +174,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -194,7 +194,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Strategy Client Order Id
      *
      * @return cLowerCase
      */
@@ -213,7 +213,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get si
+     * Strategy ID
      *
      * @return si
      */
@@ -232,7 +232,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -251,7 +251,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get st
+     * Strategy Type
      *
      * @return st
      */
@@ -271,7 +271,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Time in Force
      *
      * @return fLowerCase
      */
@@ -291,7 +291,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Quantity
      *
      * @return qLowerCase
      */
@@ -311,7 +311,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Price
      *
      * @return pLowerCase
      */
@@ -330,7 +330,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get sp
+     * Stop Price. Please ignore with TRAILING_STOP_MARKET order
      *
      * @return sp
      */
@@ -349,7 +349,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get os
+     * Strategy Order Status
      *
      * @return os
      */
@@ -368,7 +368,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Order book Time
      *
      * @return T
      */
@@ -387,7 +387,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get ut
+     * Order update Time
      *
      * @return ut
      */
@@ -406,7 +406,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get R
+     * Is this reduce only
      *
      * @return R
      */
@@ -425,7 +425,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get wt
+     * Stop Price Working Type
      *
      * @return wt
      */
@@ -444,7 +444,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Position Side
      *
      * @return ps
      */
@@ -463,7 +463,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get cp
+     * If Close-All, pushed with conditional order
      *
      * @return cp
      */
@@ -482,7 +482,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get AP
+     * Activation Price, only pushed with TRAILING_STOP_MARKET order
      *
      * @return AP
      */
@@ -501,7 +501,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get cr
+     * Callback Rate, only pushed with TRAILING_STOP_MARKET order
      *
      * @return cr
      */
@@ -520,7 +520,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Order Id
      *
      * @return iLowerCase
      */
@@ -539,7 +539,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get V
+     * STP mode
      *
      * @return V
      */
@@ -558,7 +558,7 @@ public class ConditionalOrderTradeUpdateSo extends BaseDTO {
     }
 
     /**
-     * Get gtd
+     * TIF GTD order auto cancel time
      *
      * @return gtd
      */

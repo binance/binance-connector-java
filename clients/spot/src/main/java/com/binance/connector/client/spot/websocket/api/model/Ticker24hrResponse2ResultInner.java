@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** Ticker24hrResponse2ResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrResponse2ResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -173,7 +173,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * Symbol Name
      *
      * @return symbol
      */
@@ -272,7 +272,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get lastPrice
+     * Closing price of the interval
      *
      * @return lastPrice
      */
@@ -386,7 +386,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get openPrice
+     * Opening price of the Interval
      *
      * @return openPrice
      */
@@ -405,7 +405,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get highPrice
+     * Highest price in the interval
      *
      * @return highPrice
      */
@@ -424,7 +424,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get lowPrice
+     * Lowest price in the interval
      *
      * @return lowPrice
      */
@@ -443,7 +443,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get volume
+     * Total trade volume (in base asset)
      *
      * @return volume
      */
@@ -463,7 +463,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get quoteVolume
+     * Total trade volume (in quote asset)
      *
      * @return quoteVolume
      */
@@ -482,7 +482,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get openTime
+     * Start of the ticker interval
      *
      * @return openTime
      */
@@ -501,7 +501,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get closeTime
+     * End of the ticker interval
      *
      * @return closeTime
      */
@@ -520,7 +520,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get firstId
+     * First tradeId
      *
      * @return firstId
      */
@@ -539,7 +539,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get lastId
+     * Last tradeId
      *
      * @return lastId
      */
@@ -558,7 +558,7 @@ public class Ticker24hrResponse2ResultInner extends BaseDTO {
     }
 
     /**
-     * Get count
+     * Trade count
      *
      * @return count
      */

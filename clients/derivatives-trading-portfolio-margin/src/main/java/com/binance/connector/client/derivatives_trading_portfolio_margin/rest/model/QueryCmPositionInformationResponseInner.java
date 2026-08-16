@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCmPositionInformationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCmPositionInformationResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -111,7 +111,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -131,7 +131,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -151,7 +151,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -171,7 +171,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark Price.
      *
      * @return markPrice
      */
@@ -191,7 +191,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * Un Realized Profit.
      *
      * @return unRealizedProfit
      */
@@ -211,7 +211,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation Price.
      *
      * @return liquidationPrice
      */
@@ -231,7 +231,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -251,7 +251,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -271,7 +271,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -291,7 +291,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get maxQty
+     * maximum quantity of base asset
      *
      * @return maxQty
      */
@@ -311,7 +311,7 @@ public class QueryCmPositionInformationResponseInner {
     }
 
     /**
-     * Get notionalValue
+     * Notional Value.
      *
      * @return notionalValue
      */

@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**vipLevel** | **Long** |  |  [optional] |
-|**coin** | **String** |  |  [optional] |
-|**transferIn** | **Boolean** |  |  [optional] |
-|**borrowable** | **Boolean** |  |  [optional] |
-|**dailyInterest** | **String** |  |  [optional] |
-|**yearlyInterest** | **String** |  |  [optional] |
-|**borrowLimit** | **String** |  |  [optional] |
-|**marginablePairs** | **List&lt;String&gt;** |  |  [optional] |
+|**vipLevel** | **Long** | vip Level. |  [optional] |
+|**coin** | **String** | coin. |  [optional] |
+|**transferIn** | **Boolean** | transfer In. |  [optional] |
+|**borrowable** | **Boolean** | borrowable. |  [optional] |
+|**dailyInterest** | **String** | daily Interest. |  [optional] |
+|**yearlyInterest** | **String** | yearly Interest. |  [optional] |
+|**borrowLimit** | **String** | borrow Limit. |  [optional] |
+|**marginablePairs** | **List&lt;String&gt;** | marginable Pairs list. |  [optional] |
 
 
 

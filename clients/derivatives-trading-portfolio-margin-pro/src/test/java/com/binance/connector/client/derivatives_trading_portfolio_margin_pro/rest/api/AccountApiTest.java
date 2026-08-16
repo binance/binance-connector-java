@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -12,6 +12,8 @@
 
 package com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.api;
 
+import static org.junit.Assert.assertEquals;
+
 import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
@@ -21,18 +23,25 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.Asset;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.AutoRepay;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.BnbTransferRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.BnbTransferResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.ChangeAutoRepayFuturesStatusRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.ChangeAutoRepayFuturesStatusResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.DeleteMarginCallLevelResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.DeltaEnabled;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundAutoCollectionRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundAutoCollectionResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.FundCollectionByAssetResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetAutoRepayFuturesStatusResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetDeltaModeStatusResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetMarginCallLevelResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountBalanceResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProAccountInfoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetPortfolioMarginProSpanAccountInfoResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.GetTransferableEarnAssetBalanceForPortfolioMarginResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.PortfolioMarginProBankruptcyLoanRepayResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProBankruptcyLoanAmountResponse;
@@ -40,6 +49,16 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.res
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.RepayFuturesNegativeBalanceResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SetMarginCallLevelRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SetMarginCallLevelResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.SwitchDeltaModeResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginRequest;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferLdusdtRwusdForPortfolioMarginResponse;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferSide;
+import com.binance.connector.client.derivatives_trading_portfolio_margin_pro.rest.model.TransferType;
+import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -47,8 +66,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-
-import static org.junit.Assert.assertEquals;
 
 /** API tests for AccountApi */
 public class AccountApiTest {
@@ -93,19 +110,19 @@ public class AccountApiTest {
     }
 
     /**
-     * BNB transfer(USER_DATA)
+     * BNB transfer (USER_DATA)
      *
-     * <p>BNB transfer can be between Margin Account and USDM Account * You can only use this
-     * function 2 times per 10 minutes in a rolling manner Weight: 1500
+     * <p>BNB transfer can be between Margin Account and USDM Account Weight(IP): 1500 Security
+     * Type: USER_DATA Notes: - You can only use this function 2 times per 10 minutes in a rolling
+     * manner
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void bnbTransferTest() throws ApiException, CryptoException {
+    public void bnbTransferTest() throws ApiException, CryptoException, IOException {
         BnbTransferRequest bnbTransferRequest = new BnbTransferRequest();
-
-        bnbTransferRequest.amount(1d);
-        bnbTransferRequest.transferSide("");
+        bnbTransferRequest.amount(1.0d);
+        bnbTransferRequest.transferSide(TransferSide.TO_UM);
 
         ApiResponse<BnbTransferResponse> response = api.bnbTransfer(bnbTransferRequest);
 
@@ -119,26 +136,24 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&transferSide=", signInputCaptor.getValue());
-        assertEquals(
-                "e16833932c5efb8dd0192481215116c9f1d39b4d46a89360c91c516dfc2487c5",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000amount=1&transferSide=TO_UM", signInputCaptor.getValue());
+        assertEquals("137a90c63370349387dde9a0cf59681de3c6fdf6e526208799198100080815c1", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/bnb-transfer", actualRequest.url().encodedPath());
     }
 
     /**
-     * Change Auto-repay-futures Status(TRADE)
+     * Change Auto-repay-futures Status (TRADE)
      *
-     * <p>Change Auto-repay-futures Status Weight: 1500
+     * <p>Change Auto-repay-futures Status Weight(IP): 1500 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void changeAutoRepayFuturesStatusTest() throws ApiException, CryptoException {
+    public void changeAutoRepayFuturesStatusTest()
+            throws ApiException, CryptoException, IOException {
         ChangeAutoRepayFuturesStatusRequest changeAutoRepayFuturesStatusRequest =
                 new ChangeAutoRepayFuturesStatusRequest();
-
-        changeAutoRepayFuturesStatusRequest.autoRepay("");
+        changeAutoRepayFuturesStatusRequest.autoRepay(AutoRepay.TRUE);
 
         ApiResponse<ChangeAutoRepayFuturesStatusResponse> response =
                 api.changeAutoRepayFuturesStatus(changeAutoRepayFuturesStatusRequest);
@@ -153,24 +168,54 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000autoRepay=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000autoRepay=true", signInputCaptor.getValue());
         assertEquals(
-                "89b69711fce80ffb1748b7a96c12374faa2b2afeb21a900f9a8ca0163615964e",
+                "fd3d4e144a7799fdb415fcd1c9a36a08e5600f7bb8a2019be6f141e3b0169ac9",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/repay-futures-switch", actualRequest.url().encodedPath());
     }
 
     /**
-     * Fund Auto-collection(USER_DATA)
+     * Delete Margin Call Level (USER_DATA)
      *
-     * <p>Transfers all assets from Futures Account to Margin account * The BNB would not be
-     * collected from UM-PM account to the Portfolio Margin account. * You can only use this
-     * function 500 times per hour in a rolling manner. Weight: 1500
+     * <p>Delete the margin call level for a Portfolio Margin account. Weight(IP): 1500 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fundAutoCollectionTest() throws ApiException, CryptoException {
+    public void deleteMarginCallLevelTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<DeleteMarginCallLevelResponse> response = api.deleteMarginCallLevel(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/portfolio/margin-call-level", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Fund Auto-collection (USER_DATA)
+     *
+     * <p>Transfers all assets from Futures Account to Margin account Weight(IP): 1500 Security
+     * Type: USER_DATA Notes: - The BNB would not be collected from UM-PM account to the Portfolio
+     * Margin account. - You can only use this function 500 times per hour in a rolling manner.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void fundAutoCollectionTest() throws ApiException, CryptoException, IOException {
         FundAutoCollectionRequest fundAutoCollectionRequest = new FundAutoCollectionRequest();
 
         ApiResponse<FundAutoCollectionResponse> response =
@@ -188,25 +233,23 @@ public class AccountApiTest {
 
         assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/auto-collection", actualRequest.url().encodedPath());
     }
 
     /**
-     * Fund Collection by Asset(USER_DATA)
+     * Fund Collection by Asset (USER_DATA)
      *
-     * <p>Transfers specific asset from Futures Account to Margin account * The BNB transfer is not
-     * be supported Weight: 60
+     * <p>Transfers specific asset from Futures Account to Margin account Weight(IP): 60 Security
+     * Type: USER_DATA Notes: - The BNB transfer is not be supported
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fundCollectionByAssetTest() throws ApiException, CryptoException {
+    public void fundCollectionByAssetTest() throws ApiException, CryptoException, IOException {
         FundCollectionByAssetRequest fundCollectionByAssetRequest =
                 new FundCollectionByAssetRequest();
-
-        fundCollectionByAssetRequest.asset("");
+        fundCollectionByAssetRequest.asset("USDT");
 
         ApiResponse<FundCollectionByAssetResponse> response =
                 api.fundCollectionByAsset(fundCollectionByAssetRequest);
@@ -221,22 +264,22 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000asset=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000asset=USDT", signInputCaptor.getValue());
         assertEquals(
-                "733c2733b75fbea096af9abd7a6e22ac4cce318248e66e514087362c82db2bf1",
+                "e1f5de10e9064f8425b012d548b9d16e21b37b194141422bc9ae05b8ed5f1c68",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/asset-collection", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Auto-repay-futures Status(USER_DATA)
+     * Get Auto-repay-futures Status (USER_DATA)
      *
-     * <p>Query Auto-repay-futures Status Weight: 30
+     * <p>Query Auto-repay-futures Status Weight(IP): 30 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAutoRepayFuturesStatusTest() throws ApiException, CryptoException {
+    public void getAutoRepayFuturesStatusTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetAutoRepayFuturesStatusResponse> response =
                 api.getAutoRepayFuturesStatus(recvWindow);
@@ -259,15 +302,73 @@ public class AccountApiTest {
     }
 
     /**
-     * Get Portfolio Margin Pro Account Balance(USER_DATA)
+     * Get Delta Mode Status (USER_DATA)
      *
-     * <p>Query Portfolio Margin Pro account balance Weight: 20
+     * <p>Query the Delta mode status of current account. Weight(IP): 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPortfolioMarginProAccountBalanceTest() throws ApiException, CryptoException {
-        String asset = "";
+    public void getDeltaModeStatusTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<GetDeltaModeStatusResponse> response = api.getDeltaModeStatus(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/portfolio/delta-mode", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Margin Call Level (USER_DATA)
+     *
+     * <p>Get the margin call level for a Portfolio Margin account. Weight(IP): 1500 Security Type:
+     * USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getMarginCallLevelTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<GetMarginCallLevelResponse> response = api.getMarginCallLevel(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/portfolio/margin-call-level", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Portfolio Margin Pro Account Balance (USER_DATA)
+     *
+     * <p>Query Portfolio Margin Pro account balance Weight(IP): 20 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getPortfolioMarginProAccountBalanceTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<GetPortfolioMarginProAccountBalanceResponse> response =
                 api.getPortfolioMarginProAccountBalance(asset, recvWindow);
@@ -282,22 +383,25 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("asset=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "a8610b861691761550acea81c71e6fe676ac39bd2020c66ff1115710eaf265a4",
+                "asset=BTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "34cb82e49b7593f1656dc5e9f9c353c60ac924411707c46e3d5a527235965fe5",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/balance", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/portfolio/balance", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Portfolio Margin Pro Account Info(USER_DATA)
+     * Get Portfolio Margin Pro Account Info (USER_DATA)
      *
-     * <p>Get Portfolio Margin Pro Account Info Weight: 5
+     * <p>Get Portfolio Margin Pro Account Info Weight(UID): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPortfolioMarginProAccountInfoTest() throws ApiException, CryptoException {
+    public void getPortfolioMarginProAccountInfoTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetPortfolioMarginProAccountInfoResponse> response =
                 api.getPortfolioMarginProAccountInfo(recvWindow);
@@ -312,7 +416,8 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
@@ -320,15 +425,16 @@ public class AccountApiTest {
     }
 
     /**
-     * Get Portfolio Margin Pro SPAN Account Info(USER_DATA)
+     * Get Portfolio Margin Pro SPAN Account Info (USER_DATA)
      *
      * <p>Get Portfolio Margin Pro SPAN Account Info (For Portfolio Margin Pro SPAN users only)
-     * Weight: 5
+     * Weight(IP): 5 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPortfolioMarginProSpanAccountInfoTest() throws ApiException, CryptoException {
+    public void getPortfolioMarginProSpanAccountInfoTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetPortfolioMarginProSpanAccountInfoResponse> response =
                 api.getPortfolioMarginProSpanAccountInfo(recvWindow);
@@ -343,22 +449,66 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v2/portfolio/account", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v2/portfolio/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Portfolio Margin Pro Bankruptcy Loan Repay
+     * Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA)
      *
-     * <p>Repay Portfolio Margin Pro Bankruptcy Loan Weight: 3000
+     * <p>Get transferable earn asset balance for all types of Portfolio Margin account Weight(IP):
+     * 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void portfolioMarginProBankruptcyLoanRepayTest() throws ApiException, CryptoException {
+    public void getTransferableEarnAssetBalanceForPortfolioMarginTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "LDUSDT";
+        TransferType transferType = TransferType.EARN_TO_FUTURE;
+        Long recvWindow = 5000L;
+        ApiResponse<GetTransferableEarnAssetBalanceForPortfolioMarginResponse> response =
+                api.getTransferableEarnAssetBalanceForPortfolioMargin(
+                        asset, transferType, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                "asset=LDUSDT&transferType=EARN_TO_FUTURE&recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
+        assertEquals(
+                "716e10d248c4cf7b8683afcb18c923ddca06d37b9ab7bb3d08023b3e072f53a0",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/sapi/v1/portfolio/earn-asset-balance",
+                actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
+     *
+     * <p>Repay Portfolio Margin Pro Bankruptcy Loan Weight(UID): 3000 Security Type: TRADE Notes: -
+     * Please note that the API Key has enabled Spot &amp; Margin Trading permissions to access this
+     * endpoint.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void portfolioMarginProBankruptcyLoanRepayTest()
+            throws ApiException, CryptoException, IOException {
         PortfolioMarginProBankruptcyLoanRepayRequest portfolioMarginProBankruptcyLoanRepayRequest =
                 new PortfolioMarginProBankruptcyLoanRepayRequest();
 
@@ -370,24 +520,34 @@ public class AccountApiTest {
         Mockito.verify(apiClientSpy)
                 .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
 
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/repay", actualRequest.url().encodedPath());
+        assertEquals(
+                "timestamp=1736393892000from=SPOT",
+                signInputCaptor.getValue());
+        assertEquals(
+                "8cec128d7bb384c1a8f565f7f3bb814f96672c17eae32ef1899a799ae06d5098",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                "/sapi/v1/portfolio/repay", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA)
+     * Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA)
      *
-     * <p>Query Portfolio Margin Pro Bankruptcy Loan Amount * If there’s no classic portfolio margin
-     * bankruptcy loan, the amount would be 0 Weight: 500
+     * <p>Query Portfolio Margin Pro Bankruptcy Loan Amount Weight(UID): 500 Security Type:
+     * USER_DATA Notes: - If there’s no classic portfolio margin bankruptcy loan, the amount would
+     * be 0
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryPortfolioMarginProBankruptcyLoanAmountTest()
-            throws ApiException, CryptoException {
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryPortfolioMarginProBankruptcyLoanAmountResponse> response =
                 api.queryPortfolioMarginProBankruptcyLoanAmount(recvWindow);
@@ -402,36 +562,40 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/pmLoan", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/portfolio/pmLoan",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA)
+     * Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA)
      *
-     * <p>Query repay history of pmloan for portfolio margin pro. * &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 360 days * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; not sent, return records of the last 30 days by default. * If
-     * &#x60;startTime&#x60;is sent and &#x60;endTime&#x60; is not sent, return records of
-     * [startTime, startTime+30d]. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is
-     * sent, return records of [endTime-30d, endTime]. Weight: 500
+     * <p>Query repay history of pmloan for portfolio margin pro. Weight(IP): 500 Security Type:
+     * USER_DATA Notes: - &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 360
+     * days - If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last
+     * 30 days by default. - If &#x60;startTime&#x60;is sent and &#x60;endTime&#x60; is not sent,
+     * return records of [startTime, startTime+30d]. - If &#x60;startTime&#x60; is not sent and
+     * &#x60;endTime&#x60; is sent, return records of [endTime-30d, endTime].
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryPortfolioMarginProBankruptcyLoanRepayHistoryTest()
-            throws ApiException, CryptoException {
+            throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long current = 1L;
         Long size = 10L;
+        Long current = 1L;
         Long recvWindow = 5000L;
         ApiResponse<QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse> response =
                 api.queryPortfolioMarginProBankruptcyLoanRepayHistory(
-                        startTime, endTime, current, size, recvWindow);
+                        startTime, endTime, size, current, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -444,25 +608,28 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
+                "startTime=1623319461670&endTime=1641782889000&size=10&current=1&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
+                "3b2742c69ccb7dbbbe64afce6c34fb4b144a9bc76964fb3b517d79c9ce6fdcbd",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/pmloan-history", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/portfolio/pmloan-history",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
+     * Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA)
      *
-     * <p>Query interest history of negative balance for portfolio margin. Weight: 50
+     * <p>Query interest history of negative balance for portfolio margin. Weight(IP): 50 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryPortfolioMarginProNegativeBalanceInterestHistoryTest()
-            throws ApiException, CryptoException {
-        String asset = "";
+            throws ApiException, CryptoException, IOException {
+        String asset = "USDT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long size = 10L;
@@ -482,23 +649,26 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "asset=&startTime=1623319461670&endTime=1641782889000&size=10&recvWindow=5000&timestamp=1736393892000",
+                "asset=USDT&startTime=1623319461670&endTime=1641782889000&size=10&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "08f5e5a6f9b5d64dcf3e4057c1196835facab312d474221a75a08bcfee1c2c0e",
+                "e6cb2b64b17ad1e8c1ed53a17110ca0de784ce85b44e039dba1921a5962b9d26",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/portfolio/interest-history", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/portfolio/interest-history",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Repay futures Negative Balance(USER_DATA)
+     * Repay futures Negative Balance (USER_DATA)
      *
-     * <p>Repay futures Negative Balance Weight: 1500
+     * <p>Repay futures Negative Balance Weight(IP): 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void repayFuturesNegativeBalanceTest() throws ApiException, CryptoException {
+    public void repayFuturesNegativeBalanceTest()
+            throws ApiException, CryptoException, IOException {
         RepayFuturesNegativeBalanceRequest repayFuturesNegativeBalanceRequest =
                 new RepayFuturesNegativeBalanceRequest();
 
@@ -515,12 +685,115 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000from=SPOT", signInputCaptor.getValue());
         assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
+                "8cec128d7bb384c1a8f565f7f3bb814f96672c17eae32ef1899a799ae06d5098",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/portfolio/repay-futures-negative-balance", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Set Margin Call Level (USER_DATA)
+     *
+     * <p>Set the margin call level for a Portfolio Margin account. When the account&#39;s uniMMR
+     * drops to the specified level, a notification will be sent via email and SMS. Weight(IP): 1500
+     * Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void setMarginCallLevelTest() throws ApiException, CryptoException, IOException {
+        SetMarginCallLevelRequest setMarginCallLevelRequest = new SetMarginCallLevelRequest();
+        setMarginCallLevelRequest.marginCallLevel(1.5d);
+
+        ApiResponse<SetMarginCallLevelResponse> response =
+                api.setMarginCallLevel(setMarginCallLevelRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000marginCallLevel=1.5", signInputCaptor.getValue());
+        assertEquals(
+                "bdd4b01122e2cc276dc6d2cb7544a744cbe890f4f0e07655e8d61830c514efc6", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/portfolio/margin-call-level", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Switch Delta Mode (TRADE)
+     *
+     * <p>Switch the Delta mode for existing PM PRO / PM RETAIL accounts. Weight(IP): 1500 Security
+     * Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void switchDeltaModeTest() throws ApiException, CryptoException, IOException {
+        SwitchDeltaModeRequest switchDeltaModeRequest = new SwitchDeltaModeRequest();
+        switchDeltaModeRequest.deltaEnabled(DeltaEnabled.TRUE);
+
+        ApiResponse<SwitchDeltaModeResponse> response = api.switchDeltaMode(switchDeltaModeRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000deltaEnabled=true", signInputCaptor.getValue());
+        assertEquals(
+                "ea76764f7769712fe92e62a20f94b0f1fe9aee58281902c78bd84b158c3db362", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/portfolio/delta-mode", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE)
+     *
+     * <p>Transfer LDUSDT/RWUSD as collateral for all types of Portfolio Margin account Weight(UID):
+     * 1500 Security Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void transferLdusdtRwusdForPortfolioMarginTest()
+            throws ApiException, CryptoException, IOException {
+        TransferLdusdtRwusdForPortfolioMarginRequest transferLdusdtRwusdForPortfolioMarginRequest =
+                new TransferLdusdtRwusdForPortfolioMarginRequest();
+        transferLdusdtRwusdForPortfolioMarginRequest.asset(Asset.LDUSDT);
+        transferLdusdtRwusdForPortfolioMarginRequest.transferType(TransferType.EARN_TO_FUTURE);
+        transferLdusdtRwusdForPortfolioMarginRequest.amount(1d);
+
+        ApiResponse<TransferLdusdtRwusdForPortfolioMarginResponse> response =
+                api.transferLdusdtRwusdForPortfolioMargin(
+                        transferLdusdtRwusdForPortfolioMarginRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                "timestamp=1736393892000amount=1&transferType=EARN_TO_FUTURE&asset=LDUSDT",
+                signInputCaptor.getValue());
+        assertEquals(
+                "c9719eafa43f24acf6f88a78cdb65558060b8f663efd03584b400678a59c951d",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/portfolio/repay-futures-negative-balance",
-                actualRequest.url().encodedPath());
+                "/sapi/v1/portfolio/earn-asset-transfer", actualRequest.url().encodedPath());
     }
 }

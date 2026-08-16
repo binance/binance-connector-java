@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**aLowerCase** | **String** |  |  [optional] |
-|**fLowerCase** | **String** |  |  [optional] |
-|**lLowerCase** | **String** |  |  [optional] |
+|**aLowerCase** | **String** | Asset |  [optional] |
+|**fLowerCase** | **String** | Free |  [optional] |
+|**lLowerCase** | **String** | Locked |  [optional] |
 
 
 

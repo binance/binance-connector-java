@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+ * Portfolio Margin Pro WebSocket Market Streams
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -18,7 +18,7 @@ import java.util.Objects;
 /** Abstract class for oneOf,anyOf schemas defined in OpenAPI spec */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public abstract class AbstractOpenApiSchema {
 
     // store the actual instance of the schema/object

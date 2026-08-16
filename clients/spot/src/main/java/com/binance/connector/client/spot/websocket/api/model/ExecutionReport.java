@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** ExecutionReport */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExecutionReport extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -377,7 +377,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -396,7 +396,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -415,7 +415,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Client order ID
      *
      * @return cLowerCase
      */
@@ -434,7 +434,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get S
+     * Side
      *
      * @return S
      */
@@ -453,7 +453,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Order type
      *
      * @return oLowerCase
      */
@@ -472,7 +472,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Time in force
      *
      * @return fLowerCase
      */
@@ -491,7 +491,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Order quantity
      *
      * @return qLowerCase
      */
@@ -510,7 +510,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Order price
      *
      * @return pLowerCase
      */
@@ -529,7 +529,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get P
+     * Stop price
      *
      * @return P
      */
@@ -548,7 +548,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get F
+     * Iceberg quantity
      *
      * @return F
      */
@@ -567,7 +567,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get gLowerCase
+     * OrderListId
      *
      * @return gLowerCase
      */
@@ -586,7 +586,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get C
+     * Original client order ID; This is the ID of the order being canceled
      *
      * @return C
      */
@@ -605,7 +605,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Current execution type
      *
      * @return xLowerCase
      */
@@ -624,7 +624,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get X
+     * Current order status
      *
      * @return X
      */
@@ -643,7 +643,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get rLowerCase
+     * Order reject reason; Please see Order Reject Reason for more information.
      *
      * @return rLowerCase
      */
@@ -662,7 +662,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Order ID
      *
      * @return iLowerCase
      */
@@ -681,7 +681,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Last executed quantity
      *
      * @return lLowerCase
      */
@@ -700,7 +700,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get zLowerCase
+     * Cumulative filled quantity
      *
      * @return zLowerCase
      */
@@ -719,7 +719,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last executed price
      *
      * @return L
      */
@@ -738,7 +738,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Commission amount
      *
      * @return nLowerCase
      */
@@ -757,7 +757,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get N
+     * Commission asset
      *
      * @return N
      */
@@ -776,7 +776,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Transaction time
      *
      * @return T
      */
@@ -795,7 +795,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Trade ID
      *
      * @return tLowerCase
      */
@@ -814,7 +814,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * Prevented Match Id; This is only visible if the order expired due to STP
      *
      * @return vLowerCase
      */
@@ -833,7 +833,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get I
+     * Execution Id
      *
      * @return I
      */
@@ -852,7 +852,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get wLowerCase
+     * Is the order on the book?
      *
      * @return wLowerCase
      */
@@ -871,7 +871,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is this trade the maker side?
      *
      * @return mLowerCase
      */
@@ -890,7 +890,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get M
+     * Ignore
      *
      * @return M
      */
@@ -909,7 +909,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get O
+     * Order creation time
      *
      * @return O
      */
@@ -928,7 +928,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get Z
+     * Cumulative quote asset transacted quantity
      *
      * @return Z
      */
@@ -947,7 +947,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get Y
+     * Last quote asset transacted quantity (i.e. lastPrice * lastQty)
      *
      * @return Y
      */
@@ -966,7 +966,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * Quote Order Quantity
      *
      * @return Q
      */
@@ -985,7 +985,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get W
+     * Working Time; This is only visible if the order has been placed on the book.
      *
      * @return W
      */
@@ -1004,7 +1004,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get V
+     * SelfTradePreventionMode
      *
      * @return V
      */
@@ -1023,7 +1023,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get dLowerCase
+     * Trailing Delta
      *
      * @return dLowerCase
      */
@@ -1042,7 +1042,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get D
+     * Trailing Time
      *
      * @return D
      */
@@ -1061,7 +1061,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get jLowerCase
+     * Strategy Id
      *
      * @return jLowerCase
      */
@@ -1080,7 +1080,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get J
+     * Strategy Type
      *
      * @return J
      */
@@ -1099,7 +1099,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get A
+     * Prevented Quantity
      *
      * @return A
      */
@@ -1118,7 +1118,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get B
+     * Last Prevented Quantity
      *
      * @return B
      */
@@ -1137,7 +1137,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * Trade Group Id
      *
      * @return uLowerCase
      */
@@ -1156,7 +1156,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get U
+     * Counter Order Id
      *
      * @return U
      */
@@ -1175,7 +1175,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get cs
+     * Counter Symbol
      *
      * @return cs
      */
@@ -1194,7 +1194,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get pl
+     * Prevented Execution Quantity
      *
      * @return pl
      */
@@ -1213,7 +1213,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get pL
+     * Prevented Execution Price
      *
      * @return pL
      */
@@ -1232,7 +1232,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get pY
+     * Prevented Execution Quote Qty
      *
      * @return pY
      */
@@ -1251,7 +1251,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * Match Type
      *
      * @return bLowerCase
      */
@@ -1270,7 +1270,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Allocation ID
      *
      * @return aLowerCase
      */
@@ -1289,7 +1289,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get kLowerCase
+     * Working Floor
      *
      * @return kLowerCase
      */
@@ -1308,7 +1308,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get uS
+     * UsedSor
      *
      * @return uS
      */
@@ -1327,7 +1327,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get gP
+     * Pegged Price Type
      *
      * @return gP
      */
@@ -1346,7 +1346,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get gOT
+     * Pegged Offset Type
      *
      * @return gOT
      */
@@ -1365,7 +1365,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get gOV
+     * Pegged Offset Value
      *
      * @return gOV
      */
@@ -1384,7 +1384,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get gp
+     * Pegged Price
      *
      * @return gp
      */
@@ -1403,7 +1403,7 @@ public class ExecutionReport extends BaseDTO {
     }
 
     /**
-     * Get eR
+     * Expiry Reason. Appears when the order has expired.
      *
      * @return eR
      */

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**time** | **Long** |  |  [optional] |
-|**hashrate** | **String** |  |  [optional] |
-|**reject** | **String** |  |  [optional] |
+|**time** | **Long** | Time |  [optional] |
+|**hashrate** | **String** | Hashrate |  [optional] |
+|**reject** | **String** | Rejection rate |  [optional] |
 
 
 

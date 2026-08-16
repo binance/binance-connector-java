@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**binanceId** | **String** |  |  [optional] |
+|**name** | **String** | Nickname or merchant name. |  [optional] |
+|**type** | **String** | Account type: USER for personal, MERCHANT for merchant. |  [optional] |
+|**binanceId** | **String** | Binance UID. |  [optional] |
 
 
 

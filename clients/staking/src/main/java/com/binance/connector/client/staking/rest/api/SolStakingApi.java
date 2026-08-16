@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -29,6 +29,7 @@ import com.binance.connector.client.staking.rest.model.GetSolRedemptionHistoryRe
 import com.binance.connector.client.staking.rest.model.GetSolStakingHistoryResponse;
 import com.binance.connector.client.staking.rest.model.GetSolStakingQuotaDetailsResponse;
 import com.binance.connector.client.staking.rest.model.GetUnclaimedRewardsResponse;
+import com.binance.connector.client.staking.rest.model.OrderType;
 import com.binance.connector.client.staking.rest.model.RedeemSolRequest;
 import com.binance.connector.client.staking.rest.model.RedeemSolResponse;
 import com.binance.connector.client.staking.rest.model.SolStakingAccountResponse;
@@ -57,7 +58,7 @@ public class SolStakingApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-staking/5.0.0 (Java/%s; %s; %s)",
+                    "binance-staking/6.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -97,7 +98,7 @@ public class SolStakingApi {
     /**
      * Build call for claimBoostRewards
      *
-     * @param claimBoostRewardsRequest (required)
+     * @param claimBoostRewardsRequest (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -108,8 +109,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/staking/Claim-Boost-Rewards">Claim
-     *     Boost Rewards(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#claim-boost-rewards">Claim
+     *     Boost Rewards (TRADE) Documentation</a>
      */
     private okhttp3.Call claimBoostRewardsCall(ClaimBoostRewardsRequest claimBoostRewardsRequest)
             throws ApiException {
@@ -204,10 +205,11 @@ public class SolStakingApi {
     }
 
     /**
-     * Claim Boost Rewards(TRADE) Claim Boost APR Airdrop Rewards * You need to open Enable Spot
-     * &amp; Margin Trading permission for the API Key which requests this endpoint. Weight: 150
+     * Claim Boost Rewards (TRADE) Claim Boost APR Airdrop Rewards Weight(IP): 150 Security Type:
+     * TRADE Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key
+     * which requests this endpoint.
      *
-     * @param claimBoostRewardsRequest (required)
+     * @param claimBoostRewardsRequest (optional)
      * @return ApiResponse&lt;ClaimBoostRewardsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -219,11 +221,11 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/staking/Claim-Boost-Rewards">Claim
-     *     Boost Rewards(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#claim-boost-rewards">Claim
+     *     Boost Rewards (TRADE) Documentation</a>
      */
     public ApiResponse<ClaimBoostRewardsResponse> claimBoostRewards(
-            @Valid @NotNull ClaimBoostRewardsRequest claimBoostRewardsRequest) throws ApiException {
+            @Valid ClaimBoostRewardsRequest claimBoostRewardsRequest) throws ApiException {
         okhttp3.Call localVarCall = claimBoostRewardsValidateBeforeCall(claimBoostRewardsRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<ClaimBoostRewardsResponse>() {}.getType();
@@ -235,9 +237,9 @@ public class SolStakingApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -248,8 +250,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-BNSOL-Rate-History">Get
-     *     BNSOL Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-bnsol-rate-history">Get
+     *     BNSOL Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBnsolRateHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -369,19 +371,20 @@ public class SolStakingApi {
     }
 
     /**
-     * Get BNSOL Rate History(USER_DATA) Get BNSOL Rate History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get BNSOL Rate History (USER_DATA) Get BNSOL Rate History Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return ApiResponse&lt;GetBnsolRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -393,11 +396,15 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-BNSOL-Rate-History">Get
-     *     BNSOL Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-bnsol-rate-history">Get
+     *     BNSOL Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBnsolRateHistoryResponse> getBnsolRateHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBnsolRateHistoryValidateBeforeCall(
@@ -412,9 +419,9 @@ public class SolStakingApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -425,8 +432,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-BNSOL-rewards-history">Get
-     *     BNSOL rewards history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-bnsol-rewards-history">Get
+     *     BNSOL rewards history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBnsolRewardsHistoryCall(
             Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -546,19 +553,20 @@ public class SolStakingApi {
     }
 
     /**
-     * Get BNSOL rewards history(USER_DATA) Get BNSOL rewards history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get BNSOL rewards history (USER_DATA) Get BNSOL rewards history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetBnsolRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -570,11 +578,15 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-BNSOL-rewards-history">Get
-     *     BNSOL rewards history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-bnsol-rewards-history">Get
+     *     BNSOL rewards history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBnsolRewardsHistoryResponse> getBnsolRewardsHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBnsolRewardsHistoryValidateBeforeCall(
@@ -587,13 +599,12 @@ public class SolStakingApi {
     /**
      * Build call for getBoostRewardsHistory
      *
-     * @param type \&quot;CLAIM\&quot;, \&quot;DISTRIBUTE\&quot;, default \&quot;CLAIM\&quot;
-     *     (required)
+     * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -604,11 +615,11 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-Boost-Rewards-History">Get
-     *     Boost Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-boost-rewards-history">Get
+     *     Boost Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBoostRewardsHistoryCall(
-            String type, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            OrderType type, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -690,7 +701,7 @@ public class SolStakingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getBoostRewardsHistoryValidateBeforeCall(
-            String type, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            OrderType type, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -706,7 +717,7 @@ public class SolStakingApi {
                     this.getClass()
                             .getMethod(
                                     "getBoostRewardsHistory",
-                                    String.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -731,21 +742,21 @@ public class SolStakingApi {
     }
 
     /**
-     * Get Boost Rewards History(USER_DATA) Get Boost rewards history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Boost Rewards History (USER_DATA) Get Boost rewards history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
-     * @param type \&quot;CLAIM\&quot;, \&quot;DISTRIBUTE\&quot;, default \&quot;CLAIM\&quot;
-     *     (required)
+     * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetBoostRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -757,16 +768,16 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-Boost-Rewards-History">Get
-     *     Boost Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-boost-rewards-history">Get
+     *     Boost Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBoostRewardsHistoryResponse> getBoostRewardsHistory(
-            @NotNull String type,
+            @NotNull OrderType type,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBoostRewardsHistoryValidateBeforeCall(
@@ -782,9 +793,9 @@ public class SolStakingApi {
      * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -795,8 +806,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-redemption-history">Get
-     *     SOL redemption history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-redemption-history">Get
+     *     SOL redemption history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSolRedemptionHistoryCall(
             Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -922,20 +933,21 @@ public class SolStakingApi {
     }
 
     /**
-     * Get SOL redemption history(USER_DATA) Get SOL redemption history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get SOL redemption history (USER_DATA) Get SOL redemption history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param redeemId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetSolRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -947,11 +959,16 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-redemption-history">Get
-     *     SOL redemption history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-redemption-history">Get
+     *     SOL redemption history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSolRedemptionHistoryResponse> getSolRedemptionHistory(
-            Long redeemId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long redeemId,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSolRedemptionHistoryValidateBeforeCall(
@@ -967,9 +984,9 @@ public class SolStakingApi {
      * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -980,8 +997,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-staking-history">Get
-     *     SOL staking history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-staking-history">Get
+     *     SOL staking history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSolStakingHistoryCall(
             Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
@@ -1107,20 +1124,21 @@ public class SolStakingApi {
     }
 
     /**
-     * Get SOL staking history(USER_DATA) Get SOL staking history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get SOL staking history (USER_DATA) Get SOL staking history Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param purchaseId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10, Max:100 (optional)
-     * @param recvWindow (optional)
+     * @param current Currently querying page (optional)
+     * @param size (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetSolStakingHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1132,11 +1150,16 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-staking-history">Get
-     *     SOL staking history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-staking-history">Get
+     *     SOL staking history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSolStakingHistoryResponse> getSolStakingHistory(
-            Long purchaseId, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long purchaseId,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSolStakingHistoryValidateBeforeCall(
@@ -1149,7 +1172,7 @@ public class SolStakingApi {
     /**
      * Build call for getSolStakingQuotaDetails
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1160,8 +1183,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/account/Get-SOL-staking-quota-details">Get
-     *     SOL staking quota details(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-staking-quota-details">Get
+     *     SOL staking quota details (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSolStakingQuotaDetailsCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -1254,9 +1277,10 @@ public class SolStakingApi {
     }
 
     /**
-     * Get SOL staking quota details(USER_DATA) Get SOL staking quota Weight: 150
+     * Get SOL staking quota details (USER_DATA) Get SOL staking quota Weight(IP): 150 Security
+     * Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return ApiResponse&lt;GetSolStakingQuotaDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1268,11 +1292,11 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/account/Get-SOL-staking-quota-details">Get
-     *     SOL staking quota details(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-staking-quota-details">Get
+     *     SOL staking quota details (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetSolStakingQuotaDetailsResponse> getSolStakingQuotaDetails(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetSolStakingQuotaDetailsResponse> getSolStakingQuotaDetails(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getSolStakingQuotaDetailsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSolStakingQuotaDetailsResponse>() {}.getType();
@@ -1282,7 +1306,7 @@ public class SolStakingApi {
     /**
      * Build call for getUnclaimedRewards
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1293,8 +1317,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-Unclaimed-Rewards">Get
-     *     Unclaimed Rewards(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-unclaimed-rewards">Get
+     *     Unclaimed Rewards (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getUnclaimedRewardsCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -1387,15 +1411,16 @@ public class SolStakingApi {
     }
 
     /**
-     * Get Unclaimed Rewards(USER_DATA) Get Unclaimed rewards * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Unclaimed Rewards (USER_DATA) Get Unclaimed rewards Weight(IP): 150 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds. (optional)
      * @return ApiResponse&lt;GetUnclaimedRewardsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1407,11 +1432,11 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/history/Get-Unclaimed-Rewards">Get
-     *     Unclaimed Rewards(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-unclaimed-rewards">Get
+     *     Unclaimed Rewards (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetUnclaimedRewardsResponse> getUnclaimedRewards(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetUnclaimedRewardsResponse> getUnclaimedRewards(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getUnclaimedRewardsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetUnclaimedRewardsResponse>() {}.getType();
@@ -1432,8 +1457,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/staking/Redeem-SOL">Redeem
-     *     SOL(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#redeem-sol">Redeem
+     *     SOL (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemSolCall(RedeemSolRequest redeemSolRequest) throws ApiException {
         String basePath = null;
@@ -1531,8 +1556,9 @@ public class SolStakingApi {
     }
 
     /**
-     * Redeem SOL(TRADE) Redeem BNSOL get SOL * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Redeem SOL (TRADE) Redeem BNSOL get SOL Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @param redeemSolRequest (required)
      * @return ApiResponse&lt;RedeemSolResponse&gt;
@@ -1546,8 +1572,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/staking/Redeem-SOL">Redeem
-     *     SOL(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#redeem-sol">Redeem
+     *     SOL (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemSolResponse> redeemSol(
             @Valid @NotNull RedeemSolRequest redeemSolRequest) throws ApiException {
@@ -1559,7 +1585,7 @@ public class SolStakingApi {
     /**
      * Build call for solStakingAccount
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1570,8 +1596,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/account/SOL-Staking-account">SOL
-     *     Staking account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#sol-staking-account">SOL
+     *     Staking account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call solStakingAccountCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -1663,9 +1689,9 @@ public class SolStakingApi {
     }
 
     /**
-     * SOL Staking account(USER_DATA) SOL Staking account Weight: 150
+     * SOL Staking account (USER_DATA) SOL Staking account Weight(IP): 150 Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow The value cannot be greater than 60000 (optional)
      * @return ApiResponse&lt;SolStakingAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1677,10 +1703,10 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/account/SOL-Staking-account">SOL
-     *     Staking account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#sol-staking-account">SOL
+     *     Staking account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<SolStakingAccountResponse> solStakingAccount(Long recvWindow)
+    public ApiResponse<SolStakingAccountResponse> solStakingAccount(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = solStakingAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1702,8 +1728,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/staking/Subscribe-SOL-Staking">Subscribe
-     *     SOL Staking(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#subscribe-sol-staking">Subscribe
+     *     SOL Staking (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeSolStakingCall(
             SubscribeSolStakingRequest subscribeSolStakingRequest) throws ApiException {
@@ -1805,8 +1831,9 @@ public class SolStakingApi {
     }
 
     /**
-     * Subscribe SOL Staking(TRADE) Subscribe SOL Staking * You need to open Enable Spot &amp;
-     * Margin Trading permission for the API Key which requests this endpoint. Weight: 150
+     * Subscribe SOL Staking (TRADE) Subscribe SOL Staking Weight(IP): 150 Security Type: TRADE
+     * Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which
+     * requests this endpoint.
      *
      * @param subscribeSolStakingRequest (required)
      * @return ApiResponse&lt;SubscribeSolStakingResponse&gt;
@@ -1820,8 +1847,8 @@ public class SolStakingApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/staking/sol-staking/staking/Subscribe-SOL-Staking">Subscribe
-     *     SOL Staking(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#subscribe-sol-staking">Subscribe
+     *     SOL Staking (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeSolStakingResponse> subscribeSolStaking(
             @Valid @NotNull SubscribeSolStakingRequest subscribeSolStakingRequest)

@@ -19,11 +19,9 @@
 |**algoStatus** | **String** |  |  [optional] |
 |**triggerPrice** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
-|**icebergQuantity** | **String** |  |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
 |**workingType** | **String** |  |  [optional] |
 |**priceMatch** | **String** |  |  [optional] |
-|**closePosition** | **Boolean** |  |  [optional] |
 |**priceProtect** | **Boolean** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |
 |**activatePrice** | **String** |  |  [optional] |

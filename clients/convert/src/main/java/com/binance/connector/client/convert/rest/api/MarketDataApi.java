@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -43,7 +43,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-convert/2.0.0 (Java/%s; %s; %s)",
+                    "binance-convert/3.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -94,8 +94,9 @@ public class MarketDataApi {
      * <tr><td> 200 </td><td> List All Convert Pairs </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/market-data/">List All Convert
-     *     Pairs Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#list-all-convert-pairs">List
+     *     All Convert Pairs Documentation</a>
      */
     private okhttp3.Call listAllConvertPairsCall(String fromAsset, String toAsset)
             throws ApiException {
@@ -194,9 +195,9 @@ public class MarketDataApi {
 
     /**
      * List All Convert Pairs Query for all convertible token pairs and the tokens’ respective
-     * upper/lower limits * User needs to supply either or both of the input parameter * If not
-     * defined for both fromAsset and toAsset, only partial token pairs will be returned Weight:
-     * 3000(IP)
+     * upper/lower limits Weight(IP): 3000 Notes: - User needs to supply either or both input
+     * parameters. - If only one of &#x60;fromAsset&#x60; and &#x60;toAsset&#x60; is provided, only
+     * partial token pairs are returned.
      *
      * @param fromAsset User spends coin (optional)
      * @param toAsset User receives coin (optional)
@@ -210,8 +211,9 @@ public class MarketDataApi {
      * <tr><td> 200 </td><td> List All Convert Pairs </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/convert/market-data/">List All Convert
-     *     Pairs Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#list-all-convert-pairs">List
+     *     All Convert Pairs Documentation</a>
      */
     public ApiResponse<ListAllConvertPairsResponse> listAllConvertPairs(
             String fromAsset, String toAsset) throws ApiException {
@@ -224,7 +226,7 @@ public class MarketDataApi {
     /**
      * Build call for queryOrderQuantityPrecisionPerAsset
      *
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -235,8 +237,8 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset">Query
-     *     order quantity precision per asset(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#query-order-quantity-precision-per-asset">Query
+     *     order quantity precision per asset (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryOrderQuantityPrecisionPerAssetCall(Long recvWindow)
             throws ApiException {
@@ -331,10 +333,10 @@ public class MarketDataApi {
     }
 
     /**
-     * Query order quantity precision per asset(USER_DATA) Query for supported asset’s precision
-     * information Weight: 100(IP)
+     * Query order quantity precision per asset (USER_DATA) Query for supported asset’s precision
+     * information Weight(IP): 100 Security Type: USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryOrderQuantityPrecisionPerAssetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -346,11 +348,11 @@ public class MarketDataApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset">Query
-     *     order quantity precision per asset(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#query-order-quantity-precision-per-asset">Query
+     *     order quantity precision per asset (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryOrderQuantityPrecisionPerAssetResponse>
-            queryOrderQuantityPrecisionPerAsset(Long recvWindow) throws ApiException {
+            queryOrderQuantityPrecisionPerAsset(@Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryOrderQuantityPrecisionPerAssetValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =

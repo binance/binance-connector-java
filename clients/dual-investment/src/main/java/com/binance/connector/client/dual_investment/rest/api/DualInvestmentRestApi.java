@@ -10,6 +10,8 @@ import com.binance.connector.client.dual_investment.rest.model.ChangeAutoCompoun
 import com.binance.connector.client.dual_investment.rest.model.CheckDualInvestmentAccountsResponse;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentPositionsResponse;
 import com.binance.connector.client.dual_investment.rest.model.GetDualInvestmentProductListResponse;
+import com.binance.connector.client.dual_investment.rest.model.OptionType;
+import com.binance.connector.client.dual_investment.rest.model.Status;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsRequest;
 import com.binance.connector.client.dual_investment.rest.model.SubscribeDualInvestmentProductsResponse;
 
@@ -28,24 +30,22 @@ public class DualInvestmentRestApi {
     }
 
     /**
-     * Get Dual Investment product list Get Dual Investment product list Weight: 1(IP)
+     * Get Dual Investment product list Get Dual Investment product list Weight(IP): 1
      *
      * @param optionType Input CALL or PUT (required)
      * @param exercisedCoin Target exercised asset, e.g.: if you subscribe to a high sell product
-     *     (call option), you should input:
-     *     &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if
-     *     you subscribe to a low buy product (put option), you should input:
-     *     &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT
-     *     (required)
+     *     (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin:
+     *     USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put
+     *     option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;,
+     *     &#x60;investCoin: USDT&#x60; (required)
      * @param investCoin Asset used for subscribing, e.g.: if you subscribe to a high sell product
-     *     (call option), you should input:
-     *     &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if
-     *     you subscribe to a low buy product (put option), you should input:
-     *     &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT
-     *     (required)
-     * @param pageSize Default: 10, Maximum: 100 (optional)
-     * @param pageIndex Default: 1 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     *     (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin:
+     *     USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put
+     *     option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;,
+     *     &#x60;investCoin: USDT&#x60; (required)
+     * @param pageSize Number of records per page (optional)
+     * @param pageIndex Page index (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetDualInvestmentProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -57,11 +57,11 @@ public class DualInvestmentRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/market-data/Get-Dual-Investment-product-list">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/market-data#get-dual-investment-product-list">Get
      *     Dual Investment product list Documentation</a>
      */
     public ApiResponse<GetDualInvestmentProductListResponse> getDualInvestmentProductList(
-            String optionType,
+            OptionType optionType,
             String exercisedCoin,
             String investCoin,
             Long pageSize,
@@ -73,7 +73,8 @@ public class DualInvestmentRestApi {
     }
 
     /**
-     * Change Auto-Compound status(USER_DATA) Change Auto-Compound status Weight: 1(IP)
+     * Change Auto-Compound status (USER_DATA) Change Auto-Compound status Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - 15:31 ~ 16:00 UTC+8: This function is disabled.
      *
      * @param changeAutoCompoundStatusRequest (required)
      * @return ApiResponse&lt;ChangeAutoCompoundStatusResponse&gt;
@@ -87,8 +88,8 @@ public class DualInvestmentRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Change-Auto-Compound-status">Change
-     *     Auto-Compound status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#change-auto-compound-status">Change
+     *     Auto-Compound status (USER_DATA) Documentation</a>
      */
     public ApiResponse<ChangeAutoCompoundStatusResponse> changeAutoCompoundStatus(
             ChangeAutoCompoundStatusRequest changeAutoCompoundStatusRequest) throws ApiException {
@@ -96,9 +97,10 @@ public class DualInvestmentRestApi {
     }
 
     /**
-     * Check Dual Investment accounts(USER_DATA) Check Dual Investment accounts Weight: 1(IP)
+     * Check Dual Investment accounts (USER_DATA) Check Dual Investment accounts Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CheckDualInvestmentAccountsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -110,8 +112,8 @@ public class DualInvestmentRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Check-Dual-Investment-accounts">Check
-     *     Dual Investment accounts(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#check-dual-investment-accounts">Check
+     *     Dual Investment accounts (USER_DATA) Documentation</a>
      */
     public ApiResponse<CheckDualInvestmentAccountsResponse> checkDualInvestmentAccounts(
             Long recvWindow) throws ApiException {
@@ -119,17 +121,18 @@ public class DualInvestmentRestApi {
     }
 
     /**
-     * Get Dual Investment positions(USER_DATA) Get Dual Investment positions (batch) Weight: 1(IP)
+     * Get Dual Investment positions (USER_DATA) Get Dual Investment positions (batch) Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param status &#x60;PENDING&#x60;:Products are purchasing, will give results
-     *     later;&#x60;PURCHASE_SUCCESS&#x60;:purchase successfully;&#x60;SETTLED&#x60;: Products
-     *     are finish settling;&#x60;PURCHASE_FAIL&#x60;:fail to
-     *     purchase;&#x60;REFUNDING&#x60;:refund ongoing;&#x60;REFUND_SUCCESS&#x60;:refund to spot
-     *     account successfully; &#x60;SETTLING&#x60;:Products are settling. If don&#39;t fill this
-     *     field, will response all the position status. (optional)
-     * @param pageSize Default: 10, Maximum: 100 (optional)
-     * @param pageIndex Default: 1 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (optional)
+     * @param status &#x60;PENDING&#x60;: Products are purchasing, will give results later;
+     *     &#x60;PURCHASE_SUCCESS&#x60;: purchase successfully; &#x60;SETTLED&#x60;: Products are
+     *     finish settling; &#x60;PURCHASE_FAIL&#x60;: fail to purchase; &#x60;REFUNDING&#x60;:
+     *     refund ongoing; &#x60;REFUND_SUCCESS&#x60;: refund to spot account successfully;
+     *     &#x60;SETTLING&#x60;: Products are settling. If don&#39;t fill this field, will response
+     *     all the position status. (optional)
+     * @param pageSize Number of records per page (optional)
+     * @param pageIndex Page index (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetDualInvestmentPositionsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -141,18 +144,19 @@ public class DualInvestmentRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Get-Dual-Investment-positions">Get
-     *     Dual Investment positions(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#get-dual-investment-positions">Get
+     *     Dual Investment positions (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetDualInvestmentPositionsResponse> getDualInvestmentPositions(
-            String status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
+            Status status, Long pageSize, Long pageIndex, Long recvWindow) throws ApiException {
         return tradeApi.getDualInvestmentPositions(status, pageSize, pageIndex, recvWindow);
     }
 
     /**
-     * Subscribe Dual Investment products(USER_DATA) Subscribe Dual Investment products * Products
-     * are not available. // this means APR changes to lower value, or orders are not unavailable. *
-     * Failed. This means System or network errors. Weight: 1(IP)
+     * Subscribe Dual Investment products (USER_DATA) Subscribe Dual Investment products Weight(IP):
+     * 1 Security Type: USER_DATA Notes: - Failed messages: - Products are not available. This means
+     * APR changed to a lower value, or the order is unavailable. - Failed. This means system or
+     * network errors.
      *
      * @param subscribeDualInvestmentProductsRequest (required)
      * @return ApiResponse&lt;SubscribeDualInvestmentProductsResponse&gt;
@@ -166,8 +170,8 @@ public class DualInvestmentRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/dual_investment/trade/Subscribe-Dual-Investment-products">Subscribe
-     *     Dual Investment products(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#subscribe-dual-investment-products">Subscribe
+     *     Dual Investment products (USER_DATA) Documentation</a>
      */
     public ApiResponse<SubscribeDualInvestmentProductsResponse> subscribeDualInvestmentProducts(
             SubscribeDualInvestmentProductsRequest subscribeDualInvestmentProductsRequest)

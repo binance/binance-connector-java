@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** StrategyUpdateSu */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class StrategyUpdateSu extends BaseDTO {
     public static final String SERIALIZED_NAME_SI = "si";
 
@@ -83,7 +83,7 @@ public class StrategyUpdateSu extends BaseDTO {
     }
 
     /**
-     * Get si
+     * Strategy ID
      *
      * @return si
      */
@@ -102,7 +102,7 @@ public class StrategyUpdateSu extends BaseDTO {
     }
 
     /**
-     * Get st
+     * Strategy Type
      *
      * @return st
      */
@@ -121,7 +121,7 @@ public class StrategyUpdateSu extends BaseDTO {
     }
 
     /**
-     * Get ss
+     * Strategy Status
      *
      * @return ss
      */
@@ -140,7 +140,7 @@ public class StrategyUpdateSu extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -159,7 +159,7 @@ public class StrategyUpdateSu extends BaseDTO {
     }
 
     /**
-     * Get ut
+     * Update Time
      *
      * @return ut
      */
@@ -178,7 +178,7 @@ public class StrategyUpdateSu extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * opCode
      *
      * @return cLowerCase
      */

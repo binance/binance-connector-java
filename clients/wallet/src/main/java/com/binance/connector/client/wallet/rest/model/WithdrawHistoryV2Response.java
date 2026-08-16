@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,8 +34,8 @@ import org.hibernate.validator.constraints.*;
 /** WithdrawHistoryV2Response */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
-public class WithdrawHistoryV2Response extends ArrayList<WithdrawHistoryV2ResponseInner> {
+        comments = "Generator version: 7.22.0")
+public class WithdrawHistoryV2Response extends ArrayList<WithdrawHistoryV1ResponseInner> {
     public WithdrawHistoryV2Response() {}
 
     @Override
@@ -116,7 +116,7 @@ public class WithdrawHistoryV2Response extends ArrayList<WithdrawHistoryV2Respon
         JsonArray array = jsonElement.getAsJsonArray();
         // validate array items
         for (JsonElement element : array) {
-            WithdrawHistoryV2ResponseInner.validateJsonElement(element);
+            WithdrawHistoryV1ResponseInner.validateJsonElement(element);
         }
         if (jsonElement == null) {
             if (!WithdrawHistoryV2Response.openapiRequiredFields

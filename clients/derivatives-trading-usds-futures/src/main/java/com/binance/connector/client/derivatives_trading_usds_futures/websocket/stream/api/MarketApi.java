@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,6 +31,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketMiniTickersStreamResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AssetIndexRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsRequest;
@@ -49,8 +51,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamForAllMarketResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.TradingSessionStreamRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.TradingSessionStreamResponse;
 import com.google.gson.reflect.TypeToken;
@@ -67,7 +67,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class MarketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -97,8 +97,10 @@ public class MarketApi {
      * Aggregate Trade Streams The Aggregate Trade Streams push market trade information that is
      * aggregated for fills with same price and taking side every 100 milliseconds. Only market
      * trades will be aggregated, which means the insurance fund trades and ADL trades won&#39;t be
-     * aggregated. Retail Price Improvement(RPI) orders are aggregated into field &#x60;q&#x60; and
-     * without special tags to be distinguished. Update Speed: 100ms
+     * aggregated. &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60;
+     * field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM). Update Speed: 100ms Response Notes:
+     * - Retail Price Improvement(RPI) orders are aggregated into field q and without special tags
+     * to be distinguished.
      *
      * @param aggregateTradeStreamsRequest (required)
      * @return AggregateTradeStreamsResponse
@@ -112,7 +114,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Aggregate-Trade-Streams">Aggregate
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#aggregate-trade-streams">Aggregate
      *     Trade Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<AggregateTradeStreamsResponse> aggregateTradeStreams(
@@ -182,9 +184,13 @@ public class MarketApi {
 
     /**
      * All Market Liquidation Order Streams The All Liquidation Order Snapshot Streams push force
-     * liquidation order information for all symbols in the market. For each symbol，only the largest
+     * liquidation order information for all symbols in the market. For each symbol，only the latest
      * one liquidation order within 1000ms will be pushed as the snapshot. If no liquidation happens
-     * in the interval of 1000ms, no stream will be pushed. Update Speed: 1000ms
+     * in the interval of 1000ms, no stream will be pushed. &gt; **After CM migration**, this stream
+     * pushes the merged UM + CM universe (subscribable on both &#x60;fstream&#x60; and
+     * &#x60;dstream&#x60;); each payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60;
+     * &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair symbol). Update
+     * Speed: 1000ms
      *
      * @param allMarketLiquidationOrderStreamsRequest (required)
      * @return AllMarketLiquidationOrderStreamsResponse
@@ -198,7 +204,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Market-Liquidation-Order-Streams">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#all-market-liquidation-order-streams">All
      *     Market Liquidation Order Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<AllMarketLiquidationOrderStreamsResponse>
@@ -269,8 +275,11 @@ public class MarketApi {
     /**
      * All Market Mini Tickers Stream 24hr rolling window mini-ticker statistics for all symbols.
      * These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to
-     * 24hrs before. Note that only tickers that have changed will be present in the array. Update
-     * Speed: 1000ms
+     * 24hrs before. Note that only tickers that have changed will be present in the array. &gt;
+     * **After CM migration**, this stream pushes the merged UM + CM universe (subscribable on both
+     * &#x60;fstream&#x60; and &#x60;dstream&#x60;); each payload is appended with a new
+     * &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new
+     * &#x60;ps&#x60; field (pair symbol). Update Speed: 1000ms
      *
      * @param allMarketMiniTickersStreamRequest (required)
      * @return AllMarketMiniTickersStreamResponse
@@ -284,7 +293,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Market-Mini-Tickers-Stream">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#all-market-mini-tickers-stream">All
      *     Market Mini Tickers Stream Documentation</a>
      */
     public StreamBlockingQueueWrapper<AllMarketMiniTickersStreamResponse>
@@ -355,8 +364,11 @@ public class MarketApi {
     /**
      * All Market Tickers Streams 24hr rolling window ticker statistics for all symbols. These are
      * NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to 24hrs
-     * before. Note that only tickers that have changed will be present in the array. Update Speed:
-     * 1000ms
+     * before. Note that only tickers that have changed will be present in the array. &gt; **After
+     * CM migration**, this stream pushes the merged UM + CM universe (subscribable on both
+     * &#x60;fstream&#x60; and &#x60;dstream&#x60;); each payload is appended with a new
+     * &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new
+     * &#x60;ps&#x60; field (pair symbol). Update Speed: 1000ms
      *
      * @param allMarketTickersStreamsRequest (required)
      * @return AllMarketTickersStreamsResponse
@@ -370,7 +382,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Market-Tickers-Streams">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#all-market-tickers-streams">All
      *     Market Tickers Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<AllMarketTickersStreamsResponse> allMarketTickersStreams(
@@ -435,6 +447,89 @@ public class MarketApi {
     }
 
     /**
+     * Multi-Assets Mode Asset Index Asset index price. Subscribe with &#x60;!assetIndex@arr&#x60;
+     * for all assets, or &#x60;&lt;assetSymbol&gt;@assetIndex&#x60; for a specific asset. &gt;
+     * **CM-UM Integration (Effective 2026-06-30):** Renamed from *Multi-Assets Mode Asset Index*.
+     * The stream &#x60;!assetIndex@arr&#x60; now additionally pushes COIN-M settlement-asset price
+     * index entries (e.g., &#x60;BTCUSD&#x60;, &#x60;ETHUSD&#x60;, &#x60;BNBUSD&#x60;). The
+     * on-the-wire stream key is unchanged; existing subscriptions continue to work. Update Speed:
+     * 1s
+     *
+     * @param assetIndexRequest (required)
+     * @return AssetIndexResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Multi-Assets Mode Asset Index </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#asset-index">Multi-Assets
+     *     Mode Asset Index Documentation</a>
+     */
+    public StreamBlockingQueueWrapper<AssetIndexResponse> assetIndex(
+            AssetIndexRequest assetIndexRequest) throws ApiException {
+        StreamBlockingQueue<String> queue = assetIndexRaw(assetIndexRequest);
+
+        TypeToken<AssetIndexResponse> typeToken = new TypeToken<AssetIndexResponse>() {};
+
+        return new StreamBlockingQueueWrapper<>(queue, typeToken);
+    }
+
+    public StreamBlockingQueue<String> assetIndexRaw(AssetIndexRequest assetIndexRequest)
+            throws ApiException {
+        assetIndexValidateBeforeCall(assetIndexRequest);
+
+        String methodName =
+                "/!assetIndex@arr"
+                        .substring(1)
+                        .replace(
+                                "<id>",
+                                assetIndexRequest.getId() != null
+                                        ? assetIndexRequest.getId().toString()
+                                        : "");
+        if ("@".equals(methodName.substring(methodName.length() - 1))) {
+            methodName = methodName.substring(0, methodName.length() - 1);
+        }
+
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(methodName))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+        return queuesMap.get(methodName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void assetIndexValidateBeforeCall(AssetIndexRequest assetIndexRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<AssetIndexRequest>> violations =
+                    validator.validate(assetIndexRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
      * Composite Index Symbol Information Streams Composite index information for index symbols
      * pushed every second. Update Speed: 1000ms
      *
@@ -450,7 +545,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Composite-Index-Symbol-Information-Streams">Composite
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#composite-index-symbol-information-streams">Composite
      *     Index Symbol Information Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<CompositeIndexSymbolInformationStreamsResponse>
@@ -533,7 +628,9 @@ public class MarketApi {
     }
 
     /**
-     * Continuous Contract Kline/Candlestick Streams Update Speed: 250ms
+     * Continuous Contract Kline/Candlestick Streams Continuous Contract Kline/Candlestick Streams
+     * &gt; **After CM migration**, both &#x60;fstream&#x60; and &#x60;dstream&#x60; may subscribe
+     * to either UM or CM symbols on this stream. Update Speed: 250ms
      *
      * @param continuousContractKlineCandlestickStreamsRequest (required)
      * @return ContinuousContractKlineCandlestickStreamsResponse
@@ -547,7 +644,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Continuous-Contract-Kline-Candlestick-Streams">Continuous
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#continuous-contract-kline-candlestick-streams">Continuous
      *     Contract Kline/Candlestick Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<ContinuousContractKlineCandlestickStreamsResponse>
@@ -647,8 +744,11 @@ public class MarketApi {
 
     /**
      * Contract Info Stream ContractInfo stream pushes when contract info
-     * updates(listing/settlement/contract bracket update). &#x60;bks&#x60; field only shows up when
-     * bracket gets updated. Update Speed: Real-time
+     * updates(listing/settlement/contract bracket update). bks field only shows up when bracket
+     * gets updated. &gt; **After CM migration**, this stream pushes the merged UM + CM universe
+     * (subscribable on both &#x60;fstream&#x60; and &#x60;dstream&#x60;); each payload is appended
+     * with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM). Update
+     * Speed: Real-time
      *
      * @param contractInfoStreamRequest (required)
      * @return ContractInfoStreamResponse
@@ -662,7 +762,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Contract-Info-Stream">Contract
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#contract-info-stream">Contract
      *     Info Stream Documentation</a>
      */
     public StreamBlockingQueueWrapper<ContractInfoStreamResponse> contractInfoStream(
@@ -728,7 +828,9 @@ public class MarketApi {
     /**
      * Individual Symbol Mini Ticker Stream 24hr rolling window mini-ticker statistics for a single
      * symbol. These are NOT the statistics of the UTC day, but a 24hr rolling window from
-     * requestTime to 24hrs before. Update Speed: 2s
+     * requestTime to 24hrs before. &gt; **After CM migration**, the payload is appended with a new
+     * &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new
+     * &#x60;ps&#x60; field (pair symbol). Update Speed: 2s
      *
      * @param individualSymbolMiniTickerStreamRequest (required)
      * @return IndividualSymbolMiniTickerStreamResponse
@@ -742,7 +844,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Individual-Symbol-Mini-Ticker-Stream">Individual
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#individual-symbol-mini-ticker-stream">Individual
      *     Symbol Mini Ticker Stream Documentation</a>
      */
     public StreamBlockingQueueWrapper<IndividualSymbolMiniTickerStreamResponse>
@@ -820,7 +922,9 @@ public class MarketApi {
     /**
      * Individual Symbol Ticker Streams 24hr rolling window ticker statistics for a single symbol.
      * These are NOT the statistics of the UTC day, but a 24hr rolling window from requestTime to
-     * 24hrs before. Update Speed: 2000ms
+     * 24hrs before. &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60;
+     * field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair
+     * symbol). Update Speed: 2000ms
      *
      * @param individualSymbolTickerStreamsRequest (required)
      * @return IndividualSymbolTickerStreamsResponse
@@ -834,7 +938,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Individual-Symbol-Ticker-Streams">Individual
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#individual-symbol-ticker-streams">Individual
      *     Symbol Ticker Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<IndividualSymbolTickerStreamsResponse>
@@ -911,7 +1015,9 @@ public class MarketApi {
 
     /**
      * Kline/Candlestick Streams The Kline/Candlestick Stream push updates to the current
-     * klines/candlestick every 250 milliseconds (if existing). Update Speed: 250ms
+     * klines/candlestick every 250 milliseconds (if existing). &gt; **After CM migration**, both
+     * &#x60;fstream&#x60; and &#x60;dstream&#x60; may subscribe to either UM or CM symbols on this
+     * stream. Update Speed: 250ms
      *
      * @param klineCandlestickStreamsRequest (required)
      * @return KlineCandlestickStreamsResponse
@@ -925,7 +1031,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Kline-Candlestick-Streams">Kline/Candlestick
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#kline-candlestick-streams">Kline/Candlestick
      *     Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> klineCandlestickStreams(
@@ -1001,9 +1107,9 @@ public class MarketApi {
 
     /**
      * Liquidation Order Streams The Liquidation Order Snapshot Streams push force liquidation order
-     * information for specific symbol. For each symbol，only the largest one liquidation order
-     * within 1000ms will be pushed as the snapshot. If no liquidation happens in the interval of
-     * 1000ms, no stream will be pushed. Update Speed: 1000ms
+     * information for specific symbol. For each symbol，only the latest one liquidation order within
+     * 1000ms will be pushed as the snapshot. If no liquidation happens in the interval of 1000ms,
+     * no stream will be pushed. Update Speed: 1000ms
      *
      * @param liquidationOrderStreamsRequest (required)
      * @return LiquidationOrderStreamsResponse
@@ -1017,7 +1123,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Liquidation-Order-Streams">Liquidation
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#liquidation-order-streams">Liquidation
      *     Order Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<LiquidationOrderStreamsResponse> liquidationOrderStreams(
@@ -1088,7 +1194,9 @@ public class MarketApi {
 
     /**
      * Mark Price Stream Mark price and funding rate for a single symbol pushed every 3 seconds or
-     * every second. Update Speed: 3000ms or 1000ms
+     * every second. &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60;
+     * field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM); both &#x60;fstream&#x60; and
+     * &#x60;dstream&#x60; may subscribe to either UM or CM symbols on this stream.
      *
      * @param markPriceStreamRequest (required)
      * @return MarkPriceStreamResponse
@@ -1102,7 +1210,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream">Mark
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#mark-price-stream">Mark
      *     Price Stream Documentation</a>
      */
     public StreamBlockingQueueWrapper<MarkPriceStreamResponse> markPriceStream(
@@ -1176,8 +1284,11 @@ public class MarketApi {
 
     /**
      * Mark Price Stream for All market Mark price and funding rate for all symbols pushed every 3
-     * seconds or every second. **Note**: TradFi symbols will be pushed through a seperate message.
-     * Update Speed: 3000ms or 1000ms
+     * seconds or every second. **Note:** - TradFi symbols will be pushed through a seperate
+     * message. &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60; field
+     * (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM); both &#x60;fstream&#x60; and
+     * &#x60;dstream&#x60; may subscribe to either UM or CM symbols on this stream. Update Speed: 3s
+     * or 1s
      *
      * @param markPriceStreamForAllMarketRequest (required)
      * @return MarkPriceStreamForAllMarketResponse
@@ -1191,7 +1302,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream-for-All-market">Mark
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#mark-price-stream-for-all-market">Mark
      *     Price Stream for All market Documentation</a>
      */
     public StreamBlockingQueueWrapper<MarkPriceStreamForAllMarketResponse>
@@ -1267,92 +1378,18 @@ public class MarketApi {
     }
 
     /**
-     * Multi-Assets Mode Asset Index Asset index for multi-assets mode user Update Speed: 1s
-     *
-     * @param multiAssetsModeAssetIndexRequest (required)
-     * @return MultiAssetsModeAssetIndexResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Multi-Assets Mode Asset Index </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Multi-Assets-Mode-Asset-Index">Multi-Assets
-     *     Mode Asset Index Documentation</a>
-     */
-    public StreamBlockingQueueWrapper<MultiAssetsModeAssetIndexResponse> multiAssetsModeAssetIndex(
-            MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest) throws ApiException {
-        StreamBlockingQueue<String> queue =
-                multiAssetsModeAssetIndexRaw(multiAssetsModeAssetIndexRequest);
-
-        TypeToken<MultiAssetsModeAssetIndexResponse> typeToken =
-                new TypeToken<MultiAssetsModeAssetIndexResponse>() {};
-
-        return new StreamBlockingQueueWrapper<>(queue, typeToken);
-    }
-
-    public StreamBlockingQueue<String> multiAssetsModeAssetIndexRaw(
-            MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest) throws ApiException {
-        multiAssetsModeAssetIndexValidateBeforeCall(multiAssetsModeAssetIndexRequest);
-
-        String methodName =
-                "/!assetIndex@arr"
-                        .substring(1)
-                        .replace(
-                                "<id>",
-                                multiAssetsModeAssetIndexRequest.getId() != null
-                                        ? multiAssetsModeAssetIndexRequest.getId().toString()
-                                        : "");
-        if ("@".equals(methodName.substring(methodName.length() - 1))) {
-            methodName = methodName.substring(0, methodName.length() - 1);
-        }
-
-        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
-                new RequestWrapperDTO.Builder<Set<String>, Object>()
-                        .id(getRequestID())
-                        .method("SUBSCRIBE")
-                        .params(Collections.singleton(methodName))
-                        .build();
-        Map<String, StreamBlockingQueue<String>> queuesMap =
-                connection.subscribe(requestWrapperDTO);
-        return queuesMap.get(methodName);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void multiAssetsModeAssetIndexValidateBeforeCall(
-            MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest) throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<MultiAssetsModeAssetIndexRequest>> violations =
-                    validator.validate(multiAssetsModeAssetIndexRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
      * Trading Session Stream Trading session information for the underlying assets of TradFi
-     * Perpetual contracts—covering the U.S. equity market and the commodity market—is updated every
-     * second. Trading session information for different underlying markets is pushed in separate
-     * messages. Session types for the equity market include \&quot;PRE_MARKET\&quot;,
-     * \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, and
-     * \&quot;NO_TRADING\&quot;. Session types for the commodity market include
-     * \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. Update Speed: 1s
+     * Perpetual contracts, covering the U.S. equity market, Korean equity market, Hong Kong equity
+     * market, and the commodity market, is updated every second. Trading session information for
+     * different underlying markets is pushed in separate messages. **Event type:** -
+     * &#x60;EquityUpdate&#x60;: Session types for the U.S. equity market include
+     * \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
+     * \&quot;OVERNIGHT\&quot;, and \&quot;NO_TRADING\&quot;. - &#x60;CommodityUpdate&#x60;: Session
+     * types for the commodity market include \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. -
+     * &#x60;KR_EquityUpdate&#x60;: Session types for the Korean equity market include
+     * \&quot;REGULAR\&quot; and \&quot;NO_TRADING\&quot;. - &#x60;HK_EquityUpdate&#x60;: Session
+     * types for the Hong Kong equity market include \&quot;REGULAR\&quot; and
+     * \&quot;NO_TRADING\&quot;. Update Speed: 1s
      *
      * @param tradingSessionStreamRequest (required)
      * @return TradingSessionStreamResponse
@@ -1366,7 +1403,7 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Trading-Session-Stream">Trading
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#trading-session-stream">Trading
      *     Session Stream Documentation</a>
      */
     public StreamBlockingQueueWrapper<TradingSessionStreamResponse> tradingSessionStream(

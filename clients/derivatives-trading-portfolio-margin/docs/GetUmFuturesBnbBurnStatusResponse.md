@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**feeBurn** | **Boolean** |  |  [optional] |
+|**feeBurn** | **Boolean** | \&quot;true\&quot;: Fee Discount On; \&quot;false\&quot;: Fee Discount Off |  [optional] |
 
 
 

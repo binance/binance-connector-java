@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** TradeStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TradeStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -107,7 +107,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * event type
      *
      * @return eLowerCase
      */
@@ -126,7 +126,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * event time
      *
      * @return E
      */
@@ -145,7 +145,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * trade completed time
      *
      * @return T
      */
@@ -164,7 +164,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Option trading symbol
      *
      * @return sLowerCase
      */
@@ -183,7 +183,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * trade ID
      *
      * @return tLowerCase
      */
@@ -202,7 +202,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * price
      *
      * @return pLowerCase
      */
@@ -221,7 +221,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * quantity, always positive
      *
      * @return qLowerCase
      */
@@ -240,7 +240,8 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get X
+     * trade type enum, \&quot;MARKET\&quot; for Orderbook trading, \&quot;BLOCK\&quot; for Block
+     * trade
      *
      * @return X
      */
@@ -259,7 +260,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get S
+     * direction
      *
      * @return S
      */
@@ -278,7 +279,7 @@ public class TradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is the buyer the market maker?
      *
      * @return mLowerCase
      */

@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Long** |  |  [optional] |
-|**asset** | **String** |  |  [optional] |
-|**amount** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**createDate** | **Long** |  |  [optional] |
+|**id** | **Long** | id |  [optional] |
+|**asset** | **String** | Asset type |  [optional] |
+|**amount** | **String** | Amount (positive numbers represent inflow, negative numbers represent outflow) |  [optional] |
+|**type** | **String** | type (fees) |  [optional] |
+|**createDate** | **Long** | Time |  [optional] |
 
 
 

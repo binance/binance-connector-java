@@ -1,12 +1,12 @@
-## Fiat
+## Default
 
-[POST /sapi/v1/fiat/deposit](https://developers.binance.com/docs/fiat/rest-api/Fiat-Deposit) - deposit - [DepositExample.java:50](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/fiat/DepositExample.java#L50)
+[POST /sapi/v1/fiat/deposit](https://developers.binance.com/en/docs/catalog/investment-and-services-fiat/api/rest-api/~#deposit) - deposit - [DepositExample.java:44](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/defaultpkg/DepositExample.java#L44)
 
-[POST /sapi/v2/fiat/withdraw](https://developers.binance.com/docs/fiat/rest-api/Fiat-Withdraw) - fiatWithdraw - [FiatWithdrawExample.java:53](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/fiat/FiatWithdrawExample.java#L53)
+[POST /sapi/v2/fiat/withdraw](https://developers.binance.com/en/docs/catalog/investment-and-services-fiat/api/rest-api/~#fiat-withdraw) - fiatWithdraw - [FiatWithdrawExample.java:42](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/defaultpkg/FiatWithdrawExample.java#L42)
 
-[GET /sapi/v1/fiat/orders](https://developers.binance.com/docs/fiat/rest-api/Get-Fiat-Deposit-Withdraw-History) - getFiatDepositWithdrawHistory - [GetFiatDepositWithdrawHistoryExample.java:47](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/fiat/GetFiatDepositWithdrawHistoryExample.java#L47)
+[GET /sapi/v1/fiat/orders](https://developers.binance.com/en/docs/catalog/investment-and-services-fiat/api/rest-api/~#get-fiat-deposit-withdraw-history) - getFiatDepositWithdrawHistory - [GetFiatDepositWithdrawHistoryExample.java:36](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/defaultpkg/GetFiatDepositWithdrawHistoryExample.java#L36)
 
-[GET /sapi/v1/fiat/payments](https://developers.binance.com/docs/fiat/rest-api/Get-Fiat-Payments-History) - getFiatPaymentsHistory - [GetFiatPaymentsHistoryExample.java:49](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/fiat/GetFiatPaymentsHistoryExample.java#L49)
+[GET /sapi/v1/fiat/payments](https://developers.binance.com/en/docs/catalog/investment-and-services-fiat/api/rest-api/~#get-fiat-payments-history) - getFiatPaymentsHistory - [GetFiatPaymentsHistoryExample.java:39](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/defaultpkg/GetFiatPaymentsHistoryExample.java#L39)
 
-[GET /sapi/v1/fiat/get-order-detail](https://developers.binance.com/docs/fiat/rest-api/Get-Order-Detail) - getOrderDetail - [GetOrderDetailExample.java:47](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/fiat/GetOrderDetailExample.java#L47)
+[GET /sapi/v1/fiat/get-order-detail](https://developers.binance.com/en/docs/catalog/investment-and-services-fiat/api/rest-api/~#get-order-detail) - getOrderDetail - [GetOrderDetailExample.java:37](/examples/fiat/src/main/java/com/binance/connector/client/fiat/rest/defaultpkg/GetOrderDetailExample.java#L37)
 

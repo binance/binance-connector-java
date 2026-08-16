@@ -12,12 +12,11 @@
 |**pair** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
+|**modifyId** | **Long** | user-defined modification identifier, only returned if provided in the request |  [optional] |
 |**price** | **String** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
 |**cumQty** | **String** |  |  [optional] |
-|**cumBase** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |
@@ -28,9 +27,9 @@
 |**workingType** | **String** |  |  [optional] |
 |**priceProtect** | **Boolean** |  |  [optional] |
 |**origType** | **String** |  |  [optional] |
-|**priceMatch** | **String** |  |  [optional] |
-|**selfTradePreventionMode** | **String** |  |  [optional] |
-|**goodTillDate** | **Long** |  |  [optional] |
+|**priceMatch** | **String** | price match mode |  [optional] |
+|**selfTradePreventionMode** | **String** | self trading preventation mode |  [optional] |
+|**goodTillDate** | **Long** | order pre-set auot cancel time for TIF GTD order |  [optional] |
 |**updateTime** | **Long** |  |  [optional] |
 |**code** | **Long** |  |  [optional] |
 |**msg** | **String** |  |  [optional] |

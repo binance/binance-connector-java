@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** OptionMarginAccountInformationResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionMarginAccountInformationResponse {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -109,7 +109,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get asset
+     * asset
      *
      * @return asset
      */
@@ -142,7 +142,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get greek
+     * greek
      *
      * @return greek
      */
@@ -164,7 +164,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get time
+     * time
      *
      * @return time
      */
@@ -184,7 +184,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get canTrade
+     * can Trade
      *
      * @return canTrade
      */
@@ -204,7 +204,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get canDeposit
+     * can Deposit
      *
      * @return canDeposit
      */
@@ -224,7 +224,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get canWithdraw
+     * can Withdraw
      *
      * @return canWithdraw
      */
@@ -244,7 +244,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get reduceOnly
+     * reduce Only
      *
      * @return reduceOnly
      */
@@ -264,7 +264,7 @@ public class OptionMarginAccountInformationResponse {
     }
 
     /**
-     * Get tradeGroupId
+     * Trade group ID
      *
      * @return tradeGroupId
      */

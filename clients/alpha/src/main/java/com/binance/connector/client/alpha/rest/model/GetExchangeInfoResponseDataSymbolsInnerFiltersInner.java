@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetExchangeInfoResponseDataSymbolsInnerFiltersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     public static final String SERIALIZED_NAME_FILTER_TYPE = "filterType";
 
@@ -141,7 +141,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get filterType
+     * Filter type.
      *
      * @return filterType
      */
@@ -161,7 +161,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minPrice
+     * Minimum price.
      *
      * @return minPrice
      */
@@ -181,7 +181,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxPrice
+     * Maximum price.
      *
      * @return maxPrice
      */
@@ -201,7 +201,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get tickSize
+     * Tick size.
      *
      * @return tickSize
      */
@@ -221,7 +221,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get stepSize
+     * Step size.
      *
      * @return stepSize
      */
@@ -241,7 +241,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxQty
+     * Maximum quantity.
      *
      * @return maxQty
      */
@@ -261,7 +261,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minQty
+     * Minimum quantity.
      *
      * @return minQty
      */
@@ -281,7 +281,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get limit
+     * Maximum allowed orders for this rule.
      *
      * @return limit
      */
@@ -301,7 +301,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get minNotional
+     * Minimum notional value.
      *
      * @return minNotional
      */
@@ -321,7 +321,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get maxNotional
+     * Maximum notional value.
      *
      * @return maxNotional
      */
@@ -341,7 +341,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get multiplierDown
+     * Lower multiplier bound.
      *
      * @return multiplierDown
      */
@@ -361,7 +361,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get multiplierUp
+     * Upper multiplier bound.
      *
      * @return multiplierUp
      */
@@ -381,7 +381,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get bidMultiplierUp
+     * Upper multiplier bound for bids.
      *
      * @return bidMultiplierUp
      */
@@ -401,7 +401,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get askMultiplierUp
+     * Upper multiplier bound for asks.
      *
      * @return askMultiplierUp
      */
@@ -421,7 +421,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get bidMultiplierDown
+     * Lower multiplier bound for bids.
      *
      * @return bidMultiplierDown
      */
@@ -441,7 +441,7 @@ public class GetExchangeInfoResponseDataSymbolsInnerFiltersInner {
     }
 
     /**
-     * Get askMultiplierDown
+     * Lower multiplier bound for asks.
      *
      * @return askMultiplierDown
      */

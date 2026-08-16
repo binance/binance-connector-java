@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** BasisResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BasisResponseInner {
     public static final String SERIALIZED_NAME_INDEX_PRICE = "indexPrice";
 
@@ -226,7 +226,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get timestamp
+     * Start time of the period, in milliseconds.
      *
      * @return timestamp
      */

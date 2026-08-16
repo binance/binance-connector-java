@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** GetSummaryOfSubAccountsFuturesAccountResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetSummaryOfSubAccountsFuturesAccountResponse {
     public static final String SERIALIZED_NAME_TOTAL_INITIAL_MARGIN = "totalInitialMargin";
 
@@ -96,9 +96,7 @@ public class GetSummaryOfSubAccountsFuturesAccountResponse {
 
     @SerializedName(SERIALIZED_NAME_SUB_ACCOUNT_LIST)
     @jakarta.annotation.Nullable
-    private List<
-                    @Valid
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+    private List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
             subAccountList;
 
     public GetSummaryOfSubAccountsFuturesAccountResponse() {}
@@ -269,17 +267,14 @@ public class GetSummaryOfSubAccountsFuturesAccountResponse {
 
     public GetSummaryOfSubAccountsFuturesAccountResponse subAccountList(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+                    List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
                             subAccountList) {
         this.subAccountList = subAccountList;
         return this;
     }
 
     public GetSummaryOfSubAccountsFuturesAccountResponse addSubAccountListItem(
-            GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner
-                    subAccountListItem) {
+            GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner subAccountListItem) {
         if (this.subAccountList == null) {
             this.subAccountList = new ArrayList<>();
         }
@@ -294,18 +289,14 @@ public class GetSummaryOfSubAccountsFuturesAccountResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<
-                    @Valid
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+    public List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
             getSubAccountList() {
         return subAccountList;
     }
 
     public void setSubAccountList(
             @jakarta.annotation.Nullable
-                    List<
-                                    @Valid
-                                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner>
+                    List<@Valid GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner>
                             subAccountList) {
         this.subAccountList = subAccountList;
     }
@@ -597,7 +588,7 @@ public class GetSummaryOfSubAccountsFuturesAccountResponse {
 
                 // validate the optional field `subAccountList` (array)
                 for (int i = 0; i < jsonArraysubAccountList.size(); i++) {
-                    GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner
+                    GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner
                             .validateJsonElement(jsonArraysubAccountList.get(i));
                 }
                 ;

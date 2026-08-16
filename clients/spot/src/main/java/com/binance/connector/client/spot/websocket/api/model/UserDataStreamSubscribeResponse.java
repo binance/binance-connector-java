@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** UserDataStreamSubscribeResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserDataStreamSubscribeResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -56,7 +56,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private SessionSubscriptionsResponseResultInner result;
+    private UserDataStreamSubscribeResponseResult result;
 
     public UserDataStreamSubscribeResponse() {}
 
@@ -99,7 +99,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
     }
 
     public UserDataStreamSubscribeResponse result(
-            @jakarta.annotation.Nullable SessionSubscriptionsResponseResultInner result) {
+            @jakarta.annotation.Nullable UserDataStreamSubscribeResponseResult result) {
         this.result = result;
         return this;
     }
@@ -111,12 +111,12 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public SessionSubscriptionsResponseResultInner getResult() {
+    public UserDataStreamSubscribeResponseResult getResult() {
         return result;
     }
 
     public void setResult(
-            @jakarta.annotation.Nullable SessionSubscriptionsResponseResultInner result) {
+            @jakarta.annotation.Nullable UserDataStreamSubscribeResponseResult result) {
         this.result = result;
     }
 
@@ -165,7 +165,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        SessionSubscriptionsResponseResultInner resultValue = getResult();
+        UserDataStreamSubscribeResponseResult resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
@@ -268,7 +268,7 @@ public class UserDataStreamSubscribeResponse extends BaseDTO {
         }
         // validate the optional field `result`
         if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
-            SessionSubscriptionsResponseResultInner.validateJsonElement(jsonObj.get("result"));
+            UserDataStreamSubscribeResponseResult.validateJsonElement(jsonObj.get("result"));
         }
     }
 

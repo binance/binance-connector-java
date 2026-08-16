@@ -12,7 +12,7 @@
 |**interestAmount** | **String** |  |  [optional] |
 |**annualInterestRate** | **String** |  |  [optional] |
 |**accrualTime** | **Long** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
+|**orderId** | **Long** | Latest order ID for the renewal order. |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** MarkPriceStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarkPriceStreamResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -63,12 +63,6 @@ public class MarkPriceStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String pLowerCase;
 
-    public static final String SERIALIZED_NAME_AP = "ap";
-
-    @SerializedName(SERIALIZED_NAME_AP)
-    @jakarta.annotation.Nullable
-    private String ap;
-
     public static final String SERIALIZED_NAME_I_LOWER_CASE = "i";
 
     @SerializedName(SERIALIZED_NAME_I_LOWER_CASE)
@@ -87,11 +81,23 @@ public class MarkPriceStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private String rLowerCase;
 
+    public static final String SERIALIZED_NAME_AP = "ap";
+
+    @SerializedName(SERIALIZED_NAME_AP)
+    @jakarta.annotation.Nullable
+    private String ap;
+
     public static final String SERIALIZED_NAME_T = "T";
 
     @SerializedName(SERIALIZED_NAME_T)
     @jakarta.annotation.Nullable
     private Long T;
+
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
 
     public MarkPriceStreamResponse() {}
 
@@ -101,7 +107,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -120,7 +126,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -139,7 +145,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -158,7 +164,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Mark price
      *
      * @return pLowerCase
      */
@@ -171,32 +177,13 @@ public class MarkPriceStreamResponse extends BaseDTO {
         this.pLowerCase = pLowerCase;
     }
 
-    public MarkPriceStreamResponse ap(@jakarta.annotation.Nullable String ap) {
-        this.ap = ap;
-        return this;
-    }
-
-    /**
-     * Get ap
-     *
-     * @return ap
-     */
-    @jakarta.annotation.Nullable
-    public String getAp() {
-        return ap;
-    }
-
-    public void setAp(@jakarta.annotation.Nullable String ap) {
-        this.ap = ap;
-    }
-
     public MarkPriceStreamResponse iLowerCase(@jakarta.annotation.Nullable String iLowerCase) {
         this.iLowerCase = iLowerCase;
         return this;
     }
 
     /**
-     * Get iLowerCase
+     * Index price
      *
      * @return iLowerCase
      */
@@ -215,7 +202,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get P
+     * Estimated Settle Price, only useful in the last hour before the settlement starts
      *
      * @return P
      */
@@ -234,7 +221,7 @@ public class MarkPriceStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get rLowerCase
+     * Funding rate
      *
      * @return rLowerCase
      */
@@ -247,13 +234,32 @@ public class MarkPriceStreamResponse extends BaseDTO {
         this.rLowerCase = rLowerCase;
     }
 
+    public MarkPriceStreamResponse ap(@jakarta.annotation.Nullable String ap) {
+        this.ap = ap;
+        return this;
+    }
+
+    /**
+     * Mark price moving average
+     *
+     * @return ap
+     */
+    @jakarta.annotation.Nullable
+    public String getAp() {
+        return ap;
+    }
+
+    public void setAp(@jakarta.annotation.Nullable String ap) {
+        this.ap = ap;
+    }
+
     public MarkPriceStreamResponse T(@jakarta.annotation.Nullable Long T) {
         this.T = T;
         return this;
     }
 
     /**
-     * Get T
+     * Next funding time
      *
      * @return T
      */
@@ -264,6 +270,25 @@ public class MarkPriceStreamResponse extends BaseDTO {
 
     public void setT(@jakarta.annotation.Nullable Long T) {
         this.T = T;
+    }
+
+    public MarkPriceStreamResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
     }
 
     @Override
@@ -279,17 +304,18 @@ public class MarkPriceStreamResponse extends BaseDTO {
                 && Objects.equals(this.E, markPriceStreamResponse.E)
                 && Objects.equals(this.sLowerCase, markPriceStreamResponse.sLowerCase)
                 && Objects.equals(this.pLowerCase, markPriceStreamResponse.pLowerCase)
-                && Objects.equals(this.ap, markPriceStreamResponse.ap)
                 && Objects.equals(this.iLowerCase, markPriceStreamResponse.iLowerCase)
                 && Objects.equals(this.P, markPriceStreamResponse.P)
                 && Objects.equals(this.rLowerCase, markPriceStreamResponse.rLowerCase)
-                && Objects.equals(this.T, markPriceStreamResponse.T);
+                && Objects.equals(this.ap, markPriceStreamResponse.ap)
+                && Objects.equals(this.T, markPriceStreamResponse.T)
+                && Objects.equals(this.st, markPriceStreamResponse.st);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                eLowerCase, E, sLowerCase, pLowerCase, ap, iLowerCase, P, rLowerCase, T);
+                eLowerCase, E, sLowerCase, pLowerCase, iLowerCase, P, rLowerCase, ap, T, st);
     }
 
     @Override
@@ -300,11 +326,12 @@ public class MarkPriceStreamResponse extends BaseDTO {
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
         sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
-        sb.append("		ap: ").append(toIndentedString(ap)).append("\n");
         sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
         sb.append("		P: ").append(toIndentedString(P)).append("\n");
         sb.append("		rLowerCase: ").append(toIndentedString(rLowerCase)).append("\n");
+        sb.append("		ap: ").append(toIndentedString(ap)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -333,11 +360,6 @@ public class MarkPriceStreamResponse extends BaseDTO {
             String pLowerCaseValueAsString = pLowerCaseValue.toString();
             valMap.put("pLowerCase", pLowerCaseValueAsString);
         }
-        String apValue = getAp();
-        if (apValue != null) {
-            String apValueAsString = apValue.toString();
-            valMap.put("ap", apValueAsString);
-        }
         String iLowerCaseValue = getiLowerCase();
         if (iLowerCaseValue != null) {
             String iLowerCaseValueAsString = iLowerCaseValue.toString();
@@ -353,10 +375,20 @@ public class MarkPriceStreamResponse extends BaseDTO {
             String rLowerCaseValueAsString = rLowerCaseValue.toString();
             valMap.put("rLowerCase", rLowerCaseValueAsString);
         }
+        String apValue = getAp();
+        if (apValue != null) {
+            String apValueAsString = apValue.toString();
+            valMap.put("ap", apValueAsString);
+        }
         Long TValue = getT();
         if (TValue != null) {
             String TValueAsString = TValue.toString();
             valMap.put("T", TValueAsString);
+        }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -385,10 +417,6 @@ public class MarkPriceStreamResponse extends BaseDTO {
         if (pLowerCaseValue != null) {
             valMap.put("pLowerCase", pLowerCaseValue);
         }
-        Object apValue = getAp();
-        if (apValue != null) {
-            valMap.put("ap", apValue);
-        }
         Object iLowerCaseValue = getiLowerCase();
         if (iLowerCaseValue != null) {
             valMap.put("iLowerCase", iLowerCaseValue);
@@ -401,9 +429,17 @@ public class MarkPriceStreamResponse extends BaseDTO {
         if (rLowerCaseValue != null) {
             valMap.put("rLowerCase", rLowerCaseValue);
         }
+        Object apValue = getAp();
+        if (apValue != null) {
+            valMap.put("ap", apValue);
+        }
         Object TValue = getT();
         if (TValue != null) {
             valMap.put("T", TValue);
+        }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -435,11 +471,12 @@ public class MarkPriceStreamResponse extends BaseDTO {
         openapiFields.add("E");
         openapiFields.add("s");
         openapiFields.add("p");
-        openapiFields.add("ap");
         openapiFields.add("i");
         openapiFields.add("P");
         openapiFields.add("r");
+        openapiFields.add("ap");
         openapiFields.add("T");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -499,14 +536,6 @@ public class MarkPriceStreamResponse extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("p").toString()));
         }
-        if ((jsonObj.get("ap") != null && !jsonObj.get("ap").isJsonNull())
-                && !jsonObj.get("ap").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ap` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("ap").toString()));
-        }
         if ((jsonObj.get("i") != null && !jsonObj.get("i").isJsonNull())
                 && !jsonObj.get("i").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -530,6 +559,14 @@ public class MarkPriceStreamResponse extends BaseDTO {
                             "Expected the field `r` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("r").toString()));
+        }
+        if ((jsonObj.get("ap") != null && !jsonObj.get("ap").isJsonNull())
+                && !jsonObj.get("ap").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ap` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ap").toString()));
         }
     }
 

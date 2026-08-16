@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**amount** | **String** |  |  [optional] |
-|**targetAsset** | **String** |  |  [optional] |
-|**targetAmount** | **String** |  |  [optional] |
-|**bizType** | **String** |  |  [optional] |
-|**timestamp** | **Long** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**amount** | **String** | amount. |  [optional] |
+|**targetAsset** | **String** | target Asset. |  [optional] |
+|**targetAmount** | **String** | target Amount. |  [optional] |
+|**bizType** | **String** | biz Type. |  [optional] |
+|**timestamp** | **Long** | timestamp. |  [optional] |
 
 
 

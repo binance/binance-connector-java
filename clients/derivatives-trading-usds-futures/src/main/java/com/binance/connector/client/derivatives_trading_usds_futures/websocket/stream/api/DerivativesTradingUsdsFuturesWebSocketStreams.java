@@ -20,6 +20,8 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketMiniTickersStreamResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AllMarketTickersStreamsResponse;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AssetIndexRequest;
+import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.AssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.CompositeIndexSymbolInformationStreamsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.ContinuousContractKlineCandlestickStreamsRequest;
@@ -42,8 +44,6 @@ import com.binance.connector.client.derivatives_trading_usds_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamForAllMarketResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MarkPriceStreamResponse;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexRequest;
-import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.MultiAssetsModeAssetIndexResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
 import com.binance.connector.client.derivatives_trading_usds_futures.websocket.stream.model.RpiDiffBookDepthStreamsRequest;
@@ -60,7 +60,7 @@ import java.util.UUID;
 public class DerivativesTradingUsdsFuturesWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private WebSocketClientConfiguration clientConfiguration;
@@ -155,6 +155,11 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
         return getMarketApi().allMarketTickersStreams(allMarketTickersStreamsRequest);
     }
 
+    public StreamBlockingQueueWrapper<AssetIndexResponse> assetIndex(
+            AssetIndexRequest assetIndexRequest) throws ApiException {
+        return getMarketApi().assetIndex(assetIndexRequest);
+    }
+
     public StreamBlockingQueueWrapper<CompositeIndexSymbolInformationStreamsResponse>
             compositeIndexSymbolInformationStreams(
                     CompositeIndexSymbolInformationStreamsRequest
@@ -215,11 +220,6 @@ public class DerivativesTradingUsdsFuturesWebSocketStreams {
                     MarkPriceStreamForAllMarketRequest markPriceStreamForAllMarketRequest)
                     throws ApiException {
         return getMarketApi().markPriceStreamForAllMarket(markPriceStreamForAllMarketRequest);
-    }
-
-    public StreamBlockingQueueWrapper<MultiAssetsModeAssetIndexResponse> multiAssetsModeAssetIndex(
-            MultiAssetsModeAssetIndexRequest multiAssetsModeAssetIndexRequest) throws ApiException {
-        return getMarketApi().multiAssetsModeAssetIndex(multiAssetsModeAssetIndexRequest);
     }
 
     public StreamBlockingQueueWrapper<TradingSessionStreamResponse> tradingSessionStream(

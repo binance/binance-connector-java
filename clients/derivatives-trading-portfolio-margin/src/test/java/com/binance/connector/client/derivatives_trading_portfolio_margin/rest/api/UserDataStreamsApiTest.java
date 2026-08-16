@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,6 +25,7 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.StartUserDataStreamResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -76,14 +77,14 @@ public class UserDataStreamsApiTest {
     }
 
     /**
-     * Close User Data Stream(USER_STREAM)
+     * Close User Data Stream (USER_STREAM)
      *
-     * <p>Close out a user data stream. Weight: 1
+     * <p>Close out a user data stream. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void closeUserDataStreamTest() throws ApiException, CryptoException {
+    public void closeUserDataStreamTest() throws ApiException, CryptoException, IOException {
         api.closeUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -92,7 +93,8 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/listenKey", actualRequest.url().encodedPath());
     }
 
@@ -100,12 +102,13 @@ public class UserDataStreamsApiTest {
      * Keepalive User Data Stream (USER_STREAM)
      *
      * <p>Keepalive a user data stream to prevent a time out. User data streams will close after 60
-     * minutes. It&#39;s recommended to send a ping about every 60 minutes. Weight: 1
+     * minutes. It&#39;s recommended to send a ping about every 60 minutes. Weight(IP): 1 Security
+     * Type: USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void keepaliveUserDataStreamTest() throws ApiException, CryptoException {
+    public void keepaliveUserDataStreamTest() throws ApiException, CryptoException, IOException {
         api.keepaliveUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -114,21 +117,24 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/listenKey", actualRequest.url().encodedPath());
     }
 
     /**
-     * Start User Data Stream(USER_STREAM)
+     * Start User Data Stream (USER_STREAM)
      *
      * <p>Start a new user data stream. The stream will close after 60 minutes unless a keepalive is
      * sent. If the account has an active &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be
-     * returned and its validity will be extended for 60 minutes. Weight: 1
+     * returned and its validity will be extended for 60 minutes. Weight(IP): 1 Security Type:
+     * USER_STREAM
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void startUserDataStreamTest() throws ApiException, CryptoException {
+    public void startUserDataStreamTest() throws ApiException, CryptoException, IOException {
         ApiResponse<StartUserDataStreamResponse> response = api.startUserDataStream();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -138,7 +144,8 @@ public class UserDataStreamsApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/listenKey", actualRequest.url().encodedPath());
     }
 }

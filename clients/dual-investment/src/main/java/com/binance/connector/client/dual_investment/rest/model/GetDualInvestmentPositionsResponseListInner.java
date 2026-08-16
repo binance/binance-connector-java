@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetDualInvestmentPositionsResponseListInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetDualInvestmentPositionsResponseListInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -114,6 +114,12 @@ public class GetDualInvestmentPositionsResponseListInner {
     @jakarta.annotation.Nullable
     private String autoCompoundPlan;
 
+    public static final String SERIALIZED_NAME_SUBSCRIPTION_TIME = "subscriptionTime";
+
+    @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_TIME)
+    @jakarta.annotation.Nullable
+    private Long subscriptionTime;
+
     public GetDualInvestmentPositionsResponseListInner() {}
 
     public GetDualInvestmentPositionsResponseListInner id(@jakarta.annotation.Nullable String id) {
@@ -122,7 +128,7 @@ public class GetDualInvestmentPositionsResponseListInner {
     }
 
     /**
-     * Get id
+     * positionId
      *
      * @return id
      */
@@ -262,7 +268,8 @@ public class GetDualInvestmentPositionsResponseListInner {
     }
 
     /**
-     * Get purchaseStatus
+     * Purchase status. Possible values include PENDING, PURCHASE_SUCCESS, SETTLED, PURCHASE_FAIL,
+     * REFUNDING, REFUND_SUCCESS, and SETTLING.
      *
      * @return purchaseStatus
      */
@@ -362,7 +369,7 @@ public class GetDualInvestmentPositionsResponseListInner {
     }
 
     /**
-     * Get autoCompoundPlan
+     * NULL, STANDARD, ADVANCED
      *
      * @return autoCompoundPlan
      */
@@ -373,6 +380,26 @@ public class GetDualInvestmentPositionsResponseListInner {
 
     public void setAutoCompoundPlan(@jakarta.annotation.Nullable String autoCompoundPlan) {
         this.autoCompoundPlan = autoCompoundPlan;
+    }
+
+    public GetDualInvestmentPositionsResponseListInner subscriptionTime(
+            @jakarta.annotation.Nullable Long subscriptionTime) {
+        this.subscriptionTime = subscriptionTime;
+        return this;
+    }
+
+    /**
+     * Get subscriptionTime
+     *
+     * @return subscriptionTime
+     */
+    @jakarta.annotation.Nullable
+    public Long getSubscriptionTime() {
+        return subscriptionTime;
+    }
+
+    public void setSubscriptionTime(@jakarta.annotation.Nullable Long subscriptionTime) {
+        this.subscriptionTime = subscriptionTime;
     }
 
     @Override
@@ -412,7 +439,10 @@ public class GetDualInvestmentPositionsResponseListInner {
                         this.optionType, getDualInvestmentPositionsResponseListInner.optionType)
                 && Objects.equals(
                         this.autoCompoundPlan,
-                        getDualInvestmentPositionsResponseListInner.autoCompoundPlan);
+                        getDualInvestmentPositionsResponseListInner.autoCompoundPlan)
+                && Objects.equals(
+                        this.subscriptionTime,
+                        getDualInvestmentPositionsResponseListInner.subscriptionTime);
     }
 
     @Override
@@ -430,7 +460,8 @@ public class GetDualInvestmentPositionsResponseListInner {
                 orderId,
                 purchaseEndTime,
                 optionType,
-                autoCompoundPlan);
+                autoCompoundPlan,
+                subscriptionTime);
     }
 
     @Override
@@ -452,6 +483,7 @@ public class GetDualInvestmentPositionsResponseListInner {
         sb.append("		purchaseEndTime: ").append(toIndentedString(purchaseEndTime)).append("\n");
         sb.append("		optionType: ").append(toIndentedString(optionType)).append("\n");
         sb.append("		autoCompoundPlan: ").append(toIndentedString(autoCompoundPlan)).append("\n");
+        sb.append("		subscriptionTime: ").append(toIndentedString(subscriptionTime)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -513,6 +545,10 @@ public class GetDualInvestmentPositionsResponseListInner {
         String autoCompoundPlanValueAsString = "";
         autoCompoundPlanValueAsString = autoCompoundPlanValue.toString();
         sb.append("autoCompoundPlan=").append(urlEncode(autoCompoundPlanValueAsString)).append("");
+        Object subscriptionTimeValue = getSubscriptionTime();
+        String subscriptionTimeValueAsString = "";
+        subscriptionTimeValueAsString = subscriptionTimeValue.toString();
+        sb.append("subscriptionTime=").append(urlEncode(subscriptionTimeValueAsString)).append("");
         return sb.toString();
     }
 
@@ -554,6 +590,7 @@ public class GetDualInvestmentPositionsResponseListInner {
         openapiFields.add("purchaseEndTime");
         openapiFields.add("optionType");
         openapiFields.add("autoCompoundPlan");
+        openapiFields.add("subscriptionTime");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

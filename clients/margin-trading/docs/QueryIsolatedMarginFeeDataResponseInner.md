@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**vipLevel** | **Long** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**leverage** | **String** |  |  [optional] |
-|**data** | [**List&lt;QueryIsolatedMarginFeeDataResponseInnerDataInner&gt;**](QueryIsolatedMarginFeeDataResponseInnerDataInner.md) |  |  [optional] |
+|**vipLevel** | **Long** | vip Level. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**leverage** | **String** | leverage. |  [optional] |
+|**data** | [**List&lt;QueryIsolatedMarginFeeDataResponseInnerDataInner&gt;**](QueryIsolatedMarginFeeDataResponseInnerDataInner.md) | data list. |  [optional] |
 
 
 

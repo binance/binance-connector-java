@@ -7,28 +7,28 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**isIsolated** | **Boolean** |  |  [optional] |
-|**origClientOrderId** | **String** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
-|**orderListId** | **Long** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**origQty** | **String** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**cummulativeQuoteQty** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**selfTradePreventionMode** | **String** |  |  [optional] |
-|**contingencyType** | **String** |  |  [optional] |
-|**listStatusType** | **String** |  |  [optional] |
-|**listOrderStatus** | **String** |  |  [optional] |
-|**listClientOrderId** | **String** |  |  [optional] |
-|**transactionTime** | **Long** |  |  [optional] |
-|**orders** | [**List&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrdersInner&gt;**](MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrdersInner.md) |  |  [optional] |
-|**orderReports** | [**List&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner&gt;**](MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner.md) |  |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**isIsolated** | **Boolean** | if isolated margin |  [optional] |
+|**origClientOrderId** | **String** | orig Client Order Id. |  [optional] |
+|**orderId** | **Long** | order Id. |  [optional] |
+|**orderListId** | **Long** | order List Id. |  [optional] |
+|**clientOrderId** | **String** | client Order Id. |  [optional] |
+|**price** | **String** | price. |  [optional] |
+|**origQty** | **String** | orig Qty. |  [optional] |
+|**executedQty** | **String** | executed Qty. |  [optional] |
+|**cummulativeQuoteQty** | **String** | cummulative Quote Qty. |  [optional] |
+|**status** | **String** | status. |  [optional] |
+|**timeInForce** | **String** | time In Force. |  [optional] |
+|**type** | **String** | type. |  [optional] |
+|**side** | **String** | side. |  [optional] |
+|**selfTradePreventionMode** | **String** | self Trade Prevention Mode. |  [optional] |
+|**contingencyType** | **String** | contingency Type. |  [optional] |
+|**listStatusType** | **String** | list Status Type. |  [optional] |
+|**listOrderStatus** | **String** | list Order Status. |  [optional] |
+|**listClientOrderId** | **String** | list Client Order Id. |  [optional] |
+|**transactionTime** | **Long** | transaction Time. |  [optional] |
+|**orders** | [**List&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrdersInner&gt;**](MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrdersInner.md) | orders list. |  [optional] |
+|**orderReports** | [**List&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner&gt;**](MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner.md) | order Reports list. |  [optional] |
 
 
 

@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**asset** | **String** |  |  |
-|**amount** | **Double** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**amount** | **Double** | Amount |  |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

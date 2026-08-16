@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **Double** |  |  |
-|**type** | **String** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**amount** | **Double** | Amount in BFUSD |  |
+|**type** | **OrderType** |  |  |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

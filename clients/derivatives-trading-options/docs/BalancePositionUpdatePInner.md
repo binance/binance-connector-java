@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sLowerCase** | **String** |  |  [optional] |
-|**cLowerCase** | **String** |  |  [optional] |
-|**pLowerCase** | **String** |  |  [optional] |
-|**aLowerCase** | **String** |  |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**cLowerCase** | **String** | Position quantity |  [optional] |
+|**pLowerCase** | **String** | Position value |  [optional] |
+|**aLowerCase** | **String** | Average entry price |  [optional] |
 
 
 

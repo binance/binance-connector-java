@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AggTradeResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AggTradeResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -113,7 +113,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -132,7 +132,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -151,7 +151,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -170,7 +170,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Aggregate trade ID
      *
      * @return aLowerCase
      */
@@ -189,7 +189,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Price
      *
      * @return pLowerCase
      */
@@ -208,7 +208,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Quantity
      *
      * @return qLowerCase
      */
@@ -227,7 +227,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * First trade ID
      *
      * @return fLowerCase
      */
@@ -246,7 +246,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Last trade ID
      *
      * @return lLowerCase
      */
@@ -265,7 +265,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Trade time
      *
      * @return T
      */
@@ -284,7 +284,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is the buyer the market maker?
      *
      * @return mLowerCase
      */
@@ -303,7 +303,7 @@ public class AggTradeResponse extends BaseDTO {
     }
 
     /**
-     * Get M
+     * Ignore
      *
      * @return M
      */

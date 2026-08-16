@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**borrowed** | **String** |  |  [optional] |
-|**free** | **String** |  |  [optional] |
-|**interest** | **String** |  |  [optional] |
-|**locked** | **String** |  |  [optional] |
-|**netAsset** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**borrowed** | **String** | borrowed. |  [optional] |
+|**free** | **String** | free. |  [optional] |
+|**interest** | **String** | interest. |  [optional] |
+|**locked** | **String** | locked. |  [optional] |
+|**netAsset** | **String** | net Asset. |  [optional] |
 
 
 

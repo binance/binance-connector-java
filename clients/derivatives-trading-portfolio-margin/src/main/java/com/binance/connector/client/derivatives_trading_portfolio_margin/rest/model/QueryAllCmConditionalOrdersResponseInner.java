@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryAllCmConditionalOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryAllCmConditionalOrdersResponseInner {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -165,7 +165,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -185,7 +185,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -205,7 +205,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -225,7 +225,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -245,7 +245,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -265,7 +265,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -285,7 +285,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -304,7 +304,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -324,7 +324,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -344,7 +344,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -364,7 +364,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -384,7 +384,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -404,7 +404,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Normal order status after trigger if appliable, only have when the strategy is triggered
      *
      * @return status
      */
@@ -424,7 +424,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get bookTime
+     * order time
      *
      * @return bookTime
      */
@@ -444,7 +444,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -464,7 +464,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get triggerTime
+     * Trigger Time.
      *
      * @return triggerTime
      */
@@ -484,7 +484,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -503,7 +503,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -523,7 +523,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -543,7 +543,7 @@ public class QueryAllCmConditionalOrdersResponseInner {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */

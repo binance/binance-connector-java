@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**calcTime** | **Long** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
+|**calcTime** | **Long** | calc Time. |  [optional] |
+|**price** | **String** | price. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
 
 
 

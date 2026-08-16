@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountBlockTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountBlockTradeListResponseInner {
     public static final String SERIALIZED_NAME_PARENT_ORDER_ID = "parentOrderId";
 
@@ -76,7 +76,7 @@ public class AccountBlockTradeListResponseInner {
     }
 
     /**
-     * Get parentOrderId
+     * parent Order Id
      *
      * @return parentOrderId
      */
@@ -96,7 +96,7 @@ public class AccountBlockTradeListResponseInner {
     }
 
     /**
-     * Get crossType
+     * cross Type
      *
      * @return crossType
      */
@@ -126,7 +126,7 @@ public class AccountBlockTradeListResponseInner {
     }
 
     /**
-     * Get legs
+     * legs
      *
      * @return legs
      */
@@ -149,7 +149,7 @@ public class AccountBlockTradeListResponseInner {
     }
 
     /**
-     * Get blockTradeSettlementKey
+     * block Trade Settlement Key
      *
      * @return blockTradeSettlementKey
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** FuturesTransferForSubAccountRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesTransferForSubAccountRequest {
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
@@ -95,7 +95,7 @@ public class FuturesTransferForSubAccountRequest {
     }
 
     /**
-     * Get asset
+     * The asset being transferred
      *
      * @return asset
      */
@@ -115,7 +115,7 @@ public class FuturesTransferForSubAccountRequest {
     }
 
     /**
-     * Get amount
+     * The amount to be transferred
      *
      * @return amount
      */
@@ -136,7 +136,10 @@ public class FuturesTransferForSubAccountRequest {
     }
 
     /**
-     * Get type
+     * 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2:
+     * transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer
+     * from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from
+     * subaccount&#39;s COIN-margined futures account to its spot account
      *
      * @return type
      */
@@ -157,11 +160,12 @@ public class FuturesTransferForSubAccountRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

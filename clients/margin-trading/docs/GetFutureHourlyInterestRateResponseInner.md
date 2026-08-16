@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**nextHourlyInterestRate** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**nextHourlyInterestRate** | **String** | next Hourly Interest Rate. |  [optional] |
 
 
 

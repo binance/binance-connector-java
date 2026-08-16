@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,26 +22,27 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
 /** QueryMarginAvailableInventoryResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginAvailableInventoryResponse {
     public static final String SERIALIZED_NAME_ASSETS = "assets";
 
     @SerializedName(SERIALIZED_NAME_ASSETS)
     @jakarta.annotation.Nullable
-    private QueryMarginAvailableInventoryResponseAssets assets;
+    private Map<String, String> assets;
 
     public static final String SERIALIZED_NAME_UPDATE_TIME = "updateTime";
 
@@ -52,24 +53,30 @@ public class QueryMarginAvailableInventoryResponse {
     public QueryMarginAvailableInventoryResponse() {}
 
     public QueryMarginAvailableInventoryResponse assets(
-            @jakarta.annotation.Nullable QueryMarginAvailableInventoryResponseAssets assets) {
+            @jakarta.annotation.Nullable Map<String, String> assets) {
         this.assets = assets;
         return this;
     }
 
+    public QueryMarginAvailableInventoryResponse putAssetsItem(String key, String assetsItem) {
+        if (this.assets == null) {
+            this.assets = new HashMap<>();
+        }
+        this.assets.put(key, assetsItem);
+        return this;
+    }
+
     /**
-     * Get assets
+     * Available inventory per asset. Keys are asset symbols, values are available amounts.
      *
      * @return assets
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public QueryMarginAvailableInventoryResponseAssets getAssets() {
+    public Map<String, String> getAssets() {
         return assets;
     }
 
-    public void setAssets(
-            @jakarta.annotation.Nullable QueryMarginAvailableInventoryResponseAssets assets) {
+    public void setAssets(@jakarta.annotation.Nullable Map<String, String> assets) {
         this.assets = assets;
     }
 
@@ -80,7 +87,7 @@ public class QueryMarginAvailableInventoryResponse {
     }
 
     /**
-     * Get updateTime
+     * update Time.
      *
      * @return updateTime
      */
@@ -189,10 +196,6 @@ public class QueryMarginAvailableInventoryResponse {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // validate the optional field `assets`
-        if (jsonObj.get("assets") != null && !jsonObj.get("assets").isJsonNull()) {
-            QueryMarginAvailableInventoryResponseAssets.validateJsonElement(jsonObj.get("assets"));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

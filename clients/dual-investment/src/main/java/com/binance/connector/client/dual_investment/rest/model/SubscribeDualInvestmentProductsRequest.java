@@ -1,6 +1,6 @@
 /*
- * Binance Dual Investment REST API
- * OpenAPI Specification for the Binance Dual Investment REST API
+ * Dual Investment REST API
+ * Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** SubscribeDualInvestmentProductsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeDualInvestmentProductsRequest {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,7 +59,7 @@ public class SubscribeDualInvestmentProductsRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_COMPOUND_PLAN)
     @jakarta.annotation.Nonnull
-    private String autoCompoundPlan;
+    private AutoCompoundPlan autoCompoundPlan;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -75,7 +75,7 @@ public class SubscribeDualInvestmentProductsRequest {
     }
 
     /**
-     * Get id
+     * get id from &#x60;/sapi/v1/dci/product/list&#x60;
      *
      * @return id
      */
@@ -96,7 +96,7 @@ public class SubscribeDualInvestmentProductsRequest {
     }
 
     /**
-     * Get orderId
+     * get orderId from &#x60;/sapi/v1/dci/product/list&#x60;
      *
      * @return orderId
      */
@@ -117,7 +117,7 @@ public class SubscribeDualInvestmentProductsRequest {
     }
 
     /**
-     * Get depositAmount
+     * the amount for subscribing
      *
      * @return depositAmount
      */
@@ -133,7 +133,7 @@ public class SubscribeDualInvestmentProductsRequest {
     }
 
     public SubscribeDualInvestmentProductsRequest autoCompoundPlan(
-            @jakarta.annotation.Nonnull String autoCompoundPlan) {
+            @jakarta.annotation.Nonnull AutoCompoundPlan autoCompoundPlan) {
         this.autoCompoundPlan = autoCompoundPlan;
         return this;
     }
@@ -145,11 +145,12 @@ public class SubscribeDualInvestmentProductsRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getAutoCompoundPlan() {
+    @Valid
+    public AutoCompoundPlan getAutoCompoundPlan() {
         return autoCompoundPlan;
     }
 
-    public void setAutoCompoundPlan(@jakarta.annotation.Nonnull String autoCompoundPlan) {
+    public void setAutoCompoundPlan(@jakarta.annotation.Nonnull AutoCompoundPlan autoCompoundPlan) {
         this.autoCompoundPlan = autoCompoundPlan;
     }
 
@@ -160,11 +161,12 @@ public class SubscribeDualInvestmentProductsRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -321,13 +323,8 @@ public class SubscribeDualInvestmentProductsRequest {
                                     + " but got `%s`",
                             jsonObj.get("orderId").toString()));
         }
-        if (!jsonObj.get("autoCompoundPlan").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `autoCompoundPlan` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("autoCompoundPlan").toString()));
-        }
+        // validate the required field `autoCompoundPlan`
+        AutoCompoundPlan.validateJsonElement(jsonObj.get("autoCompoundPlan"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

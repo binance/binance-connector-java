@@ -1,6 +1,6 @@
 /*
- * Binance VIP Loan REST API
- * OpenAPI Specification for the Binance VIP Loan REST API
+ * VIP Loan REST API
+ * Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.vip_loan.rest.model.CheckVIPLoanCollateralAccountResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanAccruedInterestResponse;
 import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanOngoingOrdersResponse;
+import com.binance.connector.client.vip_loan.rest.model.GetVIPLoanRepaymentHistoryResponse;
 import com.binance.connector.client.vip_loan.rest.model.QueryApplicationStatusResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -45,7 +46,7 @@ public class UserInformationApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/3.0.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/4.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -98,7 +99,7 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account">Check
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#check-viploan-collateral-account">Check
      *     VIP Loan Collateral Account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call checkVIPLoanCollateralAccountCall(
@@ -208,10 +209,11 @@ public class UserInformationApi {
     }
 
     /**
-     * Check VIP Loan Collateral Account (USER_DATA) VIP loan is available for VIP users only * If
-     * the login account is loan account, all collateral accounts under the loan account can be
-     * queried. * If the login account is collateral account, only the current collateral account
-     * can be queried. Weight: 6000
+     * Check VIP Loan Collateral Account (USER_DATA) VIP loan is available for VIP users only
+     * Weight(IP): 6000 Security Type: USER_DATA Notes: - If the logged-in account is a borrowing
+     * account, all collateral accounts bound to that borrowing account can be queried. - If the
+     * logged-in account is a collateral account, only collateral assets under that account can be
+     * queried.
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
@@ -227,11 +229,12 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account">Check
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#check-viploan-collateral-account">Check
      *     VIP Loan Collateral Account (USER_DATA) Documentation</a>
      */
     public ApiResponse<CheckVIPLoanCollateralAccountResponse> checkVIPLoanCollateralAccount(
-            Long orderId, Long collateralAccountId, Long recvWindow) throws ApiException {
+            Long orderId, Long collateralAccountId, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 checkVIPLoanCollateralAccountValidateBeforeCall(
                         orderId, collateralAccountId, recvWindow);
@@ -245,10 +248,11 @@ public class UserInformationApi {
      *
      * @param orderId (optional)
      * @param loanCoin (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 90 days. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -260,7 +264,7 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-accrued-interest">Get
      *     VIP Loan Accrued Interest (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getVIPLoanAccruedInterestCall(
@@ -406,16 +410,18 @@ public class UserInformationApi {
     }
 
     /**
-     * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record * If startTime and
-     * endTime are not sent, the recent 90-day data will be returned. * The max interval between
-     * startTime and endTime is 90 days. Weight: 400
+     * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record Weight(IP): 400
+     * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, recent 90-day data is returned. - The maximum interval between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; is 90 days.
      *
      * @param orderId (optional)
      * @param loanCoin (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 90 days. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetVIPLoanAccruedInterestResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -428,7 +434,7 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-accrued-interest">Get
      *     VIP Loan Accrued Interest (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetVIPLoanAccruedInterestResponse> getVIPLoanAccruedInterest(
@@ -436,9 +442,9 @@ public class UserInformationApi {
             String loanCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getVIPLoanAccruedInterestValidateBeforeCall(
@@ -455,8 +461,8 @@ public class UserInformationApi {
      * @param collateralAccountId (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param current (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -468,8 +474,8 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders">Get
-     *     VIP Loan Ongoing Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-ongoing-orders">Get
+     *     VIP Loan Ongoing Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getVIPLoanOngoingOrdersCall(
             Long orderId,
@@ -622,14 +628,15 @@ public class UserInformationApi {
     }
 
     /**
-     * Get VIP Loan Ongoing Orders(USER_DATA) VIP loan is available for VIP users only. Weight: 400
+     * Get VIP Loan Ongoing Orders (USER_DATA) VIP loan is available for VIP users only. Weight(IP):
+     * 400 Security Type: USER_DATA
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param current (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetVIPLoanOngoingOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -642,17 +649,17 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders">Get
-     *     VIP Loan Ongoing Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-ongoing-orders">Get
+     *     VIP Loan Ongoing Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetVIPLoanOngoingOrdersResponse> getVIPLoanOngoingOrders(
             Long orderId,
             Long collateralAccountId,
             String loanCoin,
             String collateralCoin,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getVIPLoanOngoingOrdersValidateBeforeCall(
@@ -669,10 +676,221 @@ public class UserInformationApi {
     }
 
     /**
+     * Build call for getVIPLoanRepaymentHistory
+     *
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 180 days. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Repayment History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-repayment-history">Get
+     *     VIP Loan Repayment History (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call getVIPLoanRepaymentHistoryCall(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/loan/vip/repay/history";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderId", orderId));
+        }
+
+        if (loanCoin != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loanCoin", loanCoin));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (current != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("current", current));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getVIPLoanRepaymentHistoryValidateBeforeCall(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            Long current,
+            Long limit,
+            Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {
+                orderId, loanCoin, startTime, endTime, current, limit, recvWindow
+            };
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "getVIPLoanRepaymentHistory",
+                                    Long.class,
+                                    String.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<UserInformationApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return getVIPLoanRepaymentHistoryCall(
+                        orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Get VIP Loan Repayment History (USER_DATA) VIP Loans are available only to VIP users.
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, recent 90-day data is returned. - The maximum interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
+     *
+     * @param orderId (optional)
+     * @param loanCoin (optional)
+     * @param startTime If both startTime and endTime are omitted, the most recent 90 days are
+     *     returned. (optional)
+     * @param endTime Maximum interval between startTime and endTime is 180 days. (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit Number of records per page. (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetVIPLoanRepaymentHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get VIP Loan Repayment History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-repayment-history">Get
+     *     VIP Loan Repayment History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetVIPLoanRepaymentHistoryResponse> getVIPLoanRepaymentHistory(
+            Long orderId,
+            String loanCoin,
+            Long startTime,
+            Long endTime,
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                getVIPLoanRepaymentHistoryValidateBeforeCall(
+                        orderId, loanCoin, startTime, endTime, current, limit, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<GetVIPLoanRepaymentHistoryResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryApplicationStatus
      *
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -684,8 +902,8 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status">Query
-     *     Application Status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#query-application-status">Query
+     *     Application Status (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryApplicationStatusCall(Long current, Long limit, Long recvWindow)
             throws ApiException {
@@ -790,10 +1008,11 @@ public class UserInformationApi {
     }
 
     /**
-     * Query Application Status(USER_DATA) Query Application Status Weight: 400
+     * Query Application Status (USER_DATA) Query Application Status Weight(UID): 400 Security Type:
+     * USER_DATA
      *
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param current Current page number, starting from 1. (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryApplicationStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -806,11 +1025,12 @@ public class UserInformationApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status">Query
-     *     Application Status(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#query-application-status">Query
+     *     Application Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryApplicationStatusResponse> queryApplicationStatus(
-            Long current, Long limit, Long recvWindow) throws ApiException {
+            @Min(1L) @Max(1000L) Long current, @Max(100L) Long limit, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryApplicationStatusValidateBeforeCall(current, limit, recvWindow);
         java.lang.reflect.Type localVarReturnType =

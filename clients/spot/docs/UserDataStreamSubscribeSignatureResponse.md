@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
-|**result** | [**SessionSubscriptionsResponseResultInner**](SessionSubscriptionsResponseResultInner.md) |  |  [optional] |
+|**result** | [**UserDataStreamSubscribeResponseResult**](UserDataStreamSubscribeResponseResult.md) |  |  [optional] |
 
 
 

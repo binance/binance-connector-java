@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -123,7 +123,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get algoId
+     * Algo order ID
      *
      * @return algoId
      */
@@ -143,7 +143,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -163,7 +163,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -183,7 +183,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get totalQty
+     * Total order quantity
      *
      * @return totalQty
      */
@@ -203,7 +203,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -223,7 +223,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get executedAmt
+     * Executed amount
      *
      * @return executedAmt
      */
@@ -243,7 +243,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -263,7 +263,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get clientAlgoId
+     * Client-defined algo order ID
      *
      * @return clientAlgoId
      */
@@ -283,7 +283,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get bookTime
+     * Order creation time
      *
      * @return bookTime
      */
@@ -303,7 +303,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get endTime
+     * End time
      *
      * @return endTime
      */
@@ -323,7 +323,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get algoStatus
+     * Algo order status
      *
      * @return algoStatus
      */
@@ -343,7 +343,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get algoType
+     * Algo order type
      *
      * @return algoType
      */
@@ -363,7 +363,7 @@ public class QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner {
     }
 
     /**
-     * Get urgency
+     * Execution urgency
      *
      * @return urgency
      */

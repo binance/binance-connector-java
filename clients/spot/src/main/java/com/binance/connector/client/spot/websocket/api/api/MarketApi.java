@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -18,6 +18,8 @@ import com.binance.connector.client.common.websocket.adapter.ConnectionInterface
 import com.binance.connector.client.common.websocket.dtos.ApiRequestWrapperDTO;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceRequest;
 import com.binance.connector.client.spot.websocket.api.model.AvgPriceResponse;
+import com.binance.connector.client.spot.websocket.api.model.BlockTradesHistoricalRequest;
+import com.binance.connector.client.spot.websocket.api.model.BlockTradesHistoricalResponse;
 import com.binance.connector.client.spot.websocket.api.model.DepthRequest;
 import com.binance.connector.client.spot.websocket.api.model.DepthResponse;
 import com.binance.connector.client.spot.websocket.api.model.KlinesRequest;
@@ -67,7 +69,8 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Current average price Get current average price for a symbol. Weight: 2
+     * Current average price Get current average price for a symbol. Weight(IP): 2 Security Type:
+     * NONE Notes: **Data Source:** Memory
      *
      * @param avgPriceRequest (required)
      * @return AvgPriceResponse
@@ -81,8 +84,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#current-average-price">WebSocket
-     *     Current average price Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#avg-price">Current
+     *     average price Documentation</a>
      */
     public CompletableFuture<AvgPriceResponse> avgPrice(AvgPriceRequest avgPriceRequest)
             throws ApiException {
@@ -128,14 +131,78 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Order book Get current order book. Note that this request returns limited market
-     * depth. If you need to continuously monitor order book updates, please consider using
-     * WebSocket Streams: * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; *
-     * &#x60;&lt;symbol&gt;@depth&#x60; You can use &#x60;depth&#x60; request together with
-     * &#x60;&lt;symbol&gt;@depth&#x60; streams to [maintain a local order
-     * book](web-socket-streams.md#how-to-manage-a-local-order-book-correctly). Weight: Adjusted
-     * based on the limit: | Limit | Weight | |:---------:|:------:| | 1–100 | 5 | | 101–500 | 25| |
-     * 501–1000 | 50 | | 1001–5000 | 250 |
+     * Historical Block Trades Get block trades. Weight(IP): 25 Security Type: NONE Notes: - Data
+     * Source: Database
+     *
+     * @param blockTradesHistoricalRequest (required)
+     * @return BlockTradesHistoricalResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Historical Block Trades </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#block-trades-historical">Historical
+     *     Block Trades Documentation</a>
+     */
+    public CompletableFuture<BlockTradesHistoricalResponse> blockTradesHistorical(
+            BlockTradesHistoricalRequest blockTradesHistoricalRequest) throws ApiException {
+        blockTradesHistoricalValidateBeforeCall(blockTradesHistoricalRequest);
+        String methodName = "/blockTrades.historical".substring(1);
+        ApiRequestWrapperDTO<BlockTradesHistoricalRequest, BlockTradesHistoricalResponse> build =
+                new ApiRequestWrapperDTO.Builder<
+                                BlockTradesHistoricalRequest, BlockTradesHistoricalResponse>()
+                        .id(getRequestID())
+                        .method(methodName)
+                        .params(blockTradesHistoricalRequest)
+                        .responseType(BlockTradesHistoricalResponse.class)
+                        .signed(false)
+                        .build();
+
+        try {
+            connection.send(build);
+        } catch (InterruptedException e) {
+            throw new ApiException(e);
+        }
+        return build.getResponseCallback();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void blockTradesHistoricalValidateBeforeCall(
+            BlockTradesHistoricalRequest blockTradesHistoricalRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<BlockTradesHistoricalRequest>> violations =
+                    validator.validate(blockTradesHistoricalRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Order book Get current order book. Note that this request returns limited market depth. If
+     * you need to continuously monitor order book updates, please consider using WebSocket Streams:
+     * * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60; * &#x60;&lt;symbol&gt;@depth&#x60; You can
+     * use &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to
+     * [maintain a local order
+     * book](/products/spot/web-socket-streams#how-to-manage-a-local-order-book-correctly). Weight:
+     * Adjusted based on the limit: |Limit|Request Weight ------|------- 1-100| 5 101-500| 25
+     * 501-1000| 50 1001-5000| 250 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @param depthRequest (required)
      * @return DepthResponse
@@ -149,8 +216,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#order-book">WebSocket
-     *     Order book Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#depth">Order
+     *     book Documentation</a>
      */
     public CompletableFuture<DepthResponse> depth(DepthRequest depthRequest) throws ApiException {
         depthValidateBeforeCall(depthRequest);
@@ -194,11 +261,23 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Klines Get klines (candlestick bars). Klines are uniquely identified by their open
-     * &amp; close time. If you need access to real-time kline updates, please consider using
-     * WebSocket Streams: * &#x60;&lt;symbol&gt;@kline_&lt;interval&gt;&#x60; If you need historical
-     * kline data, please consider using
-     * [data.binance.vision](https://github.com/binance/binance-public-data/#klines). Weight: 2
+     * Klines Get klines (candlestick bars). Klines are uniquely identified by their open &amp;
+     * close time. If you need access to real-time kline updates, please consider using WebSocket
+     * Streams: * &#x60;&lt;symbol&gt;@kline_&lt;interval&gt;&#x60; If you need historical kline
+     * data, please consider using
+     * [data.binance.vision](https://github.com/binance/binance-public-data/#klines). Weight(IP): 2
+     * Security Type: NONE Notes: **Data Source:** Database Supported kline intervals
+     * (case-sensitive): Interval | &#x60;interval&#x60; value --------- | ---------------- seconds
+     * | &#x60;1s&#x60; minutes | &#x60;1m&#x60;, &#x60;3m&#x60;, &#x60;5m&#x60;, &#x60;15m&#x60;,
+     * &#x60;30m&#x60; hours | &#x60;1h&#x60;, &#x60;2h&#x60;, &#x60;4h&#x60;, &#x60;6h&#x60;,
+     * &#x60;8h&#x60;, &#x60;12h&#x60; days | &#x60;1d&#x60;, &#x60;3d&#x60; weeks | &#x60;1w&#x60;
+     * months | &#x60;1M&#x60; **Notes:** * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, the most recent klines are returned. * Supported values for &#x60;timeZone&#x60;: *
+     * Hours and minutes (e.g. &#x60;-1:00&#x60;, &#x60;05:45&#x60;) * Only hours (e.g.
+     * &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;) * Accepted range is strictly [-12:00 to +14:00]
+     * inclusive * If &#x60;timeZone&#x60; provided, kline intervals are interpreted in that
+     * timezone instead of UTC. * Note that &#x60;startTime&#x60; and &#x60;endTime&#x60; are always
+     * interpreted in UTC, regardless of &#x60;timeZone&#x60;.
      *
      * @param klinesRequest (required)
      * @return KlinesResponse
@@ -212,8 +291,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#klines">WebSocket
-     *     Klines Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#klines">Klines
+     *     Documentation</a>
      */
     public CompletableFuture<KlinesResponse> klines(KlinesRequest klinesRequest)
             throws ApiException {
@@ -258,7 +337,8 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Query Reference Price Weight: 2
+     * Query Reference Price Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
      * @param referencePriceRequest (required)
      * @return ReferencePriceResponse
@@ -272,8 +352,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price">WebSocket
-     *     Query Reference Price Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price">Query
+     *     Reference Price Documentation</a>
      */
     public CompletableFuture<ReferencePriceResponse> referencePrice(
             ReferencePriceRequest referencePriceRequest) throws ApiException {
@@ -320,8 +400,8 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Query Reference Price Calculation Describes how reference price is calculated for a
-     * given symbol. Weight: 2
+     * Query Reference Price Calculation Query Reference Price Calculation Weight(IP): 2 Security
+     * Type: NONE Notes: **Data Source:** Memory
      *
      * @param referencePriceCalculationRequest (required)
      * @return ReferencePriceCalculationResponse
@@ -335,8 +415,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price-calculation">WebSocket
-     *     Query Reference Price Calculation Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price-calculation">Query
+     *     Reference Price Calculation Documentation</a>
      */
     public CompletableFuture<ReferencePriceCalculationResponse> referencePriceCalculation(
             ReferencePriceCalculationRequest referencePriceCalculationRequest) throws ApiException {
@@ -386,11 +466,30 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Rolling window price change statistics Get rolling window price change statistics
-     * with a custom window. This request is similar to &#x60;ticker.24hr&#x60;, but statistics are
-     * computed on demand using the arbitrary window you specify. Weight: Adjusted based on the
-     * number of requested symbols: | Symbols | Weight | |:-------:|:------:| | 1–50 | 4 per symbol
-     * | | 51–100 | 200 |
+     * Rolling window price change statistics Get rolling window price change statistics with a
+     * custom window. This request is similar to &#x60;ticker.24hr&#x60; but statistics are computed
+     * on demand using the arbitrary window you specify. **Note:** Window size precision is limited
+     * to 1 minute. While the &#x60;closeTime&#x60; is the current time of the request,
+     * &#x60;openTime&#x60; always start on a minute boundary. As such, the effective window might
+     * be up to 59999 ms wider than the requested &#x60;windowSize&#x60;. &lt;details&gt;
+     * &lt;summary&gt;Window computation example&lt;/summary&gt; For example, a request for
+     * &#x60;\&quot;windowSize\&quot;: \&quot;7d\&quot;&#x60; might result in the following window:
+     * &#x60;&#x60;&#x60;javascript { \&quot;openTime\&quot;: 1659580020000,
+     * \&quot;closeTime\&quot;: 1660184865291 } &#x60;&#x60;&#x60; Time of the request –
+     * &#x60;closeTime&#x60; – is 1660184865291 (August 11, 2022 02:27:45.291). Requested window
+     * size should put the &#x60;openTime&#x60; 7 days before that – August 4, 02:27:45.291 – but
+     * due to limited precision it ends up a bit earlier: 1659580020000 (August 4, 2022 02:27:00),
+     * exactly at the start of a minute. &lt;/details&gt; If you need to continuously monitor
+     * trading statistics, please consider using WebSocket Streams: *
+     * &#x60;&lt;symbol&gt;@ticker_&lt;window_size&gt;&#x60; or
+     * &#x60;!ticker_&lt;window-size&gt;@arr&#x60; Weight: Adjusted based on the number of requested
+     * symbols: | Symbols | Weight | |:-------:|:------:| | 1–50 | 4 per symbol | | 51–100 | 200 |
+     * Security Type: NONE Notes: **Data Source:** Database Supported window sizes: Unit |
+     * &#x60;windowSize&#x60; value ------- | ------------------ minutes | &#x60;1m&#x60;,
+     * &#x60;2m&#x60; ... &#x60;59m&#x60; hours | &#x60;1h&#x60;, &#x60;2h&#x60; ... &#x60;23h&#x60;
+     * days | &#x60;1d&#x60;, &#x60;2d&#x60; ... &#x60;7d&#x60; Notes: * Either &#x60;symbol&#x60;
+     * or &#x60;symbols&#x60; must be specified. * Maximum number of symbols in one request: 200. *
+     * Window size units cannot be combined. E.g., &lt;code&gt;1d 2h&lt;/code&gt; is not supported.
      *
      * @param tickerRequest (optional)
      * @return TickerResponse
@@ -404,8 +503,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#rolling-window-price-change-statistics">WebSocket
-     *     Rolling window price change statistics Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker">Rolling
+     *     window price change statistics Documentation</a>
      */
     public CompletableFuture<TickerResponse> ticker(TickerRequest tickerRequest)
             throws ApiException {
@@ -450,13 +549,16 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket 24hr ticker price change statistics Get 24-hour rolling window price change
-     * statistics. If you need to continuously monitor trading statistics, please consider using
-     * WebSocket Streams: * &#x60;&lt;symbol&gt;@ticker&#x60; or &#x60;!ticker@arr&#x60; *
+     * 24hr ticker price change statistics Get 24-hour rolling window price change statistics. If
+     * you need to continuously monitor trading statistics, please consider using WebSocket Streams:
+     * * &#x60;&lt;symbol&gt;@ticker&#x60; or &#x60;!ticker@arr&#x60; *
      * &#x60;&lt;symbol&gt;@miniTicker&#x60; or &#x60;!miniTicker@arr&#x60; If you need different
      * window sizes, use the &#x60;ticker&#x60; request. Weight: Adjusted based on the number of
-     * requested symbols: | Symbols | Weight | |:-----------:|:------:| | 1–20 | 2 | | 21–100 | 40 |
-     * | 101 or more | 80 | | all symbols | 80 |
+     * requested symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| |
+     * |omitted| 80| |symbols| 1-20 |2| | | 21-100 |40| | | 101+ |80| | |omitted| 80| Security Type:
+     * NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and &#x60;symbols&#x60;
+     * cannot be used together. * If no symbol is specified, returns information about all symbols
+     * currently trading on the exchange.
      *
      * @param ticker24hrRequest (optional)
      * @return Ticker24hrResponse
@@ -470,8 +572,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#24hr-ticker-price-change-statistics">WebSocket
-     *     24hr ticker price change statistics Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker24hr">24hr
+     *     ticker price change statistics Documentation</a>
      */
     public CompletableFuture<Ticker24hrResponse> ticker24hr(Ticker24hrRequest ticker24hrRequest)
             throws ApiException {
@@ -518,11 +620,13 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Symbol order book ticker Get the current best price and quantity on the order book.
-     * If you need access to real-time order book ticker updates, please consider using WebSocket
-     * Streams: * &#x60;&lt;symbol&gt;@bookTicker&#x60; Weight: Adjusted based on the number of
-     * requested symbols: | Parameter | Weight | | --------- |:------:| | &#x60;symbol&#x60; | 2 | |
-     * &#x60;symbols&#x60; | 4 | | none | 4 |
+     * Symbol order book ticker Get the current best price and quantity on the order book. If you
+     * need access to real-time order book ticker updates, please consider using WebSocket Streams:
+     * * &#x60;&lt;symbol&gt;@bookTicker&#x60; Weight: Adjusted based on the number of requested
+     * symbols: |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4|
+     * |symbols| Any |4| Security Type: NONE Notes: **Data Source:** Memory Notes: *
+     * &#x60;symbol&#x60; and &#x60;symbols&#x60; cannot be used together. * If no symbol is
+     * specified, returns information about all symbols currently trading on the exchange.
      *
      * @param tickerBookRequest (optional)
      * @return TickerBookResponse
@@ -536,8 +640,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#symbol-order-book-ticker">WebSocket
-     *     Symbol order book ticker Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-book">Symbol
+     *     order book ticker Documentation</a>
      */
     public CompletableFuture<TickerBookResponse> tickerBook(TickerBookRequest tickerBookRequest)
             throws ApiException {
@@ -584,11 +688,13 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Symbol price ticker Get the latest market price for a symbol. If you need access to
-     * real-time price updates, please consider using WebSocket Streams: *
-     * &#x60;&lt;symbol&gt;@aggTrade&#x60; * &#x60;&lt;symbol&gt;@trade&#x60; Weight: Adjusted based
-     * on the number of requested symbols: | Parameter | Weight | | --------- |:------:| |
-     * &#x60;symbol&#x60; | 2 | | &#x60;symbols&#x60; | 4 | | none | 4 |
+     * Symbol price ticker Get the latest market price for a symbol. If you need access to real-time
+     * price updates, please consider using WebSocket Streams: * &#x60;&lt;symbol&gt;@aggTrade&#x60;
+     * * &#x60;&lt;symbol&gt;@trade&#x60; Weight: Adjusted based on the number of requested symbols:
+     * |Parameter|Symbols Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4| |symbols| Any
+     * |4| Security Type: NONE Notes: **Data Source:** Memory Notes: * &#x60;symbol&#x60; and
+     * &#x60;symbols&#x60; cannot be used together. * If no symbol is specified, returns information
+     * about all symbols currently trading on the exchange.
      *
      * @param tickerPriceRequest (optional)
      * @return TickerPriceResponse
@@ -602,8 +708,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#symbol-price-ticker">WebSocket
-     *     Symbol price ticker Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-price">Symbol
+     *     price ticker Documentation</a>
      */
     public CompletableFuture<TickerPriceResponse> tickerPrice(TickerPriceRequest tickerPriceRequest)
             throws ApiException {
@@ -650,9 +756,12 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Trading Day Ticker Price change statistics for a trading day. Weight: 4 for each
-     * requested &lt;tt&gt;symbol&lt;/tt&gt;. &lt;br/&gt;&lt;br/&gt; The weight for this request
-     * will cap at 200 once the number of &#x60;symbols&#x60; in the request is more than 50.
+     * Trading Day Ticker Price change statistics for a trading day. Weight: 4 for each requested
+     * symbol regardless of windowSize. The weight for this request will cap at 200 once the number
+     * of symbols in the request is more than 50. Security Type: NONE Notes: **Data Source:**
+     * Database **Notes:** * Supported values for &#x60;timeZone&#x60;: * Hours and minutes (e.g.
+     * &#x60;-1:00&#x60;, &#x60;05:45&#x60;) * Only hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;,
+     * &#x60;4&#x60;)
      *
      * @param tickerTradingDayRequest (optional)
      * @return TickerTradingDayResponse
@@ -666,8 +775,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#trading-day-ticker">WebSocket
-     *     Trading Day Ticker Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-trading-day">Trading
+     *     Day Ticker Documentation</a>
      */
     public CompletableFuture<TickerTradingDayResponse> tickerTradingDay(
             TickerTradingDayRequest tickerTradingDayRequest) throws ApiException {
@@ -715,13 +824,20 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Aggregate trades Get aggregate trades. An *aggregate trade* (aggtrade) represents
-     * one or more individual trades. Trades that fill at the same time, from the same taker order,
-     * with the same price – those trades are collected into an aggregate trade with total quantity
-     * of the individual trades. If you need access to real-time trading activity, please consider
-     * using WebSocket Streams: * &#x60;&lt;symbol&gt;@aggTrade&#x60; If you need historical
-     * aggregate trade data, please consider using
-     * [data.binance.vision](https://github.com/binance/binance-public-data/#aggtrades). Weight: 4
+     * Aggregate trades Get aggregate trades. An *aggregate trade* (aggtrade) represents one or more
+     * individual trades. Trades that fill at the same time, from the same taker order, with the
+     * same price – those trades are collected into an aggregate trade with total quantity of the
+     * individual trades. If you need access to real-time trading activity, please consider using
+     * WebSocket Streams: * &#x60;&lt;symbol&gt;@aggTrade&#x60; If you need historical aggregate
+     * trade data, please consider using
+     * [data.binance.vision](https://github.com/binance/binance-public-data/#aggtrades). Weight(IP):
+     * 4 Security Type: NONE Notes: **Data Source:** Database - If &#x60;fromId&#x60; is specified,
+     * return aggtrades with aggregate trade ID &gt;&#x3D; &#x60;fromId&#x60;. Use
+     * &#x60;fromId&#x60; and &#x60;limit&#x60; to page through all aggtrades. - If
+     * &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, aggtrades are filtered by
+     * execution time (&#x60;T&#x60;). &#x60;fromId&#x60; cannot be used together with
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If no condition is specified, the most
+     * recent aggregate trades are returned.
      *
      * @param tradesAggregateRequest (required)
      * @return TradesAggregateResponse
@@ -735,8 +851,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#aggregate-trades">WebSocket
-     *     Aggregate trades Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-aggregate">Aggregate
+     *     trades Documentation</a>
      */
     public CompletableFuture<TradesAggregateResponse> tradesAggregate(
             TradesAggregateRequest tradesAggregateRequest) throws ApiException {
@@ -783,7 +899,9 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Historical trades Get historical trades. Weight: 25
+     * Historical trades Get historical trades. Weight(IP): 25 Security Type: NONE Notes: **Data
+     * Source:** Database Notes: * If &#x60;fromId&#x60; is not specified, the most recent trades
+     * are returned.
      *
      * @param tradesHistoricalRequest (required)
      * @return TradesHistoricalResponse
@@ -797,8 +915,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#historical-trades">WebSocket
-     *     Historical trades Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-historical">Historical
+     *     trades Documentation</a>
      */
     public CompletableFuture<TradesHistoricalResponse> tradesHistorical(
             TradesHistoricalRequest tradesHistoricalRequest) throws ApiException {
@@ -846,8 +964,9 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket Recent trades Get recent trades. If you need access to real-time trading activity,
-     * please consider using WebSocket Streams: * &#x60;&lt;symbol&gt;@trade&#x60; Weight: 25
+     * Recent trades Get recent trades. If you need access to real-time trading activity, please
+     * consider using WebSocket Streams: * &#x60;&lt;symbol&gt;@trade&#x60; Weight(IP): 25 Security
+     * Type: NONE Notes: **Data Source:** Memory
      *
      * @param tradesRecentRequest (required)
      * @return TradesRecentResponse
@@ -861,8 +980,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#recent-trades">WebSocket
-     *     Recent trades Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-recent">Recent
+     *     trades Documentation</a>
      */
     public CompletableFuture<TradesRecentResponse> tradesRecent(
             TradesRecentRequest tradesRecentRequest) throws ApiException {
@@ -909,9 +1028,16 @@ public class MarketApi {
     }
 
     /**
-     * WebSocket UI Klines Get klines (candlestick bars) optimized for presentation. This request is
-     * similar to &#x60;klines&#x60;, having the same parameters and response. &#x60;uiKlines&#x60;
-     * return modified kline data, optimized for presentation of candlestick charts. Weight: 2
+     * UI Klines Get klines (candlestick bars) optimized for presentation. This request is similar
+     * to &#x60;klines&#x60;, having the same parameters and response. &#x60;uiKlines&#x60; return
+     * modified kline data, optimized for presentation of candlestick charts. Weight(IP): 2 Security
+     * Type: NONE Notes: **Data Source:** Database - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, the most recent klines are returned. - Supported values for
+     * &#x60;timeZone&#x60;: - Hours and minutes (e.g. &#x60;-1:00&#x60;, &#x60;05:45&#x60;) - Only
+     * hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;) - Accepted range is strictly [-12:00
+     * to +14:00] inclusive - If &#x60;timeZone&#x60; provided, kline intervals are interpreted in
+     * that timezone instead of UTC. - Note that &#x60;startTime&#x60; and &#x60;endTime&#x60; are
+     * always interpreted in UTC, regardless of &#x60;timeZone&#x60;.
      *
      * @param uiKlinesRequest (required)
      * @return UiKlinesResponse
@@ -925,8 +1051,8 @@ public class MarketApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#ui-klines">WebSocket
-     *     UI Klines Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ui-klines">UI
+     *     Klines Documentation</a>
      */
     public CompletableFuture<UiKlinesResponse> uiKlines(UiKlinesRequest uiKlinesRequest)
             throws ApiException {

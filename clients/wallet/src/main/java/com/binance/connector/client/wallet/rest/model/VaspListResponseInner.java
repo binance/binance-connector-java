@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** VaspListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class VaspListResponseInner {
     public static final String SERIALIZED_NAME_VASP_NAME = "vaspName";
 
@@ -47,6 +47,12 @@ public class VaspListResponseInner {
     @SerializedName(SERIALIZED_NAME_VASP_CODE)
     @jakarta.annotation.Nullable
     private String vaspCode;
+
+    public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
+
+    @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+    @jakarta.annotation.Nullable
+    private String identifier;
 
     public VaspListResponseInner() {}
 
@@ -88,6 +94,25 @@ public class VaspListResponseInner {
         this.vaspCode = vaspCode;
     }
 
+    public VaspListResponseInner identifier(@jakarta.annotation.Nullable String identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * For populating the &#x60;vasp&#x60; field in the deposit/withdrawal questionnaire
+     *
+     * @return identifier
+     */
+    @jakarta.annotation.Nullable
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(@jakarta.annotation.Nullable String identifier) {
+        this.identifier = identifier;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -98,12 +123,13 @@ public class VaspListResponseInner {
         }
         VaspListResponseInner vaspListResponseInner = (VaspListResponseInner) o;
         return Objects.equals(this.vaspName, vaspListResponseInner.vaspName)
-                && Objects.equals(this.vaspCode, vaspListResponseInner.vaspCode);
+                && Objects.equals(this.vaspCode, vaspListResponseInner.vaspCode)
+                && Objects.equals(this.identifier, vaspListResponseInner.identifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vaspName, vaspCode);
+        return Objects.hash(vaspName, vaspCode, identifier);
     }
 
     @Override
@@ -112,6 +138,7 @@ public class VaspListResponseInner {
         sb.append("class VaspListResponseInner {\n");
         sb.append("		vaspName: ").append(toIndentedString(vaspName)).append("\n");
         sb.append("		vaspCode: ").append(toIndentedString(vaspCode)).append("\n");
+        sb.append("		identifier: ").append(toIndentedString(identifier)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -127,6 +154,10 @@ public class VaspListResponseInner {
         String vaspCodeValueAsString = "";
         vaspCodeValueAsString = vaspCodeValue.toString();
         sb.append("vaspCode=").append(urlEncode(vaspCodeValueAsString)).append("");
+        Object identifierValue = getIdentifier();
+        String identifierValueAsString = "";
+        identifierValueAsString = identifierValue.toString();
+        sb.append("identifier=").append(urlEncode(identifierValueAsString)).append("");
         return sb.toString();
     }
 
@@ -157,6 +188,7 @@ public class VaspListResponseInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("vaspName");
         openapiFields.add("vaspCode");
+        openapiFields.add("identifier");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -195,6 +227,14 @@ public class VaspListResponseInner {
                             "Expected the field `vaspCode` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("vaspCode").toString()));
+        }
+        if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull())
+                && !jsonObj.get("identifier").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `identifier` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("identifier").toString()));
         }
     }
 

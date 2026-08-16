@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCurrentOpenOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentOpenOrderResponse {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -96,17 +96,17 @@ public class QueryCurrentOpenOrderResponse {
     @jakarta.annotation.Nullable
     private String side;
 
-    public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
-
-    @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
-    @jakarta.annotation.Nullable
-    private String positionSide;
-
     public static final String SERIALIZED_NAME_STATUS = "status";
 
     @SerializedName(SERIALIZED_NAME_STATUS)
     @jakarta.annotation.Nullable
     private String status;
+
+    public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
+
+    @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
+    @jakarta.annotation.Nullable
+    private String positionSide;
 
     public static final String SERIALIZED_NAME_STOP_PRICE = "stopPrice";
 
@@ -201,7 +201,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -221,7 +221,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order Id.
      *
      * @return clientOrderId
      */
@@ -240,7 +240,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -260,7 +260,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -279,7 +279,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -298,7 +298,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -317,7 +317,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -336,7 +336,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -356,7 +356,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -375,7 +375,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -388,33 +388,13 @@ public class QueryCurrentOpenOrderResponse {
         this.side = side;
     }
 
-    public QueryCurrentOpenOrderResponse positionSide(
-            @jakarta.annotation.Nullable String positionSide) {
-        this.positionSide = positionSide;
-        return this;
-    }
-
-    /**
-     * Get positionSide
-     *
-     * @return positionSide
-     */
-    @jakarta.annotation.Nullable
-    public String getPositionSide() {
-        return positionSide;
-    }
-
-    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
-        this.positionSide = positionSide;
-    }
-
     public QueryCurrentOpenOrderResponse status(@jakarta.annotation.Nullable String status) {
         this.status = status;
         return this;
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -427,13 +407,33 @@ public class QueryCurrentOpenOrderResponse {
         this.status = status;
     }
 
+    public QueryCurrentOpenOrderResponse positionSide(
+            @jakarta.annotation.Nullable String positionSide) {
+        this.positionSide = positionSide;
+        return this;
+    }
+
+    /**
+     * Position Side.
+     *
+     * @return positionSide
+     */
+    @jakarta.annotation.Nullable
+    public String getPositionSide() {
+        return positionSide;
+    }
+
+    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
+        this.positionSide = positionSide;
+    }
+
     public QueryCurrentOpenOrderResponse stopPrice(@jakarta.annotation.Nullable String stopPrice) {
         this.stopPrice = stopPrice;
         return this;
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -453,7 +453,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -472,7 +472,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -491,7 +491,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get time
+     * order time
      *
      * @return time
      */
@@ -511,7 +511,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -530,7 +530,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get type
+     * Type.
      *
      * @return type
      */
@@ -550,7 +550,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -569,7 +569,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -588,7 +588,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * Update Time.
      *
      * @return updateTime
      */
@@ -608,7 +608,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -628,7 +628,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -648,7 +648,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -668,7 +668,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -689,7 +689,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -722,8 +722,8 @@ public class QueryCurrentOpenOrderResponse {
                 && Objects.equals(this.price, queryCurrentOpenOrderResponse.price)
                 && Objects.equals(this.reduceOnly, queryCurrentOpenOrderResponse.reduceOnly)
                 && Objects.equals(this.side, queryCurrentOpenOrderResponse.side)
-                && Objects.equals(this.positionSide, queryCurrentOpenOrderResponse.positionSide)
                 && Objects.equals(this.status, queryCurrentOpenOrderResponse.status)
+                && Objects.equals(this.positionSide, queryCurrentOpenOrderResponse.positionSide)
                 && Objects.equals(this.stopPrice, queryCurrentOpenOrderResponse.stopPrice)
                 && Objects.equals(this.closePosition, queryCurrentOpenOrderResponse.closePosition)
                 && Objects.equals(this.symbol, queryCurrentOpenOrderResponse.symbol)
@@ -755,8 +755,8 @@ public class QueryCurrentOpenOrderResponse {
                 price,
                 reduceOnly,
                 side,
-                positionSide,
                 status,
+                positionSide,
                 stopPrice,
                 closePosition,
                 symbol,
@@ -787,8 +787,8 @@ public class QueryCurrentOpenOrderResponse {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
-        sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
+        sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
@@ -852,14 +852,14 @@ public class QueryCurrentOpenOrderResponse {
         String sideValueAsString = "";
         sideValueAsString = sideValue.toString();
         sb.append("side=").append(urlEncode(sideValueAsString)).append("");
-        Object positionSideValue = getPositionSide();
-        String positionSideValueAsString = "";
-        positionSideValueAsString = positionSideValue.toString();
-        sb.append("positionSide=").append(urlEncode(positionSideValueAsString)).append("");
         Object statusValue = getStatus();
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
         sb.append("status=").append(urlEncode(statusValueAsString)).append("");
+        Object positionSideValue = getPositionSide();
+        String positionSideValueAsString = "";
+        positionSideValueAsString = positionSideValue.toString();
+        sb.append("positionSide=").append(urlEncode(positionSideValueAsString)).append("");
         Object stopPriceValue = getStopPrice();
         String stopPriceValueAsString = "";
         stopPriceValueAsString = stopPriceValue.toString();
@@ -956,8 +956,8 @@ public class QueryCurrentOpenOrderResponse {
         openapiFields.add("price");
         openapiFields.add("reduceOnly");
         openapiFields.add("side");
-        openapiFields.add("positionSide");
         openapiFields.add("status");
+        openapiFields.add("positionSide");
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
         openapiFields.add("symbol");
@@ -1060,14 +1060,6 @@ public class QueryCurrentOpenOrderResponse {
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
-        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
-                && !jsonObj.get("positionSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `positionSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("positionSide").toString()));
-        }
         if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull())
                 && !jsonObj.get("status").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1075,6 +1067,14 @@ public class QueryCurrentOpenOrderResponse {
                             "Expected the field `status` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("status").toString()));
+        }
+        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
+                && !jsonObj.get("positionSide").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `positionSide` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("positionSide").toString()));
         }
         if ((jsonObj.get("stopPrice") != null && !jsonObj.get("stopPrice").isJsonNull())
                 && !jsonObj.get("stopPrice").isJsonPrimitive()) {

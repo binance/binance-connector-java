@@ -13,7 +13,7 @@ All URIs are relative to *https://fapi.binance.com*
 
 Classic Portfolio Margin Account Information (USER_DATA)
 
-Get Classic Portfolio Margin current account information.   * maxWithdrawAmount is for asset transfer out to the spot wallet.  Weight: 5
+Get Classic Portfolio Margin current account information.  Weight(IP): 5  Security Type: USER_DATA  Notes: - maxWithdrawAmount is for asset transfer out to the spot wallet.
 
 ### Example
 ```java
@@ -30,8 +30,8 @@ public class Example {
     defaultClient.setBasePath("https://fapi.binance.com");
 
     PortfolioMarginEndpointsApi apiInstance = new PortfolioMarginEndpointsApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String asset = "BTC"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       ClassicPortfolioMarginAccountInformationResponse result = apiInstance.classicPortfolioMarginAccountInformation(asset, recvWindow);
       System.out.println(result);

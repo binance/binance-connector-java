@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetPayTradeHistoryResponseDataInnerPayerInfo */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     public static final String SERIALIZED_NAME_NAME = "name";
 
@@ -63,7 +63,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     }
 
     /**
-     * Get name
+     * Nickname or merchant name.
      *
      * @return name
      */
@@ -83,7 +83,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     }
 
     /**
-     * Get type
+     * Account type: USER for personal, MERCHANT for merchant.
      *
      * @return type
      */
@@ -103,7 +103,7 @@ public class GetPayTradeHistoryResponseDataInnerPayerInfo {
     }
 
     /**
-     * Get binanceId
+     * Binance UID.
      *
      * @return binanceId
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelHashrateResaleConfigurationRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelHashrateResaleConfigurationRequest {
     public static final String SERIALIZED_NAME_CONFIG_ID = "configId";
 
@@ -63,7 +63,7 @@ public class CancelHashrateResaleConfigurationRequest {
     }
 
     /**
-     * Get configId
+     * Mining ID
      *
      * @return configId
      */
@@ -84,7 +84,7 @@ public class CancelHashrateResaleConfigurationRequest {
     }
 
     /**
-     * Get userName
+     * Mining Account
      *
      * @return userName
      */
@@ -105,11 +105,12 @@ public class CancelHashrateResaleConfigurationRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

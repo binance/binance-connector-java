@@ -4,26 +4,26 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**claimBoostRewards**](SolStakingApi.md#claimBoostRewards) | **POST** /sapi/v1/sol-staking/sol/claim | Claim Boost Rewards(TRADE) |
-| [**getBnsolRateHistory**](SolStakingApi.md#getBnsolRateHistory) | **GET** /sapi/v1/sol-staking/sol/history/rateHistory | Get BNSOL Rate History(USER_DATA) |
-| [**getBnsolRewardsHistory**](SolStakingApi.md#getBnsolRewardsHistory) | **GET** /sapi/v1/sol-staking/sol/history/bnsolRewardsHistory | Get BNSOL rewards history(USER_DATA) |
-| [**getBoostRewardsHistory**](SolStakingApi.md#getBoostRewardsHistory) | **GET** /sapi/v1/sol-staking/sol/history/boostRewardsHistory | Get Boost Rewards History(USER_DATA) |
-| [**getSolRedemptionHistory**](SolStakingApi.md#getSolRedemptionHistory) | **GET** /sapi/v1/sol-staking/sol/history/redemptionHistory | Get SOL redemption history(USER_DATA) |
-| [**getSolStakingHistory**](SolStakingApi.md#getSolStakingHistory) | **GET** /sapi/v1/sol-staking/sol/history/stakingHistory | Get SOL staking history(USER_DATA) |
-| [**getSolStakingQuotaDetails**](SolStakingApi.md#getSolStakingQuotaDetails) | **GET** /sapi/v1/sol-staking/sol/quota | Get SOL staking quota details(USER_DATA) |
-| [**getUnclaimedRewards**](SolStakingApi.md#getUnclaimedRewards) | **GET** /sapi/v1/sol-staking/sol/history/unclaimedRewards | Get Unclaimed Rewards(USER_DATA) |
-| [**redeemSol**](SolStakingApi.md#redeemSol) | **POST** /sapi/v1/sol-staking/sol/redeem | Redeem SOL(TRADE) |
-| [**solStakingAccount**](SolStakingApi.md#solStakingAccount) | **GET** /sapi/v1/sol-staking/account | SOL Staking account(USER_DATA) |
-| [**subscribeSolStaking**](SolStakingApi.md#subscribeSolStaking) | **POST** /sapi/v1/sol-staking/sol/stake | Subscribe SOL Staking(TRADE) |
+| [**claimBoostRewards**](SolStakingApi.md#claimBoostRewards) | **POST** /sapi/v1/sol-staking/sol/claim | Claim Boost Rewards (TRADE) |
+| [**getBnsolRateHistory**](SolStakingApi.md#getBnsolRateHistory) | **GET** /sapi/v1/sol-staking/sol/history/rateHistory | Get BNSOL Rate History (USER_DATA) |
+| [**getBnsolRewardsHistory**](SolStakingApi.md#getBnsolRewardsHistory) | **GET** /sapi/v1/sol-staking/sol/history/bnsolRewardsHistory | Get BNSOL rewards history (USER_DATA) |
+| [**getBoostRewardsHistory**](SolStakingApi.md#getBoostRewardsHistory) | **GET** /sapi/v1/sol-staking/sol/history/boostRewardsHistory | Get Boost Rewards History (USER_DATA) |
+| [**getSolRedemptionHistory**](SolStakingApi.md#getSolRedemptionHistory) | **GET** /sapi/v1/sol-staking/sol/history/redemptionHistory | Get SOL redemption history (USER_DATA) |
+| [**getSolStakingHistory**](SolStakingApi.md#getSolStakingHistory) | **GET** /sapi/v1/sol-staking/sol/history/stakingHistory | Get SOL staking history (USER_DATA) |
+| [**getSolStakingQuotaDetails**](SolStakingApi.md#getSolStakingQuotaDetails) | **GET** /sapi/v1/sol-staking/sol/quota | Get SOL staking quota details (USER_DATA) |
+| [**getUnclaimedRewards**](SolStakingApi.md#getUnclaimedRewards) | **GET** /sapi/v1/sol-staking/sol/history/unclaimedRewards | Get Unclaimed Rewards (USER_DATA) |
+| [**redeemSol**](SolStakingApi.md#redeemSol) | **POST** /sapi/v1/sol-staking/sol/redeem | Redeem SOL (TRADE) |
+| [**solStakingAccount**](SolStakingApi.md#solStakingAccount) | **GET** /sapi/v1/sol-staking/account | SOL Staking account (USER_DATA) |
+| [**subscribeSolStaking**](SolStakingApi.md#subscribeSolStaking) | **POST** /sapi/v1/sol-staking/sol/stake | Subscribe SOL Staking (TRADE) |
 
 
 <a id="claimBoostRewards"></a>
 # **claimBoostRewards**
 > ClaimBoostRewardsResponse claimBoostRewards(claimBoostRewardsRequest)
 
-Claim Boost Rewards(TRADE)
+Claim Boost Rewards (TRADE)
 
-Claim Boost APR Airdrop Rewards  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Claim Boost APR Airdrop Rewards  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -59,7 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **claimBoostRewardsRequest** | [**ClaimBoostRewardsRequest**](ClaimBoostRewardsRequest.md)|  | |
+| **claimBoostRewardsRequest** | [**ClaimBoostRewardsRequest**](ClaimBoostRewardsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -83,9 +83,9 @@ No authorization required
 # **getBnsolRateHistory**
 > GetBnsolRateHistoryResponse getBnsolRateHistory(startTime, endTime, current, size, recvWindow)
 
-Get BNSOL Rate History(USER_DATA)
+Get BNSOL Rate History (USER_DATA)
 
-Get BNSOL Rate History  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BNSOL Rate History  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -102,11 +102,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       GetBnsolRateHistoryResponse result = apiInstance.getBnsolRateHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -127,9 +127,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -153,9 +153,9 @@ No authorization required
 # **getBnsolRewardsHistory**
 > GetBnsolRewardsHistoryResponse getBnsolRewardsHistory(startTime, endTime, current, size, recvWindow)
 
-Get BNSOL rewards history(USER_DATA)
+Get BNSOL rewards history (USER_DATA)
 
-Get BNSOL rewards history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get BNSOL rewards history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -172,11 +172,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetBnsolRewardsHistoryResponse result = apiInstance.getBnsolRewardsHistory(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -197,9 +197,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -223,9 +223,9 @@ No authorization required
 # **getBoostRewardsHistory**
 > GetBoostRewardsHistoryResponse getBoostRewardsHistory(type, startTime, endTime, current, size, recvWindow)
 
-Get Boost Rewards History(USER_DATA)
+Get Boost Rewards History (USER_DATA)
 
-Get Boost rewards history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Boost rewards history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -242,12 +242,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    String type = "type_example"; // String | \"CLAIM\", \"DISTRIBUTE\", default \"CLAIM\"
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    OrderType type = OrderType.fromValue("CLAIM"); // OrderType | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetBoostRewardsHistoryResponse result = apiInstance.getBoostRewardsHistory(type, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -266,12 +266,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | **String**| \&quot;CLAIM\&quot;, \&quot;DISTRIBUTE\&quot;, default \&quot;CLAIM\&quot; | |
+| **type** | [**OrderType**](.md)|  | [default to CLAIM] [enum: CLAIM, DISTRIBUTE] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -295,9 +295,9 @@ No authorization required
 # **getSolRedemptionHistory**
 > GetSolRedemptionHistoryResponse getSolRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow)
 
-Get SOL redemption history(USER_DATA)
+Get SOL redemption history (USER_DATA)
 
-Get SOL redemption history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get SOL redemption history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -314,12 +314,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long redeemId = 56L; // Long | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long redeemId = 1234567L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetSolRedemptionHistoryResponse result = apiInstance.getSolRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -341,9 +341,9 @@ public class Example {
 | **redeemId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -367,9 +367,9 @@ No authorization required
 # **getSolStakingHistory**
 > GetSolStakingHistoryResponse getSolStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow)
 
-Get SOL staking history(USER_DATA)
+Get SOL staking history (USER_DATA)
 
-Get SOL staking history  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get SOL staking history  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -386,12 +386,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long purchaseId = 56L; // Long | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    Long purchaseId = 1234567L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetSolStakingHistoryResponse result = apiInstance.getSolStakingHistory(purchaseId, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -413,9 +413,9 @@ public class Example {
 | **purchaseId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -439,9 +439,9 @@ No authorization required
 # **getSolStakingQuotaDetails**
 > GetSolStakingQuotaDetailsResponse getSolStakingQuotaDetails(recvWindow)
 
-Get SOL staking quota details(USER_DATA)
+Get SOL staking quota details (USER_DATA)
 
-Get SOL staking quota  Weight: 150
+Get SOL staking quota  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -458,7 +458,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       GetSolStakingQuotaDetailsResponse result = apiInstance.getSolStakingQuotaDetails(recvWindow);
       System.out.println(result);
@@ -477,7 +477,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -501,9 +501,9 @@ No authorization required
 # **getUnclaimedRewards**
 > GetUnclaimedRewardsResponse getUnclaimedRewards(recvWindow)
 
-Get Unclaimed Rewards(USER_DATA)
+Get Unclaimed Rewards (USER_DATA)
 
-Get Unclaimed rewards  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 150
+Get Unclaimed rewards  Weight(IP): 150  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -520,7 +520,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetUnclaimedRewardsResponse result = apiInstance.getUnclaimedRewards(recvWindow);
       System.out.println(result);
@@ -539,7 +539,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -563,9 +563,9 @@ No authorization required
 # **redeemSol**
 > RedeemSolResponse redeemSol(redeemSolRequest)
 
-Redeem SOL(TRADE)
+Redeem SOL (TRADE)
 
-Redeem BNSOL get SOL  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Redeem BNSOL get SOL  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -625,9 +625,9 @@ No authorization required
 # **solStakingAccount**
 > SolStakingAccountResponse solStakingAccount(recvWindow)
 
-SOL Staking account(USER_DATA)
+SOL Staking account (USER_DATA)
 
-SOL Staking account  Weight: 150
+SOL Staking account  Weight(IP): 150  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -644,7 +644,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SolStakingApi apiInstance = new SolStakingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       SolStakingAccountResponse result = apiInstance.solStakingAccount(recvWindow);
       System.out.println(result);
@@ -663,7 +663,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -687,9 +687,9 @@ No authorization required
 # **subscribeSolStaking**
 > SubscribeSolStakingResponse subscribeSolStaking(subscribeSolStakingRequest)
 
-Subscribe SOL Staking(TRADE)
+Subscribe SOL Staking (TRADE)
 
-Subscribe SOL Staking  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 150
+Subscribe SOL Staking  Weight(IP): 150  Security Type: TRADE  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java

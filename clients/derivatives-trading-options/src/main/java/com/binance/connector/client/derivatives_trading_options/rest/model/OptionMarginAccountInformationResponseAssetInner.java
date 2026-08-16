@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** OptionMarginAccountInformationResponseAssetInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionMarginAccountInformationResponseAssetInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -93,7 +93,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get asset
+     * asset
      *
      * @return asset
      */
@@ -113,7 +113,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get marginBalance
+     * margin Balance
      *
      * @return marginBalance
      */
@@ -133,7 +133,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get equity
+     * equity
      *
      * @return equity
      */
@@ -153,7 +153,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get available
+     * available
      *
      * @return available
      */
@@ -173,7 +173,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get initialMargin
+     * initial Margin
      *
      * @return initialMargin
      */
@@ -193,7 +193,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get maintMargin
+     * maint Margin
      *
      * @return maintMargin
      */
@@ -213,7 +213,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get unrealizedPNL
+     * unrealized PNL
      *
      * @return unrealizedPNL
      */
@@ -233,7 +233,7 @@ public class OptionMarginAccountInformationResponseAssetInner {
     }
 
     /**
-     * Get adjustedEquity
+     * adjusted Equity
      *
      * @return adjustedEquity
      */

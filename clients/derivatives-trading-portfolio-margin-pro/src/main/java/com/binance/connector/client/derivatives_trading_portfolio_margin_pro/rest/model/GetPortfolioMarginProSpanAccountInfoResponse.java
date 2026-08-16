@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** GetPortfolioMarginProSpanAccountInfoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPortfolioMarginProSpanAccountInfoResponse {
     public static final String SERIALIZED_NAME_UNI_M_M_R = "uniMMR";
 
@@ -106,7 +106,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get uniMMR
+     * uni MMR.
      *
      * @return uniMMR
      */
@@ -126,7 +126,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get accountEquity
+     * Account equity, unit：USD
      *
      * @return accountEquity
      */
@@ -146,7 +146,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get actualEquity
+     * Actual equity, unit：USD
      *
      * @return actualEquity
      */
@@ -166,7 +166,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get accountMaintMargin
+     * Account maintenance margin, unit：USD
      *
      * @return accountMaintMargin
      */
@@ -222,7 +222,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get marginMM
+     * margin MM.
      *
      * @return marginMM
      */
@@ -242,7 +242,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get otherMM
+     * other MM.
      *
      * @return otherMM
      */
@@ -262,7 +262,9 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get accountStatus
+     * Classic Portfolio margin account status:\&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;,
+     * \&quot;SUPPLY_MARGIN\&quot;, \&quot;REDUCE_ONLY\&quot;, \&quot;ACTIVE_LIQUIDATION\&quot;,
+     * \&quot;FORCE_LIQUIDATION\&quot;, \&quot;BANKRUPTED\&quot;
      *
      * @return accountStatus
      */
@@ -282,7 +284,7 @@ public class GetPortfolioMarginProSpanAccountInfoResponse {
     }
 
     /**
-     * Get accountType
+     * PM_1 for classic PM, PM_2 for PM, PM_3 for PM Pro(SPAN)
      *
      * @return accountType
      */

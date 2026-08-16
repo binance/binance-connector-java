@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_COMMISSION = "commission";
 
@@ -111,7 +111,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Commission.
      *
      * @return commission
      */
@@ -131,7 +131,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission Asset.
      *
      * @return commissionAsset
      */
@@ -150,7 +150,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * ID.
      *
      * @return id
      */
@@ -170,7 +170,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get isBestMatch
+     * Is Best Match.
      *
      * @return isBestMatch
      */
@@ -190,7 +190,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get isBuyer
+     * Is Buyer.
      *
      * @return isBuyer
      */
@@ -210,7 +210,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get isMaker
+     * Is Maker.
      *
      * @return isMaker
      */
@@ -229,7 +229,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -248,7 +248,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -267,7 +267,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -286,7 +286,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -305,7 +305,7 @@ public class MarginAccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */

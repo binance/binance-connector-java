@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** FlexibleLoanAdjustLtvRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FlexibleLoanAdjustLtvRequest {
     public static final String SERIALIZED_NAME_LOAN_COIN = "loanCoin";
 
@@ -59,7 +59,7 @@ public class FlexibleLoanAdjustLtvRequest {
 
     @SerializedName(SERIALIZED_NAME_DIRECTION)
     @jakarta.annotation.Nonnull
-    private String direction;
+    private Direction direction;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -132,7 +132,7 @@ public class FlexibleLoanAdjustLtvRequest {
         this.adjustmentAmount = adjustmentAmount;
     }
 
-    public FlexibleLoanAdjustLtvRequest direction(@jakarta.annotation.Nonnull String direction) {
+    public FlexibleLoanAdjustLtvRequest direction(@jakarta.annotation.Nonnull Direction direction) {
         this.direction = direction;
         return this;
     }
@@ -144,11 +144,12 @@ public class FlexibleLoanAdjustLtvRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getDirection() {
+    @Valid
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(@jakarta.annotation.Nonnull String direction) {
+    public void setDirection(@jakarta.annotation.Nonnull Direction direction) {
         this.direction = direction;
     }
 
@@ -158,11 +159,12 @@ public class FlexibleLoanAdjustLtvRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -315,13 +317,8 @@ public class FlexibleLoanAdjustLtvRequest {
                                     + " string but got `%s`",
                             jsonObj.get("collateralCoin").toString()));
         }
-        if (!jsonObj.get("direction").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `direction` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("direction").toString()));
-        }
+        // validate the required field `direction`
+        Direction.validateJsonElement(jsonObj.get("direction"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

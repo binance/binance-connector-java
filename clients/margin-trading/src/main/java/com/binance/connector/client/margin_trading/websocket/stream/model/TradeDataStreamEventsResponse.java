@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading WebSocket Market Streams
- * OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+ * Margin WebSocket Market Streams
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
     private static final Logger log =
             Logger.getLogger(TradeDataStreamEventsResponse.class.getName());
@@ -47,16 +47,20 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<Outboundaccountposition> adapterOutboundaccountposition =
-                    gson.getDelegateAdapter(this, TypeToken.get(Outboundaccountposition.class));
-            final TypeAdapter<Balanceupdate> adapterBalanceupdate =
-                    gson.getDelegateAdapter(this, TypeToken.get(Balanceupdate.class));
-            final TypeAdapter<Listenkeyexpired> adapterListenkeyexpired =
-                    gson.getDelegateAdapter(this, TypeToken.get(Listenkeyexpired.class));
-            final TypeAdapter<Executionreport> adapterExecutionreport =
-                    gson.getDelegateAdapter(this, TypeToken.get(Executionreport.class));
-            final TypeAdapter<Liststatus> adapterListstatus =
-                    gson.getDelegateAdapter(this, TypeToken.get(Liststatus.class));
+            final TypeAdapter<MarginLevelStatusChange> adapterMarginLevelStatusChange =
+                    gson.getDelegateAdapter(this, TypeToken.get(MarginLevelStatusChange.class));
+            final TypeAdapter<UserLiabilityChange> adapterUserLiabilityChange =
+                    gson.getDelegateAdapter(this, TypeToken.get(UserLiabilityChange.class));
+            final TypeAdapter<BalanceUpdate> adapterBalanceUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(BalanceUpdate.class));
+            final TypeAdapter<ExecutionReport> adapterExecutionReport =
+                    gson.getDelegateAdapter(this, TypeToken.get(ExecutionReport.class));
+            final TypeAdapter<ListStatus> adapterListStatus =
+                    gson.getDelegateAdapter(this, TypeToken.get(ListStatus.class));
+            final TypeAdapter<ListenKeyExpired> adapterListenKeyExpired =
+                    gson.getDelegateAdapter(this, TypeToken.get(ListenKeyExpired.class));
+            final TypeAdapter<OutboundAccountPosition> adapterOutboundAccountPosition =
+                    gson.getDelegateAdapter(this, TypeToken.get(OutboundAccountPosition.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<TradeDataStreamEventsResponse>() {
@@ -68,51 +72,69 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
-                            // check if the actual instance is of the type `Outboundaccountposition`
-                            if (value.getActualInstance() instanceof Outboundaccountposition) {
+                            // check if the actual instance is of the type `MarginLevelStatusChange`
+                            if (value.getActualInstance() instanceof MarginLevelStatusChange) {
                                 JsonElement element =
-                                        adapterOutboundaccountposition.toJsonTree(
-                                                (Outboundaccountposition)
+                                        adapterMarginLevelStatusChange.toJsonTree(
+                                                (MarginLevelStatusChange)
                                                         value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Balanceupdate`
-                            if (value.getActualInstance() instanceof Balanceupdate) {
+                            // check if the actual instance is of the type `UserLiabilityChange`
+                            if (value.getActualInstance() instanceof UserLiabilityChange) {
                                 JsonElement element =
-                                        adapterBalanceupdate.toJsonTree(
-                                                (Balanceupdate) value.getActualInstance());
+                                        adapterUserLiabilityChange.toJsonTree(
+                                                (UserLiabilityChange) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Listenkeyexpired`
-                            if (value.getActualInstance() instanceof Listenkeyexpired) {
+                            // check if the actual instance is of the type `BalanceUpdate`
+                            if (value.getActualInstance() instanceof BalanceUpdate) {
                                 JsonElement element =
-                                        adapterListenkeyexpired.toJsonTree(
-                                                (Listenkeyexpired) value.getActualInstance());
+                                        adapterBalanceUpdate.toJsonTree(
+                                                (BalanceUpdate) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Executionreport`
-                            if (value.getActualInstance() instanceof Executionreport) {
+                            // check if the actual instance is of the type `ExecutionReport`
+                            if (value.getActualInstance() instanceof ExecutionReport) {
                                 JsonElement element =
-                                        adapterExecutionreport.toJsonTree(
-                                                (Executionreport) value.getActualInstance());
+                                        adapterExecutionReport.toJsonTree(
+                                                (ExecutionReport) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Liststatus`
-                            if (value.getActualInstance() instanceof Liststatus) {
+                            // check if the actual instance is of the type `ListStatus`
+                            if (value.getActualInstance() instanceof ListStatus) {
                                 JsonElement element =
-                                        adapterListstatus.toJsonTree(
-                                                (Liststatus) value.getActualInstance());
+                                        adapterListStatus.toJsonTree(
+                                                (ListStatus) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `ListenKeyExpired`
+                            if (value.getActualInstance() instanceof ListenKeyExpired) {
+                                JsonElement element =
+                                        adapterListenKeyExpired.toJsonTree(
+                                                (ListenKeyExpired) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `OutboundAccountPosition`
+                            if (value.getActualInstance() instanceof OutboundAccountPosition) {
+                                JsonElement element =
+                                        adapterOutboundAccountPosition.toJsonTree(
+                                                (OutboundAccountPosition)
+                                                        value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
                             throw new IOException(
                                     "Failed to serialize as the type doesn't match oneOf schemas:"
-                                            + " Balanceupdate, Executionreport, Listenkeyexpired,"
-                                            + " Liststatus, Outboundaccountposition");
+                                            + " BalanceUpdate, ExecutionReport, ListStatus,"
+                                            + " ListenKeyExpired, MarginLevelStatusChange,"
+                                            + " OutboundAccountPosition, UserLiabilityChange");
                         }
 
                         @Override
@@ -135,62 +157,45 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
                             } else {
                                 // look up the discriminator value in the field `e`
                                 switch (jsonObject.get("e").getAsString()) {
+                                    case "MARGIN_LEVEL_STATUS_CHANGE":
+                                        deserialized =
+                                                adapterMarginLevelStatusChange.fromJsonTree(
+                                                        jsonObject);
+                                        newTradeDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newTradeDataStreamEventsResponse;
+                                    case "USER_LIABILITY_CHANGE":
+                                        deserialized =
+                                                adapterUserLiabilityChange.fromJsonTree(jsonObject);
+                                        newTradeDataStreamEventsResponse.setActualInstance(
+                                                deserialized);
+                                        return newTradeDataStreamEventsResponse;
                                     case "balanceUpdate":
                                         deserialized =
-                                                adapterBalanceupdate.fromJsonTree(jsonObject);
+                                                adapterBalanceUpdate.fromJsonTree(jsonObject);
                                         newTradeDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newTradeDataStreamEventsResponse;
                                     case "executionReport":
                                         deserialized =
-                                                adapterExecutionreport.fromJsonTree(jsonObject);
+                                                adapterExecutionReport.fromJsonTree(jsonObject);
                                         newTradeDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newTradeDataStreamEventsResponse;
                                     case "listStatus":
-                                        deserialized = adapterListstatus.fromJsonTree(jsonObject);
+                                        deserialized = adapterListStatus.fromJsonTree(jsonObject);
                                         newTradeDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newTradeDataStreamEventsResponse;
                                     case "listenKeyExpired":
                                         deserialized =
-                                                adapterListenkeyexpired.fromJsonTree(jsonObject);
+                                                adapterListenKeyExpired.fromJsonTree(jsonObject);
                                         newTradeDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newTradeDataStreamEventsResponse;
                                     case "outboundAccountPosition":
                                         deserialized =
-                                                adapterOutboundaccountposition.fromJsonTree(
-                                                        jsonObject);
-                                        newTradeDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newTradeDataStreamEventsResponse;
-                                    case "balanceupdate":
-                                        deserialized =
-                                                adapterBalanceupdate.fromJsonTree(jsonObject);
-                                        newTradeDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newTradeDataStreamEventsResponse;
-                                    case "executionreport":
-                                        deserialized =
-                                                adapterExecutionreport.fromJsonTree(jsonObject);
-                                        newTradeDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newTradeDataStreamEventsResponse;
-                                    case "listenkeyexpired":
-                                        deserialized =
-                                                adapterListenkeyexpired.fromJsonTree(jsonObject);
-                                        newTradeDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newTradeDataStreamEventsResponse;
-                                    case "liststatus":
-                                        deserialized = adapterListstatus.fromJsonTree(jsonObject);
-                                        newTradeDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newTradeDataStreamEventsResponse;
-                                    case "outboundaccountposition":
-                                        deserialized =
-                                                adapterOutboundaccountposition.fromJsonTree(
+                                                adapterOutboundAccountPosition.fromJsonTree(
                                                         jsonObject);
                                         newTradeDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
@@ -203,13 +208,12 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                 String.format(
                                                         "Failed to lookup discriminator value `%s`"
                                                             + " for TradeDataStreamEventsResponse."
-                                                            + " Possible values: balanceUpdate"
+                                                            + " Possible values:"
+                                                            + " MARGIN_LEVEL_STATUS_CHANGE"
+                                                            + " USER_LIABILITY_CHANGE balanceUpdate"
                                                             + " executionReport listStatus"
                                                             + " listenKeyExpired"
-                                                            + " outboundAccountPosition"
-                                                            + " balanceupdate executionreport"
-                                                            + " listenkeyexpired liststatus"
-                                                            + " outboundaccountposition. Falling"
+                                                            + " outboundAccountPosition. Falling"
                                                             + " back to String.",
                                                         jsonObject.get("e").getAsString()));
                                 }
@@ -219,103 +223,146 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
-                            // deserialize Outboundaccountposition
+                            // deserialize MarginLevelStatusChange
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Outboundaccountposition.validateJsonElement(jsonElement);
-                                actualAdapter = adapterOutboundaccountposition;
+                                MarginLevelStatusChange.validateJsonElement(jsonElement);
+                                actualAdapter = adapterMarginLevelStatusChange;
                                 match++;
                                 log.log(
                                         Level.FINER,
-                                        "Input data matches schema 'Outboundaccountposition'");
+                                        "Input data matches schema 'MarginLevelStatusChange'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Outboundaccountposition failed"
+                                                "Deserialization for MarginLevelStatusChange failed"
                                                         + " with `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
                                         "Input data does not match schema"
-                                                + " 'Outboundaccountposition'",
+                                                + " 'MarginLevelStatusChange'",
                                         e);
                             }
-                            // deserialize Balanceupdate
+                            // deserialize UserLiabilityChange
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Balanceupdate.validateJsonElement(jsonElement);
-                                actualAdapter = adapterBalanceupdate;
+                                UserLiabilityChange.validateJsonElement(jsonElement);
+                                actualAdapter = adapterUserLiabilityChange;
                                 match++;
-                                log.log(Level.FINER, "Input data matches schema 'Balanceupdate'");
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'UserLiabilityChange'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Balanceupdate failed with"
+                                                "Deserialization for UserLiabilityChange failed"
+                                                        + " with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'UserLiabilityChange'",
+                                        e);
+                            }
+                            // deserialize BalanceUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                BalanceUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterBalanceUpdate;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'BalanceUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for BalanceUpdate failed with"
                                                         + " `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
-                                        "Input data does not match schema 'Balanceupdate'",
+                                        "Input data does not match schema 'BalanceUpdate'",
                                         e);
                             }
-                            // deserialize Listenkeyexpired
+                            // deserialize ExecutionReport
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Listenkeyexpired.validateJsonElement(jsonElement);
-                                actualAdapter = adapterListenkeyexpired;
+                                ExecutionReport.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExecutionReport;
                                 match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'Listenkeyexpired'");
+                                log.log(Level.FINER, "Input data matches schema 'ExecutionReport'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Listenkeyexpired failed with"
+                                                "Deserialization for ExecutionReport failed with"
                                                         + " `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
-                                        "Input data does not match schema 'Listenkeyexpired'",
+                                        "Input data does not match schema 'ExecutionReport'",
                                         e);
                             }
-                            // deserialize Executionreport
+                            // deserialize ListStatus
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Executionreport.validateJsonElement(jsonElement);
-                                actualAdapter = adapterExecutionreport;
+                                ListStatus.validateJsonElement(jsonElement);
+                                actualAdapter = adapterListStatus;
                                 match++;
-                                log.log(Level.FINER, "Input data matches schema 'Executionreport'");
+                                log.log(Level.FINER, "Input data matches schema 'ListStatus'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Executionreport failed with"
+                                                "Deserialization for ListStatus failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'ListStatus'",
+                                        e);
+                            }
+                            // deserialize ListenKeyExpired
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ListenKeyExpired.validateJsonElement(jsonElement);
+                                actualAdapter = adapterListenKeyExpired;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'ListenKeyExpired'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ListenKeyExpired failed with"
                                                         + " `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
-                                        "Input data does not match schema 'Executionreport'",
+                                        "Input data does not match schema 'ListenKeyExpired'",
                                         e);
                             }
-                            // deserialize Liststatus
+                            // deserialize OutboundAccountPosition
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Liststatus.validateJsonElement(jsonElement);
-                                actualAdapter = adapterListstatus;
+                                OutboundAccountPosition.validateJsonElement(jsonElement);
+                                actualAdapter = adapterOutboundAccountPosition;
                                 match++;
-                                log.log(Level.FINER, "Input data matches schema 'Liststatus'");
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'OutboundAccountPosition'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Liststatus failed with `%s`.",
+                                                "Deserialization for OutboundAccountPosition failed"
+                                                        + " with `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
-                                        "Input data does not match schema 'Liststatus'",
+                                        "Input data does not match schema"
+                                                + " 'OutboundAccountPosition'",
                                         e);
                             }
 
@@ -351,11 +398,13 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("Outboundaccountposition", Outboundaccountposition.class);
-        schemas.put("Balanceupdate", Balanceupdate.class);
-        schemas.put("Listenkeyexpired", Listenkeyexpired.class);
-        schemas.put("Executionreport", Executionreport.class);
-        schemas.put("Liststatus", Liststatus.class);
+        schemas.put("MarginLevelStatusChange", MarginLevelStatusChange.class);
+        schemas.put("UserLiabilityChange", UserLiabilityChange.class);
+        schemas.put("BalanceUpdate", BalanceUpdate.class);
+        schemas.put("ExecutionReport", ExecutionReport.class);
+        schemas.put("ListStatus", ListStatus.class);
+        schemas.put("ListenKeyExpired", ListenKeyExpired.class);
+        schemas.put("OutboundAccountPosition", OutboundAccountPosition.class);
     }
 
     @Override
@@ -365,49 +414,61 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
 
     /**
      * Set the instance that matches the oneOf child schema, check the instance parameter is valid
-     * against the oneOf child schemas: Balanceupdate, Executionreport, Listenkeyexpired,
-     * Liststatus, Outboundaccountposition
+     * against the oneOf child schemas: BalanceUpdate, ExecutionReport, ListStatus,
+     * ListenKeyExpired, MarginLevelStatusChange, OutboundAccountPosition, UserLiabilityChange
      *
      * <p>It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof Outboundaccountposition) {
+        if (instance instanceof MarginLevelStatusChange) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Balanceupdate) {
+        if (instance instanceof UserLiabilityChange) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Listenkeyexpired) {
+        if (instance instanceof BalanceUpdate) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Executionreport) {
+        if (instance instanceof ExecutionReport) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Liststatus) {
+        if (instance instanceof ListStatus) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ListenKeyExpired) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof OutboundAccountPosition) {
             super.setActualInstance(instance);
             return;
         }
 
         throw new RuntimeException(
-                "Invalid instance type. Must be Balanceupdate, Executionreport, Listenkeyexpired,"
-                        + " Liststatus, Outboundaccountposition");
+                "Invalid instance type. Must be BalanceUpdate, ExecutionReport, ListStatus,"
+                        + " ListenKeyExpired, MarginLevelStatusChange, OutboundAccountPosition,"
+                        + " UserLiabilityChange");
     }
 
     /**
-     * Get the actual instance, which can be the following: Balanceupdate, Executionreport,
-     * Listenkeyexpired, Liststatus, Outboundaccountposition
+     * Get the actual instance, which can be the following: BalanceUpdate, ExecutionReport,
+     * ListStatus, ListenKeyExpired, MarginLevelStatusChange, OutboundAccountPosition,
+     * UserLiabilityChange
      *
-     * @return The actual instance (Balanceupdate, Executionreport, Listenkeyexpired, Liststatus,
-     *     Outboundaccountposition)
+     * @return The actual instance (BalanceUpdate, ExecutionReport, ListStatus, ListenKeyExpired,
+     *     MarginLevelStatusChange, OutboundAccountPosition, UserLiabilityChange)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -416,58 +477,80 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `Outboundaccountposition`. If the actual instance is not
-     * `Outboundaccountposition`, the ClassCastException will be thrown.
+     * Get the actual instance of `MarginLevelStatusChange`. If the actual instance is not
+     * `MarginLevelStatusChange`, the ClassCastException will be thrown.
      *
-     * @return The actual instance of `Outboundaccountposition`
-     * @throws ClassCastException if the instance is not `Outboundaccountposition`
+     * @return The actual instance of `MarginLevelStatusChange`
+     * @throws ClassCastException if the instance is not `MarginLevelStatusChange`
      */
-    public Outboundaccountposition getOutboundaccountposition() throws ClassCastException {
-        return (Outboundaccountposition) super.getActualInstance();
+    public MarginLevelStatusChange getMarginLevelStatusChange() throws ClassCastException {
+        return (MarginLevelStatusChange) super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `Balanceupdate`. If the actual instance is not `Balanceupdate`,
+     * Get the actual instance of `UserLiabilityChange`. If the actual instance is not
+     * `UserLiabilityChange`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `UserLiabilityChange`
+     * @throws ClassCastException if the instance is not `UserLiabilityChange`
+     */
+    public UserLiabilityChange getUserLiabilityChange() throws ClassCastException {
+        return (UserLiabilityChange) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `BalanceUpdate`. If the actual instance is not `BalanceUpdate`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `Balanceupdate`
-     * @throws ClassCastException if the instance is not `Balanceupdate`
+     * @return The actual instance of `BalanceUpdate`
+     * @throws ClassCastException if the instance is not `BalanceUpdate`
      */
-    public Balanceupdate getBalanceupdate() throws ClassCastException {
-        return (Balanceupdate) super.getActualInstance();
+    public BalanceUpdate getBalanceUpdate() throws ClassCastException {
+        return (BalanceUpdate) super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `Listenkeyexpired`. If the actual instance is not
-     * `Listenkeyexpired`, the ClassCastException will be thrown.
+     * Get the actual instance of `ExecutionReport`. If the actual instance is not
+     * `ExecutionReport`, the ClassCastException will be thrown.
      *
-     * @return The actual instance of `Listenkeyexpired`
-     * @throws ClassCastException if the instance is not `Listenkeyexpired`
+     * @return The actual instance of `ExecutionReport`
+     * @throws ClassCastException if the instance is not `ExecutionReport`
      */
-    public Listenkeyexpired getListenkeyexpired() throws ClassCastException {
-        return (Listenkeyexpired) super.getActualInstance();
+    public ExecutionReport getExecutionReport() throws ClassCastException {
+        return (ExecutionReport) super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `Executionreport`. If the actual instance is not
-     * `Executionreport`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Executionreport`
-     * @throws ClassCastException if the instance is not `Executionreport`
-     */
-    public Executionreport getExecutionreport() throws ClassCastException {
-        return (Executionreport) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `Liststatus`. If the actual instance is not `Liststatus`, the
+     * Get the actual instance of `ListStatus`. If the actual instance is not `ListStatus`, the
      * ClassCastException will be thrown.
      *
-     * @return The actual instance of `Liststatus`
-     * @throws ClassCastException if the instance is not `Liststatus`
+     * @return The actual instance of `ListStatus`
+     * @throws ClassCastException if the instance is not `ListStatus`
      */
-    public Liststatus getListstatus() throws ClassCastException {
-        return (Liststatus) super.getActualInstance();
+    public ListStatus getListStatus() throws ClassCastException {
+        return (ListStatus) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ListenKeyExpired`. If the actual instance is not
+     * `ListenKeyExpired`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ListenKeyExpired`
+     * @throws ClassCastException if the instance is not `ListenKeyExpired`
+     */
+    public ListenKeyExpired getListenKeyExpired() throws ClassCastException {
+        return (ListenKeyExpired) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `OutboundAccountPosition`. If the actual instance is not
+     * `OutboundAccountPosition`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `OutboundAccountPosition`
+     * @throws ClassCastException if the instance is not `OutboundAccountPosition`
+     */
+    public OutboundAccountPosition getOutboundAccountPosition() throws ClassCastException {
+        return (OutboundAccountPosition) super.getActualInstance();
     }
 
     /**
@@ -481,67 +564,90 @@ public class TradeDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with Outboundaccountposition
+        // validate the json string with MarginLevelStatusChange
         try {
-            Outboundaccountposition.validateJsonElement(jsonElement);
+            MarginLevelStatusChange.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
             errorMessages.add(
                     String.format(
-                            "Deserialization for Outboundaccountposition failed with `%s`.",
+                            "Deserialization for MarginLevelStatusChange failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with Balanceupdate
+        // validate the json string with UserLiabilityChange
         try {
-            Balanceupdate.validateJsonElement(jsonElement);
+            UserLiabilityChange.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
             errorMessages.add(
                     String.format(
-                            "Deserialization for Balanceupdate failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Listenkeyexpired
-        try {
-            Listenkeyexpired.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Listenkeyexpired failed with `%s`.",
+                            "Deserialization for UserLiabilityChange failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with Executionreport
+        // validate the json string with BalanceUpdate
         try {
-            Executionreport.validateJsonElement(jsonElement);
+            BalanceUpdate.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
             errorMessages.add(
                     String.format(
-                            "Deserialization for Executionreport failed with `%s`.",
+                            "Deserialization for BalanceUpdate failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ExecutionReport
+        try {
+            ExecutionReport.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExecutionReport failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with Liststatus
+        // validate the json string with ListStatus
         try {
-            Liststatus.validateJsonElement(jsonElement);
+            ListStatus.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
             errorMessages.add(
                     String.format(
-                            "Deserialization for Liststatus failed with `%s`.", e.getMessage()));
+                            "Deserialization for ListStatus failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ListenKeyExpired
+        try {
+            ListenKeyExpired.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ListenKeyExpired failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with OutboundAccountPosition
+        try {
+            OutboundAccountPosition.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for OutboundAccountPosition failed with `%s`.",
+                            e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
             throw new IOException(
                     String.format(
                             "The JSON string is invalid for TradeDataStreamEventsResponse with"
-                                    + " oneOf schemas: Balanceupdate, Executionreport,"
-                                    + " Listenkeyexpired, Liststatus, Outboundaccountposition. %d"
-                                    + " class(es) match the result, expected 1. Detailed failure"
-                                    + " message for oneOf schemas: %s. JSON: %s",
+                                    + " oneOf schemas: BalanceUpdate, ExecutionReport, ListStatus,"
+                                    + " ListenKeyExpired, MarginLevelStatusChange,"
+                                    + " OutboundAccountPosition, UserLiabilityChange. %d class(es)"
+                                    + " match the result, expected 1. Detailed failure message for"
+                                    + " oneOf schemas: %s. JSON: %s",
                             validCount, errorMessages, jsonElement.toString()));
         }
     }

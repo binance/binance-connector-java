@@ -1,13 +1,13 @@
 
 
-# Listenkeyexpired
+# ListenKeyExpired
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**E** | **String** |  |  [optional] |
+|**E** | **String** | Event time |  [optional] |
 |**listenKey** | **String** |  |  [optional] |
 
 

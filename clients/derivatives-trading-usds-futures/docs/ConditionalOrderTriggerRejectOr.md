@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sLowerCase** | **String** |  |  [optional] |
-|**iLowerCase** | **Long** |  |  [optional] |
-|**rLowerCase** | **String** |  |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**iLowerCase** | **Long** | Order Id |  [optional] |
+|**rLowerCase** | **String** | Reject Reason |  [optional] |
 
 
 

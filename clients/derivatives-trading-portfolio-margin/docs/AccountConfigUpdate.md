@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**fs** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
+|**fs** | **String** | Event business unit |  [optional] |
+|**E** | **Long** | Event Time |  [optional] |
+|**T** | **Long** | Transaction Time |  [optional] |
 |**ac** | [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  |  [optional] |
 
 

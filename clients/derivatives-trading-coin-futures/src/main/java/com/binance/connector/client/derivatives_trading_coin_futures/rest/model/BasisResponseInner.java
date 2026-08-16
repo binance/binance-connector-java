@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** BasisResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class BasisResponseInner {
     public static final String SERIALIZED_NAME_INDEX_PRICE = "indexPrice";
 
@@ -92,7 +92,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get indexPrice
+     * index price
      *
      * @return indexPrice
      */
@@ -111,7 +111,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get contractType
+     * Contract type.
      *
      * @return contractType
      */
@@ -130,7 +130,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get basisRate
+     * Basis rate.
      *
      * @return basisRate
      */
@@ -149,7 +149,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get futuresPrice
+     * Futures price.
      *
      * @return futuresPrice
      */
@@ -169,7 +169,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get annualizedBasisRate
+     * Annualized basis rate.
      *
      * @return annualizedBasisRate
      */
@@ -188,7 +188,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get basis
+     * Basis value.
      *
      * @return basis
      */
@@ -207,7 +207,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -226,7 +226,7 @@ public class BasisResponseInner {
     }
 
     /**
-     * Get timestamp
+     * Start time of the period, in milliseconds.
      *
      * @return timestamp
      */

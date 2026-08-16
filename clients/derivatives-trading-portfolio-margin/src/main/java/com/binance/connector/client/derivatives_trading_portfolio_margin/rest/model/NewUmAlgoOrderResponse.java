@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** NewUmAlgoOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewUmAlgoOrderResponse {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -108,12 +108,6 @@ public class NewUmAlgoOrderResponse {
     @jakarta.annotation.Nullable
     private String price;
 
-    public static final String SERIALIZED_NAME_ICEBERG_QUANTITY = "icebergQuantity";
-
-    @SerializedName(SERIALIZED_NAME_ICEBERG_QUANTITY)
-    @jakarta.annotation.Nullable
-    private String icebergQuantity;
-
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
@@ -132,12 +126,6 @@ public class NewUmAlgoOrderResponse {
     @SerializedName(SERIALIZED_NAME_PRICE_MATCH)
     @jakarta.annotation.Nullable
     private String priceMatch;
-
-    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
-
-    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
-    @jakarta.annotation.Nullable
-    private Boolean closePosition;
 
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
@@ -417,26 +405,6 @@ public class NewUmAlgoOrderResponse {
         this.price = price;
     }
 
-    public NewUmAlgoOrderResponse icebergQuantity(
-            @jakarta.annotation.Nullable String icebergQuantity) {
-        this.icebergQuantity = icebergQuantity;
-        return this;
-    }
-
-    /**
-     * Get icebergQuantity
-     *
-     * @return icebergQuantity
-     */
-    @jakarta.annotation.Nullable
-    public String getIcebergQuantity() {
-        return icebergQuantity;
-    }
-
-    public void setIcebergQuantity(@jakarta.annotation.Nullable String icebergQuantity) {
-        this.icebergQuantity = icebergQuantity;
-    }
-
     public NewUmAlgoOrderResponse selfTradePreventionMode(
             @jakarta.annotation.Nullable String selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
@@ -494,26 +462,6 @@ public class NewUmAlgoOrderResponse {
 
     public void setPriceMatch(@jakarta.annotation.Nullable String priceMatch) {
         this.priceMatch = priceMatch;
-    }
-
-    public NewUmAlgoOrderResponse closePosition(
-            @jakarta.annotation.Nullable Boolean closePosition) {
-        this.closePosition = closePosition;
-        return this;
-    }
-
-    /**
-     * Get closePosition
-     *
-     * @return closePosition
-     */
-    @jakarta.annotation.Nullable
-    public Boolean getClosePosition() {
-        return closePosition;
-    }
-
-    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
-        this.closePosition = closePosition;
     }
 
     public NewUmAlgoOrderResponse priceProtect(@jakarta.annotation.Nullable Boolean priceProtect) {
@@ -689,13 +637,11 @@ public class NewUmAlgoOrderResponse {
                 && Objects.equals(this.algoStatus, newUmAlgoOrderResponse.algoStatus)
                 && Objects.equals(this.triggerPrice, newUmAlgoOrderResponse.triggerPrice)
                 && Objects.equals(this.price, newUmAlgoOrderResponse.price)
-                && Objects.equals(this.icebergQuantity, newUmAlgoOrderResponse.icebergQuantity)
                 && Objects.equals(
                         this.selfTradePreventionMode,
                         newUmAlgoOrderResponse.selfTradePreventionMode)
                 && Objects.equals(this.workingType, newUmAlgoOrderResponse.workingType)
                 && Objects.equals(this.priceMatch, newUmAlgoOrderResponse.priceMatch)
-                && Objects.equals(this.closePosition, newUmAlgoOrderResponse.closePosition)
                 && Objects.equals(this.priceProtect, newUmAlgoOrderResponse.priceProtect)
                 && Objects.equals(this.reduceOnly, newUmAlgoOrderResponse.reduceOnly)
                 && Objects.equals(this.activatePrice, newUmAlgoOrderResponse.activatePrice)
@@ -721,11 +667,9 @@ public class NewUmAlgoOrderResponse {
                 algoStatus,
                 triggerPrice,
                 price,
-                icebergQuantity,
                 selfTradePreventionMode,
                 workingType,
                 priceMatch,
-                closePosition,
                 priceProtect,
                 reduceOnly,
                 activatePrice,
@@ -752,13 +696,11 @@ public class NewUmAlgoOrderResponse {
         sb.append("		algoStatus: ").append(toIndentedString(algoStatus)).append("\n");
         sb.append("		triggerPrice: ").append(toIndentedString(triggerPrice)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		icebergQuantity: ").append(toIndentedString(icebergQuantity)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
-        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
@@ -822,10 +764,6 @@ public class NewUmAlgoOrderResponse {
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object icebergQuantityValue = getIcebergQuantity();
-        String icebergQuantityValueAsString = "";
-        icebergQuantityValueAsString = icebergQuantityValue.toString();
-        sb.append("icebergQuantity=").append(urlEncode(icebergQuantityValueAsString)).append("");
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         String selfTradePreventionModeValueAsString = "";
         selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
@@ -840,10 +778,6 @@ public class NewUmAlgoOrderResponse {
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
-        Object closePositionValue = getClosePosition();
-        String closePositionValueAsString = "";
-        closePositionValueAsString = closePositionValue.toString();
-        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object priceProtectValue = getPriceProtect();
         String priceProtectValueAsString = "";
         priceProtectValueAsString = priceProtectValue.toString();
@@ -916,11 +850,9 @@ public class NewUmAlgoOrderResponse {
         openapiFields.add("algoStatus");
         openapiFields.add("triggerPrice");
         openapiFields.add("price");
-        openapiFields.add("icebergQuantity");
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("workingType");
         openapiFields.add("priceMatch");
-        openapiFields.add("closePosition");
         openapiFields.add("priceProtect");
         openapiFields.add("reduceOnly");
         openapiFields.add("activatePrice");
@@ -1039,14 +971,6 @@ public class NewUmAlgoOrderResponse {
                             "Expected the field `price` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
-        }
-        if ((jsonObj.get("icebergQuantity") != null && !jsonObj.get("icebergQuantity").isJsonNull())
-                && !jsonObj.get("icebergQuantity").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `icebergQuantity` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("icebergQuantity").toString()));
         }
         if ((jsonObj.get("selfTradePreventionMode") != null
                         && !jsonObj.get("selfTradePreventionMode").isJsonNull())

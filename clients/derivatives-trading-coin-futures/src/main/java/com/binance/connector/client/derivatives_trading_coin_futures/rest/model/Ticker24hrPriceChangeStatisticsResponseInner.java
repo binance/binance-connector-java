@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** Ticker24hrPriceChangeStatisticsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrPriceChangeStatisticsResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -147,7 +147,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -167,7 +167,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -187,7 +187,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get priceChange
+     * Absolute price change in the 24h window.
      *
      * @return priceChange
      */
@@ -207,7 +207,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get priceChangePercent
+     * Percentage price change in the 24h window.
      *
      * @return priceChangePercent
      */
@@ -227,7 +227,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get weightedAvgPrice
+     * Weighted average price in the 24h window.
      *
      * @return weightedAvgPrice
      */
@@ -247,7 +247,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastPrice
+     * Latest traded price.
      *
      * @return lastPrice
      */
@@ -267,7 +267,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastQty
+     * Quantity of the latest trade.
      *
      * @return lastQty
      */
@@ -287,7 +287,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get openPrice
+     * Opening price of the 24h window.
      *
      * @return openPrice
      */
@@ -307,7 +307,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get highPrice
+     * Highest price in the 24h window.
      *
      * @return highPrice
      */
@@ -327,7 +327,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lowPrice
+     * Lowest price in the 24h window.
      *
      * @return lowPrice
      */
@@ -347,7 +347,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get volume
+     * Base asset volume in the 24h window.
      *
      * @return volume
      */
@@ -367,7 +367,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get baseVolume
+     * Base asset volume.
      *
      * @return baseVolume
      */
@@ -387,7 +387,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get openTime
+     * Start time of the 24h window (milliseconds).
      *
      * @return openTime
      */
@@ -407,7 +407,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get closeTime
+     * End time of the 24h window (milliseconds).
      *
      * @return closeTime
      */
@@ -427,7 +427,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get firstId
+     * First tradeId
      *
      * @return firstId
      */
@@ -447,7 +447,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastId
+     * Last tradeId
      *
      * @return lastId
      */
@@ -467,7 +467,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get count
+     * Total number of trades in the 24h window.
      *
      * @return count
      */

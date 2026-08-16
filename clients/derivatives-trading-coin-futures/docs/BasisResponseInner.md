@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**indexPrice** | **String** |  |  [optional] |
-|**contractType** | **String** |  |  [optional] |
-|**basisRate** | **String** |  |  [optional] |
-|**futuresPrice** | **String** |  |  [optional] |
-|**annualizedBasisRate** | **String** |  |  [optional] |
-|**basis** | **String** |  |  [optional] |
-|**pair** | **String** |  |  [optional] |
-|**timestamp** | **Long** |  |  [optional] |
+|**indexPrice** | **String** | index price |  [optional] |
+|**contractType** | **String** | Contract type. |  [optional] |
+|**basisRate** | **String** | Basis rate. |  [optional] |
+|**futuresPrice** | **String** | Futures price. |  [optional] |
+|**annualizedBasisRate** | **String** | Annualized basis rate. |  [optional] |
+|**basis** | **String** | Basis value. |  [optional] |
+|**pair** | **String** | Pair |  [optional] |
+|**timestamp** | **Long** | Start time of the period, in milliseconds. |  [optional] |
 
 
 

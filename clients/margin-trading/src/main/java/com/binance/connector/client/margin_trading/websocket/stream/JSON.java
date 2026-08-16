@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading WebSocket Market Streams
- * OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+ * Margin WebSocket Market Streams
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -89,16 +89,6 @@ public class JSON {
                                                         .websocket.stream.model.UserLiabilityChange
                                                         .class);
                                         classByDiscriminatorValue.put(
-                                                "marginLevelStatusChange",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model
-                                                        .MarginLevelStatusChange.class);
-                                        classByDiscriminatorValue.put(
-                                                "userLiabilityChange",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.UserLiabilityChange
-                                                        .class);
-                                        classByDiscriminatorValue.put(
                                                 "RiskDataStreamEventsResponse",
                                                 com.binance.connector.client.margin_trading
                                                         .websocket.stream.model
@@ -125,53 +115,39 @@ public class JSON {
                                         Map<String, Class> classByDiscriminatorValue =
                                                 new HashMap<String, Class>();
                                         classByDiscriminatorValue.put(
+                                                "MARGIN_LEVEL_STATUS_CHANGE",
+                                                com.binance.connector.client.margin_trading
+                                                        .websocket.stream.model
+                                                        .MarginLevelStatusChange.class);
+                                        classByDiscriminatorValue.put(
+                                                "USER_LIABILITY_CHANGE",
+                                                com.binance.connector.client.margin_trading
+                                                        .websocket.stream.model.UserLiabilityChange
+                                                        .class);
+                                        classByDiscriminatorValue.put(
                                                 "balanceUpdate",
                                                 com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Balanceupdate
+                                                        .websocket.stream.model.BalanceUpdate
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "executionReport",
                                                 com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Executionreport
+                                                        .websocket.stream.model.ExecutionReport
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "listStatus",
                                                 com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Liststatus.class);
+                                                        .websocket.stream.model.ListStatus.class);
                                         classByDiscriminatorValue.put(
                                                 "listenKeyExpired",
                                                 com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Listenkeyexpired
+                                                        .websocket.stream.model.ListenKeyExpired
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "outboundAccountPosition",
                                                 com.binance.connector.client.margin_trading
                                                         .websocket.stream.model
-                                                        .Outboundaccountposition.class);
-                                        classByDiscriminatorValue.put(
-                                                "balanceupdate",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Balanceupdate
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "executionreport",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Executionreport
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "listenkeyexpired",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Listenkeyexpired
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "liststatus",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model.Liststatus.class);
-                                        classByDiscriminatorValue.put(
-                                                "outboundaccountposition",
-                                                com.binance.connector.client.margin_trading
-                                                        .websocket.stream.model
-                                                        .Outboundaccountposition.class);
+                                                        .OutboundAccountPosition.class);
                                         classByDiscriminatorValue.put(
                                                 "TradeDataStreamEventsResponse",
                                                 com.binance.connector.client.margin_trading
@@ -232,29 +208,29 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.websocket.stream.model.Balanceupdate
+                new com.binance.connector.client.margin_trading.websocket.stream.model.BalanceUpdate
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.websocket.stream.model
-                        .Executionreport.CustomTypeAdapterFactory());
+                        .ExecutionReport.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.websocket.stream.model
-                        .Listenkeyexpired.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.margin_trading.websocket.stream.model.Liststatus
+                new com.binance.connector.client.margin_trading.websocket.stream.model.ListStatus
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.websocket.stream.model
-                        .ListstatusOInner.CustomTypeAdapterFactory());
+                        .ListStatusOInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.websocket.stream.model
+                        .ListenKeyExpired.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.websocket.stream.model
                         .MarginLevelStatusChange.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.websocket.stream.model
-                        .Outboundaccountposition.CustomTypeAdapterFactory());
+                        .OutboundAccountPosition.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.websocket.stream.model
-                        .OutboundaccountpositionBInner.CustomTypeAdapterFactory());
+                        .OutboundAccountPositionBInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.websocket.stream.model
                         .RiskDataStreamEventsResponse.CustomTypeAdapterFactory());

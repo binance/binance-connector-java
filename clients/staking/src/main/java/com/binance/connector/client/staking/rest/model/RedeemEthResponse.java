@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** RedeemEthResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemEthResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -48,6 +48,12 @@ public class RedeemEthResponse {
     @jakarta.annotation.Nullable
     private String ethAmount;
 
+    public static final String SERIALIZED_NAME_REDEEM_ID = "redeemId";
+
+    @SerializedName(SERIALIZED_NAME_REDEEM_ID)
+    @jakarta.annotation.Nullable
+    private Long redeemId;
+
     public static final String SERIALIZED_NAME_CONVERSION_RATIO = "conversionRatio";
 
     @SerializedName(SERIALIZED_NAME_CONVERSION_RATIO)
@@ -59,12 +65,6 @@ public class RedeemEthResponse {
     @SerializedName(SERIALIZED_NAME_ARRIVAL_TIME)
     @jakarta.annotation.Nullable
     private Long arrivalTime;
-
-    public static final String SERIALIZED_NAME_REDEEM_ID = "redeemId";
-
-    @SerializedName(SERIALIZED_NAME_REDEEM_ID)
-    @jakarta.annotation.Nullable
-    private Long redeemId;
 
     public RedeemEthResponse() {}
 
@@ -106,6 +106,25 @@ public class RedeemEthResponse {
         this.ethAmount = ethAmount;
     }
 
+    public RedeemEthResponse redeemId(@jakarta.annotation.Nullable Long redeemId) {
+        this.redeemId = redeemId;
+        return this;
+    }
+
+    /**
+     * Get redeemId
+     *
+     * @return redeemId
+     */
+    @jakarta.annotation.Nullable
+    public Long getRedeemId() {
+        return redeemId;
+    }
+
+    public void setRedeemId(@jakarta.annotation.Nullable Long redeemId) {
+        this.redeemId = redeemId;
+    }
+
     public RedeemEthResponse conversionRatio(@jakarta.annotation.Nullable String conversionRatio) {
         this.conversionRatio = conversionRatio;
         return this;
@@ -144,25 +163,6 @@ public class RedeemEthResponse {
         this.arrivalTime = arrivalTime;
     }
 
-    public RedeemEthResponse redeemId(@jakarta.annotation.Nullable Long redeemId) {
-        this.redeemId = redeemId;
-        return this;
-    }
-
-    /**
-     * Get redeemId
-     *
-     * @return redeemId
-     */
-    @jakarta.annotation.Nullable
-    public Long getRedeemId() {
-        return redeemId;
-    }
-
-    public void setRedeemId(@jakarta.annotation.Nullable Long redeemId) {
-        this.redeemId = redeemId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -174,14 +174,14 @@ public class RedeemEthResponse {
         RedeemEthResponse redeemEthResponse = (RedeemEthResponse) o;
         return Objects.equals(this.success, redeemEthResponse.success)
                 && Objects.equals(this.ethAmount, redeemEthResponse.ethAmount)
+                && Objects.equals(this.redeemId, redeemEthResponse.redeemId)
                 && Objects.equals(this.conversionRatio, redeemEthResponse.conversionRatio)
-                && Objects.equals(this.arrivalTime, redeemEthResponse.arrivalTime)
-                && Objects.equals(this.redeemId, redeemEthResponse.redeemId);
+                && Objects.equals(this.arrivalTime, redeemEthResponse.arrivalTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, ethAmount, conversionRatio, arrivalTime, redeemId);
+        return Objects.hash(success, ethAmount, redeemId, conversionRatio, arrivalTime);
     }
 
     @Override
@@ -190,9 +190,9 @@ public class RedeemEthResponse {
         sb.append("class RedeemEthResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		ethAmount: ").append(toIndentedString(ethAmount)).append("\n");
+        sb.append("		redeemId: ").append(toIndentedString(redeemId)).append("\n");
         sb.append("		conversionRatio: ").append(toIndentedString(conversionRatio)).append("\n");
         sb.append("		arrivalTime: ").append(toIndentedString(arrivalTime)).append("\n");
-        sb.append("		redeemId: ").append(toIndentedString(redeemId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -208,6 +208,10 @@ public class RedeemEthResponse {
         String ethAmountValueAsString = "";
         ethAmountValueAsString = ethAmountValue.toString();
         sb.append("ethAmount=").append(urlEncode(ethAmountValueAsString)).append("");
+        Object redeemIdValue = getRedeemId();
+        String redeemIdValueAsString = "";
+        redeemIdValueAsString = redeemIdValue.toString();
+        sb.append("redeemId=").append(urlEncode(redeemIdValueAsString)).append("");
         Object conversionRatioValue = getConversionRatio();
         String conversionRatioValueAsString = "";
         conversionRatioValueAsString = conversionRatioValue.toString();
@@ -216,10 +220,6 @@ public class RedeemEthResponse {
         String arrivalTimeValueAsString = "";
         arrivalTimeValueAsString = arrivalTimeValue.toString();
         sb.append("arrivalTime=").append(urlEncode(arrivalTimeValueAsString)).append("");
-        Object redeemIdValue = getRedeemId();
-        String redeemIdValueAsString = "";
-        redeemIdValueAsString = redeemIdValue.toString();
-        sb.append("redeemId=").append(urlEncode(redeemIdValueAsString)).append("");
         return sb.toString();
     }
 
@@ -250,9 +250,9 @@ public class RedeemEthResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("ethAmount");
+        openapiFields.add("redeemId");
         openapiFields.add("conversionRatio");
         openapiFields.add("arrivalTime");
-        openapiFields.add("redeemId");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

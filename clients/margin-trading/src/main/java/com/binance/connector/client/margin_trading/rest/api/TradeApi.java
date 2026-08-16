@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -16,7 +16,6 @@ import com.binance.connector.client.common.ApiClient;
 import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.DecimalFormatter;
-import com.binance.connector.client.common.JSON;
 import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
@@ -24,9 +23,13 @@ import com.binance.connector.client.common.exception.ConstraintViolationExceptio
 import com.binance.connector.client.margin_trading.rest.model.CreateSpecialKeyRequest;
 import com.binance.connector.client.margin_trading.rest.model.CreateSpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.EditIpForSpecialKeyRequest;
+import com.binance.connector.client.margin_trading.rest.model.ExitSpecialKeyModeRequest;
 import com.binance.connector.client.margin_trading.rest.model.GetForceLiquidationRecordResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
+import com.binance.connector.client.margin_trading.rest.model.LiquidationLoanRepayRequest;
+import com.binance.connector.client.margin_trading.rest.model.LiquidationLoanRepayResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelAllOpenOrdersOnASymbolResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelOrderResponse;
@@ -41,6 +44,8 @@ import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOt
 import com.binance.connector.client.margin_trading.rest.model.MarginManualLiquidationRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginManualLiquidationResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryCurrentMarginOrderCountUsageResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryLiquidationLoanRepayHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryLiquidationLoanResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsAllOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsAllOrdersResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOcoResponse;
@@ -75,7 +80,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/6.1.0 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -126,8 +131,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Create-Special-Key-of-Low-Latency-Trading">Create
-     *     Special Key(Low-Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#create-special-key">Create
+     *     Special Key(Low-Latency Trading) (TRADE) Documentation</a>
      */
     private okhttp3.Call createSpecialKeyCall(CreateSpecialKeyRequest createSpecialKeyRequest)
             throws ApiException {
@@ -242,19 +247,38 @@ public class TradeApi {
     }
 
     /**
-     * Create Special Key(Low-Latency Trading)(TRADE) - Binance Margin offers low-latency trading
-     * through a [special
+     * Create Special Key(Low-Latency Trading) (TRADE) **Eligibility** - Binance Margin offers
+     * low-latency trading through a [special
      * key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e),
-     * available exclusively to users with VIP level 4 or higher. - If you are VIP level 3 or below,
-     * please contact your VIP manager for eligibility criterias.** **Supported Products:** - Cross
-     * Margin - Isolated Margin - Portfolio Margin Pro - Cross Margin Pro (Additional agreement
-     * required and subject to meeting eligibility criteria) **Unsupported Products:** - Portfolio
-     * Margin We support several types of API keys: * Ed25519 (recommended) * HMAC * RSA We
-     * recommend to **use Ed25519 API keys** as it should provide the best performance and security
-     * out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an
-     * RSA key pair to send API requests on Binance. Please refer to the document below
+     * available exclusively to users with VIP level 7 or higher. - If you are VIP level 6 or below,
+     * please contact your VIP manager for eligibility criterias. - All new Margin Special Key users
+     * are required to read, understand, and agree to the Margin Special Key Supplemental Product
+     * Terms at the master account level before creating a Margin Special Key. - Once signed at the
+     * master account level, the agreement applies to all sub-accounts. The master account and all
+     * sub-accounts (Cross Margin Classic and Portfolio Margin Pro) are authorized to create a
+     * Margin Special Key and are subject to the LiquidationLoan policy. For more information,
+     * please refer to
+     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
+     * **Supported Products:** - Cross Margin - Isolated Margin - Portfolio Margin Pro **Unsupported
+     * Products:** - Portfolio Margin We support several types of API keys: * Ed25519 (recommended)
+     * * HMAC * RSA We recommend to **use Ed25519 API keys** as it should provide the best
+     * performance and security out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY).
+     * For how to generate an RSA key pair to send API requests on Binance. Please refer to the
+     * document below
      * [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db)
-     * . Weight: 1(UID)
+     * . **How to use the Margin Special Key** - Use the below &#x60;sapi&#x60; endpoint to create
+     * your margin special API Key. - For accessing the Cross Margin account, do not send the
+     * &#x60;symbol&#x60; parameter. - For accessing the Isolated Margin account(s), pass the
+     * relevant &#x60;symbol&#x60; parameter in the API Key creation request. - Use the generated
+     * API Key (and Secret key, if applicable) to perform margin trading and listenKey generation
+     * via **Spot** REST API (&#x60;https://api.binance.com/api/v3/_*&#x60;) endpoints. Read [REST
+     * API](/products/spot/rest-api#signed-trade-and-user_data-endpoint-security) or [WebSocket
+     * API](/products/spot/web-socket-api#request-security) documentation to learn how to use
+     * different API keys You need to enable Permits “Enable Spot &amp; Margin Trading” option for
+     * the API Key which requests this endpoint. Weight(UID): 1 Security Type: TRADE Response Notes:
+     * - Error Code Description - **UNSUPPORTED_OPERATION** : Portfolio Margin is an unsupported
+     * product, please change the account type to a supported margin product. - **Forbidden**: Cross
+     * Margin Pro accounts require additional agreements, please contact your relationship manager.
      *
      * @param createSpecialKeyRequest (required)
      * @return ApiResponse&lt;CreateSpecialKeyResponse&gt;
@@ -268,8 +292,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Create-Special-Key-of-Low-Latency-Trading">Create
-     *     Special Key(Low-Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#create-special-key">Create
+     *     Special Key(Low-Latency Trading) (TRADE) Documentation</a>
      */
     public ApiResponse<CreateSpecialKeyResponse> createSpecialKey(
             @Valid @NotNull CreateSpecialKeyRequest createSpecialKeyRequest) throws ApiException {
@@ -283,8 +307,8 @@ public class TradeApi {
      * Build call for deleteSpecialKey
      *
      * @param apiName (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -295,8 +319,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Delete-Special-Key-of-Low-Latency-Trading">Delete
-     *     Special Key(Low-Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#delete-special-key">Delete
+     *     Special Key(Low-Latency Trading) (TRADE) Documentation</a>
      */
     private okhttp3.Call deleteSpecialKeyCall(String apiName, String symbol, Long recvWindow)
             throws ApiException {
@@ -400,15 +424,21 @@ public class TradeApi {
     }
 
     /**
-     * Delete Special Key(Low-Latency Trading)(TRADE) This only applies to Special Key for Low
-     * Latency Trading. If apiKey is given, apiName will be ignored. If apiName is given with no
+     * Delete Special Key(Low-Latency Trading) (TRADE) Deleting your Margin Special Key alone does
+     * not exit you from the Margin Special Key framework or discharge your obligations under the
+     * Margin Special Key Supplemental Product Terms. To fully exit, you must: 1. Delete your Margin
+     * Special Key. 2. Ensure there are no outstanding liabilities on the account. 3. Call the Exit
+     * Margin Special Key API endpoint. 4. Confirm the exit status via the API response. Only after
+     * step 4 is completed and the exit status is confirmed by Binance will your account revert to
+     * standard liquidation logic and no longer be subject to the Margin Special Key Supplemental
+     * Product Terms. If apiKey is given, apiName will be ignored. If apiName is given with no
      * apiKey, all apikeys with given apiName will be deleted. You need to enable Permits “Enable
-     * Spot &amp; Margin Trading” option for the API Key which requests this endpoint. Weight:
-     * 1(UID)
+     * Spot &amp; Margin” option for the API Key which requests this endpoint. Weight(UID): 1
+     * Security Type: TRADE
      *
      * @param apiName (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -420,11 +450,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Delete-Special-Key-of-Low-Latency-Trading">Delete
-     *     Special Key(Low-Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#delete-special-key">Delete
+     *     Special Key(Low-Latency Trading) (TRADE) Documentation</a>
      */
-    public ApiResponse<Void> deleteSpecialKey(String apiName, String symbol, Long recvWindow)
-            throws ApiException {
+    public ApiResponse<Void> deleteSpecialKey(
+            String apiName, String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = deleteSpecialKeyValidateBeforeCall(apiName, symbol, recvWindow);
         return localVarApiClient.execute(localVarCall);
     }
@@ -443,8 +473,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Edit-ip-for-Special-Key-of-Low-Latency-Trading">Edit
-     *     ip for Special Key(Low-Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#edit-ip-for-special-key">Edit
+     *     ip for Special Key(Low-Latency Trading) (TRADE) Documentation</a>
      */
     private okhttp3.Call editIpForSpecialKeyCall(
             EditIpForSpecialKeyRequest editIpForSpecialKeyRequest) throws ApiException {
@@ -548,9 +578,9 @@ public class TradeApi {
     }
 
     /**
-     * Edit ip for Special Key(Low-Latency Trading)(TRADE) Edit ip restriction. This only applies to
-     * Special Key for Low Latency Trading. You need to enable Permits “Enable Spot &amp; Margin
-     * Trading” option for the API Key which requests this endpoint. Weight: 1(UID)
+     * Edit ip for Special Key(Low-Latency Trading) (TRADE) Edit ip restriction. This only applies
+     * to Special Key for Low Latency Trading. You need to enable Permits “Enable Spot &amp; Margin”
+     * option for the API Key which requests this endpoint. Weight(UID): 1 Security Type: TRADE
      *
      * @param editIpForSpecialKeyRequest (required)
      * @return ApiResponse&lt;Void&gt;
@@ -564,8 +594,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Edit-ip-for-Special-Key-of-Low-Latency-Trading">Edit
-     *     ip for Special Key(Low-Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#edit-ip-for-special-key">Edit
+     *     ip for Special Key(Low-Latency Trading) (TRADE) Documentation</a>
      */
     public ApiResponse<Void> editIpForSpecialKey(
             @Valid @NotNull EditIpForSpecialKeyRequest editIpForSpecialKeyRequest)
@@ -576,14 +606,165 @@ public class TradeApi {
     }
 
     /**
+     * Build call for exitSpecialKeyMode
+     *
+     * @param exitSpecialKeyModeRequest (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Exit Special Key Mode </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#exit-special-key-mode">Exit
+     *     Special Key Mode (TRADE) Documentation</a>
+     */
+    private okhttp3.Call exitSpecialKeyModeCall(ExitSpecialKeyModeRequest exitSpecialKeyModeRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/exit-special-key-mode";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (exitSpecialKeyModeRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", exitSpecialKeyModeRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exitSpecialKeyModeValidateBeforeCall(
+            ExitSpecialKeyModeRequest exitSpecialKeyModeRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {exitSpecialKeyModeRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod("exitSpecialKeyMode", ExitSpecialKeyModeRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return exitSpecialKeyModeCall(exitSpecialKeyModeRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Exit Special Key Mode (TRADE) Exit the Margin Special Key mode for Cross Margin Classic
+     * accounts. **All outstanding liabilities under the Cross Margin Classic account must be fully
+     * repaid before calling this endpoint.** Deleting the Margin Special Key alone does not
+     * constitute a valid exit. When a user creates a Margin Special API Key, the account enters
+     * \&quot;Special Key Mode\&quot;. Upon a successful request, the following actions will be
+     * performed atomically: 1. All existing Margin Special API Keys under the Cross Margin Classic
+     * mode account will be deleted. 2. All pre-execution margin checks (including Open-order-loss
+     * calculation) will revert to standard mode. 3. A cooldown period (default: 24 hours) will be
+     * enforced, during which the account will not be permitted to create new Margin Special API
+     * Keys. For more information, please refer to
+     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
+     * **Preconditions:** The following conditions must be met; otherwise the request will be
+     * rejected: - Account type must be **Cross Margin Classic**. - Account must currently be in
+     * **Special Key Mode**. If not, the request silently succeeds. - Account must **not be in
+     * liquidation**. - Account must **have no liability**. You need to enable \&quot;Permits Enable
+     * Spot &amp; Margin Trading\&quot; option for the API Key which requests this endpoint.
+     * Weight(UID): 10 Security Type: TRADE
+     *
+     * @param exitSpecialKeyModeRequest (optional)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Exit Special Key Mode </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#exit-special-key-mode">Exit
+     *     Special Key Mode (TRADE) Documentation</a>
+     */
+    public ApiResponse<Object> exitSpecialKeyMode(
+            @Valid ExitSpecialKeyModeRequest exitSpecialKeyModeRequest) throws ApiException {
+        okhttp3.Call localVarCall = exitSpecialKeyModeValidateBeforeCall(exitSpecialKeyModeRequest);
+        java.lang.reflect.Type localVarReturnType = new TypeToken<Object>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for getForceLiquidationRecord
      *
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isolatedSymbol (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -594,7 +775,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Get-Force-Liquidation-Record">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-force-liquidation-record">Get
      *     Force Liquidation Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getForceLiquidationRecordCall(
@@ -734,15 +915,15 @@ public class TradeApi {
     }
 
     /**
-     * Get Force Liquidation Record (USER_DATA) Get Force Liquidation Record * Response in
-     * descending order Weight: 1(IP)
+     * Get Force Liquidation Record (USER_DATA) Get Force Liquidation Record Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - Response in descending order
      *
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param isolatedSymbol isolated symbol (optional)
-     * @param current Currently querying page. Start from 1. Default:1 (optional)
-     * @param size Default:10 Max:100 (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isolatedSymbol (optional)
+     * @param current (optional)
+     * @param size (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetForceLiquidationRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -754,16 +935,16 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Get-Force-Liquidation-Record">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-force-liquidation-record">Get
      *     Force Liquidation Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetForceLiquidationRecordResponse> getForceLiquidationRecord(
             Long startTime,
             Long endTime,
             String isolatedSymbol,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getForceLiquidationRecordValidateBeforeCall(
@@ -776,7 +957,7 @@ public class TradeApi {
     /**
      * Build call for getSmallLiabilityExchangeCoinList
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -787,7 +968,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-Coin-List">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-small-liability-exchange-coin-list">Get
      *     Small Liability Exchange Coin List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSmallLiabilityExchangeCoinListCall(Long recvWindow)
@@ -884,9 +1065,9 @@ public class TradeApi {
 
     /**
      * Get Small Liability Exchange Coin List (USER_DATA) Query the coins which can be small
-     * liability exchange Weight: 100
+     * liability exchange Weight(IP): 100 Security Type: USER_DATA
      *
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSmallLiabilityExchangeCoinListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -898,11 +1079,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-Coin-List">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-small-liability-exchange-coin-list">Get
      *     Small Liability Exchange Coin List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSmallLiabilityExchangeCoinListResponse> getSmallLiabilityExchangeCoinList(
-            Long recvWindow) throws ApiException {
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getSmallLiabilityExchangeCoinListValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetSmallLiabilityExchangeCoinListResponse>() {}.getType();
@@ -912,11 +1093,11 @@ public class TradeApi {
     /**
      * Build call for getSmallLiabilityExchangeHistory
      *
-     * @param current Currently querying page. Start from 1. Default:1 (required)
-     * @param size Default:10, Max:100 (required)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param current (required)
+     * @param size (required)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -927,7 +1108,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-small-liability-exchange-history">Get
      *     Small Liability Exchange History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSmallLiabilityExchangeHistoryCall(
@@ -1049,14 +1230,14 @@ public class TradeApi {
     }
 
     /**
-     * Get Small Liability Exchange History (USER_DATA) Get Small liability Exchange History Weight:
-     * 100(UID)
+     * Get Small Liability Exchange History (USER_DATA) Get Small liability Exchange History
+     * Weight(UID): 100 Security Type: USER_DATA
      *
-     * @param current Currently querying page. Start from 1. Default:1 (required)
-     * @param size Default:10, Max:100 (required)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param current (required)
+     * @param size (required)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSmallLiabilityExchangeHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1068,15 +1249,15 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-small-liability-exchange-history">Get
      *     Small Liability Exchange History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSmallLiabilityExchangeHistoryResponse> getSmallLiabilityExchangeHistory(
-            @NotNull Long current,
-            @NotNull Long size,
+            @NotNull @Min(1L) Long current,
+            @NotNull @Max(100L) Long size,
             Long startTime,
             Long endTime,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getSmallLiabilityExchangeHistoryValidateBeforeCall(
@@ -1087,12 +1268,164 @@ public class TradeApi {
     }
 
     /**
+     * Build call for liquidationLoanRepay
+     *
+     * @param liquidationLoanRepayRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Liquidation Loan Repay </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#liquidation-loan-repay">Liquidation
+     *     Loan Repay (MARGIN) Documentation</a>
+     */
+    private okhttp3.Call liquidationLoanRepayCall(
+            LiquidationLoanRepayRequest liquidationLoanRepayRequest) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/liquidation-loan/repay";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (liquidationLoanRepayRequest.getAsset() != null) {
+            localVarFormParams.put("asset", liquidationLoanRepayRequest.getAsset());
+        }
+
+        if (liquidationLoanRepayRequest.getAmount() != null) {
+            localVarFormParams.put(
+                    "amount",
+                    DecimalFormatter.getFormatter()
+                            .format(liquidationLoanRepayRequest.getAmount()));
+        }
+
+        if (liquidationLoanRepayRequest.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", liquidationLoanRepayRequest.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call liquidationLoanRepayValidateBeforeCall(
+            LiquidationLoanRepayRequest liquidationLoanRepayRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {liquidationLoanRepayRequest};
+            Method method =
+                    this.getClass()
+                            .getMethod("liquidationLoanRepay", LiquidationLoanRepayRequest.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return liquidationLoanRepayCall(liquidationLoanRepayRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Liquidation Loan Repay (MARGIN) Repays the outstanding cross-margin liquidation loan from the
+     * user&#39;s spot wallet. A liquidation loan represents the account deficit incurred when
+     * account equity turns negative during liquidation (bankruptcy). The repayment amount must be
+     * greater than 0 and cannot exceed the remaining loan balance. If the Spot Account has
+     * insufficient USDC balance, the repayment will fail. Weight(UID): 100 Security Type: MARGIN
+     *
+     * @param liquidationLoanRepayRequest (required)
+     * @return ApiResponse&lt;LiquidationLoanRepayResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Liquidation Loan Repay </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#liquidation-loan-repay">Liquidation
+     *     Loan Repay (MARGIN) Documentation</a>
+     */
+    public ApiResponse<LiquidationLoanRepayResponse> liquidationLoanRepay(
+            @Valid @NotNull LiquidationLoanRepayRequest liquidationLoanRepayRequest)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                liquidationLoanRepayValidateBeforeCall(liquidationLoanRepayRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<LiquidationLoanRepayResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for marginAccountCancelAllOpenOrdersOnASymbol
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1103,11 +1436,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-All-Open-Orders">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-all-open-orders-on-asymbol">Margin
      *     Account Cancel all Open Orders on a Symbol (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountCancelAllOpenOrdersOnASymbolCall(
-            String symbol, String isIsolated, Long recvWindow) throws ApiException {
+            String symbol, IsIsolated isIsolated, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1176,7 +1509,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call marginAccountCancelAllOpenOrdersOnASymbolValidateBeforeCall(
-            String symbol, String isIsolated, Long recvWindow) throws ApiException {
+            String symbol, IsIsolated isIsolated, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -1192,7 +1525,7 @@ public class TradeApi {
                             .getMethod(
                                     "marginAccountCancelAllOpenOrdersOnASymbol",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
@@ -1214,12 +1547,12 @@ public class TradeApi {
 
     /**
      * Margin Account Cancel all Open Orders on a Symbol (TRADE) Cancels all active orders on a
-     * symbol for margin account.&lt;br&gt;&lt;/br&gt; This includes OCO orders. Weight: 1
+     * symbol for margin account.&lt;br&gt;&lt;/br&gt; This includes OCO orders. Weight(IP): 1
+     * Security Type: TRADE
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1231,12 +1564,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-All-Open-Orders">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-all-open-orders-on-asymbol">Margin
      *     Account Cancel all Open Orders on a Symbol (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountCancelAllOpenOrdersOnASymbolResponse>
             marginAccountCancelAllOpenOrdersOnASymbol(
-                    @NotNull String symbol, String isIsolated, Long recvWindow)
+                    @NotNull String symbol, IsIsolated isIsolated, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 marginAccountCancelAllOpenOrdersOnASymbolValidateBeforeCall(
@@ -1250,15 +1583,11 @@ public class TradeApi {
      * Build call for marginAccountCancelOco
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
-     * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
-     *     be provided (optional)
-     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
-     *     default (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param orderListId (optional)
+     * @param listClientOrderId (optional)
+     * @param newClientOrderId (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1269,12 +1598,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-OCO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-oco">Margin
      *     Account Cancel OCO (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountCancelOcoCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
@@ -1364,7 +1693,7 @@ public class TradeApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call marginAccountCancelOcoValidateBeforeCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
@@ -1387,7 +1716,7 @@ public class TradeApi {
                             .getMethod(
                                     "marginAccountCancelOco",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class,
                                     String.class,
                                     String.class,
@@ -1416,19 +1745,16 @@ public class TradeApi {
     }
 
     /**
-     * Margin Account Cancel OCO (TRADE) Cancel an entire Order List for a margin account. *
-     * Canceling an individual leg will cancel the entire OCO Weight: 1(UID)
+     * Margin Account Cancel OCO (TRADE) Cancel an entire Order List for a margin account.
+     * Weight(UID): 1 Security Type: TRADE Notes: - Canceling an individual leg will cancel the
+     * entire OCO
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
-     * @param listClientOrderId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must
-     *     be provided (optional)
-     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
-     *     default (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param orderListId (optional)
+     * @param listClientOrderId (optional)
+     * @param newClientOrderId (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;MarginAccountCancelOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1440,16 +1766,16 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-OCO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-oco">Margin
      *     Account Cancel OCO (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountCancelOcoResponse> marginAccountCancelOco(
             @NotNull String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderListId,
             String listClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 marginAccountCancelOcoValidateBeforeCall(
@@ -1468,13 +1794,11 @@ public class TradeApi {
      * Build call for marginAccountCancelOrder
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
-     *     default (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param newClientOrderId (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1485,12 +1809,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-Order">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-order">Margin
      *     Account Cancel Order (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountCancelOrderCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             String origClientOrderId,
             String newClientOrderId,
@@ -1579,7 +1903,7 @@ public class TradeApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call marginAccountCancelOrderValidateBeforeCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             String origClientOrderId,
             String newClientOrderId,
@@ -1602,7 +1926,7 @@ public class TradeApi {
                             .getMethod(
                                     "marginAccountCancelOrder",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class,
                                     String.class,
                                     String.class,
@@ -1631,17 +1955,15 @@ public class TradeApi {
     }
 
     /**
-     * Margin Account Cancel Order (TRADE) Cancel an active order for margin account. * Either
-     * orderId or origClientOrderId must be sent. Weight: 10(IP)
+     * Margin Account Cancel Order (TRADE) Cancel an active order for margin account. Weight(IP): 10
+     * Security Type: TRADE Notes: - Either orderId or origClientOrderId must be sent.
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param newClientOrderId Used to uniquely identify this cancel. Automatically generated by
-     *     default (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param newClientOrderId (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;MarginAccountCancelOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1653,16 +1975,16 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-Order">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-order">Margin
      *     Account Cancel Order (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountCancelOrderResponse> marginAccountCancelOrder(
             @NotNull String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             String origClientOrderId,
             String newClientOrderId,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 marginAccountCancelOrderValidateBeforeCall(
@@ -1691,7 +2013,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco">Margin
      *     Account New OCO (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountNewOcoCall(
@@ -1882,9 +2204,10 @@ public class TradeApi {
     }
 
     /**
-     * Margin Account New OCO (TRADE) Send in a new OCO for a margin account * autoRepayAtCancel is
-     * suggested to set as “FALSE” to keep liability unrepaid under high frequent new order/cancel
-     * order execution Weight: 6(UID)
+     * Margin Account New OCO (TRADE) Send in a new OCO for a margin account Weight: 6(UID) or
+     * 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type: TRADE Notes:
+     * - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid under high
+     * frequent new order/cancel order execution
      *
      * @param marginAccountNewOcoRequest (required)
      * @return ApiResponse&lt;MarginAccountNewOcoResponse&gt;
@@ -1898,7 +2221,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco">Margin
      *     Account New OCO (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountNewOcoResponse> marginAccountNewOco(
@@ -1925,7 +2248,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-Order">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-order">Margin
      *     Account New Order (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountNewOrderCall(
@@ -2030,6 +2353,11 @@ public class TradeApi {
                     marginAccountNewOrderRequest.getSelfTradePreventionMode());
         }
 
+        if (marginAccountNewOrderRequest.getTrailingDelta() != null) {
+            localVarFormParams.put(
+                    "trailingDelta", marginAccountNewOrderRequest.getTrailingDelta());
+        }
+
         if (marginAccountNewOrderRequest.getAutoRepayAtCancel() != null) {
             localVarFormParams.put(
                     "autoRepayAtCancel", marginAccountNewOrderRequest.getAutoRepayAtCancel());
@@ -2103,9 +2431,10 @@ public class TradeApi {
     }
 
     /**
-     * Margin Account New Order (TRADE) Post a new order for margin account. * autoRepayAtCancel is
-     * suggested to set as “FALSE” to keep liability unrepaid under high frequent new order/cancel
-     * order execution Weight: 6(UID)
+     * Margin Account New Order (TRADE) Post a new order for margin account. Weight: 6(UID) or
+     * 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type: TRADE Notes:
+     * - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid under high
+     * frequent new order/cancel order execution
      *
      * @param marginAccountNewOrderRequest (required)
      * @return ApiResponse&lt;MarginAccountNewOrderResponse&gt;
@@ -2119,7 +2448,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-Order">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-order">Margin
      *     Account New Order (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountNewOrderResponse> marginAccountNewOrder(
@@ -2146,7 +2475,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OTO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oto">Margin
      *     Account New OTO (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountNewOtoCall(
@@ -2377,10 +2706,23 @@ public class TradeApi {
      * placement response will show the working order as &#x60;FILLED&#x60; but the pending order
      * will still appear as &#x60;PENDING_NEW&#x60;. You need to query the status of the pending
      * order again to see its updated status. - OTOs add **2 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. *
-     * autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid under high
-     * frequent new order/cancel order execution * Depending on the &#x60;pendingType&#x60; or
-     * &#x60;workingType&#x60;, some optional parameters will become mandatory: Weight: 6(UID)
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
+     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
+     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
+     * under high frequent new order/cancel order execution - Depending on the
+     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;, some optional - parameters will become
+     * mandatory: | Type | Additional mandatory parameters | Additional information | |
+     * -------------------------------------------------------- |
+     * ------------------------------------------------------------ | ---------------------- | |
+     * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
+     * &#x60;pendingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or
+     * &#x60;TAKE_PROFIT&#x60; | &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60; | | | &#x60;pendingType&#x60; &#x3D;
+     * &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;,
+     * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingTrailingDelta&#x60; is provided |
+     * &#x60;pendingPrice&#x60; | |
      *
      * @param marginAccountNewOtoRequest (required)
      * @return ApiResponse&lt;MarginAccountNewOtoResponse&gt;
@@ -2394,7 +2736,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OTO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oto">Margin
      *     Account New OTO (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountNewOtoResponse> marginAccountNewOto(
@@ -2421,7 +2763,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OTOCO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-otoco">Margin
      *     Account New OTOCO (TRADE) Documentation</a>
      */
     private okhttp3.Call marginAccountNewOtocoCall(
@@ -2696,12 +3038,31 @@ public class TradeApi {
      * above and pending below), forming an OCO pair. The pending orders are only placed on the
      * order book when the working order gets **fully filled**. - The rules of the pending above and
      * pending below follow the same rules as the [Order List
-     * OCO](https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO). -
-     * OTOCOs add **3 orders** against the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;
-     * filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. * autoRepayAtCancel is suggested to set as
-     * “FALSE” to keep liability unrepaid under high frequent new order/cancel order execution *
-     * Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
-     * &#x60;workingType&#x60;, some optional parameters will become mandatory: Weight: 6(UID)
+     * OCO](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco).
+     * - OTOCOs add **3 orders** against the unfilled order count,
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
+     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
+     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
+     * under high frequent new order/cancel order execution - Depending on the
+     * &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;, some
+     * optional parameters will become mandatory: | Type | Additional mandatory parameters |
+     * Additional information | | ------------------------------------ |
+     * ------------------------------------------------------------ | ---------------------- | |
+     * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
+     * &#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; | &#x60;pendingAbovePrice&#x60; |
+     * | | &#x60;pendingAboveType&#x60;&#x3D; &#x60;STOP_LOSS&#x60; |
+     * &#x60;pendingAboveStopPrice&#x60; and/or &#x60;pendingAboveTrailingDelta&#x60; | | |
+     * &#x60;pendingAboveType&#x60;&#x3D;&#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;pendingAbovePrice&#x60;, &#x60;pendingAboveStopPrice&#x60; and/or
+     * &#x60;pendingAboveTrailingDelta&#x60;, &#x60;pendingAboveTimeInForce&#x60; | | |
+     * &#x60;pendingBelowType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; | &#x60;pendingBelowPrice&#x60; |
+     * | | &#x60;pendingBelowType&#x60;&#x3D; &#x60;STOP_LOSS&#x60; |
+     * &#x60;pendingBelowStopPrice&#x60; and/or &#x60;pendingBelowTrailingDelta&#x60; | | |
+     * &#x60;pendingBelowType&#x60;&#x3D;&#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;pendingBelowPrice&#x60;, &#x60;pendingBelowStopPrice&#x60; and/or
+     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60; | | |
+     * &#x60;pendingAboveTrailingDelta&#x60; is provided | &#x60;pendingAbovePrice&#x60; | | |
+     * &#x60;pendingBelowTrailingDelta&#x60; is provided | &#x60;pendingBelowPrice&#x60; | |
      *
      * @param marginAccountNewOtocoRequest (required)
      * @return ApiResponse&lt;MarginAccountNewOtocoResponse&gt;
@@ -2715,7 +3076,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OTOCO">Margin
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-otoco">Margin
      *     Account New OTOCO (TRADE) Documentation</a>
      */
     public ApiResponse<MarginAccountNewOtocoResponse> marginAccountNewOtoco(
@@ -2742,8 +3103,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Manual-Liquidation">Margin
-     *     Manual Liquidation(MARGIN) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-manual-liquidation">Margin
+     *     Manual Liquidation (TRADE) Documentation</a>
      */
     private okhttp3.Call marginManualLiquidationCall(
             MarginManualLiquidationRequest marginManualLiquidationRequest) throws ApiException {
@@ -2849,9 +3210,9 @@ public class TradeApi {
     }
 
     /**
-     * Margin Manual Liquidation(MARGIN) Margin Manual Liquidation * This endpoint can support Cross
-     * Margin Classic Mode and Pro Mode. * And only support Isolated Margin for restricted region.
-     * Weight: 3000
+     * Margin Manual Liquidation (TRADE) Margin Manual Liquidation Weight(UID): 3000 Security Type:
+     * TRADE Notes: - This endpoint supports Cross Margin Classic Mode and Pro Mode. - Isolated
+     * Margin is only supported in restricted regions.
      *
      * @param marginManualLiquidationRequest (required)
      * @return ApiResponse&lt;MarginManualLiquidationResponse&gt;
@@ -2865,8 +3226,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Margin-Manual-Liquidation">Margin
-     *     Manual Liquidation(MARGIN) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-manual-liquidation">Margin
+     *     Manual Liquidation (TRADE) Documentation</a>
      */
     public ApiResponse<MarginManualLiquidationResponse> marginManualLiquidation(
             @Valid @NotNull MarginManualLiquidationRequest marginManualLiquidationRequest)
@@ -2881,10 +3242,9 @@ public class TradeApi {
     /**
      * Build call for queryCurrentMarginOrderCountUsage
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2895,11 +3255,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Current-Margin-Order-Count-Usage">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-current-margin-order-count-usage">Query
      *     Current Margin Order Count Usage (TRADE) Documentation</a>
      */
     private okhttp3.Call queryCurrentMarginOrderCountUsageCall(
-            String isIsolated, String symbol, Long recvWindow) throws ApiException {
+            IsIsolated isIsolated, String symbol, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -2968,7 +3328,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryCurrentMarginOrderCountUsageValidateBeforeCall(
-            String isIsolated, String symbol, Long recvWindow) throws ApiException {
+            IsIsolated isIsolated, String symbol, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -2983,7 +3343,7 @@ public class TradeApi {
                     this.getClass()
                             .getMethod(
                                     "queryCurrentMarginOrderCountUsage",
-                                    String.class,
+                                    IsIsolated.class,
                                     String.class,
                                     Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
@@ -3005,12 +3365,11 @@ public class TradeApi {
 
     /**
      * Query Current Margin Order Count Usage (TRADE) Displays the user&#39;s current margin order
-     * count usage for all intervals. Weight: 20(IP)
+     * count usage for all intervals. Weight(IP): 20 Security Type: TRADE
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentMarginOrderCountUsageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3022,11 +3381,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Current-Margin-Order-Count-Usage">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-current-margin-order-count-usage">Query
      *     Current Margin Order Count Usage (TRADE) Documentation</a>
      */
     public ApiResponse<QueryCurrentMarginOrderCountUsageResponse> queryCurrentMarginOrderCountUsage(
-            String isIsolated, String symbol, Long recvWindow) throws ApiException {
+            IsIsolated isIsolated, String symbol, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryCurrentMarginOrderCountUsageValidateBeforeCall(isIsolated, symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -3035,19 +3395,333 @@ public class TradeApi {
     }
 
     /**
+     * Build call for queryLiquidationLoan
+     *
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Liquidation Loan </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-liquidation-loan">Query
+     *     Liquidation Loan (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryLiquidationLoanCall(Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/liquidation-loan";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryLiquidationLoanValidateBeforeCall(Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {recvWindow};
+            Method method = this.getClass().getMethod("queryLiquidationLoan", Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryLiquidationLoanCall(recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Liquidation Loan (USER_DATA) Query the current user&#39;s cross-margin liquidation loan
+     * information, including the original loan amount, repaid amount, and remaining amount. When a
+     * cross-margin account is liquidated and the account equity turns negative (bankruptcy), the
+     * system generates a liquidation loan record representing the deficit. This represents the
+     * shortfall amount denominated in USDC. Weight(UID): 100 Security Type: USER_DATA
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryLiquidationLoanResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Liquidation Loan </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-liquidation-loan">Query
+     *     Liquidation Loan (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryLiquidationLoanResponse> queryLiquidationLoan(
+            @Max(60000L) Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall = queryLiquidationLoanValidateBeforeCall(recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryLiquidationLoanResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for queryLiquidationLoanRepayHistory
+     *
+     * @param startTime Start time in Unix timestamp (milliseconds). Defaults to 7 days ago if not
+     *     specified (optional)
+     * @param endTime End time in Unix timestamp (milliseconds). Defaults to now if not specified
+     *     (optional)
+     * @param current Current page number, default &#x60;1&#x60; (optional)
+     * @param size Page size, default &#x60;50&#x60; (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Liquidation Loan Repay History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-liquidation-loan-repay-history">Query
+     *     Liquidation Loan Repay History (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryLiquidationLoanRepayHistoryCall(
+            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/liquidation-loan/repay-history";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTime", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("endTime", endTime));
+        }
+
+        if (current != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("current", current));
+        }
+
+        if (size != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryLiquidationLoanRepayHistoryValidateBeforeCall(
+            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {startTime, endTime, current, size, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryLiquidationLoanRepayHistory",
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryLiquidationLoanRepayHistoryCall(
+                        startTime, endTime, current, size, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Liquidation Loan Repay History (USER_DATA) Query the repayment history of cross-margin
+     * liquidation loans (deficit caused by bankruptcy during liquidation). Supports time-range
+     * filtering and pagination. Weight(UID): 100 Security Type: USER_DATA Notes: - The maximum
+     * query range is 90 days. If &#x60;startTime&#x60; is earlier than 90 days ago, it will be
+     * clamped to 90 days ago. - Only records with status &#x60;SUCCESS&#x60; or &#x60;PENDING&#x60;
+     * are returned. Failed repayment records are excluded.
+     *
+     * @param startTime Start time in Unix timestamp (milliseconds). Defaults to 7 days ago if not
+     *     specified (optional)
+     * @param endTime End time in Unix timestamp (milliseconds). Defaults to now if not specified
+     *     (optional)
+     * @param current Current page number, default &#x60;1&#x60; (optional)
+     * @param size Page size, default &#x60;50&#x60; (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryLiquidationLoanRepayHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Query Liquidation Loan Repay History </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-liquidation-loan-repay-history">Query
+     *     Liquidation Loan Repay History (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryLiquidationLoanRepayHistoryResponse> queryLiquidationLoanRepayHistory(
+            Long startTime, Long endTime, Long current, Long size, @Max(60000L) Long recvWindow)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                queryLiquidationLoanRepayHistoryValidateBeforeCall(
+                        startTime, endTime, current, size, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryLiquidationLoanRepayHistoryResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryMarginAccountsAllOco
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
-     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
-     *     (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param fromId (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
-     *     1000. (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3058,11 +3732,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-all-OCO">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-all-oco">Query
      *     Margin Account&#39;s all OCO (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsAllOcoCall(
-            String isIsolated,
+            IsIsolated isIsolated,
             String symbol,
             Long fromId,
             Long startTime,
@@ -3154,7 +3828,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsAllOcoValidateBeforeCall(
-            String isIsolated,
+            IsIsolated isIsolated,
             String symbol,
             Long fromId,
             Long startTime,
@@ -3178,7 +3852,7 @@ public class TradeApi {
                     this.getClass()
                             .getMethod(
                                     "queryMarginAccountsAllOco",
-                                    String.class,
+                                    IsIsolated.class,
                                     String.class,
                                     Long.class,
                                     Long.class,
@@ -3205,19 +3879,15 @@ public class TradeApi {
 
     /**
      * Query Margin Account&#39;s all OCO (USER_DATA) Retrieves all OCO for a specific margin
-     * account based on provided optional parameters Weight: 200(IP)
+     * account based on provided optional parameters Weight(IP): 200 Security Type: USER_DATA
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
-     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
-     *     (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param fromId (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
-     *     1000. (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3229,17 +3899,17 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-all-OCO">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-all-oco">Query
      *     Margin Account&#39;s all OCO (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsAllOcoResponse> queryMarginAccountsAllOco(
-            String isIsolated,
+            IsIsolated isIsolated,
             String symbol,
             Long fromId,
             Long startTime,
             Long endTime,
-            Long limit,
-            Long recvWindow)
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsAllOcoValidateBeforeCall(
@@ -3253,14 +3923,12 @@ public class TradeApi {
      * Build call for queryMarginAccountsAllOrders
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
-     *     1000. (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3271,12 +3939,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-all-orders">Query
      *     Margin Account&#39;s All Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsAllOrdersCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             Long startTime,
             Long endTime,
@@ -3368,7 +4036,7 @@ public class TradeApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsAllOrdersValidateBeforeCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             Long startTime,
             Long endTime,
@@ -3392,7 +4060,7 @@ public class TradeApi {
                             .getMethod(
                                     "queryMarginAccountsAllOrders",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -3417,21 +4085,19 @@ public class TradeApi {
     }
 
     /**
-     * Query Margin Account&#39;s All Orders (USER_DATA) Query Margin Account&#39;s All Orders * If
-     * orderId is set, it will get orders &gt;&#x3D; that orderId. Otherwise the orders within 24
-     * hours are returned. * For some historical orders cummulativeQuoteQty will be &lt; 0, meaning
-     * the data is not available at this time. * Less than 24 hours between startTime and endTime.
-     * Weight: 200(IP)
+     * Query Margin Account&#39;s All Orders (USER_DATA) Query Margin Account&#39;s All Orders
+     * Weight(IP): 200 Security Type: USER_DATA Notes: - If orderId is set, it will get orders
+     * &gt;&#x3D; that orderId. Otherwise the orders within 24 hours are returned. - For some
+     * historical orders cummulativeQuoteQty will be &lt; 0, meaning the data is not available at
+     * this time. - Less than 24 hours between startTime and endTime.
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
-     *     1000. (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsAllOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3443,17 +4109,17 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-all-orders">Query
      *     Margin Account&#39;s All Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsAllOrdersResponse> queryMarginAccountsAllOrders(
             @NotNull String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             Long startTime,
             Long endTime,
-            Long limit,
-            Long recvWindow)
+            @Max(500L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsAllOrdersValidateBeforeCall(
@@ -3466,13 +4132,11 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsOco
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param orderListId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3483,11 +4147,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-OCO">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-oco">Query
      *     Margin Account&#39;s OCO (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsOcoCall(
-            String isIsolated,
+            IsIsolated isIsolated,
             String symbol,
             Long orderListId,
             String origClientOrderId,
@@ -3571,7 +4235,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsOcoValidateBeforeCall(
-            String isIsolated,
+            IsIsolated isIsolated,
             String symbol,
             Long orderListId,
             String origClientOrderId,
@@ -3593,7 +4257,7 @@ public class TradeApi {
                     this.getClass()
                             .getMethod(
                                     "queryMarginAccountsOco",
-                                    String.class,
+                                    IsIsolated.class,
                                     String.class,
                                     Long.class,
                                     String.class,
@@ -3618,15 +4282,13 @@ public class TradeApi {
 
     /**
      * Query Margin Account&#39;s OCO (USER_DATA) Retrieves a specific OCO based on provided
-     * optional parameters Weight: 10(IP)
+     * optional parameters Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param orderListId Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be
-     *     provided (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param orderListId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3638,15 +4300,15 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-OCO">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-oco">Query
      *     Margin Account&#39;s OCO (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsOcoResponse> queryMarginAccountsOco(
-            String isIsolated,
+            IsIsolated isIsolated,
             String symbol,
             Long orderListId,
             String origClientOrderId,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsOcoValidateBeforeCall(
@@ -3659,10 +4321,9 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsOpenOco
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3673,11 +4334,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-OCO">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-oco">Query
      *     Margin Account&#39;s Open OCO (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsOpenOcoCall(
-            String isIsolated, String symbol, Long recvWindow) throws ApiException {
+            IsIsolated isIsolated, String symbol, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -3746,7 +4407,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsOpenOcoValidateBeforeCall(
-            String isIsolated, String symbol, Long recvWindow) throws ApiException {
+            IsIsolated isIsolated, String symbol, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -3761,7 +4422,7 @@ public class TradeApi {
                     this.getClass()
                             .getMethod(
                                     "queryMarginAccountsOpenOco",
-                                    String.class,
+                                    IsIsolated.class,
                                     String.class,
                                     Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
@@ -3782,13 +4443,12 @@ public class TradeApi {
     }
 
     /**
-     * Query Margin Account&#39;s Open OCO (USER_DATA) Query Margin Account&#39;s Open OCO Weight:
-     * 10(IP)
+     * Query Margin Account&#39;s Open OCO (USER_DATA) Query Margin Account&#39;s Open OCO
+     * Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOcoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3800,11 +4460,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-OCO">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-oco">Query
      *     Margin Account&#39;s Open OCO (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsOpenOcoResponse> queryMarginAccountsOpenOco(
-            String isIsolated, String symbol, Long recvWindow) throws ApiException {
+            IsIsolated isIsolated, String symbol, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsOpenOcoValidateBeforeCall(isIsolated, symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -3816,9 +4477,8 @@ public class TradeApi {
      * Build call for queryMarginAccountsOpenOrders
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3829,11 +4489,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-orders">Query
      *     Margin Account&#39;s Open Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsOpenOrdersCall(
-            String symbol, String isIsolated, Long recvWindow) throws ApiException {
+            String symbol, IsIsolated isIsolated, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -3902,7 +4562,7 @@ public class TradeApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsOpenOrdersValidateBeforeCall(
-            String symbol, String isIsolated, Long recvWindow) throws ApiException {
+            String symbol, IsIsolated isIsolated, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -3918,7 +4578,7 @@ public class TradeApi {
                             .getMethod(
                                     "queryMarginAccountsOpenOrders",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
@@ -3938,16 +4598,15 @@ public class TradeApi {
     }
 
     /**
-     * Query Margin Account&#39;s Open Orders (USER_DATA) Query Margin Account&#39;s Open Orders *
-     * If the symbol is not sent, orders for all symbols will be returned in an array. * When all
-     * symbols are returned, the number of requests counted against the rate limiter is equal to the
-     * number of symbols currently trading on the exchange. * If isIsolated
-     * &#x3D;\&quot;TRUE\&quot;, symbol must be sent. Weight: 10(IP)
+     * Query Margin Account&#39;s Open Orders (USER_DATA) Query Margin Account&#39;s Open Orders
+     * Weight(IP): 10 Security Type: USER_DATA Notes: - If the symbol is not sent, orders for all
+     * symbols will be returned in an array. - When all symbols are returned, the number of requests
+     * counted against the rate limiter is equal to the number of symbols currently trading on the
+     * exchange. - If isIsolated &#x3D;\&quot;TRUE\&quot;, symbol must be sent.
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -3959,11 +4618,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-Orders">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-orders">Query
      *     Margin Account&#39;s Open Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsOpenOrdersResponse> queryMarginAccountsOpenOrders(
-            String symbol, String isIsolated, Long recvWindow) throws ApiException {
+            String symbol, IsIsolated isIsolated, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsOpenOrdersValidateBeforeCall(symbol, isIsolated, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -3975,11 +4635,10 @@ public class TradeApi {
      * Build call for queryMarginAccountsOrder
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -3990,12 +4649,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-order">Query
      *     Margin Account&#39;s Order (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsOrderCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             String origClientOrderId,
             Long recvWindow)
@@ -4078,7 +4737,7 @@ public class TradeApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsOrderValidateBeforeCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             String origClientOrderId,
             Long recvWindow)
@@ -4098,7 +4757,7 @@ public class TradeApi {
                             .getMethod(
                                     "queryMarginAccountsOrder",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class,
                                     String.class,
                                     Long.class);
@@ -4121,16 +4780,16 @@ public class TradeApi {
     }
 
     /**
-     * Query Margin Account&#39;s Order (USER_DATA) Query Margin Account&#39;s Order * Either
-     * orderId or origClientOrderId must be sent. * For some historical orders cummulativeQuoteQty
-     * will be &lt; 0, meaning the data is not available at this time. Weight: 10(IP)
+     * Query Margin Account&#39;s Order (USER_DATA) Query Margin Account&#39;s Order Weight(IP): 10
+     * Security Type: USER_DATA Notes: - Either orderId or origClientOrderId must be sent. - For
+     * some historical orders cummulativeQuoteQty will be &lt; 0, meaning the data is not available
+     * at this time.
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -4142,15 +4801,15 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Order">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-order">Query
      *     Margin Account&#39;s Order (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsOrderResponse> queryMarginAccountsOrder(
             @NotNull String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             String origClientOrderId,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsOrderValidateBeforeCall(
@@ -4164,17 +4823,13 @@ public class TradeApi {
      * Build call for queryMarginAccountsTradeList
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
-     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
-     *     (optional)
-     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
-     *     1000. (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param fromId (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -4185,12 +4840,12 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Trade-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-trade-list">Query
      *     Margin Account&#39;s Trade List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryMarginAccountsTradeListCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             Long startTime,
             Long endTime,
@@ -4287,7 +4942,7 @@ public class TradeApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryMarginAccountsTradeListValidateBeforeCall(
             String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             Long startTime,
             Long endTime,
@@ -4312,7 +4967,7 @@ public class TradeApi {
                             .getMethod(
                                     "queryMarginAccountsTradeList",
                                     String.class,
-                                    String.class,
+                                    IsIsolated.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -4338,22 +4993,19 @@ public class TradeApi {
     }
 
     /**
-     * Query Margin Account&#39;s Trade List (USER_DATA) Query Margin Account&#39;s Trade List * If
-     * fromId is set, it will get trades &gt;&#x3D; that fromId. Otherwise the trades within 24
-     * hours are returned. * Less than 24 hours between startTime and endTime. Weight: 10(IP)
+     * Query Margin Account&#39;s Trade List (USER_DATA) Query Margin Account&#39;s Trade List
+     * Weight(IP): 10 Security Type: USER_DATA Notes: - If fromId is set, it will get trades
+     * &gt;&#x3D; that fromId. Otherwise the trades within 24 hours are returned. - Less than 24
+     * hours between startTime and endTime.
      *
      * @param symbol (required)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
      * @param orderId (optional)
-     * @param startTime Only supports querying data from the past 90 days. (optional)
+     * @param startTime (optional)
      * @param endTime (optional)
-     * @param fromId If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than
-     *     &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
-     *     (optional)
-     * @param limit Limit on the number of data records returned per request. Default: 500; Maximum:
-     *     1000. (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param fromId (optional)
+     * @param limit (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsTradeListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -4365,18 +5017,18 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Trade-List">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-trade-list">Query
      *     Margin Account&#39;s Trade List (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAccountsTradeListResponse> queryMarginAccountsTradeList(
             @NotNull String symbol,
-            String isIsolated,
+            IsIsolated isIsolated,
             Long orderId,
             Long startTime,
             Long endTime,
             Long fromId,
-            Long limit,
-            Long recvWindow)
+            @Max(1000L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryMarginAccountsTradeListValidateBeforeCall(
@@ -4393,9 +5045,8 @@ public class TradeApi {
      * @param preventedMatchId (optional)
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
-     * @param recvWindow No more than 60000 (optional)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -4406,16 +5057,16 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches">Query
-     *     Prevented Matches(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-prevented-matches">Query
+     *     Prevented Matches (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryPreventedMatchesCall(
             String symbol,
             Long preventedMatchId,
             Long orderId,
             Long fromPreventedMatchId,
-            Long recvWindow,
-            String isIsolated)
+            IsIsolated isIsolated,
+            Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -4460,12 +5111,12 @@ public class TradeApi {
                             "fromPreventedMatchId", fromPreventedMatchId));
         }
 
-        if (recvWindow != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
-        }
-
         if (isIsolated != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("isIsolated", isIsolated));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
         }
 
         final String[] localVarAccepts = {"application/json"};
@@ -4504,8 +5155,8 @@ public class TradeApi {
             Long preventedMatchId,
             Long orderId,
             Long fromPreventedMatchId,
-            Long recvWindow,
-            String isIsolated)
+            IsIsolated isIsolated,
+            Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -4517,7 +5168,7 @@ public class TradeApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {
-                symbol, preventedMatchId, orderId, fromPreventedMatchId, recvWindow, isIsolated
+                symbol, preventedMatchId, orderId, fromPreventedMatchId, isIsolated, recvWindow
             };
             Method method =
                     this.getClass()
@@ -4527,8 +5178,8 @@ public class TradeApi {
                                     Long.class,
                                     Long.class,
                                     Long.class,
-                                    Long.class,
-                                    String.class);
+                                    IsIsolated.class,
+                                    Long.class);
             Set<ConstraintViolation<TradeApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -4538,8 +5189,8 @@ public class TradeApi {
                         preventedMatchId,
                         orderId,
                         fromPreventedMatchId,
-                        recvWindow,
-                        isIsolated);
+                        isIsolated,
+                        recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -4553,15 +5204,22 @@ public class TradeApi {
     }
 
     /**
-     * Query Prevented Matches(USER_DATA) Weight: 10(IP)
+     * Query Prevented Matches (USER_DATA) Displays the list of orders that were expired due to STP.
+     * (Self-Trade Prevention). Weight(IP): 10 Security Type: USER_DATA Notes: - Supported parameter
+     * combinations: - &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; - &#x60;symbol&#x60; +
+     * &#x60;orderId&#x60; - &#x60;symbol&#x60; + &#x60;orderId&#x60; +
+     * &#x60;fromPreventedMatchId&#x60; - If &#x60;orderId&#x60; is provided, all prevented matches
+     * for that order will be returned. - If &#x60;preventedMatchId&#x60; is provided, the specific
+     * prevented match will be returned. - A single request returns a maximum of 500 records. If
+     * there are more than 500 records, use &#x60;symbol&#x60; + &#x60;orderId&#x60; +
+     * &#x60;fromPreventedMatchId&#x60; combination for pagination.
      *
      * @param symbol (required)
      * @param preventedMatchId (optional)
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
-     * @param recvWindow No more than 60000 (optional)
-     * @param isIsolated For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;,
-     *     default \&quot;FALSE\&quot; (optional)
+     * @param isIsolated (optional, default to FALSE)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryPreventedMatchesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -4573,16 +5231,16 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches">Query
-     *     Prevented Matches(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-prevented-matches">Query
+     *     Prevented Matches (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryPreventedMatchesResponse> queryPreventedMatches(
             @NotNull String symbol,
             Long preventedMatchId,
             Long orderId,
             Long fromPreventedMatchId,
-            Long recvWindow,
-            String isIsolated)
+            IsIsolated isIsolated,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryPreventedMatchesValidateBeforeCall(
@@ -4590,8 +5248,8 @@ public class TradeApi {
                         preventedMatchId,
                         orderId,
                         fromPreventedMatchId,
-                        recvWindow,
-                        isIsolated);
+                        isIsolated,
+                        recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryPreventedMatchesResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4600,8 +5258,8 @@ public class TradeApi {
     /**
      * Build call for querySpecialKey
      *
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -4612,8 +5270,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-of-Low-Latency-Trading">Query
-     *     Special key(Low Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-special-key">Query
+     *     Special key(Low Latency Trading) (TRADE) Documentation</a>
      */
     private okhttp3.Call querySpecialKeyCall(String symbol, Long recvWindow) throws ApiException {
         String basePath = null;
@@ -4710,11 +5368,11 @@ public class TradeApi {
     }
 
     /**
-     * Query Special key(Low Latency Trading)(TRADE) Query Special Key Information. This only
-     * applies to Special Key for Low Latency Trading. Weight: 1(UID)
+     * Query Special key(Low Latency Trading) (TRADE) Query Special Key Information. This only
+     * applies to Special Key for Low Latency Trading. Weight(UID): 1 Security Type: TRADE
      *
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySpecialKeyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -4726,11 +5384,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-of-Low-Latency-Trading">Query
-     *     Special key(Low Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-special-key">Query
+     *     Special key(Low Latency Trading) (TRADE) Documentation</a>
      */
-    public ApiResponse<QuerySpecialKeyResponse> querySpecialKey(String symbol, Long recvWindow)
-            throws ApiException {
+    public ApiResponse<QuerySpecialKeyResponse> querySpecialKey(
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = querySpecialKeyValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QuerySpecialKeyResponse>() {}.getType();
@@ -4740,8 +5398,8 @@ public class TradeApi {
     /**
      * Build call for querySpecialKeyList
      *
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -4752,8 +5410,8 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-List-of-Low-Latency-Trading">Query
-     *     Special key List(Low Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-special-key-list">Query
+     *     Special key List(Low Latency Trading) (TRADE) Documentation</a>
      */
     private okhttp3.Call querySpecialKeyListCall(String symbol, Long recvWindow)
             throws ApiException {
@@ -4852,11 +5510,11 @@ public class TradeApi {
     }
 
     /**
-     * Query Special key List(Low Latency Trading)(TRADE) This only applies to Special Key for Low
-     * Latency Trading. Weight: 1(UID)
+     * Query Special key List(Low Latency Trading) (TRADE) This only applies to Special Key for Low
+     * Latency Trading. Weight(UID): 1 Security Type: TRADE
      *
-     * @param symbol isolated margin pair (optional)
-     * @param recvWindow No more than 60000 (optional)
+     * @param symbol (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;QuerySpecialKeyListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -4868,11 +5526,11 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-List-of-Low-Latency-Trading">Query
-     *     Special key List(Low Latency Trading)(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-special-key-list">Query
+     *     Special key List(Low Latency Trading) (TRADE) Documentation</a>
      */
     public ApiResponse<QuerySpecialKeyListResponse> querySpecialKeyList(
-            String symbol, Long recvWindow) throws ApiException {
+            String symbol, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = querySpecialKeyListValidateBeforeCall(symbol, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QuerySpecialKeyListResponse>() {}.getType();
@@ -4893,7 +5551,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Small-Liability-Exchange">Small
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#small-liability-exchange">Small
      *     Liability Exchange (MARGIN) Documentation</a>
      */
     private okhttp3.Call smallLiabilityExchangeCall(
@@ -4923,8 +5581,7 @@ public class TradeApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (smallLiabilityExchangeRequest.getAssetNames() != null) {
-            String json = JSON.getGson().toJson(smallLiabilityExchangeRequest.getAssetNames());
-            localVarFormParams.put("assetNames", json);
+            localVarFormParams.put("assetNames", smallLiabilityExchangeRequest.getAssetNames());
         }
 
         if (smallLiabilityExchangeRequest.getRecvWindow() != null) {
@@ -4996,9 +5653,9 @@ public class TradeApi {
     }
 
     /**
-     * Small Liability Exchange (MARGIN) Small Liability Exchange * Only convert once within 6 hours
-     * * Only liability valuation less than 10 USDT are supported * The maximum number of coin is 10
-     * Weight: 3000(UID)
+     * Small Liability Exchange (MARGIN) Small Liability Exchange Weight(UID): 3000 Security Type:
+     * MARGIN Notes: - Only convert once within 6 hours - Only liability valuation less than 10 USDT
+     * are supported - The maximum number of coin is 10
      *
      * @param smallLiabilityExchangeRequest (required)
      * @return ApiResponse&lt;Void&gt;
@@ -5012,7 +5669,7 @@ public class TradeApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/margin_trading/trade/Small-Liability-Exchange">Small
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#small-liability-exchange">Small
      *     Liability Exchange (MARGIN) Documentation</a>
      */
     public ApiResponse<Void> smallLiabilityExchange(

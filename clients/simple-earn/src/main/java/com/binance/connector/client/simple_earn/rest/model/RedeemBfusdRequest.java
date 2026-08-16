@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** RedeemBfusdRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemBfusdRequest {
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -47,7 +47,7 @@ public class RedeemBfusdRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type = OrderType.STANDARD;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -63,7 +63,7 @@ public class RedeemBfusdRequest {
     }
 
     /**
-     * Get amount
+     * Amount in BFUSD
      *
      * @return amount
      */
@@ -78,7 +78,7 @@ public class RedeemBfusdRequest {
         this.amount = amount;
     }
 
-    public RedeemBfusdRequest type(@jakarta.annotation.Nonnull String type) {
+    public RedeemBfusdRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -90,11 +90,12 @@ public class RedeemBfusdRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -104,11 +105,12 @@ public class RedeemBfusdRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -228,13 +230,8 @@ public class RedeemBfusdRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

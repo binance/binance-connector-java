@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** GetPayTradeHistoryResponseDataInnerReceiverInfo */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     public static final String SERIALIZED_NAME_NAME = "name";
 
@@ -100,7 +100,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get name
+     * Nickname or merchant name.
      *
      * @return name
      */
@@ -120,7 +120,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get type
+     * Account type: USER for personal, MERCHANT for merchant.
      *
      * @return type
      */
@@ -140,7 +140,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get email
+     * Email.
      *
      * @return email
      */
@@ -160,7 +160,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get binanceId
+     * Binance UID.
      *
      * @return binanceId
      */
@@ -180,7 +180,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get accountId
+     * Binance Pay ID.
      *
      * @return accountId
      */
@@ -200,7 +200,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get countryCode
+     * International area code.
      *
      * @return countryCode
      */
@@ -220,7 +220,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get phoneNumber
+     * Phone number.
      *
      * @return phoneNumber
      */
@@ -240,7 +240,7 @@ public class GetPayTradeHistoryResponseDataInnerReceiverInfo {
     }
 
     /**
-     * Get mobileCode
+     * Country code.
      *
      * @return mobileCode
      */

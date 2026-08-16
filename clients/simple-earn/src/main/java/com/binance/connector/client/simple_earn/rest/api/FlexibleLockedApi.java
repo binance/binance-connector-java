@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,6 +20,7 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.simple_earn.rest.model.AprPeriod;
 import com.binance.connector.client.simple_earn.rest.model.GetCollateralRecordResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexiblePersonalLeftQuotaResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetFlexibleProductPositionResponse;
@@ -36,6 +37,7 @@ import com.binance.connector.client.simple_earn.rest.model.GetLockedSubscription
 import com.binance.connector.client.simple_earn.rest.model.GetRateHistoryResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnFlexibleProductListResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnLockedProductListResponse;
+import com.binance.connector.client.simple_earn.rest.model.OrderType;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductResponse;
 import com.binance.connector.client.simple_earn.rest.model.RedeemLockedProductRequest;
@@ -74,7 +76,7 @@ public class FlexibleLockedApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/6.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -117,8 +119,8 @@ public class FlexibleLockedApi {
      * @param productId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -130,8 +132,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Collateral-Record">Get
-     *     Collateral Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-collateral-record">Get
+     *     Collateral Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getCollateralRecordCall(
             String productId,
@@ -267,19 +269,20 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Collateral Record(USER_DATA) Get Collateral Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 1
+     * Get Collateral Record (USER_DATA) Get Collateral Record Weight(IP): 1 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param productId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetCollateralRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -292,16 +295,16 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Collateral-Record">Get
-     *     Collateral Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-collateral-record">Get
+     *     Collateral Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCollateralRecordResponse> getCollateralRecord(
             String productId,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getCollateralRecordValidateBeforeCall(
@@ -326,8 +329,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Personal-Left-Quota">Get
-     *     Flexible Personal Left Quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-personal-left-quota">Get
+     *     Flexible Personal Left Quota (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexiblePersonalLeftQuotaCall(String productId, Long recvWindow)
             throws ApiException {
@@ -427,7 +430,8 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Flexible Personal Left Quota(USER_DATA) Get Flexible Personal Left Quota Weight: 150
+     * Get Flexible Personal Left Quota (USER_DATA) Get Flexible Personal Left Quota Weight(IP): 150
+     * Security Type: USER_DATA
      *
      * @param productId (required)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
@@ -442,11 +446,11 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Personal-Left-Quota">Get
-     *     Flexible Personal Left Quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-personal-left-quota">Get
+     *     Flexible Personal Left Quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexiblePersonalLeftQuotaResponse> getFlexiblePersonalLeftQuota(
-            @NotNull String productId, Long recvWindow) throws ApiException {
+            @NotNull String productId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexiblePersonalLeftQuotaValidateBeforeCall(productId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -457,10 +461,10 @@ public class FlexibleLockedApi {
     /**
      * Build call for getFlexibleProductPosition
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param productId (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -472,8 +476,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Product-Position">Get
-     *     Flexible Product Position(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-product-position">Get
+     *     Flexible Product Position (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleProductPositionCall(
             String asset, String productId, Long current, Long size, Long recvWindow)
@@ -593,12 +597,13 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Flexible Product Position(USER_DATA) Get Flexible Product Position Weight: 150
+     * Get Flexible Product Position (USER_DATA) Get Flexible Product Position Weight(IP): 150
+     * Security Type: USER_DATA
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param productId (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -611,11 +616,15 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Product-Position">Get
-     *     Flexible Product Position(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-product-position">Get
+     *     Flexible Product Position (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleProductPositionResponse> getFlexibleProductPosition(
-            String asset, String productId, Long current, Long size, Long recvWindow)
+            String asset,
+            String productId,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleProductPositionValidateBeforeCall(
@@ -630,11 +639,11 @@ public class FlexibleLockedApi {
      *
      * @param productId (optional)
      * @param redeemId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -646,8 +655,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Redemption-Record">Get
-     *     Flexible Redemption Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-redemption-record">Get
+     *     Flexible Redemption Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleRedemptionRecordCall(
             String productId,
@@ -799,21 +808,22 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Flexible Redemption Record(USER_DATA) Get Flexible Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Flexible Redemption Record (USER_DATA) Get Flexible Redemption Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param productId (optional)
      * @param redeemId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -826,8 +836,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Redemption-Record">Get
-     *     Flexible Redemption Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-redemption-record">Get
+     *     Flexible Redemption Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleRedemptionRecordResponse> getFlexibleRedemptionRecord(
             String productId,
@@ -835,9 +845,9 @@ public class FlexibleLockedApi {
             String asset,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleRedemptionRecordValidateBeforeCall(
@@ -850,14 +860,15 @@ public class FlexibleLockedApi {
     /**
      * Build call for getFlexibleRewardsHistory
      *
-     * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; Real-time APR,
-     *     &#x60;REWARDS&#x60; Historical rewards,&#x60;ALL&#x60;(set to default) (required)
      * @param productId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR,
+     *     &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default:
+     *     &#x60;ALL&#x60; (optional, default to STANDARD)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -869,15 +880,15 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Rewards-History">Get
-     *     Flexible Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-rewards-history">Get
+     *     Flexible Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleRewardsHistoryCall(
-            String type,
             String productId,
             String asset,
             Long startTime,
             Long endTime,
+            OrderType type,
             Long current,
             Long size,
             Long recvWindow)
@@ -970,11 +981,11 @@ public class FlexibleLockedApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getFlexibleRewardsHistoryValidateBeforeCall(
-            String type,
             String productId,
             String asset,
             Long startTime,
             Long endTime,
+            OrderType type,
             Long current,
             Long size,
             Long recvWindow)
@@ -989,7 +1000,7 @@ public class FlexibleLockedApi {
             ExecutableValidator executableValidator = validator.forExecutables();
 
             Object[] parameterValues = {
-                type, productId, asset, startTime, endTime, current, size, recvWindow
+                productId, asset, startTime, endTime, type, current, size, recvWindow
             };
             Method method =
                     this.getClass()
@@ -997,9 +1008,9 @@ public class FlexibleLockedApi {
                                     "getFlexibleRewardsHistory",
                                     String.class,
                                     String.class,
-                                    String.class,
                                     Long.class,
                                     Long.class,
+                                    OrderType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -1008,7 +1019,7 @@ public class FlexibleLockedApi {
 
             if (violations.size() == 0) {
                 return getFlexibleRewardsHistoryCall(
-                        type, productId, asset, startTime, endTime, current, size, recvWindow);
+                        productId, asset, startTime, endTime, type, current, size, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1022,22 +1033,24 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Flexible Rewards History(USER_DATA) Get Flexible Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Flexible Rewards History (USER_DATA) Get Flexible Rewards History Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
-     * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; Real-time APR,
-     *     &#x60;REWARDS&#x60; Historical rewards,&#x60;ALL&#x60;(set to default) (required)
      * @param productId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR,
+     *     &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default:
+     *     &#x60;ALL&#x60; (optional, default to STANDARD)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1050,22 +1063,22 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Rewards-History">Get
-     *     Flexible Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-rewards-history">Get
+     *     Flexible Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleRewardsHistoryResponse> getFlexibleRewardsHistory(
-            @NotNull String type,
             String productId,
             String asset,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            OrderType type,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleRewardsHistoryValidateBeforeCall(
-                        type, productId, asset, startTime, endTime, current, size, recvWindow);
+                        productId, asset, startTime, endTime, type, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetFlexibleRewardsHistoryResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1087,8 +1100,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Flexible-Subscription-Preview">Get
-     *     Flexible Subscription Preview(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-preview">Get
+     *     Flexible Subscription Preview (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleSubscriptionPreviewCall(
             String productId, Double amount, Long recvWindow) throws ApiException {
@@ -1198,7 +1211,8 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Flexible Subscription Preview(USER_DATA) Get Flexible Subscription Preview Weight: 150
+     * Get Flexible Subscription Preview (USER_DATA) Get Flexible Subscription Preview Weight(IP):
+     * 150 Security Type: USER_DATA
      *
      * @param productId (required)
      * @param amount (required)
@@ -1214,11 +1228,11 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Flexible-Subscription-Preview">Get
-     *     Flexible Subscription Preview(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-preview">Get
+     *     Flexible Subscription Preview (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleSubscriptionPreviewResponse> getFlexibleSubscriptionPreview(
-            @NotNull String productId, @NotNull Double amount, Long recvWindow)
+            @NotNull String productId, @NotNull Double amount, @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleSubscriptionPreviewValidateBeforeCall(productId, amount, recvWindow);
@@ -1232,11 +1246,11 @@ public class FlexibleLockedApi {
      *
      * @param productId (optional)
      * @param purchaseId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1248,8 +1262,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Subscription-Record">Get
-     *     Flexible Subscription Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-record">Get
+     *     Flexible Subscription Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleSubscriptionRecordCall(
             String productId,
@@ -1408,21 +1422,22 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Flexible Subscription Record(USER_DATA) Get Flexible Subscription Record * The time
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Flexible Subscription Record (USER_DATA) Get Flexible Subscription Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param productId (optional)
      * @param purchaseId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1435,8 +1450,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Subscription-Record">Get
-     *     Flexible Subscription Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-record">Get
+     *     Flexible Subscription Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleSubscriptionRecordResponse> getFlexibleSubscriptionRecord(
             String productId,
@@ -1444,9 +1459,9 @@ public class FlexibleLockedApi {
             String asset,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleSubscriptionRecordValidateBeforeCall(
@@ -1478,8 +1493,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Personal-Left-Quota">Get
-     *     Locked Personal Left Quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-personal-left-quota">Get
+     *     Locked Personal Left Quota (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLockedPersonalLeftQuotaCall(String projectId, Long recvWindow)
             throws ApiException {
@@ -1579,7 +1594,8 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Locked Personal Left Quota(USER_DATA) Get Locked Personal Left Quota Weight: 150
+     * Get Locked Personal Left Quota (USER_DATA) Get Locked Personal Left Quota Weight(IP): 150
+     * Security Type: USER_DATA
      *
      * @param projectId (required)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
@@ -1594,11 +1610,11 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Personal-Left-Quota">Get
-     *     Locked Personal Left Quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-personal-left-quota">Get
+     *     Locked Personal Left Quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedPersonalLeftQuotaResponse> getLockedPersonalLeftQuota(
-            @NotNull String projectId, Long recvWindow) throws ApiException {
+            @NotNull String projectId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getLockedPersonalLeftQuotaValidateBeforeCall(projectId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -1609,11 +1625,11 @@ public class FlexibleLockedApi {
     /**
      * Build call for getLockedProductPosition
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1625,8 +1641,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Product-Position">Get
-     *     Locked Product Position Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-product-position">Get
+     *     Locked Product Position (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLockedProductPositionCall(
             String asset,
@@ -1762,13 +1778,14 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Locked Product Position Get Locked Product Position Weight: 150
+     * Get Locked Product Position (USER_DATA) Get Locked Product Position Weight(IP): 150 Security
+     * Type: USER_DATA
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1781,16 +1798,16 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Product-Position">Get
-     *     Locked Product Position Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-product-position">Get
+     *     Locked Product Position (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedProductPositionResponse> getLockedProductPosition(
             String asset,
             String positionId,
             String projectId,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLockedProductPositionValidateBeforeCall(
@@ -1805,11 +1822,11 @@ public class FlexibleLockedApi {
      *
      * @param positionId (optional)
      * @param redeemId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1821,8 +1838,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Redemption-Record">Get
-     *     Locked Redemption Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-redemption-record">Get
+     *     Locked Redemption Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLockedRedemptionRecordCall(
             String positionId,
@@ -1974,21 +1991,22 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Locked Redemption Record(USER_DATA) Get Locked Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Locked Redemption Record (USER_DATA) Get Locked Redemption Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param positionId (optional)
      * @param redeemId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2001,8 +2019,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Redemption-Record">Get
-     *     Locked Redemption Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-redemption-record">Get
+     *     Locked Redemption Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedRedemptionRecordResponse> getLockedRedemptionRecord(
             String positionId,
@@ -2010,9 +2028,9 @@ public class FlexibleLockedApi {
             String asset,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLockedRedemptionRecordValidateBeforeCall(
@@ -2026,11 +2044,11 @@ public class FlexibleLockedApi {
      * Build call for getLockedRewardsHistory
      *
      * @param positionId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2042,8 +2060,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Rewards-History">Get
-     *     Locked Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-rewards-history">Get
+     *     Locked Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLockedRewardsHistoryCall(
             String positionId,
@@ -2188,20 +2206,21 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Locked Rewards History(USER_DATA) Get Locked Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Locked Rewards History (USER_DATA) Get Locked Rewards History Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param positionId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2214,17 +2233,17 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Rewards-History">Get
-     *     Locked Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-rewards-history">Get
+     *     Locked Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedRewardsHistoryResponse> getLockedRewardsHistory(
             String positionId,
             String asset,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLockedRewardsHistoryValidateBeforeCall(
@@ -2239,7 +2258,7 @@ public class FlexibleLockedApi {
      *
      * @param projectId (required)
      * @param amount (required)
-     * @param autoSubscribe true or false, default true. (optional)
+     * @param autoSubscribe default true. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2251,8 +2270,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Locked-Subscription-Preview">Get
-     *     Locked Subscription Preview(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-preview">Get
+     *     Locked Subscription Preview (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLockedSubscriptionPreviewCall(
             String projectId, Double amount, Boolean autoSubscribe, Long recvWindow)
@@ -2371,11 +2390,12 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Locked Subscription Preview(USER_DATA) Get Locked Subscription Preview Weight: 150
+     * Get Locked Subscription Preview (USER_DATA) Get Locked Subscription Preview Weight(IP): 150
+     * Security Type: USER_DATA
      *
      * @param projectId (required)
      * @param amount (required)
-     * @param autoSubscribe true or false, default true. (optional)
+     * @param autoSubscribe default true. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2388,14 +2408,14 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Locked-Subscription-Preview">Get
-     *     Locked Subscription Preview(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-preview">Get
+     *     Locked Subscription Preview (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedSubscriptionPreviewResponse> getLockedSubscriptionPreview(
             @NotNull String projectId,
             @NotNull Double amount,
             Boolean autoSubscribe,
-            Long recvWindow)
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLockedSubscriptionPreviewValidateBeforeCall(
@@ -2409,11 +2429,11 @@ public class FlexibleLockedApi {
      * Build call for getLockedSubscriptionRecord
      *
      * @param purchaseId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2425,8 +2445,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Subscription-Record">Get
-     *     Locked Subscription Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-record">Get
+     *     Locked Subscription Record (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getLockedSubscriptionRecordCall(
             String purchaseId,
@@ -2571,20 +2591,21 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Locked Subscription Record(USER_DATA) Get Locked Subscription Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Locked Subscription Record (USER_DATA) Get Locked Subscription Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param purchaseId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2597,17 +2618,17 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Subscription-Record">Get
-     *     Locked Subscription Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-record">Get
+     *     Locked Subscription Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedSubscriptionRecordResponse> getLockedSubscriptionRecord(
             String purchaseId,
             String asset,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getLockedSubscriptionRecordValidateBeforeCall(
@@ -2621,11 +2642,11 @@ public class FlexibleLockedApi {
      * Build call for getRateHistory
      *
      * @param productId (required)
-     * @param aprPeriod \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; (optional)
+     * @param aprPeriod (optional, default to DAY)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2637,12 +2658,12 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Rate-History">Get
-     *     Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-rate-history">Get
+     *     Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRateHistoryCall(
             String productId,
-            String aprPeriod,
+            AprPeriod aprPeriod,
             Long startTime,
             Long endTime,
             Long current,
@@ -2734,7 +2755,7 @@ public class FlexibleLockedApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getRateHistoryValidateBeforeCall(
             String productId,
-            String aprPeriod,
+            AprPeriod aprPeriod,
             Long startTime,
             Long endTime,
             Long current,
@@ -2758,7 +2779,7 @@ public class FlexibleLockedApi {
                             .getMethod(
                                     "getRateHistory",
                                     String.class,
-                                    String.class,
+                                    AprPeriod.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -2783,20 +2804,20 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Rate History(USER_DATA) Get Rate History * The time between startTime and endTime cannot
-     * be longer than 1 year. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
-     * then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but
-     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * Get Rate History (USER_DATA) Get Rate History Weight(IP): 150 Security Type: USER_DATA Notes:
+     * - The time between startTime and endTime cannot be longer than 1 year. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @param productId (required)
-     * @param aprPeriod \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; (optional)
+     * @param aprPeriod (optional, default to DAY)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2809,17 +2830,17 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Rate-History">Get
-     *     Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-rate-history">Get
+     *     Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRateHistoryResponse> getRateHistory(
             @NotNull String productId,
-            String aprPeriod,
+            AprPeriod aprPeriod,
             Long startTime,
             Long endTime,
-            Long current,
-            Long size,
-            Long recvWindow)
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getRateHistoryValidateBeforeCall(
@@ -2832,9 +2853,9 @@ public class FlexibleLockedApi {
     /**
      * Build call for getSimpleEarnFlexibleProductList
      *
-     * @param asset USDC or USDT (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param asset (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2846,8 +2867,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Flexible-Product-List">Get
-     *     Simple Earn Flexible Product List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-flexible-product-list">Get
+     *     Simple Earn Flexible Product List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSimpleEarnFlexibleProductListCall(
             String asset, Long current, Long size, Long recvWindow) throws ApiException {
@@ -2960,12 +2981,12 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Simple Earn Flexible Product List(USER_DATA) Get available Simple Earn flexible product
-     * list Weight: 150
+     * Get Simple Earn Flexible Product List (USER_DATA) Get available Simple Earn flexible product
+     * list Weight(IP): 150 Security Type: USER_DATA
      *
-     * @param asset USDC or USDT (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param asset (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnFlexibleProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2978,11 +2999,12 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Flexible-Product-List">Get
-     *     Simple Earn Flexible Product List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-flexible-product-list">Get
+     *     Simple Earn Flexible Product List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSimpleEarnFlexibleProductListResponse> getSimpleEarnFlexibleProductList(
-            String asset, Long current, Long size, Long recvWindow) throws ApiException {
+            String asset, @Min(1L) Long current, @Max(100L) Long size, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 getSimpleEarnFlexibleProductListValidateBeforeCall(
                         asset, current, size, recvWindow);
@@ -2994,9 +3016,9 @@ public class FlexibleLockedApi {
     /**
      * Build call for getSimpleEarnLockedProductList
      *
-     * @param asset USDC or USDT (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param asset (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3008,8 +3030,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Locked-Product-List">Get
-     *     Simple Earn Locked Product List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-locked-product-list">Get
+     *     Simple Earn Locked Product List (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getSimpleEarnLockedProductListCall(
             String asset, Long current, Long size, Long recvWindow) throws ApiException {
@@ -3122,12 +3144,13 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Get Simple Earn Locked Product List(USER_DATA) Get Simple Earn Locked Product List * Get
-     * available Simple Earn locked product list Weight: 150
+     * Get Simple Earn Locked Product List (USER_DATA) Get Simple Earn Locked Product List
+     * Weight(IP): 150 Security Type: USER_DATA Notes: - Get available Simple Earn locked product
+     * list
      *
-     * @param asset USDC or USDT (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param asset (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnLockedProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3140,11 +3163,12 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Locked-Product-List">Get
-     *     Simple Earn Locked Product List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-locked-product-list">Get
+     *     Simple Earn Locked Product List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSimpleEarnLockedProductListResponse> getSimpleEarnLockedProductList(
-            String asset, Long current, Long size, Long recvWindow) throws ApiException {
+            String asset, @Min(1L) Long current, @Max(100L) Long size, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 getSimpleEarnLockedProductListValidateBeforeCall(asset, current, size, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -3166,8 +3190,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Flexible-Product">Redeem
-     *     Flexible Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-flexible-product">Redeem
+     *     Flexible Product (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemFlexibleProductCall(
             RedeemFlexibleProductRequest redeemFlexibleProductRequest) throws ApiException {
@@ -3282,8 +3306,9 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Redeem Flexible Product(TRADE) Redeem Flexible Product * You need to open &#x60;Enable Spot
-     * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1
+     * Redeem Flexible Product (TRADE) Redeem Flexible Product Weight(IP): 1 Security Type: TRADE
+     * Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API
+     * Key which requests this endpoint.
      *
      * @param redeemFlexibleProductRequest (required)
      * @return ApiResponse&lt;RedeemFlexibleProductResponse&gt;
@@ -3297,8 +3322,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Flexible-Product">Redeem
-     *     Flexible Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-flexible-product">Redeem
+     *     Flexible Product (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemFlexibleProductResponse> redeemFlexibleProduct(
             @Valid @NotNull RedeemFlexibleProductRequest redeemFlexibleProductRequest)
@@ -3324,8 +3349,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Locked-Product">Redeem
-     *     Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-locked-product">Redeem
+     *     Locked Product (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemLockedProductCall(
             RedeemLockedProductRequest redeemLockedProductRequest) throws ApiException {
@@ -3425,9 +3450,9 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Redeem Locked Product(TRADE) Redeem Locked Product * You need to open &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1/3s
-     * per account
+     * Redeem Locked Product (TRADE) Redeem Locked Product Weight(IP): 1 Security Type: TRADE Notes:
+     * - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key
+     * which requests this endpoint.
      *
      * @param redeemLockedProductRequest (required)
      * @return ApiResponse&lt;RedeemLockedProductResponse&gt;
@@ -3441,8 +3466,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Locked-Product">Redeem
-     *     Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-locked-product">Redeem
+     *     Locked Product (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemLockedProductResponse> redeemLockedProduct(
             @Valid @NotNull RedeemLockedProductRequest redeemLockedProductRequest)
@@ -3468,8 +3493,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Flexible-Auto-Subscribe">Set
-     *     Flexible Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-flexible-auto-subscribe">Set
+     *     Flexible Auto Subscribe (USER_DATA) Documentation</a>
      */
     private okhttp3.Call setFlexibleAutoSubscribeCall(
             SetFlexibleAutoSubscribeRequest setFlexibleAutoSubscribeRequest) throws ApiException {
@@ -3576,7 +3601,8 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Set Flexible Auto Subscribe(USER_DATA) Set Flexible Auto Subscribe Weight: 150
+     * Set Flexible Auto Subscribe (USER_DATA) Set Flexible Auto Subscribe Weight(IP): 150 Security
+     * Type: USER_DATA
      *
      * @param setFlexibleAutoSubscribeRequest (required)
      * @return ApiResponse&lt;SetFlexibleAutoSubscribeResponse&gt;
@@ -3590,8 +3616,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Flexible-Auto-Subscribe">Set
-     *     Flexible Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-flexible-auto-subscribe">Set
+     *     Flexible Auto Subscribe (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetFlexibleAutoSubscribeResponse> setFlexibleAutoSubscribe(
             @Valid @NotNull SetFlexibleAutoSubscribeRequest setFlexibleAutoSubscribeRequest)
@@ -3617,8 +3643,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Auto-Subscribe">Set
-     *     Locked Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-auto-subscribe">Set
+     *     Locked Auto Subscribe (USER_DATA) Documentation</a>
      */
     private okhttp3.Call setLockedAutoSubscribeCall(
             SetLockedAutoSubscribeRequest setLockedAutoSubscribeRequest) throws ApiException {
@@ -3724,7 +3750,8 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Set Locked Auto Subscribe(USER_DATA) Set locked auto subscribe Weight: 150
+     * Set Locked Auto Subscribe (USER_DATA) Set locked auto subscribe Weight(IP): 150 Security
+     * Type: USER_DATA
      *
      * @param setLockedAutoSubscribeRequest (required)
      * @return ApiResponse&lt;SetLockedAutoSubscribeResponse&gt;
@@ -3738,8 +3765,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Auto-Subscribe">Set
-     *     Locked Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-auto-subscribe">Set
+     *     Locked Auto Subscribe (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetLockedAutoSubscribeResponse> setLockedAutoSubscribe(
             @Valid @NotNull SetLockedAutoSubscribeRequest setLockedAutoSubscribeRequest)
@@ -3765,8 +3792,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Redeem-Option">Set
-     *     Locked Product Redeem Option(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-product-redeem-option">Set
+     *     Locked Product Redeem Option (USER_DATA) Documentation</a>
      */
     private okhttp3.Call setLockedProductRedeemOptionCall(
             SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest)
@@ -3876,7 +3903,8 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Set Locked Product Redeem Option(USER_DATA) Set redeem option for Locked product Weight: 50
+     * Set Locked Product Redeem Option (USER_DATA) Set redeem option for Locked product Weight(IP):
+     * 50 Security Type: USER_DATA
      *
      * @param setLockedProductRedeemOptionRequest (required)
      * @return ApiResponse&lt;SetLockedProductRedeemOptionResponse&gt;
@@ -3890,8 +3918,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Redeem-Option">Set
-     *     Locked Product Redeem Option(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-product-redeem-option">Set
+     *     Locked Product Redeem Option (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetLockedProductRedeemOptionResponse> setLockedProductRedeemOption(
             @Valid @NotNull SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest)
@@ -3917,8 +3945,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Simple-Account">Simple
-     *     Account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#simple-account">Simple
+     *     Account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call simpleAccountCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -4010,7 +4038,7 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Simple Account(USER_DATA) Simple Account query Weight: 150
+     * Simple Account (USER_DATA) Simple Account query Weight(IP): 150 Security Type: USER_DATA
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;SimpleAccountResponse&gt;
@@ -4024,10 +4052,11 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Simple-Account">Simple
-     *     Account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#simple-account">Simple
+     *     Account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<SimpleAccountResponse> simpleAccount(Long recvWindow) throws ApiException {
+    public ApiResponse<SimpleAccountResponse> simpleAccount(@Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall = simpleAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<SimpleAccountResponse>() {}.getType();
@@ -4048,8 +4077,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Flexible-Product">Subscribe
-     *     Flexible Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-flexible-product">Subscribe
+     *     Flexible Product (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeFlexibleProductCall(
             SubscribeFlexibleProductRequest subscribeFlexibleProductRequest) throws ApiException {
@@ -4168,9 +4197,9 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Subscribe Flexible Product(TRADE) Subscribe Flexible Product * You need to open &#x60;Enable
-     * Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
-     * Weight: 1
+     * Subscribe Flexible Product (TRADE) Subscribe Flexible Product Weight(IP): 1 Security Type:
+     * TRADE Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for
+     * the API Key which requests this endpoint.
      *
      * @param subscribeFlexibleProductRequest (required)
      * @return ApiResponse&lt;SubscribeFlexibleProductResponse&gt;
@@ -4184,8 +4213,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Flexible-Product">Subscribe
-     *     Flexible Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-flexible-product">Subscribe
+     *     Flexible Product (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeFlexibleProductResponse> subscribeFlexibleProduct(
             @Valid @NotNull SubscribeFlexibleProductRequest subscribeFlexibleProductRequest)
@@ -4211,8 +4240,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Locked-Product">Subscribe
-     *     Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-locked-product">Subscribe
+     *     Locked Product (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeLockedProductCall(
             SubscribeLockedProductRequest subscribeLockedProductRequest) throws ApiException {
@@ -4334,8 +4363,9 @@ public class FlexibleLockedApi {
     }
 
     /**
-     * Subscribe Locked Product(TRADE) Subscribe Locked Product * You need to open &#x60;Enable Spot
-     * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1
+     * Subscribe Locked Product (TRADE) Subscribe Locked Product Weight(IP): 1 Security Type: TRADE
+     * Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API
+     * Key which requests this endpoint.
      *
      * @param subscribeLockedProductRequest (required)
      * @return ApiResponse&lt;SubscribeLockedProductResponse&gt;
@@ -4349,8 +4379,8 @@ public class FlexibleLockedApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Locked-Product">Subscribe
-     *     Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-locked-product">Subscribe
+     *     Locked Product (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeLockedProductResponse> subscribeLockedProduct(
             @Valid @NotNull SubscribeLockedProductRequest subscribeLockedProductRequest)

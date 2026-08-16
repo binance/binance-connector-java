@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**positionId** | **String** |  |  |
-|**redeemTo** | **String** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**redeemTo** | **RedeemTo** |  |  |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**algoId** | **Long** |  |  [optional] |
-|**clientAlgoId** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**id** | **String** | Id. |  [optional] |
+|**algoId** | **Long** | Algo Id. |  [optional] |
+|**clientAlgoId** | **String** | Client Algo Id. |  [optional] |
+|**recvWindow** | **Long** | Recv Window. |  [optional] |
 
 
 

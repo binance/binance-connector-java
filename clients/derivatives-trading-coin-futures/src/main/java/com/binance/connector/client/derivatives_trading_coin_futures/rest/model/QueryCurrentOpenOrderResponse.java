@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryCurrentOpenOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryCurrentOpenOrderResponse {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -201,7 +201,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Average execution price
      *
      * @return avgPrice
      */
@@ -221,7 +221,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -240,7 +240,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get cumBase
+     * Cumulative base asset amount.
      *
      * @return cumBase
      */
@@ -260,7 +260,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -279,7 +279,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -298,7 +298,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -317,7 +317,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -336,7 +336,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -356,7 +356,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -375,7 +375,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -395,7 +395,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -414,7 +414,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -433,7 +433,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -453,7 +453,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -472,7 +472,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -491,7 +491,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -510,7 +510,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -530,7 +530,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -549,7 +549,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -569,7 +569,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -588,7 +588,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -607,7 +607,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -627,7 +627,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -647,7 +647,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -667,7 +667,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * price match mode
      *
      * @return priceMatch
      */
@@ -687,7 +687,7 @@ public class QueryCurrentOpenOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */

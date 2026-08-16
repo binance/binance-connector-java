@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,10 +38,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** AccountUpdateA */
+/** Update Data */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountUpdateA extends BaseDTO {
     public static final String SERIALIZED_NAME_M_LOWER_CASE = "m";
 
@@ -61,6 +61,12 @@ public class AccountUpdateA extends BaseDTO {
     @jakarta.annotation.Nullable
     private List<@Valid AccountUpdateAPInner> P;
 
+    public static final String SERIALIZED_NAME_S = "S";
+
+    @SerializedName(SERIALIZED_NAME_S)
+    @jakarta.annotation.Nullable
+    private String S;
+
     public AccountUpdateA() {}
 
     public AccountUpdateA mLowerCase(@jakarta.annotation.Nullable String mLowerCase) {
@@ -69,7 +75,7 @@ public class AccountUpdateA extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Event reason type
      *
      * @return mLowerCase
      */
@@ -96,7 +102,7 @@ public class AccountUpdateA extends BaseDTO {
     }
 
     /**
-     * Get B
+     * Balances
      *
      * @return B
      */
@@ -138,6 +144,25 @@ public class AccountUpdateA extends BaseDTO {
         this.P = P;
     }
 
+    public AccountUpdateA S(@jakarta.annotation.Nullable String S) {
+        this.S = S;
+        return this;
+    }
+
+    /**
+     * Symbol associated with FUNDING_FEE event
+     *
+     * @return S
+     */
+    @jakarta.annotation.Nullable
+    public String getS() {
+        return S;
+    }
+
+    public void setS(@jakarta.annotation.Nullable String S) {
+        this.S = S;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -149,12 +174,13 @@ public class AccountUpdateA extends BaseDTO {
         AccountUpdateA accountUpdateA = (AccountUpdateA) o;
         return Objects.equals(this.mLowerCase, accountUpdateA.mLowerCase)
                 && Objects.equals(this.B, accountUpdateA.B)
-                && Objects.equals(this.P, accountUpdateA.P);
+                && Objects.equals(this.P, accountUpdateA.P)
+                && Objects.equals(this.S, accountUpdateA.S);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mLowerCase, B, P);
+        return Objects.hash(mLowerCase, B, P, S);
     }
 
     @Override
@@ -164,6 +190,7 @@ public class AccountUpdateA extends BaseDTO {
         sb.append("		mLowerCase: ").append(toIndentedString(mLowerCase)).append("\n");
         sb.append("		B: ").append(toIndentedString(B)).append("\n");
         sb.append("		P: ").append(toIndentedString(P)).append("\n");
+        sb.append("		S: ").append(toIndentedString(S)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -187,6 +214,11 @@ public class AccountUpdateA extends BaseDTO {
             String PValueAsString = JSON.getGson().toJson(PValue);
             valMap.put("P", PValueAsString);
         }
+        String SValue = getS();
+        if (SValue != null) {
+            String SValueAsString = SValue.toString();
+            valMap.put("S", SValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -209,6 +241,10 @@ public class AccountUpdateA extends BaseDTO {
         Object PValue = getP();
         if (PValue != null) {
             valMap.put("P", PValue);
+        }
+        Object SValue = getS();
+        if (SValue != null) {
+            valMap.put("S", SValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -239,6 +275,7 @@ public class AccountUpdateA extends BaseDTO {
         openapiFields.add("m");
         openapiFields.add("B");
         openapiFields.add("P");
+        openapiFields.add("S");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -319,6 +356,14 @@ public class AccountUpdateA extends BaseDTO {
                 }
                 ;
             }
+        }
+        if ((jsonObj.get("S") != null && !jsonObj.get("S").isJsonNull())
+                && !jsonObj.get("S").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `S` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("S").toString()));
         }
     }
 

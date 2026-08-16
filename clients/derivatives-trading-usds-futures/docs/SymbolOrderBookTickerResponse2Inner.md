@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**bidPrice** | **String** |  |  [optional] |
-|**bidQty** | **String** |  |  [optional] |
-|**askPrice** | **String** |  |  [optional] |
-|**askQty** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**bidPrice** | **String** | Bid Price. |  [optional] |
+|**bidQty** | **String** | Bid Qty. |  [optional] |
+|**askPrice** | **String** | Ask Price. |  [optional] |
+|**askQty** | **String** | Ask Qty. |  [optional] |
+|**time** | **Long** | Transaction time |  [optional] |
 
 
 

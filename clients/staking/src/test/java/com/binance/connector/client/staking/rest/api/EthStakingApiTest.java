@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,6 +38,7 @@ import com.binance.connector.client.staking.rest.model.SubscribeEthStakingRespon
 import com.binance.connector.client.staking.rest.model.WrapBethRequest;
 import com.binance.connector.client.staking.rest.model.WrapBethResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -89,14 +90,14 @@ public class EthStakingApiTest {
     }
 
     /**
-     * ETH Staking account(USER_DATA)
+     * ETH Staking account (USER_DATA)
      *
-     * <p>ETH Staking account Weight: 150
+     * <p>ETH Staking account Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void ethStakingAccountTest() throws ApiException, CryptoException {
+    public void ethStakingAccountTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<EthStakingAccountResponse> response = api.ethStakingAccount(recvWindow);
 
@@ -112,20 +113,19 @@ public class EthStakingApiTest {
 
         assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
-                actualRequest.url().queryParameter("signature"));
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/eth-staking/account", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get current ETH staking quota(USER_DATA)
+     * Get current ETH staking quota (USER_DATA)
      *
-     * <p>Get current ETH staking quota Weight: 150
+     * <p>Get current ETH staking quota Weight(IP): 150 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCurrentEthStakingQuotaTest() throws ApiException, CryptoException {
+    public void getCurrentEthStakingQuotaTest() throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetCurrentEthStakingQuotaResponse> response =
                 api.getCurrentEthStakingQuota(recvWindow);
@@ -148,28 +148,29 @@ public class EthStakingApiTest {
     }
 
     /**
-     * Get ETH redemption history(USER_DATA)
+     * Get ETH redemption history (USER_DATA)
      *
-     * <p>Get ETH redemption history * The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If
-     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
-     * beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get ETH redemption history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getEthRedemptionHistoryTest() throws ApiException, CryptoException {
-        Long redeemId = 123L;
+    public void getEthRedemptionHistoryTest() throws ApiException, CryptoException, IOException {
+        Long redeemId = 1234567L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
         ApiResponse<GetEthRedemptionHistoryResponse> response =
-                api.getEthRedemptionHistory(redeemId, startTime, endTime, current, size, recvWindow);
+                api.getEthRedemptionHistory(
+                        redeemId, startTime, endTime, current, size, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -181,33 +182,29 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("redeemId=1234567&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "redeemId=123&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "90b22be90fad28e8f5f7cd6af50eb4c523db9c1363ee49915fad9713c0656f0d",
+                "68bf70ea1fa94c38fd8ef0f28a7ccdc5642f691b3471f9ff861491c93970a5de",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/eth-staking/eth/history/redemptionHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/eth-staking/eth/history/redemptionHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get ETH staking history(USER_DATA)
+     * Get ETH staking history (USER_DATA)
      *
-     * <p>Get ETH staking history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get ETH staking history Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getEthStakingHistoryTest() throws ApiException, CryptoException {
-        Long purchaseId = 123L;
+    public void getEthStakingHistoryTest() throws ApiException, CryptoException, IOException {
+        Long purchaseId = 1234567L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -226,32 +223,28 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("purchaseId=1234567&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "purchaseId=123&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "35f8697a0b1f039ff660d5b47cb802e92c651d0f135334ec523e176dad5b714b",
+                "43ce1eef38c940f1f565325261de3d211cbbba816cb7587d872562da5b16ad07",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/eth-staking/eth/history/stakingHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/eth-staking/eth/history/stakingHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get WBETH Rate History(USER_DATA)
+     * Get WBETH Rate History (USER_DATA)
      *
-     * <p>Get WBETH Rate History * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get WBETH Rate History Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getWbethRateHistoryTest() throws ApiException, CryptoException {
+    public void getWbethRateHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -270,31 +263,27 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/eth-staking/eth/history/rateHistory", actualRequest.url().encodedPath());
+                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/eth-staking/eth/history/rateHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get WBETH rewards history(USER_DATA)
+     * Get WBETH rewards history (USER_DATA)
      *
-     * <p>Get WBETH rewards history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get WBETH rewards history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getWbethRewardsHistoryTest() throws ApiException, CryptoException {
+    public void getWbethRewardsHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -313,32 +302,28 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/eth-staking/eth/history/wbethRewardsHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/eth-staking/eth/history/wbethRewardsHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get WBETH unwrap history(USER_DATA)
+     * Get WBETH unwrap history (USER_DATA)
      *
-     * <p>Get WBETH unwrap history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get WBETH unwrap history Weight(IP): 150 Security Type: USER_DATA Notes: - The time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getWbethUnwrapHistoryTest() throws ApiException, CryptoException {
+    public void getWbethUnwrapHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -357,32 +342,28 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/eth-staking/wbeth/history/unwrapHistory",
-                actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/eth-staking/wbeth/history/unwrapHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get WBETH wrap history(USER_DATA)
+     * Get WBETH wrap history (USER_DATA)
      *
-     * <p>Get WBETH wrap history * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
-     * cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
-     * not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is
-     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * <p>Get WBETH wrap history Weight(IP): 150 Security Type: USER_DATA Notes: - The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getWbethWrapHistoryTest() throws ApiException, CryptoException {
+    public void getWbethWrapHistoryTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -401,30 +382,25 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/eth-staking/wbeth/history/wrapHistory",
-                actualRequest.url().encodedPath());
+                "2ecc0415a3bdb2963e8030cdf6cf00de6f49d21b71ff939dda42e5756eb8ba66", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/eth-staking/wbeth/history/wrapHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Redeem ETH(TRADE)
+     * Redeem ETH (TRADE)
      *
-     * <p>Redeem WBETH or BETH and get ETH * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * <p>Redeem WBETH or BETH and get ETH Weight(IP): 150 Security Type: TRADE Notes: - You need to
+     * open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void redeemEthTest() throws ApiException, CryptoException {
+    public void redeemEthTest() throws ApiException, CryptoException, IOException {
         RedeemEthRequest redeemEthRequest = new RedeemEthRequest();
-
-        redeemEthRequest.amount(1d);
+        redeemEthRequest.amount(1.0d);
 
         ApiResponse<RedeemEthResponse> response = api.redeemEth(redeemEthRequest);
 
@@ -438,26 +414,23 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1", signInputCaptor.getValue());
-        assertEquals(
-                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000amount=1&asset=BETH", signInputCaptor.getValue());
+        assertEquals("1ff8a7cd37584085d8c921503e1959a848713e382f31ee608a0c7eed04c2fac6", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/eth-staking/eth/redeem", actualRequest.url().encodedPath());
     }
 
     /**
-     * Subscribe ETH Staking(TRADE)
+     * Subscribe ETH Staking (TRADE)
      *
-     * <p>Subscribe ETH Staking * You need to open Enable Spot &amp; Margin Trading permission for
-     * the API Key which requests this endpoint. Weight: 150
+     * <p>Subscribe ETH Staking Weight(IP): 150 Security Type: TRADE Notes: - You need to open
+     * Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void subscribeEthStakingTest() throws ApiException, CryptoException {
+    public void subscribeEthStakingTest() throws ApiException, CryptoException, IOException {
         SubscribeEthStakingRequest subscribeEthStakingRequest = new SubscribeEthStakingRequest();
-
-        subscribeEthStakingRequest.amount(1d);
+        subscribeEthStakingRequest.amount(1.0d);
 
         ApiResponse<SubscribeEthStakingResponse> response =
                 api.subscribeEthStaking(subscribeEthStakingRequest);
@@ -474,24 +447,22 @@ public class EthStakingApiTest {
 
         assertEquals("timestamp=1736393892000amount=1", signInputCaptor.getValue());
         assertEquals(
-                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e",
-                actualRequest.url().queryParameter("signature"));
+                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/eth-staking/eth/stake", actualRequest.url().encodedPath());
     }
 
     /**
-     * Wrap BETH(TRADE)
+     * Wrap BETH (TRADE)
      *
-     * <p>Wrap BETH * You need to open Enable Spot &amp; Margin Trading permission for the API Key
-     * which requests this endpoint. Weight: 150
+     * <p>Wrap BETH Weight(IP): 150 Security Type: TRADE Notes: - You need to open Enable Spot &amp;
+     * Margin Trading permission for the API Key which requests this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void wrapBethTest() throws ApiException, CryptoException {
+    public void wrapBethTest() throws ApiException, CryptoException, IOException {
         WrapBethRequest wrapBethRequest = new WrapBethRequest();
-
-        wrapBethRequest.amount(1d);
+        wrapBethRequest.amount(1.0d);
 
         ApiResponse<WrapBethResponse> response = api.wrapBeth(wrapBethRequest);
 
@@ -506,9 +477,7 @@ public class EthStakingApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("timestamp=1736393892000amount=1", signInputCaptor.getValue());
-        assertEquals(
-                "50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/eth-staking/wbeth/wrap", actualRequest.url().encodedPath());
     }
 }

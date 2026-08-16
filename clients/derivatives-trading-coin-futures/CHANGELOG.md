@@ -1,5 +1,224 @@
 # Changelog
 
+## 8.0.1 - 2026-08-10
+
+### Changed (20)
+
+#### REST API
+
+- Modified response for `allOrders()` (`GET /dapi/v1/allOrders`):
+  - items: property `goodTillDate` added
+  - items: property `cumQuote` added
+  - items: item property `goodTillDate` added
+  - items: item property `cumQuote` added
+
+- Modified response for `usersForceOrders()` (`GET /dapi/v1/forceOrders`):
+  - items: property `goodTillDate` added
+  - items: property `cumQuote` added
+  - items: item property `goodTillDate` added
+  - items: item property `cumQuote` added
+
+- Modified response for `accountTradeList()` (`GET /dapi/v1/userTrades`):
+  - items: property `quoteQty` added
+  - items: item property `quoteQty` added
+
+- Modified response schema `accountTradeListResponse`:
+  - items: property `quoteQty` added
+  - items: item property `quoteQty` added
+- Modified response schema `allOrdersResponse`:
+  - items: property `cumQuote` added
+  - items: property `goodTillDate` added
+  - items: item property `cumQuote` added
+  - items: item property `goodTillDate` added
+- Modified response schema `usersForceOrdersResponse`:
+  - items: property `goodTillDate` added
+  - items: property `cumQuote` added
+  - items: item property `goodTillDate` added
+  - items: item property `cumQuote` added
+#### WebSocket Streams
+
+- Modified response for `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `a`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+- Modified response field `b`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+
+## 8.0.0 - 2026-07-29
+
+### Added (1)
+
+#### WebSocket Streams
+
+- `indexPriceStream()` (`<pair>@indexPrice@<updateSpeed>` stream)
+
+### Changed (24)
+
+#### REST API
+
+- Modified parameter `batchOrders`:
+  - items: required added: `symbol`, `side`, `type`, `quantity`
+  - items.`activationPrice`: type `string` → `number`
+  - items.`callbackRate`: type `string` → `number`
+  - items.`price`: type `string` → `number`
+  - items.`priceMatch`: enum removed: `NONE`
+  - items.`priceProtect`: enum added: `true`, `false`
+  - items.`quantity`: type `string` → `number`
+  - items.`reduceOnly`: enum added: `true`, `false`
+  - items.`selfTradePreventionMode`: enum removed: `NONE`
+  - items.`stopPrice`: type `string` → `number`
+  - items.`activationPrice`: type `string` → `number`
+  - items.`callbackRate`: type `string` → `number`
+  - items.`price`: type `string` → `number`
+  - items.`priceMatch`: enum removed: `NONE`
+  - items.`priceProtect`: enum added: `true`, `false`
+  - items.`quantity`: type `string` → `number`
+  - items.`reduceOnly`: enum added: `true`, `false`
+  - items.`selfTradePreventionMode`: enum removed: `NONE`
+  - items.`stopPrice`: type `string` → `number`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /dapi/v1/batchOrders`)
+- Modified parameter `batchOrders`:
+  - items: required added: `symbol`, `side`, `timestamp`
+  - items: property `timestamp` added
+  - items.`orderId`: type `string` → `integer`
+  - items.`price`: type `string` → `number`
+  - items.`quantity`: type `string` → `number`
+  - items.`recvWindow`: type `string` → `integer`
+  - items: item property `timestamp` added
+  - items.`orderId`: type `string` → `integer`
+  - items.`price`: type `string` → `number`
+  - items.`quantity`: type `string` → `number`
+  - items.`recvWindow`: type `string` → `integer`
+  - affected methods:
+    - `modifyMultipleOrders()` (`PUT /dapi/v1/batchOrders`)
+- Modified parameter `contractType`:
+  - enum removed: `CURRENT_QUARTER_DELIVERING`, `NEXT_QUARTER_DELIVERING`, `PERPETUAL_DELIVERING`
+  - affected methods:
+    - `continuousContractKlineCandlestickData()` (`GET /dapi/v1/continuousKlines`)
+    - `basis()` (`GET /futures/data/basis`)
+- Modified parameter `contractType`:
+  - enum removed: `CURRENT_QUARTER_DELIVERING`, `NEXT_QUARTER_DELIVERING`, `PERPETUAL_DELIVERING`
+  - enum added: `ALL`
+  - affected methods:
+    - `openInterestStatistics()` (`GET /futures/data/openInterestHist`)
+    - `takerBuySellVolume()` (`GET /futures/data/takerBuySellVol`)
+- Modified parameter `incomeType`:
+  - enum added: `TRANSFER`, `WELCOME_BONUS`, `FUNDING_FEE`, `REALIZED_PNL`, `COMMISSION`, `INSURANCE_CLEAR`, `DELIVERED_SETTELMENT`
+  - affected methods:
+    - `getIncomeHistory()` (`GET /dapi/v1/income`)
+- Modified parameter `orderIdList`:
+  - maxItems `null` → `10`
+  - affected methods:
+    - `cancelMultipleOrders()` (`DELETE /dapi/v1/batchOrders`)
+- Modified parameter `origClientOrderIdList`:
+  - maxItems `null` → `10`
+  - affected methods:
+    - `cancelMultipleOrders()` (`DELETE /dapi/v1/batchOrders`)
+- Modified parameter `priceMatch`:
+  - enum removed: `NONE`
+  - affected methods:
+    - `newOrder()` (`POST /dapi/v1/order`)
+    - `modifyOrder()` (`PUT /dapi/v1/order`)
+- Modified parameter `priceProtect`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `reduceOnly`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `type`:
+  - type `string` → `integer`
+  - enum removed: `LIMIT`, `MARKET`, `STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`
+  - affected methods:
+    - `modifyIsolatedPositionMargin()` (`POST /dapi/v1/positionMargin`)
+- Modified response for `placeMultipleOrders()` (`POST /dapi/v1/batchOrders`):
+  - items: property `closePosition` added
+  - items: item property `closePosition` added
+
+- Modified response for `orderBook()` (`GET /dapi/v1/depth`):
+  - `asks`.items: minItems `0` → `2`
+  - `asks`.items: maxItems `null` → `2`
+  - `bids`.items: minItems `0` → `2`
+  - `bids`.items: maxItems `null` → `2`
+
+- Modified response for `markPriceKlineCandlestickData()` (`GET /dapi/v1/markPriceKlines`):
+  - items.items: oneOf added 2 schema(s)
+  - items.items: oneOf removed 2 schema(s)
+
+#### WebSocket API
+
+- Modified parameter `closePosition`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Modified parameter `priceMatch`:
+  - enum removed: `NONE`
+  - affected methods:
+    - `modifyOrder()` (`order.modify` method)
+    - `newOrder()` (`order.place` method)
+- Modified parameter `priceProtect`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Modified parameter `reduceOnly`:
+  - enum added: `true`, `false`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Modified response for `queryOrder()` (`order.status` method):
+  - `result`: property `cumQty` added
+
+#### WebSocket Streams
+
+- Modified parameter `contractType`:
+  - enum added: `perpetual`, `current_quarter`, `next_quarter`
+  - affected methods:
+    - `continuousContractKlineCandlestickStreams()` (`<pair>_<contractType>@continuousKline_<interval>` stream)
+- Modified parameter `interval`:
+  - enum added: `1m`, `3m`, `5m`, `15m`, `30m`, `1h`, `2h`, `4h`, `6h`, `8h`, `12h`, `1d`, `3d`, `1w`, `1M`
+  - affected methods:
+    - `indexKlineCandlestickStreams()` (`<pair>@indexPriceKline_<interval>` stream)
+    - `continuousContractKlineCandlestickStreams()` (`<pair>_<contractType>@continuousKline_<interval>` stream)
+    - `klineCandlestickStreams()` (`<symbol>@kline_<interval>` stream)
+    - `markPriceKlineCandlestickStreams()` (`<symbol>@markPriceKline_<interval>` stream)
+- Modified parameter `levels`:
+  - type `integer` → `string`
+  - enum added: `5`, `10`, `20`
+  - affected methods:
+    - `partialBookDepthStreams()` (`<symbol>@depth<levels>@<updateSpeed>` stream)
+- Modified parameter `updateSpeed`:
+  - enum added: `1s`
+  - affected methods:
+    - `markPriceOfAllSymbolsOfAPair()` (`<pair>@markPrice@<updateSpeed>` stream)
+    - `markPriceStream()` (`<symbol>@markPrice@<updateSpeed>` stream)
+- Modified parameter `updateSpeed`:
+  - enum added: `100ms`, `500ms`
+  - affected methods:
+    - `partialBookDepthStreams()` (`<symbol>@depth<levels>@<updateSpeed>` stream)
+    - `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream)
+
+### Removed (1)
+
+#### WebSocket Streams
+
+- `/<pair>@indexPrice()` (`<pair>@indexPrice` stream)
+
 ## 7.1.1 - 2026-05-04
 
 - Added stop method for WebSocket

@@ -10,8 +10,8 @@
 |**productId** | **String** |  |  |
 |**amount** | **Double** |  |  |
 |**autoSubscribe** | **Boolean** |  |  [optional] |
-|**sourceAccount** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**sourceAccount** | **SourceAccount** |  |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

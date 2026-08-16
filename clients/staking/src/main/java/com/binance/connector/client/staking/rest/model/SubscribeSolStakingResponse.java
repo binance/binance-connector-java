@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** SubscribeSolStakingResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeSolStakingResponse {
     public static final String SERIALIZED_NAME_SUCCESS = "success";
 
@@ -48,17 +48,17 @@ public class SubscribeSolStakingResponse {
     @jakarta.annotation.Nullable
     private String bnsolAmount;
 
-    public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchangeRate";
-
-    @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
-    @jakarta.annotation.Nullable
-    private String exchangeRate;
-
     public static final String SERIALIZED_NAME_PURCHASE_ID = "purchaseId";
 
     @SerializedName(SERIALIZED_NAME_PURCHASE_ID)
     @jakarta.annotation.Nullable
     private Long purchaseId;
+
+    public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchangeRate";
+
+    @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
+    @jakarta.annotation.Nullable
+    private String exchangeRate;
 
     public SubscribeSolStakingResponse() {}
 
@@ -101,6 +101,25 @@ public class SubscribeSolStakingResponse {
         this.bnsolAmount = bnsolAmount;
     }
 
+    public SubscribeSolStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+        return this;
+    }
+
+    /**
+     * Get purchaseId
+     *
+     * @return purchaseId
+     */
+    @jakarta.annotation.Nullable
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
     public SubscribeSolStakingResponse exchangeRate(
             @jakarta.annotation.Nullable String exchangeRate) {
         this.exchangeRate = exchangeRate;
@@ -121,25 +140,6 @@ public class SubscribeSolStakingResponse {
         this.exchangeRate = exchangeRate;
     }
 
-    public SubscribeSolStakingResponse purchaseId(@jakarta.annotation.Nullable Long purchaseId) {
-        this.purchaseId = purchaseId;
-        return this;
-    }
-
-    /**
-     * Get purchaseId
-     *
-     * @return purchaseId
-     */
-    @jakarta.annotation.Nullable
-    public Long getPurchaseId() {
-        return purchaseId;
-    }
-
-    public void setPurchaseId(@jakarta.annotation.Nullable Long purchaseId) {
-        this.purchaseId = purchaseId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -151,13 +151,13 @@ public class SubscribeSolStakingResponse {
         SubscribeSolStakingResponse subscribeSolStakingResponse = (SubscribeSolStakingResponse) o;
         return Objects.equals(this.success, subscribeSolStakingResponse.success)
                 && Objects.equals(this.bnsolAmount, subscribeSolStakingResponse.bnsolAmount)
-                && Objects.equals(this.exchangeRate, subscribeSolStakingResponse.exchangeRate)
-                && Objects.equals(this.purchaseId, subscribeSolStakingResponse.purchaseId);
+                && Objects.equals(this.purchaseId, subscribeSolStakingResponse.purchaseId)
+                && Objects.equals(this.exchangeRate, subscribeSolStakingResponse.exchangeRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(success, bnsolAmount, exchangeRate, purchaseId);
+        return Objects.hash(success, bnsolAmount, purchaseId, exchangeRate);
     }
 
     @Override
@@ -166,8 +166,8 @@ public class SubscribeSolStakingResponse {
         sb.append("class SubscribeSolStakingResponse {\n");
         sb.append("		success: ").append(toIndentedString(success)).append("\n");
         sb.append("		bnsolAmount: ").append(toIndentedString(bnsolAmount)).append("\n");
-        sb.append("		exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
         sb.append("		purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
+        sb.append("		exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -183,14 +183,14 @@ public class SubscribeSolStakingResponse {
         String bnsolAmountValueAsString = "";
         bnsolAmountValueAsString = bnsolAmountValue.toString();
         sb.append("bnsolAmount=").append(urlEncode(bnsolAmountValueAsString)).append("");
-        Object exchangeRateValue = getExchangeRate();
-        String exchangeRateValueAsString = "";
-        exchangeRateValueAsString = exchangeRateValue.toString();
-        sb.append("exchangeRate=").append(urlEncode(exchangeRateValueAsString)).append("");
         Object purchaseIdValue = getPurchaseId();
         String purchaseIdValueAsString = "";
         purchaseIdValueAsString = purchaseIdValue.toString();
         sb.append("purchaseId=").append(urlEncode(purchaseIdValueAsString)).append("");
+        Object exchangeRateValue = getExchangeRate();
+        String exchangeRateValueAsString = "";
+        exchangeRateValueAsString = exchangeRateValue.toString();
+        sb.append("exchangeRate=").append(urlEncode(exchangeRateValueAsString)).append("");
         return sb.toString();
     }
 
@@ -221,8 +221,8 @@ public class SubscribeSolStakingResponse {
         openapiFields = new HashSet<String>();
         openapiFields.add("success");
         openapiFields.add("bnsolAmount");
-        openapiFields.add("exchangeRate");
         openapiFields.add("purchaseId");
+        openapiFields.add("exchangeRate");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

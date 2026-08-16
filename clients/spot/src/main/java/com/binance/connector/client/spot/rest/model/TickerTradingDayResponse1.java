@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** TickerTradingDayResponse1 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerTradingDayResponse1 {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -153,7 +153,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get priceChange
+     * Absolute price change
      *
      * @return priceChange
      */
@@ -173,7 +173,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get priceChangePercent
+     * Relative price change in percent
      *
      * @return priceChangePercent
      */
@@ -193,7 +193,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get weightedAvgPrice
+     * quoteVolume / volume
      *
      * @return weightedAvgPrice
      */
@@ -288,7 +288,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get volume
+     * Volume in base asset
      *
      * @return volume
      */
@@ -307,7 +307,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get quoteVolume
+     * Volume in quote asset
      *
      * @return quoteVolume
      */
@@ -364,7 +364,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get firstId
+     * Trade ID of the first trade in the interval
      *
      * @return firstId
      */
@@ -383,7 +383,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get lastId
+     * Trade ID of the last trade in the interval
      *
      * @return lastId
      */
@@ -402,7 +402,7 @@ public class TickerTradingDayResponse1 {
     }
 
     /**
-     * Get count
+     * Number of trades in the interval
      *
      * @return count
      */

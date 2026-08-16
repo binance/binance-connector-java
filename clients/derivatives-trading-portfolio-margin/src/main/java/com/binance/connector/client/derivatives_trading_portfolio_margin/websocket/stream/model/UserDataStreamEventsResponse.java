@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+ * Portfolio Margin WebSocket Market Streams
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     private static final Logger log =
             Logger.getLogger(UserDataStreamEventsResponse.class.getName());
@@ -47,30 +47,30 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<AlgoUpdate> adapterAlgoUpdate =
-                    gson.getDelegateAdapter(this, TypeToken.get(AlgoUpdate.class));
-            final TypeAdapter<ConditionalOrderTradeUpdate> adapterConditionalOrderTradeUpdate =
-                    gson.getDelegateAdapter(this, TypeToken.get(ConditionalOrderTradeUpdate.class));
             final TypeAdapter<AccountConfigUpdate> adapterAccountConfigUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(AccountConfigUpdate.class));
             final TypeAdapter<AccountUpdate> adapterAccountUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(AccountUpdate.class));
+            final TypeAdapter<AlgoOrderUpdate> adapterAlgoOrderUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(AlgoOrderUpdate.class));
+            final TypeAdapter<BalanceUpdate> adapterBalanceUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(BalanceUpdate.class));
+            final TypeAdapter<ConditionalOrderTradeUpdate> adapterConditionalOrderTradeUpdate =
+                    gson.getDelegateAdapter(this, TypeToken.get(ConditionalOrderTradeUpdate.class));
+            final TypeAdapter<ExecutionReport> adapterExecutionReport =
+                    gson.getDelegateAdapter(this, TypeToken.get(ExecutionReport.class));
+            final TypeAdapter<LiabilityChange> adapterLiabilityChange =
+                    gson.getDelegateAdapter(this, TypeToken.get(LiabilityChange.class));
+            final TypeAdapter<ListenKeyExpired> adapterListenKeyExpired =
+                    gson.getDelegateAdapter(this, TypeToken.get(ListenKeyExpired.class));
+            final TypeAdapter<OpenOrderLoss> adapterOpenOrderLoss =
+                    gson.getDelegateAdapter(this, TypeToken.get(OpenOrderLoss.class));
             final TypeAdapter<OrderTradeUpdate> adapterOrderTradeUpdate =
                     gson.getDelegateAdapter(this, TypeToken.get(OrderTradeUpdate.class));
-            final TypeAdapter<Liabilitychange> adapterLiabilitychange =
-                    gson.getDelegateAdapter(this, TypeToken.get(Liabilitychange.class));
-            final TypeAdapter<Outboundaccountposition> adapterOutboundaccountposition =
-                    gson.getDelegateAdapter(this, TypeToken.get(Outboundaccountposition.class));
-            final TypeAdapter<Balanceupdate> adapterBalanceupdate =
-                    gson.getDelegateAdapter(this, TypeToken.get(Balanceupdate.class));
-            final TypeAdapter<Executionreport> adapterExecutionreport =
-                    gson.getDelegateAdapter(this, TypeToken.get(Executionreport.class));
-            final TypeAdapter<Openorderloss> adapterOpenorderloss =
-                    gson.getDelegateAdapter(this, TypeToken.get(Openorderloss.class));
-            final TypeAdapter<Listenkeyexpired> adapterListenkeyexpired =
-                    gson.getDelegateAdapter(this, TypeToken.get(Listenkeyexpired.class));
-            final TypeAdapter<Risklevelchange> adapterRisklevelchange =
-                    gson.getDelegateAdapter(this, TypeToken.get(Risklevelchange.class));
+            final TypeAdapter<OutboundAccountPosition> adapterOutboundAccountPosition =
+                    gson.getDelegateAdapter(this, TypeToken.get(OutboundAccountPosition.class));
+            final TypeAdapter<RiskLevelChange> adapterRiskLevelChange =
+                    gson.getDelegateAdapter(this, TypeToken.get(RiskLevelChange.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<UserDataStreamEventsResponse>() {
@@ -82,24 +82,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 return;
                             }
 
-                            // check if the actual instance is of the type `AlgoUpdate`
-                            if (value.getActualInstance() instanceof AlgoUpdate) {
-                                JsonElement element =
-                                        adapterAlgoUpdate.toJsonTree(
-                                                (AlgoUpdate) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type
-                            // `ConditionalOrderTradeUpdate`
-                            if (value.getActualInstance() instanceof ConditionalOrderTradeUpdate) {
-                                JsonElement element =
-                                        adapterConditionalOrderTradeUpdate.toJsonTree(
-                                                (ConditionalOrderTradeUpdate)
-                                                        value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
                             // check if the actual instance is of the type `AccountConfigUpdate`
                             if (value.getActualInstance() instanceof AccountConfigUpdate) {
                                 JsonElement element =
@@ -116,6 +98,64 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 elementAdapter.write(out, element);
                                 return;
                             }
+                            // check if the actual instance is of the type `AlgoOrderUpdate`
+                            if (value.getActualInstance() instanceof AlgoOrderUpdate) {
+                                JsonElement element =
+                                        adapterAlgoOrderUpdate.toJsonTree(
+                                                (AlgoOrderUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `BalanceUpdate`
+                            if (value.getActualInstance() instanceof BalanceUpdate) {
+                                JsonElement element =
+                                        adapterBalanceUpdate.toJsonTree(
+                                                (BalanceUpdate) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type
+                            // `ConditionalOrderTradeUpdate`
+                            if (value.getActualInstance() instanceof ConditionalOrderTradeUpdate) {
+                                JsonElement element =
+                                        adapterConditionalOrderTradeUpdate.toJsonTree(
+                                                (ConditionalOrderTradeUpdate)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `ExecutionReport`
+                            if (value.getActualInstance() instanceof ExecutionReport) {
+                                JsonElement element =
+                                        adapterExecutionReport.toJsonTree(
+                                                (ExecutionReport) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `LiabilityChange`
+                            if (value.getActualInstance() instanceof LiabilityChange) {
+                                JsonElement element =
+                                        adapterLiabilityChange.toJsonTree(
+                                                (LiabilityChange) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `ListenKeyExpired`
+                            if (value.getActualInstance() instanceof ListenKeyExpired) {
+                                JsonElement element =
+                                        adapterListenKeyExpired.toJsonTree(
+                                                (ListenKeyExpired) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type `OpenOrderLoss`
+                            if (value.getActualInstance() instanceof OpenOrderLoss) {
+                                JsonElement element =
+                                        adapterOpenOrderLoss.toJsonTree(
+                                                (OpenOrderLoss) value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
                             // check if the actual instance is of the type `OrderTradeUpdate`
                             if (value.getActualInstance() instanceof OrderTradeUpdate) {
                                 JsonElement element =
@@ -124,70 +164,30 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Liabilitychange`
-                            if (value.getActualInstance() instanceof Liabilitychange) {
+                            // check if the actual instance is of the type `OutboundAccountPosition`
+                            if (value.getActualInstance() instanceof OutboundAccountPosition) {
                                 JsonElement element =
-                                        adapterLiabilitychange.toJsonTree(
-                                                (Liabilitychange) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `Outboundaccountposition`
-                            if (value.getActualInstance() instanceof Outboundaccountposition) {
-                                JsonElement element =
-                                        adapterOutboundaccountposition.toJsonTree(
-                                                (Outboundaccountposition)
+                                        adapterOutboundAccountPosition.toJsonTree(
+                                                (OutboundAccountPosition)
                                                         value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
-                            // check if the actual instance is of the type `Balanceupdate`
-                            if (value.getActualInstance() instanceof Balanceupdate) {
+                            // check if the actual instance is of the type `RiskLevelChange`
+                            if (value.getActualInstance() instanceof RiskLevelChange) {
                                 JsonElement element =
-                                        adapterBalanceupdate.toJsonTree(
-                                                (Balanceupdate) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `Executionreport`
-                            if (value.getActualInstance() instanceof Executionreport) {
-                                JsonElement element =
-                                        adapterExecutionreport.toJsonTree(
-                                                (Executionreport) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `Openorderloss`
-                            if (value.getActualInstance() instanceof Openorderloss) {
-                                JsonElement element =
-                                        adapterOpenorderloss.toJsonTree(
-                                                (Openorderloss) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `Listenkeyexpired`
-                            if (value.getActualInstance() instanceof Listenkeyexpired) {
-                                JsonElement element =
-                                        adapterListenkeyexpired.toJsonTree(
-                                                (Listenkeyexpired) value.getActualInstance());
-                                elementAdapter.write(out, element);
-                                return;
-                            }
-                            // check if the actual instance is of the type `Risklevelchange`
-                            if (value.getActualInstance() instanceof Risklevelchange) {
-                                JsonElement element =
-                                        adapterRisklevelchange.toJsonTree(
-                                                (Risklevelchange) value.getActualInstance());
+                                        adapterRiskLevelChange.toJsonTree(
+                                                (RiskLevelChange) value.getActualInstance());
                                 elementAdapter.write(out, element);
                                 return;
                             }
                             throw new IOException(
                                     "Failed to serialize as the type doesn't match oneOf schemas:"
-                                            + " AccountConfigUpdate, AccountUpdate, AlgoUpdate,"
-                                            + " Balanceupdate, ConditionalOrderTradeUpdate,"
-                                            + " Executionreport, Liabilitychange, Listenkeyexpired,"
-                                            + " Openorderloss, OrderTradeUpdate,"
-                                            + " Outboundaccountposition, Risklevelchange");
+                                        + " AccountConfigUpdate, AccountUpdate, AlgoOrderUpdate,"
+                                        + " BalanceUpdate, ConditionalOrderTradeUpdate,"
+                                        + " ExecutionReport, LiabilityChange, ListenKeyExpired,"
+                                        + " OpenOrderLoss, OrderTradeUpdate,"
+                                        + " OutboundAccountPosition, RiskLevelChange");
                         }
 
                         @Override
@@ -222,7 +222,8 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "ALGO_UPDATE":
-                                        deserialized = adapterAlgoUpdate.fromJsonTree(jsonObject);
+                                        deserialized =
+                                                adapterAlgoOrderUpdate.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
@@ -241,117 +242,44 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         return newUserDataStreamEventsResponse;
                                     case "balanceUpdate":
                                         deserialized =
-                                                adapterBalanceupdate.fromJsonTree(jsonObject);
+                                                adapterBalanceUpdate.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "executionReport":
                                         deserialized =
-                                                adapterExecutionreport.fromJsonTree(jsonObject);
+                                                adapterExecutionReport.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "liabilityChange":
                                         deserialized =
-                                                adapterLiabilitychange.fromJsonTree(jsonObject);
+                                                adapterLiabilityChange.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "listenKeyExpired":
                                         deserialized =
-                                                adapterListenkeyexpired.fromJsonTree(jsonObject);
+                                                adapterListenKeyExpired.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "openOrderLoss":
                                         deserialized =
-                                                adapterOpenorderloss.fromJsonTree(jsonObject);
+                                                adapterOpenOrderLoss.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "outboundAccountPosition":
                                         deserialized =
-                                                adapterOutboundaccountposition.fromJsonTree(
+                                                adapterOutboundAccountPosition.fromJsonTree(
                                                         jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
                                     case "riskLevelChange":
                                         deserialized =
-                                                adapterRisklevelchange.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "accountConfigUpdate":
-                                        deserialized =
-                                                adapterAccountConfigUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "accountUpdate":
-                                        deserialized =
-                                                adapterAccountUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "algoUpdate":
-                                        deserialized = adapterAlgoUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "balanceupdate":
-                                        deserialized =
-                                                adapterBalanceupdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "conditionalOrderTradeUpdate":
-                                        deserialized =
-                                                adapterConditionalOrderTradeUpdate.fromJsonTree(
-                                                        jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "executionreport":
-                                        deserialized =
-                                                adapterExecutionreport.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "liabilitychange":
-                                        deserialized =
-                                                adapterLiabilitychange.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "listenkeyexpired":
-                                        deserialized =
-                                                adapterListenkeyexpired.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "openorderloss":
-                                        deserialized =
-                                                adapterOpenorderloss.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "orderTradeUpdate":
-                                        deserialized =
-                                                adapterOrderTradeUpdate.fromJsonTree(jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "outboundaccountposition":
-                                        deserialized =
-                                                adapterOutboundaccountposition.fromJsonTree(
-                                                        jsonObject);
-                                        newUserDataStreamEventsResponse.setActualInstance(
-                                                deserialized);
-                                        return newUserDataStreamEventsResponse;
-                                    case "risklevelchange":
-                                        deserialized =
-                                                adapterRisklevelchange.fromJsonTree(jsonObject);
+                                                adapterRiskLevelChange.fromJsonTree(jsonObject);
                                         newUserDataStreamEventsResponse.setActualInstance(
                                                 deserialized);
                                         return newUserDataStreamEventsResponse;
@@ -371,15 +299,7 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                                             + " executionReport liabilityChange"
                                                             + " listenKeyExpired openOrderLoss"
                                                             + " outboundAccountPosition"
-                                                            + " riskLevelChange accountConfigUpdate"
-                                                            + " accountUpdate algoUpdate"
-                                                            + " balanceupdate"
-                                                            + " conditionalOrderTradeUpdate"
-                                                            + " executionreport liabilitychange"
-                                                            + " listenkeyexpired openorderloss"
-                                                            + " orderTradeUpdate"
-                                                            + " outboundaccountposition"
-                                                            + " risklevelchange. Falling back to"
+                                                            + " riskLevelChange. Falling back to"
                                                             + " String.",
                                                         jsonObject.get("e").getAsString()));
                                 }
@@ -389,46 +309,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
-                            // deserialize AlgoUpdate
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                AlgoUpdate.validateJsonElement(jsonElement);
-                                actualAdapter = adapterAlgoUpdate;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'AlgoUpdate'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for AlgoUpdate failed with `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'AlgoUpdate'",
-                                        e);
-                            }
-                            // deserialize ConditionalOrderTradeUpdate
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                ConditionalOrderTradeUpdate.validateJsonElement(jsonElement);
-                                actualAdapter = adapterConditionalOrderTradeUpdate;
-                                match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'ConditionalOrderTradeUpdate'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for ConditionalOrderTradeUpdate"
-                                                        + " failed with `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema"
-                                                + " 'ConditionalOrderTradeUpdate'",
-                                        e);
-                            }
                             // deserialize AccountConfigUpdate
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -469,6 +349,144 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         "Input data does not match schema 'AccountUpdate'",
                                         e);
                             }
+                            // deserialize AlgoOrderUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                AlgoOrderUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterAlgoOrderUpdate;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'AlgoOrderUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for AlgoOrderUpdate failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'AlgoOrderUpdate'",
+                                        e);
+                            }
+                            // deserialize BalanceUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                BalanceUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterBalanceUpdate;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'BalanceUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for BalanceUpdate failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'BalanceUpdate'",
+                                        e);
+                            }
+                            // deserialize ConditionalOrderTradeUpdate
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ConditionalOrderTradeUpdate.validateJsonElement(jsonElement);
+                                actualAdapter = adapterConditionalOrderTradeUpdate;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'ConditionalOrderTradeUpdate'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ConditionalOrderTradeUpdate"
+                                                        + " failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'ConditionalOrderTradeUpdate'",
+                                        e);
+                            }
+                            // deserialize ExecutionReport
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ExecutionReport.validateJsonElement(jsonElement);
+                                actualAdapter = adapterExecutionReport;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'ExecutionReport'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ExecutionReport failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'ExecutionReport'",
+                                        e);
+                            }
+                            // deserialize LiabilityChange
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                LiabilityChange.validateJsonElement(jsonElement);
+                                actualAdapter = adapterLiabilityChange;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'LiabilityChange'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for LiabilityChange failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'LiabilityChange'",
+                                        e);
+                            }
+                            // deserialize ListenKeyExpired
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                ListenKeyExpired.validateJsonElement(jsonElement);
+                                actualAdapter = adapterListenKeyExpired;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'ListenKeyExpired'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for ListenKeyExpired failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'ListenKeyExpired'",
+                                        e);
+                            }
+                            // deserialize OpenOrderLoss
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                OpenOrderLoss.validateJsonElement(jsonElement);
+                                actualAdapter = adapterOpenOrderLoss;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'OpenOrderLoss'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for OpenOrderLoss failed with"
+                                                        + " `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema 'OpenOrderLoss'",
+                                        e);
+                            }
                             // deserialize OrderTradeUpdate
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -490,142 +508,45 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                                         "Input data does not match schema 'OrderTradeUpdate'",
                                         e);
                             }
-                            // deserialize Liabilitychange
+                            // deserialize OutboundAccountPosition
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Liabilitychange.validateJsonElement(jsonElement);
-                                actualAdapter = adapterLiabilitychange;
+                                OutboundAccountPosition.validateJsonElement(jsonElement);
+                                actualAdapter = adapterOutboundAccountPosition;
                                 match++;
-                                log.log(Level.FINER, "Input data matches schema 'Liabilitychange'");
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'OutboundAccountPosition'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Liabilitychange failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'Liabilitychange'",
-                                        e);
-                            }
-                            // deserialize Outboundaccountposition
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                Outboundaccountposition.validateJsonElement(jsonElement);
-                                actualAdapter = adapterOutboundaccountposition;
-                                match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'Outboundaccountposition'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Outboundaccountposition failed"
+                                                "Deserialization for OutboundAccountPosition failed"
                                                         + " with `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
                                         "Input data does not match schema"
-                                                + " 'Outboundaccountposition'",
+                                                + " 'OutboundAccountPosition'",
                                         e);
                             }
-                            // deserialize Balanceupdate
+                            // deserialize RiskLevelChange
                             try {
                                 // validate the JSON object to see if any exception is thrown
-                                Balanceupdate.validateJsonElement(jsonElement);
-                                actualAdapter = adapterBalanceupdate;
+                                RiskLevelChange.validateJsonElement(jsonElement);
+                                actualAdapter = adapterRiskLevelChange;
                                 match++;
-                                log.log(Level.FINER, "Input data matches schema 'Balanceupdate'");
+                                log.log(Level.FINER, "Input data matches schema 'RiskLevelChange'");
                             } catch (Exception e) {
                                 // deserialization failed, continue
                                 errorMessages.add(
                                         String.format(
-                                                "Deserialization for Balanceupdate failed with"
+                                                "Deserialization for RiskLevelChange failed with"
                                                         + " `%s`.",
                                                 e.getMessage()));
                                 log.log(
                                         Level.FINER,
-                                        "Input data does not match schema 'Balanceupdate'",
-                                        e);
-                            }
-                            // deserialize Executionreport
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                Executionreport.validateJsonElement(jsonElement);
-                                actualAdapter = adapterExecutionreport;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'Executionreport'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Executionreport failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'Executionreport'",
-                                        e);
-                            }
-                            // deserialize Openorderloss
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                Openorderloss.validateJsonElement(jsonElement);
-                                actualAdapter = adapterOpenorderloss;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'Openorderloss'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Openorderloss failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'Openorderloss'",
-                                        e);
-                            }
-                            // deserialize Listenkeyexpired
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                Listenkeyexpired.validateJsonElement(jsonElement);
-                                actualAdapter = adapterListenkeyexpired;
-                                match++;
-                                log.log(
-                                        Level.FINER,
-                                        "Input data matches schema 'Listenkeyexpired'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Listenkeyexpired failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'Listenkeyexpired'",
-                                        e);
-                            }
-                            // deserialize Risklevelchange
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                Risklevelchange.validateJsonElement(jsonElement);
-                                actualAdapter = adapterRisklevelchange;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'Risklevelchange'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Risklevelchange failed with"
-                                                        + " `%s`.",
-                                                e.getMessage()));
-                                log.log(
-                                        Level.FINER,
-                                        "Input data does not match schema 'Risklevelchange'",
+                                        "Input data does not match schema 'RiskLevelChange'",
                                         e);
                             }
 
@@ -661,18 +582,18 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("AlgoUpdate", AlgoUpdate.class);
-        schemas.put("ConditionalOrderTradeUpdate", ConditionalOrderTradeUpdate.class);
         schemas.put("AccountConfigUpdate", AccountConfigUpdate.class);
         schemas.put("AccountUpdate", AccountUpdate.class);
+        schemas.put("AlgoOrderUpdate", AlgoOrderUpdate.class);
+        schemas.put("BalanceUpdate", BalanceUpdate.class);
+        schemas.put("ConditionalOrderTradeUpdate", ConditionalOrderTradeUpdate.class);
+        schemas.put("ExecutionReport", ExecutionReport.class);
+        schemas.put("LiabilityChange", LiabilityChange.class);
+        schemas.put("ListenKeyExpired", ListenKeyExpired.class);
+        schemas.put("OpenOrderLoss", OpenOrderLoss.class);
         schemas.put("OrderTradeUpdate", OrderTradeUpdate.class);
-        schemas.put("Liabilitychange", Liabilitychange.class);
-        schemas.put("Outboundaccountposition", Outboundaccountposition.class);
-        schemas.put("Balanceupdate", Balanceupdate.class);
-        schemas.put("Executionreport", Executionreport.class);
-        schemas.put("Openorderloss", Openorderloss.class);
-        schemas.put("Listenkeyexpired", Listenkeyexpired.class);
-        schemas.put("Risklevelchange", Risklevelchange.class);
+        schemas.put("OutboundAccountPosition", OutboundAccountPosition.class);
+        schemas.put("RiskLevelChange", RiskLevelChange.class);
     }
 
     @Override
@@ -682,24 +603,14 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
 
     /**
      * Set the instance that matches the oneOf child schema, check the instance parameter is valid
-     * against the oneOf child schemas: AccountConfigUpdate, AccountUpdate, AlgoUpdate,
-     * Balanceupdate, ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,
-     * Listenkeyexpired, Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange
+     * against the oneOf child schemas: AccountConfigUpdate, AccountUpdate, AlgoOrderUpdate,
+     * BalanceUpdate, ConditionalOrderTradeUpdate, ExecutionReport, LiabilityChange,
+     * ListenKeyExpired, OpenOrderLoss, OrderTradeUpdate, OutboundAccountPosition, RiskLevelChange
      *
      * <p>It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof AlgoUpdate) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof ConditionalOrderTradeUpdate) {
-            super.setActualInstance(instance);
-            return;
-        }
-
         if (instance instanceof AccountConfigUpdate) {
             super.setActualInstance(instance);
             return;
@@ -710,88 +621,78 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             return;
         }
 
+        if (instance instanceof AlgoOrderUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof BalanceUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ConditionalOrderTradeUpdate) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ExecutionReport) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof LiabilityChange) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof ListenKeyExpired) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof OpenOrderLoss) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof OrderTradeUpdate) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Liabilitychange) {
+        if (instance instanceof OutboundAccountPosition) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Outboundaccountposition) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof Balanceupdate) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof Executionreport) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof Openorderloss) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof Listenkeyexpired) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (instance instanceof Risklevelchange) {
+        if (instance instanceof RiskLevelChange) {
             super.setActualInstance(instance);
             return;
         }
 
         throw new RuntimeException(
-                "Invalid instance type. Must be AccountConfigUpdate, AccountUpdate, AlgoUpdate,"
-                        + " Balanceupdate, ConditionalOrderTradeUpdate, Executionreport,"
-                        + " Liabilitychange, Listenkeyexpired, Openorderloss, OrderTradeUpdate,"
-                        + " Outboundaccountposition, Risklevelchange");
+                "Invalid instance type. Must be AccountConfigUpdate, AccountUpdate,"
+                        + " AlgoOrderUpdate, BalanceUpdate, ConditionalOrderTradeUpdate,"
+                        + " ExecutionReport, LiabilityChange, ListenKeyExpired, OpenOrderLoss,"
+                        + " OrderTradeUpdate, OutboundAccountPosition, RiskLevelChange");
     }
 
     /**
      * Get the actual instance, which can be the following: AccountConfigUpdate, AccountUpdate,
-     * AlgoUpdate, Balanceupdate, ConditionalOrderTradeUpdate, Executionreport, Liabilitychange,
-     * Listenkeyexpired, Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange
+     * AlgoOrderUpdate, BalanceUpdate, ConditionalOrderTradeUpdate, ExecutionReport,
+     * LiabilityChange, ListenKeyExpired, OpenOrderLoss, OrderTradeUpdate, OutboundAccountPosition,
+     * RiskLevelChange
      *
-     * @return The actual instance (AccountConfigUpdate, AccountUpdate, AlgoUpdate, Balanceupdate,
-     *     ConditionalOrderTradeUpdate, Executionreport, Liabilitychange, Listenkeyexpired,
-     *     Openorderloss, OrderTradeUpdate, Outboundaccountposition, Risklevelchange)
+     * @return The actual instance (AccountConfigUpdate, AccountUpdate, AlgoOrderUpdate,
+     *     BalanceUpdate, ConditionalOrderTradeUpdate, ExecutionReport, LiabilityChange,
+     *     ListenKeyExpired, OpenOrderLoss, OrderTradeUpdate, OutboundAccountPosition,
+     *     RiskLevelChange)
      */
     @SuppressWarnings("unchecked")
     @Override
     public Object getActualInstance() {
         return super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `AlgoUpdate`. If the actual instance is not `AlgoUpdate`, the
-     * ClassCastException will be thrown.
-     *
-     * @return The actual instance of `AlgoUpdate`
-     * @throws ClassCastException if the instance is not `AlgoUpdate`
-     */
-    public AlgoUpdate getAlgoUpdate() throws ClassCastException {
-        return (AlgoUpdate) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `ConditionalOrderTradeUpdate`. If the actual instance is not
-     * `ConditionalOrderTradeUpdate`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `ConditionalOrderTradeUpdate`
-     * @throws ClassCastException if the instance is not `ConditionalOrderTradeUpdate`
-     */
-    public ConditionalOrderTradeUpdate getConditionalOrderTradeUpdate() throws ClassCastException {
-        return (ConditionalOrderTradeUpdate) super.getActualInstance();
     }
 
     /**
@@ -817,6 +718,83 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
+     * Get the actual instance of `AlgoOrderUpdate`. If the actual instance is not
+     * `AlgoOrderUpdate`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AlgoOrderUpdate`
+     * @throws ClassCastException if the instance is not `AlgoOrderUpdate`
+     */
+    public AlgoOrderUpdate getAlgoOrderUpdate() throws ClassCastException {
+        return (AlgoOrderUpdate) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `BalanceUpdate`. If the actual instance is not `BalanceUpdate`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `BalanceUpdate`
+     * @throws ClassCastException if the instance is not `BalanceUpdate`
+     */
+    public BalanceUpdate getBalanceUpdate() throws ClassCastException {
+        return (BalanceUpdate) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ConditionalOrderTradeUpdate`. If the actual instance is not
+     * `ConditionalOrderTradeUpdate`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ConditionalOrderTradeUpdate`
+     * @throws ClassCastException if the instance is not `ConditionalOrderTradeUpdate`
+     */
+    public ConditionalOrderTradeUpdate getConditionalOrderTradeUpdate() throws ClassCastException {
+        return (ConditionalOrderTradeUpdate) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ExecutionReport`. If the actual instance is not
+     * `ExecutionReport`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ExecutionReport`
+     * @throws ClassCastException if the instance is not `ExecutionReport`
+     */
+    public ExecutionReport getExecutionReport() throws ClassCastException {
+        return (ExecutionReport) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `LiabilityChange`. If the actual instance is not
+     * `LiabilityChange`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `LiabilityChange`
+     * @throws ClassCastException if the instance is not `LiabilityChange`
+     */
+    public LiabilityChange getLiabilityChange() throws ClassCastException {
+        return (LiabilityChange) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ListenKeyExpired`. If the actual instance is not
+     * `ListenKeyExpired`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ListenKeyExpired`
+     * @throws ClassCastException if the instance is not `ListenKeyExpired`
+     */
+    public ListenKeyExpired getListenKeyExpired() throws ClassCastException {
+        return (ListenKeyExpired) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `OpenOrderLoss`. If the actual instance is not `OpenOrderLoss`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `OpenOrderLoss`
+     * @throws ClassCastException if the instance is not `OpenOrderLoss`
+     */
+    public OpenOrderLoss getOpenOrderLoss() throws ClassCastException {
+        return (OpenOrderLoss) super.getActualInstance();
+    }
+
+    /**
      * Get the actual instance of `OrderTradeUpdate`. If the actual instance is not
      * `OrderTradeUpdate`, the ClassCastException will be thrown.
      *
@@ -828,80 +806,25 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `Liabilitychange`. If the actual instance is not
-     * `Liabilitychange`, the ClassCastException will be thrown.
+     * Get the actual instance of `OutboundAccountPosition`. If the actual instance is not
+     * `OutboundAccountPosition`, the ClassCastException will be thrown.
      *
-     * @return The actual instance of `Liabilitychange`
-     * @throws ClassCastException if the instance is not `Liabilitychange`
+     * @return The actual instance of `OutboundAccountPosition`
+     * @throws ClassCastException if the instance is not `OutboundAccountPosition`
      */
-    public Liabilitychange getLiabilitychange() throws ClassCastException {
-        return (Liabilitychange) super.getActualInstance();
+    public OutboundAccountPosition getOutboundAccountPosition() throws ClassCastException {
+        return (OutboundAccountPosition) super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `Outboundaccountposition`. If the actual instance is not
-     * `Outboundaccountposition`, the ClassCastException will be thrown.
+     * Get the actual instance of `RiskLevelChange`. If the actual instance is not
+     * `RiskLevelChange`, the ClassCastException will be thrown.
      *
-     * @return The actual instance of `Outboundaccountposition`
-     * @throws ClassCastException if the instance is not `Outboundaccountposition`
+     * @return The actual instance of `RiskLevelChange`
+     * @throws ClassCastException if the instance is not `RiskLevelChange`
      */
-    public Outboundaccountposition getOutboundaccountposition() throws ClassCastException {
-        return (Outboundaccountposition) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `Balanceupdate`. If the actual instance is not `Balanceupdate`,
-     * the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Balanceupdate`
-     * @throws ClassCastException if the instance is not `Balanceupdate`
-     */
-    public Balanceupdate getBalanceupdate() throws ClassCastException {
-        return (Balanceupdate) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `Executionreport`. If the actual instance is not
-     * `Executionreport`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Executionreport`
-     * @throws ClassCastException if the instance is not `Executionreport`
-     */
-    public Executionreport getExecutionreport() throws ClassCastException {
-        return (Executionreport) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `Openorderloss`. If the actual instance is not `Openorderloss`,
-     * the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Openorderloss`
-     * @throws ClassCastException if the instance is not `Openorderloss`
-     */
-    public Openorderloss getOpenorderloss() throws ClassCastException {
-        return (Openorderloss) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `Listenkeyexpired`. If the actual instance is not
-     * `Listenkeyexpired`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Listenkeyexpired`
-     * @throws ClassCastException if the instance is not `Listenkeyexpired`
-     */
-    public Listenkeyexpired getListenkeyexpired() throws ClassCastException {
-        return (Listenkeyexpired) super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `Risklevelchange`. If the actual instance is not
-     * `Risklevelchange`, the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `Risklevelchange`
-     * @throws ClassCastException if the instance is not `Risklevelchange`
-     */
-    public Risklevelchange getRisklevelchange() throws ClassCastException {
-        return (Risklevelchange) super.getActualInstance();
+    public RiskLevelChange getRiskLevelChange() throws ClassCastException {
+        return (RiskLevelChange) super.getActualInstance();
     }
 
     /**
@@ -915,27 +838,6 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with AlgoUpdate
-        try {
-            AlgoUpdate.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for AlgoUpdate failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with ConditionalOrderTradeUpdate
-        try {
-            ConditionalOrderTradeUpdate.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for ConditionalOrderTradeUpdate failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
         // validate the json string with AccountConfigUpdate
         try {
             AccountConfigUpdate.validateJsonElement(jsonElement);
@@ -957,6 +859,81 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             "Deserialization for AccountUpdate failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
+        // validate the json string with AlgoOrderUpdate
+        try {
+            AlgoOrderUpdate.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for AlgoOrderUpdate failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with BalanceUpdate
+        try {
+            BalanceUpdate.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for BalanceUpdate failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ConditionalOrderTradeUpdate
+        try {
+            ConditionalOrderTradeUpdate.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ConditionalOrderTradeUpdate failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ExecutionReport
+        try {
+            ExecutionReport.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ExecutionReport failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with LiabilityChange
+        try {
+            LiabilityChange.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for LiabilityChange failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with ListenKeyExpired
+        try {
+            ListenKeyExpired.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for ListenKeyExpired failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with OpenOrderLoss
+        try {
+            OpenOrderLoss.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for OpenOrderLoss failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with OrderTradeUpdate
         try {
             OrderTradeUpdate.validateJsonElement(jsonElement);
@@ -968,78 +945,25 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
                             e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with Liabilitychange
+        // validate the json string with OutboundAccountPosition
         try {
-            Liabilitychange.validateJsonElement(jsonElement);
+            OutboundAccountPosition.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
             errorMessages.add(
                     String.format(
-                            "Deserialization for Liabilitychange failed with `%s`.",
+                            "Deserialization for OutboundAccountPosition failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with Outboundaccountposition
+        // validate the json string with RiskLevelChange
         try {
-            Outboundaccountposition.validateJsonElement(jsonElement);
+            RiskLevelChange.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
             errorMessages.add(
                     String.format(
-                            "Deserialization for Outboundaccountposition failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Balanceupdate
-        try {
-            Balanceupdate.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Balanceupdate failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Executionreport
-        try {
-            Executionreport.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Executionreport failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Openorderloss
-        try {
-            Openorderloss.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Openorderloss failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Listenkeyexpired
-        try {
-            Listenkeyexpired.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Listenkeyexpired failed with `%s`.",
-                            e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Risklevelchange
-        try {
-            Risklevelchange.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format(
-                            "Deserialization for Risklevelchange failed with `%s`.",
+                            "Deserialization for RiskLevelChange failed with `%s`.",
                             e.getMessage()));
             // continue to the next one
         }
@@ -1047,10 +971,10 @@ public class UserDataStreamEventsResponse extends AbstractOpenApiSchema {
             throw new IOException(
                     String.format(
                             "The JSON string is invalid for UserDataStreamEventsResponse with oneOf"
-                                + " schemas: AccountConfigUpdate, AccountUpdate, AlgoUpdate,"
-                                + " Balanceupdate, ConditionalOrderTradeUpdate, Executionreport,"
-                                + " Liabilitychange, Listenkeyexpired, Openorderloss,"
-                                + " OrderTradeUpdate, Outboundaccountposition, Risklevelchange. %d"
+                                + " schemas: AccountConfigUpdate, AccountUpdate, AlgoOrderUpdate,"
+                                + " BalanceUpdate, ConditionalOrderTradeUpdate, ExecutionReport,"
+                                + " LiabilityChange, ListenKeyExpired, OpenOrderLoss,"
+                                + " OrderTradeUpdate, OutboundAccountPosition, RiskLevelChange. %d"
                                 + " class(es) match the result, expected 1. Detailed failure"
                                 + " message for oneOf schemas: %s. JSON: %s",
                             validCount, errorMessages, jsonElement.toString()));

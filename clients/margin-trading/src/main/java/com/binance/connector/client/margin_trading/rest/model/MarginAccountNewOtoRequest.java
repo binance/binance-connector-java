@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountNewOtoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOtoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -47,7 +47,7 @@ public class MarginAccountNewOtoRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
     @jakarta.annotation.Nullable
-    private String isIsolated;
+    private IsIsolated isIsolated = IsIsolated.FALSE;
 
     public static final String SERIALIZED_NAME_LIST_CLIENT_ORDER_ID = "listClientOrderId";
 
@@ -65,32 +65,32 @@ public class MarginAccountNewOtoRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE_EFFECT_TYPE)
     @jakarta.annotation.Nullable
-    private String sideEffectType;
+    private SideEffectType sideEffectType;
 
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private String selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode;
 
     public static final String SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL = "autoRepayAtCancel";
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL)
     @jakarta.annotation.Nullable
-    private Boolean autoRepayAtCancel;
+    private Boolean autoRepayAtCancel = true;
 
     public static final String SERIALIZED_NAME_WORKING_TYPE = "workingType";
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nonnull
-    private String workingType;
+    private WorkingType workingType;
 
     public static final String SERIALIZED_NAME_WORKING_SIDE = "workingSide";
 
     @SerializedName(SERIALIZED_NAME_WORKING_SIDE)
     @jakarta.annotation.Nonnull
-    private String workingSide;
+    private WorkingSide workingSide;
 
     public static final String SERIALIZED_NAME_WORKING_CLIENT_ORDER_ID = "workingClientOrderId";
 
@@ -120,19 +120,19 @@ public class MarginAccountNewOtoRequest {
 
     @SerializedName(SERIALIZED_NAME_WORKING_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private String workingTimeInForce;
+    private WorkingTimeInForce workingTimeInForce;
 
     public static final String SERIALIZED_NAME_PENDING_TYPE = "pendingType";
 
     @SerializedName(SERIALIZED_NAME_PENDING_TYPE)
     @jakarta.annotation.Nonnull
-    private String pendingType;
+    private PendingType pendingType;
 
     public static final String SERIALIZED_NAME_PENDING_SIDE = "pendingSide";
 
     @SerializedName(SERIALIZED_NAME_PENDING_SIDE)
     @jakarta.annotation.Nonnull
-    private String pendingSide;
+    private PendingSide pendingSide;
 
     public static final String SERIALIZED_NAME_PENDING_CLIENT_ORDER_ID = "pendingClientOrderId";
 
@@ -174,7 +174,7 @@ public class MarginAccountNewOtoRequest {
 
     @SerializedName(SERIALIZED_NAME_PENDING_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private String pendingTimeInForce;
+    private PendingTimeInForce pendingTimeInForce;
 
     public MarginAccountNewOtoRequest() {}
 
@@ -198,7 +198,8 @@ public class MarginAccountNewOtoRequest {
         this.symbol = symbol;
     }
 
-    public MarginAccountNewOtoRequest isIsolated(@jakarta.annotation.Nullable String isIsolated) {
+    public MarginAccountNewOtoRequest isIsolated(
+            @jakarta.annotation.Nullable IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
         return this;
     }
@@ -209,11 +210,12 @@ public class MarginAccountNewOtoRequest {
      * @return isIsolated
      */
     @jakarta.annotation.Nullable
-    public String getIsIsolated() {
+    @Valid
+    public IsIsolated getIsIsolated() {
         return isIsolated;
     }
 
-    public void setIsIsolated(@jakarta.annotation.Nullable String isIsolated) {
+    public void setIsIsolated(@jakarta.annotation.Nullable IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
     }
 
@@ -224,7 +226,10 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * Arbitrary unique ID among open order lists. Automatically generated if not sent.&lt;br/&gt;A
+     * new order list with the same listClientOrderId is accepted only when the previous one is
+     * filled or completely expired.&lt;br/&gt;&#x60;listClientOrderId&#x60; is distinct from the
+     * &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -260,7 +265,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     public MarginAccountNewOtoRequest sideEffectType(
-            @jakarta.annotation.Nullable String sideEffectType) {
+            @jakarta.annotation.Nullable SideEffectType sideEffectType) {
         this.sideEffectType = sideEffectType;
         return this;
     }
@@ -271,16 +276,17 @@ public class MarginAccountNewOtoRequest {
      * @return sideEffectType
      */
     @jakarta.annotation.Nullable
-    public String getSideEffectType() {
+    @Valid
+    public SideEffectType getSideEffectType() {
         return sideEffectType;
     }
 
-    public void setSideEffectType(@jakarta.annotation.Nullable String sideEffectType) {
+    public void setSideEffectType(@jakarta.annotation.Nullable SideEffectType sideEffectType) {
         this.sideEffectType = sideEffectType;
     }
 
     public MarginAccountNewOtoRequest selfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
         return this;
     }
@@ -291,12 +297,13 @@ public class MarginAccountNewOtoRequest {
      * @return selfTradePreventionMode
      */
     @jakarta.annotation.Nullable
-    public String getSelfTradePreventionMode() {
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
         return selfTradePreventionMode;
     }
 
     public void setSelfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
@@ -307,7 +314,8 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get autoRepayAtCancel
+     * Only when MARGIN_BUY order takes effect, true means that the debt generated by the order
+     * needs to be repaid after the order is cancelled.
      *
      * @return autoRepayAtCancel
      */
@@ -320,7 +328,8 @@ public class MarginAccountNewOtoRequest {
         this.autoRepayAtCancel = autoRepayAtCancel;
     }
 
-    public MarginAccountNewOtoRequest workingType(@jakarta.annotation.Nonnull String workingType) {
+    public MarginAccountNewOtoRequest workingType(
+            @jakarta.annotation.Nonnull WorkingType workingType) {
         this.workingType = workingType;
         return this;
     }
@@ -332,15 +341,17 @@ public class MarginAccountNewOtoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getWorkingType() {
+    @Valid
+    public WorkingType getWorkingType() {
         return workingType;
     }
 
-    public void setWorkingType(@jakarta.annotation.Nonnull String workingType) {
+    public void setWorkingType(@jakarta.annotation.Nonnull WorkingType workingType) {
         this.workingType = workingType;
     }
 
-    public MarginAccountNewOtoRequest workingSide(@jakarta.annotation.Nonnull String workingSide) {
+    public MarginAccountNewOtoRequest workingSide(
+            @jakarta.annotation.Nonnull WorkingSide workingSide) {
         this.workingSide = workingSide;
         return this;
     }
@@ -352,11 +363,12 @@ public class MarginAccountNewOtoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getWorkingSide() {
+    @Valid
+    public WorkingSide getWorkingSide() {
         return workingSide;
     }
 
-    public void setWorkingSide(@jakarta.annotation.Nonnull String workingSide) {
+    public void setWorkingSide(@jakarta.annotation.Nonnull WorkingSide workingSide) {
         this.workingSide = workingSide;
     }
 
@@ -367,7 +379,8 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get workingClientOrderId
+     * Arbitrary unique ID among open orders for the working order. Automatically generated if not
+     * sent.
      *
      * @return workingClientOrderId
      */
@@ -409,7 +422,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get workingQuantity
+     * Sets the quantity for the working order.
      *
      * @return workingQuantity
      */
@@ -431,7 +444,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get workingIcebergQty
+     * This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;.
      *
      * @return workingIcebergQty
      */
@@ -447,7 +460,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     public MarginAccountNewOtoRequest workingTimeInForce(
-            @jakarta.annotation.Nullable String workingTimeInForce) {
+            @jakarta.annotation.Nullable WorkingTimeInForce workingTimeInForce) {
         this.workingTimeInForce = workingTimeInForce;
         return this;
     }
@@ -458,15 +471,18 @@ public class MarginAccountNewOtoRequest {
      * @return workingTimeInForce
      */
     @jakarta.annotation.Nullable
-    public String getWorkingTimeInForce() {
+    @Valid
+    public WorkingTimeInForce getWorkingTimeInForce() {
         return workingTimeInForce;
     }
 
-    public void setWorkingTimeInForce(@jakarta.annotation.Nullable String workingTimeInForce) {
+    public void setWorkingTimeInForce(
+            @jakarta.annotation.Nullable WorkingTimeInForce workingTimeInForce) {
         this.workingTimeInForce = workingTimeInForce;
     }
 
-    public MarginAccountNewOtoRequest pendingType(@jakarta.annotation.Nonnull String pendingType) {
+    public MarginAccountNewOtoRequest pendingType(
+            @jakarta.annotation.Nonnull PendingType pendingType) {
         this.pendingType = pendingType;
         return this;
     }
@@ -478,15 +494,17 @@ public class MarginAccountNewOtoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getPendingType() {
+    @Valid
+    public PendingType getPendingType() {
         return pendingType;
     }
 
-    public void setPendingType(@jakarta.annotation.Nonnull String pendingType) {
+    public void setPendingType(@jakarta.annotation.Nonnull PendingType pendingType) {
         this.pendingType = pendingType;
     }
 
-    public MarginAccountNewOtoRequest pendingSide(@jakarta.annotation.Nonnull String pendingSide) {
+    public MarginAccountNewOtoRequest pendingSide(
+            @jakarta.annotation.Nonnull PendingSide pendingSide) {
         this.pendingSide = pendingSide;
         return this;
     }
@@ -498,11 +516,12 @@ public class MarginAccountNewOtoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getPendingSide() {
+    @Valid
+    public PendingSide getPendingSide() {
         return pendingSide;
     }
 
-    public void setPendingSide(@jakarta.annotation.Nonnull String pendingSide) {
+    public void setPendingSide(@jakarta.annotation.Nonnull PendingSide pendingSide) {
         this.pendingSide = pendingSide;
     }
 
@@ -513,7 +532,8 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get pendingClientOrderId
+     * Arbitrary unique ID among open orders for the pending order. Automatically generated if not
+     * sent.
      *
      * @return pendingClientOrderId
      */
@@ -596,7 +616,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get pendingQuantity
+     * Sets the quantity for the pending order.
      *
      * @return pendingQuantity
      */
@@ -618,7 +638,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     /**
-     * Get pendingIcebergQty
+     * This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60;.
      *
      * @return pendingIcebergQty
      */
@@ -633,7 +653,7 @@ public class MarginAccountNewOtoRequest {
     }
 
     public MarginAccountNewOtoRequest pendingTimeInForce(
-            @jakarta.annotation.Nullable String pendingTimeInForce) {
+            @jakarta.annotation.Nullable PendingTimeInForce pendingTimeInForce) {
         this.pendingTimeInForce = pendingTimeInForce;
         return this;
     }
@@ -644,11 +664,13 @@ public class MarginAccountNewOtoRequest {
      * @return pendingTimeInForce
      */
     @jakarta.annotation.Nullable
-    public String getPendingTimeInForce() {
+    @Valid
+    public PendingTimeInForce getPendingTimeInForce() {
         return pendingTimeInForce;
     }
 
-    public void setPendingTimeInForce(@jakarta.annotation.Nullable String pendingTimeInForce) {
+    public void setPendingTimeInForce(
+            @jakarta.annotation.Nullable PendingTimeInForce pendingTimeInForce) {
         this.pendingTimeInForce = pendingTimeInForce;
     }
 
@@ -985,13 +1007,9 @@ public class MarginAccountNewOtoRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("isIsolated") != null && !jsonObj.get("isIsolated").isJsonNull())
-                && !jsonObj.get("isIsolated").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isIsolated` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("isIsolated").toString()));
+        // validate the optional field `isIsolated`
+        if (jsonObj.get("isIsolated") != null && !jsonObj.get("isIsolated").isJsonNull()) {
+            IsIsolated.validateJsonElement(jsonObj.get("isIsolated"));
         }
         if ((jsonObj.get("listClientOrderId") != null
                         && !jsonObj.get("listClientOrderId").isJsonNull())
@@ -1007,37 +1025,19 @@ public class MarginAccountNewOtoRequest {
                 && !jsonObj.get("newOrderRespType").isJsonNull()) {
             NewOrderRespType.validateJsonElement(jsonObj.get("newOrderRespType"));
         }
-        if ((jsonObj.get("sideEffectType") != null && !jsonObj.get("sideEffectType").isJsonNull())
-                && !jsonObj.get("sideEffectType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `sideEffectType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("sideEffectType").toString()));
+        // validate the optional field `sideEffectType`
+        if (jsonObj.get("sideEffectType") != null && !jsonObj.get("sideEffectType").isJsonNull()) {
+            SideEffectType.validateJsonElement(jsonObj.get("sideEffectType"));
         }
-        if ((jsonObj.get("selfTradePreventionMode") != null
-                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
-                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("selfTradePreventionMode").toString()));
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
-        if (!jsonObj.get("workingType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `workingType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("workingType").toString()));
-        }
-        if (!jsonObj.get("workingSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `workingSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("workingSide").toString()));
-        }
+        // validate the required field `workingType`
+        WorkingType.validateJsonElement(jsonObj.get("workingType"));
+        // validate the required field `workingSide`
+        WorkingSide.validateJsonElement(jsonObj.get("workingSide"));
         if ((jsonObj.get("workingClientOrderId") != null
                         && !jsonObj.get("workingClientOrderId").isJsonNull())
                 && !jsonObj.get("workingClientOrderId").isJsonPrimitive()) {
@@ -1047,29 +1047,15 @@ public class MarginAccountNewOtoRequest {
                                     + " the JSON string but got `%s`",
                             jsonObj.get("workingClientOrderId").toString()));
         }
-        if ((jsonObj.get("workingTimeInForce") != null
-                        && !jsonObj.get("workingTimeInForce").isJsonNull())
-                && !jsonObj.get("workingTimeInForce").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `workingTimeInForce` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("workingTimeInForce").toString()));
+        // validate the optional field `workingTimeInForce`
+        if (jsonObj.get("workingTimeInForce") != null
+                && !jsonObj.get("workingTimeInForce").isJsonNull()) {
+            WorkingTimeInForce.validateJsonElement(jsonObj.get("workingTimeInForce"));
         }
-        if (!jsonObj.get("pendingType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `pendingType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("pendingType").toString()));
-        }
-        if (!jsonObj.get("pendingSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `pendingSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("pendingSide").toString()));
-        }
+        // validate the required field `pendingType`
+        PendingType.validateJsonElement(jsonObj.get("pendingType"));
+        // validate the required field `pendingSide`
+        PendingSide.validateJsonElement(jsonObj.get("pendingSide"));
         if ((jsonObj.get("pendingClientOrderId") != null
                         && !jsonObj.get("pendingClientOrderId").isJsonNull())
                 && !jsonObj.get("pendingClientOrderId").isJsonPrimitive()) {
@@ -1079,14 +1065,10 @@ public class MarginAccountNewOtoRequest {
                                     + " the JSON string but got `%s`",
                             jsonObj.get("pendingClientOrderId").toString()));
         }
-        if ((jsonObj.get("pendingTimeInForce") != null
-                        && !jsonObj.get("pendingTimeInForce").isJsonNull())
-                && !jsonObj.get("pendingTimeInForce").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `pendingTimeInForce` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("pendingTimeInForce").toString()));
+        // validate the optional field `pendingTimeInForce`
+        if (jsonObj.get("pendingTimeInForce") != null
+                && !jsonObj.get("pendingTimeInForce").isJsonNull()) {
+            PendingTimeInForce.validateJsonElement(jsonObj.get("pendingTimeInForce"));
         }
     }
 

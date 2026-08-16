@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**baseAsset** | **String** |  |  [optional] |
-|**quoteAsset** | **String** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**baseAsset** | **String** | Base asset |  [optional] |
+|**quoteAsset** | **String** | Quote asset |  [optional] |
 
 
 

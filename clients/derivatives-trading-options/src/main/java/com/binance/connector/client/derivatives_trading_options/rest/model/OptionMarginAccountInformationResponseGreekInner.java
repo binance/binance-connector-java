@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** OptionMarginAccountInformationResponseGreekInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OptionMarginAccountInformationResponseGreekInner {
     public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
@@ -48,17 +48,17 @@ public class OptionMarginAccountInformationResponseGreekInner {
     @jakarta.annotation.Nullable
     private String delta;
 
-    public static final String SERIALIZED_NAME_THETA = "theta";
-
-    @SerializedName(SERIALIZED_NAME_THETA)
-    @jakarta.annotation.Nullable
-    private String theta;
-
     public static final String SERIALIZED_NAME_GAMMA = "gamma";
 
     @SerializedName(SERIALIZED_NAME_GAMMA)
     @jakarta.annotation.Nullable
     private String gamma;
+
+    public static final String SERIALIZED_NAME_THETA = "theta";
+
+    @SerializedName(SERIALIZED_NAME_THETA)
+    @jakarta.annotation.Nullable
+    private String theta;
 
     public static final String SERIALIZED_NAME_VEGA = "vega";
 
@@ -75,7 +75,7 @@ public class OptionMarginAccountInformationResponseGreekInner {
     }
 
     /**
-     * Get underlying
+     * underlying
      *
      * @return underlying
      */
@@ -95,7 +95,7 @@ public class OptionMarginAccountInformationResponseGreekInner {
     }
 
     /**
-     * Get delta
+     * delta
      *
      * @return delta
      */
@@ -108,26 +108,6 @@ public class OptionMarginAccountInformationResponseGreekInner {
         this.delta = delta;
     }
 
-    public OptionMarginAccountInformationResponseGreekInner theta(
-            @jakarta.annotation.Nullable String theta) {
-        this.theta = theta;
-        return this;
-    }
-
-    /**
-     * Get theta
-     *
-     * @return theta
-     */
-    @jakarta.annotation.Nullable
-    public String getTheta() {
-        return theta;
-    }
-
-    public void setTheta(@jakarta.annotation.Nullable String theta) {
-        this.theta = theta;
-    }
-
     public OptionMarginAccountInformationResponseGreekInner gamma(
             @jakarta.annotation.Nullable String gamma) {
         this.gamma = gamma;
@@ -135,7 +115,7 @@ public class OptionMarginAccountInformationResponseGreekInner {
     }
 
     /**
-     * Get gamma
+     * gamma
      *
      * @return gamma
      */
@@ -148,6 +128,26 @@ public class OptionMarginAccountInformationResponseGreekInner {
         this.gamma = gamma;
     }
 
+    public OptionMarginAccountInformationResponseGreekInner theta(
+            @jakarta.annotation.Nullable String theta) {
+        this.theta = theta;
+        return this;
+    }
+
+    /**
+     * theta
+     *
+     * @return theta
+     */
+    @jakarta.annotation.Nullable
+    public String getTheta() {
+        return theta;
+    }
+
+    public void setTheta(@jakarta.annotation.Nullable String theta) {
+        this.theta = theta;
+    }
+
     public OptionMarginAccountInformationResponseGreekInner vega(
             @jakarta.annotation.Nullable String vega) {
         this.vega = vega;
@@ -155,7 +155,7 @@ public class OptionMarginAccountInformationResponseGreekInner {
     }
 
     /**
-     * Get vega
+     * vega
      *
      * @return vega
      */
@@ -185,15 +185,15 @@ public class OptionMarginAccountInformationResponseGreekInner {
                 && Objects.equals(
                         this.delta, optionMarginAccountInformationResponseGreekInner.delta)
                 && Objects.equals(
-                        this.theta, optionMarginAccountInformationResponseGreekInner.theta)
-                && Objects.equals(
                         this.gamma, optionMarginAccountInformationResponseGreekInner.gamma)
+                && Objects.equals(
+                        this.theta, optionMarginAccountInformationResponseGreekInner.theta)
                 && Objects.equals(this.vega, optionMarginAccountInformationResponseGreekInner.vega);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(underlying, delta, theta, gamma, vega);
+        return Objects.hash(underlying, delta, gamma, theta, vega);
     }
 
     @Override
@@ -202,8 +202,8 @@ public class OptionMarginAccountInformationResponseGreekInner {
         sb.append("class OptionMarginAccountInformationResponseGreekInner {\n");
         sb.append("		underlying: ").append(toIndentedString(underlying)).append("\n");
         sb.append("		delta: ").append(toIndentedString(delta)).append("\n");
-        sb.append("		theta: ").append(toIndentedString(theta)).append("\n");
         sb.append("		gamma: ").append(toIndentedString(gamma)).append("\n");
+        sb.append("		theta: ").append(toIndentedString(theta)).append("\n");
         sb.append("		vega: ").append(toIndentedString(vega)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -220,14 +220,14 @@ public class OptionMarginAccountInformationResponseGreekInner {
         String deltaValueAsString = "";
         deltaValueAsString = deltaValue.toString();
         sb.append("delta=").append(urlEncode(deltaValueAsString)).append("");
-        Object thetaValue = getTheta();
-        String thetaValueAsString = "";
-        thetaValueAsString = thetaValue.toString();
-        sb.append("theta=").append(urlEncode(thetaValueAsString)).append("");
         Object gammaValue = getGamma();
         String gammaValueAsString = "";
         gammaValueAsString = gammaValue.toString();
         sb.append("gamma=").append(urlEncode(gammaValueAsString)).append("");
+        Object thetaValue = getTheta();
+        String thetaValueAsString = "";
+        thetaValueAsString = thetaValue.toString();
+        sb.append("theta=").append(urlEncode(thetaValueAsString)).append("");
         Object vegaValue = getVega();
         String vegaValueAsString = "";
         vegaValueAsString = vegaValue.toString();
@@ -262,8 +262,8 @@ public class OptionMarginAccountInformationResponseGreekInner {
         openapiFields = new HashSet<String>();
         openapiFields.add("underlying");
         openapiFields.add("delta");
-        openapiFields.add("theta");
         openapiFields.add("gamma");
+        openapiFields.add("theta");
         openapiFields.add("vega");
 
         // a set of required properties/fields (JSON key names)
@@ -308,14 +308,6 @@ public class OptionMarginAccountInformationResponseGreekInner {
                                     + " but got `%s`",
                             jsonObj.get("delta").toString()));
         }
-        if ((jsonObj.get("theta") != null && !jsonObj.get("theta").isJsonNull())
-                && !jsonObj.get("theta").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `theta` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("theta").toString()));
-        }
         if ((jsonObj.get("gamma") != null && !jsonObj.get("gamma").isJsonNull())
                 && !jsonObj.get("gamma").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -323,6 +315,14 @@ public class OptionMarginAccountInformationResponseGreekInner {
                             "Expected the field `gamma` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("gamma").toString()));
+        }
+        if ((jsonObj.get("theta") != null && !jsonObj.get("theta").isJsonNull())
+                && !jsonObj.get("theta").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `theta` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("theta").toString()));
         }
         if ((jsonObj.get("vega") != null && !jsonObj.get("vega").isJsonNull())
                 && !jsonObj.get("vega").isJsonPrimitive()) {

@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** AccountStatusRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountStatusRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_OMIT_ZERO_BALANCES = "omitZeroBalances";
 
     @SerializedName(SERIALIZED_NAME_OMIT_ZERO_BALANCES)
@@ -55,6 +61,25 @@ public class AccountStatusRequest extends BaseDTO {
 
     public AccountStatusRequest() {}
 
+    public AccountStatusRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
     public AccountStatusRequest omitZeroBalances(
             @jakarta.annotation.Nullable Boolean omitZeroBalances) {
         this.omitZeroBalances = omitZeroBalances;
@@ -62,7 +87,8 @@ public class AccountStatusRequest extends BaseDTO {
     }
 
     /**
-     * Get omitZeroBalances
+     * When set to &#x60;true&#x60;, emits only the non-zero balances of an account. Default value:
+     * &#x60;false&#x60;.
      *
      * @return omitZeroBalances
      */
@@ -81,12 +107,14 @@ public class AccountStatusRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }
@@ -104,19 +132,21 @@ public class AccountStatusRequest extends BaseDTO {
             return false;
         }
         AccountStatusRequest accountStatusRequest = (AccountStatusRequest) o;
-        return Objects.equals(this.omitZeroBalances, accountStatusRequest.omitZeroBalances)
+        return Objects.equals(this.id, accountStatusRequest.id)
+                && Objects.equals(this.omitZeroBalances, accountStatusRequest.omitZeroBalances)
                 && Objects.equals(this.recvWindow, accountStatusRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(omitZeroBalances, recvWindow);
+        return Objects.hash(id, omitZeroBalances, recvWindow);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class AccountStatusRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		omitZeroBalances: ").append(toIndentedString(omitZeroBalances)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
@@ -127,6 +157,11 @@ public class AccountStatusRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         Boolean omitZeroBalancesValue = getOmitZeroBalances();
         if (omitZeroBalancesValue != null) {
             String omitZeroBalancesValueAsString = omitZeroBalancesValue.toString();
@@ -149,6 +184,10 @@ public class AccountStatusRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object omitZeroBalancesValue = getOmitZeroBalances();
         if (omitZeroBalancesValue != null) {
             valMap.put("omitZeroBalances", omitZeroBalancesValue);
@@ -183,6 +222,7 @@ public class AccountStatusRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("omitZeroBalances");
         openapiFields.add("recvWindow");
 
@@ -220,6 +260,14 @@ public class AccountStatusRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

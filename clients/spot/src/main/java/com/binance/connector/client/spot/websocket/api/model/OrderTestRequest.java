@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** OrderTestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderTestRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_COMPUTE_COMMISSION_RATES = "computeCommissionRates";
 
     @SerializedName(SERIALIZED_NAME_COMPUTE_COMMISSION_RATES)
@@ -164,6 +170,25 @@ public class OrderTestRequest extends BaseDTO {
 
     public OrderTestRequest() {}
 
+    public OrderTestRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
     public OrderTestRequest computeCommissionRates(
             @jakarta.annotation.Nullable Boolean computeCommissionRates) {
         this.computeCommissionRates = computeCommissionRates;
@@ -171,7 +196,8 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get computeCommissionRates
+     * Default: &#x60;false&#x60; &lt;br&gt; See [Commissions
+     * FAQ](/products/spot/faqs/commission_faq#test-order-diferences) to learn more.
      *
      * @return computeCommissionRates
      */
@@ -333,7 +359,9 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Orders with the same
+     * &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise
+     * the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -374,7 +402,8 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -394,7 +423,7 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get trailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return trailingDelta
      */
@@ -413,7 +442,8 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -452,11 +482,12 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;. minimum: 1000000
      *
      * @return strategyType
      */
     @jakarta.annotation.Nullable
+    @Min(1000000)
     public Integer getStrategyType() {
         return strategyType;
     }
@@ -513,11 +544,13 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get pegOffsetValue
+     * Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders)
+     * maximum: 100
      *
      * @return pegOffsetValue
      */
     @jakarta.annotation.Nullable
+    @Max(100)
     public Integer getPegOffsetValue() {
         return pegOffsetValue;
     }
@@ -553,12 +586,14 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }
@@ -576,7 +611,9 @@ public class OrderTestRequest extends BaseDTO {
             return false;
         }
         OrderTestRequest orderTestRequest = (OrderTestRequest) o;
-        return Objects.equals(this.computeCommissionRates, orderTestRequest.computeCommissionRates)
+        return Objects.equals(this.id, orderTestRequest.id)
+                && Objects.equals(
+                        this.computeCommissionRates, orderTestRequest.computeCommissionRates)
                 && Objects.equals(this.symbol, orderTestRequest.symbol)
                 && Objects.equals(this.side, orderTestRequest.side)
                 && Objects.equals(this.type, orderTestRequest.type)
@@ -602,6 +639,7 @@ public class OrderTestRequest extends BaseDTO {
     @Override
     public int hashCode() {
         return Objects.hash(
+                id,
                 computeCommissionRates,
                 symbol,
                 side,
@@ -628,6 +666,7 @@ public class OrderTestRequest extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderTestRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		computeCommissionRates: ")
                 .append(toIndentedString(computeCommissionRates))
                 .append("\n");
@@ -660,6 +699,11 @@ public class OrderTestRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         Boolean computeCommissionRatesValue = getComputeCommissionRates();
         if (computeCommissionRatesValue != null) {
             String computeCommissionRatesValueAsString = computeCommissionRatesValue.toString();
@@ -774,6 +818,10 @@ public class OrderTestRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object computeCommissionRatesValue = getComputeCommissionRates();
         if (computeCommissionRatesValue != null) {
             valMap.put("computeCommissionRates", computeCommissionRatesValue);
@@ -880,6 +928,7 @@ public class OrderTestRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("computeCommissionRates");
         openapiFields.add("symbol");
         openapiFields.add("side");
@@ -948,6 +997,14 @@ public class OrderTestRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

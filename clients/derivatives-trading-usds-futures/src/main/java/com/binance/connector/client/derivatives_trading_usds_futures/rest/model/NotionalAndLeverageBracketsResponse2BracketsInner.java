@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NotionalAndLeverageBracketsResponse2BracketsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NotionalAndLeverageBracketsResponse2BracketsInner {
     public static final String SERIALIZED_NAME_BRACKET = "bracket";
 
@@ -82,7 +82,7 @@ public class NotionalAndLeverageBracketsResponse2BracketsInner {
     }
 
     /**
-     * Get bracket
+     * Notional bracket
      *
      * @return bracket
      */
@@ -102,7 +102,7 @@ public class NotionalAndLeverageBracketsResponse2BracketsInner {
     }
 
     /**
-     * Get initialLeverage
+     * Max initial leverage for this bracket
      *
      * @return initialLeverage
      */
@@ -122,7 +122,7 @@ public class NotionalAndLeverageBracketsResponse2BracketsInner {
     }
 
     /**
-     * Get notionalCap
+     * Cap notional of this bracket
      *
      * @return notionalCap
      */
@@ -142,7 +142,7 @@ public class NotionalAndLeverageBracketsResponse2BracketsInner {
     }
 
     /**
-     * Get notionalFloor
+     * Notional threshold of this bracket
      *
      * @return notionalFloor
      */
@@ -162,7 +162,7 @@ public class NotionalAndLeverageBracketsResponse2BracketsInner {
     }
 
     /**
-     * Get maintMarginRatio
+     * Maintenance ratio for this bracket
      *
      * @return maintMarginRatio
      */
@@ -183,7 +183,7 @@ public class NotionalAndLeverageBracketsResponse2BracketsInner {
     }
 
     /**
-     * Get cum
+     * Auxiliary number for quick calculation
      *
      * @return cum
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,19 @@ import org.hibernate.validator.constraints.*;
 /** DustConvertRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class DustConvertRequest {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
     @SerializedName(SERIALIZED_NAME_ASSET)
     @jakarta.annotation.Nonnull
     private String asset;
+
+    public static final String SERIALIZED_NAME_ACCOUNT_TYPE = "accountType";
+
+    @SerializedName(SERIALIZED_NAME_ACCOUNT_TYPE)
+    @jakarta.annotation.Nullable
+    private String accountType;
 
     public static final String SERIALIZED_NAME_CLIENT_ID = "clientId";
 
@@ -90,13 +96,32 @@ public class DustConvertRequest {
         this.asset = asset;
     }
 
+    public DustConvertRequest accountType(@jakarta.annotation.Nullable String accountType) {
+        this.accountType = accountType;
+        return this;
+    }
+
+    /**
+     * &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;, default &#x60;SPOT&#x60;
+     *
+     * @return accountType
+     */
+    @jakarta.annotation.Nullable
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(@jakarta.annotation.Nullable String accountType) {
+        this.accountType = accountType;
+    }
+
     public DustConvertRequest clientId(@jakarta.annotation.Nullable String clientId) {
         this.clientId = clientId;
         return this;
     }
 
     /**
-     * Get clientId
+     * A unique id for the request
      *
      * @return clientId
      */
@@ -180,6 +205,7 @@ public class DustConvertRequest {
         }
         DustConvertRequest dustConvertRequest = (DustConvertRequest) o;
         return Objects.equals(this.asset, dustConvertRequest.asset)
+                && Objects.equals(this.accountType, dustConvertRequest.accountType)
                 && Objects.equals(this.clientId, dustConvertRequest.clientId)
                 && Objects.equals(this.targetAsset, dustConvertRequest.targetAsset)
                 && Objects.equals(this.thirdPartyClientId, dustConvertRequest.thirdPartyClientId)
@@ -191,7 +217,12 @@ public class DustConvertRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-                asset, clientId, targetAsset, thirdPartyClientId, dustQuotaAssetToTargetAssetPrice);
+                asset,
+                accountType,
+                clientId,
+                targetAsset,
+                thirdPartyClientId,
+                dustQuotaAssetToTargetAssetPrice);
     }
 
     @Override
@@ -199,6 +230,7 @@ public class DustConvertRequest {
         StringBuilder sb = new StringBuilder();
         sb.append("class DustConvertRequest {\n");
         sb.append("		asset: ").append(toIndentedString(asset)).append("\n");
+        sb.append("		accountType: ").append(toIndentedString(accountType)).append("\n");
         sb.append("		clientId: ").append(toIndentedString(clientId)).append("\n");
         sb.append("		targetAsset: ").append(toIndentedString(targetAsset)).append("\n");
         sb.append("		thirdPartyClientId: ")
@@ -218,6 +250,10 @@ public class DustConvertRequest {
         String assetValueAsString = "";
         assetValueAsString = assetValue.toString();
         sb.append("asset=").append(urlEncode(assetValueAsString)).append("");
+        Object accountTypeValue = getAccountType();
+        String accountTypeValueAsString = "";
+        accountTypeValueAsString = accountTypeValue.toString();
+        sb.append("accountType=").append(urlEncode(accountTypeValueAsString)).append("");
         Object clientIdValue = getClientId();
         String clientIdValueAsString = "";
         clientIdValueAsString = clientIdValue.toString();
@@ -268,6 +304,7 @@ public class DustConvertRequest {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("asset");
+        openapiFields.add("accountType");
         openapiFields.add("clientId");
         openapiFields.add("targetAsset");
         openapiFields.add("thirdPartyClientId");
@@ -312,6 +349,14 @@ public class DustConvertRequest {
                             "Expected the field `asset` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("asset").toString()));
+        }
+        if ((jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull())
+                && !jsonObj.get("accountType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `accountType` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("accountType").toString()));
         }
         if ((jsonObj.get("clientId") != null && !jsonObj.get("clientId").isJsonNull())
                 && !jsonObj.get("clientId").isJsonPrimitive()) {

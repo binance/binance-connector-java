@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**accountInformation**](AccountApi.md#accountInformation) | **POST** /account.status | Account Information(USER_DATA) |
-| [**accountInformationV2**](AccountApi.md#accountInformationV2) | **POST** /v2/account.status | Account Information V2(USER_DATA) |
-| [**futuresAccountBalance**](AccountApi.md#futuresAccountBalance) | **POST** /account.balance | Futures Account Balance(USER_DATA) |
-| [**futuresAccountBalanceV2**](AccountApi.md#futuresAccountBalanceV2) | **POST** /v2/account.balance | Futures Account Balance V2(USER_DATA) |
+| [**accountInformation**](AccountApi.md#accountInformation) | **POST** /account.status | Account Information (USER_DATA) |
+| [**accountInformationV2**](AccountApi.md#accountInformationV2) | **POST** /v2/account.status | Account Information V2 (USER_DATA) |
+| [**futuresAccountBalance**](AccountApi.md#futuresAccountBalance) | **POST** /account.balance | Futures Account Balance (USER_DATA) |
+| [**futuresAccountBalanceV2**](AccountApi.md#futuresAccountBalanceV2) | **POST** /v2/account.balance | Futures Account Balance V2 (USER_DATA) |
 
 
 <a id="accountInformation"></a>
 # **accountInformation**
 > AccountInformationResponse accountInformation(accountInformationRequest)
 
-Account Information(USER_DATA)
+Account Information (USER_DATA)
 
-Get current account information. User in single-asset/ multi-assets mode will see different value, see comments in response section for detail.  Weight: 5
+Get current account information. User in single-asset/ multi-assets mode will see different value, see comments in response section for detail.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -52,7 +52,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountInformationRequest** | [**AccountInformationRequest**](AccountInformationRequest.md)|  | |
+| **accountInformationRequest** | [**AccountInformationRequest**](AccountInformationRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -76,9 +76,9 @@ No authorization required
 # **accountInformationV2**
 > AccountInformationV2Response accountInformationV2(accountInformationV2Request)
 
-Account Information V2(USER_DATA)
+Account Information V2 (USER_DATA)
 
-Get current account information. User in single-asset/ multi-assets mode will see different value, see comments in response section for detail.  Weight: 5
+Get current account information. User in single-asset/ multi-assets mode will see different value, see comments in response section for detail.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -114,7 +114,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountInformationV2Request** | [**AccountInformationV2Request**](AccountInformationV2Request.md)|  | |
+| **accountInformationV2Request** | [**AccountInformationV2Request**](AccountInformationV2Request.md)|  | [optional] |
 
 ### Return type
 
@@ -138,9 +138,9 @@ No authorization required
 # **futuresAccountBalance**
 > FuturesAccountBalanceResponse futuresAccountBalance(futuresAccountBalanceRequest)
 
-Futures Account Balance(USER_DATA)
+Futures Account Balance (USER_DATA)
 
-Query account balance info  Weight: 5
+Futures Account Balance  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -176,7 +176,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **futuresAccountBalanceRequest** | [**FuturesAccountBalanceRequest**](FuturesAccountBalanceRequest.md)|  | |
+| **futuresAccountBalanceRequest** | [**FuturesAccountBalanceRequest**](FuturesAccountBalanceRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -200,9 +200,9 @@ No authorization required
 # **futuresAccountBalanceV2**
 > FuturesAccountBalanceV2Response futuresAccountBalanceV2(futuresAccountBalanceV2Request)
 
-Futures Account Balance V2(USER_DATA)
+Futures Account Balance V2 (USER_DATA)
 
-Query account balance info  Weight: 5
+Futures Account Balance V2  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -238,7 +238,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **futuresAccountBalanceV2Request** | [**FuturesAccountBalanceV2Request**](FuturesAccountBalanceV2Request.md)|  | |
+| **futuresAccountBalanceV2Request** | [**FuturesAccountBalanceV2Request**](FuturesAccountBalanceV2Request.md)|  | [optional] |
 
 ### Return type
 

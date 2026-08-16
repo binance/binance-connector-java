@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** AccountConfigUpdateAi */
+/** User&#39;s Account Configuration */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountConfigUpdateAi extends BaseDTO {
     public static final String SERIALIZED_NAME_J_LOWER_CASE = "j";
 
@@ -53,7 +53,7 @@ public class AccountConfigUpdateAi extends BaseDTO {
     }
 
     /**
-     * Get jLowerCase
+     * Multi-Assets Mode
      *
      * @return jLowerCase
      */

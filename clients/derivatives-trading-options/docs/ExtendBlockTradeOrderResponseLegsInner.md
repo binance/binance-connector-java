@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**quantity** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
+|**symbol** | **String** | symbol |  [optional] |
+|**side** | **String** | side |  [optional] |
+|**quantity** | **String** | quantity |  [optional] |
+|**price** | **String** | price |  [optional] |
 
 
 

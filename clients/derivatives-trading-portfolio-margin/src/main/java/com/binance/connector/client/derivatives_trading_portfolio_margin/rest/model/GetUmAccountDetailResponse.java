@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,13 +40,13 @@ import org.hibernate.validator.constraints.*;
 /** GetUmAccountDetailResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmAccountDetailResponse {
     public static final String SERIALIZED_NAME_ASSETS = "assets";
 
     @SerializedName(SERIALIZED_NAME_ASSETS)
     @jakarta.annotation.Nullable
-    private List<@Valid GetUmAccountDetailV2ResponseAssetsInner> assets;
+    private List<@Valid GetUmAccountDetailResponseAssetsInner> assets;
 
     public static final String SERIALIZED_NAME_POSITIONS = "positions";
 
@@ -58,13 +58,13 @@ public class GetUmAccountDetailResponse {
 
     public GetUmAccountDetailResponse assets(
             @jakarta.annotation.Nullable
-                    List<@Valid GetUmAccountDetailV2ResponseAssetsInner> assets) {
+                    List<@Valid GetUmAccountDetailResponseAssetsInner> assets) {
         this.assets = assets;
         return this;
     }
 
     public GetUmAccountDetailResponse addAssetsItem(
-            GetUmAccountDetailV2ResponseAssetsInner assetsItem) {
+            GetUmAccountDetailResponseAssetsInner assetsItem) {
         if (this.assets == null) {
             this.assets = new ArrayList<>();
         }
@@ -73,19 +73,19 @@ public class GetUmAccountDetailResponse {
     }
 
     /**
-     * Get assets
+     * Assets.
      *
      * @return assets
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid GetUmAccountDetailV2ResponseAssetsInner> getAssets() {
+    public List<@Valid GetUmAccountDetailResponseAssetsInner> getAssets() {
         return assets;
     }
 
     public void setAssets(
             @jakarta.annotation.Nullable
-                    List<@Valid GetUmAccountDetailV2ResponseAssetsInner> assets) {
+                    List<@Valid GetUmAccountDetailResponseAssetsInner> assets) {
         this.assets = assets;
     }
 
@@ -106,7 +106,7 @@ public class GetUmAccountDetailResponse {
     }
 
     /**
-     * Get positions
+     * positions of all symbols in the market are returned
      *
      * @return positions
      */
@@ -234,7 +234,7 @@ public class GetUmAccountDetailResponse {
 
                 // validate the optional field `assets` (array)
                 for (int i = 0; i < jsonArrayassets.size(); i++) {
-                    GetUmAccountDetailV2ResponseAssetsInner.validateJsonElement(
+                    GetUmAccountDetailResponseAssetsInner.validateJsonElement(
                             jsonArrayassets.get(i));
                 }
                 ;

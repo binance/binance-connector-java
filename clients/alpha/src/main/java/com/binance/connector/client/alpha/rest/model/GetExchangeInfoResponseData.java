@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,10 +37,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** GetExchangeInfoResponseData */
+/** Exchange metadata, including assets and symbols. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetExchangeInfoResponseData {
     public static final String SERIALIZED_NAME_TIMEZONE = "timezone";
 
@@ -74,7 +74,7 @@ public class GetExchangeInfoResponseData {
     }
 
     /**
-     * Get timezone
+     * Timezone of market data.
      *
      * @return timezone
      */
@@ -104,7 +104,7 @@ public class GetExchangeInfoResponseData {
     }
 
     /**
-     * Get assets
+     * Supported assets.
      *
      * @return assets
      */
@@ -137,7 +137,7 @@ public class GetExchangeInfoResponseData {
     }
 
     /**
-     * Get symbols
+     * Supported trading symbols.
      *
      * @return symbols
      */
@@ -159,7 +159,7 @@ public class GetExchangeInfoResponseData {
     }
 
     /**
-     * Get orderTypes
+     * Order types metadata returned by backend.
      *
      * @return orderTypes
      */

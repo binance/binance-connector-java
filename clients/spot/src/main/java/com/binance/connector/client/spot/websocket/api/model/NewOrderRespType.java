@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -21,18 +21,17 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets newOrderRespType */
+/**
+ * Set the response JSON. &#x60;ACK&#x60;, &#x60;RESULT&#x60;, or &#x60;FULL&#x60;. Default to
+ * &#x60;FULL&#x60;.
+ */
 @JsonAdapter(NewOrderRespType.Adapter.class)
 public enum NewOrderRespType {
     ACK("ACK"),
 
     RESULT("RESULT"),
 
-    FULL("FULL"),
-
-    MARKET("MARKET"),
-
-    LIMIT("LIMIT");
+    FULL("FULL");
 
     private String value;
 

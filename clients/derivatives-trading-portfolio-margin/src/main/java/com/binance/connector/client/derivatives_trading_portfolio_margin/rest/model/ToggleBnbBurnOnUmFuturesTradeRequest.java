@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,6 +22,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** ToggleBnbBurnOnUmFuturesTradeRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ToggleBnbBurnOnUmFuturesTradeRequest {
     public static final String SERIALIZED_NAME_FEE_BURN = "feeBurn";
 
     @SerializedName(SERIALIZED_NAME_FEE_BURN)
     @jakarta.annotation.Nonnull
-    private String feeBurn;
+    private FeeBurn feeBurn;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -51,7 +52,7 @@ public class ToggleBnbBurnOnUmFuturesTradeRequest {
     public ToggleBnbBurnOnUmFuturesTradeRequest() {}
 
     public ToggleBnbBurnOnUmFuturesTradeRequest feeBurn(
-            @jakarta.annotation.Nonnull String feeBurn) {
+            @jakarta.annotation.Nonnull FeeBurn feeBurn) {
         this.feeBurn = feeBurn;
         return this;
     }
@@ -63,11 +64,12 @@ public class ToggleBnbBurnOnUmFuturesTradeRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getFeeBurn() {
+    @Valid
+    public FeeBurn getFeeBurn() {
         return feeBurn;
     }
 
-    public void setFeeBurn(@jakarta.annotation.Nonnull String feeBurn) {
+    public void setFeeBurn(@jakarta.annotation.Nonnull FeeBurn feeBurn) {
         this.feeBurn = feeBurn;
     }
 
@@ -197,13 +199,8 @@ public class ToggleBnbBurnOnUmFuturesTradeRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("feeBurn").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `feeBurn` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("feeBurn").toString()));
-        }
+        // validate the required field `feeBurn`
+        FeeBurn.validateJsonElement(jsonObj.get("feeBurn"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

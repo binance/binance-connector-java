@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**dailyInterestRate** | **String** |  |  [optional] |
-|**timestamp** | **Long** |  |  [optional] |
-|**vipLevel** | **Long** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**dailyInterestRate** | **String** | daily Interest Rate. |  [optional] |
+|**timestamp** | **Long** | timestamp. |  [optional] |
+|**vipLevel** | **Long** | vip Level. |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** NewCmConditionalOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewCmConditionalOrderResponse {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -159,7 +159,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -178,7 +178,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -198,7 +198,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -218,7 +218,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -237,7 +237,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -256,7 +256,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -276,7 +276,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -295,7 +295,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -315,7 +315,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -334,7 +334,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -353,7 +353,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -372,7 +372,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get pair
+     * Pair.
      *
      * @return pair
      */
@@ -392,7 +392,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -412,7 +412,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -431,7 +431,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -450,7 +450,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get bookTime
+     * order place time
      *
      * @return bookTime
      */
@@ -469,7 +469,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -489,7 +489,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -509,7 +509,7 @@ public class NewCmConditionalOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * Price Protect.
      *
      * @return priceProtect
      */

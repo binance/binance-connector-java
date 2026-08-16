@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** NewAlgoOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewAlgoOrderRequest {
     public static final String SERIALIZED_NAME_ALGO_TYPE = "algoType";
 
     @SerializedName(SERIALIZED_NAME_ALGO_TYPE)
     @jakarta.annotation.Nonnull
-    private String algoType;
+    private AlgoType algoType;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -59,13 +59,13 @@ public class NewAlgoOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide;
+    private String positionSide;
 
     public static final String SERIALIZED_NAME_TYPE = "type";
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -95,7 +95,7 @@ public class NewAlgoOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nullable
-    private WorkingType workingType;
+    private WorkingType workingType = WorkingType.CONTRACT_PRICE;
 
     public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
 
@@ -107,19 +107,19 @@ public class NewAlgoOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
     @jakarta.annotation.Nullable
-    private String closePosition;
+    private ClosePosition closePosition;
 
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private String priceProtect;
+    private PriceProtect priceProtect = PriceProtect.FALSE;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly;
+    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
 
     public static final String SERIALIZED_NAME_ACTIVATE_PRICE = "activatePrice";
 
@@ -143,14 +143,14 @@ public class NewAlgoOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionMode selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode = SelfTradePreventionMode.NONE;
 
     public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
 
@@ -166,7 +166,7 @@ public class NewAlgoOrderRequest {
 
     public NewAlgoOrderRequest() {}
 
-    public NewAlgoOrderRequest algoType(@jakarta.annotation.Nonnull String algoType) {
+    public NewAlgoOrderRequest algoType(@jakarta.annotation.Nonnull AlgoType algoType) {
         this.algoType = algoType;
         return this;
     }
@@ -178,11 +178,12 @@ public class NewAlgoOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getAlgoType() {
+    @Valid
+    public AlgoType getAlgoType() {
         return algoType;
     }
 
-    public void setAlgoType(@jakarta.annotation.Nonnull String algoType) {
+    public void setAlgoType(@jakarta.annotation.Nonnull AlgoType algoType) {
         this.algoType = algoType;
     }
 
@@ -227,28 +228,27 @@ public class NewAlgoOrderRequest {
         this.side = side;
     }
 
-    public NewAlgoOrderRequest positionSide(
-            @jakarta.annotation.Nullable PositionSide positionSide) {
+    public NewAlgoOrderRequest positionSide(@jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
         return this;
     }
 
     /**
-     * Get positionSide
+     * Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge
+     * Mode. It must be sent in Hedge Mode.
      *
      * @return positionSide
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public PositionSide getPositionSide() {
+    public String getPositionSide() {
         return positionSide;
     }
 
-    public void setPositionSide(@jakarta.annotation.Nullable PositionSide positionSide) {
+    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
         this.positionSide = positionSide;
     }
 
-    public NewAlgoOrderRequest type(@jakarta.annotation.Nonnull String type) {
+    public NewAlgoOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -260,11 +260,12 @@ public class NewAlgoOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -294,7 +295,7 @@ public class NewAlgoOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
      *
      * @return quantity
      */
@@ -334,7 +335,7 @@ public class NewAlgoOrderRequest {
     }
 
     /**
-     * Get triggerPrice
+     * Trigger price
      *
      * @return triggerPrice
      */
@@ -388,7 +389,8 @@ public class NewAlgoOrderRequest {
         this.priceMatch = priceMatch;
     }
 
-    public NewAlgoOrderRequest closePosition(@jakarta.annotation.Nullable String closePosition) {
+    public NewAlgoOrderRequest closePosition(
+            @jakarta.annotation.Nullable ClosePosition closePosition) {
         this.closePosition = closePosition;
         return this;
     }
@@ -399,15 +401,17 @@ public class NewAlgoOrderRequest {
      * @return closePosition
      */
     @jakarta.annotation.Nullable
-    public String getClosePosition() {
+    @Valid
+    public ClosePosition getClosePosition() {
         return closePosition;
     }
 
-    public void setClosePosition(@jakarta.annotation.Nullable String closePosition) {
+    public void setClosePosition(@jakarta.annotation.Nullable ClosePosition closePosition) {
         this.closePosition = closePosition;
     }
 
-    public NewAlgoOrderRequest priceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public NewAlgoOrderRequest priceProtect(
+            @jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
         return this;
     }
@@ -418,15 +422,16 @@ public class NewAlgoOrderRequest {
      * @return priceProtect
      */
     @jakarta.annotation.Nullable
-    public String getPriceProtect() {
+    @Valid
+    public PriceProtect getPriceProtect() {
         return priceProtect;
     }
 
-    public void setPriceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public void setPriceProtect(@jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
     }
 
-    public NewAlgoOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public NewAlgoOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -437,11 +442,12 @@ public class NewAlgoOrderRequest {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public String getReduceOnly() {
+    @Valid
+    public ReduceOnly getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
@@ -451,7 +457,8 @@ public class NewAlgoOrderRequest {
     }
 
     /**
-     * Get activatePrice
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting
+     * different &#x60;workingType&#x60;)
      *
      * @return activatePrice
      */
@@ -471,12 +478,14 @@ public class NewAlgoOrderRequest {
     }
 
     /**
-     * Get callbackRate
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders minimum: 0.1 maximum: 10
      *
      * @return callbackRate
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMin("0.1")
+    @DecimalMax("10")
     public Double getCallbackRate() {
         return callbackRate;
     }
@@ -491,7 +500,8 @@ public class NewAlgoOrderRequest {
     }
 
     /**
-     * Get clientAlgoId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60;
      *
      * @return clientAlgoId
      */
@@ -554,7 +564,10 @@ public class NewAlgoOrderRequest {
     }
 
     /**
-     * Get goodTillDate
+     * order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set
+     * to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be
+     * ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds
+     * and smaller than 253402300799000
      *
      * @return goodTillDate
      */
@@ -851,13 +864,8 @@ public class NewAlgoOrderRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("algoType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `algoType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("algoType").toString()));
-        }
+        // validate the required field `algoType`
+        AlgoType.validateJsonElement(jsonObj.get("algoType"));
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
@@ -867,17 +875,16 @@ public class NewAlgoOrderRequest {
         }
         // validate the required field `side`
         Side.validateJsonElement(jsonObj.get("side"));
-        // validate the optional field `positionSide`
-        if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
-            PositionSide.validateJsonElement(jsonObj.get("positionSide"));
-        }
-        if (!jsonObj.get("type").isJsonPrimitive()) {
+        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
+                && !jsonObj.get("positionSide").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
+                            "Expected the field `positionSide` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("positionSide").toString()));
         }
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
@@ -890,29 +897,17 @@ public class NewAlgoOrderRequest {
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
             PriceMatch.validateJsonElement(jsonObj.get("priceMatch"));
         }
-        if ((jsonObj.get("closePosition") != null && !jsonObj.get("closePosition").isJsonNull())
-                && !jsonObj.get("closePosition").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `closePosition` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("closePosition").toString()));
+        // validate the optional field `closePosition`
+        if (jsonObj.get("closePosition") != null && !jsonObj.get("closePosition").isJsonNull()) {
+            ClosePosition.validateJsonElement(jsonObj.get("closePosition"));
         }
-        if ((jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull())
-                && !jsonObj.get("priceProtect").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceProtect` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceProtect").toString()));
+        // validate the optional field `priceProtect`
+        if (jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull()) {
+            PriceProtect.validateJsonElement(jsonObj.get("priceProtect"));
         }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         if ((jsonObj.get("clientAlgoId") != null && !jsonObj.get("clientAlgoId").isJsonNull())
                 && !jsonObj.get("clientAlgoId").isJsonPrimitive()) {

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelMarginAccountOcoOrdersResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMarginAccountOcoOrdersResponse {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -105,7 +105,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -125,7 +125,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get contingencyType
+     * Contingency Type.
      *
      * @return contingencyType
      */
@@ -145,7 +145,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get listStatusType
+     * List Status Type.
      *
      * @return listStatusType
      */
@@ -165,7 +165,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get listOrderStatus
+     * List Order Status.
      *
      * @return listOrderStatus
      */
@@ -185,7 +185,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get listClientOrderId
+     * List Client Order ID.
      *
      * @return listClientOrderId
      */
@@ -205,7 +205,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get transactionTime
+     * Transaction Time.
      *
      * @return transactionTime
      */
@@ -224,7 +224,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -254,7 +254,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get orders
+     * Orders.
      *
      * @return orders
      */
@@ -288,7 +288,7 @@ public class CancelMarginAccountOcoOrdersResponse {
     }
 
     /**
-     * Get orderReports
+     * Order Reports.
      *
      * @return orderReports
      */

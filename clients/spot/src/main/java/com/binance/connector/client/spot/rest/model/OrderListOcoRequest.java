@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderListOcoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListOcoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -253,7 +253,10 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order
+     * list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is
+     * filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the
+     * &#x60;aboveClientOrderId&#x60; and the &#x60;belowClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -293,7 +296,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get quantity
+     * Quantity for both orders of the order list.
      *
      * @return quantity
      */
@@ -336,7 +339,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveClientOrderId
+     * Arbitrary unique ID among open orders for the above order. Automatically generated if not
+     * sent.
      *
      * @return aboveClientOrderId
      */
@@ -355,7 +359,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveIcebergQty
+     * Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;.
      *
      * @return aboveIcebergQty
      */
@@ -374,7 +378,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get abovePrice
+     * Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
+     * or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
      *
      * @return abovePrice
      */
@@ -394,7 +399,9 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveStopPrice
+     * Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;aboveStopPrice&#x60; or
+     * &#x60;aboveTrailingDelta&#x60; or both, must be specified.
      *
      * @return aboveStopPrice
      */
@@ -415,7 +422,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveTrailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return aboveTrailingDelta
      */
@@ -456,7 +463,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveStrategyId
+     * Arbitrary numeric value identifying the above order within an order strategy.
      *
      * @return aboveStrategyId
      */
@@ -476,7 +483,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get aboveStrategyType
+     * Arbitrary numeric value identifying the above order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return aboveStrategyType
      */
@@ -581,7 +589,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowClientOrderId
+     * Arbitrary unique ID among open orders for the below order. Automatically generated if not
+     * sent.
      *
      * @return belowClientOrderId
      */
@@ -600,7 +609,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowIcebergQty
+     * Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;.
      *
      * @return belowIcebergQty
      */
@@ -619,7 +628,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowPrice
+     * Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
+     * or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
      *
      * @return belowPrice
      */
@@ -639,7 +649,9 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowStopPrice
+     * Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;,
+     * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;belowStopPrice&#x60; or
+     * &#x60;belowTrailingDelta&#x60; or both, must be specified.
      *
      * @return belowStopPrice
      */
@@ -660,7 +672,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowTrailingDelta
+     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
      *
      * @return belowTrailingDelta
      */
@@ -701,7 +713,7 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowStrategyId
+     * Arbitrary numeric value identifying the below order within an order strategy.
      *
      * @return belowStrategyId
      */
@@ -721,7 +733,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get belowStrategyType
+     * Arbitrary numeric value identifying the below order strategy. Values smaller than
+     * &#x60;1000000&#x60; are reserved and cannot be used.
      *
      * @return belowStrategyType
      */
@@ -848,7 +861,8 @@ public class OrderListOcoRequest {
     }
 
     /**
-     * Get recvWindow
+     * The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of
+     * precision (e.g., 6000.346) so that microseconds may be specified.
      *
      * @return recvWindow
      */

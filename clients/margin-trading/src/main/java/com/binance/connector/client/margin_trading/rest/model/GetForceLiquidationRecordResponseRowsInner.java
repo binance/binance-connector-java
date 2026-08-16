@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetForceLiquidationRecordResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetForceLiquidationRecordResponseRowsInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -105,7 +105,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get avgPrice
+     * avg Price.
      *
      * @return avgPrice
      */
@@ -125,7 +125,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -145,7 +145,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -165,7 +165,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -184,7 +184,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get qty
+     * qty.
      *
      * @return qty
      */
@@ -204,7 +204,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -224,7 +224,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -244,7 +244,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -264,7 +264,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get isIsolated
+     * is Isolated.
      *
      * @return isIsolated
      */
@@ -284,7 +284,7 @@ public class GetForceLiquidationRecordResponseRowsInner {
     }
 
     /**
-     * Get updatedTime
+     * updated Time.
      *
      * @return updatedTime
      */

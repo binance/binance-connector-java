@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**code** | **String** |  |  [optional] |
-|**message** | **String** |  |  [optional] |
-|**messageDetail** | **String** |  |  [optional] |
-|**success** | **Boolean** |  |  [optional] |
-|**data** | [**List&lt;TokenListResponseDataInner&gt;**](TokenListResponseDataInner.md) |  |  [optional] |
+|**code** | **String** | API response code. \&quot;000000\&quot; indicates success. |  [optional] |
+|**message** | **String** | Response message. |  [optional] |
+|**messageDetail** | **String** | Detailed response message. |  [optional] |
+|**success** | **Boolean** | Whether request is successful. |  [optional] |
+|**data** | [**List&lt;TokenListResponseDataInner&gt;**](TokenListResponseDataInner.md) | List of ALPHA tokens and metadata. |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** TopTraderLongShortRatioPositionsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TopTraderLongShortRatioPositionsResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -64,7 +64,7 @@ public class TopTraderLongShortRatioPositionsResponseInner {
 
     @SerializedName(SERIALIZED_NAME_TIMESTAMP)
     @jakarta.annotation.Nullable
-    private String timestamp;
+    private Long timestamp;
 
     public TopTraderLongShortRatioPositionsResponseInner() {}
 
@@ -95,7 +95,7 @@ public class TopTraderLongShortRatioPositionsResponseInner {
     }
 
     /**
-     * Get longShortRatio
+     * long/short position ratio of top traders
      *
      * @return longShortRatio
      */
@@ -115,7 +115,7 @@ public class TopTraderLongShortRatioPositionsResponseInner {
     }
 
     /**
-     * Get longAccount
+     * long positions ratio of top traders
      *
      * @return longAccount
      */
@@ -135,7 +135,7 @@ public class TopTraderLongShortRatioPositionsResponseInner {
     }
 
     /**
-     * Get shortAccount
+     * short positions ratio of top traders
      *
      * @return shortAccount
      */
@@ -149,22 +149,22 @@ public class TopTraderLongShortRatioPositionsResponseInner {
     }
 
     public TopTraderLongShortRatioPositionsResponseInner timestamp(
-            @jakarta.annotation.Nullable String timestamp) {
+            @jakarta.annotation.Nullable Long timestamp) {
         this.timestamp = timestamp;
         return this;
     }
 
     /**
-     * Get timestamp
+     * End time of the period, in milliseconds.
      *
      * @return timestamp
      */
     @jakarta.annotation.Nullable
-    public String getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(@jakarta.annotation.Nullable String timestamp) {
+    public void setTimestamp(@jakarta.annotation.Nullable Long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -323,14 +323,6 @@ public class TopTraderLongShortRatioPositionsResponseInner {
                             "Expected the field `shortAccount` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("shortAccount").toString()));
-        }
-        if ((jsonObj.get("timestamp") != null && !jsonObj.get("timestamp").isJsonNull())
-                && !jsonObj.get("timestamp").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `timestamp` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("timestamp").toString()));
         }
     }
 

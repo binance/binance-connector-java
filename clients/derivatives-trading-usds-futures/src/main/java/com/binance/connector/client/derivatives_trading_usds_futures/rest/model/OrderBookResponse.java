@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,7 +39,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderBookResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderBookResponse {
     public static final String SERIALIZED_NAME_LAST_UPDATE_ID = "lastUpdateId";
 
@@ -63,13 +63,13 @@ public class OrderBookResponse {
 
     @SerializedName(SERIALIZED_NAME_BIDS)
     @jakarta.annotation.Nullable
-    private List<OrderBookResponseBidsItem> bids;
+    private List<List<String>> bids;
 
     public static final String SERIALIZED_NAME_ASKS = "asks";
 
     @SerializedName(SERIALIZED_NAME_ASKS)
     @jakarta.annotation.Nullable
-    private List<OrderBookResponseAsksItem> asks;
+    private List<List<String>> asks;
 
     public OrderBookResponse() {}
 
@@ -98,7 +98,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get E
+     * Message output time
      *
      * @return E
      */
@@ -117,7 +117,7 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get T
+     * Transaction time
      *
      * @return T
      */
@@ -130,13 +130,12 @@ public class OrderBookResponse {
         this.T = T;
     }
 
-    public OrderBookResponse bids(
-            @jakarta.annotation.Nullable List<OrderBookResponseBidsItem> bids) {
+    public OrderBookResponse bids(@jakarta.annotation.Nullable List<List<String>> bids) {
         this.bids = bids;
         return this;
     }
 
-    public OrderBookResponse addBidsItem(OrderBookResponseBidsItem bidsItem) {
+    public OrderBookResponse addBidsItem(List<String> bidsItem) {
         if (this.bids == null) {
             this.bids = new ArrayList<>();
         }
@@ -145,27 +144,26 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get bids
+     * Bid orders. Each entry is [price, quantity].
      *
      * @return bids
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<OrderBookResponseBidsItem> getBids() {
+    public List<List<String>> getBids() {
         return bids;
     }
 
-    public void setBids(@jakarta.annotation.Nullable List<OrderBookResponseBidsItem> bids) {
+    public void setBids(@jakarta.annotation.Nullable List<List<String>> bids) {
         this.bids = bids;
     }
 
-    public OrderBookResponse asks(
-            @jakarta.annotation.Nullable List<OrderBookResponseAsksItem> asks) {
+    public OrderBookResponse asks(@jakarta.annotation.Nullable List<List<String>> asks) {
         this.asks = asks;
         return this;
     }
 
-    public OrderBookResponse addAsksItem(OrderBookResponseAsksItem asksItem) {
+    public OrderBookResponse addAsksItem(List<String> asksItem) {
         if (this.asks == null) {
             this.asks = new ArrayList<>();
         }
@@ -174,17 +172,17 @@ public class OrderBookResponse {
     }
 
     /**
-     * Get asks
+     * Ask orders. Each entry is [price, quantity].
      *
      * @return asks
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<OrderBookResponseAsksItem> getAsks() {
+    public List<List<String>> getAsks() {
         return asks;
     }
 
-    public void setAsks(@jakarta.annotation.Nullable List<OrderBookResponseAsksItem> asks) {
+    public void setAsks(@jakarta.annotation.Nullable List<List<String>> asks) {
         this.asks = asks;
     }
 

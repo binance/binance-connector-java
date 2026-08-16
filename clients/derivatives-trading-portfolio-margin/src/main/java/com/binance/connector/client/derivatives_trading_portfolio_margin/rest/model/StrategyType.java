@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -27,8 +27,6 @@ public enum StrategyType {
     STOP("STOP"),
 
     STOP_MARKET("STOP_MARKET"),
-
-    LIMIT_MAKER("LIMIT_MAKER"),
 
     TAKE_PROFIT("TAKE_PROFIT"),
 

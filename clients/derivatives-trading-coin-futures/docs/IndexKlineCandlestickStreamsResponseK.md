@@ -2,28 +2,29 @@
 
 # IndexKlineCandlestickStreamsResponseK
 
+Kline payload
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tLowerCase** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**iLowerCase** | **String** |  |  [optional] |
-|**fLowerCase** | **Long** |  |  [optional] |
-|**L** | **Long** |  |  [optional] |
-|**oLowerCase** | **String** |  |  [optional] |
-|**cLowerCase** | **String** |  |  [optional] |
-|**hLowerCase** | **String** |  |  [optional] |
-|**lLowerCase** | **String** |  |  [optional] |
-|**vLowerCase** | **String** |  |  [optional] |
-|**nLowerCase** | **Long** |  |  [optional] |
-|**xLowerCase** | **Boolean** |  |  [optional] |
-|**qLowerCase** | **String** |  |  [optional] |
-|**V** | **String** |  |  [optional] |
-|**Q** | **String** |  |  [optional] |
-|**B** | **String** |  |  [optional] |
+|**tLowerCase** | **Long** | Kline start time |  [optional] |
+|**T** | **Long** | transactionTime |  [optional] |
+|**sLowerCase** | **String** | symbol |  [optional] |
+|**iLowerCase** | **String** | interval |  [optional] |
+|**fLowerCase** | **Long** | Ignore |  [optional] |
+|**L** | **Long** | Ignore |  [optional] |
+|**oLowerCase** | **String** | openPrice |  [optional] |
+|**cLowerCase** | **String** | closePrice |  [optional] |
+|**hLowerCase** | **String** | highPrice |  [optional] |
+|**lLowerCase** | **String** | lowPrice |  [optional] |
+|**vLowerCase** | **String** | volume |  [optional] |
+|**nLowerCase** | **Long** | tradeNum |  [optional] |
+|**xLowerCase** | **Boolean** | Is this kline closed? |  [optional] |
+|**qLowerCase** | **String** | quoteVolume |  [optional] |
+|**V** | **String** | Taker buy volume |  [optional] |
+|**Q** | **String** | lastTradeVolume |  [optional] |
+|**B** | **String** | Best bid qty |  [optional] |
 
 
 

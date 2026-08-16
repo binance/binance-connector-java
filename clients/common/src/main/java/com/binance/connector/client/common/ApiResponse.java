@@ -22,7 +22,7 @@ public class ApiResponse<T> {
     private final int statusCode;
     private final Map<String, List<String>> headers;
     private final T data;
-    private final Map<RateLimitType, RateLimit> rateLimits;
+    private final Map<RateLimitType, ? extends RateLimit> rateLimits;
 
     /**
      * Constructor for ApiResponse.
@@ -57,7 +57,7 @@ public class ApiResponse<T> {
             int statusCode,
             Map<String, List<String>> headers,
             T data,
-            Map<RateLimitType, RateLimit> rateLimits) {
+            Map<RateLimitType, ? extends RateLimit> rateLimits) {
         this.statusCode = statusCode;
         this.headers = headers;
         this.data = data;
@@ -96,7 +96,7 @@ public class ApiResponse<T> {
      *
      * @return the rate limits info
      */
-    public Map<RateLimitType, RateLimit> getRateLimits() {
+    public Map<RateLimitType, ? extends RateLimit> getRateLimits() {
         return rateLimits;
     }
 }

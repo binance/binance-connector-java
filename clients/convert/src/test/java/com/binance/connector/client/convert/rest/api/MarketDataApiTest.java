@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.convert.rest.model.ListAllConvertPairsResponse;
 import com.binance.connector.client.convert.rest.model.QueryOrderQuantityPrecisionPerAssetResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -79,16 +80,17 @@ public class MarketDataApiTest {
     /**
      * List All Convert Pairs
      *
-     * <p>Query for all convertible token pairs and the tokens’ respective upper/lower limits * User
-     * needs to supply either or both of the input parameter * If not defined for both fromAsset and
-     * toAsset, only partial token pairs will be returned Weight: 3000(IP)
+     * <p>Query for all convertible token pairs and the tokens’ respective upper/lower limits
+     * Weight(IP): 3000 Notes: - User needs to supply either or both input parameters. - If only one
+     * of &#x60;fromAsset&#x60; and &#x60;toAsset&#x60; is provided, only partial token pairs are
+     * returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void listAllConvertPairsTest() throws ApiException, CryptoException {
-        String fromAsset = "";
-        String toAsset = "";
+    public void listAllConvertPairsTest() throws ApiException, CryptoException, IOException {
+        String fromAsset = "BTC";
+        String toAsset = "USDT";
         ApiResponse<ListAllConvertPairsResponse> response =
                 api.listAllConvertPairs(fromAsset, toAsset);
 
@@ -99,19 +101,21 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/exchangeInfo", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query order quantity precision per asset(USER_DATA)
+     * Query order quantity precision per asset (USER_DATA)
      *
-     * <p>Query for supported asset’s precision information Weight: 100(IP)
+     * <p>Query for supported asset’s precision information Weight(IP): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryOrderQuantityPrecisionPerAssetTest() throws ApiException, CryptoException {
+    public void queryOrderQuantityPrecisionPerAssetTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryOrderQuantityPrecisionPerAssetResponse> response =
                 api.queryOrderQuantityPrecisionPerAsset(recvWindow);
@@ -126,10 +130,12 @@ public class MarketDataApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/convert/assetInfo", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/convert/assetInfo", actualRequest.url().encodedPath());
     }
 }

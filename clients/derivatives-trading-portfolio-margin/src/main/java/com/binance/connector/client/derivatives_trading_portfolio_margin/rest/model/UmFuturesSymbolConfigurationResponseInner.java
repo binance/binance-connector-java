@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** UmFuturesSymbolConfigurationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UmFuturesSymbolConfigurationResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -75,7 +75,7 @@ public class UmFuturesSymbolConfigurationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -95,7 +95,7 @@ public class UmFuturesSymbolConfigurationResponseInner {
     }
 
     /**
-     * Get marginType
+     * Margin Type.
      *
      * @return marginType
      */
@@ -115,7 +115,7 @@ public class UmFuturesSymbolConfigurationResponseInner {
     }
 
     /**
-     * Get isAutoAddMargin
+     * Is Auto Add Margin.
      *
      * @return isAutoAddMargin
      */
@@ -135,7 +135,7 @@ public class UmFuturesSymbolConfigurationResponseInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -155,7 +155,7 @@ public class UmFuturesSymbolConfigurationResponseInner {
     }
 
     /**
-     * Get maxNotionalValue
+     * Max Notional Value.
      *
      * @return maxNotionalValue
      */

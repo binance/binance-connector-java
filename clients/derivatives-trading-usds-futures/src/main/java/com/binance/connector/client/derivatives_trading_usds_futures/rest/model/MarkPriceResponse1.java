@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** MarkPriceResponse1 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarkPriceResponse1 {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -92,7 +92,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -111,7 +111,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get markPrice
+     * mark price
      *
      * @return markPrice
      */
@@ -130,7 +130,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get indexPrice
+     * index price
      *
      * @return indexPrice
      */
@@ -150,7 +150,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get estimatedSettlePrice
+     * Estimated Settle Price, only useful in the last hour before the settlement starts.
      *
      * @return estimatedSettlePrice
      */
@@ -169,7 +169,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get lastFundingRate
+     * This is the Latest funding rate
      *
      * @return lastFundingRate
      */
@@ -188,7 +188,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get interestRate
+     * Interest Rate.
      *
      * @return interestRate
      */
@@ -207,7 +207,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get nextFundingTime
+     * Next Funding Time.
      *
      * @return nextFundingTime
      */
@@ -226,7 +226,7 @@ public class MarkPriceResponse1 {
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */

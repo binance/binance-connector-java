@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rows** | [**List&lt;QueryMarginRepayRecordResponseRowsInner&gt;**](QueryMarginRepayRecordResponseRowsInner.md) |  |  [optional] |
-|**total** | **Long** |  |  [optional] |
+|**rows** | [**List&lt;QueryMarginRepayRecordResponseRowsInner&gt;**](QueryMarginRepayRecordResponseRowsInner.md) | Rows. |  [optional] |
+|**total** | **Long** | Total. |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** ModifyCmOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyCmOrderRequest {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -79,6 +79,12 @@ public class ModifyCmOrderRequest {
     @jakarta.annotation.Nullable
     private PriceMatch priceMatch;
 
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -93,7 +99,7 @@ public class ModifyCmOrderRequest {
     }
 
     /**
-     * Get orderId
+     * Order ID
      *
      * @return orderId
      */
@@ -113,7 +119,7 @@ public class ModifyCmOrderRequest {
     }
 
     /**
-     * Get origClientOrderId
+     * Client order ID
      *
      * @return origClientOrderId
      */
@@ -132,7 +138,7 @@ public class ModifyCmOrderRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -173,7 +179,7 @@ public class ModifyCmOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Order quantity
      *
      * @return quantity
      */
@@ -194,7 +200,7 @@ public class ModifyCmOrderRequest {
     }
 
     /**
-     * Get price
+     * Order price
      *
      * @return price
      */
@@ -227,6 +233,26 @@ public class ModifyCmOrderRequest {
 
     public void setPriceMatch(@jakarta.annotation.Nullable PriceMatch priceMatch) {
         this.priceMatch = priceMatch;
+    }
+
+    public ModifyCmOrderRequest modifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * User-defined modification identifier, returned as-is in the response. Optional; not validated
+     * for uniqueness.
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
     }
 
     public ModifyCmOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
@@ -264,13 +290,22 @@ public class ModifyCmOrderRequest {
                 && Objects.equals(this.quantity, modifyCmOrderRequest.quantity)
                 && Objects.equals(this.price, modifyCmOrderRequest.price)
                 && Objects.equals(this.priceMatch, modifyCmOrderRequest.priceMatch)
+                && Objects.equals(this.modifyId, modifyCmOrderRequest.modifyId)
                 && Objects.equals(this.recvWindow, modifyCmOrderRequest.recvWindow);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                orderId, origClientOrderId, symbol, side, quantity, price, priceMatch, recvWindow);
+                orderId,
+                origClientOrderId,
+                symbol,
+                side,
+                quantity,
+                price,
+                priceMatch,
+                modifyId,
+                recvWindow);
     }
 
     @Override
@@ -284,6 +319,7 @@ public class ModifyCmOrderRequest {
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -322,6 +358,10 @@ public class ModifyCmOrderRequest {
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
+        Object modifyIdValue = getModifyId();
+        String modifyIdValueAsString = "";
+        modifyIdValueAsString = modifyIdValue.toString();
+        sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -361,6 +401,7 @@ public class ModifyCmOrderRequest {
         openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("priceMatch");
+        openapiFields.add("modifyId");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)

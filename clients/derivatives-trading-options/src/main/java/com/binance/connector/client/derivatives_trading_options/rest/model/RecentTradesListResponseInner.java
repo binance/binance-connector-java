@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** RecentTradesListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RecentTradesListResponseInner {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -92,7 +92,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get id
+     * id
      *
      * @return id
      */
@@ -111,7 +111,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get tradeId
+     * TradeId
      *
      * @return tradeId
      */
@@ -130,7 +130,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -149,7 +149,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get price
+     * Completed trade price
      *
      * @return price
      */
@@ -168,7 +168,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get qty
+     * Completed trade quantity
      *
      * @return qty
      */
@@ -187,7 +187,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Completed trade amount
      *
      * @return quoteQty
      */
@@ -206,7 +206,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get side
+     * Completed trade direction（-1 Sell，1 Buy）
      *
      * @return side
      */
@@ -225,7 +225,7 @@ public class RecentTradesListResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */

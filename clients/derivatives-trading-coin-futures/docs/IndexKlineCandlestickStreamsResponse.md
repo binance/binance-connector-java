@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**ps** | **String** |  |  [optional] |
+|**eLowerCase** | **String** | eventType |  [optional] |
+|**E** | **Long** | eventTime |  [optional] |
+|**ps** | **String** | Pair |  [optional] |
 |**kLowerCase** | [**IndexKlineCandlestickStreamsResponseK**](IndexKlineCandlestickStreamsResponseK.md) |  |  [optional] |
 
 

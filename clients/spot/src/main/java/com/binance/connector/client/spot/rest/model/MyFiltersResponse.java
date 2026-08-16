@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,41 +40,43 @@ import org.hibernate.validator.constraints.*;
 /** MyFiltersResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MyFiltersResponse {
     public static final String SERIALIZED_NAME_EXCHANGE_FILTERS = "exchangeFilters";
 
     @SerializedName(SERIALIZED_NAME_EXCHANGE_FILTERS)
     @jakarta.annotation.Nullable
-    private List<ExchangeFilters> exchangeFilters;
+    private List<MyFiltersResponseExchangeFiltersInner> exchangeFilters;
 
     public static final String SERIALIZED_NAME_SYMBOL_FILTERS = "symbolFilters";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL_FILTERS)
     @jakarta.annotation.Nullable
-    private List<SymbolFilters> symbolFilters;
+    private List<MyFiltersResponseSymbolFiltersInner> symbolFilters;
 
     public static final String SERIALIZED_NAME_ASSET_FILTERS = "assetFilters";
 
     @SerializedName(SERIALIZED_NAME_ASSET_FILTERS)
     @jakarta.annotation.Nullable
-    private List<AssetFilters> assetFilters;
+    private List<MyFiltersResponseAssetFiltersInner> assetFilters;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid RateLimits> rateLimits;
+    private List<@Valid MyFiltersResponseRateLimitsInner> rateLimits;
 
     public MyFiltersResponse() {}
 
     public MyFiltersResponse exchangeFilters(
-            @jakarta.annotation.Nullable List<ExchangeFilters> exchangeFilters) {
+            @jakarta.annotation.Nullable
+                    List<MyFiltersResponseExchangeFiltersInner> exchangeFilters) {
         this.exchangeFilters = exchangeFilters;
         return this;
     }
 
-    public MyFiltersResponse addExchangeFiltersItem(ExchangeFilters exchangeFiltersItem) {
+    public MyFiltersResponse addExchangeFiltersItem(
+            MyFiltersResponseExchangeFiltersInner exchangeFiltersItem) {
         if (this.exchangeFilters == null) {
             this.exchangeFilters = new ArrayList<>();
         }
@@ -89,22 +91,24 @@ public class MyFiltersResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<ExchangeFilters> getExchangeFilters() {
+    public List<MyFiltersResponseExchangeFiltersInner> getExchangeFilters() {
         return exchangeFilters;
     }
 
     public void setExchangeFilters(
-            @jakarta.annotation.Nullable List<ExchangeFilters> exchangeFilters) {
+            @jakarta.annotation.Nullable
+                    List<MyFiltersResponseExchangeFiltersInner> exchangeFilters) {
         this.exchangeFilters = exchangeFilters;
     }
 
     public MyFiltersResponse symbolFilters(
-            @jakarta.annotation.Nullable List<SymbolFilters> symbolFilters) {
+            @jakarta.annotation.Nullable List<MyFiltersResponseSymbolFiltersInner> symbolFilters) {
         this.symbolFilters = symbolFilters;
         return this;
     }
 
-    public MyFiltersResponse addSymbolFiltersItem(SymbolFilters symbolFiltersItem) {
+    public MyFiltersResponse addSymbolFiltersItem(
+            MyFiltersResponseSymbolFiltersInner symbolFiltersItem) {
         if (this.symbolFilters == null) {
             this.symbolFilters = new ArrayList<>();
         }
@@ -119,21 +123,23 @@ public class MyFiltersResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<SymbolFilters> getSymbolFilters() {
+    public List<MyFiltersResponseSymbolFiltersInner> getSymbolFilters() {
         return symbolFilters;
     }
 
-    public void setSymbolFilters(@jakarta.annotation.Nullable List<SymbolFilters> symbolFilters) {
+    public void setSymbolFilters(
+            @jakarta.annotation.Nullable List<MyFiltersResponseSymbolFiltersInner> symbolFilters) {
         this.symbolFilters = symbolFilters;
     }
 
     public MyFiltersResponse assetFilters(
-            @jakarta.annotation.Nullable List<AssetFilters> assetFilters) {
+            @jakarta.annotation.Nullable List<MyFiltersResponseAssetFiltersInner> assetFilters) {
         this.assetFilters = assetFilters;
         return this;
     }
 
-    public MyFiltersResponse addAssetFiltersItem(AssetFilters assetFiltersItem) {
+    public MyFiltersResponse addAssetFiltersItem(
+            MyFiltersResponseAssetFiltersInner assetFiltersItem) {
         if (this.assetFilters == null) {
             this.assetFilters = new ArrayList<>();
         }
@@ -148,21 +154,22 @@ public class MyFiltersResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<AssetFilters> getAssetFilters() {
+    public List<MyFiltersResponseAssetFiltersInner> getAssetFilters() {
         return assetFilters;
     }
 
-    public void setAssetFilters(@jakarta.annotation.Nullable List<AssetFilters> assetFilters) {
+    public void setAssetFilters(
+            @jakarta.annotation.Nullable List<MyFiltersResponseAssetFiltersInner> assetFilters) {
         this.assetFilters = assetFilters;
     }
 
     public MyFiltersResponse rateLimits(
-            @jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
+            @jakarta.annotation.Nullable List<@Valid MyFiltersResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
-    public MyFiltersResponse addRateLimitsItem(RateLimits rateLimitsItem) {
+    public MyFiltersResponse addRateLimitsItem(MyFiltersResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -177,11 +184,12 @@ public class MyFiltersResponse {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid RateLimits> getRateLimits() {
+    public List<@Valid MyFiltersResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(@jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
+    public void setRateLimits(
+            @jakarta.annotation.Nullable List<@Valid MyFiltersResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -318,7 +326,8 @@ public class MyFiltersResponse {
 
                 // validate the optional field `exchangeFilters` (array)
                 for (int i = 0; i < jsonArrayexchangeFilters.size(); i++) {
-                    ExchangeFilters.validateJsonElement(jsonArrayexchangeFilters.get(i));
+                    MyFiltersResponseExchangeFiltersInner.validateJsonElement(
+                            jsonArrayexchangeFilters.get(i));
                 }
                 ;
             }
@@ -337,7 +346,8 @@ public class MyFiltersResponse {
 
                 // validate the optional field `symbolFilters` (array)
                 for (int i = 0; i < jsonArraysymbolFilters.size(); i++) {
-                    SymbolFilters.validateJsonElement(jsonArraysymbolFilters.get(i));
+                    MyFiltersResponseSymbolFiltersInner.validateJsonElement(
+                            jsonArraysymbolFilters.get(i));
                 }
                 ;
             }
@@ -356,7 +366,8 @@ public class MyFiltersResponse {
 
                 // validate the optional field `assetFilters` (array)
                 for (int i = 0; i < jsonArrayassetFilters.size(); i++) {
-                    AssetFilters.validateJsonElement(jsonArrayassetFilters.get(i));
+                    MyFiltersResponseAssetFiltersInner.validateJsonElement(
+                            jsonArrayassetFilters.get(i));
                 }
                 ;
             }
@@ -375,7 +386,8 @@ public class MyFiltersResponse {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    RateLimits.validateJsonElement(jsonArrayrateLimits.get(i));
+                    MyFiltersResponseRateLimitsInner.validateJsonElement(
+                            jsonArrayrateLimits.get(i));
                 }
                 ;
             }

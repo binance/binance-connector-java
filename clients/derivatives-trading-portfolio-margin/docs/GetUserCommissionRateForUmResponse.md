@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**makerCommissionRate** | **String** |  |  [optional] |
-|**takerCommissionRate** | **String** |  |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**makerCommissionRate** | **String** | 0.02% |  [optional] |
+|**takerCommissionRate** | **String** | 0.04% |  [optional] |
 
 
 

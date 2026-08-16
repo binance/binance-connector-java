@@ -8,6 +8,7 @@ import com.binance.connector.client.wallet.rest.WalletRestApiUtil;
 import com.binance.connector.client.wallet.rest.model.AccountApiTradingStatusResponse;
 import com.binance.connector.client.wallet.rest.model.AccountInfoResponse;
 import com.binance.connector.client.wallet.rest.model.AccountStatusResponse;
+import com.binance.connector.client.wallet.rest.model.AccountType;
 import com.binance.connector.client.wallet.rest.model.AllCoinsInformationResponse;
 import com.binance.connector.client.wallet.rest.model.AssetDetailResponse;
 import com.binance.connector.client.wallet.rest.model.AssetDividendRecordResponse;
@@ -32,19 +33,25 @@ import com.binance.connector.client.wallet.rest.model.FetchAddressVerificationLi
 import com.binance.connector.client.wallet.rest.model.FetchDepositAddressListWithNetworkResponse;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawAddressListResponse;
 import com.binance.connector.client.wallet.rest.model.FetchWithdrawQuotaResponse;
+import com.binance.connector.client.wallet.rest.model.FromSymbol;
 import com.binance.connector.client.wallet.rest.model.FundingWalletRequest;
 import com.binance.connector.client.wallet.rest.model.FundingWalletResponse;
 import com.binance.connector.client.wallet.rest.model.GetApiKeyPermissionResponse;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbRequest;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbResponse;
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
+import com.binance.connector.client.wallet.rest.model.GetCountryListResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
+import com.binance.connector.client.wallet.rest.model.GetRegionListResponse;
+import com.binance.connector.client.wallet.rest.model.GetSpotAssetTagsResponse;
 import com.binance.connector.client.wallet.rest.model.GetSymbolsDelistScheduleForSpotResponse;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyRequest;
 import com.binance.connector.client.wallet.rest.model.OneClickArrivalDepositApplyResponse;
+import com.binance.connector.client.wallet.rest.model.OrderType;
 import com.binance.connector.client.wallet.rest.model.QueryUserDelegationHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserUniversalTransferHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserWalletBalanceResponse;
+import com.binance.connector.client.wallet.rest.model.Status;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireResponse;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireTravelRuleRequest;
@@ -52,6 +59,7 @@ import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaire
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Request;
 import com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireV2Response;
 import com.binance.connector.client.wallet.rest.model.SystemStatusResponse;
+import com.binance.connector.client.wallet.rest.model.ToSymbol;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestRequest;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse;
 import com.binance.connector.client.wallet.rest.model.TradeFeeResponse;
@@ -89,7 +97,8 @@ public class WalletRestApi {
     }
 
     /**
-     * Account API Trading Status (USER_DATA) Fetch account api trading status detail. Weight: 1
+     * Account API Trading Status (USER_DATA) Fetch account api trading status detail. Weight(IP): 1
+     * Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountApiTradingStatusResponse&gt;
@@ -103,7 +112,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Account-API-Trading-Status">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-api-trading-status">Account
      *     API Trading Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountApiTradingStatusResponse> accountApiTradingStatus(Long recvWindow)
@@ -112,7 +121,7 @@ public class WalletRestApi {
     }
 
     /**
-     * Account info (USER_DATA) Fetch account info detail. Weight: 1
+     * Account info (USER_DATA) Fetch account info detail. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountInfoResponse&gt;
@@ -125,15 +134,17 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Account info </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/Account-info">Account info
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-info">Account
+     *     info (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountInfoResponse> accountInfo(Long recvWindow) throws ApiException {
         return accountApi.accountInfo(recvWindow);
     }
 
     /**
-     * Account Status (USER_DATA) Fetch account status detail. Weight: 1
+     * Account Status (USER_DATA) Fetch account status detail. Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AccountStatusResponse&gt;
@@ -146,7 +157,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Account Status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/Account-Status">Account
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-status">Account
      *     Status (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountStatusResponse> accountStatus(Long recvWindow) throws ApiException {
@@ -154,14 +166,15 @@ public class WalletRestApi {
     }
 
     /**
-     * Daily Account Snapshot (USER_DATA) Daily account snapshot * The query time period must be
-     * less then 30 days * Support query within the last one month only * If startTimeand endTime
-     * not sent, return records of the last 7 days by default Weight: 2400
+     * Daily Account Snapshot (USER_DATA) Daily account snapshot Weight(IP): 2400 Security Type:
+     * USER_DATA Notes: - The query time period must be less then 30 days - Support query within the
+     * last one month only - If startTimeand endTime not sent, return records of the last 7 days by
+     * default
      *
      * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;DailyAccountSnapshotResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -174,19 +187,21 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/daily-account-snapshoot">Daily
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#daily-account-snapshot">Daily
      *     Account Snapshot (USER_DATA) Documentation</a>
      */
     public ApiResponse<DailyAccountSnapshotResponse> dailyAccountSnapshot(
-            String type, Long startTime, Long endTime, Long limit, Long recvWindow)
+            OrderType type, Long startTime, Long endTime, Long limit, Long recvWindow)
             throws ApiException {
         return accountApi.dailyAccountSnapshot(type, startTime, endTime, limit, recvWindow);
     }
 
     /**
-     * Disable Fast Withdraw Switch (USER_DATA) Weight: 1
+     * Disable Fast Withdraw Switch (USER_DATA) Disable Fast Withdraw Switch Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - This request will disable fastwithdraw switch under your account.
+     * You need to enable \&quot;trade\&quot; option for the api key which requests this endpoint.
      *
-     * @param disableFastWithdrawSwitchRequest (required)
+     * @param disableFastWithdrawSwitchRequest (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -198,7 +213,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Disable-Fast-Withdraw-Switch">Disable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#disable-fast-withdraw-switch">Disable
      *     Fast Withdraw Switch (USER_DATA) Documentation</a>
      */
     public void disableFastWithdrawSwitch(
@@ -207,12 +222,13 @@ public class WalletRestApi {
     }
 
     /**
-     * Enable Fast Withdraw Switch (USER_DATA) Enable Fast Withdraw Switch (USER_DATA) * This
-     * request will enable fastwithdraw switch under your account. &lt;br&gt;&lt;/br&gt; * When Fast
-     * Withdraw Switch is on, transferring funds to a Binance account will be done instantly. There
-     * is no on-chain transaction, no transaction ID and no withdrawal fee. Weight: 1
+     * Enable Fast Withdraw Switch (USER_DATA) Enable Fast Withdraw Switch (USER_DATA) Weight(IP): 1
+     * Security Type: USER_DATA Notes: - This request will enable fastwithdraw switch under your
+     * account. You need to enable \&quot;trade\&quot; option for the api key which requests this
+     * endpoint. - When Fast Withdraw Switch is on, transferring funds to a Binance account will be
+     * done instantly. There is no on-chain transaction, no transaction ID and no withdrawal fee.
      *
-     * @param enableFastWithdrawSwitchRequest (required)
+     * @param enableFastWithdrawSwitchRequest (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -224,7 +240,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/account/Enable-Fast-Withdraw-Switch">Enable
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#enable-fast-withdraw-switch">Enable
      *     Fast Withdraw Switch (USER_DATA) Documentation</a>
      */
     public void enableFastWithdrawSwitch(
@@ -233,7 +249,8 @@ public class WalletRestApi {
     }
 
     /**
-     * Get API Key Permission (USER_DATA) Get API Key Permission Weight: 1
+     * Get API Key Permission (USER_DATA) Get API Key Permission Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetApiKeyPermissionResponse&gt;
@@ -246,8 +263,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Get API Key Permission </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/account/api-key-permission">Get API
-     *     Key Permission (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#get-api-key-permission">Get
+     *     API Key Permission (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetApiKeyPermissionResponse> getApiKeyPermission(Long recvWindow)
             throws ApiException {
@@ -255,9 +273,9 @@ public class WalletRestApi {
     }
 
     /**
-     * Asset Detail (USER_DATA) Fetch details of assets supported on Binance. * Please get network
-     * and other deposit or withdraw details from &#x60;&#x60;GET
-     * /sapi/v1/capital/config/getall&#x60;&#x60;. Weight: 1
+     * Asset Detail (USER_DATA) Fetch details of assets supported on Binance. Weight(IP): 1 Security
+     * Type: USER_DATA Notes: - Please get network and other deposit or withdraw details from
+     * &#x60;GET /sapi/v1/capital/config/getall&#x60;.
      *
      * @param asset (optional)
      * @param recvWindow (optional)
@@ -271,8 +289,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Asset Detail </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Asset-Detail">Asset Detail
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-detail">Asset
+     *     Detail (USER_DATA) Documentation</a>
      */
     public ApiResponse<AssetDetailResponse> assetDetail(String asset, Long recvWindow)
             throws ApiException {
@@ -280,13 +299,14 @@ public class WalletRestApi {
     }
 
     /**
-     * Asset Dividend Record (USER_DATA) Query asset dividend record. * There cannot be more than
-     * 180 days between parameter &#x60;startTime&#x60; and &#x60;endTime&#x60;. Weight: 10
+     * Asset Dividend Record (USER_DATA) Query asset dividend record. Weight(IP): 10 Security Type:
+     * USER_DATA Notes: - There cannot be more than 180 days between parameter &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60;.
      *
      * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AssetDividendRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -298,7 +318,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Asset Dividend Record </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/assets-divided-record">Asset
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-dividend-record">Asset
      *     Dividend Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<AssetDividendRecordResponse> assetDividendRecord(
@@ -308,7 +329,7 @@ public class WalletRestApi {
     }
 
     /**
-     * Dust Convert (USER_DATA) Convert dust assets Weight: 10
+     * Dust Convert (USER_DATA) Convert dust assets Weight(UID): 10 Security Type: USER_DATA
      *
      * @param dustConvertRequest (required)
      * @return ApiResponse&lt;DustConvertResponse&gt;
@@ -321,8 +342,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Dust Convert </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convert">Dust Convert
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convert">Dust
+     *     Convert (USER_DATA) Documentation</a>
      */
     public ApiResponse<DustConvertResponse> dustConvert(DustConvertRequest dustConvertRequest)
             throws ApiException {
@@ -330,7 +352,8 @@ public class WalletRestApi {
     }
 
     /**
-     * Dust Convertible Assets (USER_DATA) Query dust convertible assets Weight: 1
+     * Dust Convertible Assets (USER_DATA) Query dust convertible assets Weight(IP): 1 Security
+     * Type: USER_DATA
      *
      * @param dustConvertibleAssetsRequest (required)
      * @return ApiResponse&lt;DustConvertibleAssetsResponse&gt;
@@ -343,7 +366,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Dust Convertible Assets </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets">Dust
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convertible-assets">Dust
      *     Convertible Assets (USER_DATA) Documentation</a>
      */
     public ApiResponse<DustConvertibleAssetsResponse> dustConvertibleAssets(
@@ -352,9 +376,9 @@ public class WalletRestApi {
     }
 
     /**
-     * Dust Transfer (USER_DATA) Convert dust assets to BNB. * You need to open&#x60;Enable Spot
-     * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight:
-     * 10
+     * Dust Transfer (USER_DATA) Convert dust assets to BNB. Weight(UID): 10 Security Type:
+     * USER_DATA Notes: - You need to open&#x60;Enable Spot &amp; Margin Trading&#x60; permission
+     * for the API Key which requests this endpoint.
      *
      * @param dustTransferRequest (required)
      * @return ApiResponse&lt;DustTransferResponse&gt;
@@ -367,8 +391,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Dust Transfer </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Dust-Transfer">Dust Transfer
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-transfer">Dust
+     *     Transfer (USER_DATA) Documentation</a>
      */
     public ApiResponse<DustTransferResponse> dustTransfer(DustTransferRequest dustTransferRequest)
             throws ApiException {
@@ -376,10 +401,10 @@ public class WalletRestApi {
     }
 
     /**
-     * DustLog(USER_DATA) Dustlog * Only return last 100 records * Only return records after
-     * 2020/12/01 Weight: 1
+     * DustLog (USER_DATA) Dustlog Weight(IP): 1 Security Type: USER_DATA Notes: - Only return last
+     * 100 records - Only return records after 2020/12/01
      *
-     * @param accountType &#x60;SPOT&#x60;or&#x60;MARGIN&#x60;,default&#x60;SPOT&#x60; (optional)
+     * @param accountType (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -393,19 +418,22 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> DustLog </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/dust-log">DustLog(USER_DATA)
-     *     Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dustlog">DustLog
+     *     (USER_DATA) Documentation</a>
      */
     public ApiResponse<DustlogResponse> dustlog(
-            String accountType, Long startTime, Long endTime, Long recvWindow) throws ApiException {
+            AccountType accountType, Long startTime, Long endTime, Long recvWindow)
+            throws ApiException {
         return assetApi.dustlog(accountType, startTime, endTime, recvWindow);
     }
 
     /**
-     * Funding Wallet (USER_DATA) Query Funding Wallet * Currently supports querying the following
-     * business assets：Binance Pay, Binance Card, Binance Gift Card, Stock Token Weight: 1
+     * Funding Wallet (USER_DATA) Query Funding Wallet Weight(IP): 1 Security Type: USER_DATA Notes:
+     * - Currently supports querying the following business assets：Binance Pay, Binance Card,
+     * Binance Gift Card, Stock Token
      *
-     * @param fundingWalletRequest (required)
+     * @param fundingWalletRequest (optional)
      * @return ApiResponse&lt;FundingWalletResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -416,8 +444,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Funding Wallet </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Funding-Wallet">Funding Wallet
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#funding-wallet">Funding
+     *     Wallet (USER_DATA) Documentation</a>
      */
     public ApiResponse<FundingWalletResponse> fundingWallet(
             FundingWalletRequest fundingWalletRequest) throws ApiException {
@@ -426,9 +455,9 @@ public class WalletRestApi {
 
     /**
      * Get Assets That Can Be Converted Into BNB (USER_DATA) Get Assets That Can Be Converted Into
-     * BNB Weight: 1
+     * BNB Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param getAssetsThatCanBeConvertedIntoBnbRequest (required)
+     * @param getAssetsThatCanBeConvertedIntoBnbRequest (optional)
      * @return ApiResponse&lt;GetAssetsThatCanBeConvertedIntoBnbResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -439,7 +468,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Get Assets That Can Be Converted Into BNB </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/assets-can-convert-bnb">Get
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-assets-that-can-be-converted-into-bnb">Get
      *     Assets That Can Be Converted Into BNB (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetAssetsThatCanBeConvertedIntoBnbResponse>
@@ -453,17 +483,17 @@ public class WalletRestApi {
 
     /**
      * Get Cloud-Mining payment and refund history (USER_DATA) The query of Cloud-Mining payment and
-     * refund history * Just return the SUCCESS records of payment and refund. * For response, type
-     * &#x3D; 248 means payment, type &#x3D; 249 means refund, status &#x3D;S means SUCCESS. Weight:
-     * 600
+     * refund history Weight(UID): 600 Security Type: USER_DATA Notes: - Just return the SUCCESS
+     * records of payment and refund. - For response, type &#x3D; 248 means payment, type &#x3D; 249
+     * means refund, status &#x3D;S means SUCCESS.
      *
-     * @param startTime (required)
-     * @param endTime (required)
+     * @param startTime inclusive, unit: ms (required)
+     * @param endTime exclusive, unit: ms (required)
      * @param tranId The transaction id (optional)
      * @param clientTranId The unique flag (optional)
-     * @param asset (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param asset If it is blank, we will query all assets (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @return ApiResponse&lt;GetCloudMiningPaymentAndRefundHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -475,7 +505,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/cloud-mining-payment-and-refund-history">Get
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-cloud-mining-payment-and-refund-history">Get
      *     Cloud-Mining payment and refund history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCloudMiningPaymentAndRefundHistoryResponse>
@@ -494,7 +524,7 @@ public class WalletRestApi {
 
     /**
      * Get Open Symbol List (MARKET_DATA) Get the list of symbols that are scheduled to be opened
-     * for trading in the market. Weight: 100
+     * for trading in the market. Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @return ApiResponse&lt;GetOpenSymbolListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -506,24 +536,50 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Get Open Symbol List </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/open-symbol-list">Get Open
-     *     Symbol List (MARKET_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-open-symbol-list">Get
+     *     Open Symbol List (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetOpenSymbolListResponse> getOpenSymbolList() throws ApiException {
         return assetApi.getOpenSymbolList();
     }
 
     /**
-     * Query User Delegation History(For Master Account)(USER_DATA) Query User Delegation History
-     * Weight: 60
+     * Get Spot Asset Tags (MARKET_DATA) Get the tags configured for spot-tradable assets.
+     * Weight(IP): 100 Security Type: MARKET_DATA
+     *
+     * @param tag Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is
+     *     returned if it matches any one tag); leading/trailing whitespace around each tag is
+     *     ignored. Returns all eligible assets when omitted. (optional)
+     * @return ApiResponse&lt;GetSpotAssetTagsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Get Spot Asset Tags </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags">Get
+     *     Spot Asset Tags (MARKET_DATA) Documentation</a>
+     */
+    public ApiResponse<GetSpotAssetTagsResponse> getSpotAssetTags(String tag) throws ApiException {
+        return assetApi.getSpotAssetTags(tag);
+    }
+
+    /**
+     * Query User Delegation History(For Master Account) (USER_DATA) Query User Delegation History
+     * Weight(IP): 60 Security Type: USER_DATA
      *
      * @param email (required)
      * @param startTime (required)
      * @param endTime (required)
-     * @param type Delegate/Undelegate (optional)
+     * @param type (optional)
      * @param asset (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUserDelegationHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -535,14 +591,15 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> User Delegation History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/query-user-delegation">Query
-     *     User Delegation History(For Master Account)(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-delegation-history">Query
+     *     User Delegation History(For Master Account) (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserDelegationHistoryResponse> queryUserDelegationHistory(
             String email,
             Long startTime,
             Long endTime,
-            String type,
+            OrderType type,
             String asset,
             Long current,
             Long size,
@@ -553,18 +610,18 @@ public class WalletRestApi {
     }
 
     /**
-     * Query User Universal Transfer History(USER_DATA) Query User Universal Transfer History *
-     * &#x60;fromSymbol&#x60; must be sent when type are ISOLATEDMARGIN_MARGIN and
-     * ISOLATEDMARGIN_ISOLATEDMARGIN * &#x60;toSymbol&#x60; must be sent when type are
-     * MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN * Support query within the last 6
-     * months only * If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent, return records of the
-     * last 7 days by default Weight: 1
+     * Query User Universal Transfer History (USER_DATA) Query User Universal Transfer History
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - &#x60;fromSymbol&#x60; must be sent when type
+     * are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN - &#x60;toSymbol&#x60; must be
+     * sent when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN - Support query
+     * within the last 6 months only - If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent,
+     * return records of the last 7 days by default
      *
      * @param type (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current current page, default 1, the min value is 1 (optional)
-     * @param size page size, default 10, the max value is 100 (optional)
+     * @param current (optional)
+     * @param size (optional)
      * @param fromSymbol (optional)
      * @param toSymbol (optional)
      * @param recvWindow (optional)
@@ -579,8 +636,8 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/query-user-universal-transfer">Query
-     *     User Universal Transfer History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-universal-transfer-history">Query
+     *     User Universal Transfer History (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserUniversalTransferHistoryResponse> queryUserUniversalTransferHistory(
             String type,
@@ -588,8 +645,8 @@ public class WalletRestApi {
             Long endTime,
             Long current,
             Long size,
-            String fromSymbol,
-            String toSymbol,
+            FromSymbol fromSymbol,
+            ToSymbol toSymbol,
             Long recvWindow)
             throws ApiException {
         return assetApi.queryUserUniversalTransferHistory(
@@ -597,10 +654,10 @@ public class WalletRestApi {
     }
 
     /**
-     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance Weight: 60
+     * Query User Wallet Balance (USER_DATA) Query User Wallet Balance Weight(IP): 60 Security Type:
+     * USER_DATA
      *
-     * @param quoteAsset &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc.
-     *     default &#x60;BTC&#x60; (optional)
+     * @param quoteAsset (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUserWalletBalanceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -613,7 +670,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/Query-User-Wallet-Balance">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-wallet-balance">Query
      *     User Wallet Balance (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserWalletBalanceResponse> queryUserWalletBalance(
@@ -623,10 +680,10 @@ public class WalletRestApi {
 
     /**
      * Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA) Toggle BNB Burn On Spot Trade
-     * And Margin Interest * \&quot;spotBNBBurn\&quot; and \&quot;interestBNBBurn\&quot; should be
-     * sent at least one. Weight: 1(IP)
+     * And Margin Interest Weight(IP): 1 Security Type: USER_DATA Notes: - \&quot;spotBNBBurn\&quot;
+     * and \&quot;interestBNBBurn\&quot; should be sent at least one.
      *
-     * @param toggleBnbBurnOnSpotTradeAndMarginInterestRequest (required)
+     * @param toggleBnbBurnOnSpotTradeAndMarginInterestRequest (optional)
      * @return ApiResponse&lt;ToggleBnbBurnOnSpotTradeAndMarginInterestResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -638,7 +695,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/asset/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest">Toggle
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#toggle-bnb-burn-on-spot-trade-and-margin-interest">Toggle
      *     BNB Burn On Spot Trade And Margin Interest (USER_DATA) Documentation</a>
      */
     public ApiResponse<ToggleBnbBurnOnSpotTradeAndMarginInterestResponse>
@@ -651,7 +708,7 @@ public class WalletRestApi {
     }
 
     /**
-     * Trade Fee (USER_DATA) Fetch trade fee Weight: 1
+     * Trade Fee (USER_DATA) Fetch trade fee Weight(IP): 1 Security Type: USER_DATA
      *
      * @param symbol (optional)
      * @param recvWindow (optional)
@@ -665,8 +722,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Trade Fee </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/Trade-Fee">Trade Fee
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#trade-fee">Trade
+     *     Fee (USER_DATA) Documentation</a>
      */
     public ApiResponse<TradeFeeResponse> tradeFee(String symbol, Long recvWindow)
             throws ApiException {
@@ -674,11 +732,11 @@ public class WalletRestApi {
     }
 
     /**
-     * User Asset (USER_DATA) Get user assets, just for positive data. * If asset is set, then
-     * return this asset, otherwise return all assets positive. * If needBtcValuation is set, then
-     * return btcValudation. Weight: 5
+     * User Asset (USER_DATA) Get user assets, just for positive data. Weight(IP): 5 Security Type:
+     * USER_DATA Notes: - If asset is set, then return this asset, otherwise return all assets
+     * positive. - If needBtcValuation is set, then return btcValudation.
      *
-     * @param userAssetRequest (required)
+     * @param userAssetRequest (optional)
      * @return ApiResponse&lt;UserAssetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -689,8 +747,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> User Asset </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/user-assets">User Asset
-     *     (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-asset">User
+     *     Asset (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserAssetResponse> userAsset(UserAssetRequest userAssetRequest)
             throws ApiException {
@@ -698,33 +757,32 @@ public class WalletRestApi {
     }
 
     /**
-     * User Universal Transfer (USER_DATA) user universal transfer * &#x60;fromSymbol&#x60; must be
-     * sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN *
-     * &#x60;toSymbol&#x60; must be sent when type are MARGIN_ISOLATEDMARGIN and
-     * ISOLATEDMARGIN_ISOLATEDMARGIN * ENUM of transfer types: * MAIN_UMFUTURE Spot account transfer
-     * to USDⓈ-M Futures account * MAIN_CMFUTURE Spot account transfer to COIN-M Futures account *
-     * MAIN_MARGIN Spot account transfer to Margin（cross）account * UMFUTURE_MAIN USDⓈ-M Futures
-     * account transfer to Spot account * UMFUTURE_MARGIN USDⓈ-M Futures account transfer to
-     * Margin（cross）account * CMFUTURE_MAIN COIN-M Futures account transfer to Spot account *
-     * CMFUTURE_MARGIN COIN-M Futures account transfer to Margin(cross) account * MARGIN_MAIN
-     * Margin（cross）account transfer to Spot account * MARGIN_UMFUTURE Margin（cross）account transfer
-     * to USDⓈ-M Futures * MARGIN_CMFUTURE Margin（cross）account transfer to COIN-M Futures *
-     * ISOLATEDMARGIN_MARGIN Isolated margin account transfer to Margin(cross) account *
-     * MARGIN_ISOLATEDMARGIN Margin(cross) account transfer to Isolated margin account *
-     * ISOLATEDMARGIN_ISOLATEDMARGIN Isolated margin account transfer to Isolated margin account *
-     * MAIN_FUNDING Spot account transfer to Funding account * FUNDING_MAIN Funding account transfer
-     * to Spot account * FUNDING_UMFUTURE Funding account transfer to UMFUTURE account *
-     * UMFUTURE_FUNDING UMFUTURE account transfer to Funding account * MARGIN_FUNDING MARGIN account
-     * transfer to Funding account * FUNDING_MARGIN Funding account transfer to Margin account *
-     * FUNDING_CMFUTURE Funding account transfer to CMFUTURE account * CMFUTURE_FUNDING CMFUTURE
-     * account transfer to Funding account * MAIN_OPTION Spot account transfer to Options account *
-     * OPTION_MAIN Options account transfer to Spot account * UMFUTURE_OPTION USDⓈ-M Futures account
-     * transfer to Options account * OPTION_UMFUTURE Options account transfer to USDⓈ-M Futures
-     * account * MARGIN_OPTION Margin（cross）account transfer to Options account * OPTION_MARGIN
-     * Options account transfer to Margin（cross）account * FUNDING_OPTION Funding account transfer to
-     * Options account * OPTION_FUNDING Options account transfer to Funding account *
-     * MAIN_PORTFOLIO_MARGIN Spot account transfer to Portfolio Margin account *
-     * PORTFOLIO_MARGIN_MAIN Portfolio Margin account transfer to Spot account Weight: 900
+     * User Universal Transfer (USER_DATA) User universal transfer Weight(UID): 300 Security Type:
+     * USER_DATA Notes: - You need to enable Permits Universal Transfer option for the API Key that
+     * requests this endpoint. - &#x60;fromSymbol&#x60; must be sent when type is
+     * &#x60;ISOLATEDMARGIN_MARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. -
+     * &#x60;toSymbol&#x60; must be sent when type is &#x60;MARGIN_ISOLATEDMARGIN&#x60; or
+     * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - ENUM of transfer types: -
+     * &#x60;MAIN_UMFUTURE&#x60;: Spot → USDⓈ-M Futures - &#x60;MAIN_CMFUTURE&#x60;: Spot → COIN-M
+     * Futures - &#x60;MAIN_MARGIN&#x60;: Spot → Margin (cross) - &#x60;UMFUTURE_MAIN&#x60;: USDⓈ-M
+     * Futures → Spot - &#x60;UMFUTURE_MARGIN&#x60;: USDⓈ-M Futures → Margin (cross) -
+     * &#x60;CMFUTURE_MAIN&#x60;: COIN-M Futures → Spot - &#x60;CMFUTURE_MARGIN&#x60;: COIN-M
+     * Futures → Margin (cross) - &#x60;MARGIN_MAIN&#x60;: Margin (cross) → Spot -
+     * &#x60;MARGIN_UMFUTURE&#x60;: Margin (cross) → USDⓈ-M Futures - &#x60;MARGIN_CMFUTURE&#x60;:
+     * Margin (cross) → COIN-M Futures - &#x60;ISOLATEDMARGIN_MARGIN&#x60;: Isolated margin → Margin
+     * (cross) - &#x60;MARGIN_ISOLATEDMARGIN&#x60;: Margin (cross) → Isolated margin -
+     * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;: Isolated margin → Isolated margin -
+     * &#x60;MAIN_FUNDING&#x60;: Spot → Funding - &#x60;FUNDING_MAIN&#x60;: Funding → Spot -
+     * &#x60;FUNDING_UMFUTURE&#x60;: Funding → USDⓈ-M Futures - &#x60;UMFUTURE_FUNDING&#x60;: USDⓈ-M
+     * Futures → Funding - &#x60;MARGIN_FUNDING&#x60;: Margin (cross) → Funding -
+     * &#x60;FUNDING_MARGIN&#x60;: Funding → Margin (cross) - &#x60;FUNDING_CMFUTURE&#x60;: Funding
+     * → COIN-M Futures - &#x60;CMFUTURE_FUNDING&#x60;: COIN-M Futures → Funding -
+     * &#x60;MAIN_OPTION&#x60;: Spot → Options - &#x60;OPTION_MAIN&#x60;: Options → Spot -
+     * &#x60;UMFUTURE_OPTION&#x60;: USDⓈ-M Futures → Options - &#x60;OPTION_UMFUTURE&#x60;: Options
+     * → USDⓈ-M Futures - &#x60;MARGIN_OPTION&#x60;: Margin (cross) → Options -
+     * &#x60;OPTION_MARGIN&#x60;: Options → Margin (cross) - &#x60;FUNDING_OPTION&#x60;: Funding →
+     * Options - &#x60;OPTION_FUNDING&#x60;: Options → Funding - &#x60;MAIN_PORTFOLIO_MARGIN&#x60;:
+     * Spot → Portfolio Margin - &#x60;PORTFOLIO_MARGIN_MAIN&#x60;: Portfolio Margin → Spot
      *
      * @param userUniversalTransferRequest (required)
      * @return ApiResponse&lt;UserUniversalTransferResponse&gt;
@@ -737,7 +795,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> User Universal Transfer </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/asset/User-Universal-Transfer">User
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-universal-transfer">User
      *     Universal Transfer (USER_DATA) Documentation</a>
      */
     public ApiResponse<UserUniversalTransferResponse> userUniversalTransfer(
@@ -747,7 +806,7 @@ public class WalletRestApi {
 
     /**
      * All Coins&#39; Information (USER_DATA) Get information of coins (available for deposit and
-     * withdraw) for user. Weight: 10
+     * withdraw) for user. Weight(IP): 10 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;AllCoinsInformationResponse&gt;
@@ -760,7 +819,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> All Coins&#39; Information </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/all-coins-info">All
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#all-coins-information">All
      *     Coins&#39; Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<AllCoinsInformationResponse> allCoinsInformation(Long recvWindow)
@@ -769,11 +829,11 @@ public class WalletRestApi {
     }
 
     /**
-     * Deposit Address(supporting network) (USER_DATA) Fetch deposit address with network. * If
-     * &#x60;network&#x60; is not send, return with default network of the coin. * You can get
-     * &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; in the response of
-     * &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. * &#x60;amount&#x60; needs to
-     * be sent if using LIGHTNING network Weight: 10
+     * Deposit Address(supporting network) (USER_DATA) Fetch deposit address with network.
+     * Weight(IP): 10 Security Type: USER_DATA Notes: - If &#x60;network&#x60; is not send, return
+     * with default network of the coin. - You can get &#x60;network&#x60; and &#x60;isDefault&#x60;
+     * in &#x60;networkList&#x60; in the response of &#x60;Get /sapi/v1/capital/config/getall (HMAC
+     * SHA256)&#x60;. - &#x60;amount&#x60; needs to be sent if using LIGHTNING network
      *
      * @param coin &#x60;coin&#x60; refers to the parent network address format that the address is
      *     using (required)
@@ -790,7 +850,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Deposit Address </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/deposite-address">Deposit
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-address">Deposit
      *     Address(supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositAddressResponse> depositAddress(
@@ -799,21 +860,21 @@ public class WalletRestApi {
     }
 
     /**
-     * Deposit History (supporting network) (USER_DATA) Fetch deposit history. * Please notice the
-     * default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is
-     * within 0-90 days. * If both &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must be less than 90 days. Weight: 1
+     * Deposit History (supporting network) (USER_DATA) Fetch deposit history. Weight(IP): 1
+     * Security Type: USER_DATA Notes: - Please notice the default &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; must be less than 90 days.
      *
-     * @param includeSource Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when
-     *     set to &#x60;true&#x60; (optional)
-     * @param coin (optional)
-     * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+     * @param includeSource return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
      *     (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param coin (optional)
+     * @param status 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong
+     *     Deposit, 8: Waiting User confirm (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
+     * @param offset (optional)
+     * @param limit (optional)
      * @param recvWindow (optional)
      * @param txId (optional)
      * @return ApiResponse&lt;DepositHistoryResponse&gt;
@@ -826,13 +887,14 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Deposit History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/deposite-history">Deposit
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-history">Deposit
      *     History (supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositHistoryResponse> depositHistory(
             Boolean includeSource,
             String coin,
-            Long status,
+            Status status,
             Long startTime,
             Long endTime,
             Long offset,
@@ -845,14 +907,13 @@ public class WalletRestApi {
     }
 
     /**
-     * Fetch deposit address list with network(USER_DATA) Fetch deposit address list with network. *
-     * If network is not send, return with default network of the coin. * You can get network and
-     * isDefault in networkList in the response of &#x60;Get /sapi/v1/capital/config/getall&#x60;.
-     * Weight: 10
+     * Fetch deposit address list with network (USER_DATA) Fetch deposit address list with network.
+     * Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param coin &#x60;coin&#x60; refers to the parent network address format that the address is
-     *     using (required)
-     * @param network (optional)
+     * @param coin Coin name (required)
+     * @param network If network is not send, return with default network of the coin. You can get
+     *     network and isDefault in networkList in the response of &#x60;Get
+     *     /sapi/v1/capital/config/getall&#x60; (optional)
      * @return ApiResponse&lt;FetchDepositAddressListWithNetworkResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -864,8 +925,8 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/Fetch-deposit-address-list-with-network">Fetch
-     *     deposit address list with network(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-deposit-address-list-with-network">Fetch
+     *     deposit address list with network (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchDepositAddressListWithNetworkResponse>
             fetchDepositAddressListWithNetwork(String coin, String network) throws ApiException {
@@ -873,7 +934,8 @@ public class WalletRestApi {
     }
 
     /**
-     * Fetch withdraw address list (USER_DATA) Fetch withdraw address list Weight: 10
+     * Fetch withdraw address list (USER_DATA) Fetch withdraw address list Weight(IP): 10 Security
+     * Type: USER_DATA
      *
      * @return ApiResponse&lt;FetchWithdrawAddressListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -886,7 +948,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/fetch-withdraw-address">Fetch
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-address-list">Fetch
      *     withdraw address list (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchWithdrawAddressListResponse> fetchWithdrawAddressList()
@@ -895,7 +957,7 @@ public class WalletRestApi {
     }
 
     /**
-     * Fetch withdraw quota (USER_DATA) Fetch withdraw quota Weight: 10
+     * Fetch withdraw quota (USER_DATA) Fetch withdraw quota Weight(IP): 10 Security Type: USER_DATA
      *
      * @return ApiResponse&lt;FetchWithdrawQuotaResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -907,7 +969,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Fetch withdraw quota </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/Fetch-withdraw-quota">Fetch
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-quota">Fetch
      *     withdraw quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchWithdrawQuotaResponse> fetchWithdrawQuota() throws ApiException {
@@ -916,9 +979,9 @@ public class WalletRestApi {
 
     /**
      * One click arrival deposit apply (for expired address deposit) (USER_DATA) Apply deposit
-     * credit for expired address (One click arrival) * Params need to be in the POST body Weight: 1
+     * credit for expired address (One click arrival) Weight(IP): 1 Security Type: USER_DATA
      *
-     * @param oneClickArrivalDepositApplyRequest (required)
+     * @param oneClickArrivalDepositApplyRequest (optional)
      * @return ApiResponse&lt;OneClickArrivalDepositApplyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -930,7 +993,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/one-click-arrival-deposite-apply">One
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#one-click-arrival-deposit-apply">One
      *     click arrival deposit apply (for expired address deposit) (USER_DATA) Documentation</a>
      */
     public ApiResponse<OneClickArrivalDepositApplyResponse> oneClickArrivalDepositApply(
@@ -940,15 +1003,22 @@ public class WalletRestApi {
     }
 
     /**
-     * Withdraw(USER_DATA) Submit a withdraw request. * If &#x60;network&#x60; not send, return with
-     * default network of the coin. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
-     * &#x60;networkList&#x60; of a coin in the response of &#x60;Get /sapi/v1/capital/config/getall
-     * (HMAC SHA256)&#x60;. * To check if travel rule is required, by using &#x60;GET
+     * Withdraw (USER_DATA) Submit a withdraw request Weight(UID): 900 Security Type: USER_DATA
+     * Notes: - If &#x60;network&#x60; not send, return with default network of the coin. - You can
+     * get &#x60;network&#x60; and &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the
+     * response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - To check if
+     * travel rule is required, by using &#x60;GET
      * /sapi/v1/localentity/questionnaire-requirements&#x60; and if it returns anything other than
      * &#x60;NIL&#x60; you will need update SAPI to &#x60;POST
      * /sapi/v1/localentity/withdraw/apply&#x60; else you can continue &#x60;POST
      * /sapi/v1/capital/withdraw/apply&#x60;. Please note that if you are required to comply to
-     * travel rule please refer to the Travel Rule SAPI. Weight: 900
+     * travel rule please refer to the Travel Rule SAPI. - \&quot;For networks that do not support
+     * memo/tag, submitting a withdrawal request with a non-empty &#x60;addressTag&#x60; will return
+     * error &#x60;-4106 TAG_NOT_SUPPORTED_FOR_NETWORK&#x60;. Please omit the &#x60;addressTag&#x60;
+     * field for such networks. You can check whether a network requires a tag via &#x60;GET
+     * /sapi/v1/capital/config/getall&#x60;: If &#x60;withdrawTag&#x60; &#x3D; &#x60;true&#x60; →
+     * memo/tag is required. If &#x60;withdrawTag&#x60; &#x3D; &#x60;false&#x60; → memo/tag is not
+     * supported; omit &#x60;addressTag&#x60;.\&quot;
      *
      * @param withdrawRequest (required)
      * @return ApiResponse&lt;WithdrawResponse&gt;
@@ -962,8 +1032,8 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/capital/Withdraw">Withdraw(USER_DATA)
-     *     Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw">Withdraw
+     *     (USER_DATA) Documentation</a>
      */
     public ApiResponse<WithdrawResponse> withdraw(WithdrawRequest withdrawRequest)
             throws ApiException {
@@ -971,16 +1041,16 @@ public class WalletRestApi {
     }
 
     /**
-     * Withdraw History (supporting network) (USER_DATA) Fetch withdraw history. *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90
-     * days. * If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days. * If
-     * &#x60;withdrawOrderId&#x60; is sent, time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; must be less than 7 days. * If &#x60;withdrawOrderId&#x60; is sent,
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, will return last 7 days records
-     * by default. * Maximum support &#x60;idList&#x60; number is 45. Weight: 18000 Request limit:
-     * 10 requests per second
+     * Withdraw History (supporting network) (USER_DATA) Fetch withdraw history Weight(UID): 18000
+     * (10 requests per second) Security Type: USER_DATA Notes: - &#x60;network&#x60; may not be in
+     * the response for old withdraw. - Please notice the default &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; to make sure that time interval is within 0-90 days. - If both
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and
+     * &#x60;endTime&#x60;must be less than 90 days. - If &#x60;withdrawOrderId&#x60; is sent, time
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 7 days. - If
+     * &#x60;withdrawOrderId&#x60; is sent, &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, will return last 7 days records by default. - Maximum support &#x60;idList&#x60; number
+     * is 45.
      *
      * @param coin (optional)
      * @param withdrawOrderId client side id for withdrawal, if provided in POST
@@ -988,11 +1058,11 @@ public class WalletRestApi {
      * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @param idList id list returned in the response of POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;WithdrawHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1004,7 +1074,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Withdraw History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/capital/Withdraw-History">Withdraw
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw-history">Withdraw
      *     History (supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<WithdrawHistoryResponse> withdrawHistory(
@@ -1031,8 +1102,8 @@ public class WalletRestApi {
     }
 
     /**
-     * Get symbols delist schedule for spot (MARKET_DATA) Get symbols delist schedule for spot
-     * Weight: 100
+     * Get Spot Delist Schedule (MARKET_DATA) Get symbols delist schedule for spot Weight(IP): 100
+     * Security Type: MARKET_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetSymbolsDelistScheduleForSpotResponse&gt;
@@ -1045,8 +1116,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Get symbols delist schedule for spot </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/others/delist-schedule">Get symbols
-     *     delist schedule for spot (MARKET_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#get-symbols-delist-schedule-for-spot">Get
+     *     Spot Delist Schedule (MARKET_DATA) Documentation</a>
      */
     public ApiResponse<GetSymbolsDelistScheduleForSpotResponse> getSymbolsDelistScheduleForSpot(
             Long recvWindow) throws ApiException {
@@ -1054,7 +1126,7 @@ public class WalletRestApi {
     }
 
     /**
-     * System Status (System) Fetch system status. Weight: 1
+     * System Status Fetch system status. Weight(IP): 1 Security Type: System
      *
      * @return ApiResponse&lt;SystemStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1066,8 +1138,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> System Status </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/others/System-Status">System Status
-     *     (System) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#system-status">System
+     *     Status Documentation</a>
      */
     public ApiResponse<SystemStatusResponse> systemStatus() throws ApiException {
         return othersApi.systemStatus();
@@ -1075,12 +1148,15 @@ public class WalletRestApi {
 
     /**
      * Broker Withdraw (for brokers of local entities that require travel rule) (USER_DATA) Submit a
-     * withdrawal request for brokers of local entities that required travel rule. * If
-     * &#x60;network&#x60; not send, return with default network of the coin, but if the address
-     * could not match default network, the withdraw will be rejected. * You can get
-     * &#x60;network&#x60; in &#x60;networkList&#x60; of a coin in the response * Questionnaire is
-     * different for each local entity, please refer to * If getting error like &#x60;Questionnaire
-     * format not valid.&#x60; or &#x60;Questionnaire must not be blank&#x60;, Weight: 600
+     * withdrawal request for brokers of local entities that required travel rule. Weight(UID): 600
+     * Security Type: USER_DATA Notes: - If &#x60;network&#x60; not send, return with default
+     * network of the coin, but if the address could not match default network, the withdraw will be
+     * rejected. - You can get &#x60;network&#x60; in &#x60;networkList&#x60; of a coin in the
+     * response of &#x60;Get /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - Questionnaire is
+     * different for each local entity, please refer to the &#x60;Withdraw Questionnaire
+     * Contents&#x60; page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
+     * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
+     * questionnaire and use URL-encoded format.
      *
      * @param brokerWithdrawRequest (required)
      * @return ApiResponse&lt;BrokerWithdrawResponse&gt;
@@ -1093,7 +1169,8 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Broker Withdraw </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/Broker-Withdraw">Broker
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#broker-withdraw">Broker
      *     Withdraw (for brokers of local entities that require travel rule) (USER_DATA)
      *     Documentation</a>
      */
@@ -1105,7 +1182,7 @@ public class WalletRestApi {
     /**
      * Check Questionnaire Requirements (for local entities that require travel rule) (supporting
      * network) (USER_DATA) This API will return user-specific Travel Rule questionnaire requirement
-     * information in reference to the current API key. Weight: 1
+     * information in reference to the current API key. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;CheckQuestionnaireRequirementsResponse&gt;
@@ -1119,7 +1196,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/questionnaire-requirements">Check
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#check-questionnaire-requirements">Check
      *     Questionnaire Requirements (for local entities that require travel rule) (supporting
      *     network) (USER_DATA) Documentation</a>
      */
@@ -1129,25 +1206,27 @@ public class WalletRestApi {
     }
 
     /**
-     * Deposit History (for local entities that required travel rule) (supporting network)
-     * (USER_DATA) Fetch deposit history for local entities that required travel rule. * Please
-     * notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time
-     * interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     * Deposit History Travel Rule (for local entities that required travel rule) (supporting
+     * network) (USER_DATA) Fetch deposit history for local entities that required travel rule.
+     * Weight(IP): 1 Security Type: USER_DATA Notes: - Please notice the default
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90
+     * days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 90 days. - Please, note that
+     * due to network-specific characteristics, the returned source address may be inaccurate. If
+     * multiple source addresses are found, only the first one will be returned.
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
-     * @param txId (optional)
+     * @param txId Comma(,) separated list of transaction Ids. (optional)
      * @param tranId Comma(,) separated list of wallet tran Ids. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
      * @param pendingQuestionnaire true: Only return records that pending deposit questionnaire.
      *     false/not provided: return all records. (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
      * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;DepositHistoryTravelRuleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1158,9 +1237,10 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Deposit History </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/Deposit-History">Deposit
-     *     History (for local entities that required travel rule) (supporting network) (USER_DATA)
-     *     Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#deposit-history-travel-rule">Deposit
+     *     History Travel Rule (for local entities that required travel rule) (supporting network)
+     *     (USER_DATA) Documentation</a>
      */
     public ApiResponse<DepositHistoryTravelRuleResponse> depositHistoryTravelRule(
             String trId,
@@ -1192,21 +1272,23 @@ public class WalletRestApi {
     /**
      * Deposit History V2 (for local entities that required travel rule) (supporting network)
      * (USER_DATA) Fetch deposit history for local entities that with required travel rule
-     * information. * Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to
-     * make sure that time interval is within * If both &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; are sent, time between &#x60;&#x60;startTime&#x60;&#x60; and
-     * &#x60;&#x60;endTime&#x60;&#x60; must Weight: 1
+     * information. Weight(IP): 1 Security Type: USER_DATA Notes: - Please notice the default
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90
+     * days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 90 days. - Please, note that
+     * due to network-specific characteristics, the returned source address may be inaccurate. If
+     * multiple source addresses are found, only the first one will be returned.
      *
      * @param depositId Comma(,) separated list of wallet tran Ids. (optional)
-     * @param txId (optional)
+     * @param txId Comma(,) separated list of transaction Ids. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param retrieveQuestionnaire true: return &#x60;questionnaire&#x60; within response.
      *     (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
-     * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
+     * @param offset (optional)
+     * @param limit (optional)
      * @return ApiResponse&lt;DepositHistoryV2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1218,7 +1300,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/Deposit-History-V2">Deposit
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#deposit-history-v2">Deposit
      *     History V2 (for local entities that required travel rule) (supporting network)
      *     (USER_DATA) Documentation</a>
      */
@@ -1247,7 +1329,8 @@ public class WalletRestApi {
 
     /**
      * Fetch address verification list (USER_DATA) Fetch address verification list for user to check
-     * on status and other details for the addresses stored in Address Book. Weight: 1
+     * on status and other details for the addresses stored in Address Book. Weight(IP): 1 Security
+     * Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;FetchAddressVerificationListResponse&gt;
@@ -1261,7 +1344,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/address-verification-list">Fetch
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#fetch-address-verification-list">Fetch
      *     address verification list (USER_DATA) Documentation</a>
      */
     public ApiResponse<FetchAddressVerificationListResponse> fetchAddressVerificationList(
@@ -1270,12 +1353,62 @@ public class WalletRestApi {
     }
 
     /**
-     * Submit Deposit Questionnaire (For local entities that require travel rule) (supporting
+     * Get Country List (USER_DATA) Query the active country list for travel rule questionnaires.
+     * Currently, only supports AU entity. Weight(IP): 1 Security Type: USER_DATA
+     *
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetCountryListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Country list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#get-country-list">Get
+     *     Country List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetCountryListResponse> getCountryList(Long recvWindow) throws ApiException {
+        return travelRuleApi.getCountryList(recvWindow);
+    }
+
+    /**
+     * Get Region List (USER_DATA) Query the active region/city list for a given country. Currently,
+     * only supports AU entity. Weight(IP): 1 Security Type: USER_DATA
+     *
+     * @param countryCode ISO 2-digit country code (from Country List API). (required)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetRegionListResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Region list </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#get-region-list">Get
+     *     Region List (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetRegionListResponse> getRegionList(String countryCode, Long recvWindow)
+            throws ApiException {
+        return travelRuleApi.getRegionList(countryCode, recvWindow);
+    }
+
+    /**
+     * Submit Deposit Questionnaire Broker (For local entities that require travel rule) (supporting
      * network) (USER_DATA) Submit questionnaire for brokers of local entities that require travel
      * rule. The questionnaire is only applies to transactions from un-hosted wallets or VASPs that
-     * are not yet onboarded with GTR. * Questionnaire is different for each local entity, please
-     * refer * If getting error like &#x60;Questionnaire format not valid.&#x60; or
-     * &#x60;Questionnaire must not be blank&#x60;, Weight: 600
+     * are not yet onboarded with GTR. Weight(UID): 600 Security Type: USER_DATA Notes: -
+     * Questionnaire is different for each local entity, please refer to &#x60;Deposit Questionnaire
+     * Content&#x60; page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
+     * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
+     * questionnaire and use URL-encoded format.
      *
      * @param submitDepositQuestionnaireRequest (required)
      * @return ApiResponse&lt;SubmitDepositQuestionnaireResponse&gt;
@@ -1289,9 +1422,9 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info">Submit
-     *     Deposit Questionnaire (For local entities that require travel rule) (supporting network)
-     *     (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire">Submit
+     *     Deposit Questionnaire Broker (For local entities that require travel rule) (supporting
+     *     network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<SubmitDepositQuestionnaireResponse> submitDepositQuestionnaire(
             SubmitDepositQuestionnaireRequest submitDepositQuestionnaireRequest)
@@ -1303,9 +1436,11 @@ public class WalletRestApi {
      * Submit Deposit Questionnaire (For local entities that require travel rule) (supporting
      * network) (USER_DATA) Submit questionnaire for local entities that require travel rule. The
      * questionnaire is only applies to transactions from unhosted wallets or VASPs that are not yet
-     * onboarded with GTR. * Questionnaire is different for each local entity, please refer * If
-     * getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must
-     * not be blank&#x60;, Weight: 600
+     * onboarded with GTR. Weight(UID): 600 Security Type: USER_DATA Notes: - Questionnaire is
+     * different for each local entity, please refer to &#x60;Deposit Questionnaire Content&#x60;
+     * page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
+     * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
+     * questionnaire and use URL-encoded format.
      *
      * @param submitDepositQuestionnaireTravelRuleRequest (required)
      * @return ApiResponse&lt;SubmitDepositQuestionnaireTravelRuleResponse&gt;
@@ -1319,7 +1454,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info">Submit
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire-travel-rule">Submit
      *     Deposit Questionnaire (For local entities that require travel rule) (supporting network)
      *     (USER_DATA) Documentation</a>
      */
@@ -1336,9 +1471,11 @@ public class WalletRestApi {
      * Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
      * network) (USER_DATA) Submit questionnaire for local entities that require travel rule. The
      * questionnaire is only applies to transactions from unhosted wallets or VASPs that are not yet
-     * onboarded with GTR. * Questionnaire is different for each local entity, please refer * If
-     * getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must
-     * not be blank&#x60;, Weight: 600
+     * onboarded with GTR. Weight(UID): 600 Security Type: USER_DATA Notes: - Questionnaire is
+     * different for each local entity, please refer to &#x60;Deposit Questionnaire Content&#x60;
+     * page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
+     * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
+     * questionnaire and use URL-encoded format.
      *
      * @param submitDepositQuestionnaireV2Request (required)
      * @return ApiResponse&lt;SubmitDepositQuestionnaireV2Response&gt;
@@ -1352,7 +1489,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info-v2">Submit
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire-v2">Submit
      *     Deposit Questionnaire V2 (For local entities that require travel rule) (supporting
      *     network) (USER_DATA) Documentation</a>
      */
@@ -1364,7 +1501,7 @@ public class WalletRestApi {
 
     /**
      * VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
-     * Fetch the VASP list for local entities. Weight: 1
+     * Fetch the VASP list for local entities. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;VaspListResponse&gt;
@@ -1378,7 +1515,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/onboarded-vasp-list">VASP
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#vasp-list">VASP
      *     list (for local entities that require travel rule) (supporting network) (USER_DATA)
      *     Documentation</a>
      */
@@ -1387,24 +1524,24 @@ public class WalletRestApi {
     }
 
     /**
-     * Withdraw History (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
-     * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less Weight: 1
+     * Withdraw History Travel Rule (supporting network) (USER_DATA) Fetch withdraw history for
+     * local entities that required travel rule. Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * &#x60;network&#x60; may not be in the response for old withdraw. - Please notice the default
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within 0-90
+     * days. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
+     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less than 90 days.
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
-     * @param txId (optional)
+     * @param txId Comma(,) separated list of transaction Ids. (optional)
      * @param withdrawOrderId client side id for withdrawal, if provided in POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
-     * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param offset (optional)
+     * @param limit (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;WithdrawHistoryV1Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1417,9 +1554,8 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History">Withdraw
-     *     History (for local entities that require travel rule) (supporting network) (USER_DATA)
-     *     Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#withdraw-history-v1">Withdraw
+     *     History Travel Rule (supporting network) (USER_DATA) Documentation</a>
      */
     public ApiResponse<WithdrawHistoryV1Response> withdrawHistoryV1(
             String trId,
@@ -1450,28 +1586,29 @@ public class WalletRestApi {
 
     /**
      * Withdraw History V2 (for local entities that require travel rule) (supporting network)
-     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. *
-     * &#x60;network&#x60; may not be in the response for old withdraw. * Withdrawal made through
-     * /sapi/v1/capital/withdraw/apply may not be in the response. * Please notice the default
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; to make sure that time interval is within * If
-     * both &#x60;startTime&#x60; and &#x60;endTime&#x60;are sent, time between
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60;must be less * If withdrawOrderId is sent, time
-     * between startTime and endTime must be less than 7 days. * If withdrawOrderId is sent,
-     * startTime and endTime are not sent, will return last 7 days records by default. * Maximum
-     * support trId,txId number is 45. * WithdrawOrderId only support 1. * If responsible does not
-     * include withdrawalStatus, please input trId or txId retrieve the data. Weight: 1
+     * (USER_DATA) Fetch withdraw history for local entities that required travel rule. Weight(IP):
+     * 1 Security Type: USER_DATA Notes: - &#x60;network&#x60; may not be in the response for old
+     * withdraw. - Withdrawal made through /sapi/v1/capital/withdraw/apply may not be in the
+     * response. - Please notice the default &#x60;startTime&#x60; and &#x60;endTime&#x60; to make
+     * sure that time interval is within 0-90 days. - If both &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60;are sent, time between &#x60;startTime&#x60;and &#x60;endTime&#x60;must be
+     * less than 90 days. - If withdrawOrderId is sent, time between startTime and endTime must be
+     * less than 7 days. - If withdrawOrderId is sent, startTime and endTime are not sent, will
+     * return last 7 days records by default. - Maximum support trId,txId number is 45. -
+     * WithdrawOrderId only support 1. - If responsible does not include withdrawalStatus, please
+     * input trId or txId retrieve the data.
      *
      * @param trId Comma(,) separated list of travel rule record Ids. (optional)
-     * @param txId (optional)
+     * @param txId Comma(,) separated list of transaction Ids. (optional)
      * @param withdrawOrderId client side id for withdrawal, if provided in POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
      * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
-     * @param offset Default: 0 (optional)
-     * @param limit min 7, max 30, default 7 (optional)
-     * @param startTime (optional)
-     * @param endTime (optional)
+     * @param offset (optional)
+     * @param limit (optional)
+     * @param startTime Default: 90 days from current timestamp (optional)
+     * @param endTime Default: present timestamp (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;WithdrawHistoryV2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1484,7 +1621,7 @@ public class WalletRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History-V2">Withdraw
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#withdraw-history-v2">Withdraw
      *     History V2 (for local entities that require travel rule) (supporting network) (USER_DATA)
      *     Documentation</a>
      */
@@ -1516,13 +1653,16 @@ public class WalletRestApi {
     }
 
     /**
-     * Withdraw (for local entities that require travel rule) (USER_DATA) Submit a withdrawal
-     * request for local entities that required travel rule. * If &#x60;network&#x60; not send,
-     * return with default network of the coin, but if the address could not match default network,
-     * the withdraw will be rejected. * You can get &#x60;network&#x60; and &#x60;isDefault&#x60; in
-     * &#x60;networkList&#x60; of a coin in the response * Questionnaire is different for each local
-     * entity, please refer to * If getting error like &#x60;Questionnaire format not valid.&#x60;
-     * or &#x60;Questionnaire must not be blank&#x60;, Weight: 600
+     * Withdraw Travel Rule (USER_DATA) Submit a withdrawal request for local entities that required
+     * travel rule. Weight(UID): 600 Security Type: USER_DATA Notes: - If &#x60;network&#x60; not
+     * send, return with default network of the coin, but if the address could not match default
+     * network, the withdraw will be rejected. - You can get &#x60;network&#x60; and
+     * &#x60;isDefault&#x60; in &#x60;networkList&#x60; of a coin in the response of &#x60;Get
+     * /sapi/v1/capital/config/getall (HMAC SHA256)&#x60;. - Questionnaire is different for each
+     * local entity, please refer to the &#x60;Withdraw Questionnaire Contents&#x60; page. - If
+     * getting error like &#x60;Questionnaire format not valid.&#x60; or &#x60;Questionnaire must
+     * not be blank&#x60;, please try to verify the format of the questionnaire and use URL-encoded
+     * format.
      *
      * @param withdrawTravelRuleRequest (required)
      * @return ApiResponse&lt;WithdrawTravelRuleResponse&gt;
@@ -1535,8 +1675,9 @@ public class WalletRestApi {
      * <tr><td> 200 </td><td> Withdraw </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/wallet/travel-rule/Withdraw">Withdraw (for
-     *     local entities that require travel rule) (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#withdraw-travel-rule">Withdraw
+     *     Travel Rule (USER_DATA) Documentation</a>
      */
     public ApiResponse<WithdrawTravelRuleResponse> withdrawTravelRule(
             WithdrawTravelRuleRequest withdrawTravelRuleRequest) throws ApiException {

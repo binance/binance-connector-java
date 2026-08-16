@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** SorOrderTestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SorOrderTestRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_COMPUTE_COMMISSION_RATES = "computeCommissionRates";
 
     @SerializedName(SERIALIZED_NAME_COMPUTE_COMMISSION_RATES)
@@ -128,6 +134,25 @@ public class SorOrderTestRequest extends BaseDTO {
 
     public SorOrderTestRequest() {}
 
+    public SorOrderTestRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
     public SorOrderTestRequest computeCommissionRates(
             @jakarta.annotation.Nullable Boolean computeCommissionRates) {
         this.computeCommissionRates = computeCommissionRates;
@@ -135,7 +160,7 @@ public class SorOrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get computeCommissionRates
+     * Default: &#x60;false&#x60;
      *
      * @return computeCommissionRates
      */
@@ -279,7 +304,9 @@ public class SorOrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Orders with the same
+     * &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise
+     * the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -320,7 +347,7 @@ public class SorOrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60; to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -359,7 +386,7 @@ public class SorOrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;.
      *
      * @return strategyType
      */
@@ -400,12 +427,14 @@ public class SorOrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }
@@ -423,7 +452,8 @@ public class SorOrderTestRequest extends BaseDTO {
             return false;
         }
         SorOrderTestRequest sorOrderTestRequest = (SorOrderTestRequest) o;
-        return Objects.equals(
+        return Objects.equals(this.id, sorOrderTestRequest.id)
+                && Objects.equals(
                         this.computeCommissionRates, sorOrderTestRequest.computeCommissionRates)
                 && Objects.equals(this.symbol, sorOrderTestRequest.symbol)
                 && Objects.equals(this.side, sorOrderTestRequest.side)
@@ -444,6 +474,7 @@ public class SorOrderTestRequest extends BaseDTO {
     @Override
     public int hashCode() {
         return Objects.hash(
+                id,
                 computeCommissionRates,
                 symbol,
                 side,
@@ -464,6 +495,7 @@ public class SorOrderTestRequest extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class SorOrderTestRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		computeCommissionRates: ")
                 .append(toIndentedString(computeCommissionRates))
                 .append("\n");
@@ -490,6 +522,11 @@ public class SorOrderTestRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         Boolean computeCommissionRatesValue = getComputeCommissionRates();
         if (computeCommissionRatesValue != null) {
             String computeCommissionRatesValueAsString = computeCommissionRatesValue.toString();
@@ -573,6 +610,10 @@ public class SorOrderTestRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object computeCommissionRatesValue = getComputeCommissionRates();
         if (computeCommissionRatesValue != null) {
             valMap.put("computeCommissionRates", computeCommissionRatesValue);
@@ -655,6 +696,7 @@ public class SorOrderTestRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("computeCommissionRates");
         openapiFields.add("symbol");
         openapiFields.add("side");
@@ -718,6 +760,14 @@ public class SorOrderTestRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

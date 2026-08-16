@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**E** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**iLowerCase** | **String** |  |  [optional] |
+|**E** | **Long** | Event Time |  [optional] |
+|**T** | **Long** | Transaction |  [optional] |
+|**iLowerCase** | **String** | Account Alias |  [optional] |
 |**aLowerCase** | [**AccountUpdateA**](AccountUpdateA.md) |  |  [optional] |
 
 

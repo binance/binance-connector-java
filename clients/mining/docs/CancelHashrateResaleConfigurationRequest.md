@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**configId** | **Long** |  |  |
-|**userName** | **String** |  |  |
-|**recvWindow** | **Long** |  |  [optional] |
+|**configId** | **Long** | Mining ID |  |
+|**userName** | **String** | Mining Account |  |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

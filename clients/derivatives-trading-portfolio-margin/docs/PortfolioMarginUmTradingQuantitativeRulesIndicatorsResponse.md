@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**indicators** | [**PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicators**](PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicators.md) |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
 
 
 

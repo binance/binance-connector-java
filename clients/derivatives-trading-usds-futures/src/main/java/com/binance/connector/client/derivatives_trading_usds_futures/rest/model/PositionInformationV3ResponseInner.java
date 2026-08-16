@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** PositionInformationV3ResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationV3ResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -164,7 +164,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -184,7 +184,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get positionSide
+     * position side
      *
      * @return positionSide
      */
@@ -204,7 +204,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount, positive for long, negative for short
      *
      * @return positionAmt
      */
@@ -224,7 +224,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * entry price
      *
      * @return entryPrice
      */
@@ -244,7 +244,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get breakEvenPrice
+     * break-even price
      *
      * @return breakEvenPrice
      */
@@ -264,7 +264,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get markPrice
+     * current mark price
      *
      * @return markPrice
      */
@@ -284,7 +284,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * unrealized profit
      *
      * @return unRealizedProfit
      */
@@ -304,7 +304,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * liquidation price
      *
      * @return liquidationPrice
      */
@@ -324,7 +324,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get isolatedMargin
+     * isolated margin
      *
      * @return isolatedMargin
      */
@@ -344,7 +344,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get notional
+     * notional value of position
      *
      * @return notional
      */
@@ -364,7 +364,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get marginAsset
+     * margin asset
      *
      * @return marginAsset
      */
@@ -384,7 +384,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get isolatedWallet
+     * isolated wallet (if isolated position)
      *
      * @return isolatedWallet
      */
@@ -404,7 +404,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get initialMargin
+     * initial margin required with current mark price
      *
      * @return initialMargin
      */
@@ -424,7 +424,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin required
      *
      * @return maintMargin
      */
@@ -444,7 +444,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * initial margin required for positions with current mark price
      *
      * @return positionInitialMargin
      */
@@ -465,7 +465,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * initial margin required for open orders with current mark price
      *
      * @return openOrderInitialMargin
      */
@@ -485,7 +485,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get adl
+     * auto-deleverage ranking
      *
      * @return adl
      */
@@ -505,7 +505,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get bidNotional
+     * ignore
      *
      * @return bidNotional
      */
@@ -525,7 +525,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get askNotional
+     * ignore
      *
      * @return askNotional
      */
@@ -545,7 +545,7 @@ public class PositionInformationV3ResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */

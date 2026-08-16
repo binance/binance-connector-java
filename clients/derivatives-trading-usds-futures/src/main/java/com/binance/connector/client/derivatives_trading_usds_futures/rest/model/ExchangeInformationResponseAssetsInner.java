@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** ExchangeInformationResponseAssetsInner */
+/** assets information */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -82,7 +82,7 @@ public class ExchangeInformationResponseAssetsInner {
     }
 
     /**
-     * Get marginAvailable
+     * whether the asset can be used as margin in Multi-Assets mode
      *
      * @return marginAvailable
      */
@@ -102,7 +102,7 @@ public class ExchangeInformationResponseAssetsInner {
     }
 
     /**
-     * Get autoAssetExchange
+     * auto-exchange threshold in Multi-Assets margin mode
      *
      * @return autoAssetExchange
      */

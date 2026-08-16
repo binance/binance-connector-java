@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**uniMaintainUsd** | **String** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**uniMaintainUsd** | **String** | uni Maintain Usd. |  [optional] |
 
 
 

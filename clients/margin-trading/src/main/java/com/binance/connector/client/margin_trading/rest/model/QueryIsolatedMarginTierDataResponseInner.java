@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryIsolatedMarginTierDataResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIsolatedMarginTierDataResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -88,7 +88,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -107,7 +107,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get tier
+     * tier.
      *
      * @return tier
      */
@@ -127,7 +127,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get effectiveMultiple
+     * effective Multiple.
      *
      * @return effectiveMultiple
      */
@@ -147,7 +147,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get initialRiskRatio
+     * initial Risk Ratio.
      *
      * @return initialRiskRatio
      */
@@ -167,7 +167,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get liquidationRiskRatio
+     * liquidation Risk Ratio.
      *
      * @return liquidationRiskRatio
      */
@@ -187,7 +187,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get baseAssetMaxBorrowable
+     * base Asset Max Borrowable.
      *
      * @return baseAssetMaxBorrowable
      */
@@ -208,7 +208,7 @@ public class QueryIsolatedMarginTierDataResponseInner {
     }
 
     /**
-     * Get quoteAssetMaxBorrowable
+     * quote Asset Max Borrowable.
      *
      * @return quoteAssetMaxBorrowable
      */

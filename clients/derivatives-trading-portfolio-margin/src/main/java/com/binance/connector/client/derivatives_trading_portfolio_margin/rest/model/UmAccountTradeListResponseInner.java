@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** UmAccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UmAccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -128,7 +128,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -147,7 +147,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * ID.
      *
      * @return id
      */
@@ -166,7 +166,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -185,7 +185,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -204,7 +204,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -223,7 +223,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -243,7 +243,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedPnl
+     * Realized Pnl.
      *
      * @return realizedPnl
      */
@@ -262,7 +262,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Quote Qty.
      *
      * @return quoteQty
      */
@@ -282,7 +282,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Commission.
      *
      * @return commission
      */
@@ -302,7 +302,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission Asset.
      *
      * @return commissionAsset
      */
@@ -321,7 +321,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Event time.
      *
      * @return time
      */
@@ -340,7 +340,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get buyer
+     * Buyer.
      *
      * @return buyer
      */
@@ -359,7 +359,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get maker
+     * Maker.
      *
      * @return maker
      */
@@ -379,7 +379,7 @@ public class UmAccountTradeListResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,12 +25,12 @@ import com.binance.connector.client.common.websocket.service.StreamBlockingQueue
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.JSON;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Hour24TickerRequest;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Hour24TickerResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourResponse;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsRequest;
 import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsResponse;
 import com.google.gson.reflect.TypeToken;
@@ -47,7 +47,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class PublicApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -89,7 +89,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Diff-Book-Depth-Streams">Diff
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#diff-book-depth-streams">Diff
      *     Book Depth Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> diffBookDepthStreams(
@@ -163,6 +163,94 @@ public class PublicApi {
     }
 
     /**
+     * 24-hour TICKER 24hr ticker info for all symbols. Only symbols whose ticker info changed will
+     * be sent. Update Speed: 1000ms
+     *
+     * @param hour24TickerRequest (required)
+     * @return Hour24TickerResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> 24-hour TICKER </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#hour24-ticker">24-hour
+     *     TICKER Documentation</a>
+     */
+    public StreamBlockingQueueWrapper<Hour24TickerResponse> hour24Ticker(
+            Hour24TickerRequest hour24TickerRequest) throws ApiException {
+        StreamBlockingQueue<String> queue = hour24TickerRaw(hour24TickerRequest);
+
+        TypeToken<Hour24TickerResponse> typeToken = new TypeToken<Hour24TickerResponse>() {};
+
+        return new StreamBlockingQueueWrapper<>(queue, typeToken);
+    }
+
+    public StreamBlockingQueue<String> hour24TickerRaw(Hour24TickerRequest hour24TickerRequest)
+            throws ApiException {
+        hour24TickerValidateBeforeCall(hour24TickerRequest);
+
+        String methodName =
+                "/<symbol>@optionTicker<expirationDate>"
+                        .substring(1)
+                        .replace(
+                                "<id>",
+                                hour24TickerRequest.getId() != null
+                                        ? hour24TickerRequest.getId().toString()
+                                        : "")
+                        .replace(
+                                "<symbol>",
+                                hour24TickerRequest.getSymbol() != null
+                                        ? hour24TickerRequest.getSymbol().toString()
+                                        : "")
+                        .replace(
+                                "<expirationDate>",
+                                hour24TickerRequest.getExpirationDate() != null
+                                        ? hour24TickerRequest.getExpirationDate().toString()
+                                        : "");
+        if ("@".equals(methodName.substring(methodName.length() - 1))) {
+            methodName = methodName.substring(0, methodName.length() - 1);
+        }
+
+        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
+                new RequestWrapperDTO.Builder<Set<String>, Object>()
+                        .id(getRequestID())
+                        .method("SUBSCRIBE")
+                        .params(Collections.singleton(methodName))
+                        .build();
+        Map<String, StreamBlockingQueue<String>> queuesMap =
+                connection.subscribe(requestWrapperDTO);
+        return queuesMap.get(methodName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void hour24TickerValidateBeforeCall(Hour24TickerRequest hour24TickerRequest)
+            throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+
+            Set<ConstraintViolation<Hour24TickerRequest>> violations =
+                    validator.validate(hour24TickerRequest);
+
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
      * Individual Symbol Book Ticker Streams Pushes any update to the best bid or ask&#39;s price or
      * quantity in real-time for a specified symbol. Update Speed: Real-Time
      *
@@ -178,7 +266,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Individual-Symbol-Book-Ticker-Streams">Individual
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#individual-symbol-book-ticker-streams">Individual
      *     Symbol Book Ticker Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse>
@@ -258,8 +346,8 @@ public class PublicApi {
     }
 
     /**
-     * Partial Book Depth Streams Top **&lt;levels\\&gt;** bids and asks, Valid levels are
-     * **&lt;levels\\&gt;** are 5, 10, 20. Update Speed: 100ms or 500ms
+     * Partial Book Depth Streams Top &lt;levels&gt; bids and asks. Valid &lt;levels&gt; are 5, 10,
+     * 20. Update Speed: 100ms or 500ms
      *
      * @param partialBookDepthStreamsRequest (required)
      * @return PartialBookDepthStreamsResponse
@@ -273,7 +361,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Partial-Book-Depth-Streams">Partial
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#partial-book-depth-streams">Partial
      *     Book Depth Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
@@ -353,89 +441,6 @@ public class PublicApi {
     }
 
     /**
-     * 24-hour TICKER 24hr ticker info for all symbols. Only symbols whose ticker info changed will
-     * be sent. Update Speed: 1000ms
-     *
-     * @param ticker24HourRequest (required)
-     * @return Ticker24HourResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table border="1">
-     * <caption>Response Details</caption>
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> 24-hour TICKER </td><td>  -  </td></tr>
-     * </table>
-     *
-     * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/24-hour-TICKER">24-hour
-     *     TICKER Documentation</a>
-     */
-    public StreamBlockingQueueWrapper<Ticker24HourResponse> ticker24Hour(
-            Ticker24HourRequest ticker24HourRequest) throws ApiException {
-        StreamBlockingQueue<String> queue = ticker24HourRaw(ticker24HourRequest);
-
-        TypeToken<Ticker24HourResponse> typeToken = new TypeToken<Ticker24HourResponse>() {};
-
-        return new StreamBlockingQueueWrapper<>(queue, typeToken);
-    }
-
-    public StreamBlockingQueue<String> ticker24HourRaw(Ticker24HourRequest ticker24HourRequest)
-            throws ApiException {
-        ticker24HourValidateBeforeCall(ticker24HourRequest);
-
-        String methodName =
-                "/<symbol>@optionTicker"
-                        .substring(1)
-                        .replace(
-                                "<id>",
-                                ticker24HourRequest.getId() != null
-                                        ? ticker24HourRequest.getId().toString()
-                                        : "")
-                        .replace(
-                                "<symbol>",
-                                ticker24HourRequest.getSymbol() != null
-                                        ? ticker24HourRequest.getSymbol().toString()
-                                        : "");
-        if ("@".equals(methodName.substring(methodName.length() - 1))) {
-            methodName = methodName.substring(0, methodName.length() - 1);
-        }
-
-        RequestWrapperDTO<Set<String>, Object> requestWrapperDTO =
-                new RequestWrapperDTO.Builder<Set<String>, Object>()
-                        .id(getRequestID())
-                        .method("SUBSCRIBE")
-                        .params(Collections.singleton(methodName))
-                        .build();
-        Map<String, StreamBlockingQueue<String>> queuesMap =
-                connection.subscribe(requestWrapperDTO);
-        return queuesMap.get(methodName);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private void ticker24HourValidateBeforeCall(Ticker24HourRequest ticker24HourRequest)
-            throws ApiException {
-        try {
-            Validator validator =
-                    Validation.byDefaultProvider()
-                            .configure()
-                            .messageInterpolator(new ParameterMessageInterpolator())
-                            .buildValidatorFactory()
-                            .getValidator();
-
-            Set<ConstraintViolation<Ticker24HourRequest>> violations =
-                    validator.validate(ticker24HourRequest);
-
-            if (!violations.isEmpty()) {
-                throw new ConstraintViolationException(violations);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            throw new ApiException(e.getMessage());
-        }
-    }
-
-    /**
      * Trade Streams The Trade Streams push raw trade information for specific symbol or underlying
      * asset.
      * E.g.[btcusdt@optionTrade](wss://fstream.binance.com/public/stream?streams&#x3D;btcusdt@optionTrade)
@@ -453,7 +458,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Trade-Streams">Trade
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#trade-streams">Trade
      *     Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<TradeStreamsResponse> tradeStreams(

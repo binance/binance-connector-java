@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
-|**orderListId** | **Long** |  |  [optional] |
+|**orderListId** | **Long** | Unless it&#39;s part of an order list, value will be -1 |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**transactTime** | **Long** |  |  [optional] |
 |**price** | **String** |  |  [optional] |

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** ContinuousContractKlineCandlestickStreamsRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -48,20 +49,20 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_PAIR = "pair";
 
     @SerializedName(SERIALIZED_NAME_PAIR)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private String pair;
 
     public static final String SERIALIZED_NAME_CONTRACT_TYPE = "contractType";
 
     @SerializedName(SERIALIZED_NAME_CONTRACT_TYPE)
-    @jakarta.annotation.Nonnull
-    private String contractType;
+    @jakarta.annotation.Nullable
+    private ContractType contractType;
 
     public static final String SERIALIZED_NAME_INTERVAL = "interval";
 
     @SerializedName(SERIALIZED_NAME_INTERVAL)
-    @jakarta.annotation.Nonnull
-    private String interval;
+    @jakarta.annotation.Nullable
+    private Interval interval;
 
     public ContinuousContractKlineCandlestickStreamsRequest() {}
 
@@ -72,7 +73,7 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
     }
 
     /**
-     * Get id
+     * Unique WebSocket request ID.
      *
      * @return id
      */
@@ -86,28 +87,27 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
     }
 
     public ContinuousContractKlineCandlestickStreamsRequest pair(
-            @jakarta.annotation.Nonnull String pair) {
+            @jakarta.annotation.Nullable String pair) {
         this.pair = pair;
         return this;
     }
 
     /**
-     * Get pair
+     * The pair parameter
      *
      * @return pair
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     public String getPair() {
         return pair;
     }
 
-    public void setPair(@jakarta.annotation.Nonnull String pair) {
+    public void setPair(@jakarta.annotation.Nullable String pair) {
         this.pair = pair;
     }
 
     public ContinuousContractKlineCandlestickStreamsRequest contractType(
-            @jakarta.annotation.Nonnull String contractType) {
+            @jakarta.annotation.Nullable ContractType contractType) {
         this.contractType = contractType;
         return this;
     }
@@ -117,18 +117,18 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
      *
      * @return contractType
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getContractType() {
+    @jakarta.annotation.Nullable
+    @Valid
+    public ContractType getContractType() {
         return contractType;
     }
 
-    public void setContractType(@jakarta.annotation.Nonnull String contractType) {
+    public void setContractType(@jakarta.annotation.Nullable ContractType contractType) {
         this.contractType = contractType;
     }
 
     public ContinuousContractKlineCandlestickStreamsRequest interval(
-            @jakarta.annotation.Nonnull String interval) {
+            @jakarta.annotation.Nullable Interval interval) {
         this.interval = interval;
         return this;
     }
@@ -138,13 +138,13 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
      *
      * @return interval
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    public String getInterval() {
+    @jakarta.annotation.Nullable
+    @Valid
+    public Interval getInterval() {
         return interval;
     }
 
-    public void setInterval(@jakarta.annotation.Nonnull String interval) {
+    public void setInterval(@jakarta.annotation.Nullable Interval interval) {
         this.interval = interval;
     }
 
@@ -199,12 +199,12 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
             String pairValueAsString = pairValue.toString();
             valMap.put("pair", pairValueAsString);
         }
-        String contractTypeValue = getContractType();
+        ContractType contractTypeValue = getContractType();
         if (contractTypeValue != null) {
             String contractTypeValueAsString = contractTypeValue.toString();
             valMap.put("contractType", contractTypeValueAsString);
         }
-        String intervalValue = getInterval();
+        Interval intervalValue = getInterval();
         if (intervalValue != null) {
             String intervalValueAsString = intervalValue.toString();
             valMap.put("interval", intervalValueAsString);
@@ -269,9 +269,6 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("pair");
-        openapiRequiredFields.add("contractType");
-        openapiRequiredFields.add("interval");
     }
 
     /**
@@ -309,17 +306,6 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField :
-                ContinuousContractKlineCandlestickStreamsRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
         if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
                 && !jsonObj.get("id").isJsonPrimitive()) {
@@ -329,26 +315,21 @@ public class ContinuousContractKlineCandlestickStreamsRequest extends BaseDTO {
                                     + " got `%s`",
                             jsonObj.get("id").toString()));
         }
-        if (!jsonObj.get("pair").isJsonPrimitive()) {
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `pair` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("pair").toString()));
         }
-        if (!jsonObj.get("contractType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `contractType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("contractType").toString()));
+        // validate the optional field `contractType`
+        if (jsonObj.get("contractType") != null && !jsonObj.get("contractType").isJsonNull()) {
+            ContractType.validateJsonElement(jsonObj.get("contractType"));
         }
-        if (!jsonObj.get("interval").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `interval` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("interval").toString()));
+        // validate the optional field `interval`
+        if (jsonObj.get("interval") != null && !jsonObj.get("interval").isJsonNull()) {
+            Interval.validateJsonElement(jsonObj.get("interval"));
         }
     }
 

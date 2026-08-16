@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountCancelOcoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelOcoResponse {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -111,7 +111,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -131,7 +131,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get contingencyType
+     * contingency Type.
      *
      * @return contingencyType
      */
@@ -151,7 +151,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get listStatusType
+     * list Status Type.
      *
      * @return listStatusType
      */
@@ -171,7 +171,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get listOrderStatus
+     * list Order Status.
      *
      * @return listOrderStatus
      */
@@ -191,7 +191,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get listClientOrderId
+     * list Client Order Id.
      *
      * @return listClientOrderId
      */
@@ -211,7 +211,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get transactionTime
+     * transaction Time.
      *
      * @return transactionTime
      */
@@ -230,7 +230,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -250,7 +250,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get isIsolated
+     * if isolated margin
      *
      * @return isIsolated
      */
@@ -280,7 +280,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get orders
+     * orders list.
      *
      * @return orders
      */
@@ -313,7 +313,7 @@ public class MarginAccountCancelOcoResponse {
     }
 
     /**
-     * Get orderReports
+     * order Reports.
      *
      * @return orderReports
      */

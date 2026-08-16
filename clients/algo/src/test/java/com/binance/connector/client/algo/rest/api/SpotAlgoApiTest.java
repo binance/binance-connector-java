@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -18,6 +18,7 @@ import com.binance.connector.client.algo.rest.model.CancelAlgoOrderSpotAlgoRespo
 import com.binance.connector.client.algo.rest.model.QueryCurrentAlgoOpenOrdersSpotAlgoResponse;
 import com.binance.connector.client.algo.rest.model.QueryHistoricalAlgoOrdersSpotAlgoResponse;
 import com.binance.connector.client.algo.rest.model.QuerySubOrdersSpotAlgoResponse;
+import com.binance.connector.client.algo.rest.model.Side;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceSpotAlgoRequest;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceSpotAlgoResponse;
 import com.binance.connector.client.common.ApiClient;
@@ -30,6 +31,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -81,15 +83,15 @@ public class SpotAlgoApiTest {
     }
 
     /**
-     * Cancel Algo Order(TRADE)
+     * Cancel Spot Algo Order (TRADE)
      *
-     * <p>Cancel an open TWAP order Weight: 1
+     * <p>Cancel an open TWAP order Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void cancelAlgoOrderSpotAlgoTest() throws ApiException, CryptoException {
-        Long algoId = 1L;
+    public void cancelAlgoOrderSpotAlgoTest() throws ApiException, CryptoException, IOException {
+        Long algoId = 14511L;
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderSpotAlgoResponse> response =
                 api.cancelAlgoOrderSpotAlgo(algoId, recvWindow);
@@ -104,23 +106,23 @@ public class SpotAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("algoId=14511&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "algoId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "4dcc675276dcc7a5eddf3f11f98e221dc22b447b227be14ec73a51c61602f2a5",
+                "7e97b50e23065ea20f9c765a8a2c529c739296123417a24943cf07ae2806dc37",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/algo/spot/order", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Current Algo Open Orders(USER_DATA)
+     * Query Current Spot Algo Open Orders (USER_DATA)
      *
-     * <p>Get all open SPOT TWAP orders Weight: 1
+     * <p>Get all open SPOT TWAP orders Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCurrentAlgoOpenOrdersSpotAlgoTest() throws ApiException, CryptoException {
+    public void queryCurrentAlgoOpenOrdersSpotAlgoTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentAlgoOpenOrdersSpotAlgoResponse> response =
                 api.queryCurrentAlgoOpenOrdersSpotAlgo(recvWindow);
@@ -135,28 +137,31 @@ public class SpotAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/algo/spot/openOrders", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/algo/spot/openOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Historical Algo Orders(USER_DATA)
+     * Query Historical Spot Algo Orders (USER_DATA)
      *
-     * <p>Get all historical SPOT TWAP orders Weight: 1
+     * <p>Get all historical SPOT TWAP orders Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryHistoricalAlgoOrdersSpotAlgoTest() throws ApiException, CryptoException {
+    public void queryHistoricalAlgoOrdersSpotAlgoTest()
+            throws ApiException, CryptoException, IOException {
         String symbol = "BTCUSDT";
-        String side = "BUY";
+        Side side = Side.BUY;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long page = 1L;
-        Long pageSize = 100L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QueryHistoricalAlgoOrdersSpotAlgoResponse> response =
                 api.queryHistoricalAlgoOrdersSpotAlgo(
@@ -173,26 +178,25 @@ public class SpotAlgoApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "symbol=BTCUSDT&side=BUY&startTime=1623319461670&endTime=1641782889000&page=1&pageSize=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "symbol=BTCUSDT&side=BUY&startTime=1623319461670&endTime=1641782889000&page=1&pageSize=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "0e8d5de4dda9f55852d3ecc886e0ca289d66e4696a2fc21f553d9348242a14f1",
+                "2089aa2e5f9888581470a24fc9a55bf741b98825263730d7eddc93fb90b8ed6a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/algo/spot/historicalOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Sub Orders(USER_DATA)
+     * Query Spot Sub Orders (USER_DATA)
      *
-     * <p>Get respective sub orders for a specified algoId Weight: 1
+     * <p>Get respective sub orders for a specified algoId Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySubOrdersSpotAlgoTest() throws ApiException, CryptoException {
+    public void querySubOrdersSpotAlgoTest() throws ApiException, CryptoException, IOException {
         Long algoId = 1L;
         Long page = 1L;
-        Long pageSize = 100L;
+        Long pageSize = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QuerySubOrdersSpotAlgoResponse> response =
                 api.querySubOrdersSpotAlgo(algoId, page, pageSize, recvWindow);
@@ -207,30 +211,28 @@ public class SpotAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("algoId=1&page=1&pageSize=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "algoId=1&page=1&pageSize=100&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a862a7c54c6a5c1f71b2563d1d86c61f8763cb9514dc20641231cc60f7ac0445",
+                "8f08b0b682ccd10346cafd6844e4eeffd3ac897353e3a75701c8ef72a6094a79",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/algo/spot/subOrders", actualRequest.url().encodedPath());
     }
 
     /**
-     * Time-Weighted Average Price(Twap) New Order(TRADE)
+     * Time-Weighted Spot Average Price(Twap) New Order (TRADE)
      *
-     * <p>Place a new spot TWAP order with Algo service. * Total Algo open orders max allowed:
-     * &#x60;20&#x60; orders. Weight: 3000
+     * <p>Place a new spot TWAP order with Algo service. Weight(UID): 3000 Security Type: TRADE
+     * Notes: - Total Algo open orders max allowed: &#x60;20&#x60; orders.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void timeWeightedAveragePriceSpotAlgoTest() throws ApiException, CryptoException {
+    public void timeWeightedAveragePriceSpotAlgoTest()
+            throws ApiException, CryptoException, IOException {
         TimeWeightedAveragePriceSpotAlgoRequest timeWeightedAveragePriceSpotAlgoRequest =
                 new TimeWeightedAveragePriceSpotAlgoRequest();
-
         timeWeightedAveragePriceSpotAlgoRequest.symbol("BTCUSDT");
-        timeWeightedAveragePriceSpotAlgoRequest.side("BUY");
+        timeWeightedAveragePriceSpotAlgoRequest.side(Side.BUY);
         timeWeightedAveragePriceSpotAlgoRequest.quantity(1d);
         timeWeightedAveragePriceSpotAlgoRequest.duration(5000L);
 
@@ -248,8 +250,7 @@ public class SpotAlgoApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000duration=5000&symbol=BTCUSDT&side=BUY&quantity=1",
-                signInputCaptor.getValue());
+                "timestamp=1736393892000duration=5000&symbol=BTCUSDT&side=BUY&quantity=1", signInputCaptor.getValue());
         assertEquals(
                 "cedadcc9e9190f0546a7247d2b7b627c8814e5e1f47b616211656ed04130a1a6",
                 actualRequest.url().queryParameter("signature"));
