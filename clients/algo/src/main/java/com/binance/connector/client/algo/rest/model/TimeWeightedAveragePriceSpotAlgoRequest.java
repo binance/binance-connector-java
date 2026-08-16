@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** TimeWeightedAveragePriceSpotAlgoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TimeWeightedAveragePriceSpotAlgoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -47,7 +47,7 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE)
     @jakarta.annotation.Nonnull
-    private String side;
+    private Side side;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -82,7 +82,7 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
     }
 
     /**
-     * Get symbol
+     * Trading symbol eg. BTCUSDT
      *
      * @return symbol
      */
@@ -96,7 +96,7 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
         this.symbol = symbol;
     }
 
-    public TimeWeightedAveragePriceSpotAlgoRequest side(@jakarta.annotation.Nonnull String side) {
+    public TimeWeightedAveragePriceSpotAlgoRequest side(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
         return this;
     }
@@ -108,11 +108,12 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getSide() {
+    @Valid
+    public Side getSide() {
         return side;
     }
 
-    public void setSide(@jakarta.annotation.Nonnull String side) {
+    public void setSide(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
     }
 
@@ -123,7 +124,8 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
     }
 
     /**
-     * Get quantity
+     * Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol.
+     * Please reduce your size if you order is above the maximum notional per order.
      *
      * @return quantity
      */
@@ -145,12 +147,14 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
     }
 
     /**
-     * Get duration
+     * Duration for TWAP orders in seconds minimum: 300 maximum: 86400
      *
      * @return duration
      */
     @jakarta.annotation.Nonnull
     @NotNull
+    @Min(300L)
+    @Max(86400L)
     public Long getDuration() {
         return duration;
     }
@@ -166,11 +170,13 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
     }
 
     /**
-     * Get clientAlgoId
+     * A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will
+     * give default value
      *
      * @return clientAlgoId
      */
     @jakarta.annotation.Nullable
+    @Size(min = 32, max = 32)
     public String getClientAlgoId() {
         return clientAlgoId;
     }
@@ -186,7 +192,7 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
     }
 
     /**
-     * Get limitPrice
+     * Limit price of the order; If it is not sent, will place order by market price by default
      *
      * @return limitPrice
      */
@@ -347,13 +353,8 @@ public class TimeWeightedAveragePriceSpotAlgoRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if (!jsonObj.get("side").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `side` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("side").toString()));
-        }
+        // validate the required field `side`
+        Side.validateJsonElement(jsonObj.get("side"));
         if ((jsonObj.get("clientAlgoId") != null && !jsonObj.get("clientAlgoId").isJsonNull())
                 && !jsonObj.get("clientAlgoId").isJsonPrimitive()) {
             throw new IllegalArgumentException(

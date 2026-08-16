@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** TestOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TestOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -59,25 +59,19 @@ public class TestOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private String type;
+    private OrderType type;
 
-    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
+    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
-    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
+    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private TimeInForce timeInForce;
+    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
     @jakarta.annotation.Nullable
     private Double quantity;
-
-    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
-
-    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
-    @jakarta.annotation.Nullable
-    private String reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -101,7 +95,7 @@ public class TestOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
     @jakarta.annotation.Nullable
-    private String closePosition;
+    private ClosePosition closePosition;
 
     public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
 
@@ -115,23 +109,29 @@ public class TestOrderRequest {
     @jakarta.annotation.Nullable
     private Double callbackRate;
 
+    public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
+
+    @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
+    @jakarta.annotation.Nullable
+    private TimeInForce timeInForce;
+
     public static final String SERIALIZED_NAME_WORKING_TYPE = "workingType";
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nullable
-    private WorkingType workingType;
+    private WorkingType workingType = WorkingType.CONTRACT_PRICE;
 
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private String priceProtect;
+    private PriceProtect priceProtect = PriceProtect.FALSE;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType;
+    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
 
     public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
 
@@ -144,7 +144,7 @@ public class TestOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionMode selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode = SelfTradePreventionMode.NONE;
 
     public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
 
@@ -221,7 +221,7 @@ public class TestOrderRequest {
         this.positionSide = positionSide;
     }
 
-    public TestOrderRequest type(@jakarta.annotation.Nonnull String type) {
+    public TestOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -233,32 +233,33 @@ public class TestOrderRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getType() {
+    @Valid
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull String type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
-    public TestOrderRequest timeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
-        this.timeInForce = timeInForce;
+    public TestOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
         return this;
     }
 
     /**
-     * Get timeInForce
+     * Get reduceOnly
      *
-     * @return timeInForce
+     * @return reduceOnly
      */
     @jakarta.annotation.Nullable
     @Valid
-    public TimeInForce getTimeInForce() {
-        return timeInForce;
+    public ReduceOnly getReduceOnly() {
+        return reduceOnly;
     }
 
-    public void setTimeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
-        this.timeInForce = timeInForce;
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
     }
 
     public TestOrderRequest quantity(@jakarta.annotation.Nullable Double quantity) {
@@ -267,7 +268,7 @@ public class TestOrderRequest {
     }
 
     /**
-     * Get quantity
+     * Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
      *
      * @return quantity
      */
@@ -279,25 +280,6 @@ public class TestOrderRequest {
 
     public void setQuantity(@jakarta.annotation.Nullable Double quantity) {
         this.quantity = quantity;
-    }
-
-    public TestOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
-        this.reduceOnly = reduceOnly;
-        return this;
-    }
-
-    /**
-     * Get reduceOnly
-     *
-     * @return reduceOnly
-     */
-    @jakarta.annotation.Nullable
-    public String getReduceOnly() {
-        return reduceOnly;
-    }
-
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
-        this.reduceOnly = reduceOnly;
     }
 
     public TestOrderRequest price(@jakarta.annotation.Nullable Double price) {
@@ -326,7 +308,8 @@ public class TestOrderRequest {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60;
      *
      * @return newClientOrderId
      */
@@ -345,7 +328,7 @@ public class TestOrderRequest {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
      *
      * @return stopPrice
      */
@@ -359,7 +342,8 @@ public class TestOrderRequest {
         this.stopPrice = stopPrice;
     }
 
-    public TestOrderRequest closePosition(@jakarta.annotation.Nullable String closePosition) {
+    public TestOrderRequest closePosition(
+            @jakarta.annotation.Nullable ClosePosition closePosition) {
         this.closePosition = closePosition;
         return this;
     }
@@ -370,11 +354,12 @@ public class TestOrderRequest {
      * @return closePosition
      */
     @jakarta.annotation.Nullable
-    public String getClosePosition() {
+    @Valid
+    public ClosePosition getClosePosition() {
         return closePosition;
     }
 
-    public void setClosePosition(@jakarta.annotation.Nullable String closePosition) {
+    public void setClosePosition(@jakarta.annotation.Nullable ClosePosition closePosition) {
         this.closePosition = closePosition;
     }
 
@@ -384,7 +369,8 @@ public class TestOrderRequest {
     }
 
     /**
-     * Get activationPrice
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting
+     * different &#x60;workingType&#x60;)
      *
      * @return activationPrice
      */
@@ -404,18 +390,40 @@ public class TestOrderRequest {
     }
 
     /**
-     * Get callbackRate
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders minimum: 0.1 maximum: 5
      *
      * @return callbackRate
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMin("0.1")
+    @DecimalMax("5")
     public Double getCallbackRate() {
         return callbackRate;
     }
 
     public void setCallbackRate(@jakarta.annotation.Nullable Double callbackRate) {
         this.callbackRate = callbackRate;
+    }
+
+    public TestOrderRequest timeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+        return this;
+    }
+
+    /**
+     * Get timeInForce
+     *
+     * @return timeInForce
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TimeInForce getTimeInForce() {
+        return timeInForce;
+    }
+
+    public void setTimeInForce(@jakarta.annotation.Nullable TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
     }
 
     public TestOrderRequest workingType(@jakarta.annotation.Nullable WorkingType workingType) {
@@ -438,7 +446,7 @@ public class TestOrderRequest {
         this.workingType = workingType;
     }
 
-    public TestOrderRequest priceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public TestOrderRequest priceProtect(@jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
         return this;
     }
@@ -449,11 +457,12 @@ public class TestOrderRequest {
      * @return priceProtect
      */
     @jakarta.annotation.Nullable
-    public String getPriceProtect() {
+    @Valid
+    public PriceProtect getPriceProtect() {
         return priceProtect;
     }
 
-    public void setPriceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public void setPriceProtect(@jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
     }
 
@@ -527,7 +536,10 @@ public class TestOrderRequest {
     }
 
     /**
-     * Get goodTillDate
+     * order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set
+     * to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be
+     * ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds
+     * and smaller than 253402300799000
      *
      * @return goodTillDate
      */
@@ -572,15 +584,15 @@ public class TestOrderRequest {
                 && Objects.equals(this.side, testOrderRequest.side)
                 && Objects.equals(this.positionSide, testOrderRequest.positionSide)
                 && Objects.equals(this.type, testOrderRequest.type)
-                && Objects.equals(this.timeInForce, testOrderRequest.timeInForce)
-                && Objects.equals(this.quantity, testOrderRequest.quantity)
                 && Objects.equals(this.reduceOnly, testOrderRequest.reduceOnly)
+                && Objects.equals(this.quantity, testOrderRequest.quantity)
                 && Objects.equals(this.price, testOrderRequest.price)
                 && Objects.equals(this.newClientOrderId, testOrderRequest.newClientOrderId)
                 && Objects.equals(this.stopPrice, testOrderRequest.stopPrice)
                 && Objects.equals(this.closePosition, testOrderRequest.closePosition)
                 && Objects.equals(this.activationPrice, testOrderRequest.activationPrice)
                 && Objects.equals(this.callbackRate, testOrderRequest.callbackRate)
+                && Objects.equals(this.timeInForce, testOrderRequest.timeInForce)
                 && Objects.equals(this.workingType, testOrderRequest.workingType)
                 && Objects.equals(this.priceProtect, testOrderRequest.priceProtect)
                 && Objects.equals(this.newOrderRespType, testOrderRequest.newOrderRespType)
@@ -598,15 +610,15 @@ public class TestOrderRequest {
                 side,
                 positionSide,
                 type,
-                timeInForce,
-                quantity,
                 reduceOnly,
+                quantity,
                 price,
                 newClientOrderId,
                 stopPrice,
                 closePosition,
                 activationPrice,
                 callbackRate,
+                timeInForce,
                 workingType,
                 priceProtect,
                 newOrderRespType,
@@ -624,15 +636,15 @@ public class TestOrderRequest {
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
-        sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
-        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		newClientOrderId: ").append(toIndentedString(newClientOrderId)).append("\n");
         sb.append("		stopPrice: ").append(toIndentedString(stopPrice)).append("\n");
         sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		activationPrice: ").append(toIndentedString(activationPrice)).append("\n");
         sb.append("		callbackRate: ").append(toIndentedString(callbackRate)).append("\n");
+        sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
         sb.append("		newOrderRespType: ").append(toIndentedString(newOrderRespType)).append("\n");
@@ -665,18 +677,14 @@ public class TestOrderRequest {
         String typeValueAsString = "";
         typeValueAsString = typeValue.toString();
         sb.append("type=").append(urlEncode(typeValueAsString)).append("");
-        Object timeInForceValue = getTimeInForce();
-        String timeInForceValueAsString = "";
-        timeInForceValueAsString = timeInForceValue.toString();
-        sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
-        Object quantityValue = getQuantity();
-        String quantityValueAsString = "";
-        quantityValueAsString = quantityValue.toString();
-        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
         Object reduceOnlyValue = getReduceOnly();
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object quantityValue = getQuantity();
+        String quantityValueAsString = "";
+        quantityValueAsString = quantityValue.toString();
+        sb.append("quantity=").append(urlEncode(quantityValueAsString)).append("");
         Object priceValue = getPrice();
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
@@ -701,6 +709,10 @@ public class TestOrderRequest {
         String callbackRateValueAsString = "";
         callbackRateValueAsString = callbackRateValue.toString();
         sb.append("callbackRate=").append(urlEncode(callbackRateValueAsString)).append("");
+        Object timeInForceValue = getTimeInForce();
+        String timeInForceValueAsString = "";
+        timeInForceValueAsString = timeInForceValue.toString();
+        sb.append("timeInForce=").append(urlEncode(timeInForceValueAsString)).append("");
         Object workingTypeValue = getWorkingType();
         String workingTypeValueAsString = "";
         workingTypeValueAsString = workingTypeValue.toString();
@@ -763,15 +775,15 @@ public class TestOrderRequest {
         openapiFields.add("side");
         openapiFields.add("positionSide");
         openapiFields.add("type");
-        openapiFields.add("timeInForce");
-        openapiFields.add("quantity");
         openapiFields.add("reduceOnly");
+        openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("newClientOrderId");
         openapiFields.add("stopPrice");
         openapiFields.add("closePosition");
         openapiFields.add("activationPrice");
         openapiFields.add("callbackRate");
+        openapiFields.add("timeInForce");
         openapiFields.add("workingType");
         openapiFields.add("priceProtect");
         openapiFields.add("newOrderRespType");
@@ -828,24 +840,11 @@ public class TestOrderRequest {
         if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
             PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
-        if (!jsonObj.get("type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("type").toString()));
-        }
-        // validate the optional field `timeInForce`
-        if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
-            TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
-        }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the required field `type`
+        OrderType.validateJsonElement(jsonObj.get("type"));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())
@@ -856,25 +855,21 @@ public class TestOrderRequest {
                                     + " JSON string but got `%s`",
                             jsonObj.get("newClientOrderId").toString()));
         }
-        if ((jsonObj.get("closePosition") != null && !jsonObj.get("closePosition").isJsonNull())
-                && !jsonObj.get("closePosition").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `closePosition` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("closePosition").toString()));
+        // validate the optional field `closePosition`
+        if (jsonObj.get("closePosition") != null && !jsonObj.get("closePosition").isJsonNull()) {
+            ClosePosition.validateJsonElement(jsonObj.get("closePosition"));
+        }
+        // validate the optional field `timeInForce`
+        if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
+            TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
         // validate the optional field `workingType`
         if (jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull()) {
             WorkingType.validateJsonElement(jsonObj.get("workingType"));
         }
-        if ((jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull())
-                && !jsonObj.get("priceProtect").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceProtect` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceProtect").toString()));
+        // validate the optional field `priceProtect`
+        if (jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull()) {
+            PriceProtect.validateJsonElement(jsonObj.get("priceProtect"));
         }
         // validate the optional field `newOrderRespType`
         if (jsonObj.get("newOrderRespType") != null

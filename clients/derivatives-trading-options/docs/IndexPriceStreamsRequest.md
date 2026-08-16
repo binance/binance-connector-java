@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
+|**id** | **Integer** | Unique WebSocket request ID. |  [optional] |
 
 
 

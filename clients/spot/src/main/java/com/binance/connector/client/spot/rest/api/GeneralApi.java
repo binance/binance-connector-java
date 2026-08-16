@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -48,7 +48,7 @@ public class GeneralApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/10.1.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -88,12 +88,24 @@ public class GeneralApi {
     /**
      * Build call for exchangeInfo
      *
-     * @param symbol Symbol to query (optional)
-     * @param symbols List of symbols to query (optional)
-     * @param permissions List of permissions to query (optional)
+     * @param symbol Example: curl -X GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?symbol&#x3D;BNBBTC\&quot; (optional)
+     * @param symbols Examples: curl -X GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?symbols&#x3D;%5B%22BNBBTC%22,%22BTCUSDT%22%5D\&quot;
+     *     or curl -g -X GET
+     *     &#39;https://api.binance.com/api/v3/exchangeInfo?symbols&#x3D;[\&quot;BTCUSDT\&quot;,\&quot;BNBBTC\&quot;]&#39;
+     *     (optional)
+     * @param permissions Examples: curl -X GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;SPOT\&quot; curl -X
+     *     GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;%5B%22MARGIN%22%2C%22LEVERAGED%22%5D\&quot;
+     *     or curl -g -X GET
+     *     &#39;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;[\&quot;MARGIN\&quot;,\&quot;LEVERAGED\&quot;]&#39;
+     *     (optional)
      * @param showPermissionSets Controls whether the content of the &#x60;permissionSets&#x60;
-     *     field is populated or not. Defaults to &#x60;true&#x60; (optional)
-     * @param symbolStatus (optional)
+     *     field is populated or not. (optional)
+     * @param symbolStatus Filters for symbols that have this &#x60;tradingStatus&#x60;. Cannot be
+     *     used in combination with &#x60;symbols&#x60; or &#x60;symbol&#x60;. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -104,7 +116,7 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#exchange-information">Exchange
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#exchange-info">Exchange
      *     information Documentation</a>
      */
     private okhttp3.Call exchangeInfoCall(
@@ -239,14 +251,45 @@ public class GeneralApi {
     }
 
     /**
-     * Exchange information Current exchange trading rules and symbol information Weight: 20
+     * Exchange information Current exchange trading rules and symbol information Weight(IP): 20
+     * Security Type: NONE Notes: **Data Source:** Memory **Notes:** * If the value provided to
+     * &#x60;symbol&#x60; or &#x60;symbols&#x60; do not exist, the endpoint will throw an error
+     * saying the symbol is invalid. * All parameters are optional. * &#x60;permissions&#x60; can
+     * support single or multiple values (e.g. &#x60;SPOT&#x60;,
+     * &#x60;[\&quot;MARGIN\&quot;,\&quot;LEVERAGED\&quot;]&#x60;). This cannot be used in
+     * combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;. * If &#x60;permissions&#x60;
+     * parameter not provided, all symbols that have either &#x60;SPOT&#x60;, &#x60;MARGIN&#x60;, or
+     * &#x60;LEVERAGED&#x60; permission will be exposed. * To display symbols with any permission
+     * you need to specify them explicitly in &#x60;permissions&#x60;: (e.g.
+     * &#x60;[\&quot;SPOT\&quot;,\&quot;MARGIN\&quot;,...]&#x60;.). See Account and Symbol
+     * Permissions for the full list. **Examples of Symbol Permissions Interpretation from the
+     * Response:** * &#x60;[[\&quot;A\&quot;,\&quot;B\&quot;]]&#x60; means you may place an order if
+     * your account has either permission \&quot;A\&quot; **or** permission \&quot;B\&quot;. *
+     * &#x60;[[\&quot;A\&quot;],[\&quot;B\&quot;]]&#x60; means you can place an order if your
+     * account has permission \&quot;A\&quot; **and** permission \&quot;B\&quot;. *
+     * &#x60;[[\&quot;A\&quot;],[\&quot;B\&quot;,\&quot;C\&quot;]]&#x60; means you can place an
+     * order if your account has permission \&quot;A\&quot; **and** permission \&quot;B\&quot; or
+     * permission \&quot;C\&quot;. (Inclusive or is applied here, not exclusive or, so your account
+     * may have both permission \&quot;B\&quot; and permission \&quot;C\&quot;.)
      *
-     * @param symbol Symbol to query (optional)
-     * @param symbols List of symbols to query (optional)
-     * @param permissions List of permissions to query (optional)
+     * @param symbol Example: curl -X GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?symbol&#x3D;BNBBTC\&quot; (optional)
+     * @param symbols Examples: curl -X GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?symbols&#x3D;%5B%22BNBBTC%22,%22BTCUSDT%22%5D\&quot;
+     *     or curl -g -X GET
+     *     &#39;https://api.binance.com/api/v3/exchangeInfo?symbols&#x3D;[\&quot;BTCUSDT\&quot;,\&quot;BNBBTC\&quot;]&#39;
+     *     (optional)
+     * @param permissions Examples: curl -X GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;SPOT\&quot; curl -X
+     *     GET
+     *     \&quot;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;%5B%22MARGIN%22%2C%22LEVERAGED%22%5D\&quot;
+     *     or curl -g -X GET
+     *     &#39;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;[\&quot;MARGIN\&quot;,\&quot;LEVERAGED\&quot;]&#39;
+     *     (optional)
      * @param showPermissionSets Controls whether the content of the &#x60;permissionSets&#x60;
-     *     field is populated or not. Defaults to &#x60;true&#x60; (optional)
-     * @param symbolStatus (optional)
+     *     field is populated or not. (optional)
+     * @param symbolStatus Filters for symbols that have this &#x60;tradingStatus&#x60;. Cannot be
+     *     used in combination with &#x60;symbols&#x60; or &#x60;symbol&#x60;. (optional)
      * @return ApiResponse&lt;ExchangeInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -258,7 +301,7 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#exchange-information">Exchange
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#exchange-info">Exchange
      *     information Documentation</a>
      */
     public ApiResponse<ExchangeInfoResponse> exchangeInfo(
@@ -279,20 +322,20 @@ public class GeneralApi {
     /**
      * Build call for executionRules
      *
-     * @param symbol Symbol to query (optional)
-     * @param symbols List of symbols to query (optional)
-     * @param symbolStatus (optional)
+     * @param symbol Query for specified symbol. (optional)
+     * @param symbols Query for multiple symbols. (optional)
+     * @param symbolStatus Query for all symbols with the specified status. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Query execution rules </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#execution-rules">Query
      *     Execution Rules Documentation</a>
      */
     private okhttp3.Call executionRulesCall(
@@ -402,13 +445,14 @@ public class GeneralApi {
     }
 
     /**
-     * Query Execution Rules Weight: Parameter | Weight| --- | --- &#x60;symbol&#x60; | 2
-     * &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max of 40|
-     * &#x60;symbolStatus&#x60; |40| None |40|
+     * Query Execution Rules Query execution rules for symbols. Weight: Parameter | Weight --- | ---
+     * &#x60;symbol&#x60; | 2 &#x60;symbols&#x60; | 2 for each &#x60;symbol&#x60;, capped at a max
+     * of 40 &#x60;symbolStatus&#x60; | 40 None | 40 Security Type: NONE Notes: **Data Source:**
+     * Memory **Note:**: No combination of multiple parameters is allowed.
      *
-     * @param symbol Symbol to query (optional)
-     * @param symbols List of symbols to query (optional)
-     * @param symbolStatus (optional)
+     * @param symbol Query for specified symbol. (optional)
+     * @param symbols Query for multiple symbols. (optional)
+     * @param symbolStatus Query for all symbols with the specified status. (optional)
      * @return ApiResponse&lt;ExecutionRulesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -416,11 +460,11 @@ public class GeneralApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Query Execution Rules </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Query execution rules </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules">Query
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#execution-rules">Query
      *     Execution Rules Documentation</a>
      */
     public ApiResponse<ExecutionRulesResponse> executionRules(
@@ -444,7 +488,7 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#test-connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#ping">Test
      *     connectivity Documentation</a>
      */
     private okhttp3.Call pingCall() throws ApiException {
@@ -532,7 +576,7 @@ public class GeneralApi {
     }
 
     /**
-     * Test connectivity Test connectivity to the Rest API. Weight: 1
+     * Test connectivity Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -545,7 +589,7 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#test-connectivity">Test
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#ping">Test
      *     connectivity Documentation</a>
      */
     public ApiResponse<Void> ping() throws ApiException {
@@ -566,7 +610,7 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#check-server-time">Check
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#time">Check
      *     server time Documentation</a>
      */
     private okhttp3.Call timeCall() throws ApiException {
@@ -654,8 +698,8 @@ public class GeneralApi {
     }
 
     /**
-     * Check server time Test connectivity to the Rest API and get the current server time. Weight:
-     * 1
+     * Check server time Test connectivity to the Rest API and get the current server time.
+     * Weight(IP): 1 Security Type: NONE
      *
      * @return ApiResponse&lt;TimeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -668,7 +712,7 @@ public class GeneralApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#check-server-time">Check
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/general#time">Check
      *     server time Documentation</a>
      */
     public ApiResponse<TimeResponse> time() throws ApiException {

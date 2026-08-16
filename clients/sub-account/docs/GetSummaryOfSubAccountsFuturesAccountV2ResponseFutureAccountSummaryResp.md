@@ -15,7 +15,7 @@
 |**totalUnrealizedProfit** | **String** |  |  [optional] |
 |**totalWalletBalance** | **String** |  |  [optional] |
 |**asset** | **String** |  |  [optional] |
-|**subAccountList** | [**List&lt;GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner&gt;**](GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner.md) |  |  [optional] |
+|**subAccountList** | [**List&lt;GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner&gt;**](GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner.md) |  |  [optional] |
 
 
 

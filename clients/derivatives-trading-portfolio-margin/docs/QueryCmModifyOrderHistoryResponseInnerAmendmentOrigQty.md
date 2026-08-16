@@ -2,13 +2,14 @@
 
 # QueryCmModifyOrderHistoryResponseInnerAmendmentOrigQty
 
+Orig Qty.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**before** | **String** |  |  [optional] |
-|**after** | **String** |  |  [optional] |
+|**before** | **String** | Before. |  [optional] |
+|**after** | **String** | After. |  [optional] |
 
 
 

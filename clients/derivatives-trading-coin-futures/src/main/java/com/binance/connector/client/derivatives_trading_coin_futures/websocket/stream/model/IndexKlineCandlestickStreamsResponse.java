@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.*;
 /** IndexKlineCandlestickStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndexKlineCandlestickStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -73,7 +73,7 @@ public class IndexKlineCandlestickStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * eventType
      *
      * @return eLowerCase
      */
@@ -92,7 +92,7 @@ public class IndexKlineCandlestickStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * eventTime
      *
      * @return E
      */
@@ -111,7 +111,7 @@ public class IndexKlineCandlestickStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Pair
      *
      * @return ps
      */

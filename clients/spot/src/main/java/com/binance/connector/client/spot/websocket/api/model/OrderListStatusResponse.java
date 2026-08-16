@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** OrderListStatusResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderListStatusResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,13 +59,13 @@ public class OrderListStatusResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private AllOrderListsResponseResultInner result;
+    private OrderListStatusResponseResult result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid RateLimits> rateLimits;
+    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
 
     public OrderListStatusResponse() {}
 
@@ -108,7 +108,7 @@ public class OrderListStatusResponse extends BaseDTO {
     }
 
     public OrderListStatusResponse result(
-            @jakarta.annotation.Nullable AllOrderListsResponseResultInner result) {
+            @jakarta.annotation.Nullable OrderListStatusResponseResult result) {
         this.result = result;
         return this;
     }
@@ -120,21 +120,23 @@ public class OrderListStatusResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public AllOrderListsResponseResultInner getResult() {
+    public OrderListStatusResponseResult getResult() {
         return result;
     }
 
-    public void setResult(@jakarta.annotation.Nullable AllOrderListsResponseResultInner result) {
+    public void setResult(@jakarta.annotation.Nullable OrderListStatusResponseResult result) {
         this.result = result;
     }
 
     public OrderListStatusResponse rateLimits(
-            @jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
-    public OrderListStatusResponse addRateLimitsItem(RateLimits rateLimitsItem) {
+    public OrderListStatusResponse addRateLimitsItem(
+            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -149,11 +151,13 @@ public class OrderListStatusResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid RateLimits> getRateLimits() {
+    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(@jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
+    public void setRateLimits(
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -203,12 +207,12 @@ public class OrderListStatusResponse extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        AllOrderListsResponseResultInner resultValue = getResult();
+        OrderListStatusResponseResult resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid RateLimits> rateLimitsValue = getRateLimits();
+        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -315,7 +319,7 @@ public class OrderListStatusResponse extends BaseDTO {
         }
         // validate the optional field `result`
         if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
-            AllOrderListsResponseResultInner.validateJsonElement(jsonObj.get("result"));
+            OrderListStatusResponseResult.validateJsonElement(jsonObj.get("result"));
         }
         if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
             JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
@@ -331,7 +335,8 @@ public class OrderListStatusResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    RateLimits.validateJsonElement(jsonArrayrateLimits.get(i));
+                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                            jsonArrayrateLimits.get(i));
                 }
                 ;
             }

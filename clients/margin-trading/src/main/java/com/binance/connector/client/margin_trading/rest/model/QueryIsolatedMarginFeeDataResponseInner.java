@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryIsolatedMarginFeeDataResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryIsolatedMarginFeeDataResponseInner {
     public static final String SERIALIZED_NAME_VIP_LEVEL = "vipLevel";
 
@@ -75,7 +75,7 @@ public class QueryIsolatedMarginFeeDataResponseInner {
     }
 
     /**
-     * Get vipLevel
+     * vip Level.
      *
      * @return vipLevel
      */
@@ -95,7 +95,7 @@ public class QueryIsolatedMarginFeeDataResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -115,7 +115,7 @@ public class QueryIsolatedMarginFeeDataResponseInner {
     }
 
     /**
-     * Get leverage
+     * leverage.
      *
      * @return leverage
      */
@@ -145,7 +145,7 @@ public class QueryIsolatedMarginFeeDataResponseInner {
     }
 
     /**
-     * Get data
+     * data list.
      *
      * @return data
      */

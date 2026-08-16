@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** OrderArgs */
+/**
+ * Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING,
+ * orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING,
+ * positionSide support BOTH,LONG and SHORT. Each entry should be like
+ * orderArgs[0].symbol&#x3D;BTCUSDT,orderArgs[0].quantity&#x3D;0.001,orderArgs[0].positionSide&#x3D;BOTH.
+ * Example of the request parameter array: orderArgs[0].symbol&#x3D;BTCUSDT
+ * orderArgs[0].quantity&#x3D;0.001 orderArgs[0].positionSide&#x3D;BOTH
+ * orderArgs[1].symbol&#x3D;ETHUSDT orderArgs[1].quantity&#x3D;0.01
+ * orderArgs[1].positionSide&#x3D;BOTH
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderArgs extends ArrayList<OrderArgsInner> {
     public OrderArgs() {}
 

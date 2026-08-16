@@ -12,11 +12,9 @@
 |**status** | **String** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
 |**cumQty** | **String** |  |  [optional] |
-|**cumQuote** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |

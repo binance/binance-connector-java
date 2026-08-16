@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountNewOcoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOcoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -47,7 +47,7 @@ public class MarginAccountNewOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
     @jakarta.annotation.Nullable
-    private String isIsolated;
+    private IsIsolated isIsolated = IsIsolated.FALSE;
 
     public static final String SERIALIZED_NAME_LIST_CLIENT_ORDER_ID = "listClientOrderId";
 
@@ -113,7 +113,7 @@ public class MarginAccountNewOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_STOP_LIMIT_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private String stopLimitTimeInForce;
+    private StopLimitTimeInForce stopLimitTimeInForce;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
@@ -125,20 +125,20 @@ public class MarginAccountNewOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE_EFFECT_TYPE)
     @jakarta.annotation.Nullable
-    private String sideEffectType;
+    private SideEffectType sideEffectType;
 
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private String selfTradePreventionMode;
+    private SelfTradePreventionMode selfTradePreventionMode;
 
     public static final String SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL = "autoRepayAtCancel";
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL)
     @jakarta.annotation.Nullable
-    private Boolean autoRepayAtCancel;
+    private Boolean autoRepayAtCancel = true;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -168,7 +168,8 @@ public class MarginAccountNewOcoRequest {
         this.symbol = symbol;
     }
 
-    public MarginAccountNewOcoRequest isIsolated(@jakarta.annotation.Nullable String isIsolated) {
+    public MarginAccountNewOcoRequest isIsolated(
+            @jakarta.annotation.Nullable IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
         return this;
     }
@@ -179,11 +180,12 @@ public class MarginAccountNewOcoRequest {
      * @return isIsolated
      */
     @jakarta.annotation.Nullable
-    public String getIsIsolated() {
+    @Valid
+    public IsIsolated getIsIsolated() {
         return isIsolated;
     }
 
-    public void setIsIsolated(@jakarta.annotation.Nullable String isIsolated) {
+    public void setIsIsolated(@jakarta.annotation.Nullable IsIsolated isIsolated) {
         this.isIsolated = isIsolated;
     }
 
@@ -194,7 +196,7 @@ public class MarginAccountNewOcoRequest {
     }
 
     /**
-     * Get listClientOrderId
+     * A unique Id for the entire orderList
      *
      * @return listClientOrderId
      */
@@ -256,7 +258,7 @@ public class MarginAccountNewOcoRequest {
     }
 
     /**
-     * Get limitClientOrderId
+     * A unique Id for the limit order
      *
      * @return limitClientOrderId
      */
@@ -318,7 +320,7 @@ public class MarginAccountNewOcoRequest {
     }
 
     /**
-     * Get stopClientOrderId
+     * A unique Id for the stop loss/stop loss limit leg
      *
      * @return stopClientOrderId
      */
@@ -359,7 +361,7 @@ public class MarginAccountNewOcoRequest {
     }
 
     /**
-     * Get stopLimitPrice
+     * If provided, &#x60;stopLimitTimeInForce&#x60; is required.
      *
      * @return stopLimitPrice
      */
@@ -395,7 +397,7 @@ public class MarginAccountNewOcoRequest {
     }
 
     public MarginAccountNewOcoRequest stopLimitTimeInForce(
-            @jakarta.annotation.Nullable String stopLimitTimeInForce) {
+            @jakarta.annotation.Nullable StopLimitTimeInForce stopLimitTimeInForce) {
         this.stopLimitTimeInForce = stopLimitTimeInForce;
         return this;
     }
@@ -406,11 +408,13 @@ public class MarginAccountNewOcoRequest {
      * @return stopLimitTimeInForce
      */
     @jakarta.annotation.Nullable
-    public String getStopLimitTimeInForce() {
+    @Valid
+    public StopLimitTimeInForce getStopLimitTimeInForce() {
         return stopLimitTimeInForce;
     }
 
-    public void setStopLimitTimeInForce(@jakarta.annotation.Nullable String stopLimitTimeInForce) {
+    public void setStopLimitTimeInForce(
+            @jakarta.annotation.Nullable StopLimitTimeInForce stopLimitTimeInForce) {
         this.stopLimitTimeInForce = stopLimitTimeInForce;
     }
 
@@ -437,7 +441,7 @@ public class MarginAccountNewOcoRequest {
     }
 
     public MarginAccountNewOcoRequest sideEffectType(
-            @jakarta.annotation.Nullable String sideEffectType) {
+            @jakarta.annotation.Nullable SideEffectType sideEffectType) {
         this.sideEffectType = sideEffectType;
         return this;
     }
@@ -448,16 +452,17 @@ public class MarginAccountNewOcoRequest {
      * @return sideEffectType
      */
     @jakarta.annotation.Nullable
-    public String getSideEffectType() {
+    @Valid
+    public SideEffectType getSideEffectType() {
         return sideEffectType;
     }
 
-    public void setSideEffectType(@jakarta.annotation.Nullable String sideEffectType) {
+    public void setSideEffectType(@jakarta.annotation.Nullable SideEffectType sideEffectType) {
         this.sideEffectType = sideEffectType;
     }
 
     public MarginAccountNewOcoRequest selfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
         return this;
     }
@@ -468,12 +473,13 @@ public class MarginAccountNewOcoRequest {
      * @return selfTradePreventionMode
      */
     @jakarta.annotation.Nullable
-    public String getSelfTradePreventionMode() {
+    @Valid
+    public SelfTradePreventionMode getSelfTradePreventionMode() {
         return selfTradePreventionMode;
     }
 
     public void setSelfTradePreventionMode(
-            @jakarta.annotation.Nullable String selfTradePreventionMode) {
+            @jakarta.annotation.Nullable SelfTradePreventionMode selfTradePreventionMode) {
         this.selfTradePreventionMode = selfTradePreventionMode;
     }
 
@@ -484,7 +490,8 @@ public class MarginAccountNewOcoRequest {
     }
 
     /**
-     * Get autoRepayAtCancel
+     * Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt
+     * generated by the order needs to be repay after the order is cancelled.
      *
      * @return autoRepayAtCancel
      */
@@ -503,11 +510,12 @@ public class MarginAccountNewOcoRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -786,13 +794,9 @@ public class MarginAccountNewOcoRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("isIsolated") != null && !jsonObj.get("isIsolated").isJsonNull())
-                && !jsonObj.get("isIsolated").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isIsolated` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("isIsolated").toString()));
+        // validate the optional field `isIsolated`
+        if (jsonObj.get("isIsolated") != null && !jsonObj.get("isIsolated").isJsonNull()) {
+            IsIsolated.validateJsonElement(jsonObj.get("isIsolated"));
         }
         if ((jsonObj.get("listClientOrderId") != null
                         && !jsonObj.get("listClientOrderId").isJsonNull())
@@ -823,36 +827,24 @@ public class MarginAccountNewOcoRequest {
                                     + " JSON string but got `%s`",
                             jsonObj.get("stopClientOrderId").toString()));
         }
-        if ((jsonObj.get("stopLimitTimeInForce") != null
-                        && !jsonObj.get("stopLimitTimeInForce").isJsonNull())
-                && !jsonObj.get("stopLimitTimeInForce").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `stopLimitTimeInForce` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("stopLimitTimeInForce").toString()));
+        // validate the optional field `stopLimitTimeInForce`
+        if (jsonObj.get("stopLimitTimeInForce") != null
+                && !jsonObj.get("stopLimitTimeInForce").isJsonNull()) {
+            StopLimitTimeInForce.validateJsonElement(jsonObj.get("stopLimitTimeInForce"));
         }
         // validate the optional field `newOrderRespType`
         if (jsonObj.get("newOrderRespType") != null
                 && !jsonObj.get("newOrderRespType").isJsonNull()) {
             NewOrderRespType.validateJsonElement(jsonObj.get("newOrderRespType"));
         }
-        if ((jsonObj.get("sideEffectType") != null && !jsonObj.get("sideEffectType").isJsonNull())
-                && !jsonObj.get("sideEffectType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `sideEffectType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("sideEffectType").toString()));
+        // validate the optional field `sideEffectType`
+        if (jsonObj.get("sideEffectType") != null && !jsonObj.get("sideEffectType").isJsonNull()) {
+            SideEffectType.validateJsonElement(jsonObj.get("sideEffectType"));
         }
-        if ((jsonObj.get("selfTradePreventionMode") != null
-                        && !jsonObj.get("selfTradePreventionMode").isJsonNull())
-                && !jsonObj.get("selfTradePreventionMode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `selfTradePreventionMode` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("selfTradePreventionMode").toString()));
+        // validate the optional field `selfTradePreventionMode`
+        if (jsonObj.get("selfTradePreventionMode") != null
+                && !jsonObj.get("selfTradePreventionMode").isJsonNull()) {
+            SelfTradePreventionMode.validateJsonElement(jsonObj.get("selfTradePreventionMode"));
         }
     }
 

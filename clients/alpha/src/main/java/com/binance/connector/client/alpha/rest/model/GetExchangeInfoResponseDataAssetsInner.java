@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetExchangeInfoResponseDataAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetExchangeInfoResponseDataAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -50,7 +50,7 @@ public class GetExchangeInfoResponseDataAssetsInner {
     }
 
     /**
-     * Get asset
+     * Asset symbol.
      *
      * @return asset
      */

@@ -2,13 +2,14 @@
 
 # GetOrderModifyHistoryResponseInnerAmendmentOrigQty
 
+Original order quantity
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**before** | **String** |  |  [optional] |
-|**after** | **String** |  |  [optional] |
+|**before** | **String** | Before value. |  [optional] |
+|**after** | **String** | After value. |  [optional] |
 
 
 

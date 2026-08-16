@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**underlying** | **String** |  |  [optional] |
-|**makerFee** | **String** |  |  [optional] |
-|**takerFee** | **String** |  |  [optional] |
+|**underlying** | **String** | underlying |  [optional] |
+|**makerFee** | **String** | maker Fee |  [optional] |
+|**takerFee** | **String** | taker Fee |  [optional] |
 
 
 

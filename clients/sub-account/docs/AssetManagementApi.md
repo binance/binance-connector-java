@@ -17,7 +17,7 @@ All URIs are relative to *https://api.binance.com*
 | [**marginTransferForSubAccount**](AssetManagementApi.md#marginTransferForSubAccount) | **POST** /sapi/v1/sub-account/margin/transfer | Margin Transfer for Sub-account (For Master Account) (USER_DATA) |
 | [**movePositionForSubAccount**](AssetManagementApi.md#movePositionForSubAccount) | **POST** /sapi/v1/sub-account/futures/move-position | Move Position for Sub-account (For Master Account) (USER_DATA) |
 | [**querySubAccountAssets**](AssetManagementApi.md#querySubAccountAssets) | **GET** /sapi/v3/sub-account/assets | Query Sub-account Assets (For Master Account) (USER_DATA) |
-| [**querySubAccountAssetsAssetManagement**](AssetManagementApi.md#querySubAccountAssetsAssetManagement) | **GET** /sapi/v4/sub-account/assets | Query Sub-account Assets (For Master Account) (USER_DATA) |
+| [**querySubAccountAssetsAssetManagement**](AssetManagementApi.md#querySubAccountAssetsAssetManagement) | **GET** /sapi/v4/sub-account/assets | Query Sub-account Assets V4 (For Master Account) (USER_DATA) |
 | [**querySubAccountFuturesAssetTransferHistory**](AssetManagementApi.md#querySubAccountFuturesAssetTransferHistory) | **GET** /sapi/v1/sub-account/futures/internalTransfer | Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA) |
 | [**querySubAccountSpotAssetTransferHistory**](AssetManagementApi.md#querySubAccountSpotAssetTransferHistory) | **GET** /sapi/v1/sub-account/sub/transfer/history | Query Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA) |
 | [**querySubAccountSpotAssetsSummary**](AssetManagementApi.md#querySubAccountSpotAssetsSummary) | **GET** /sapi/v1/sub-account/spotSummary | Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA) |
@@ -35,7 +35,7 @@ All URIs are relative to *https://api.binance.com*
 
 Futures Transfer for Sub-account (For Master Account) (USER_DATA)
 
-Futures Transfer for Sub-account  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 1
+Futures Transfer for Sub-account  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -97,7 +97,7 @@ No authorization required
 
 Get Detail on Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
 
-Get Detail on Sub-account&#39;s Futures Account  Weight: 10
+Get Detail on Sub-account&#39;s Futures Account  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -114,8 +114,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDetailOnSubAccountsFuturesAccountResponse result = apiInstance.getDetailOnSubAccountsFuturesAccount(email, recvWindow);
       System.out.println(result);
@@ -134,7 +134,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -161,7 +161,7 @@ No authorization required
 
 Get Detail on Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
 
-Get Detail on Sub-account&#39;s Futures Account  Weight: 1
+Get Detail on Sub-account&#39;s Futures Account  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -178,9 +178,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long futuresType = 56L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDetailOnSubAccountsFuturesAccountV2Response result = apiInstance.getDetailOnSubAccountsFuturesAccountV2(email, futuresType, recvWindow);
       System.out.println(result);
@@ -199,7 +199,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
 | **recvWindow** | **Long**|  | [optional] |
 
@@ -227,7 +227,7 @@ No authorization required
 
 Get Detail on Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
 
-Get Detail on Sub-account&#39;s Margin Account  Weight: 10
+Get Detail on Sub-account&#39;s Margin Account  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -244,8 +244,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDetailOnSubAccountsMarginAccountResponse result = apiInstance.getDetailOnSubAccountsMarginAccount(email, recvWindow);
       System.out.println(result);
@@ -264,7 +264,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -287,11 +287,11 @@ No authorization required
 
 <a id="getMovePositionHistoryForSubAccount"></a>
 # **getMovePositionHistoryForSubAccount**
-> GetMovePositionHistoryForSubAccountResponse getMovePositionHistoryForSubAccount(symbol, page, row, startTime, endTime, recvWindow)
+> GetMovePositionHistoryForSubAccountResponse getMovePositionHistoryForSubAccount(symbol, page, rows, startTime, endTime, recvWindow)
 
 Get Move Position History for Sub-account (For Master Account) (USER_DATA)
 
-Query move position history  * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 90 days by default with 1000 maximum limits * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return records of [max(startTime, now-90d), now]. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records of [max(now,endTime-90d), endTime].  Weight: 1
+Query move position history  Weight(IP): 1  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both omitted, records from the last 90 days are returned by default (up to 1000 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted, records in &#x60;[max(startTime, now-90d), now]&#x60; are returned. - If &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in &#x60;[max(now, endTime-90d), endTime]&#x60; are returned.
 
 ### Example
 ```java
@@ -308,14 +308,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long page = 56L; // Long | Page
-    Long row = 56L; // Long | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long page = 1L; // Long | 
+    Long rows = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
-      GetMovePositionHistoryForSubAccountResponse result = apiInstance.getMovePositionHistoryForSubAccount(symbol, page, row, startTime, endTime, recvWindow);
+      GetMovePositionHistoryForSubAccountResponse result = apiInstance.getMovePositionHistoryForSubAccount(symbol, page, rows, startTime, endTime, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetManagementApi#getMovePositionHistoryForSubAccount");
@@ -333,8 +333,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **page** | **Long**| Page | |
-| **row** | **Long**|  | |
+| **page** | **Long**|  | |
+| **rows** | **Long**|  | |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -363,7 +363,7 @@ No authorization required
 
 Get Sub-account Deposit Address (For Master Account) (USER_DATA)
 
-Fetch sub-account deposit address  * &#x60;amount&#x60; needs to be sent if using LIGHTNING network  Weight: 1
+Fetch sub-account deposit address  Weight(IP): 1  Security Type: USER_DATA  Notes: - &#x60;amount&#x60; needs to be sent if using LIGHTNING network
 
 ### Example
 ```java
@@ -380,11 +380,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    String coin = "coin_example"; // String | 
+    String email = "123@test.com"; // String | 
+    String coin = "BTC"; // String | 
     String network = "network_example"; // String | networks can be found in `GET /sapi/v1/capital/deposit/address`
-    Double amount = 3.4D; // Double | 
-    Long recvWindow = 56L; // Long | 
+    Double amount = 1.0D; // Double | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetSubAccountDepositAddressResponse result = apiInstance.getSubAccountDepositAddress(email, coin, network, amount, recvWindow);
       System.out.println(result);
@@ -403,7 +403,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **coin** | **String**|  | |
 | **network** | **String**| networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60; | [optional] |
 | **amount** | **Double**|  | [optional] |
@@ -429,11 +429,11 @@ No authorization required
 
 <a id="getSubAccountDepositHistory"></a>
 # **getSubAccountDepositHistory**
-> GetSubAccountDepositHistoryResponse getSubAccountDepositHistory(email, coin, status, startTime, endTime, limit, offset, recvWindow, txId)
+> GetSubAccountDepositHistoryResponse getSubAccountDepositHistory(email, includeSource, coin, status, startTime, endTime, limit, offset, recvWindow, txId)
 
 Get Sub-account Deposit History (For Master Account) (USER_DATA)
 
-Fetch sub-account deposit history  Weight: 1
+Fetch sub-account deposit history  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -450,17 +450,18 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    String coin = "coin_example"; // String | 
-    Long status = 56L; // Long | 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success)
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long offset = 56L; // Long | default:0
-    Long recvWindow = 56L; // Long | 
-    String txId = "txId_example"; // String | 
+    String email = "123@test.com"; // String | 
+    Boolean includeSource = false; // Boolean | Default `false`, return `sourceAddress` field when set to `true`
+    String coin = "BTC"; // String | 
+    Long status = 0L; // Long | Deposit status: 0=pending, 6=credited but cannot withdraw, 7=wrong deposit, 8=waiting user confirmation, 1=success.
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long limit = 1L; // Long | 
+    Long offset = 0L; // Long | 
+    Long recvWindow = 5000L; // Long | 
+    String txId = "1"; // String | 
     try {
-      GetSubAccountDepositHistoryResponse result = apiInstance.getSubAccountDepositHistory(email, coin, status, startTime, endTime, limit, offset, recvWindow, txId);
+      GetSubAccountDepositHistoryResponse result = apiInstance.getSubAccountDepositHistory(email, includeSource, coin, status, startTime, endTime, limit, offset, recvWindow, txId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetManagementApi#getSubAccountDepositHistory");
@@ -477,13 +478,14 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
+| **includeSource** | **Boolean**| Default &#x60;false&#x60;, return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60; | [optional] |
 | **coin** | **String**|  | [optional] |
-| **status** | **Long**| 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success) | [optional] |
+| **status** | **Long**| Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw, 7&#x3D;wrong deposit, 8&#x3D;waiting user confirmation, 1&#x3D;success. | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
-| **offset** | **Long**| default:0 | [optional] |
+| **limit** | **Long**|  | [optional] |
+| **offset** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 | **txId** | **String**|  | [optional] |
 
@@ -511,7 +513,7 @@ No authorization required
 
 Get Summary of Sub-account&#39;s Futures Account (For Master Account) (USER_DATA)
 
-Get Summary of Sub-account&#39;s Futures Account  Weight: 1
+Get Summary of Sub-account&#39;s Futures Account  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -528,9 +530,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    Long page = 56L; // Long | Page
-    Long limit = 56L; // Long | Limit (Max: 500)
-    Long recvWindow = 56L; // Long | 
+    Long page = 1L; // Long | 
+    Long limit = 1L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetSummaryOfSubAccountsFuturesAccountResponse result = apiInstance.getSummaryOfSubAccountsFuturesAccount(page, limit, recvWindow);
       System.out.println(result);
@@ -549,8 +551,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **page** | **Long**| Page | |
-| **limit** | **Long**| Limit (Max: 500) | |
+| **page** | **Long**|  | |
+| **limit** | **Long**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -577,7 +579,7 @@ No authorization required
 
 Get Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA)
 
-Get Summary of Sub-account&#39;s Futures Account  Weight: 10
+Get Summary of Sub-account&#39;s Futures Account  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -594,10 +596,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    Long futuresType = 56L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
-    Long page = 56L; // Long | Default value: 1
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetSummaryOfSubAccountsFuturesAccountV2Response result = apiInstance.getSummaryOfSubAccountsFuturesAccountV2(futuresType, page, limit, recvWindow);
       System.out.println(result);
@@ -617,8 +619,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **page** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -645,7 +647,7 @@ No authorization required
 
 Get Summary of Sub-account&#39;s Margin Account (For Master Account) (USER_DATA)
 
-Get Summary of Sub-account&#39;s Margin Account  Weight: 10
+Get Summary of Sub-account&#39;s Margin Account  Weight(IP): 10  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -662,7 +664,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetSummaryOfSubAccountsMarginAccountResponse result = apiInstance.getSummaryOfSubAccountsMarginAccount(recvWindow);
       System.out.println(result);
@@ -707,7 +709,7 @@ No authorization required
 
 Margin Transfer for Sub-account (For Master Account) (USER_DATA)
 
-Margin Transfer for Sub-account  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 1
+Margin Transfer for Sub-account  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -769,7 +771,7 @@ No authorization required
 
 Move Position for Sub-account (For Master Account) (USER_DATA)
 
-Move position between sub-master, master-sub, or sub-sub accounts when necessary  * You need to Enable Trading permission for the API Key which requests this endpoint. * This function only support VIP level 7-9. * Only master account can use the function * Quantity should be positive number only * The function support normal account, PM PRO and PM PRO SPAN. * Only support for from account has positions * For all orders in the same orderArgs request, if any symbol’s total close position quantity is bigger than the symbol’s current position quantity, all batch orders in the same list will fail simultaneously. * Only support cross margin mode * The price for move position is MarkPrice only. * Not support for MSA. * Not support for the symbol under Reduce-Only.  Weight: 1
+Move position between sub-master, master-sub, or sub-sub accounts when necessary  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to enable the &#x60;Trading&#x60; permission for the API key used to call this endpoint. - This function is only available for VIP levels 7-9. - Only master accounts can call this endpoint. - &#x60;quantity&#x60; must be a positive number. - Supported account types: normal account, PM PRO, PM PRO SPAN, and PM Retail. - The source account must have positions. - For orders in the same &#x60;orderArgs&#x60; request, if any symbol&#39;s total close position quantity exceeds current position quantity, all orders in that batch fail. - Only cross margin mode is supported. - The move position price supports &#x60;MARK_PRICE&#x60; only. - MSA is not supported. - Symbols configured with &#x60;Reduce-Only&#x60; are not supported.
 
 ### Example
 ```java
@@ -831,7 +833,7 @@ No authorization required
 
 Query Sub-account Assets (For Master Account) (USER_DATA)
 
-Fetch sub-account assets  Weight: 60
+Fetch sub-account assets  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -848,8 +850,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountAssetsResponse result = apiInstance.querySubAccountAssets(email, recvWindow);
       System.out.println(result);
@@ -868,7 +870,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -893,9 +895,9 @@ No authorization required
 # **querySubAccountAssetsAssetManagement**
 > QuerySubAccountAssetsAssetManagementResponse querySubAccountAssetsAssetManagement(email, recvWindow)
 
-Query Sub-account Assets (For Master Account) (USER_DATA)
+Query Sub-account Assets V4 (For Master Account) (USER_DATA)
 
-Fetch sub-account assets  Weight: 60
+Fetch sub-account assets  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -912,8 +914,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountAssetsAssetManagementResponse result = apiInstance.querySubAccountAssetsAssetManagement(email, recvWindow);
       System.out.println(result);
@@ -932,7 +934,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -959,7 +961,7 @@ No authorization required
 
 Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
 
-Query Sub-account Futures Asset Transfer History  Weight: 1
+Query Sub-account Futures Asset Transfer History  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -976,13 +978,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | [Sub-account email](#email-address)
-    Long futuresType = 56L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long page = 56L; // Long | Default value: 1
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | 
+    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long startTime = 1623319461670L; // Long | Cannot be earlier than 1 month ago
+    Long endTime = 1641782889000L; // Long | 
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountFuturesAssetTransferHistoryResponse result = apiInstance.querySubAccountFuturesAssetTransferHistory(email, futuresType, startTime, endTime, page, limit, recvWindow);
       System.out.println(result);
@@ -1001,12 +1003,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **email** | **String**| [Sub-account email](#email-address) | |
+| **email** | **String**|  | |
 | **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
-| **startTime** | **Long**|  | [optional] |
+| **startTime** | **Long**| Cannot be earlier than 1 month ago | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **page** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1033,7 +1035,7 @@ No authorization required
 
 Query Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA)
 
-Query Sub-account Spot Asset Transfer History  * fromEmail and toEmail cannot be sent at the same time. * Return fromEmail equal master account email by default.  Weight: 1
+Query Sub-account Spot Asset Transfer History  Weight(IP): 1  Security Type: USER_DATA  Notes: - &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; cannot be sent at the same time. - If both &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; are omitted, records with &#x60;fromEmail&#x60; equal to the master account are returned by default.
 
 ### Example
 ```java
@@ -1050,13 +1052,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String fromEmail = "fromEmail_example"; // String | 
-    String toEmail = "toEmail_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long page = 56L; // Long | Default value: 1
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    String fromEmail = "aaa@test.com"; // String | 
+    String toEmail = "bbb@test.com"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountSpotAssetTransferHistoryResponse result = apiInstance.querySubAccountSpotAssetTransferHistory(fromEmail, toEmail, startTime, endTime, page, limit, recvWindow);
       System.out.println(result);
@@ -1079,8 +1081,8 @@ public class Example {
 | **toEmail** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **page** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1107,7 +1109,7 @@ No authorization required
 
 Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA)
 
-Get BTC valued asset summary of subaccounts.  Weight: 1
+Get BTC valued asset summary of subaccounts.  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1124,10 +1126,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String email = "email_example"; // String | Managed sub-account email
-    Long page = 56L; // Long | Default value: 1
-    Long size = 56L; // Long | default 10, max 20
-    Long recvWindow = 56L; // Long | 
+    String email = "123@test.com"; // String | Managed sub-account email
+    Long page = 1L; // Long | 
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QuerySubAccountSpotAssetsSummaryResponse result = apiInstance.querySubAccountSpotAssetsSummary(email, page, size, recvWindow);
       System.out.println(result);
@@ -1147,8 +1149,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**| Managed sub-account email | [optional] |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **size** | **Long**| default 10, max 20 | [optional] |
+| **page** | **Long**|  | [optional] |
+| **size** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1175,7 +1177,7 @@ No authorization required
 
 Query Universal Transfer History (For Master Account) (USER_DATA)
 
-Query Universal Transfer History  * fromEmail and toEmail cannot be sent at the same time. * Return fromEmail equal master account email by default. * The query time period must be less than 7 days. * If startTime and endTime not sent, return records of the last 7 days by default.  Weight: 1
+Query Universal Transfer History  Weight(IP): 1  Security Type: USER_DATA  Notes: - &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; cannot be sent at the same time. - If both &#x60;fromEmail&#x60; and &#x60;toEmail&#x60; are omitted, records with &#x60;fromEmail&#x60; equal to the master account are returned by default. - The query time range must be less than 7 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, records from the last 7 days are returned by default.
 
 ### Example
 ```java
@@ -1192,14 +1194,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String fromEmail = "fromEmail_example"; // String | 
-    String toEmail = "toEmail_example"; // String | 
-    String clientTranId = "clientTranId_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long page = 56L; // Long | Default value: 1
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Long recvWindow = 56L; // Long | 
+    String fromEmail = "abctest@gmail.com"; // String | 
+    String toEmail = "deftest@gmail.com"; // String | 
+    String clientTranId = "1"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long page = 1L; // Long | 
+    Long limit = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUniversalTransferHistoryResponse result = apiInstance.queryUniversalTransferHistory(fromEmail, toEmail, clientTranId, startTime, endTime, page, limit, recvWindow);
       System.out.println(result);
@@ -1223,8 +1225,8 @@ public class Example {
 | **clientTranId** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **page** | **Long**| Default value: 1 | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **page** | **Long**|  | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1251,7 +1253,7 @@ No authorization required
 
 Sub-account Futures Asset Transfer (For Master Account) (USER_DATA)
 
-Sub-account Futures Asset Transfer   * Master account can transfer max 2000 times a minute * There must be sufficient margin balance in futures wallet to execute transferring.  Weight: 1
+Sub-account Futures Asset Transfer  Weight(IP): 1  Security Type: USER_DATA  Notes: - A master account can transfer at most 2000 times per minute. - The futures wallet must have sufficient margin balance to execute the transfer.
 
 ### Example
 ```java
@@ -1313,7 +1315,7 @@ No authorization required
 
 Sub-account Transfer History (For Sub-account) (USER_DATA)
 
-Sub-account Transfer History  * If type is not sent, the records of type 2: transfer out will be returned by default. * If startTime and endTime are not sent, the recent 30-day data will be returned.  Weight: 1
+Sub-account Transfer History  Weight(IP): 1  Security Type: USER_DATA  Notes: - If &#x60;type&#x60; is not sent, records of type &#x60;2&#x60; (transfer out) are returned by default. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, data from the most recent 30 days is returned.
 
 ### Example
 ```java
@@ -1330,13 +1332,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    String asset = "asset_example"; // String | If not sent, result of all assets will be returned
-    Long type = 56L; // Long | 1: transfer in, 2: transfer out
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long limit = 56L; // Long | Default value: 1, Max value: 200
-    Boolean returnFailHistory = true; // Boolean | Default `False`, return PROCESS and SUCCESS status history; If `True`,return PROCESS and SUCCESS and FAILURE status history
-    Long recvWindow = 56L; // Long | 
+    String asset = "BTC"; // String | If not sent, result of all assets will be returned
+    Long type = 1L; // Long | 1: transfer in, 2: transfer out
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long limit = 10L; // Long | 
+    Boolean returnFailHistory = false; // Boolean | Default `False`, return PROCESS and SUCCESS status history; If `True`,return PROCESS and SUCCESS and FAILURE status history
+    Long recvWindow = 5000L; // Long | 
     try {
       SubAccountTransferHistoryResponse result = apiInstance.subAccountTransferHistory(asset, type, startTime, endTime, limit, returnFailHistory, recvWindow);
       System.out.println(result);
@@ -1359,7 +1361,7 @@ public class Example {
 | **type** | **Long**| 1: transfer in, 2: transfer out | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **limit** | **Long**| Default value: 1, Max value: 200 | [optional] |
+| **limit** | **Long**|  | [optional] |
 | **returnFailHistory** | **Boolean**| Default &#x60;False&#x60;, return PROCESS and SUCCESS status history; If &#x60;True&#x60;,return PROCESS and SUCCESS and FAILURE status history | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
@@ -1387,7 +1389,7 @@ No authorization required
 
 Transfer to Master (For Sub-account) (USER_DATA)
 
-Transfer to Master  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 1
+Transfer to Master  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -1449,7 +1451,7 @@ No authorization required
 
 Transfer to Sub-account of Same Master (For Sub-account) (USER_DATA)
 
-Transfer to Sub-account of Same Master  * You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.  Weight: 1
+Transfer to Sub-account of Same Master  Weight(IP): 1  Security Type: USER_DATA  Notes: - You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -1511,7 +1513,7 @@ No authorization required
 
 Universal Transfer (For Master Account) (USER_DATA)
 
-Universal Transfer  * You need to enable \&quot;internal transfer\&quot; option for the api key which requests this endpoint. * Transfer from master account by default if fromEmail is not sent. * Transfer to master account by default if toEmail is not sent. * At least either fromEmail or toEmail need to be sent when the fromAccountType and the toAccountType are the same. * Supported transfer scenarios: * &#x60;SPOT&#x60; transfer to &#x60;SPOT&#x60;, &#x60;USDT_FUTURE&#x60;, &#x60;COIN_FUTURE&#x60; (regardless of master or sub) * &#x60;SPOT&#x60;, &#x60;USDT_FUTURE&#x60;, &#x60;COIN_FUTURE&#x60; transfer to &#x60;SPOT&#x60;  (regardless of master or sub) * Master account &#x60;SPOT&#x60; transfer to sub-account &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60;, &#x60;ISOLATED_MARGIN&#x60; transfer to master account &#x60;SPOT&#x60; * Sub-account &#x60;MARGIN(Cross)&#x60; transfer to Sub-account &#x60;MARGIN(Cross)&#x60; * &#x60;ALPHA&#x60; to &#x60;ALPHA&#x60;  (regardless of master or sub)  Weight: 360
+Universal Transfer  Weight(IP): 1  Weight(UID): 360  Security Type: USER_DATA  Notes: - You need to enable the &#x60;internal transfer&#x60; option for the API key used to call this endpoint. - If &#x60;fromEmail&#x60; is not sent, transfer out from the master account by default. - If &#x60;toEmail&#x60; is not sent, transfer into the master account by default. - When &#x60;fromAccountType&#x60; and &#x60;toAccountType&#x60; are the same, at least one of &#x60;fromEmail&#x60; or &#x60;toEmail&#x60; must be sent. - Supported transfer scenarios:   - &#x60;SPOT&#x60; -&gt; &#x60;SPOT&#x60; / &#x60;USDT_FUTURE&#x60; / &#x60;COIN_FUTURE&#x60; (master or sub-account).   - &#x60;SPOT&#x60; / &#x60;USDT_FUTURE&#x60; / &#x60;COIN_FUTURE&#x60; -&gt; &#x60;SPOT&#x60; (master or sub-account).   - Master account &#x60;SPOT&#x60; -&gt; sub-account &#x60;MARGIN(Cross)&#x60; / &#x60;ISOLATED_MARGIN&#x60;.   - Sub-account &#x60;MARGIN(Cross)&#x60; / &#x60;ISOLATED_MARGIN&#x60; -&gt; master account &#x60;SPOT&#x60;.   - Sub-account &#x60;MARGIN(Cross)&#x60; -&gt; sub-account &#x60;MARGIN(Cross)&#x60;.   - &#x60;ALPHA&#x60; -&gt; &#x60;ALPHA&#x60; (master or sub-account).
 
 ### Example
 ```java

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**liquidity** | **String** |  |  |
+|**liquidity** | **Liquidity** |  |  |
 |**legs** | **Legs** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 

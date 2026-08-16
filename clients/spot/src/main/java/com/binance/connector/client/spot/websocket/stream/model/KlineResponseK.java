@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** KlineResponseK */
+/** Kline payload */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlineResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -149,7 +149,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Kline start time
      *
      * @return tLowerCase
      */
@@ -168,7 +168,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Kline close time
      *
      * @return T
      */
@@ -187,7 +187,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -206,7 +206,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * Interval
      *
      * @return iLowerCase
      */
@@ -225,7 +225,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * First trade ID
      *
      * @return fLowerCase
      */
@@ -244,7 +244,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last trade ID
      *
      * @return L
      */
@@ -263,7 +263,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Open price
      *
      * @return oLowerCase
      */
@@ -282,7 +282,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Close price
      *
      * @return cLowerCase
      */
@@ -301,7 +301,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * High price
      *
      * @return hLowerCase
      */
@@ -320,7 +320,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Low price
      *
      * @return lLowerCase
      */
@@ -339,7 +339,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * Base asset volume
      *
      * @return vLowerCase
      */
@@ -358,7 +358,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Number of trades
      *
      * @return nLowerCase
      */
@@ -377,7 +377,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Is this kline closed?
      *
      * @return xLowerCase
      */
@@ -396,7 +396,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Quote asset volume
      *
      * @return qLowerCase
      */
@@ -415,7 +415,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get V
+     * Taker buy base asset volume
      *
      * @return V
      */
@@ -434,7 +434,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * Taker buy quote asset volume
      *
      * @return Q
      */
@@ -453,7 +453,7 @@ public class KlineResponseK extends BaseDTO {
     }
 
     /**
-     * Get B
+     * Ignore
      *
      * @return B
      */

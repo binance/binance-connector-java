@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**feeBurn** | **String** |  |  |
+|**feeBurn** | **FeeBurn** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

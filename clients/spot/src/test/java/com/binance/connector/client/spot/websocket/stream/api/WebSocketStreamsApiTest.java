@@ -19,34 +19,8 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
-import com.binance.connector.client.spot.websocket.stream.model.AggTradeRequest;
-import com.binance.connector.client.spot.websocket.stream.model.AggTradeResponse;
-import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerRequest;
-import com.binance.connector.client.spot.websocket.stream.model.AllMarketRollingWindowTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.AllMiniTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.AvgPriceRequest;
-import com.binance.connector.client.spot.websocket.stream.model.AvgPriceResponse;
-import com.binance.connector.client.spot.websocket.stream.model.BookTickerRequest;
-import com.binance.connector.client.spot.websocket.stream.model.BookTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.DiffBookDepthRequest;
-import com.binance.connector.client.spot.websocket.stream.model.DiffBookDepthResponse;
-import com.binance.connector.client.spot.websocket.stream.model.Interval;
-import com.binance.connector.client.spot.websocket.stream.model.KlineOffsetRequest;
-import com.binance.connector.client.spot.websocket.stream.model.KlineOffsetResponse;
-import com.binance.connector.client.spot.websocket.stream.model.KlineRequest;
-import com.binance.connector.client.spot.websocket.stream.model.KlineResponse;
-import com.binance.connector.client.spot.websocket.stream.model.Levels;
-import com.binance.connector.client.spot.websocket.stream.model.MiniTickerRequest;
-import com.binance.connector.client.spot.websocket.stream.model.MiniTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.PartialBookDepthRequest;
-import com.binance.connector.client.spot.websocket.stream.model.PartialBookDepthResponse;
-import com.binance.connector.client.spot.websocket.stream.model.RollingWindowTickerRequest;
-import com.binance.connector.client.spot.websocket.stream.model.RollingWindowTickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.TickerRequest;
-import com.binance.connector.client.spot.websocket.stream.model.TickerResponse;
-import com.binance.connector.client.spot.websocket.stream.model.TradeRequest;
-import com.binance.connector.client.spot.websocket.stream.model.TradeResponse;
-import com.binance.connector.client.spot.websocket.stream.model.WindowSize;
+import com.binance.connector.client.spot.websocket.stream.model.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -68,13 +42,13 @@ import org.skyscreamer.jsonassert.JSONAssert;
 /** API tests for WebSocketStreamsApi */
 public class WebSocketStreamsApiTest {
 
-    private WebSocketStreamsApi api;
+    private DefaultApi api;
     private StreamConnectionWrapper connectionSpy;
     private Session sessionMock;
 
     @BeforeEach
     public void initApiClient() throws Exception {
-        URL resource = WebSocketStreamsApi.class.getResource("/test-ed25519-prv-key.pem");
+        URL resource = SpotWebSocketStreams.class.getResource("/test-ed25519-prv-key.pem");
         SignatureConfiguration signatureConfiguration = new SignatureConfiguration();
         signatureConfiguration.setApiKey("apiKey");
         File file = new File(resource.toURI());
@@ -102,7 +76,7 @@ public class WebSocketStreamsApiTest {
         Mockito.doNothing().when(connectionSpy).setUserAgent(Mockito.anyString());
         Mockito.doReturn(1736393892000L).when(connectionSpy).getTimestamp();
         connectionSpy.connect();
-        WebSocketStreamsApi accountApi = new WebSocketStreamsApi(connectionSpy);
+        DefaultApi accountApi = new DefaultApi(connectionSpy);
         api = Mockito.spy(accountApi);
         Mockito.doReturn("eaf3292c-64b6-4c04-ad4f-4ca2608b42b4").when(api).getRequestID();
     }
@@ -185,7 +159,7 @@ public class WebSocketStreamsApiTest {
      */
     @Test
     public void allMiniTickerTest() throws ApiException, URISyntaxException, IOException {
-        StreamBlockingQueueWrapper<AllMiniTickerResponse> lists = api.allMiniTicker();
+        StreamBlockingQueueWrapper<AllMiniTickerResponse> lists = api.allMiniTicker(new AllMiniTickerRequest());
         ArgumentCaptor<RequestWrapperDTO<Set<String>, AllMiniTickerResponse>> callArgumentCaptor =
                 ArgumentCaptor.forClass(RequestWrapperDTO.class);
         Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
@@ -451,7 +425,7 @@ public class WebSocketStreamsApiTest {
         PartialBookDepthRequest partialBookDepthRequest = new PartialBookDepthRequest();
         partialBookDepthRequest.setLevels(Levels.LEVELS_5);
         partialBookDepthRequest.setSymbol("btcusdt");
-        partialBookDepthRequest.setUpdateSpeed("100ms");
+        partialBookDepthRequest.setUpdateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
         StreamBlockingQueueWrapper<PartialBookDepthResponse> response =
                 api.partialBookDepth(partialBookDepthRequest);
         ArgumentCaptor<RequestWrapperDTO<Set<String>, PartialBookDepthResponse>>

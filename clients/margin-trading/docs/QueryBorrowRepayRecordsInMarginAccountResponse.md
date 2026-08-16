@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rows** | [**List&lt;QueryBorrowRepayRecordsInMarginAccountResponseRowsInner&gt;**](QueryBorrowRepayRecordsInMarginAccountResponseRowsInner.md) |  |  [optional] |
-|**total** | **Long** |  |  [optional] |
+|**rows** | [**List&lt;QueryBorrowRepayRecordsInMarginAccountResponseRowsInner&gt;**](QueryBorrowRepayRecordsInMarginAccountResponseRowsInner.md) | rows list. |  [optional] |
+|**total** | **Long** | total. |  [optional] |
 
 
 

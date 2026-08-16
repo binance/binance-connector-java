@@ -7,22 +7,22 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**entryPrice** | **String** |  |  [optional] |
-|**breakEvenPrice** | **String** |  |  [optional] |
-|**marginType** | **String** |  |  [optional] |
+|**entryPrice** | **String** | Entry Price. |  [optional] |
+|**breakEvenPrice** | **String** | Break Even Price. |  [optional] |
+|**marginType** | **String** | Margin Type. |  [optional] |
 |**isAutoAddMargin** | **String** |  |  [optional] |
-|**isolatedMargin** | **String** |  |  [optional] |
-|**leverage** | **String** |  |  [optional] |
-|**liquidationPrice** | **String** |  |  [optional] |
-|**markPrice** | **String** |  |  [optional] |
-|**maxNotionalValue** | **String** |  |  [optional] |
-|**positionAmt** | **String** |  |  [optional] |
+|**isolatedMargin** | **String** | Isolated Margin. |  [optional] |
+|**leverage** | **String** | Leverage. |  [optional] |
+|**liquidationPrice** | **String** | Liquidation Price. |  [optional] |
+|**markPrice** | **String** | Mark Price. |  [optional] |
+|**maxNotionalValue** | **String** | Max Notional Value. |  [optional] |
+|**positionAmt** | **String** | Position Amt. |  [optional] |
 |**notional** | **String** |  |  [optional] |
 |**isolatedWallet** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**unRealizedProfit** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**unRealizedProfit** | **String** | Un Realized Profit. |  [optional] |
+|**positionSide** | **String** | Position Side. |  [optional] |
+|**updateTime** | **Long** | Update Time. |  [optional] |
 
 
 

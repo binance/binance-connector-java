@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,9 +34,9 @@ import org.hibernate.validator.constraints.*;
 /** GetFuturesPositionRiskOfSubAccountResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetFuturesPositionRiskOfSubAccountResponse
-        extends ArrayList<GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner> {
+        extends ArrayList<GetFuturesPositionRiskOfSubAccountResponseInner> {
     public GetFuturesPositionRiskOfSubAccountResponse() {}
 
     @Override
@@ -118,8 +118,7 @@ public class GetFuturesPositionRiskOfSubAccountResponse
         JsonArray array = jsonElement.getAsJsonArray();
         // validate array items
         for (JsonElement element : array) {
-            GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner
-                    .validateJsonElement(element);
+            GetFuturesPositionRiskOfSubAccountResponseInner.validateJsonElement(element);
         }
         if (jsonElement == null) {
             if (!GetFuturesPositionRiskOfSubAccountResponse.openapiRequiredFields

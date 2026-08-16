@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelOrderResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelOrderResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -50,12 +50,6 @@ public class CancelOrderResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_QUOTE = "cumQuote";
-
-    @SerializedName(SERIALIZED_NAME_CUM_QUOTE)
-    @jakarta.annotation.Nullable
-    private String cumQuote;
 
     public static final String SERIALIZED_NAME_EXECUTED_QTY = "executedQty";
 
@@ -229,25 +223,6 @@ public class CancelOrderResponseResult extends BaseDTO {
 
     public void setCumQty(@jakarta.annotation.Nullable String cumQty) {
         this.cumQty = cumQty;
-    }
-
-    public CancelOrderResponseResult cumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
-        return this;
-    }
-
-    /**
-     * Get cumQuote
-     *
-     * @return cumQuote
-     */
-    @jakarta.annotation.Nullable
-    public String getCumQuote() {
-        return cumQuote;
-    }
-
-    public void setCumQuote(@jakarta.annotation.Nullable String cumQuote) {
-        this.cumQuote = cumQuote;
     }
 
     public CancelOrderResponseResult executedQty(@jakarta.annotation.Nullable String executedQty) {
@@ -685,7 +660,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         CancelOrderResponseResult cancelOrderResponseResult = (CancelOrderResponseResult) o;
         return Objects.equals(this.clientOrderId, cancelOrderResponseResult.clientOrderId)
                 && Objects.equals(this.cumQty, cancelOrderResponseResult.cumQty)
-                && Objects.equals(this.cumQuote, cancelOrderResponseResult.cumQuote)
                 && Objects.equals(this.executedQty, cancelOrderResponseResult.executedQty)
                 && Objects.equals(this.orderId, cancelOrderResponseResult.orderId)
                 && Objects.equals(this.origQty, cancelOrderResponseResult.origQty)
@@ -717,7 +691,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         return Objects.hash(
                 clientOrderId,
                 cumQty,
-                cumQuote,
                 executedQty,
                 orderId,
                 origQty,
@@ -748,7 +721,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         sb.append("class CancelOrderResponseResult {\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumQuote: ").append(toIndentedString(cumQuote)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		orderId: ").append(toIndentedString(orderId)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
@@ -790,11 +762,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         if (cumQtyValue != null) {
             String cumQtyValueAsString = cumQtyValue.toString();
             valMap.put("cumQty", cumQtyValueAsString);
-        }
-        String cumQuoteValue = getCumQuote();
-        if (cumQuoteValue != null) {
-            String cumQuoteValueAsString = cumQuoteValue.toString();
-            valMap.put("cumQuote", cumQuoteValueAsString);
         }
         String executedQtyValue = getExecutedQty();
         if (executedQtyValue != null) {
@@ -925,10 +892,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         if (cumQtyValue != null) {
             valMap.put("cumQty", cumQtyValue);
         }
-        Object cumQuoteValue = getCumQuote();
-        if (cumQuoteValue != null) {
-            valMap.put("cumQuote", cumQuoteValue);
-        }
         Object executedQtyValue = getExecutedQty();
         if (executedQtyValue != null) {
             valMap.put("executedQty", executedQtyValue);
@@ -1045,7 +1008,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         openapiFields = new HashSet<String>();
         openapiFields.add("clientOrderId");
         openapiFields.add("cumQty");
-        openapiFields.add("cumQuote");
         openapiFields.add("executedQty");
         openapiFields.add("orderId");
         openapiFields.add("origQty");
@@ -1118,14 +1080,6 @@ public class CancelOrderResponseResult extends BaseDTO {
                             "Expected the field `cumQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
-        }
-        if ((jsonObj.get("cumQuote") != null && !jsonObj.get("cumQuote").isJsonNull())
-                && !jsonObj.get("cumQuote").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumQuote` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("cumQuote").toString()));
         }
         if ((jsonObj.get("executedQty") != null && !jsonObj.get("executedQty").isJsonNull())
                 && !jsonObj.get("executedQty").isJsonPrimitive()) {

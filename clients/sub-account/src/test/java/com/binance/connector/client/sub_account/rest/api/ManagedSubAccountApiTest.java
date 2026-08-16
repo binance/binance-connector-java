@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.DepositAssetsIntoTheManagedSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.GetManagedSubAccountDepositAddressResponse;
+import com.binance.connector.client.sub_account.rest.model.OrderType;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountAssetDetailsResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountFuturesAssetDetailsResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountListResponse;
@@ -34,9 +35,11 @@ import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccoun
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogMasterAccountInvestorResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogMasterAccountTradingResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountTransferLogSubAccountTradingResponse;
+import com.binance.connector.client.sub_account.rest.model.TransferFunctionAccountType;
 import com.binance.connector.client.sub_account.rest.model.WithdrawlAssetsFromTheManagedSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.WithdrawlAssetsFromTheManagedSubAccountResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -88,21 +91,22 @@ public class ManagedSubAccountApiTest {
     }
 
     /**
-     * Deposit Assets Into The Managed Sub-account(For Investor Master Account)
+     * Deposit Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *
-     * <p>Deposit Assets Into The Managed Sub-account * You need to enable &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; option for the api key which requests this endpoint Weight: 1
+     * <p>Deposit Assets Into The Managed Sub-account Weight(IP): 1 Security Type: USER_DATA Notes:
+     * - You need to enable &#x60;Enable Spot &amp; Margin Trading&#x60; option for the api key
+     * which requests this endpoint
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void depositAssetsIntoTheManagedSubAccountTest() throws ApiException, CryptoException {
+    public void depositAssetsIntoTheManagedSubAccountTest()
+            throws ApiException, CryptoException, IOException {
         DepositAssetsIntoTheManagedSubAccountRequest depositAssetsIntoTheManagedSubAccountRequest =
                 new DepositAssetsIntoTheManagedSubAccountRequest();
-
-        depositAssetsIntoTheManagedSubAccountRequest.toEmail("");
-        depositAssetsIntoTheManagedSubAccountRequest.asset("");
-        depositAssetsIntoTheManagedSubAccountRequest.amount(1d);
+        depositAssetsIntoTheManagedSubAccountRequest.toEmail("abc@test.com");
+        depositAssetsIntoTheManagedSubAccountRequest.asset("BTC");
+        depositAssetsIntoTheManagedSubAccountRequest.amount(1.0d);
 
         ApiResponse<DepositAssetsIntoTheManagedSubAccountResponse> response =
                 api.depositAssetsIntoTheManagedSubAccount(
@@ -118,28 +122,33 @@ public class ManagedSubAccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&asset=&toEmail=", signInputCaptor.getValue());
         assertEquals(
-                "227adce1b6fa8cd89964bd4feedcc86fc42fea35068da084d94698405ba251b8",
+                "timestamp=1736393892000amount=1&asset=BTC&toEmail=abc%40test.com",
+                signInputCaptor.getValue());
+        assertEquals(
+                "f98122953530ecdb9458c84710d33fce8a94aa4ccaca94c66fc06f42265ca416",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/managed-subaccount/deposit", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/managed-subaccount/deposit", actualRequest.url().encodedPath());
     }
 
     /**
-     * Get Managed Sub-account Deposit Address (For Investor Master Account)(USER_DATA)
+     * Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
      *
-     * <p>Get investor&#39;s managed sub-account deposit address. * If &#x60;network&#x60; is not
-     * send, return with default &#x60;network&#x60; of the &#x60;coin&#x60;. * * &#x60;amount&#x60;
-     * needs to be sent if using LIGHTNING network Weight: 1
+     * <p>Get investor&#39;s managed sub-account deposit address. Weight(UID): 1 Security Type:
+     * USER_DATA Notes: - If &#x60;network&#x60; is not sent, the default &#x60;network&#x60; for
+     * the &#x60;coin&#x60; is returned. - When using &#x60;LIGHTNING&#x60;, &#x60;amount&#x60; must
+     * be provided.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getManagedSubAccountDepositAddressTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String coin = "";
-        String network = "";
-        Double amount = 1d;
+    public void getManagedSubAccountDepositAddressTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
+        String coin = "USDT";
+        String network = "LIGHTNING";
+        Double amount = 1.0d;
         Long recvWindow = 5000L;
         ApiResponse<GetManagedSubAccountDepositAddressResponse> response =
                 api.getManagedSubAccountDepositAddress(email, coin, network, amount, recvWindow);
@@ -155,25 +164,25 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&coin=&network=&amount=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=abc%40test.com&coin=USDT&network=LIGHTNING&amount=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "8775619e5f1bf1f99041b1f456c76870f8582b64031236aeb73211e3ad0476e0",
+                "cb3f10a06dfadc5f2eb0606ded7400862886e6187220e836a9c3eaeb8842a047",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/deposit/address", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Managed Sub-account Asset Details(For Investor Master Account)
+     * Query Managed Sub-account Asset Details (For Investor Master Account) (USER_DATA)
      *
-     * <p>Query Managed Sub-account Asset Details Weight: 1
+     * <p>Query Managed Sub-account Asset Details Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryManagedSubAccountAssetDetailsTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+    public void queryManagedSubAccountAssetDetailsTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
         Long recvWindow = 5000L;
         ApiResponse<QueryManagedSubAccountAssetDetailsResponse> response =
                 api.queryManagedSubAccountAssetDetails(email, recvWindow);
@@ -189,26 +198,27 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "email=abc%40test.com&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "bbb3a67207210f851b76211eae9566a7b03cd2d37dde4e5b73d48265f7b9197e",
+                "18e24a62c2fe0e440151dfc8e5f916abc1d41f6895ddeec80f18ff7ee97887f5",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/managed-subaccount/asset", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/managed-subaccount/asset", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Managed Sub-account Futures Asset Details(For Investor Master Account)(USER_DATA)
+     * Query Managed Sub-account Futures Asset Details (For Investor Master Account) (USER_DATA)
      *
-     * <p>Investor can use this api to query managed sub account futures asset details Weight: 60
+     * <p>Investor can use this api to query managed sub account futures asset details Weight(UID):
+     * 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryManagedSubAccountFuturesAssetDetailsTest()
-            throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String accountType = "";
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
+        String accountType = "MARGIN";
         ApiResponse<QueryManagedSubAccountFuturesAssetDetailsResponse> response =
                 api.queryManagedSubAccountFuturesAssetDetails(email, accountType);
 
@@ -223,10 +233,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&accountType=&timestamp=1736393892000",
+                "email=abc%40test.com&accountType=MARGIN&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "f304bae266239f54bc793653d4cd4e29a0c6e08889fc9beae2fcea3db9520660",
+                "6732d64f372c4f2309691a2f8bf20cc08eb90b3fedfbac6d4ffd5ea70609b613",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/fetch-future-asset",
@@ -234,17 +244,17 @@ public class ManagedSubAccountApiTest {
     }
 
     /**
-     * Query Managed Sub-account List(For Investor)(USER_DATA)
+     * Query Managed Sub-account List (For Investor) (USER_DATA)
      *
-     * <p>Get investor&#39;s managed sub-account list. Weight: 60
+     * <p>Get investor&#39;s managed sub-account list. Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryManagedSubAccountListTest() throws ApiException, CryptoException {
-        String email = "";
+    public void queryManagedSubAccountListTest() throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
         Long page = 1L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QueryManagedSubAccountListResponse> response =
                 api.queryManagedSubAccountList(email, page, limit, recvWindow);
@@ -259,27 +269,26 @@ public class ManagedSubAccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=abc%40test.com&page=1&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=&page=1&limit=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "59d1ab1944836e12ee2d5bb7ff0477b7fef74e6071fc2ceffa8794ad5e0d7a71",
+                "1aceaa5310991ec4eb8042bafd0250fbf464db288a25afef9082739f1d69552f",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/managed-subaccount/info", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Managed Sub-account Margin Asset Details(For Investor Master Account)(USER_DATA)
+     * Query Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
      *
-     * <p>Investor can use this api to query managed sub account margin asset details Weight: 1
+     * <p>Investor can use this api to query managed sub account margin asset details Weight(IP): 1
+     * Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryManagedSubAccountMarginAssetDetailsTest()
-            throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String accountType = "";
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
+        String accountType = "MARGIN";
         ApiResponse<QueryManagedSubAccountMarginAssetDetailsResponse> response =
                 api.queryManagedSubAccountMarginAssetDetails(email, accountType);
 
@@ -294,30 +303,34 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&accountType=&timestamp=1736393892000",
+                "email=abc%40test.com&accountType=MARGIN&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "f304bae266239f54bc793653d4cd4e29a0c6e08889fc9beae2fcea3db9520660",
+                "6732d64f372c4f2309691a2f8bf20cc08eb90b3fedfbac6d4ffd5ea70609b613",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/managed-subaccount/marginAsset", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/managed-subaccount/marginAsset",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Managed Sub-account Snapshot(For Investor Master Account)
+     * Query Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA)
      *
-     * <p>Query Managed Sub-account Snapshot * The query time period must be less then 30 days *
-     * Support query within the last one month only * If startTimeand endTime not sent, return
-     * records of the last 7 days by default Weight: 2400
+     * <p>Query Managed Sub-account Snapshot Weight(IP): 2400 Security Type: USER_DATA Notes: - The
+     * query time range must be less than 30 days. - Only data from the most recent month is
+     * supported. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, records from the
+     * last 7 days are returned by default.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryManagedSubAccountSnapshotTest() throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
-        String type = "";
+    public void queryManagedSubAccountSnapshotTest()
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
+        OrderType type = OrderType.SPOT;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 1L;
+        Long limit = 10L;
         Long recvWindow = 5000L;
         ApiResponse<QueryManagedSubAccountSnapshotResponse> response =
                 api.queryManagedSubAccountSnapshot(
@@ -333,38 +346,36 @@ public class ManagedSubAccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=abc%40test.com&type=SPOT&startTime=1623319461670&endTime=1641782889000&limit=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=sub-account-email%40email.com&type=&startTime=1623319461670&endTime=1641782889000&limit=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "798f63c636a19b23eafed70bc3b49d260b1a3c84da75aa5a05168e2c182eea14",
+                "02247e40a39ec060147b4d296a431df42bc116f78d987147aca6a402e2d48350",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/managed-subaccount/accountSnapshot", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/managed-subaccount/accountSnapshot", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Managed Sub Account Transfer Log(For Investor Master Account)(USER_DATA)
+     * Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
      *
-     * <p>Investor can use this api to query managed sub account transfer log. This endpoint is
-     * available for investor of Managed Sub-Account. A Managed Sub-Account is an account type for
-     * investors who value flexibility in asset allocation and account application, while delegating
-     * trades to a professional trading team. Please refer to
+     * <p>Query Managed Sub Account Transfer Log For Investor Master Account Investor can use this
+     * api to query managed sub account transfer log. This endpoint is available for investor of
+     * Managed Sub-Account. A Managed Sub-Account is an account type for investors who value
+     * flexibility in asset allocation and account application, while delegating trades to a
+     * professional trading team. Please refer to
      * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight: 1
+     * Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryManagedSubAccountTransferLogMasterAccountInvestorTest()
-            throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
-        Long limit = 0L;
+        Long page = 1L;
+        Long limit = 1L;
         String transfers = "";
-        String transferFunctionAccountType = "";
+        TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.SPOT;
         ApiResponse<QueryManagedSubAccountTransferLogMasterAccountInvestorResponse> response =
                 api.queryManagedSubAccountTransferLogMasterAccountInvestor(
                         email,
@@ -386,10 +397,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&timestamp=1736393892000",
+                "email=abc%40test.com&startTime=1623319461670&endTime=1641782889000&page=1&limit=1&transfers=&transferFunctionAccountType=SPOT&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "c599759baae54f1cbc6819afc54293b31bd6d2b9bfb9d63ef31317dc02d576e9",
+                "b108a84afb9bb65dddbcf9cbdfb2ab879d3b2878962ca492fbd64b5ddc75a63e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/queryTransLogForInvestor",
@@ -397,27 +408,28 @@ public class ManagedSubAccountApiTest {
     }
 
     /**
-     * Query Managed Sub Account Transfer Log(For Trading Team Master Account)(USER_DATA)
+     * Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
      *
-     * <p>Trading team can use this api to query managed sub account transfer log. This endpoint is
-     * available for trading team of Managed Sub-Account. A Managed Sub-Account is an account type
-     * for investors who value flexibility in asset allocation and account application, while
-     * delegating trades to a professional trading team. Please refer to
+     * <p>Query Managed Sub Account Transfer Log For Trading Team Master Account Trading team can
+     * use this api to query managed sub account transfer log. This endpoint is available for
+     * trading team of Managed Sub-Account. A Managed Sub-Account is an account type for investors
+     * who value flexibility in asset allocation and account application, while delegating trades to
+     * a professional trading team. Please refer to
      * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight: 60
+     * Weight(UID): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryManagedSubAccountTransferLogMasterAccountTradingTest()
-            throws ApiException, CryptoException {
-        String email = "sub-account-email@email.com";
+            throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
-        Long limit = 0L;
+        Long page = 1L;
+        Long limit = 10L;
         String transfers = "";
-        String transferFunctionAccountType = "";
+        TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.SPOT;
         ApiResponse<QueryManagedSubAccountTransferLogMasterAccountTradingResponse> response =
                 api.queryManagedSubAccountTransferLogMasterAccountTrading(
                         email,
@@ -439,10 +451,10 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "email=sub-account-email%40email.com&startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&timestamp=1736393892000",
+                "email=abc%40test.com&startTime=1623319461670&endTime=1641782889000&page=1&limit=10&transfers=&transferFunctionAccountType=SPOT&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "c599759baae54f1cbc6819afc54293b31bd6d2b9bfb9d63ef31317dc02d576e9",
+                "9603c1151956d8d0e9b9febed29de16d1c6edf2dfc71f4ceb525c4dedea4e253",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/managed-subaccount/queryTransLogForTradeParent",
@@ -450,21 +462,22 @@ public class ManagedSubAccountApiTest {
     }
 
     /**
-     * Query Managed Sub Account Transfer Log (For Trading Team Sub Account)(USER_DATA)
+     * Query Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA)
      *
-     * <p>Query Managed Sub Account Transfer Log (For Trading Team Sub Account) Weight: 60
+     * <p>Query Managed Sub Account Transfer Log (For Trading Team Sub Account) Weight(UID): 60
+     * Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void queryManagedSubAccountTransferLogSubAccountTradingTest()
-            throws ApiException, CryptoException {
+            throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long page = 0L;
-        Long limit = 0L;
+        Long page = 1L;
+        Long limit = 10L;
         String transfers = "";
-        String transferFunctionAccountType = "";
+        TransferFunctionAccountType transferFunctionAccountType = TransferFunctionAccountType.SPOT;
         Long recvWindow = 5000L;
         ApiResponse<QueryManagedSubAccountTransferLogSubAccountTradingResponse> response =
                 api.queryManagedSubAccountTransferLogSubAccountTrading(
@@ -487,32 +500,33 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&page=0&limit=0&transfers=&transferFunctionAccountType=&recvWindow=5000&timestamp=1736393892000",
+                "startTime=1623319461670&endTime=1641782889000&page=1&limit=10&transfers=&transferFunctionAccountType=SPOT&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "b59ab6777669cdc39572866581590352bd013db054272dfe561a707921813c24",
+                "8d85395f7d7d07824163ff9fba0f1b1c6a86ea965a102dea111553b25adc1eab",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/managed-subaccount/query-trans-log", actualRequest.url().encodedPath());
+                "/sapi/v1/managed-subaccount/query-trans-log",
+                actualRequest.url().encodedPath());
     }
 
     /**
-     * Withdrawl Assets From The Managed Sub-account(For Investor Master Account)
+     * Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
      *
-     * <p>Withdrawl Assets From The Managed Sub-account * You need to enable &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; option for the api key which requests this endpoint Weight: 1
+     * <p>Withdrawl Assets From The Managed Sub-account Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - Your API key must have the permission &#x60;Enable Spot &amp; Margin Trading&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void withdrawlAssetsFromTheManagedSubAccountTest() throws ApiException, CryptoException {
+    public void withdrawlAssetsFromTheManagedSubAccountTest()
+            throws ApiException, CryptoException, IOException {
         WithdrawlAssetsFromTheManagedSubAccountRequest
                 withdrawlAssetsFromTheManagedSubAccountRequest =
                         new WithdrawlAssetsFromTheManagedSubAccountRequest();
-
-        withdrawlAssetsFromTheManagedSubAccountRequest.fromEmail("");
-        withdrawlAssetsFromTheManagedSubAccountRequest.asset("");
-        withdrawlAssetsFromTheManagedSubAccountRequest.amount(1d);
+        withdrawlAssetsFromTheManagedSubAccountRequest.fromEmail("from@test.com");
+        withdrawlAssetsFromTheManagedSubAccountRequest.asset("BTC");
+        withdrawlAssetsFromTheManagedSubAccountRequest.amount(1.0d);
 
         ApiResponse<WithdrawlAssetsFromTheManagedSubAccountResponse> response =
                 api.withdrawlAssetsFromTheManagedSubAccount(
@@ -529,10 +543,13 @@ public class ManagedSubAccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000amount=1&asset=&fromEmail=", signInputCaptor.getValue());
+                "timestamp=1736393892000amount=1&asset=BTC&fromEmail=from%40test.com",
+                signInputCaptor.getValue());
         assertEquals(
-                "2a0783094485dc7627ebacda95b82dab6b57ddc19fa05930073f93f5f157ae46",
+                "fe516260cf61d0ed74f43ec43543ac3a08dc6cec55014b4e3c0792bab3232be6",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/managed-subaccount/withdraw", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/managed-subaccount/withdraw",
+                actualRequest.url().encodedPath());
     }
 }

@@ -5,8 +5,6 @@
 ## Enum
 
 
-* `NONE` (value: `"NONE"`)
-
 * `OPPONENT` (value: `"OPPONENT"`)
 
 * `OPPONENT_5` (value: `"OPPONENT_5"`)

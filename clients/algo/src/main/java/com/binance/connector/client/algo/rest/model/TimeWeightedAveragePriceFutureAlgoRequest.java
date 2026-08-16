@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** TimeWeightedAveragePriceFutureAlgoRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TimeWeightedAveragePriceFutureAlgoRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -47,13 +47,13 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE)
     @jakarta.annotation.Nonnull
-    private String side;
+    private Side side;
 
     public static final String SERIALIZED_NAME_POSITION_SIDE = "positionSide";
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private String positionSide;
+    private PositionSide positionSide;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -100,7 +100,7 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get symbol
+     * Trading symbol eg. BTCUSDT
      *
      * @return symbol
      */
@@ -114,7 +114,7 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
         this.symbol = symbol;
     }
 
-    public TimeWeightedAveragePriceFutureAlgoRequest side(@jakarta.annotation.Nonnull String side) {
+    public TimeWeightedAveragePriceFutureAlgoRequest side(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
         return this;
     }
@@ -126,16 +126,17 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getSide() {
+    @Valid
+    public Side getSide() {
         return side;
     }
 
-    public void setSide(@jakarta.annotation.Nonnull String side) {
+    public void setSide(@jakarta.annotation.Nonnull Side side) {
         this.side = side;
     }
 
     public TimeWeightedAveragePriceFutureAlgoRequest positionSide(
-            @jakarta.annotation.Nullable String positionSide) {
+            @jakarta.annotation.Nullable PositionSide positionSide) {
         this.positionSide = positionSide;
         return this;
     }
@@ -146,11 +147,12 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
      * @return positionSide
      */
     @jakarta.annotation.Nullable
-    public String getPositionSide() {
+    @Valid
+    public PositionSide getPositionSide() {
         return positionSide;
     }
 
-    public void setPositionSide(@jakarta.annotation.Nullable String positionSide) {
+    public void setPositionSide(@jakarta.annotation.Nullable PositionSide positionSide) {
         this.positionSide = positionSide;
     }
 
@@ -161,7 +163,9 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get quantity
+     * Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base
+     * asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of
+     * 1,000,000 USDT
      *
      * @return quantity
      */
@@ -183,12 +187,14 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get duration
+     * Duration for TWAP orders in seconds minimum: 300 maximum: 86400
      *
      * @return duration
      */
     @jakarta.annotation.Nonnull
     @NotNull
+    @Min(300L)
+    @Max(86400L)
     public Long getDuration() {
         return duration;
     }
@@ -204,11 +210,13 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get clientAlgoId
+     * A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will
+     * give default value
      *
      * @return clientAlgoId
      */
     @jakarta.annotation.Nullable
+    @Size(min = 32, max = 32)
     public String getClientAlgoId() {
         return clientAlgoId;
     }
@@ -224,7 +232,8 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get reduceOnly
+     * \&quot;true\&quot; or \&quot;false\&quot;. Default \&quot;false\&quot;; Cannot be sent in
+     * Hedge Mode; Cannot be sent when you open a position
      *
      * @return reduceOnly
      */
@@ -244,7 +253,7 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get limitPrice
+     * Limit price of the order; If it is not sent, will place order by market price by default
      *
      * @return limitPrice
      */
@@ -265,11 +274,12 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -459,20 +469,11 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if (!jsonObj.get("side").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `side` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("side").toString()));
-        }
-        if ((jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull())
-                && !jsonObj.get("positionSide").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `positionSide` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("positionSide").toString()));
+        // validate the required field `side`
+        Side.validateJsonElement(jsonObj.get("side"));
+        // validate the optional field `positionSide`
+        if (jsonObj.get("positionSide") != null && !jsonObj.get("positionSide").isJsonNull()) {
+            PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
         if ((jsonObj.get("clientAlgoId") != null && !jsonObj.get("clientAlgoId").isJsonNull())
                 && !jsonObj.get("clientAlgoId").isJsonPrimitive()) {

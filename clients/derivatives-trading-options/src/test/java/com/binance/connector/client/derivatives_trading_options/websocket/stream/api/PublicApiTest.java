@@ -18,16 +18,7 @@ import com.binance.connector.client.common.websocket.adapter.stream.StreamConnec
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.DiffBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.IndividualSymbolBookTickerStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.PartialBookDepthStreamsResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.Ticker24HourResponse;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsRequest;
-import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.TradeStreamsResponse;
+import com.binance.connector.client.derivatives_trading_options.websocket.stream.model.*;
 import jakarta.validation.constraints.*;
 import java.io.File;
 import java.io.IOException;
@@ -100,7 +91,7 @@ public class PublicApiTest {
     public void diffBookDepthStreamsTest() throws ApiException, URISyntaxException, IOException {
         DiffBookDepthStreamsRequest diffBookDepthStreamsRequest = new DiffBookDepthStreamsRequest();
         diffBookDepthStreamsRequest.symbol("btcusdt");
-        diffBookDepthStreamsRequest.updateSpeed("100ms");
+        diffBookDepthStreamsRequest.updateSpeed(UpdateSpeed.UPDATE_SPEED_100ms);
 
         StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> response =
                 api.diffBookDepthStreams(diffBookDepthStreamsRequest);
@@ -174,7 +165,7 @@ public class PublicApiTest {
         PartialBookDepthStreamsRequest partialBookDepthStreamsRequest =
                 new PartialBookDepthStreamsRequest();
         partialBookDepthStreamsRequest.symbol("btcusdt");
-        partialBookDepthStreamsRequest.level("example_value");
+        partialBookDepthStreamsRequest.level(Level.LEVEL_5);
 
         StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> response =
                 api.partialBookDepthStreams(partialBookDepthStreamsRequest);
@@ -193,41 +184,6 @@ public class PublicApiTest {
         URL resource =
                 PublicApiTest.class.getResource(
                         "/expected/stream/PublicApi/symbol@depthlevel@updateSpeed-test.json");
-
-        String expectedJson = Files.readString(Paths.get(resource.toURI()));
-        JSONAssert.assertEquals(expectedJson, sentPayload, true);
-    }
-
-    /**
-     * 24-hour TICKER
-     *
-     * <p>24hr ticker info for all symbols. Only symbols whose ticker info changed will be sent.
-     * Update Speed: 1000ms
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void ticker24HourTest() throws ApiException, URISyntaxException, IOException {
-        Ticker24HourRequest ticker24HourRequest = new Ticker24HourRequest();
-        ticker24HourRequest.symbol("btcusdt");
-
-        StreamBlockingQueueWrapper<Ticker24HourResponse> response =
-                api.ticker24Hour(ticker24HourRequest);
-        ArgumentCaptor<RequestWrapperDTO<Set<String>, Ticker24HourResponse>> callArgumentCaptor =
-                ArgumentCaptor.forClass(RequestWrapperDTO.class);
-        Mockito.verify(connectionSpy).innerSend(callArgumentCaptor.capture());
-        ArgumentCaptor<String> sendArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        RemoteEndpoint remote = sessionMock.getRemote();
-        Mockito.verify(remote).sendString(sendArgumentCaptor.capture(), Mockito.any());
-        RequestWrapperDTO<Set<String>, Ticker24HourResponse> requestWrapperDTO =
-                callArgumentCaptor.getValue();
-        Set<String> params = requestWrapperDTO.getParams();
-        // TODO: test validations
-        String sentPayload = sendArgumentCaptor.getValue();
-
-        URL resource =
-                PublicApiTest.class.getResource(
-                        "/expected/stream/PublicApi/symbol@optionTicker-test.json");
 
         String expectedJson = Files.readString(Paths.get(resource.toURI()));
         JSONAssert.assertEquals(expectedJson, sentPayload, true);

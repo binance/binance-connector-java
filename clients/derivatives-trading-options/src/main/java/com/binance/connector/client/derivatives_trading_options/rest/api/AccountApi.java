@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,6 +20,7 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.derivatives_trading_options.rest.model.AccountFundingFlowResponse;
+import com.binance.connector.client.derivatives_trading_options.rest.model.Currency;
 import com.binance.connector.client.derivatives_trading_options.rest.model.OptionMarginAccountInformationResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -43,7 +44,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -85,11 +86,11 @@ public class AccountApi {
      *
      * @param currency Asset type, only support USDT as of now (required)
      * @param recordId Return the recordId and subsequent data, the latest data is returned by
-     *     default, e.g 100000 (optional)
+     *     default (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
-     * @param recvWindow (optional)
+     * @param limit Number of result sets returned (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -100,11 +101,11 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Account-Funding-Flow">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/account#account-funding-flow">Account
      *     Funding Flow (USER_DATA) Documentation</a>
      */
     private okhttp3.Call accountFundingFlowCall(
-            String currency,
+            Currency currency,
             Long recordId,
             Long startTime,
             Long endTime,
@@ -191,7 +192,7 @@ public class AccountApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountFundingFlowValidateBeforeCall(
-            String currency,
+            Currency currency,
             Long recordId,
             Long startTime,
             Long endTime,
@@ -212,7 +213,7 @@ public class AccountApi {
                     this.getClass()
                             .getMethod(
                                     "accountFundingFlow",
-                                    String.class,
+                                    Currency.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -237,16 +238,16 @@ public class AccountApi {
     }
 
     /**
-     * Account Funding Flow (USER_DATA) Query account funding flows. * Only support querying data in
-     * the past 3 months Weight: 1
+     * Account Funding Flow (USER_DATA) Query account funding flows. Weight(IP): 1 Security Type:
+     * USER_DATA Notes: - Only support querying data in the past 3 months
      *
      * @param currency Asset type, only support USDT as of now (required)
      * @param recordId Return the recordId and subsequent data, the latest data is returned by
-     *     default, e.g 100000 (optional)
+     *     default (optional)
      * @param startTime Start Time, e.g 1593511200000 (optional)
      * @param endTime End Time, e.g 1593512200000 (optional)
-     * @param limit Number of result sets returned Default:100 Max:1000 (optional)
-     * @param recvWindow (optional)
+     * @param limit Number of result sets returned (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;AccountFundingFlowResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -258,15 +259,15 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Account-Funding-Flow">Account
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/account#account-funding-flow">Account
      *     Funding Flow (USER_DATA) Documentation</a>
      */
     public ApiResponse<AccountFundingFlowResponse> accountFundingFlow(
-            @NotNull String currency,
+            @NotNull Currency currency,
             Long recordId,
             Long startTime,
             Long endTime,
-            Long limit,
+            @Max(1000L) Long limit,
             Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
@@ -280,7 +281,7 @@ public class AccountApi {
     /**
      * Build call for optionMarginAccountInformation
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -291,7 +292,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Option-Margin-Account-Information">Option
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/account#option-margin-account-information">Option
      *     Margin Account Information (USER_DATA) Documentation</a>
      */
     private okhttp3.Call optionMarginAccountInformationCall(Long recvWindow) throws ApiException {
@@ -385,9 +386,10 @@ public class AccountApi {
     }
 
     /**
-     * Option Margin Account Information (USER_DATA) Get current account information. Weight: 3
+     * Option Margin Account Information (USER_DATA) Get current account information. Weight(IP): 3
+     * Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Recv Window. (optional)
      * @return ApiResponse&lt;OptionMarginAccountInformationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -399,7 +401,7 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/account/Option-Margin-Account-Information">Option
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/account#option-margin-account-information">Option
      *     Margin Account Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<OptionMarginAccountInformationResponse> optionMarginAccountInformation(

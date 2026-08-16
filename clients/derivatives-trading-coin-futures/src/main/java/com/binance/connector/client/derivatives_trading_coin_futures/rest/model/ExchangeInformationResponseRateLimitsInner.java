@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ExchangeInformationResponseRateLimitsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseRateLimitsInner {
     public static final String SERIALIZED_NAME_INTERVAL = "interval";
 
@@ -69,7 +69,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get interval
+     * Rate limit interval.
      *
      * @return interval
      */
@@ -89,7 +89,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get intervalNum
+     * Rate limit interval multiplier.
      *
      * @return intervalNum
      */
@@ -109,7 +109,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get limit
+     * Maximum allowed orders for this rule.
      *
      * @return limit
      */
@@ -129,7 +129,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get rateLimitType
+     * Rate limit type.
      *
      * @return rateLimitType
      */

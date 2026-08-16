@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**assetFullName** | **String** |  |  [optional] |
-|**assetName** | **String** |  |  [optional] |
-|**isBorrowable** | **Boolean** |  |  [optional] |
-|**isMortgageable** | **Boolean** |  |  [optional] |
-|**userMinBorrow** | **String** |  |  [optional] |
-|**userMinRepay** | **String** |  |  [optional] |
-|**delistTime** | **Long** |  |  [optional] |
+|**assetFullName** | **String** | asset Full Name. |  [optional] |
+|**assetName** | **String** | asset Name. |  [optional] |
+|**isBorrowable** | **Boolean** | is Borrowable. |  [optional] |
+|**isMortgageable** | **Boolean** | is Mortgageable. |  [optional] |
+|**userMinBorrow** | **String** | user Min Borrow. |  [optional] |
+|**userMinRepay** | **String** | user Min Repay. |  [optional] |
+|**delistTime** | **Long** | delist Time. |  [optional] |
 
 
 

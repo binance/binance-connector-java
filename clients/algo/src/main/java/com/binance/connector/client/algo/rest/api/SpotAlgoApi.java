@@ -1,6 +1,6 @@
 /*
- * Binance Algo REST API
- * OpenAPI Specification for the Binance Algo REST API
+ * Algo Trading REST API
+ * Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -16,6 +16,7 @@ import com.binance.connector.client.algo.rest.model.CancelAlgoOrderSpotAlgoRespo
 import com.binance.connector.client.algo.rest.model.QueryCurrentAlgoOpenOrdersSpotAlgoResponse;
 import com.binance.connector.client.algo.rest.model.QueryHistoricalAlgoOrdersSpotAlgoResponse;
 import com.binance.connector.client.algo.rest.model.QuerySubOrdersSpotAlgoResponse;
+import com.binance.connector.client.algo.rest.model.Side;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceSpotAlgoRequest;
 import com.binance.connector.client.algo.rest.model.TimeWeightedAveragePriceSpotAlgoResponse;
 import com.binance.connector.client.common.ApiClient;
@@ -49,7 +50,7 @@ public class SpotAlgoApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-algo/1.2.1 (Java/%s; %s; %s)",
+                    "binance-algo/2.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -89,8 +90,8 @@ public class SpotAlgoApi {
     /**
      * Build call for cancelAlgoOrderSpotAlgo
      *
-     * @param algoId eg. 14511 (required)
-     * @param recvWindow (optional)
+     * @param algoId (required)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -100,8 +101,9 @@ public class SpotAlgoApi {
      * <tr><td> 200 </td><td> Cancel Algo Order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Cancel-Algo-Order">Cancel
-     *     Algo Order(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#cancel-algo-order-spot-algo">Cancel
+     *     Spot Algo Order (TRADE) Documentation</a>
      */
     private okhttp3.Call cancelAlgoOrderSpotAlgoCall(Long algoId, Long recvWindow)
             throws ApiException {
@@ -200,10 +202,10 @@ public class SpotAlgoApi {
     }
 
     /**
-     * Cancel Algo Order(TRADE) Cancel an open TWAP order Weight: 1
+     * Cancel Spot Algo Order (TRADE) Cancel an open TWAP order Weight(IP): 1 Security Type: TRADE
      *
-     * @param algoId eg. 14511 (required)
-     * @param recvWindow (optional)
+     * @param algoId (required)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CancelAlgoOrderSpotAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -214,11 +216,12 @@ public class SpotAlgoApi {
      * <tr><td> 200 </td><td> Cancel Algo Order </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Cancel-Algo-Order">Cancel
-     *     Algo Order(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#cancel-algo-order-spot-algo">Cancel
+     *     Spot Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderSpotAlgoResponse> cancelAlgoOrderSpotAlgo(
-            @NotNull Long algoId, Long recvWindow) throws ApiException {
+            @NotNull Long algoId, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = cancelAlgoOrderSpotAlgoValidateBeforeCall(algoId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CancelAlgoOrderSpotAlgoResponse>() {}.getType();
@@ -228,7 +231,7 @@ public class SpotAlgoApi {
     /**
      * Build call for queryCurrentAlgoOpenOrdersSpotAlgo
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -239,8 +242,8 @@ public class SpotAlgoApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/algo/spot-algo/Query-Current-Algo-Open-Orders">Query
-     *     Current Algo Open Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-current-algo-open-orders-spot-algo">Query
+     *     Current Spot Algo Open Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryCurrentAlgoOpenOrdersSpotAlgoCall(Long recvWindow)
             throws ApiException {
@@ -335,9 +338,10 @@ public class SpotAlgoApi {
     }
 
     /**
-     * Query Current Algo Open Orders(USER_DATA) Get all open SPOT TWAP orders Weight: 1
+     * Query Current Spot Algo Open Orders (USER_DATA) Get all open SPOT TWAP orders Weight(IP): 1
+     * Security Type: USER_DATA
      *
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryCurrentAlgoOpenOrdersSpotAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -349,11 +353,11 @@ public class SpotAlgoApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/algo/spot-algo/Query-Current-Algo-Open-Orders">Query
-     *     Current Algo Open Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-current-algo-open-orders-spot-algo">Query
+     *     Current Spot Algo Open Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryCurrentAlgoOpenOrdersSpotAlgoResponse>
-            queryCurrentAlgoOpenOrdersSpotAlgo(Long recvWindow) throws ApiException {
+            queryCurrentAlgoOpenOrdersSpotAlgo(@Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 queryCurrentAlgoOpenOrdersSpotAlgoValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -364,13 +368,13 @@ public class SpotAlgoApi {
     /**
      * Build call for queryHistoricalAlgoOrdersSpotAlgo
      *
-     * @param symbol Trading symbol eg. BTCUSDT (optional)
-     * @param side BUY or SELL (optional)
+     * @param symbol Trading symbol (optional)
+     * @param side (optional)
      * @param startTime in milliseconds eg.1641522717552 (optional)
      * @param endTime in milliseconds eg.1641522526562 (optional)
-     * @param page Default is 1 (optional)
-     * @param pageSize MIN 1, MAX 100; Default 100 (optional)
-     * @param recvWindow (optional)
+     * @param page Page number (optional)
+     * @param pageSize Records per page (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -381,12 +385,12 @@ public class SpotAlgoApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/algo/spot-algo/Query-Historical-Algo-Orders">Query
-     *     Historical Algo Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-historical-algo-orders-spot-algo">Query
+     *     Historical Spot Algo Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call queryHistoricalAlgoOrdersSpotAlgoCall(
             String symbol,
-            String side,
+            Side side,
             Long startTime,
             Long endTime,
             Long page,
@@ -478,7 +482,7 @@ public class SpotAlgoApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryHistoricalAlgoOrdersSpotAlgoValidateBeforeCall(
             String symbol,
-            String side,
+            Side side,
             Long startTime,
             Long endTime,
             Long page,
@@ -502,7 +506,7 @@ public class SpotAlgoApi {
                             .getMethod(
                                     "queryHistoricalAlgoOrdersSpotAlgo",
                                     String.class,
-                                    String.class,
+                                    Side.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -527,15 +531,16 @@ public class SpotAlgoApi {
     }
 
     /**
-     * Query Historical Algo Orders(USER_DATA) Get all historical SPOT TWAP orders Weight: 1
+     * Query Historical Spot Algo Orders (USER_DATA) Get all historical SPOT TWAP orders Weight(IP):
+     * 1 Security Type: USER_DATA
      *
-     * @param symbol Trading symbol eg. BTCUSDT (optional)
-     * @param side BUY or SELL (optional)
+     * @param symbol Trading symbol (optional)
+     * @param side (optional)
      * @param startTime in milliseconds eg.1641522717552 (optional)
      * @param endTime in milliseconds eg.1641522526562 (optional)
-     * @param page Default is 1 (optional)
-     * @param pageSize MIN 1, MAX 100; Default 100 (optional)
-     * @param recvWindow (optional)
+     * @param page Page number (optional)
+     * @param pageSize Records per page (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryHistoricalAlgoOrdersSpotAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -547,17 +552,17 @@ public class SpotAlgoApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/algo/spot-algo/Query-Historical-Algo-Orders">Query
-     *     Historical Algo Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-historical-algo-orders-spot-algo">Query
+     *     Historical Spot Algo Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryHistoricalAlgoOrdersSpotAlgoResponse> queryHistoricalAlgoOrdersSpotAlgo(
             String symbol,
-            String side,
+            Side side,
             Long startTime,
             Long endTime,
             Long page,
-            Long pageSize,
-            Long recvWindow)
+            @Min(1L) @Max(100L) Long pageSize,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 queryHistoricalAlgoOrdersSpotAlgoValidateBeforeCall(
@@ -571,9 +576,9 @@ public class SpotAlgoApi {
      * Build call for querySubOrdersSpotAlgo
      *
      * @param algoId eg. 14511 (required)
-     * @param page Default is 1 (optional)
-     * @param pageSize MIN 1, MAX 100; Default 100 (optional)
-     * @param recvWindow (optional)
+     * @param page Page number (optional)
+     * @param pageSize Records per page (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -583,8 +588,9 @@ public class SpotAlgoApi {
      * <tr><td> 200 </td><td> Sub Orders </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Query-Sub-Orders">Query Sub
-     *     Orders(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-sub-orders-spot-algo">Query
+     *     Spot Sub Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call querySubOrdersSpotAlgoCall(
             Long algoId, Long page, Long pageSize, Long recvWindow) throws ApiException {
@@ -697,12 +703,13 @@ public class SpotAlgoApi {
     }
 
     /**
-     * Query Sub Orders(USER_DATA) Get respective sub orders for a specified algoId Weight: 1
+     * Query Spot Sub Orders (USER_DATA) Get respective sub orders for a specified algoId
+     * Weight(IP): 1 Security Type: USER_DATA
      *
      * @param algoId eg. 14511 (required)
-     * @param page Default is 1 (optional)
-     * @param pageSize MIN 1, MAX 100; Default 100 (optional)
-     * @param recvWindow (optional)
+     * @param page Page number (optional)
+     * @param pageSize Records per page (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QuerySubOrdersSpotAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -713,11 +720,16 @@ public class SpotAlgoApi {
      * <tr><td> 200 </td><td> Sub Orders </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/algo/spot-algo/Query-Sub-Orders">Query Sub
-     *     Orders(USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-sub-orders-spot-algo">Query
+     *     Spot Sub Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<QuerySubOrdersSpotAlgoResponse> querySubOrdersSpotAlgo(
-            @NotNull Long algoId, Long page, Long pageSize, Long recvWindow) throws ApiException {
+            @NotNull Long algoId,
+            Long page,
+            @Min(1L) @Max(100L) Long pageSize,
+            @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
                 querySubOrdersSpotAlgoValidateBeforeCall(algoId, page, pageSize, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -739,8 +751,8 @@ public class SpotAlgoApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/algo/spot-algo/Time-Weighted-Average-Price-New-Order">Time-Weighted
-     *     Average Price(Twap) New Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#time-weighted-average-price-spot-algo">Time-Weighted
+     *     Spot Average Price(Twap) New Order (TRADE) Documentation</a>
      */
     private okhttp3.Call timeWeightedAveragePriceSpotAlgoCall(
             TimeWeightedAveragePriceSpotAlgoRequest timeWeightedAveragePriceSpotAlgoRequest)
@@ -869,8 +881,9 @@ public class SpotAlgoApi {
     }
 
     /**
-     * Time-Weighted Average Price(Twap) New Order(TRADE) Place a new spot TWAP order with Algo
-     * service. * Total Algo open orders max allowed: &#x60;20&#x60; orders. Weight: 3000
+     * Time-Weighted Spot Average Price(Twap) New Order (TRADE) Place a new spot TWAP order with
+     * Algo service. Weight(UID): 3000 Security Type: TRADE Notes: - Total Algo open orders max
+     * allowed: &#x60;20&#x60; orders.
      *
      * @param timeWeightedAveragePriceSpotAlgoRequest (required)
      * @return ApiResponse&lt;TimeWeightedAveragePriceSpotAlgoResponse&gt;
@@ -884,8 +897,8 @@ public class SpotAlgoApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/algo/spot-algo/Time-Weighted-Average-Price-New-Order">Time-Weighted
-     *     Average Price(Twap) New Order(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#time-weighted-average-price-spot-algo">Time-Weighted
+     *     Spot Average Price(Twap) New Order (TRADE) Documentation</a>
      */
     public ApiResponse<TimeWeightedAveragePriceSpotAlgoResponse> timeWeightedAveragePriceSpotAlgo(
             @Valid @NotNull

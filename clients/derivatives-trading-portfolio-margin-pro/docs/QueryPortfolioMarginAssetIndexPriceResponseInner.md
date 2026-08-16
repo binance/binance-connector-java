@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**assetIndexPrice** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**assetIndexPrice** | **String** | in USD |  [optional] |
+|**time** | **Long** | time. |  [optional] |
 
 
 

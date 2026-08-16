@@ -18,18 +18,8 @@ import com.binance.connector.client.common.websocket.adapter.ConnectionWrapper;
 
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.CancelOrderRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.CancelOrderResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.ModifyOrderRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.ModifyOrderResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.NewOrderRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.NewOrderResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.PositionInformationRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.PositionInformationResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.QueryOrderRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.QueryOrderResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.Side;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.Type;
+import com.binance.connector.client.derivatives_trading_coin_futures.websocket.api.model.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -211,7 +201,7 @@ public class TradeApiTest {
 
         newOrderRequest.symbol("");
         newOrderRequest.side(Side.BUY);
-        newOrderRequest.type(Type.LIMIT);
+        newOrderRequest.type(OrderType.LIMIT);
 
         CompletableFuture<NewOrderResponse> response = api.newOrder(newOrderRequest);
         ArgumentCaptor<RequestWrapperDTO<NewOrderRequest, NewOrderResponse>> callArgumentCaptor =

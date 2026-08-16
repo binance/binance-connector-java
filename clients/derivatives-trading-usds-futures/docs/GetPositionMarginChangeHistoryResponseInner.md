@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**type** | **Long** |  |  [optional] |
-|**deltaType** | **String** |  |  [optional] |
-|**amount** | **String** |  |  [optional] |
-|**asset** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**type** | **Long** | Type. |  [optional] |
+|**deltaType** | **String** | Delta Type. |  [optional] |
+|**amount** | **String** | Amount. |  [optional] |
+|**asset** | **String** | Asset. |  [optional] |
+|**time** | **Long** | Time. |  [optional] |
+|**positionSide** | **String** | Position Side. |  [optional] |
 
 
 

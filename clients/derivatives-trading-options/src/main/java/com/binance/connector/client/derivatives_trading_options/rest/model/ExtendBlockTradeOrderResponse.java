@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** ExtendBlockTradeOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExtendBlockTradeOrderResponse {
     public static final String SERIALIZED_NAME_BLOCK_TRADE_SETTLEMENT_KEY =
             "blockTradeSettlementKey";
@@ -88,7 +88,7 @@ public class ExtendBlockTradeOrderResponse {
     }
 
     /**
-     * Get blockTradeSettlementKey
+     * block Trade Settlement Key
      *
      * @return blockTradeSettlementKey
      */
@@ -108,7 +108,7 @@ public class ExtendBlockTradeOrderResponse {
     }
 
     /**
-     * Get expireTime
+     * expire Time
      *
      * @return expireTime
      */
@@ -127,7 +127,7 @@ public class ExtendBlockTradeOrderResponse {
     }
 
     /**
-     * Get liquidity
+     * liquidity
      *
      * @return liquidity
      */
@@ -146,7 +146,7 @@ public class ExtendBlockTradeOrderResponse {
     }
 
     /**
-     * Get status
+     * status
      *
      * @return status
      */
@@ -165,7 +165,7 @@ public class ExtendBlockTradeOrderResponse {
     }
 
     /**
-     * Get createTime
+     * create Time
      *
      * @return createTime
      */
@@ -194,7 +194,7 @@ public class ExtendBlockTradeOrderResponse {
     }
 
     /**
-     * Get legs
+     * legs
      *
      * @return legs
      */

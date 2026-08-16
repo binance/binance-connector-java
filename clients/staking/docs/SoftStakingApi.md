@@ -5,7 +5,7 @@ All URIs are relative to *https://api.binance.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getSoftStakingProductList**](SoftStakingApi.md#getSoftStakingProductList) | **GET** /sapi/v1/soft-staking/list | Get Soft Staking Product List (USER_DATA) |
-| [**getSoftStakingRewardsHistory**](SoftStakingApi.md#getSoftStakingRewardsHistory) | **GET** /sapi/v1/soft-staking/history/rewardsRecord | Get Soft Staking Rewards History(USER_DATA) |
+| [**getSoftStakingRewardsHistory**](SoftStakingApi.md#getSoftStakingRewardsHistory) | **GET** /sapi/v1/soft-staking/history/rewardsRecord | Get Soft Staking Rewards History (USER_DATA) |
 | [**setSoftStaking**](SoftStakingApi.md#setSoftStaking) | **GET** /sapi/v1/soft-staking/set | Set Soft Staking (USER_DATA) |
 
 
@@ -15,7 +15,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get Soft Staking Product List (USER_DATA)
 
-Get the available Soft Staking product list.  Weight: 50
+Get the available Soft Staking product list.  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -32,10 +32,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SoftStakingApi apiInstance = new SoftStakingApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String asset = "BTC"; // String | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetSoftStakingProductListResponse result = apiInstance.getSoftStakingProductList(asset, current, size, recvWindow);
       System.out.println(result);
@@ -55,9 +55,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -81,9 +81,9 @@ No authorization required
 # **getSoftStakingRewardsHistory**
 > GetSoftStakingRewardsHistoryResponse getSoftStakingRewardsHistory(asset, startTime, endTime, current, size, recvWindow)
 
-Get Soft Staking Rewards History(USER_DATA)
+Get Soft Staking Rewards History (USER_DATA)
 
-* The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 50
+Get Soft Staking Rewards History  Weight(IP): 50  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -100,12 +100,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SoftStakingApi apiInstance = new SoftStakingApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String asset = "BTC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetSoftStakingRewardsHistoryResponse result = apiInstance.getSoftStakingRewardsHistory(asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -127,9 +127,9 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -155,7 +155,7 @@ No authorization required
 
 Set Soft Staking (USER_DATA)
 
-Enable or disable Soft Staking.  Weight: 50
+Enable or disable Soft Staking.  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -172,8 +172,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     SoftStakingApi apiInstance = new SoftStakingApi(defaultClient);
-    Boolean softStaking = true; // Boolean | true or false
-    Long recvWindow = 56L; // Long | 
+    Boolean softStaking = true; // Boolean | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       SetSoftStakingResponse result = apiInstance.setSoftStaking(softStaking, recvWindow);
       System.out.println(result);
@@ -192,8 +192,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **softStaking** | **Boolean**| true or false | |
-| **recvWindow** | **Long**|  | [optional] |
+| **softStaking** | **Boolean**|  | |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 

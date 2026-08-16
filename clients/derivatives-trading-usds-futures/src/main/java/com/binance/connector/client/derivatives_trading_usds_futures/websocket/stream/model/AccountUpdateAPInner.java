@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountUpdateAPInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountUpdateAPInner extends BaseDTO {
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
@@ -101,7 +101,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -120,7 +120,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get pa
+     * Position Amount
      *
      * @return pa
      */
@@ -139,7 +139,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get ep
+     * Entry Price
      *
      * @return ep
      */
@@ -158,7 +158,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get bep
+     * Breakeven Price
      *
      * @return bep
      */
@@ -177,7 +177,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get cr
+     * (Pre-fee) Accumulated Realized
      *
      * @return cr
      */
@@ -196,7 +196,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get up
+     * Unrealized PnL
      *
      * @return up
      */
@@ -215,7 +215,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get mt
+     * Margin Type
      *
      * @return mt
      */
@@ -234,7 +234,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get iw
+     * Isolated Wallet (if isolated position)
      *
      * @return iw
      */
@@ -253,7 +253,7 @@ public class AccountUpdateAPInner extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Position Side
      *
      * @return ps
      */

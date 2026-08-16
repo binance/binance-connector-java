@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -27,9 +27,12 @@ import com.binance.connector.client.spot.rest.model.AggTradesResponse;
 import com.binance.connector.client.spot.rest.model.AvgPriceResponse;
 import com.binance.connector.client.spot.rest.model.DepthResponse;
 import com.binance.connector.client.spot.rest.model.GetTradesResponse;
+import com.binance.connector.client.spot.rest.model.HistoricalBlockTradesResponse;
 import com.binance.connector.client.spot.rest.model.HistoricalTradesResponse;
 import com.binance.connector.client.spot.rest.model.Interval;
 import com.binance.connector.client.spot.rest.model.KlinesResponse;
+import com.binance.connector.client.spot.rest.model.ReferencePriceCalculationResponse;
+import com.binance.connector.client.spot.rest.model.ReferencePriceResponse;
 import com.binance.connector.client.spot.rest.model.SymbolStatus;
 import com.binance.connector.client.spot.rest.model.Symbols;
 import com.binance.connector.client.spot.rest.model.Ticker24hrResponse;
@@ -41,6 +44,7 @@ import com.binance.connector.client.spot.rest.model.TickerType;
 import com.binance.connector.client.spot.rest.model.UiKlinesResponse;
 import com.binance.connector.client.spot.rest.model.WindowSize;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -95,17 +99,19 @@ public class MarketApiTest {
      * Compressed/Aggregate trades list
      *
      * <p>Get compressed, aggregate trades. Trades that fill at the time, from the same taker order,
-     * with the same price will have the quantity aggregated. Weight: 4
+     * with the same price will have the quantity aggregated. Weight(IP): 4 Security Type: NONE
+     * Notes: **Data Source:** Database - If fromId, startTime, and endTime are not sent, the most
+     * recent aggregate trades will be returned.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void aggTradesTest() throws ApiException, CryptoException {
+    public void aggTradesTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
         Long fromId = 1L;
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
-        Integer limit = 500;
+        Integer limit = 1;
         ApiResponse<AggTradesResponse> response =
                 api.aggTrades(symbol, fromId, startTime, endTime, limit);
 
@@ -123,12 +129,13 @@ public class MarketApiTest {
     /**
      * Current average price
      *
-     * <p>Current average price for a symbol. Weight: 2
+     * <p>Current average price for a symbol. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void avgPriceTest() throws ApiException, CryptoException {
+    public void avgPriceTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
         ApiResponse<AvgPriceResponse> response = api.avgPrice(symbol);
 
@@ -146,16 +153,17 @@ public class MarketApiTest {
     /**
      * Order book
      *
-     * <p>Weight: Adjusted based on the limit: |Limit|Request Weight ------|------- 1-100| 5
-     * 101-500| 25 501-1000| 50 1001-5000| 250
+     * <p>Order book Weight: Adjusted based on the limit: |Limit|Request Weight ------|-------
+     * 1-100| 5 101-500| 25 501-1000| 50 1001-5000| 250 Security Type: NONE Notes: **Data Source:**
+     * Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void depthTest() throws ApiException, CryptoException {
+    public void depthTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Integer limit = 500;
-        SymbolStatus symbolStatus = null;
+        Integer limit = 1;
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<DepthResponse> response = api.depth(symbol, limit, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -172,14 +180,14 @@ public class MarketApiTest {
     /**
      * Recent trades list
      *
-     * <p>Get recent trades. Weight: 25
+     * <p>Get recent trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getTradesTest() throws ApiException, CryptoException {
+    public void getTradesTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Integer limit = 500;
+        Integer limit = 1;
         ApiResponse<GetTradesResponse> response = api.getTrades(symbol, limit);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -194,16 +202,44 @@ public class MarketApiTest {
     }
 
     /**
-     * Old trade lookup
+     * Historical Block Trades (MARKET_DATA)
      *
-     * <p>Get older trades. Weight: 25
+     * <p>Get block trades. Weight(IP): 25 Security Type: MARKET_DATA Notes: - Data Source: Database
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void historicalTradesTest() throws ApiException, CryptoException {
+    public void historicalBlockTradesTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
+        Long fromId = 582L;
+        Long limit = 500L;
+        ApiResponse<HistoricalBlockTradesResponse> response =
+                api.historicalBlockTrades(symbol, fromId, limit);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/historicalBlockTrades", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Old trade lookup
+     *
+     * <p>Get older trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Database
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void historicalTradesTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Integer limit = 500;
+        Integer limit = 1;
         Long fromId = 1L;
         ApiResponse<HistoricalTradesResponse> response =
                 api.historicalTrades(symbol, limit, fromId);
@@ -215,7 +251,8 @@ public class MarketApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/historicalTrades", actualRequest.url().encodedPath());
     }
 
@@ -223,18 +260,29 @@ public class MarketApiTest {
      * Kline/Candlestick data
      *
      * <p>Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
-     * Weight: 2
+     * Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Database Supported kline intervals
+     * (case-sensitive): Interval | &#x60;interval&#x60; value --------- | ---------------- seconds
+     * | &#x60;1s&#x60; minutes | &#x60;1m&#x60;, &#x60;3m&#x60;, &#x60;5m&#x60;, &#x60;15m&#x60;,
+     * &#x60;30m&#x60; hours | &#x60;1h&#x60;, &#x60;2h&#x60;, &#x60;4h&#x60;, &#x60;6h&#x60;,
+     * &#x60;8h&#x60;, &#x60;12h&#x60; days | &#x60;1d&#x60;, &#x60;3d&#x60; weeks | &#x60;1w&#x60;
+     * months | &#x60;1M&#x60; **Notes:** * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
+     * sent, the most recent klines are returned. * Supported values for &#x60;timeZone&#x60;: *
+     * Hours and minutes (e.g. &#x60;-1:00&#x60;, &#x60;05:45&#x60;) * Only hours (e.g.
+     * &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;) * Accepted range is strictly [-12:00 to +14:00]
+     * inclusive * If &#x60;timeZone&#x60; provided, kline intervals are interpreted in that
+     * timezone instead of UTC. * Note that &#x60;startTime&#x60; and &#x60;endTime&#x60; are always
+     * interpreted in UTC, regardless of &#x60;timeZone&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void klinesTest() throws ApiException, CryptoException {
+    public void klinesTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
         Interval interval = Interval.INTERVAL_1s;
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
-        String timeZone = "";
-        Integer limit = 500;
+        String timeZone = "0";
+        Integer limit = 1;
         ApiResponse<KlinesResponse> response =
                 api.klines(symbol, interval, startTime, endTime, timeZone, limit);
 
@@ -250,22 +298,82 @@ public class MarketApiTest {
     }
 
     /**
-     * Rolling window price change statistics
+     * Query Reference Price
      *
-     * <p>Weight: 4 for each requested &lt;tt&gt;symbol&lt;/tt&gt; regardless of
-     * &lt;tt&gt;windowSize&lt;/tt&gt;. &lt;br/&gt;&lt;br/&gt; The weight for this request will cap
-     * at 200 once the number of &#x60;symbols&#x60; in the request is more than 50.
+     * <p>Query the reference price for a symbol. Weight(IP): 2 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tickerTest() throws ApiException, CryptoException {
+    public void referencePriceTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
+        ApiResponse<ReferencePriceResponse> response = api.referencePrice(symbol);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/referencePrice", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Reference Price Calculation
+     *
+     * <p>Describes how reference price is calculated for a given symbol. Weight(IP): 2 Security
+     * Type: NONE Notes: **Data Source:** Memory
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void referencePriceCalculationTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBUSDT";
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<ReferencePriceCalculationResponse> response =
+                api.referencePriceCalculation(symbol, symbolStatus);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/api/v3/referencePrice/calculation", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Rolling window price change statistics
+     *
+     * <p>**Note:** This endpoint differs from &#x60;GET /api/v3/ticker/24hr&#x60;. The statistical
+     * time range of this endpoint can be up to 59999ms longer than the requested
+     * &#x60;windowSize&#x60;. &#x60;openTime&#x60; starts at the beginning of a minute, while the
+     * end time is the current time. Therefore, the actual interval can be up to 59999ms longer than
+     * the requested window. For example, if &#x60;closeTime&#x60; is 1641287867099 (January 04,
+     * 2022 09:17:47:099 UTC) and &#x60;windowSize&#x60; is &#x60;1d&#x60;, then
+     * &#x60;openTime&#x60; is 1641201420000 (January 3, 2022, 09:17:00 UTC). Weight: 4 for each
+     * requested symbol regardless of windowSize. The weight for this request will cap at 200 once
+     * the number of &#x60;symbols&#x60; in the request is more than 50. Security Type: NONE Notes:
+     * **Data Source:** Database
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void tickerTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBUSDT";
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
         WindowSize windowSize = WindowSize.WINDOW_SIZE_1m;
         TickerType type = TickerType.FULL;
-        SymbolStatus symbolStatus = null;
-        ApiResponse<TickerResponse> response = api.ticker(symbol, symbols, windowSize, type, symbolStatus);
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<TickerResponse> response =
+                api.ticker(symbol, symbols, windowSize, type, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -291,17 +399,19 @@ public class MarketApiTest {
      * &lt;td&gt;2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;21-100&lt;/td&gt;
      * &lt;td&gt;40&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;101 or more&lt;/td&gt;
      * &lt;td&gt;80&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbols parameter is
-     * omitted&lt;/td&gt; &lt;td&gt;80&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+     * omitted&lt;/td&gt; &lt;td&gt;80&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; Security
+     * Type: NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void ticker24hrTest() throws ApiException, CryptoException {
+    public void ticker24hrTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
         TickerType type = TickerType.FULL;
-        SymbolStatus symbolStatus = null;
-        ApiResponse<Ticker24hrResponse> response = api.ticker24hr(symbol, symbols, type, symbolStatus);
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<Ticker24hrResponse> response =
+                api.ticker24hr(symbol, symbols, type, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -317,22 +427,19 @@ public class MarketApiTest {
     /**
      * Symbol order book ticker
      *
-     * <p>Best price/qty on the order book for a symbol or symbols. Weight: &lt;table&gt;
-     * &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Parameter&lt;/th&gt; &lt;th&gt;Symbols Provided&lt;/th&gt;
-     * &lt;th&gt;Weight&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td
-     * rowspan&#x3D;\&quot;2\&quot;&gt;symbol&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
-     * &lt;td&gt;2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbol parameter is
-     * omitted&lt;/td&gt; &lt;td&gt;4&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbols&lt;/td&gt;
-     * &lt;td&gt;Any&lt;/td&gt; &lt;td&gt;4&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+     * <p>Best price/qty on the order book for a symbol or symbols. Weight: |Parameter|Symbols
+     * Provided|Weight| |---|---|---| |symbol| 1 |2| | |omitted| 4| |symbols| Any |4| Security Type:
+     * NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tickerBookTickerTest() throws ApiException, CryptoException {
+    public void tickerBookTickerTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
-        SymbolStatus symbolStatus = null;
-        ApiResponse<TickerBookTickerResponse> response = api.tickerBookTicker(symbol, symbols, symbolStatus);
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
+        ApiResponse<TickerBookTickerResponse> response =
+                api.tickerBookTicker(symbol, symbols, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -341,28 +448,25 @@ public class MarketApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/ticker/bookTicker", actualRequest.url().encodedPath());
     }
 
     /**
      * Symbol price ticker
      *
-     * <p>Latest price for a symbol or symbols. Weight: &lt;table&gt; &lt;thead&gt; &lt;tr&gt;
-     * &lt;th&gt;Parameter&lt;/th&gt; &lt;th&gt;Symbols Provided&lt;/th&gt;
-     * &lt;th&gt;Weight&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td
-     * rowspan&#x3D;\&quot;2\&quot;&gt;symbol&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
-     * &lt;td&gt;2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbol parameter is
-     * omitted&lt;/td&gt; &lt;td&gt;4&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;symbols&lt;/td&gt;
-     * &lt;td&gt;Any&lt;/td&gt; &lt;td&gt;4&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+     * <p>Latest price for a symbol or symbols. Weight: |Parameter|Symbols Provided|Weight|
+     * |---|---|---| |symbol| 1 |2| | |omitted| 4| |symbols| Any |4| Security Type: NONE Notes:
+     * **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tickerPriceTest() throws ApiException, CryptoException {
+    public void tickerPriceTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
-        SymbolStatus symbolStatus = null;
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<TickerPriceResponse> response = api.tickerPrice(symbol, symbols, symbolStatus);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -379,19 +483,21 @@ public class MarketApiTest {
     /**
      * Trading Day Ticker
      *
-     * <p>Price change statistics for a trading day. Weight: 4 for each requested
-     * &lt;tt&gt;symbol&lt;/tt&gt;. &lt;br/&gt;&lt;br/&gt; The weight for this request will cap at
-     * 200 once the number of &#x60;symbols&#x60; in the request is more than 50.
+     * <p>Price change statistics for a trading day. Weight: 4 for each requested symbol. The weight
+     * for this request will cap at 200 once the number of symbols in the request is more than 50.
+     * Security Type: NONE Notes: **Data Source:** Database **Notes:**: - Supported values for
+     * &#x60;timeZone&#x60;: - Hours and minutes (e.g. &#x60;-1:00&#x60;, &#x60;05:45&#x60;) - Only
+     * hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;)
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tickerTradingDayTest() throws ApiException, CryptoException {
+    public void tickerTradingDayTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
-        Symbols symbols = null;
-        String timeZone = "";
+        Symbols symbols = Symbols.fromJson("[\"BTCUSDT\",\"BNBUSDT\"]");
+        String timeZone = "0";
         TickerType type = TickerType.FULL;
-        SymbolStatus symbolStatus = null;
+        SymbolStatus symbolStatus = SymbolStatus.TRADING;
         ApiResponse<TickerTradingDayResponse> response =
                 api.tickerTradingDay(symbol, symbols, timeZone, type, symbolStatus);
 
@@ -402,7 +508,8 @@ public class MarketApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/ticker/tradingDay", actualRequest.url().encodedPath());
     }
 
@@ -411,18 +518,25 @@ public class MarketApiTest {
      *
      * <p>The request is similar to klines having the same parameters and response.
      * &#x60;uiKlines&#x60; return modified kline data, optimized for presentation of candlestick
-     * charts. Weight: 2
+     * charts. Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Database - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the most recent klines are
+     * returned. - Supported values for &#x60;timeZone&#x60;: - Hours and minutes (e.g.
+     * &#x60;-1:00&#x60;, &#x60;05:45&#x60;) - Only hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;,
+     * &#x60;4&#x60;) - Accepted range is strictly [-12:00 to +14:00] inclusive - If
+     * &#x60;timeZone&#x60; provided, kline intervals are interpreted in that timezone instead of
+     * UTC. - Note that &#x60;startTime&#x60; and &#x60;endTime&#x60; are always interpreted in UTC,
+     * regardless of &#x60;timeZone&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void uiKlinesTest() throws ApiException, CryptoException {
+    public void uiKlinesTest() throws ApiException, CryptoException, IOException {
         String symbol = "BNBUSDT";
         Interval interval = Interval.INTERVAL_1s;
         Long startTime = 1735693200000L;
         Long endTime = 1735693200000L;
-        String timeZone = "";
-        Integer limit = 500;
+        String timeZone = "0";
+        Integer limit = 1;
         ApiResponse<UiKlinesResponse> response =
                 api.uiKlines(symbol, interval, startTime, endTime, timeZone, limit);
 

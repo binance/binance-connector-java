@@ -1,6 +1,6 @@
 /*
- * Binance Copy Trading REST API
- * OpenAPI Specification for the Binance Copy Trading REST API
+ * Copy Trading REST API
+ * Automate lead trading via the Copy Trading API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetFuturesLeadTradingSymbolWhitelistResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetFuturesLeadTradingSymbolWhitelistResponseDataInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -63,7 +63,7 @@ public class GetFuturesLeadTradingSymbolWhitelistResponseDataInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -83,7 +83,7 @@ public class GetFuturesLeadTradingSymbolWhitelistResponseDataInner {
     }
 
     /**
-     * Get baseAsset
+     * Base asset
      *
      * @return baseAsset
      */
@@ -103,7 +103,7 @@ public class GetFuturesLeadTradingSymbolWhitelistResponseDataInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quote asset
      *
      * @return quoteAsset
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetPositionMarginChangeHistoryResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPositionMarginChangeHistoryResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -87,7 +87,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -107,7 +107,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get type
+     * Type.
      *
      * @return type
      */
@@ -127,7 +127,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get deltaType
+     * Delta Type.
      *
      * @return deltaType
      */
@@ -147,7 +147,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get amount
+     * Amount.
      *
      * @return amount
      */
@@ -167,7 +167,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get asset
+     * Asset.
      *
      * @return asset
      */
@@ -187,7 +187,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */
@@ -207,7 +207,7 @@ public class GetPositionMarginChangeHistoryResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */

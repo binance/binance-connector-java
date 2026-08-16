@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetPortfolioMarginProAccountBalanceResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPortfolioMarginProAccountBalanceResponseInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -135,7 +135,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -155,7 +155,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get totalWalletBalance
+     * total Wallet Balance.
      *
      * @return totalWalletBalance
      */
@@ -175,7 +175,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginAsset
+     * cross Margin Asset.
      *
      * @return crossMarginAsset
      */
@@ -195,7 +195,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginBorrowed
+     * cross Margin Borrowed.
      *
      * @return crossMarginBorrowed
      */
@@ -215,7 +215,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginFree
+     * cross Margin Free.
      *
      * @return crossMarginFree
      */
@@ -235,7 +235,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginInterest
+     * cross Margin Interest.
      *
      * @return crossMarginInterest
      */
@@ -255,7 +255,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get crossMarginLocked
+     * cross Margin Locked.
      *
      * @return crossMarginLocked
      */
@@ -275,7 +275,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get umWalletBalance
+     * um Wallet Balance.
      *
      * @return umWalletBalance
      */
@@ -295,7 +295,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get umUnrealizedPNL
+     * um Unrealized PNL.
      *
      * @return umUnrealizedPNL
      */
@@ -315,7 +315,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get cmWalletBalance
+     * cm Wallet Balance.
      *
      * @return cmWalletBalance
      */
@@ -335,7 +335,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get cmUnrealizedPNL
+     * cm Unrealized PNL.
      *
      * @return cmUnrealizedPNL
      */
@@ -355,7 +355,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update Time.
      *
      * @return updateTime
      */
@@ -375,7 +375,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get negativeBalance
+     * negative Balance.
      *
      * @return negativeBalance
      */
@@ -395,7 +395,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get optionWalletBalance
+     * option Wallet Balance.
      *
      * @return optionWalletBalance
      */
@@ -415,7 +415,7 @@ public class GetPortfolioMarginProAccountBalanceResponseInner {
     }
 
     /**
-     * Get optionEquity
+     * option Equity.
      *
      * @return optionEquity
      */

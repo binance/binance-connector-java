@@ -15,7 +15,7 @@
 |**collateralCoin** | **String** |  |  [optional] |
 |**initialCollateralAmount** | **String** |  |  [optional] |
 |**borrowTime** | **Long** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
+|**status** | **String** | Accruing_Interest, Overdue, Liquidating, Repaying, Repaid, Liquidated, Pending, Failed |  [optional] |
 
 
 

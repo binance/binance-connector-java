@@ -9,9 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**productId** | **String** |  |  |
 |**redeemAll** | **Boolean** |  |  [optional] |
-|**amount** | **Double** |  |  [optional] |
-|**destAccount** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**amount** | **Double** | if redeemAll is false, amount is mandatory |  [optional] |
+|**destAccount** | **DestAccount** |  |  [optional] |
+|**recvWindow** | **Long** | Request validity window in milliseconds. |  [optional] |
 
 
 

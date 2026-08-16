@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,13 +35,13 @@ import org.hibernate.validator.constraints.*;
 /** SubscribeRwusdRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SubscribeRwusdRequest {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
     @SerializedName(SERIALIZED_NAME_ASSET)
     @jakarta.annotation.Nonnull
-    private String asset;
+    private Asset asset;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -57,7 +57,7 @@ public class SubscribeRwusdRequest {
 
     public SubscribeRwusdRequest() {}
 
-    public SubscribeRwusdRequest asset(@jakarta.annotation.Nonnull String asset) {
+    public SubscribeRwusdRequest asset(@jakarta.annotation.Nonnull Asset asset) {
         this.asset = asset;
         return this;
     }
@@ -69,11 +69,12 @@ public class SubscribeRwusdRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getAsset() {
+    @Valid
+    public Asset getAsset() {
         return asset;
     }
 
-    public void setAsset(@jakarta.annotation.Nonnull String asset) {
+    public void setAsset(@jakarta.annotation.Nonnull Asset asset) {
         this.asset = asset;
     }
 
@@ -83,7 +84,7 @@ public class SubscribeRwusdRequest {
     }
 
     /**
-     * Get amount
+     * Amount
      *
      * @return amount
      */
@@ -104,11 +105,12 @@ public class SubscribeRwusdRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -228,13 +230,8 @@ public class SubscribeRwusdRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("asset").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `asset` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("asset").toString()));
-        }
+        // validate the required field `asset`
+        Asset.validateJsonElement(jsonObj.get("asset"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

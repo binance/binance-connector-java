@@ -7,18 +7,18 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**totalWalletBalance** | **String** |  |  [optional] |
-|**crossMarginBorrowed** | **String** |  |  [optional] |
-|**crossMarginFree** | **String** |  |  [optional] |
-|**crossMarginInterest** | **String** |  |  [optional] |
-|**crossMarginLocked** | **String** |  |  [optional] |
-|**umWalletBalance** | **String** |  |  [optional] |
-|**umUnrealizedPNL** | **String** |  |  [optional] |
-|**cmWalletBalance** | **String** |  |  [optional] |
-|**cmUnrealizedPNL** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**negativeBalance** | **String** |  |  [optional] |
+|**asset** | **String** | asset name |  [optional] |
+|**totalWalletBalance** | **String** | Total Wallet Balance. |  [optional] |
+|**crossMarginBorrowed** | **String** | Cross Margin Borrowed. |  [optional] |
+|**crossMarginFree** | **String** | Cross Margin Free. |  [optional] |
+|**crossMarginInterest** | **String** | Cross Margin Interest. |  [optional] |
+|**crossMarginLocked** | **String** | Cross Margin Locked. |  [optional] |
+|**umWalletBalance** | **String** | Um Wallet Balance. |  [optional] |
+|**umUnrealizedPNL** | **String** | Um Unrealized PNL. |  [optional] |
+|**cmWalletBalance** | **String** | Cm Wallet Balance. |  [optional] |
+|**cmUnrealizedPNL** | **String** | Cm Unrealized PNL. |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
+|**negativeBalance** | **String** | negative balance amount |  [optional] |
 
 
 

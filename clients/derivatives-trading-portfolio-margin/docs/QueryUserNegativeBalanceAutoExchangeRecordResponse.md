@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**total** | **Long** |  |  [optional] |
-|**rows** | [**List&lt;QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner&gt;**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner.md) |  |  [optional] |
+|**total** | **Long** | Total. |  [optional] |
+|**rows** | [**List&lt;QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner&gt;**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner.md) | Rows. |  [optional] |
 
 
 

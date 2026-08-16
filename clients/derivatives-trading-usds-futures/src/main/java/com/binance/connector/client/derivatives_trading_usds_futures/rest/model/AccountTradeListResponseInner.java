@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_BUYER = "buyer";
 
@@ -90,6 +90,18 @@ public class AccountTradeListResponseInner {
     @jakarta.annotation.Nullable
     private String quoteQty;
 
+    public static final String SERIALIZED_NAME_BASE_QTY = "baseQty";
+
+    @SerializedName(SERIALIZED_NAME_BASE_QTY)
+    @jakarta.annotation.Nullable
+    private String baseQty;
+
+    public static final String SERIALIZED_NAME_MARGIN_ASSET = "marginAsset";
+
+    @SerializedName(SERIALIZED_NAME_MARGIN_ASSET)
+    @jakarta.annotation.Nullable
+    private String marginAsset;
+
     public static final String SERIALIZED_NAME_REALIZED_PNL = "realizedPnl";
 
     @SerializedName(SERIALIZED_NAME_REALIZED_PNL)
@@ -114,6 +126,12 @@ public class AccountTradeListResponseInner {
     @jakarta.annotation.Nullable
     private String symbol;
 
+    public static final String SERIALIZED_NAME_PAIR = "pair";
+
+    @SerializedName(SERIALIZED_NAME_PAIR)
+    @jakarta.annotation.Nullable
+    private String pair;
+
     public static final String SERIALIZED_NAME_TIME = "time";
 
     @SerializedName(SERIALIZED_NAME_TIME)
@@ -128,7 +146,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get buyer
+     * Buyer.
      *
      * @return buyer
      */
@@ -148,7 +166,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Commission.
      *
      * @return commission
      */
@@ -168,7 +186,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission Asset.
      *
      * @return commissionAsset
      */
@@ -187,7 +205,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * Id.
      *
      * @return id
      */
@@ -206,7 +224,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get maker
+     * Maker.
      *
      * @return maker
      */
@@ -225,7 +243,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -244,7 +262,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -263,7 +281,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Qty.
      *
      * @return qty
      */
@@ -282,7 +300,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get quoteQty
+     * Quote Qty.
      *
      * @return quoteQty
      */
@@ -295,6 +313,45 @@ public class AccountTradeListResponseInner {
         this.quoteQty = quoteQty;
     }
 
+    public AccountTradeListResponseInner baseQty(@jakarta.annotation.Nullable String baseQty) {
+        this.baseQty = baseQty;
+        return this;
+    }
+
+    /**
+     * Base Qty.
+     *
+     * @return baseQty
+     */
+    @jakarta.annotation.Nullable
+    public String getBaseQty() {
+        return baseQty;
+    }
+
+    public void setBaseQty(@jakarta.annotation.Nullable String baseQty) {
+        this.baseQty = baseQty;
+    }
+
+    public AccountTradeListResponseInner marginAsset(
+            @jakarta.annotation.Nullable String marginAsset) {
+        this.marginAsset = marginAsset;
+        return this;
+    }
+
+    /**
+     * Margin Asset.
+     *
+     * @return marginAsset
+     */
+    @jakarta.annotation.Nullable
+    public String getMarginAsset() {
+        return marginAsset;
+    }
+
+    public void setMarginAsset(@jakarta.annotation.Nullable String marginAsset) {
+        this.marginAsset = marginAsset;
+    }
+
     public AccountTradeListResponseInner realizedPnl(
             @jakarta.annotation.Nullable String realizedPnl) {
         this.realizedPnl = realizedPnl;
@@ -302,7 +359,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedPnl
+     * Realized Pnl.
      *
      * @return realizedPnl
      */
@@ -321,7 +378,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -341,7 +398,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -360,7 +417,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -373,13 +430,32 @@ public class AccountTradeListResponseInner {
         this.symbol = symbol;
     }
 
+    public AccountTradeListResponseInner pair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+        return this;
+    }
+
+    /**
+     * Pair.
+     *
+     * @return pair
+     */
+    @jakarta.annotation.Nullable
+    public String getPair() {
+        return pair;
+    }
+
+    public void setPair(@jakarta.annotation.Nullable String pair) {
+        this.pair = pair;
+    }
+
     public AccountTradeListResponseInner time(@jakarta.annotation.Nullable Long time) {
         this.time = time;
         return this;
     }
 
     /**
-     * Get time
+     * Time.
      *
      * @return time
      */
@@ -412,10 +488,13 @@ public class AccountTradeListResponseInner {
                 && Objects.equals(this.price, accountTradeListResponseInner.price)
                 && Objects.equals(this.qty, accountTradeListResponseInner.qty)
                 && Objects.equals(this.quoteQty, accountTradeListResponseInner.quoteQty)
+                && Objects.equals(this.baseQty, accountTradeListResponseInner.baseQty)
+                && Objects.equals(this.marginAsset, accountTradeListResponseInner.marginAsset)
                 && Objects.equals(this.realizedPnl, accountTradeListResponseInner.realizedPnl)
                 && Objects.equals(this.side, accountTradeListResponseInner.side)
                 && Objects.equals(this.positionSide, accountTradeListResponseInner.positionSide)
                 && Objects.equals(this.symbol, accountTradeListResponseInner.symbol)
+                && Objects.equals(this.pair, accountTradeListResponseInner.pair)
                 && Objects.equals(this.time, accountTradeListResponseInner.time);
     }
 
@@ -431,10 +510,13 @@ public class AccountTradeListResponseInner {
                 price,
                 qty,
                 quoteQty,
+                baseQty,
+                marginAsset,
                 realizedPnl,
                 side,
                 positionSide,
                 symbol,
+                pair,
                 time);
     }
 
@@ -451,10 +533,13 @@ public class AccountTradeListResponseInner {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		qty: ").append(toIndentedString(qty)).append("\n");
         sb.append("		quoteQty: ").append(toIndentedString(quoteQty)).append("\n");
+        sb.append("		baseQty: ").append(toIndentedString(baseQty)).append("\n");
+        sb.append("		marginAsset: ").append(toIndentedString(marginAsset)).append("\n");
         sb.append("		realizedPnl: ").append(toIndentedString(realizedPnl)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		positionSide: ").append(toIndentedString(positionSide)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("		pair: ").append(toIndentedString(pair)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -499,6 +584,14 @@ public class AccountTradeListResponseInner {
         String quoteQtyValueAsString = "";
         quoteQtyValueAsString = quoteQtyValue.toString();
         sb.append("quoteQty=").append(urlEncode(quoteQtyValueAsString)).append("");
+        Object baseQtyValue = getBaseQty();
+        String baseQtyValueAsString = "";
+        baseQtyValueAsString = baseQtyValue.toString();
+        sb.append("baseQty=").append(urlEncode(baseQtyValueAsString)).append("");
+        Object marginAssetValue = getMarginAsset();
+        String marginAssetValueAsString = "";
+        marginAssetValueAsString = marginAssetValue.toString();
+        sb.append("marginAsset=").append(urlEncode(marginAssetValueAsString)).append("");
         Object realizedPnlValue = getRealizedPnl();
         String realizedPnlValueAsString = "";
         realizedPnlValueAsString = realizedPnlValue.toString();
@@ -515,6 +608,10 @@ public class AccountTradeListResponseInner {
         String symbolValueAsString = "";
         symbolValueAsString = symbolValue.toString();
         sb.append("symbol=").append(urlEncode(symbolValueAsString)).append("");
+        Object pairValue = getPair();
+        String pairValueAsString = "";
+        pairValueAsString = pairValue.toString();
+        sb.append("pair=").append(urlEncode(pairValueAsString)).append("");
         Object timeValue = getTime();
         String timeValueAsString = "";
         timeValueAsString = timeValue.toString();
@@ -556,10 +653,13 @@ public class AccountTradeListResponseInner {
         openapiFields.add("price");
         openapiFields.add("qty");
         openapiFields.add("quoteQty");
+        openapiFields.add("baseQty");
+        openapiFields.add("marginAsset");
         openapiFields.add("realizedPnl");
         openapiFields.add("side");
         openapiFields.add("positionSide");
         openapiFields.add("symbol");
+        openapiFields.add("pair");
         openapiFields.add("time");
 
         // a set of required properties/fields (JSON key names)
@@ -625,6 +725,22 @@ public class AccountTradeListResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("quoteQty").toString()));
         }
+        if ((jsonObj.get("baseQty") != null && !jsonObj.get("baseQty").isJsonNull())
+                && !jsonObj.get("baseQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `baseQty` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("baseQty").toString()));
+        }
+        if ((jsonObj.get("marginAsset") != null && !jsonObj.get("marginAsset").isJsonNull())
+                && !jsonObj.get("marginAsset").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `marginAsset` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("marginAsset").toString()));
+        }
         if ((jsonObj.get("realizedPnl") != null && !jsonObj.get("realizedPnl").isJsonNull())
                 && !jsonObj.get("realizedPnl").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -656,6 +772,14 @@ public class AccountTradeListResponseInner {
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
+        }
+        if ((jsonObj.get("pair") != null && !jsonObj.get("pair").isJsonNull())
+                && !jsonObj.get("pair").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `pair` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("pair").toString()));
         }
     }
 

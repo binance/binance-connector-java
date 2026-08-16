@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -45,9 +45,10 @@ public class UserDataStreamsApi {
     }
 
     /**
-     * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight: 1
+     * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
      *
-     * @param closeUserDataStreamRequest (required)
+     * @param closeUserDataStreamRequest (optional)
      * @return CloseUserDataStreamResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -59,7 +60,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Close-User-Data-Stream-Wsp">Close
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/user-data-streams#close-user-data-stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public CompletableFuture<CloseUserDataStreamResponse> closeUserDataStream(
@@ -111,9 +112,9 @@ public class UserDataStreamsApi {
     /**
      * Keepalive User Data Stream (USER_STREAM) Keepalive a user data stream to prevent a time out.
      * User data streams will close after 60 minutes. It&#39;s recommended to send a ping about
-     * every 60 minutes. Weight: 1
+     * every 60 minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
-     * @param keepaliveUserDataStreamRequest (required)
+     * @param keepaliveUserDataStreamRequest (optional)
      * @return KeepaliveUserDataStreamResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -125,7 +126,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Keepalive-User-Data-Stream-Wsp">Keepalive
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/user-data-streams#keepalive-user-data-stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public CompletableFuture<KeepaliveUserDataStreamResponse> keepaliveUserDataStream(
@@ -180,9 +181,9 @@ public class UserDataStreamsApi {
      * Start User Data Stream (USER_STREAM) Start a new user data stream. The stream will close
      * after 60 minutes unless a keepalive is sent. If the account has an active
      * &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be
-     * extended for 60 minutes. Weight: 1
+     * extended for 60 minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
-     * @param startUserDataStreamRequest (required)
+     * @param startUserDataStreamRequest (optional)
      * @return StartUserDataStreamResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -194,7 +195,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/coin-margined-futures/user-data-streams/Start-User-Data-Stream-Wsp">Start
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/user-data-streams#start-user-data-stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public CompletableFuture<StartUserDataStreamResponse> startUserDataStream(

@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeFilters extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(ExchangeFilters.class.getName());
 
@@ -163,30 +163,6 @@ public class ExchangeFilters extends AbstractOpenApiSchema {
                                                         jsonObject);
                                         newExchangeFilters.setActualInstance(deserialized);
                                         return newExchangeFilters;
-                                    case "ExchangeMaxNumAlgoOrdersFilter":
-                                        deserialized =
-                                                adapterExchangeMaxNumAlgoOrdersFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newExchangeFilters.setActualInstance(deserialized);
-                                        return newExchangeFilters;
-                                    case "ExchangeMaxNumIcebergOrdersFilter":
-                                        deserialized =
-                                                adapterExchangeMaxNumIcebergOrdersFilter
-                                                        .fromJsonTree(jsonObject);
-                                        newExchangeFilters.setActualInstance(deserialized);
-                                        return newExchangeFilters;
-                                    case "ExchangeMaxNumOrderListsFilter":
-                                        deserialized =
-                                                adapterExchangeMaxNumOrderListsFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newExchangeFilters.setActualInstance(deserialized);
-                                        return newExchangeFilters;
-                                    case "ExchangeMaxNumOrdersFilter":
-                                        deserialized =
-                                                adapterExchangeMaxNumOrdersFilter.fromJsonTree(
-                                                        jsonObject);
-                                        newExchangeFilters.setActualInstance(deserialized);
-                                        return newExchangeFilters;
                                     default:
                                         newExchangeFilters.setActualInstance(
                                                 jsonElement.toString());
@@ -194,17 +170,13 @@ public class ExchangeFilters extends AbstractOpenApiSchema {
                                                 Level.WARNING,
                                                 String.format(
                                                         "Failed to lookup discriminator value `%s`"
-                                                            + " for ExchangeFilters. Possible"
-                                                            + " values:"
-                                                            + " EXCHANGE_MAX_NUM_ALGO_ORDERS"
-                                                            + " EXCHANGE_MAX_NUM_ICEBERG_ORDERS"
-                                                            + " EXCHANGE_MAX_NUM_ORDERS"
-                                                            + " EXCHANGE_MAX_NUM_ORDER_LISTS"
-                                                            + " ExchangeMaxNumAlgoOrdersFilter"
-                                                            + " ExchangeMaxNumIcebergOrdersFilter"
-                                                            + " ExchangeMaxNumOrderListsFilter"
-                                                            + " ExchangeMaxNumOrdersFilter. Falling"
-                                                            + " back to String.",
+                                                                + " for ExchangeFilters. Possible"
+                                                                + " values:"
+                                                                + " EXCHANGE_MAX_NUM_ALGO_ORDERS"
+                                                                + " EXCHANGE_MAX_NUM_ICEBERG_ORDERS"
+                                                                + " EXCHANGE_MAX_NUM_ORDERS"
+                                                                + " EXCHANGE_MAX_NUM_ORDER_LISTS."
+                                                                + " Falling back to String.",
                                                         jsonObject
                                                                 .get("filterType")
                                                                 .getAsString()));

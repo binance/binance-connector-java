@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -122,6 +122,12 @@ public class JSON {
                         .CreateAVirtualSubAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
+                        .CreateSubAccountApiKeyRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
+                        .CreateSubAccountApiKeyResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
                         .DeleteIpListForASubAccountApiKeyResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
@@ -152,6 +158,10 @@ public class JSON {
                         .GetDetailOnSubAccountsFuturesAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
+                        .GetDetailOnSubAccountsFuturesAccountResponseAssetsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
                         .GetDetailOnSubAccountsFuturesAccountV2Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
@@ -164,10 +174,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
-                        .GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
@@ -185,14 +191,14 @@ public class JSON {
                         .GetFuturesPositionRiskOfSubAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
+                        .GetFuturesPositionRiskOfSubAccountResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
                         .GetFuturesPositionRiskOfSubAccountV2Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .GetFuturesPositionRiskOfSubAccountV2ResponseDeliveryPositionRiskVosInner
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
-                        .GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
@@ -228,6 +234,10 @@ public class JSON {
                         .GetSummaryOfSubAccountsFuturesAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
+                        .GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
                         .GetSummaryOfSubAccountsFuturesAccountV2Response
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -244,10 +254,6 @@ public class JSON {
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
-                        .GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner
-                        .CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.sub_account.rest.model
                         .GetSummaryOfSubAccountsMarginAccountResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
@@ -259,6 +265,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .MarginTransferForSubAccountResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
+                        .ModifySubAccountApiKeyPermissionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
+                        .ModifySubAccountApiKeyPermissionResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .MovePositionForSubAccountRequest.CustomTypeAdapterFactory());
@@ -360,6 +372,12 @@ public class JSON {
                 new com.binance.connector.client.sub_account.rest.model
                         .QueryManagedSubAccountTransferLogSubAccountTradingResponse
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
+                        .QuerySubAccountApiKeyResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
+                        .QuerySubAccountApiKeyResponseRowsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
                         .QuerySubAccountAssetsAssetManagementResponse.CustomTypeAdapterFactory());

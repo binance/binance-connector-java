@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**si** | **Long** |  |  [optional] |
-|**st** | **String** |  |  [optional] |
-|**ss** | **String** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**ut** | **Long** |  |  [optional] |
-|**cLowerCase** | **Long** |  |  [optional] |
+|**si** | **Long** | Strategy ID |  [optional] |
+|**st** | **String** | Strategy Type |  [optional] |
+|**ss** | **String** | Strategy Status |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**ut** | **Long** | Update Time |  [optional] |
+|**cLowerCase** | **Long** | opCode |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,7 +39,7 @@ import org.hibernate.validator.constraints.*;
 /** NewOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewOrderRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -69,7 +69,7 @@ public class NewOrderRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private Type type;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -87,7 +87,7 @@ public class NewOrderRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly;
+    private ReduceOnly reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -111,7 +111,7 @@ public class NewOrderRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
     @jakarta.annotation.Nullable
-    private String closePosition;
+    private ClosePosition closePosition;
 
     public static final String SERIALIZED_NAME_ACTIVATION_PRICE = "activationPrice";
 
@@ -135,7 +135,7 @@ public class NewOrderRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private String priceProtect;
+    private PriceProtect priceProtect;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
@@ -244,7 +244,7 @@ public class NewOrderRequest extends BaseDTO {
         this.positionSide = positionSide;
     }
 
-    public NewOrderRequest type(@jakarta.annotation.Nonnull Type type) {
+    public NewOrderRequest type(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
         return this;
     }
@@ -257,11 +257,11 @@ public class NewOrderRequest extends BaseDTO {
     @jakarta.annotation.Nonnull
     @NotNull
     @Valid
-    public Type getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nonnull Type type) {
+    public void setType(@jakarta.annotation.Nonnull OrderType type) {
         this.type = type;
     }
 
@@ -291,7 +291,8 @@ public class NewOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get quantity
+     * Quantity measured by contract number, Cannot be sent with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
      *
      * @return quantity
      */
@@ -305,7 +306,7 @@ public class NewOrderRequest extends BaseDTO {
         this.quantity = quantity;
     }
 
-    public NewOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public NewOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -316,11 +317,12 @@ public class NewOrderRequest extends BaseDTO {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public String getReduceOnly() {
+    @Valid
+    public ReduceOnly getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
@@ -350,7 +352,8 @@ public class NewOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60;
      *
      * @return newClientOrderId
      */
@@ -369,7 +372,7 @@ public class NewOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
      *
      * @return stopPrice
      */
@@ -383,7 +386,7 @@ public class NewOrderRequest extends BaseDTO {
         this.stopPrice = stopPrice;
     }
 
-    public NewOrderRequest closePosition(@jakarta.annotation.Nullable String closePosition) {
+    public NewOrderRequest closePosition(@jakarta.annotation.Nullable ClosePosition closePosition) {
         this.closePosition = closePosition;
         return this;
     }
@@ -394,11 +397,12 @@ public class NewOrderRequest extends BaseDTO {
      * @return closePosition
      */
     @jakarta.annotation.Nullable
-    public String getClosePosition() {
+    @Valid
+    public ClosePosition getClosePosition() {
         return closePosition;
     }
 
-    public void setClosePosition(@jakarta.annotation.Nullable String closePosition) {
+    public void setClosePosition(@jakarta.annotation.Nullable ClosePosition closePosition) {
         this.closePosition = closePosition;
     }
 
@@ -408,7 +412,8 @@ public class NewOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get activationPrice
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting
+     * different workingType)
      *
      * @return activationPrice
      */
@@ -428,7 +433,7 @@ public class NewOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get callbackRate
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1%
      *
      * @return callbackRate
      */
@@ -462,7 +467,7 @@ public class NewOrderRequest extends BaseDTO {
         this.workingType = workingType;
     }
 
-    public NewOrderRequest priceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public NewOrderRequest priceProtect(@jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
         return this;
     }
@@ -473,11 +478,12 @@ public class NewOrderRequest extends BaseDTO {
      * @return priceProtect
      */
     @jakarta.annotation.Nullable
-    public String getPriceProtect() {
+    @Valid
+    public PriceProtect getPriceProtect() {
         return priceProtect;
     }
 
-    public void setPriceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public void setPriceProtect(@jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
     }
 
@@ -551,11 +557,12 @@ public class NewOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -675,7 +682,7 @@ public class NewOrderRequest extends BaseDTO {
             String positionSideValueAsString = positionSideValue.toString();
             valMap.put("positionSide", positionSideValueAsString);
         }
-        Type typeValue = getType();
+        OrderType typeValue = getType();
         if (typeValue != null) {
             String typeValueAsString = typeValue.toString();
             valMap.put("type", typeValueAsString);
@@ -690,7 +697,7 @@ public class NewOrderRequest extends BaseDTO {
             String quantityValueAsString = DecimalFormatter.getFormatter().format(quantityValue);
             valMap.put("quantity", quantityValueAsString);
         }
-        String reduceOnlyValue = getReduceOnly();
+        ReduceOnly reduceOnlyValue = getReduceOnly();
         if (reduceOnlyValue != null) {
             String reduceOnlyValueAsString = reduceOnlyValue.toString();
             valMap.put("reduceOnly", reduceOnlyValueAsString);
@@ -710,7 +717,7 @@ public class NewOrderRequest extends BaseDTO {
             String stopPriceValueAsString = DecimalFormatter.getFormatter().format(stopPriceValue);
             valMap.put("stopPrice", stopPriceValueAsString);
         }
-        String closePositionValue = getClosePosition();
+        ClosePosition closePositionValue = getClosePosition();
         if (closePositionValue != null) {
             String closePositionValueAsString = closePositionValue.toString();
             valMap.put("closePosition", closePositionValueAsString);
@@ -732,7 +739,7 @@ public class NewOrderRequest extends BaseDTO {
             String workingTypeValueAsString = workingTypeValue.toString();
             valMap.put("workingType", workingTypeValueAsString);
         }
-        String priceProtectValue = getPriceProtect();
+        PriceProtect priceProtectValue = getPriceProtect();
         if (priceProtectValue != null) {
             String priceProtectValueAsString = priceProtectValue.toString();
             valMap.put("priceProtect", priceProtectValueAsString);
@@ -964,18 +971,14 @@ public class NewOrderRequest extends BaseDTO {
             PositionSide.validateJsonElement(jsonObj.get("positionSide"));
         }
         // validate the required field `type`
-        Type.validateJsonElement(jsonObj.get("type"));
+        OrderType.validateJsonElement(jsonObj.get("type"));
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         if ((jsonObj.get("newClientOrderId") != null
                         && !jsonObj.get("newClientOrderId").isJsonNull())
@@ -986,25 +989,17 @@ public class NewOrderRequest extends BaseDTO {
                                     + " JSON string but got `%s`",
                             jsonObj.get("newClientOrderId").toString()));
         }
-        if ((jsonObj.get("closePosition") != null && !jsonObj.get("closePosition").isJsonNull())
-                && !jsonObj.get("closePosition").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `closePosition` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("closePosition").toString()));
+        // validate the optional field `closePosition`
+        if (jsonObj.get("closePosition") != null && !jsonObj.get("closePosition").isJsonNull()) {
+            ClosePosition.validateJsonElement(jsonObj.get("closePosition"));
         }
         // validate the optional field `workingType`
         if (jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull()) {
             WorkingType.validateJsonElement(jsonObj.get("workingType"));
         }
-        if ((jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull())
-                && !jsonObj.get("priceProtect").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceProtect` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceProtect").toString()));
+        // validate the optional field `priceProtect`
+        if (jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull()) {
+            PriceProtect.validateJsonElement(jsonObj.get("priceProtect"));
         }
         // validate the optional field `newOrderRespType`
         if (jsonObj.get("newOrderRespType") != null

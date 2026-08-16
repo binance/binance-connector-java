@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** HashrateResaleRequestRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class HashrateResaleRequestRequest {
     public static final String SERIALIZED_NAME_USER_NAME = "userName";
 
@@ -86,7 +86,7 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get userName
+     * Mining Account
      *
      * @return userName
      */
@@ -106,7 +106,7 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get algo
+     * Transfer algorithm
      *
      * @return algo
      */
@@ -126,7 +126,7 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get endDate
+     * Resale End Time (Millisecond timestamp)
      *
      * @return endDate
      */
@@ -146,7 +146,7 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get startDate
+     * Resale Start Time(Millisecond timestamp)
      *
      * @return startDate
      */
@@ -166,7 +166,7 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get toPoolUser
+     * Mining Account
      *
      * @return toPoolUser
      */
@@ -186,7 +186,8 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get hashRate
+     * Resale hashrate h/s must be transferred (BTC is greater than 500000000000 ETH is greater than
+     * 500000)
      *
      * @return hashRate
      */
@@ -206,11 +207,12 @@ public class HashrateResaleRequestRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

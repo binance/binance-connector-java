@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**lastUpdateId** | **Long** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**pair** | **String** |  |  [optional] |
-|**bidPrice** | **String** |  |  [optional] |
-|**bidQty** | **String** |  |  [optional] |
-|**askPrice** | **String** |  |  [optional] |
-|**askQty** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**lastUpdateId** | **Long** | Last update ID. |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**pair** | **String** | Pair |  [optional] |
+|**bidPrice** | **String** | Best bid price. |  [optional] |
+|**bidQty** | **String** | Best bid quantity. |  [optional] |
+|**askPrice** | **String** | Best ask price. |  [optional] |
+|**askQty** | **String** | Best ask quantity. |  [optional] |
+|**time** | **Long** | Time |  [optional] |
 
 
 

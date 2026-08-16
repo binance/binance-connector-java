@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -135,7 +135,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -155,7 +155,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get origClientOrderId
+     * orig Client Order Id.
      *
      * @return origClientOrderId
      */
@@ -175,7 +175,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -195,7 +195,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -215,7 +215,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -235,7 +235,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -255,7 +255,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -275,7 +275,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -295,7 +295,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -315,7 +315,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -335,7 +335,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -355,7 +355,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -375,7 +375,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -395,7 +395,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get stopPrice
+     * stop Price.
      *
      * @return stopPrice
      */
@@ -415,7 +415,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInnerOrderReportsI
     }
 
     /**
-     * Get icebergQty
+     * iceberg Qty.
      *
      * @return icebergQty
      */

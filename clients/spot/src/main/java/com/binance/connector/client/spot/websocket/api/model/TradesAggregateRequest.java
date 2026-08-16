@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,8 +37,14 @@ import org.hibernate.validator.constraints.*;
 /** TradesAggregateRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TradesAggregateRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -67,9 +73,28 @@ public class TradesAggregateRequest extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_LIMIT)
     @jakarta.annotation.Nullable
-    private Long limit;
+    private Integer limit;
 
     public TradesAggregateRequest() {}
+
+    public TradesAggregateRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public TradesAggregateRequest symbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
@@ -97,7 +122,7 @@ public class TradesAggregateRequest extends BaseDTO {
     }
 
     /**
-     * Get fromId
+     * Aggregate trade ID to begin at
      *
      * @return fromId
      */
@@ -116,7 +141,7 @@ public class TradesAggregateRequest extends BaseDTO {
     }
 
     /**
-     * Get startTime
+     * Timestamp in ms to get aggregate trades from INCLUSIVE.
      *
      * @return startTime
      */
@@ -135,7 +160,7 @@ public class TradesAggregateRequest extends BaseDTO {
     }
 
     /**
-     * Get endTime
+     * Timestamp in ms to get aggregate trades until INCLUSIVE.
      *
      * @return endTime
      */
@@ -148,22 +173,23 @@ public class TradesAggregateRequest extends BaseDTO {
         this.endTime = endTime;
     }
 
-    public TradesAggregateRequest limit(@jakarta.annotation.Nullable Long limit) {
+    public TradesAggregateRequest limit(@jakarta.annotation.Nullable Integer limit) {
         this.limit = limit;
         return this;
     }
 
     /**
-     * Get limit
+     * Get limit maximum: 1000
      *
      * @return limit
      */
     @jakarta.annotation.Nullable
-    public Long getLimit() {
+    @Max(1000)
+    public Integer getLimit() {
         return limit;
     }
 
-    public void setLimit(@jakarta.annotation.Nullable Long limit) {
+    public void setLimit(@jakarta.annotation.Nullable Integer limit) {
         this.limit = limit;
     }
 
@@ -176,7 +202,8 @@ public class TradesAggregateRequest extends BaseDTO {
             return false;
         }
         TradesAggregateRequest tradesAggregateRequest = (TradesAggregateRequest) o;
-        return Objects.equals(this.symbol, tradesAggregateRequest.symbol)
+        return Objects.equals(this.id, tradesAggregateRequest.id)
+                && Objects.equals(this.symbol, tradesAggregateRequest.symbol)
                 && Objects.equals(this.fromId, tradesAggregateRequest.fromId)
                 && Objects.equals(this.startTime, tradesAggregateRequest.startTime)
                 && Objects.equals(this.endTime, tradesAggregateRequest.endTime)
@@ -185,13 +212,14 @@ public class TradesAggregateRequest extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, fromId, startTime, endTime, limit);
+        return Objects.hash(id, symbol, fromId, startTime, endTime, limit);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class TradesAggregateRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		fromId: ").append(toIndentedString(fromId)).append("\n");
         sb.append("		startTime: ").append(toIndentedString(startTime)).append("\n");
@@ -205,6 +233,11 @@ public class TradesAggregateRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -225,7 +258,7 @@ public class TradesAggregateRequest extends BaseDTO {
             String endTimeValueAsString = endTimeValue.toString();
             valMap.put("endTime", endTimeValueAsString);
         }
-        Long limitValue = getLimit();
+        Integer limitValue = getLimit();
         if (limitValue != null) {
             String limitValueAsString = limitValue.toString();
             valMap.put("limit", limitValueAsString);
@@ -241,6 +274,10 @@ public class TradesAggregateRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -287,6 +324,7 @@ public class TradesAggregateRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("fromId");
         openapiFields.add("startTime");
@@ -338,6 +376,14 @@ public class TradesAggregateRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryAllCurrentUmOpenOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryAllCurrentUmOpenOrdersResponseInner {
     public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
 
@@ -166,7 +166,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get avgPrice
+     * Avg Price.
      *
      * @return avgPrice
      */
@@ -186,7 +186,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -206,7 +206,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get cumQuote
+     * Cum Quote.
      *
      * @return cumQuote
      */
@@ -226,7 +226,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -246,7 +246,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -266,7 +266,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -286,7 +286,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get origType
+     * Orig Type.
      *
      * @return origType
      */
@@ -306,7 +306,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -326,7 +326,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -345,7 +345,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -365,7 +365,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -385,7 +385,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -405,7 +405,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -424,7 +424,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get time
+     * order time
      *
      * @return time
      */
@@ -444,7 +444,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -463,7 +463,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -483,7 +483,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -503,7 +503,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -524,7 +524,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -544,7 +544,7 @@ public class QueryAllCurrentUmOpenOrdersResponseInner {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */

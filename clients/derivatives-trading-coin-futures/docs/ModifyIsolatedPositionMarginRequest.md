@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  |
+|**symbol** | **String** | Symbol |  |
 |**positionSide** | **PositionSide** |  |  [optional] |
-|**amount** | **Double** |  |  |
-|**type** | **Type** |  |  |
+|**amount** | **Double** | Margin asset |  |
+|**type** | **Long** | 1: Add position margin,2: Reduce position margin |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

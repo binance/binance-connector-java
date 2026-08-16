@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** TokenListResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TokenListResponse {
     public static final String SERIALIZED_NAME_CODE = "code";
 
@@ -80,7 +80,7 @@ public class TokenListResponse {
     }
 
     /**
-     * Get code
+     * API response code. \&quot;000000\&quot; indicates success.
      *
      * @return code
      */
@@ -99,7 +99,7 @@ public class TokenListResponse {
     }
 
     /**
-     * Get message
+     * Response message.
      *
      * @return message
      */
@@ -118,7 +118,7 @@ public class TokenListResponse {
     }
 
     /**
-     * Get messageDetail
+     * Detailed response message.
      *
      * @return messageDetail
      */
@@ -137,7 +137,7 @@ public class TokenListResponse {
     }
 
     /**
-     * Get success
+     * Whether request is successful.
      *
      * @return success
      */
@@ -165,7 +165,7 @@ public class TokenListResponse {
     }
 
     /**
-     * Get data
+     * List of ALPHA tokens and metadata.
      *
      * @return data
      */

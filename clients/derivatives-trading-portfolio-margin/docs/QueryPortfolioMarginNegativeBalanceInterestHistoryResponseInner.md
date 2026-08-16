@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**interest** | **String** |  |  [optional] |
-|**interestAccuredTime** | **Long** |  |  [optional] |
-|**interestRate** | **String** |  |  [optional] |
-|**principal** | **String** |  |  [optional] |
+|**asset** | **String** | asset name |  [optional] |
+|**interest** | **String** | interest amount |  [optional] |
+|**interestAccuredTime** | **Long** | Interest Accured Time. |  [optional] |
+|**interestRate** | **String** | daily interest rate |  [optional] |
+|**principal** | **String** | Principal repaid |  [optional] |
 
 
 

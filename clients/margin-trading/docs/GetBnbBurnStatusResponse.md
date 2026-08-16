@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**spotBNBBurn** | **Boolean** |  |  [optional] |
-|**interestBNBBurn** | **Boolean** |  |  [optional] |
+|**spotBNBBurn** | **Boolean** | spot BNBBurn. |  [optional] |
+|**interestBNBBurn** | **Boolean** | interest BNBBurn. |  [optional] |
 
 
 

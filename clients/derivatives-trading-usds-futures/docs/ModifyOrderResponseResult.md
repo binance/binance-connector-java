@@ -11,12 +11,11 @@
 |**symbol** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
+|**modifyId** | **Long** | user-defined modification identifier, only returned if provided in the request |  [optional] |
 |**price** | **String** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
 |**cumQty** | **String** |  |  [optional] |
-|**cumQuote** | **String** |  |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |

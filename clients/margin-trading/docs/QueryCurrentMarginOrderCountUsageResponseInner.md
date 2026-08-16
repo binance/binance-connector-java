@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rateLimitType** | **String** |  |  [optional] |
-|**interval** | **String** |  |  [optional] |
-|**intervalNum** | **Long** |  |  [optional] |
-|**limit** | **Long** |  |  [optional] |
-|**count** | **Long** |  |  [optional] |
+|**rateLimitType** | **String** | rate Limit Type. |  [optional] |
+|**interval** | **String** | interval. |  [optional] |
+|**intervalNum** | **Long** | interval Num. |  [optional] |
+|**limit** | **Long** | limit. |  [optional] |
+|**count** | **Long** | count. |  [optional] |
 
 
 

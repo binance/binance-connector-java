@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,6 +20,7 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.simple_earn.rest.model.Asset;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdAccountResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdQuotaDetailsResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdRateHistoryResponse;
@@ -53,7 +54,7 @@ public class BfusdApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/6.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -93,7 +94,7 @@ public class BfusdApi {
     /**
      * Build call for getBfusdAccount
      *
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -103,8 +104,9 @@ public class BfusdApi {
      * <tr><td> 200 </td><td> Get BFUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/account/">Get BFUSD
-     *     Account (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-account">Get
+     *     BFUSD Account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBfusdAccountCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -196,9 +198,10 @@ public class BfusdApi {
     }
 
     /**
-     * Get BFUSD Account (USER_DATA) Get BFUSD account information. Weight: 150
+     * Get BFUSD Account (USER_DATA) Get BFUSD account information. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -209,10 +212,11 @@ public class BfusdApi {
      * <tr><td> 200 </td><td> Get BFUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/account/">Get BFUSD
-     *     Account (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-account">Get
+     *     BFUSD Account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetBfusdAccountResponse> getBfusdAccount(Long recvWindow)
+    public ApiResponse<GetBfusdAccountResponse> getBfusdAccount(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getBfusdAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -223,7 +227,7 @@ public class BfusdApi {
     /**
      * Build call for getBfusdQuotaDetails
      *
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -234,7 +238,7 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/account/Get-BFUSD-Quota-Details">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-quota-details">Get
      *     BFUSD Quota Details (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBfusdQuotaDetailsCall(Long recvWindow) throws ApiException {
@@ -329,9 +333,10 @@ public class BfusdApi {
 
     /**
      * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including subscription quota,
-     * fast redemption quota and standard redemption quota. Weight: 150
+     * fast redemption quota, and standard redemption quota. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdQuotaDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -343,11 +348,11 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/account/Get-BFUSD-Quota-Details">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-quota-details">Get
      *     BFUSD Quota Details (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetBfusdQuotaDetailsResponse> getBfusdQuotaDetails(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetBfusdQuotaDetailsResponse> getBfusdQuotaDetails(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getBfusdQuotaDetailsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetBfusdQuotaDetailsResponse>() {}.getType();
@@ -359,9 +364,9 @@ public class BfusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -372,7 +377,7 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-rate-history">Get
      *     BFUSD Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBfusdRateHistoryCall(
@@ -493,21 +498,21 @@ public class BfusdApi {
     }
 
     /**
-     * Get BFUSD Rate History (USER_DATA) Get BFUSD rate history sorted by descending order. * The
-     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. *
-     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
-     * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
-     * is not sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get BFUSD Rate History (USER_DATA) Get BFUSD rate history sorted by descending order.
+     * Weight(IP): 150 Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -519,11 +524,15 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-rate-history">Get
      *     BFUSD Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdRateHistoryResponse> getBfusdRateHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBfusdRateHistoryValidateBeforeCall(
@@ -538,9 +547,9 @@ public class BfusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -551,7 +560,7 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Redemption-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-redemption-history">Get
      *     BFUSD Redemption History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBfusdRedemptionHistoryCall(
@@ -672,21 +681,21 @@ public class BfusdApi {
     }
 
     /**
-     * Get BFUSD Redemption History (USER_DATA) Get BFUSD redemption history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get BFUSD Redemption History (USER_DATA) Get BFUSD redemption history Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -698,11 +707,15 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Redemption-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-redemption-history">Get
      *     BFUSD Redemption History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdRedemptionHistoryResponse> getBfusdRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBfusdRedemptionHistoryValidateBeforeCall(
@@ -717,9 +730,9 @@ public class BfusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -730,7 +743,7 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-rewards-history">Get
      *     BFUSD Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBfusdRewardsHistoryCall(
@@ -851,21 +864,21 @@ public class BfusdApi {
     }
 
     /**
-     * Get BFUSD Rewards History (USER_DATA) Get BFUSD rewards history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get BFUSD Rewards History (USER_DATA) Get BFUSD rewards history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time,
+     * and results from &#x60;startTime&#x60; onward will be returned. - If &#x60;endTime&#x60; is
+     * sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current
+     * time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -877,11 +890,15 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-rewards-history">Get
      *     BFUSD Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdRewardsHistoryResponse> getBfusdRewardsHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBfusdRewardsHistoryValidateBeforeCall(
@@ -894,12 +911,12 @@ public class BfusdApi {
     /**
      * Build call for getBfusdSubscriptionHistory
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -910,11 +927,11 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-subscription-history">Get
-     *     BFUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-subscription-history">Get
+     *     BFUSD subscription history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getBfusdSubscriptionHistoryCall(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -996,7 +1013,7 @@ public class BfusdApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getBfusdSubscriptionHistoryValidateBeforeCall(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1012,7 +1029,7 @@ public class BfusdApi {
                     this.getClass()
                             .getMethod(
                                     "getBfusdSubscriptionHistory",
-                                    String.class,
+                                    Asset.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1037,22 +1054,22 @@ public class BfusdApi {
     }
 
     /**
-     * Get BFUSD subscription history(USER_DATA) Get BFUSD subscription history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time
-     * advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * Get BFUSD subscription history (USER_DATA) Get BFUSD subscription history Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time advanced by one month, and data between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; will be returned.
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1064,11 +1081,16 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-subscription-history">Get
-     *     BFUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-subscription-history">Get
+     *     BFUSD subscription history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdSubscriptionHistoryResponse> getBfusdSubscriptionHistory(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getBfusdSubscriptionHistoryValidateBeforeCall(
@@ -1091,8 +1113,9 @@ public class BfusdApi {
      * <tr><td> 200 </td><td> Redeem BFUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Redeem-BFUSD">Redeem
-     *     BFUSD(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#redeem-bfusd">Redeem
+     *     BFUSD (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemBfusdCall(RedeemBfusdRequest redeemBfusdRequest)
             throws ApiException {
@@ -1196,8 +1219,10 @@ public class BfusdApi {
     }
 
     /**
-     * Redeem BFUSD(TRADE) Redeem BFUSD to USDT * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Redeem BFUSD (TRADE) Redeem BFUSD to USDT Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports BFUSD redemption to the Spot Account. Redemptions to the
+     * Funding Account or any other account type are not supported.
      *
      * @param redeemBfusdRequest (required)
      * @return ApiResponse&lt;RedeemBfusdResponse&gt;
@@ -1210,8 +1235,9 @@ public class BfusdApi {
      * <tr><td> 200 </td><td> Redeem BFUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Redeem-BFUSD">Redeem
-     *     BFUSD(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#redeem-bfusd">Redeem
+     *     BFUSD (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemBfusdResponse> redeemBfusd(
             @Valid @NotNull RedeemBfusdRequest redeemBfusdRequest) throws ApiException {
@@ -1235,8 +1261,8 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Subscribe-BFUSD">Subscribe
-     *     BFUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#subscribe-bfusd">Subscribe
+     *     BFUSD (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeBfusdCall(SubscribeBfusdRequest subscribeBfusdRequest)
             throws ApiException {
@@ -1341,8 +1367,10 @@ public class BfusdApi {
     }
 
     /**
-     * Subscribe BFUSD(TRADE) Subscribe BFUSD * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Subscribe BFUSD (TRADE) Subscribe BFUSD Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports BFUSD subscription using assets held in the Spot Account.
+     * Subscriptions initiated from the Funding Account or any other account type are not supported.
      *
      * @param subscribeBfusdRequest (required)
      * @return ApiResponse&lt;SubscribeBfusdResponse&gt;
@@ -1356,8 +1384,8 @@ public class BfusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Subscribe-BFUSD">Subscribe
-     *     BFUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#subscribe-bfusd">Subscribe
+     *     BFUSD (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeBfusdResponse> subscribeBfusd(
             @Valid @NotNull SubscribeBfusdRequest subscribeBfusdRequest) throws ApiException {

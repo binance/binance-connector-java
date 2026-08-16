@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** CloseUserDataStreamResponseRateLimitsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CloseUserDataStreamResponseRateLimitsInner extends BaseDTO {
     public static final String SERIALIZED_NAME_RATE_LIMIT_TYPE = "rateLimitType";
 
@@ -78,7 +78,7 @@ public class CloseUserDataStreamResponseRateLimitsInner extends BaseDTO {
     }
 
     /**
-     * Get rateLimitType
+     * Rate limit type.
      *
      * @return rateLimitType
      */
@@ -98,7 +98,7 @@ public class CloseUserDataStreamResponseRateLimitsInner extends BaseDTO {
     }
 
     /**
-     * Get interval
+     * Rate limit interval.
      *
      * @return interval
      */
@@ -118,7 +118,7 @@ public class CloseUserDataStreamResponseRateLimitsInner extends BaseDTO {
     }
 
     /**
-     * Get intervalNum
+     * Rate limit interval multiplier.
      *
      * @return intervalNum
      */
@@ -138,7 +138,7 @@ public class CloseUserDataStreamResponseRateLimitsInner extends BaseDTO {
     }
 
     /**
-     * Get limit
+     * Maximum allowed orders for this rule.
      *
      * @return limit
      */
@@ -158,7 +158,7 @@ public class CloseUserDataStreamResponseRateLimitsInner extends BaseDTO {
     }
 
     /**
-     * Get count
+     * Total number of trades in the 24h window.
      *
      * @return count
      */

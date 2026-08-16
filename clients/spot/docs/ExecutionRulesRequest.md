@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
+|**id** | **String** | Client-generated request identifier. |  [optional] |
+|**symbol** | **String** | Query for specified symbol. |  [optional] |
 |**symbols** | **Symbols** |  |  [optional] |
 |**symbolStatus** | **SymbolStatus** |  |  [optional] |
 

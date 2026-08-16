@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,8 +15,11 @@ package com.binance.connector.client.alpha.rest.api;
 import static org.junit.Assert.assertEquals;
 
 import com.binance.connector.client.alpha.rest.model.AggregatedTradesResponse;
+import com.binance.connector.client.alpha.rest.model.FullDepthResponse;
 import com.binance.connector.client.alpha.rest.model.GetExchangeInfoResponse;
+import com.binance.connector.client.alpha.rest.model.Interval;
 import com.binance.connector.client.alpha.rest.model.KlinesResponse;
+import com.binance.connector.client.alpha.rest.model.Limit;
 import com.binance.connector.client.alpha.rest.model.TickerResponse;
 import com.binance.connector.client.alpha.rest.model.TokenListResponse;
 import com.binance.connector.client.common.ApiClient;
@@ -29,6 +32,7 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -83,16 +87,16 @@ public class MarketDataApiTest {
      * Aggregated Trades
      *
      * <p>Retrieves compressed, aggregated historical trades for a specific symbol. Useful for
-     * recent trade history. Weight: 0
+     * recent trade history.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void aggregatedTradesTest() throws ApiException, CryptoException {
-        String symbol = "";
-        Long fromId = 1L;
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
+    public void aggregatedTradesTest() throws ApiException, CryptoException, IOException {
+        String symbol = "ALPHA_118USDC";
+        Long fromId = 58470L;
+        Long startTime = 1752568680000L;
+        Long endTime = 1752572280000L;
         Long limit = 500L;
         ApiResponse<AggregatedTradesResponse> response =
                 api.aggregatedTrades(symbol, fromId, startTime, endTime, limit);
@@ -110,15 +114,40 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Get Exchange Info
+     * Full Depth
      *
-     * <p>Fetches general exchange information, such as supported symbols, rate limits, and server
-     * time. Weight: 0
+     * <p>Fetches the full order book depth (UI &amp; API orders) for a symbol, including bid and
+     * ask orders with their prices and quantities.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getExchangeInfoTest() throws ApiException, CryptoException {
+    public void fullDepthTest() throws ApiException, CryptoException, IOException {
+        String symbol = "ALPHA_175USDT";
+        Limit limit = Limit.LIMIT_5;
+        ApiResponse<FullDepthResponse> response = api.fullDepth(symbol, limit);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals("/bapi/defi/v1/public/alpha-trade/fullDepth", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Get Exchange Info
+     *
+     * <p>Fetches general exchange information, such as supported symbols, rate limits, and server
+     * time.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getExchangeInfoTest() throws ApiException, CryptoException, IOException {
         ApiResponse<GetExchangeInfoResponse> response = api.getExchangeInfo();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -134,20 +163,20 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Klines (Candlestick Data)
+     * Klines
      *
      * <p>Fetches Kline/candlestick bars for a symbol, which include open/high/low/close prices and
-     * volume over intervals. Useful for charting and analysis. Weight: 0
+     * volume over intervals. Useful for charting and analysis.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void klinesTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String interval = "";
+    public void klinesTest() throws ApiException, CryptoException, IOException {
+        String symbol = "ALPHA_175USDT";
+        Interval interval = Interval.INTERVAL_1s;
         Long limit = 500L;
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
+        Long startTime = 1752642000000L;
+        Long endTime = 1752645599999L;
         ApiResponse<KlinesResponse> response =
                 api.klines(symbol, interval, limit, startTime, endTime);
 
@@ -163,16 +192,16 @@ public class MarketDataApiTest {
     }
 
     /**
-     * Ticker (24hr Price Statistics)
+     * Ticker
      *
      * <p>Gets the 24-hour rolling window price change statistics for a symbol, including volume and
-     * price changes. Weight: 0
+     * price changes.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tickerTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void tickerTest() throws ApiException, CryptoException, IOException {
+        String symbol = "ALPHA_175USDT";
         ApiResponse<TickerResponse> response = api.ticker(symbol);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -190,12 +219,12 @@ public class MarketDataApiTest {
      * Token List
      *
      * <p>Retrieves a list of all available ALPHA tokens, including their IDs and symbols. Use this
-     * to find the token ID for constructing symbols in other endpoints. Weight: 0
+     * to find the token ID for constructing symbols in other endpoints.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tokenListTest() throws ApiException, CryptoException {
+    public void tokenListTest() throws ApiException, CryptoException, IOException {
         ApiResponse<TokenListResponse> response = api.tokenList();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);

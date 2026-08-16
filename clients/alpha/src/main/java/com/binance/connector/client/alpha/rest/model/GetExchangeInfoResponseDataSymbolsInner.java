@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** GetExchangeInfoResponseDataSymbolsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetExchangeInfoResponseDataSymbolsInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -111,7 +111,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol.
      *
      * @return symbol
      */
@@ -131,7 +131,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get status
+     * Trading status.
      *
      * @return status
      */
@@ -151,7 +151,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get baseAsset
+     * Base asset symbol.
      *
      * @return baseAsset
      */
@@ -171,7 +171,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get quoteAsset
+     * Quote asset symbol.
      *
      * @return quoteAsset
      */
@@ -191,7 +191,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get pricePrecision
+     * Allowed precision for price.
      *
      * @return pricePrecision
      */
@@ -211,7 +211,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get quantityPrecision
+     * Allowed precision for quantity.
      *
      * @return quantityPrecision
      */
@@ -231,7 +231,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get baseAssetPrecision
+     * Base asset precision.
      *
      * @return baseAssetPrecision
      */
@@ -251,7 +251,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get quotePrecision
+     * Quote asset precision.
      *
      * @return quotePrecision
      */
@@ -281,7 +281,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get filters
+     * Trading filters and constraints.
      *
      * @return filters
      */
@@ -312,7 +312,7 @@ public class GetExchangeInfoResponseDataSymbolsInner {
     }
 
     /**
-     * Get orderTypes
+     * Supported order types for this symbol.
      *
      * @return orderTypes
      */

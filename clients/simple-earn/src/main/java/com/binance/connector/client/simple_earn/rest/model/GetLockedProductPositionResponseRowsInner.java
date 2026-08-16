@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetLockedProductPositionResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetLockedProductPositionResponseRowsInner {
     public static final String SERIALIZED_NAME_POSITION_ID = "positionId";
 
@@ -70,7 +70,7 @@ public class GetLockedProductPositionResponseRowsInner {
 
     @SerializedName(SERIALIZED_NAME_PURCHASE_TIME)
     @jakarta.annotation.Nullable
-    private String purchaseTime;
+    private Long purchaseTime;
 
     public static final String SERIALIZED_NAME_DURATION = "duration";
 
@@ -148,7 +148,7 @@ public class GetLockedProductPositionResponseRowsInner {
 
     @SerializedName(SERIALIZED_NAME_NEXT_PAY_DATE)
     @jakarta.annotation.Nullable
-    private String nextPayDate;
+    private Long nextPayDate;
 
     public static final String SERIALIZED_NAME_PAY_PERIOD = "payPeriod";
 
@@ -166,13 +166,13 @@ public class GetLockedProductPositionResponseRowsInner {
 
     @SerializedName(SERIALIZED_NAME_REWARDS_END_DATE)
     @jakarta.annotation.Nullable
-    private String rewardsEndDate;
+    private Long rewardsEndDate;
 
     public static final String SERIALIZED_NAME_DELIVER_DATE = "deliverDate";
 
     @SerializedName(SERIALIZED_NAME_DELIVER_DATE)
     @jakarta.annotation.Nullable
-    private String deliverDate;
+    private Long deliverDate;
 
     public static final String SERIALIZED_NAME_REDEEM_PERIOD = "redeemPeriod";
 
@@ -196,7 +196,7 @@ public class GetLockedProductPositionResponseRowsInner {
 
     @SerializedName(SERIALIZED_NAME_PARTIAL_AMT_DELIVER_DATE)
     @jakarta.annotation.Nullable
-    private String partialAmtDeliverDate;
+    private Long partialAmtDeliverDate;
 
     public static final String SERIALIZED_NAME_CAN_REDEEM_EARLY = "canRedeemEarly";
 
@@ -337,7 +337,7 @@ public class GetLockedProductPositionResponseRowsInner {
     }
 
     public GetLockedProductPositionResponseRowsInner purchaseTime(
-            @jakarta.annotation.Nullable String purchaseTime) {
+            @jakarta.annotation.Nullable Long purchaseTime) {
         this.purchaseTime = purchaseTime;
         return this;
     }
@@ -348,11 +348,11 @@ public class GetLockedProductPositionResponseRowsInner {
      * @return purchaseTime
      */
     @jakarta.annotation.Nullable
-    public String getPurchaseTime() {
+    public Long getPurchaseTime() {
         return purchaseTime;
     }
 
-    public void setPurchaseTime(@jakarta.annotation.Nullable String purchaseTime) {
+    public void setPurchaseTime(@jakarta.annotation.Nullable Long purchaseTime) {
         this.purchaseTime = purchaseTime;
     }
 
@@ -596,7 +596,7 @@ public class GetLockedProductPositionResponseRowsInner {
     }
 
     public GetLockedProductPositionResponseRowsInner nextPayDate(
-            @jakarta.annotation.Nullable String nextPayDate) {
+            @jakarta.annotation.Nullable Long nextPayDate) {
         this.nextPayDate = nextPayDate;
         return this;
     }
@@ -607,11 +607,11 @@ public class GetLockedProductPositionResponseRowsInner {
      * @return nextPayDate
      */
     @jakarta.annotation.Nullable
-    public String getNextPayDate() {
+    public Long getNextPayDate() {
         return nextPayDate;
     }
 
-    public void setNextPayDate(@jakarta.annotation.Nullable String nextPayDate) {
+    public void setNextPayDate(@jakarta.annotation.Nullable Long nextPayDate) {
         this.nextPayDate = nextPayDate;
     }
 
@@ -656,7 +656,7 @@ public class GetLockedProductPositionResponseRowsInner {
     }
 
     public GetLockedProductPositionResponseRowsInner rewardsEndDate(
-            @jakarta.annotation.Nullable String rewardsEndDate) {
+            @jakarta.annotation.Nullable Long rewardsEndDate) {
         this.rewardsEndDate = rewardsEndDate;
         return this;
     }
@@ -667,16 +667,16 @@ public class GetLockedProductPositionResponseRowsInner {
      * @return rewardsEndDate
      */
     @jakarta.annotation.Nullable
-    public String getRewardsEndDate() {
+    public Long getRewardsEndDate() {
         return rewardsEndDate;
     }
 
-    public void setRewardsEndDate(@jakarta.annotation.Nullable String rewardsEndDate) {
+    public void setRewardsEndDate(@jakarta.annotation.Nullable Long rewardsEndDate) {
         this.rewardsEndDate = rewardsEndDate;
     }
 
     public GetLockedProductPositionResponseRowsInner deliverDate(
-            @jakarta.annotation.Nullable String deliverDate) {
+            @jakarta.annotation.Nullable Long deliverDate) {
         this.deliverDate = deliverDate;
         return this;
     }
@@ -687,11 +687,11 @@ public class GetLockedProductPositionResponseRowsInner {
      * @return deliverDate
      */
     @jakarta.annotation.Nullable
-    public String getDeliverDate() {
+    public Long getDeliverDate() {
         return deliverDate;
     }
 
-    public void setDeliverDate(@jakarta.annotation.Nullable String deliverDate) {
+    public void setDeliverDate(@jakarta.annotation.Nullable Long deliverDate) {
         this.deliverDate = deliverDate;
     }
 
@@ -756,7 +756,7 @@ public class GetLockedProductPositionResponseRowsInner {
     }
 
     public GetLockedProductPositionResponseRowsInner partialAmtDeliverDate(
-            @jakarta.annotation.Nullable String partialAmtDeliverDate) {
+            @jakarta.annotation.Nullable Long partialAmtDeliverDate) {
         this.partialAmtDeliverDate = partialAmtDeliverDate;
         return this;
     }
@@ -767,12 +767,11 @@ public class GetLockedProductPositionResponseRowsInner {
      * @return partialAmtDeliverDate
      */
     @jakarta.annotation.Nullable
-    public String getPartialAmtDeliverDate() {
+    public Long getPartialAmtDeliverDate() {
         return partialAmtDeliverDate;
     }
 
-    public void setPartialAmtDeliverDate(
-            @jakarta.annotation.Nullable String partialAmtDeliverDate) {
+    public void setPartialAmtDeliverDate(@jakarta.annotation.Nullable Long partialAmtDeliverDate) {
         this.partialAmtDeliverDate = partialAmtDeliverDate;
     }
 
@@ -1314,14 +1313,6 @@ public class GetLockedProductPositionResponseRowsInner {
                                     + " but got `%s`",
                             jsonObj.get("amount").toString()));
         }
-        if ((jsonObj.get("purchaseTime") != null && !jsonObj.get("purchaseTime").isJsonNull())
-                && !jsonObj.get("purchaseTime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `purchaseTime` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("purchaseTime").toString()));
-        }
         if ((jsonObj.get("duration") != null && !jsonObj.get("duration").isJsonNull())
                 && !jsonObj.get("duration").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1422,14 +1413,6 @@ public class GetLockedProductPositionResponseRowsInner {
                                     + " but got `%s`",
                             jsonObj.get("nextPay").toString()));
         }
-        if ((jsonObj.get("nextPayDate") != null && !jsonObj.get("nextPayDate").isJsonNull())
-                && !jsonObj.get("nextPayDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `nextPayDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("nextPayDate").toString()));
-        }
         if ((jsonObj.get("payPeriod") != null && !jsonObj.get("payPeriod").isJsonNull())
                 && !jsonObj.get("payPeriod").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1446,22 +1429,6 @@ public class GetLockedProductPositionResponseRowsInner {
                             "Expected the field `redeemAmountEarly` to be a primitive type in the"
                                     + " JSON string but got `%s`",
                             jsonObj.get("redeemAmountEarly").toString()));
-        }
-        if ((jsonObj.get("rewardsEndDate") != null && !jsonObj.get("rewardsEndDate").isJsonNull())
-                && !jsonObj.get("rewardsEndDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `rewardsEndDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("rewardsEndDate").toString()));
-        }
-        if ((jsonObj.get("deliverDate") != null && !jsonObj.get("deliverDate").isJsonNull())
-                && !jsonObj.get("deliverDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `deliverDate` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("deliverDate").toString()));
         }
         if ((jsonObj.get("redeemPeriod") != null && !jsonObj.get("redeemPeriod").isJsonNull())
                 && !jsonObj.get("redeemPeriod").isJsonPrimitive()) {
@@ -1486,15 +1453,6 @@ public class GetLockedProductPositionResponseRowsInner {
                             "Expected the field `redeemTo` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("redeemTo").toString()));
-        }
-        if ((jsonObj.get("partialAmtDeliverDate") != null
-                        && !jsonObj.get("partialAmtDeliverDate").isJsonNull())
-                && !jsonObj.get("partialAmtDeliverDate").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `partialAmtDeliverDate` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("partialAmtDeliverDate").toString()));
         }
         if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
                 && !jsonObj.get("type").isJsonPrimitive()) {

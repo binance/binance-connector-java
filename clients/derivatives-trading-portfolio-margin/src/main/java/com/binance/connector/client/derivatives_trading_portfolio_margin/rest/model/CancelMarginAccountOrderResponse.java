@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelMarginAccountOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelMarginAccountOrderResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -116,7 +116,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -135,7 +135,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get orderId
+     * Normal orderID after trigger if appliable, only have when the strategy is triggered
      *
      * @return orderId
      */
@@ -155,7 +155,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get origClientOrderId
+     * Orig Client Order ID.
      *
      * @return origClientOrderId
      */
@@ -175,7 +175,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client Order ID.
      *
      * @return clientOrderId
      */
@@ -194,7 +194,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -213,7 +213,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -233,7 +233,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Executed Qty.
      *
      * @return executedQty
      */
@@ -253,7 +253,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * Cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -272,7 +272,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -292,7 +292,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -311,7 +311,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get type
+     * Normal order type after trigger if appliable
      *
      * @return type
      */
@@ -330,7 +330,7 @@ public class CancelMarginAccountOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */

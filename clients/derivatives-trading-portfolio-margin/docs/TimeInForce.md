@@ -13,5 +13,7 @@
 
 * `GTX` (value: `"GTX"`)
 
+* `GTD` (value: `"GTD"`)
+
 
 

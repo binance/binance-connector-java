@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountNewOtoResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountNewOtoResponse {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -110,7 +110,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -130,7 +130,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get contingencyType
+     * contingency Type.
      *
      * @return contingencyType
      */
@@ -150,7 +150,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get listStatusType
+     * list Status Type.
      *
      * @return listStatusType
      */
@@ -170,7 +170,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get listOrderStatus
+     * list Order Status.
      *
      * @return listOrderStatus
      */
@@ -190,7 +190,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get listClientOrderId
+     * list Client Order Id.
      *
      * @return listClientOrderId
      */
@@ -210,7 +210,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get transactionTime
+     * transaction Time.
      *
      * @return transactionTime
      */
@@ -229,7 +229,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -248,7 +248,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get isIsolated
+     * is Isolated.
      *
      * @return isIsolated
      */
@@ -278,7 +278,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get orders
+     * orders list.
      *
      * @return orders
      */
@@ -311,7 +311,7 @@ public class MarginAccountNewOtoResponse {
     }
 
     /**
-     * Get orderReports
+     * order Reports list.
      *
      * @return orderReports
      */

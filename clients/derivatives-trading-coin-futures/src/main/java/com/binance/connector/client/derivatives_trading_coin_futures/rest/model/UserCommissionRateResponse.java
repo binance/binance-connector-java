@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** UserCommissionRateResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class UserCommissionRateResponse {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -62,7 +62,7 @@ public class UserCommissionRateResponse {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -82,7 +82,7 @@ public class UserCommissionRateResponse {
     }
 
     /**
-     * Get makerCommissionRate
+     * 0.015%
      *
      * @return makerCommissionRate
      */
@@ -102,7 +102,7 @@ public class UserCommissionRateResponse {
     }
 
     /**
-     * Get takerCommissionRate
+     * Taker commission rate.
      *
      * @return takerCommissionRate
      */

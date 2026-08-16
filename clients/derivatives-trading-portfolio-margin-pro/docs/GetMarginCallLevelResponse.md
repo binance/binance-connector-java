@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**marginCallLevel** | **String** |  |  [optional] |
+|**marginCallLevel** | **String** | The margin call level value. Empty object returned if not set. |  [optional] |
 
 
 

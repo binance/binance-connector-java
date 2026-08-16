@@ -4,29 +4,29 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**accountCommission**](AccountApi.md#accountCommission) | **POST** /account.commission | WebSocket Account Commission Rates |
-| [**accountRateLimitsOrders**](AccountApi.md#accountRateLimitsOrders) | **POST** /account.rateLimits.orders | WebSocket Unfilled Order Count |
-| [**accountStatus**](AccountApi.md#accountStatus) | **POST** /account.status | WebSocket Account information |
-| [**allOrderLists**](AccountApi.md#allOrderLists) | **POST** /allOrderLists | WebSocket Account order list history |
-| [**allOrders**](AccountApi.md#allOrders) | **POST** /allOrders | WebSocket Account order history |
-| [**myAllocations**](AccountApi.md#myAllocations) | **POST** /myAllocations | WebSocket Account allocations |
-| [**myFilters**](AccountApi.md#myFilters) | **POST** /myFilters | WebSocket Query Relevant Filters |
-| [**myPreventedMatches**](AccountApi.md#myPreventedMatches) | **POST** /myPreventedMatches | WebSocket Account prevented matches |
-| [**myTrades**](AccountApi.md#myTrades) | **POST** /myTrades | WebSocket Account trade history |
-| [**openOrderListsStatus**](AccountApi.md#openOrderListsStatus) | **POST** /openOrderLists.status | WebSocket Current open Order lists |
-| [**openOrdersStatus**](AccountApi.md#openOrdersStatus) | **POST** /openOrders.status | WebSocket Current open orders |
-| [**orderAmendments**](AccountApi.md#orderAmendments) | **POST** /order.amendments | WebSocket Query Order Amendments |
-| [**orderListStatus**](AccountApi.md#orderListStatus) | **POST** /orderList.status | WebSocket Query Order list |
-| [**orderStatus**](AccountApi.md#orderStatus) | **POST** /order.status | WebSocket Query order |
+| [**accountCommission**](AccountApi.md#accountCommission) | **POST** /account.commission | Account Commission Rates (USER_DATA) |
+| [**accountRateLimitsOrders**](AccountApi.md#accountRateLimitsOrders) | **POST** /account.rateLimits.orders | Unfilled Order Count (USER_DATA) |
+| [**accountStatus**](AccountApi.md#accountStatus) | **POST** /account.status | Account information (USER_DATA) |
+| [**allOrderLists**](AccountApi.md#allOrderLists) | **POST** /allOrderLists | Account order list history (USER_DATA) |
+| [**allOrders**](AccountApi.md#allOrders) | **POST** /allOrders | Account order history (USER_DATA) |
+| [**myAllocations**](AccountApi.md#myAllocations) | **POST** /myAllocations | Account allocations (USER_DATA) |
+| [**myFilters**](AccountApi.md#myFilters) | **POST** /myFilters | Query Relevant Filters (USER_DATA) |
+| [**myPreventedMatches**](AccountApi.md#myPreventedMatches) | **POST** /myPreventedMatches | Account prevented matches (USER_DATA) |
+| [**myTrades**](AccountApi.md#myTrades) | **POST** /myTrades | Account trade history (USER_DATA) |
+| [**openOrderListsStatus**](AccountApi.md#openOrderListsStatus) | **POST** /openOrderLists.status | Current open Order lists (USER_DATA) |
+| [**openOrdersStatus**](AccountApi.md#openOrdersStatus) | **POST** /openOrders.status | Current open orders (USER_DATA) |
+| [**orderAmendments**](AccountApi.md#orderAmendments) | **POST** /order.amendments | Query Order Amendments (USER_DATA) |
+| [**orderListStatus**](AccountApi.md#orderListStatus) | **POST** /orderList.status | Query Order list (USER_DATA) |
+| [**orderStatus**](AccountApi.md#orderStatus) | **POST** /order.status | Query order (USER_DATA) |
 
 
 <a id="accountCommission"></a>
 # **accountCommission**
 > AccountCommissionResponse accountCommission(accountCommissionRequest)
 
-WebSocket Account Commission Rates
+Account Commission Rates (USER_DATA)
 
-Get current account commission rates. Weight: 20
+Get current account commission rates.  Weight(IP): 20  Security Type: USER_DATA  Notes: **Data Source:** Database
 
 ### Example
 ```java
@@ -86,9 +86,9 @@ No authorization required
 # **accountRateLimitsOrders**
 > AccountRateLimitsOrdersResponse accountRateLimitsOrders(accountRateLimitsOrdersRequest)
 
-WebSocket Unfilled Order Count
+Unfilled Order Count (USER_DATA)
 
-Query your current unfilled order count for all intervals. Weight: 40
+Query your current unfilled order count for all intervals.  Weight(IP): 40  Security Type: USER_DATA  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -148,9 +148,9 @@ No authorization required
 # **accountStatus**
 > AccountStatusResponse accountStatus(accountStatusRequest)
 
-WebSocket Account information
+Account information (USER_DATA)
 
-Query information about your account. Weight: 20
+Query information about your account.  Weight(IP): 20  Security Type: USER_DATA  Notes: **Data Source:** Memory &#x3D;&gt; Database
 
 ### Example
 ```java
@@ -210,9 +210,9 @@ No authorization required
 # **allOrderLists**
 > AllOrderListsResponse allOrderLists(allOrderListsRequest)
 
-WebSocket Account order list history
+Account order list history (USER_DATA)
 
-Query information about all your order lists, filtered by time range. Weight: 20
+Query information about all your order lists, filtered by time range.  Weight(IP): 20  Security Type: USER_DATA  Notes: **Data Source:** Database  Notes: * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, &#x60;fromId&#x60; is ignored.   Order lists are filtered by &#x60;transactionTime&#x60; of the last order list execution status update. * If &#x60;fromId&#x60; is specified, return order lists with order list ID &gt;&#x3D; &#x60;fromId&#x60;. * If no condition is specified, the most recent order lists are returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
 
 ### Example
 ```java
@@ -272,9 +272,9 @@ No authorization required
 # **allOrders**
 > AllOrdersResponse allOrders(allOrdersRequest)
 
-WebSocket Account order history
+Account order history (USER_DATA)
 
-Query information about all your orders – active, canceled, filled – filtered by time range. Weight: 20
+Query information about all your orders – active, canceled, filled – filtered by time range.  Weight(IP): 20  Security Type: USER_DATA  Notes: **Data Source:** Database  Notes:  * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, &#x60;orderId&#x60; is ignored.    Orders are filtered by &#x60;time&#x60; of the last execution status update.  * If &#x60;orderId&#x60; is specified, return orders with order ID &gt;&#x3D; &#x60;orderId&#x60;.  * If no condition is specified, the most recent orders are returned.  * For some historical orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative,   meaning the data is not available at this time.  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
 
 ### Example
 ```java
@@ -334,9 +334,9 @@ No authorization required
 # **myAllocations**
 > MyAllocationsResponse myAllocations(myAllocationsRequest)
 
-WebSocket Account allocations
+Account allocations (USER_DATA)
 
-Retrieves allocations resulting from SOR order placement. Weight: 20
+Retrieves allocations resulting from SOR order placement.  Weight(IP): 20  Security Type: USER_DATA  Notes: **Data Source:** Database  Supported parameter combinations:  Parameters                                  | Response | ------------------------------------------- | -------- | &#x60;symbol&#x60;                                    | allocations from oldest to newest | &#x60;symbol&#x60; + &#x60;startTime&#x60;                      | oldest allocations since &#x60;startTime&#x60; | &#x60;symbol&#x60; + &#x60;endTime&#x60;                        | newest allocations until &#x60;endTime&#x60; | &#x60;symbol&#x60; + &#x60;startTime&#x60; + &#x60;endTime&#x60;          | allocations within the time range | &#x60;symbol&#x60; + &#x60;fromAllocationId&#x60;               | allocations by allocation ID | &#x60;symbol&#x60; + &#x60;orderId&#x60;                        | allocations related to an order starting with oldest | &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromAllocationId&#x60;   | allocations related to an order by allocation ID |  **Note:** The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
 
 ### Example
 ```java
@@ -396,9 +396,9 @@ No authorization required
 # **myFilters**
 > MyFiltersResponse myFilters(myFiltersRequest)
 
-WebSocket Query Relevant Filters
+Query Relevant Filters (USER_DATA)
 
-Retrieves the list of [filters](filters.md) relevant to an account on a given symbol. This is the only method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it. Weight: 40
+Retrieves the list of [filters](/products/spot/filters) relevant to an account on a given symbol. This is the only method that shows if an account has [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it.  Weight(IP): 40  Security Type: USER_DATA  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -458,9 +458,9 @@ No authorization required
 # **myPreventedMatches**
 > MyPreventedMatchesResponse myPreventedMatches(myPreventedMatchesRequest)
 
-WebSocket Account prevented matches
+Account prevented matches (USER_DATA)
 
-Displays the list of orders that were expired due to STP.  These are the combinations supported:  * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case                            | Weight ----                            | ----- If &#x60;symbol&#x60; is invalid          | 2 Querying by &#x60;preventedMatchId&#x60;  | 2 Querying by &#x60;orderId&#x60;           | 20
+Displays the list of orders that were expired due to STP.  These are the combinations supported:  * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60;  Weight: Case                            | Weight ----                            | ----- If &#x60;symbol&#x60; is invalid          | 2 Querying by &#x60;preventedMatchId&#x60;  | 2 Querying by &#x60;orderId&#x60;           | 20  Security Type: USER_DATA  Notes: **Data Source:** Database
 
 ### Example
 ```java
@@ -520,9 +520,9 @@ No authorization required
 # **myTrades**
 > MyTradesResponse myTrades(myTradesRequest)
 
-WebSocket Account trade history
+Account trade history (USER_DATA)
 
-Query information about all your trades, filtered by time range. Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5|
+Query information about all your trades, filtered by time range.  Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5|  Security Type: USER_DATA  Notes: Data Source: Memory &#x3D;&gt; Database  Notes: - If &#x60;fromId&#x60; is specified, return trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, trades are filtered by execution time (&#x60;time&#x60;). - &#x60;fromId&#x60; cannot be used together with &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If &#x60;orderId&#x60; is specified, only trades related to that order are returned. - &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be used together with &#x60;orderId&#x60;. - If no condition is specified, the most recent trades are returned. - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
 
 ### Example
 ```java
@@ -582,9 +582,9 @@ No authorization required
 # **openOrderListsStatus**
 > OpenOrderListsStatusResponse openOrderListsStatus(openOrderListsStatusRequest)
 
-WebSocket Current open Order lists
+Current open Order lists (USER_DATA)
 
-Query execution status of all open order lists.  If you need to continuously monitor order status updates, please consider using WebSocket Streams:  * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event Weight: 6
+Query execution status of all open order lists.  If you need to continuously monitor order status updates, please consider using WebSocket Streams:  * &#x60;userDataStream.subscribe&#x60; if on an authenticated session * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription  Weight(IP): 6  Security Type: USER_DATA  Notes: **Data Source:** Memory -&gt; Database
 
 ### Example
 ```java
@@ -644,9 +644,9 @@ No authorization required
 # **openOrdersStatus**
 > OpenOrdersStatusResponse openOrdersStatus(openOrdersStatusRequest)
 
-WebSocket Current open orders
+Current open orders (USER_DATA)
 
-Query execution status of all open orders.  If you need to continuously monitor order status updates, please consider using WebSocket Streams:  * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event Weight: Adjusted based on the number of requested symbols:  | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60;  |      6 | | none      |     80 |
+Query execution status of all open orders.  If you need to continuously monitor order status updates, please consider using WebSocket Streams:  * &#x60;userDataStream.subscribe&#x60; if on an authenticated session * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription  Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60;  |      6 | | none      |     80 |  Security Type: USER_DATA  Notes: Data Source: Memory &#x3D;&gt; Database
 
 ### Example
 ```java
@@ -706,9 +706,9 @@ No authorization required
 # **orderAmendments**
 > OrderAmendmentsResponse orderAmendments(orderAmendmentsRequest)
 
-WebSocket Query Order Amendments
+Query Order Amendments (USER_DATA)
 
-Queries all amendments of a single order. Weight: 4
+Queries all amendments of a single order.  Weight(IP): 4  Security Type: USER_DATA  Notes: **Data Source:** Database
 
 ### Example
 ```java
@@ -768,9 +768,9 @@ No authorization required
 # **orderListStatus**
 > OrderListStatusResponse orderListStatus(orderListStatusRequest)
 
-WebSocket Query Order list
+Query Order list (USER_DATA)
 
-Check execution status of an Order list.  For execution status of individual orders, use &#x60;order.status&#x60;. Weight: 4
+Check execution status of an Order list.  For execution status of individual orders, use &#x60;order.status&#x60;.  Weight(IP): 4  Security Type: USER_DATA  Notes: **Data Source:** Database  Notes:  * &#x60;origClientOrderId&#x60; refers to &#x60;listClientOrderId&#x60; of the order list itself.  * If both &#x60;origClientOrderId&#x60; and &#x60;orderListId&#x60; parameters are specified,   only &#x60;origClientOrderId&#x60; is used and &#x60;orderListId&#x60; is ignored.
 
 ### Example
 ```java
@@ -830,9 +830,9 @@ No authorization required
 # **orderStatus**
 > OrderStatusResponse orderStatus(orderStatusRequest)
 
-WebSocket Query order
+Query order (USER_DATA)
 
-Check execution status of an order. Weight: 4
+Check execution status of an order.  Weight(IP): 4  Security Type: USER_DATA  Notes: **Data Source:** Memory &#x3D;&gt; Database  Notes:  * If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60; is searched first, then the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both conditions are not met the request will be rejected.  * For some historical orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative,   meaning the data is not available at this time.
 
 ### Example
 ```java

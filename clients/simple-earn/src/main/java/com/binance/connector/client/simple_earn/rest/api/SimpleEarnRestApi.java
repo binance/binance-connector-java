@@ -5,6 +5,8 @@ import com.binance.connector.client.common.ApiException;
 import com.binance.connector.client.common.ApiResponse;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.simple_earn.rest.SimpleEarnRestApiUtil;
+import com.binance.connector.client.simple_earn.rest.model.AprPeriod;
+import com.binance.connector.client.simple_earn.rest.model.Asset;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdAccountResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdQuotaDetailsResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetBfusdRateHistoryResponse;
@@ -33,6 +35,8 @@ import com.binance.connector.client.simple_earn.rest.model.GetRwusdRewardsHistor
 import com.binance.connector.client.simple_earn.rest.model.GetRwusdSubscriptionHistoryResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnFlexibleProductListResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetSimpleEarnLockedProductListResponse;
+import com.binance.connector.client.simple_earn.rest.model.GetYieldArenaActivitiesResponse;
+import com.binance.connector.client.simple_earn.rest.model.OrderType;
 import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdRequest;
 import com.binance.connector.client.simple_earn.rest.model.RedeemBfusdResponse;
 import com.binance.connector.client.simple_earn.rest.model.RedeemFlexibleProductRequest;
@@ -62,6 +66,7 @@ public class SimpleEarnRestApi {
     private final BfusdApi bfusdApi;
     private final FlexibleLockedApi flexibleLockedApi;
     private final RwusdApi rwusdApi;
+    private final YieldArenaApi yieldArenaApi;
 
     public SimpleEarnRestApi(ClientConfiguration configuration) {
         this(SimpleEarnRestApiUtil.getDefaultClient(configuration));
@@ -71,12 +76,14 @@ public class SimpleEarnRestApi {
         this.bfusdApi = new BfusdApi(apiClient);
         this.flexibleLockedApi = new FlexibleLockedApi(apiClient);
         this.rwusdApi = new RwusdApi(apiClient);
+        this.yieldArenaApi = new YieldArenaApi(apiClient);
     }
 
     /**
-     * Get BFUSD Account (USER_DATA) Get BFUSD account information. Weight: 150
+     * Get BFUSD Account (USER_DATA) Get BFUSD account information. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -87,8 +94,9 @@ public class SimpleEarnRestApi {
      * <tr><td> 200 </td><td> Get BFUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/account/">Get BFUSD
-     *     Account (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-account">Get
+     *     BFUSD Account (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdAccountResponse> getBfusdAccount(Long recvWindow)
             throws ApiException {
@@ -97,9 +105,10 @@ public class SimpleEarnRestApi {
 
     /**
      * Get BFUSD Quota Details (USER_DATA) Get BFUSD quota details including subscription quota,
-     * fast redemption quota and standard redemption quota. Weight: 150
+     * fast redemption quota, and standard redemption quota. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdQuotaDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -111,7 +120,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/account/Get-BFUSD-Quota-Details">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-quota-details">Get
      *     BFUSD Quota Details (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdQuotaDetailsResponse> getBfusdQuotaDetails(Long recvWindow)
@@ -120,21 +129,21 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get BFUSD Rate History (USER_DATA) Get BFUSD rate history sorted by descending order. * The
-     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. *
-     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
-     * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
-     * is not sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get BFUSD Rate History (USER_DATA) Get BFUSD rate history sorted by descending order.
+     * Weight(IP): 150 Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -146,7 +155,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-rate-history">Get
      *     BFUSD Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdRateHistoryResponse> getBfusdRateHistory(
@@ -156,21 +165,21 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get BFUSD Redemption History (USER_DATA) Get BFUSD redemption history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get BFUSD Redemption History (USER_DATA) Get BFUSD redemption history Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -182,7 +191,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Redemption-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-redemption-history">Get
      *     BFUSD Redemption History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdRedemptionHistoryResponse> getBfusdRedemptionHistory(
@@ -192,21 +201,21 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get BFUSD Rewards History (USER_DATA) Get BFUSD rewards history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get BFUSD Rewards History (USER_DATA) Get BFUSD rewards history Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time,
+     * and results from &#x60;startTime&#x60; onward will be returned. - If &#x60;endTime&#x60; is
+     * sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current
+     * time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -218,7 +227,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-rewards-history">Get
      *     BFUSD Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdRewardsHistoryResponse> getBfusdRewardsHistory(
@@ -228,22 +237,22 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get BFUSD subscription history(USER_DATA) Get BFUSD subscription history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time
-     * advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * Get BFUSD subscription history (USER_DATA) Get BFUSD subscription history Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time advanced by one month, and data between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; will be returned.
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
-     * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
+     * @param recvWindow (optional)
      * @return ApiResponse&lt;GetBfusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -255,19 +264,21 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/history/Get-BFUSD-subscription-history">Get
-     *     BFUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#get-bfusd-subscription-history">Get
+     *     BFUSD subscription history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetBfusdSubscriptionHistoryResponse> getBfusdSubscriptionHistory(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         return bfusdApi.getBfusdSubscriptionHistory(
                 asset, startTime, endTime, current, size, recvWindow);
     }
 
     /**
-     * Redeem BFUSD(TRADE) Redeem BFUSD to USDT * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Redeem BFUSD (TRADE) Redeem BFUSD to USDT Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports BFUSD redemption to the Spot Account. Redemptions to the
+     * Funding Account or any other account type are not supported.
      *
      * @param redeemBfusdRequest (required)
      * @return ApiResponse&lt;RedeemBfusdResponse&gt;
@@ -280,8 +291,9 @@ public class SimpleEarnRestApi {
      * <tr><td> 200 </td><td> Redeem BFUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Redeem-BFUSD">Redeem
-     *     BFUSD(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#redeem-bfusd">Redeem
+     *     BFUSD (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemBfusdResponse> redeemBfusd(RedeemBfusdRequest redeemBfusdRequest)
             throws ApiException {
@@ -289,8 +301,10 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Subscribe BFUSD(TRADE) Subscribe BFUSD * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Subscribe BFUSD (TRADE) Subscribe BFUSD Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports BFUSD subscription using assets held in the Spot Account.
+     * Subscriptions initiated from the Funding Account or any other account type are not supported.
      *
      * @param subscribeBfusdRequest (required)
      * @return ApiResponse&lt;SubscribeBfusdResponse&gt;
@@ -304,8 +318,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/bfusd/earn/Subscribe-BFUSD">Subscribe
-     *     BFUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/bfusd#subscribe-bfusd">Subscribe
+     *     BFUSD (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeBfusdResponse> subscribeBfusd(
             SubscribeBfusdRequest subscribeBfusdRequest) throws ApiException {
@@ -313,19 +327,20 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Collateral Record(USER_DATA) Get Collateral Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 1
+     * Get Collateral Record (USER_DATA) Get Collateral Record Weight(IP): 1 Security Type:
+     * USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be
+     * longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
+     * then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but
+     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param productId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetCollateralRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -338,8 +353,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Collateral-Record">Get
-     *     Collateral Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-collateral-record">Get
+     *     Collateral Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetCollateralRecordResponse> getCollateralRecord(
             String productId,
@@ -354,7 +369,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Flexible Personal Left Quota(USER_DATA) Get Flexible Personal Left Quota Weight: 150
+     * Get Flexible Personal Left Quota (USER_DATA) Get Flexible Personal Left Quota Weight(IP): 150
+     * Security Type: USER_DATA
      *
      * @param productId (required)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
@@ -369,8 +385,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Personal-Left-Quota">Get
-     *     Flexible Personal Left Quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-personal-left-quota">Get
+     *     Flexible Personal Left Quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexiblePersonalLeftQuotaResponse> getFlexiblePersonalLeftQuota(
             String productId, Long recvWindow) throws ApiException {
@@ -378,12 +394,13 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Flexible Product Position(USER_DATA) Get Flexible Product Position Weight: 150
+     * Get Flexible Product Position (USER_DATA) Get Flexible Product Position Weight(IP): 150
+     * Security Type: USER_DATA
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param productId (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -396,8 +413,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Product-Position">Get
-     *     Flexible Product Position(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-product-position">Get
+     *     Flexible Product Position (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleProductPositionResponse> getFlexibleProductPosition(
             String asset, String productId, Long current, Long size, Long recvWindow)
@@ -407,21 +424,22 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Flexible Redemption Record(USER_DATA) Get Flexible Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Flexible Redemption Record (USER_DATA) Get Flexible Redemption Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param productId (optional)
      * @param redeemId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -434,8 +452,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Redemption-Record">Get
-     *     Flexible Redemption Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-redemption-record">Get
+     *     Flexible Redemption Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleRedemptionRecordResponse> getFlexibleRedemptionRecord(
             String productId,
@@ -452,22 +470,24 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Flexible Rewards History(USER_DATA) Get Flexible Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Flexible Rewards History (USER_DATA) Get Flexible Rewards History Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
-     * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; Real-time APR,
-     *     &#x60;REWARDS&#x60; Historical rewards,&#x60;ALL&#x60;(set to default) (required)
      * @param productId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR,
+     *     &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default:
+     *     &#x60;ALL&#x60; (optional, default to STANDARD)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -480,25 +500,26 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Rewards-History">Get
-     *     Flexible Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-rewards-history">Get
+     *     Flexible Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleRewardsHistoryResponse> getFlexibleRewardsHistory(
-            String type,
             String productId,
             String asset,
             Long startTime,
             Long endTime,
+            OrderType type,
             Long current,
             Long size,
             Long recvWindow)
             throws ApiException {
         return flexibleLockedApi.getFlexibleRewardsHistory(
-                type, productId, asset, startTime, endTime, current, size, recvWindow);
+                productId, asset, startTime, endTime, type, current, size, recvWindow);
     }
 
     /**
-     * Get Flexible Subscription Preview(USER_DATA) Get Flexible Subscription Preview Weight: 150
+     * Get Flexible Subscription Preview (USER_DATA) Get Flexible Subscription Preview Weight(IP):
+     * 150 Security Type: USER_DATA
      *
      * @param productId (required)
      * @param amount (required)
@@ -514,8 +535,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Flexible-Subscription-Preview">Get
-     *     Flexible Subscription Preview(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-preview">Get
+     *     Flexible Subscription Preview (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleSubscriptionPreviewResponse> getFlexibleSubscriptionPreview(
             String productId, Double amount, Long recvWindow) throws ApiException {
@@ -523,21 +544,22 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Flexible Subscription Record(USER_DATA) Get Flexible Subscription Record * The time
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Flexible Subscription Record (USER_DATA) Get Flexible Subscription Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param productId (optional)
      * @param purchaseId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetFlexibleSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -550,8 +572,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Subscription-Record">Get
-     *     Flexible Subscription Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-record">Get
+     *     Flexible Subscription Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleSubscriptionRecordResponse> getFlexibleSubscriptionRecord(
             String productId,
@@ -568,7 +590,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Locked Personal Left Quota(USER_DATA) Get Locked Personal Left Quota Weight: 150
+     * Get Locked Personal Left Quota (USER_DATA) Get Locked Personal Left Quota Weight(IP): 150
+     * Security Type: USER_DATA
      *
      * @param projectId (required)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
@@ -583,8 +606,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Personal-Left-Quota">Get
-     *     Locked Personal Left Quota(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-personal-left-quota">Get
+     *     Locked Personal Left Quota (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedPersonalLeftQuotaResponse> getLockedPersonalLeftQuota(
             String projectId, Long recvWindow) throws ApiException {
@@ -592,13 +615,14 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Locked Product Position Get Locked Product Position Weight: 150
+     * Get Locked Product Position (USER_DATA) Get Locked Product Position Weight(IP): 150 Security
+     * Type: USER_DATA
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param positionId (optional)
      * @param projectId (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedProductPositionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -611,8 +635,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Product-Position">Get
-     *     Locked Product Position Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-product-position">Get
+     *     Locked Product Position (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedProductPositionResponse> getLockedProductPosition(
             String asset,
@@ -627,21 +651,22 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Locked Redemption Record(USER_DATA) Get Locked Redemption Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Locked Redemption Record (USER_DATA) Get Locked Redemption Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param positionId (optional)
      * @param redeemId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRedemptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -654,8 +679,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Redemption-Record">Get
-     *     Locked Redemption Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-redemption-record">Get
+     *     Locked Redemption Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedRedemptionRecordResponse> getLockedRedemptionRecord(
             String positionId,
@@ -672,20 +697,21 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Locked Rewards History(USER_DATA) Get Locked Rewards History * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Locked Rewards History (USER_DATA) Get Locked Rewards History Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
+     * &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param positionId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -698,8 +724,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Rewards-History">Get
-     *     Locked Rewards History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-rewards-history">Get
+     *     Locked Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedRewardsHistoryResponse> getLockedRewardsHistory(
             String positionId,
@@ -715,11 +741,12 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Locked Subscription Preview(USER_DATA) Get Locked Subscription Preview Weight: 150
+     * Get Locked Subscription Preview (USER_DATA) Get Locked Subscription Preview Weight(IP): 150
+     * Security Type: USER_DATA
      *
      * @param projectId (required)
      * @param amount (required)
-     * @param autoSubscribe true or false, default true. (optional)
+     * @param autoSubscribe default true. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionPreviewResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -732,8 +759,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Locked-Subscription-Preview">Get
-     *     Locked Subscription Preview(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-preview">Get
+     *     Locked Subscription Preview (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedSubscriptionPreviewResponse> getLockedSubscriptionPreview(
             String projectId, Double amount, Boolean autoSubscribe, Long recvWindow)
@@ -743,20 +770,21 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Locked Subscription Record(USER_DATA) Get Locked Subscription Record * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 30 days. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If
-     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
-     * before &#x60;endTime&#x60; will be returned. Weight: 150
+     * Get Locked Subscription Record (USER_DATA) Get Locked Subscription Record Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 30 days. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data
+     * beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but
+     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param purchaseId (optional)
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetLockedSubscriptionRecordResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -769,8 +797,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Subscription-Record">Get
-     *     Locked Subscription Record(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-record">Get
+     *     Locked Subscription Record (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetLockedSubscriptionRecordResponse> getLockedSubscriptionRecord(
             String purchaseId,
@@ -786,20 +814,20 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Rate History(USER_DATA) Get Rate History * The time between startTime and endTime cannot
-     * be longer than 1 year. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent,
-     * then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but
-     * &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from
-     * &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * Get Rate History (USER_DATA) Get Rate History Weight(IP): 150 Security Type: USER_DATA Notes:
+     * - The time between startTime and endTime cannot be longer than 1 year. - If
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
+     * data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
+     * sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data
+     * before &#x60;endTime&#x60; will be returned.
      *
      * @param productId (required)
-     * @param aprPeriod \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; (optional)
+     * @param aprPeriod (optional, default to DAY)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -812,12 +840,12 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Rate-History">Get
-     *     Rate History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-rate-history">Get
+     *     Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRateHistoryResponse> getRateHistory(
             String productId,
-            String aprPeriod,
+            AprPeriod aprPeriod,
             Long startTime,
             Long endTime,
             Long current,
@@ -829,12 +857,12 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Simple Earn Flexible Product List(USER_DATA) Get available Simple Earn flexible product
-     * list Weight: 150
+     * Get Simple Earn Flexible Product List (USER_DATA) Get available Simple Earn flexible product
+     * list Weight(IP): 150 Security Type: USER_DATA
      *
-     * @param asset USDC or USDT (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param asset (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnFlexibleProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -847,8 +875,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Flexible-Product-List">Get
-     *     Simple Earn Flexible Product List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-flexible-product-list">Get
+     *     Simple Earn Flexible Product List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSimpleEarnFlexibleProductListResponse> getSimpleEarnFlexibleProductList(
             String asset, Long current, Long size, Long recvWindow) throws ApiException {
@@ -856,12 +884,13 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get Simple Earn Locked Product List(USER_DATA) Get Simple Earn Locked Product List * Get
-     * available Simple Earn locked product list Weight: 150
+     * Get Simple Earn Locked Product List (USER_DATA) Get Simple Earn Locked Product List
+     * Weight(IP): 150 Security Type: USER_DATA Notes: - Get available Simple Earn locked product
+     * list
      *
-     * @param asset USDC or USDT (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param asset (optional)
+     * @param current Currently querying page. Starts from 1. (optional)
+     * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetSimpleEarnLockedProductListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -874,8 +903,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Locked-Product-List">Get
-     *     Simple Earn Locked Product List(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-locked-product-list">Get
+     *     Simple Earn Locked Product List (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetSimpleEarnLockedProductListResponse> getSimpleEarnLockedProductList(
             String asset, Long current, Long size, Long recvWindow) throws ApiException {
@@ -883,8 +912,9 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Redeem Flexible Product(TRADE) Redeem Flexible Product * You need to open &#x60;Enable Spot
-     * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1
+     * Redeem Flexible Product (TRADE) Redeem Flexible Product Weight(IP): 1 Security Type: TRADE
+     * Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API
+     * Key which requests this endpoint.
      *
      * @param redeemFlexibleProductRequest (required)
      * @return ApiResponse&lt;RedeemFlexibleProductResponse&gt;
@@ -898,8 +928,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Flexible-Product">Redeem
-     *     Flexible Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-flexible-product">Redeem
+     *     Flexible Product (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemFlexibleProductResponse> redeemFlexibleProduct(
             RedeemFlexibleProductRequest redeemFlexibleProductRequest) throws ApiException {
@@ -907,9 +937,9 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Redeem Locked Product(TRADE) Redeem Locked Product * You need to open &#x60;Enable Spot &amp;
-     * Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1/3s
-     * per account
+     * Redeem Locked Product (TRADE) Redeem Locked Product Weight(IP): 1 Security Type: TRADE Notes:
+     * - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key
+     * which requests this endpoint.
      *
      * @param redeemLockedProductRequest (required)
      * @return ApiResponse&lt;RedeemLockedProductResponse&gt;
@@ -923,8 +953,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Locked-Product">Redeem
-     *     Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-locked-product">Redeem
+     *     Locked Product (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemLockedProductResponse> redeemLockedProduct(
             RedeemLockedProductRequest redeemLockedProductRequest) throws ApiException {
@@ -932,7 +962,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Set Flexible Auto Subscribe(USER_DATA) Set Flexible Auto Subscribe Weight: 150
+     * Set Flexible Auto Subscribe (USER_DATA) Set Flexible Auto Subscribe Weight(IP): 150 Security
+     * Type: USER_DATA
      *
      * @param setFlexibleAutoSubscribeRequest (required)
      * @return ApiResponse&lt;SetFlexibleAutoSubscribeResponse&gt;
@@ -946,8 +977,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Flexible-Auto-Subscribe">Set
-     *     Flexible Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-flexible-auto-subscribe">Set
+     *     Flexible Auto Subscribe (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetFlexibleAutoSubscribeResponse> setFlexibleAutoSubscribe(
             SetFlexibleAutoSubscribeRequest setFlexibleAutoSubscribeRequest) throws ApiException {
@@ -955,7 +986,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Set Locked Auto Subscribe(USER_DATA) Set locked auto subscribe Weight: 150
+     * Set Locked Auto Subscribe (USER_DATA) Set locked auto subscribe Weight(IP): 150 Security
+     * Type: USER_DATA
      *
      * @param setLockedAutoSubscribeRequest (required)
      * @return ApiResponse&lt;SetLockedAutoSubscribeResponse&gt;
@@ -969,8 +1001,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Auto-Subscribe">Set
-     *     Locked Auto Subscribe(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-auto-subscribe">Set
+     *     Locked Auto Subscribe (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetLockedAutoSubscribeResponse> setLockedAutoSubscribe(
             SetLockedAutoSubscribeRequest setLockedAutoSubscribeRequest) throws ApiException {
@@ -978,7 +1010,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Set Locked Product Redeem Option(USER_DATA) Set redeem option for Locked product Weight: 50
+     * Set Locked Product Redeem Option (USER_DATA) Set redeem option for Locked product Weight(IP):
+     * 50 Security Type: USER_DATA
      *
      * @param setLockedProductRedeemOptionRequest (required)
      * @return ApiResponse&lt;SetLockedProductRedeemOptionResponse&gt;
@@ -992,8 +1025,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Redeem-Option">Set
-     *     Locked Product Redeem Option(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-product-redeem-option">Set
+     *     Locked Product Redeem Option (USER_DATA) Documentation</a>
      */
     public ApiResponse<SetLockedProductRedeemOptionResponse> setLockedProductRedeemOption(
             SetLockedProductRedeemOptionRequest setLockedProductRedeemOptionRequest)
@@ -1002,7 +1035,7 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Simple Account(USER_DATA) Simple Account query Weight: 150
+     * Simple Account (USER_DATA) Simple Account query Weight(IP): 150 Security Type: USER_DATA
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;SimpleAccountResponse&gt;
@@ -1016,17 +1049,17 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/account/Simple-Account">Simple
-     *     Account(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#simple-account">Simple
+     *     Account (USER_DATA) Documentation</a>
      */
     public ApiResponse<SimpleAccountResponse> simpleAccount(Long recvWindow) throws ApiException {
         return flexibleLockedApi.simpleAccount(recvWindow);
     }
 
     /**
-     * Subscribe Flexible Product(TRADE) Subscribe Flexible Product * You need to open &#x60;Enable
-     * Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
-     * Weight: 1
+     * Subscribe Flexible Product (TRADE) Subscribe Flexible Product Weight(IP): 1 Security Type:
+     * TRADE Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for
+     * the API Key which requests this endpoint.
      *
      * @param subscribeFlexibleProductRequest (required)
      * @return ApiResponse&lt;SubscribeFlexibleProductResponse&gt;
@@ -1040,8 +1073,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Flexible-Product">Subscribe
-     *     Flexible Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-flexible-product">Subscribe
+     *     Flexible Product (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeFlexibleProductResponse> subscribeFlexibleProduct(
             SubscribeFlexibleProductRequest subscribeFlexibleProductRequest) throws ApiException {
@@ -1049,8 +1082,9 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Subscribe Locked Product(TRADE) Subscribe Locked Product * You need to open &#x60;Enable Spot
-     * &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint. Weight: 1
+     * Subscribe Locked Product (TRADE) Subscribe Locked Product Weight(IP): 1 Security Type: TRADE
+     * Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API
+     * Key which requests this endpoint.
      *
      * @param subscribeLockedProductRequest (required)
      * @return ApiResponse&lt;SubscribeLockedProductResponse&gt;
@@ -1064,8 +1098,8 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Locked-Product">Subscribe
-     *     Locked Product(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-locked-product">Subscribe
+     *     Locked Product (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeLockedProductResponse> subscribeLockedProduct(
             SubscribeLockedProductRequest subscribeLockedProductRequest) throws ApiException {
@@ -1073,7 +1107,8 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight: 150
+     * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdAccountResponse&gt;
@@ -1086,8 +1121,9 @@ public class SimpleEarnRestApi {
      * <tr><td> 200 </td><td> Get RWUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/account/">Get RWUSD
-     *     Account (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-account">Get
+     *     RWUSD Account (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdAccountResponse> getRwusdAccount(Long recvWindow)
             throws ApiException {
@@ -1096,7 +1132,8 @@ public class SimpleEarnRestApi {
 
     /**
      * Get RWUSD Quota Details (USER_DATA) Get RWUSD quota details including subscription quota,
-     * fast redemption quota, and standard redemption quota. Weight: 150
+     * fast redemption quota, and standard redemption quota. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdQuotaDetailsResponse&gt;
@@ -1110,7 +1147,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/account/Get-RWUSD-Quota-Details">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-quota-details">Get
      *     RWUSD Quota Details (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdQuotaDetailsResponse> getRwusdQuotaDetails(Long recvWindow)
@@ -1119,20 +1156,20 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get RWUSD Rate History (USER_DATA) Get RWUSD rate history sorted by descending order. * The
-     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. *
-     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
-     * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
-     * is not sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get RWUSD Rate History (USER_DATA) Get RWUSD rate history sorted by descending order.
+     * Weight(IP): 150 Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1145,7 +1182,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rate-history">Get
      *     RWUSD Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdRateHistoryResponse> getRwusdRateHistory(
@@ -1155,20 +1192,20 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get RWUSD Redemption History (USER_DATA) Get RWUSD redemption history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get RWUSD Redemption History (USER_DATA) Get RWUSD redemption history. Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1181,7 +1218,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Redemption-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-redemption-history">Get
      *     RWUSD Redemption History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdRedemptionHistoryResponse> getRwusdRedemptionHistory(
@@ -1191,20 +1228,20 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get RWUSD Rewards History (USER_DATA) Get RWUSD rewards history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get RWUSD Rewards History (USER_DATA) Get RWUSD rewards history. Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time,
+     * and results from &#x60;startTime&#x60; onward will be returned. - If &#x60;endTime&#x60; is
+     * sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current
+     * time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1217,7 +1254,7 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rewards-history">Get
      *     RWUSD Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdRewardsHistoryResponse> getRwusdRewardsHistory(
@@ -1227,21 +1264,21 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Get RWUSD subscription history(USER_DATA) Get RWUSD subscription history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time
-     * advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * Get RWUSD subscription history (USER_DATA) Get RWUSD subscription history Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time advanced by one month, and data between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; will be returned.
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1254,19 +1291,21 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-subscription-history">Get
-     *     RWUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-subscription-history">Get
+     *     RWUSD subscription history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdSubscriptionHistoryResponse> getRwusdSubscriptionHistory(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         return rwusdApi.getRwusdSubscriptionHistory(
                 asset, startTime, endTime, current, size, recvWindow);
     }
 
     /**
-     * Redeem RWUSD(TRADE) Redeem RWUSD to USDC * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Redeem RWUSD (TRADE) Redeem RWUSD to USDC Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports RWUSD redemption to the Spot Account. Redemptions to the
+     * Funding Account or any other account type are not supported.
      *
      * @param redeemRwusdRequest (required)
      * @return ApiResponse&lt;RedeemRwusdResponse&gt;
@@ -1279,8 +1318,9 @@ public class SimpleEarnRestApi {
      * <tr><td> 200 </td><td> Redeem RWUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Redeem-RWUSD">Redeem
-     *     RWUSD(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#redeem-rwusd">Redeem
+     *     RWUSD (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemRwusdResponse> redeemRwusd(RedeemRwusdRequest redeemRwusdRequest)
             throws ApiException {
@@ -1288,8 +1328,10 @@ public class SimpleEarnRestApi {
     }
 
     /**
-     * Subscribe RWUSD(TRADE) Subscribe RWUSD * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Subscribe RWUSD (TRADE) Subscribe RWUSD Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports RWUSD subscription using assets held in the Spot Account.
+     * Subscriptions initiated from the Funding Account or any other account type are not supported.
      *
      * @param subscribeRwusdRequest (required)
      * @return ApiResponse&lt;SubscribeRwusdResponse&gt;
@@ -1303,11 +1345,39 @@ public class SimpleEarnRestApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Subscribe-RWUSD">Subscribe
-     *     RWUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#subscribe-rwusd">Subscribe
+     *     RWUSD (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeRwusdResponse> subscribeRwusd(
             SubscribeRwusdRequest subscribeRwusdRequest) throws ApiException {
         return rwusdApi.subscribeRwusd(subscribeRwusdRequest);
+    }
+
+    /**
+     * Get Yield Arena Activities (USER_DATA) Get the list of Earn Yield Arena giveaway activities
+     * currently available to the user. Weight(IP): 150 Security Type: USER_DATA
+     *
+     * @param lang Locale tag for &#x60;title&#x60; and &#x60;description&#x60; (e.g.
+     *     &#x60;en&#x60;, &#x60;zh-CN&#x60;, &#x60;pt-BR&#x60;). Default: &#x60;en&#x60;. If the
+     *     value is missing, malformed, or has no translation configured, content is returned in
+     *     &#x60;en&#x60;. (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;GetYieldArenaActivitiesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Yield Arena Activities </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/yield-arena#get-yield-arena-activities">Get
+     *     Yield Arena Activities (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<GetYieldArenaActivitiesResponse> getYieldArenaActivities(
+            String lang, Long recvWindow) throws ApiException {
+        return yieldArenaApi.getYieldArenaActivities(lang, recvWindow);
     }
 }

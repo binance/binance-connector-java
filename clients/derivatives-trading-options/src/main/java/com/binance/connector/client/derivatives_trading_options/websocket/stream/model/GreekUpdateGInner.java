@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** GreekUpdateGInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GreekUpdateGInner extends BaseDTO {
     public static final String SERIALIZED_NAME_U_LOWER_CASE = "u";
 
@@ -77,7 +77,7 @@ public class GreekUpdateGInner extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * Underlying
      *
      * @return uLowerCase
      */
@@ -96,7 +96,7 @@ public class GreekUpdateGInner extends BaseDTO {
     }
 
     /**
-     * Get dLowerCase
+     * Delta
      *
      * @return dLowerCase
      */
@@ -115,7 +115,7 @@ public class GreekUpdateGInner extends BaseDTO {
     }
 
     /**
-     * Get gLowerCase
+     * Gamma
      *
      * @return gLowerCase
      */
@@ -134,7 +134,7 @@ public class GreekUpdateGInner extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Theta
      *
      * @return tLowerCase
      */
@@ -153,7 +153,7 @@ public class GreekUpdateGInner extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * Vega
      *
      * @return vLowerCase
      */

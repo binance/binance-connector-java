@@ -1,6 +1,6 @@
 /*
- * Binance Convert REST API
- * OpenAPI Specification for the Binance Convert REST API
+ * Convert REST API
+ * Request quotes and execute cryptocurrency conversions via the Convert REST API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,13 +34,13 @@ import org.hibernate.validator.constraints.*;
 /** CancelLimitOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelLimitOrderRequest {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
     @SerializedName(SERIALIZED_NAME_ORDER_ID)
     @jakarta.annotation.Nonnull
-    private String orderId;
+    private Long orderId;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -50,23 +50,23 @@ public class CancelLimitOrderRequest {
 
     public CancelLimitOrderRequest() {}
 
-    public CancelLimitOrderRequest orderId(@jakarta.annotation.Nonnull String orderId) {
+    public CancelLimitOrderRequest orderId(@jakarta.annotation.Nonnull Long orderId) {
         this.orderId = orderId;
         return this;
     }
 
     /**
-     * Get orderId
+     * The orderId from &#x60;placeOrder&#x60; api
      *
      * @return orderId
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(@jakarta.annotation.Nonnull String orderId) {
+    public void setOrderId(@jakarta.annotation.Nonnull Long orderId) {
         this.orderId = orderId;
     }
 
@@ -76,11 +76,12 @@ public class CancelLimitOrderRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -192,13 +193,6 @@ public class CancelLimitOrderRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("orderId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `orderId` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("orderId").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

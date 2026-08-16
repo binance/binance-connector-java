@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryAllCurrentCmOpenConditionalOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -141,7 +141,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -161,7 +161,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -181,7 +181,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -201,7 +201,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -221,7 +221,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -241,7 +241,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -261,7 +261,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -281,7 +281,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -301,7 +301,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -321,7 +321,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -341,7 +341,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -361,7 +361,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get bookTime
+     * order time
      *
      * @return bookTime
      */
@@ -381,7 +381,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -401,7 +401,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -421,7 +421,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -441,7 +441,7 @@ public class QueryAllCurrentCmOpenConditionalOrdersResponseInner {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */

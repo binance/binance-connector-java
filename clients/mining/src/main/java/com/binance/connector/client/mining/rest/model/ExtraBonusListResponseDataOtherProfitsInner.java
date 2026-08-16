@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** ExtraBonusListResponseDataOtherProfitsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExtraBonusListResponseDataOtherProfitsInner {
     public static final String SERIALIZED_NAME_TIME = "time";
 
@@ -76,7 +76,7 @@ public class ExtraBonusListResponseDataOtherProfitsInner {
     }
 
     /**
-     * Get time
+     * Mining date
      *
      * @return time
      */
@@ -96,7 +96,7 @@ public class ExtraBonusListResponseDataOtherProfitsInner {
     }
 
     /**
-     * Get coinName
+     * Coin name
      *
      * @return coinName
      */
@@ -116,7 +116,8 @@ public class ExtraBonusListResponseDataOtherProfitsInner {
     }
 
     /**
-     * Get type
+     * 1: Merged Mining, 2: Activity Bonus, 3: Rebate, 4: Smart Pool, 6: Income Transfer, 7: Pool
+     * Savings
      *
      * @return type
      */
@@ -136,7 +137,7 @@ public class ExtraBonusListResponseDataOtherProfitsInner {
     }
 
     /**
-     * Get profitAmount
+     * Amount
      *
      * @return profitAmount
      */
@@ -157,7 +158,7 @@ public class ExtraBonusListResponseDataOtherProfitsInner {
     }
 
     /**
-     * Get status
+     * Status: 0 Unpaid, 1 Paying, 2 Paid
      *
      * @return status
      */

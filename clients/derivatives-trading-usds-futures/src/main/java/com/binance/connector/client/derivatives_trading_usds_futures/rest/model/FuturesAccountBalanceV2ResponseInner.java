@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** FuturesAccountBalanceV2ResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class FuturesAccountBalanceV2ResponseInner {
     public static final String SERIALIZED_NAME_ACCOUNT_ALIAS = "accountAlias";
 
@@ -99,7 +99,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get accountAlias
+     * Unique account alias.
      *
      * @return accountAlias
      */
@@ -118,7 +118,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get asset
+     * Asset name.
      *
      * @return asset
      */
@@ -138,7 +138,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get balance
+     * Wallet balance.
      *
      * @return balance
      */
@@ -158,7 +158,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * Cross wallet balance.
      *
      * @return crossWalletBalance
      */
@@ -178,7 +178,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get crossUnPnl
+     * Unrealized PnL of cross positions.
      *
      * @return crossUnPnl
      */
@@ -198,7 +198,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get availableBalance
+     * Available balance.
      *
      * @return availableBalance
      */
@@ -218,7 +218,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get maxWithdrawAmount
+     * Maximum transferable/withdrawable amount.
      *
      * @return maxWithdrawAmount
      */
@@ -238,7 +238,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get marginAvailable
+     * Whether the asset can be used as margin in multi-assets mode.
      *
      * @return marginAvailable
      */
@@ -258,7 +258,7 @@ public class FuturesAccountBalanceV2ResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Last update time in milliseconds.
      *
      * @return updateTime
      */

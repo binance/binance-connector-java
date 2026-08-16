@@ -13,7 +13,7 @@
 |**remainingCollateral** | **String** |  |  [optional] |
 |**fullRepayment** | **Boolean** |  |  [optional] |
 |**currentLTV** | **String** |  |  [optional] |
-|**repayStatus** | **String** |  |  [optional] |
+|**repayStatus** | **String** | REPAID, REPAYING, FAILED |  [optional] |
 
 
 

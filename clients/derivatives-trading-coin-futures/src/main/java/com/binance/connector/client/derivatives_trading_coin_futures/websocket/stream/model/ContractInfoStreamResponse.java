@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** ContractInfoStreamResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ContractInfoStreamResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -97,6 +97,12 @@ public class ContractInfoStreamResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private List<@Valid ContractInfoStreamResponseBksInner> bks;
 
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
+
     public ContractInfoStreamResponse() {}
 
     public ContractInfoStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
@@ -105,7 +111,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event Type
      *
      * @return eLowerCase
      */
@@ -124,7 +130,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -143,7 +149,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -162,7 +168,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get ps
+     * Pair
      *
      * @return ps
      */
@@ -181,7 +187,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get ct
+     * Contract type
      *
      * @return ct
      */
@@ -200,7 +206,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get dt
+     * Delivery date time
      *
      * @return dt
      */
@@ -219,7 +225,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get ot
+     * onboard date time
      *
      * @return ot
      */
@@ -238,7 +244,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get cs
+     * Contract status
      *
      * @return cs
      */
@@ -266,7 +272,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
     }
 
     /**
-     * Get bks
+     * Bracket list.
      *
      * @return bks
      */
@@ -279,6 +285,25 @@ public class ContractInfoStreamResponse extends BaseDTO {
     public void setBks(
             @jakarta.annotation.Nullable List<@Valid ContractInfoStreamResponseBksInner> bks) {
         this.bks = bks;
+    }
+
+    public ContractInfoStreamResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
     }
 
     @Override
@@ -298,12 +323,13 @@ public class ContractInfoStreamResponse extends BaseDTO {
                 && Objects.equals(this.dt, contractInfoStreamResponse.dt)
                 && Objects.equals(this.ot, contractInfoStreamResponse.ot)
                 && Objects.equals(this.cs, contractInfoStreamResponse.cs)
-                && Objects.equals(this.bks, contractInfoStreamResponse.bks);
+                && Objects.equals(this.bks, contractInfoStreamResponse.bks)
+                && Objects.equals(this.st, contractInfoStreamResponse.st);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eLowerCase, E, sLowerCase, ps, ct, dt, ot, cs, bks);
+        return Objects.hash(eLowerCase, E, sLowerCase, ps, ct, dt, ot, cs, bks, st);
     }
 
     @Override
@@ -319,6 +345,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
         sb.append("		ot: ").append(toIndentedString(ot)).append("\n");
         sb.append("		cs: ").append(toIndentedString(cs)).append("\n");
         sb.append("		bks: ").append(toIndentedString(bks)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -372,6 +399,11 @@ public class ContractInfoStreamResponse extends BaseDTO {
             String bksValueAsString = JSON.getGson().toJson(bksValue);
             valMap.put("bks", bksValueAsString);
         }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -419,6 +451,10 @@ public class ContractInfoStreamResponse extends BaseDTO {
         if (bksValue != null) {
             valMap.put("bks", bksValue);
         }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -454,6 +490,7 @@ public class ContractInfoStreamResponse extends BaseDTO {
         openapiFields.add("ot");
         openapiFields.add("cs");
         openapiFields.add("bks");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

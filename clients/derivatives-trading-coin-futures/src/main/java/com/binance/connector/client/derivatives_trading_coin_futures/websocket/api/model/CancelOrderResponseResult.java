@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+ * Futures (COIN-M) WebSocket API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** CancelOrderResponseResult */
+/** Indicates that combined is set to true. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelOrderResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -75,12 +75,6 @@ public class CancelOrderResponseResult extends BaseDTO {
     @jakarta.annotation.Nullable
     private String price;
 
-    public static final String SERIALIZED_NAME_AVG_PRICE = "avgPrice";
-
-    @SerializedName(SERIALIZED_NAME_AVG_PRICE)
-    @jakarta.annotation.Nullable
-    private String avgPrice;
-
     public static final String SERIALIZED_NAME_ORIG_QTY = "origQty";
 
     @SerializedName(SERIALIZED_NAME_ORIG_QTY)
@@ -98,12 +92,6 @@ public class CancelOrderResponseResult extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_CUM_QTY)
     @jakarta.annotation.Nullable
     private String cumQty;
-
-    public static final String SERIALIZED_NAME_CUM_BASE = "cumBase";
-
-    @SerializedName(SERIALIZED_NAME_CUM_BASE)
-    @jakarta.annotation.Nullable
-    private String cumBase;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -179,7 +167,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -198,7 +186,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -217,7 +205,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -236,7 +224,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get status
+     * Status.
      *
      * @return status
      */
@@ -256,7 +244,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID.
      *
      * @return clientOrderId
      */
@@ -275,7 +263,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -288,32 +276,13 @@ public class CancelOrderResponseResult extends BaseDTO {
         this.price = price;
     }
 
-    public CancelOrderResponseResult avgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-        return this;
-    }
-
-    /**
-     * Get avgPrice
-     *
-     * @return avgPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getAvgPrice() {
-        return avgPrice;
-    }
-
-    public void setAvgPrice(@jakarta.annotation.Nullable String avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
     public CancelOrderResponseResult origQty(@jakarta.annotation.Nullable String origQty) {
         this.origQty = origQty;
         return this;
     }
 
     /**
-     * Get origQty
+     * Original order quantity
      *
      * @return origQty
      */
@@ -332,7 +301,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get executedQty
+     * Executed quantity
      *
      * @return executedQty
      */
@@ -351,7 +320,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get cumQty
+     * Cumulative filled quantity.
      *
      * @return cumQty
      */
@@ -364,32 +333,13 @@ public class CancelOrderResponseResult extends BaseDTO {
         this.cumQty = cumQty;
     }
 
-    public CancelOrderResponseResult cumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-        return this;
-    }
-
-    /**
-     * Get cumBase
-     *
-     * @return cumBase
-     */
-    @jakarta.annotation.Nullable
-    public String getCumBase() {
-        return cumBase;
-    }
-
-    public void setCumBase(@jakarta.annotation.Nullable String cumBase) {
-        this.cumBase = cumBase;
-    }
-
     public CancelOrderResponseResult timeInForce(@jakarta.annotation.Nullable String timeInForce) {
         this.timeInForce = timeInForce;
         return this;
     }
 
     /**
-     * Get timeInForce
+     * Time in force
      *
      * @return timeInForce
      */
@@ -408,7 +358,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get type
+     * Order type.
      *
      * @return type
      */
@@ -427,7 +377,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get reduceOnly
+     * Whether the order is reduce-only.
      *
      * @return reduceOnly
      */
@@ -447,7 +397,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get closePosition
+     * if Close-All
      *
      * @return closePosition
      */
@@ -466,7 +416,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -486,7 +436,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -505,7 +455,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -524,7 +474,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get workingType
+     * Stop trigger price type.
      *
      * @return workingType
      */
@@ -544,7 +494,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get priceProtect
+     * if conditional order trigger is protected
      *
      * @return priceProtect
      */
@@ -563,7 +513,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get origType
+     * Original order type.
      *
      * @return origType
      */
@@ -582,7 +532,7 @@ public class CancelOrderResponseResult extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * update time
      *
      * @return updateTime
      */
@@ -610,11 +560,9 @@ public class CancelOrderResponseResult extends BaseDTO {
                 && Objects.equals(this.status, cancelOrderResponseResult.status)
                 && Objects.equals(this.clientOrderId, cancelOrderResponseResult.clientOrderId)
                 && Objects.equals(this.price, cancelOrderResponseResult.price)
-                && Objects.equals(this.avgPrice, cancelOrderResponseResult.avgPrice)
                 && Objects.equals(this.origQty, cancelOrderResponseResult.origQty)
                 && Objects.equals(this.executedQty, cancelOrderResponseResult.executedQty)
                 && Objects.equals(this.cumQty, cancelOrderResponseResult.cumQty)
-                && Objects.equals(this.cumBase, cancelOrderResponseResult.cumBase)
                 && Objects.equals(this.timeInForce, cancelOrderResponseResult.timeInForce)
                 && Objects.equals(this.type, cancelOrderResponseResult.type)
                 && Objects.equals(this.reduceOnly, cancelOrderResponseResult.reduceOnly)
@@ -637,11 +585,9 @@ public class CancelOrderResponseResult extends BaseDTO {
                 status,
                 clientOrderId,
                 price,
-                avgPrice,
                 origQty,
                 executedQty,
                 cumQty,
-                cumBase,
                 timeInForce,
                 type,
                 reduceOnly,
@@ -665,11 +611,9 @@ public class CancelOrderResponseResult extends BaseDTO {
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		clientOrderId: ").append(toIndentedString(clientOrderId)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		avgPrice: ").append(toIndentedString(avgPrice)).append("\n");
         sb.append("		origQty: ").append(toIndentedString(origQty)).append("\n");
         sb.append("		executedQty: ").append(toIndentedString(executedQty)).append("\n");
         sb.append("		cumQty: ").append(toIndentedString(cumQty)).append("\n");
-        sb.append("		cumBase: ").append(toIndentedString(cumBase)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
@@ -719,11 +663,6 @@ public class CancelOrderResponseResult extends BaseDTO {
             String priceValueAsString = priceValue.toString();
             valMap.put("price", priceValueAsString);
         }
-        String avgPriceValue = getAvgPrice();
-        if (avgPriceValue != null) {
-            String avgPriceValueAsString = avgPriceValue.toString();
-            valMap.put("avgPrice", avgPriceValueAsString);
-        }
         String origQtyValue = getOrigQty();
         if (origQtyValue != null) {
             String origQtyValueAsString = origQtyValue.toString();
@@ -738,11 +677,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         if (cumQtyValue != null) {
             String cumQtyValueAsString = cumQtyValue.toString();
             valMap.put("cumQty", cumQtyValueAsString);
-        }
-        String cumBaseValue = getCumBase();
-        if (cumBaseValue != null) {
-            String cumBaseValueAsString = cumBaseValue.toString();
-            valMap.put("cumBase", cumBaseValueAsString);
         }
         String timeInForceValue = getTimeInForce();
         if (timeInForceValue != null) {
@@ -834,10 +768,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         if (priceValue != null) {
             valMap.put("price", priceValue);
         }
-        Object avgPriceValue = getAvgPrice();
-        if (avgPriceValue != null) {
-            valMap.put("avgPrice", avgPriceValue);
-        }
         Object origQtyValue = getOrigQty();
         if (origQtyValue != null) {
             valMap.put("origQty", origQtyValue);
@@ -849,10 +779,6 @@ public class CancelOrderResponseResult extends BaseDTO {
         Object cumQtyValue = getCumQty();
         if (cumQtyValue != null) {
             valMap.put("cumQty", cumQtyValue);
-        }
-        Object cumBaseValue = getCumBase();
-        if (cumBaseValue != null) {
-            valMap.put("cumBase", cumBaseValue);
         }
         Object timeInForceValue = getTimeInForce();
         if (timeInForceValue != null) {
@@ -930,11 +856,9 @@ public class CancelOrderResponseResult extends BaseDTO {
         openapiFields.add("status");
         openapiFields.add("clientOrderId");
         openapiFields.add("price");
-        openapiFields.add("avgPrice");
         openapiFields.add("origQty");
         openapiFields.add("executedQty");
         openapiFields.add("cumQty");
-        openapiFields.add("cumBase");
         openapiFields.add("timeInForce");
         openapiFields.add("type");
         openapiFields.add("reduceOnly");
@@ -1021,14 +945,6 @@ public class CancelOrderResponseResult extends BaseDTO {
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
         }
-        if ((jsonObj.get("avgPrice") != null && !jsonObj.get("avgPrice").isJsonNull())
-                && !jsonObj.get("avgPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `avgPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("avgPrice").toString()));
-        }
         if ((jsonObj.get("origQty") != null && !jsonObj.get("origQty").isJsonNull())
                 && !jsonObj.get("origQty").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1052,14 +968,6 @@ public class CancelOrderResponseResult extends BaseDTO {
                             "Expected the field `cumQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("cumQty").toString()));
-        }
-        if ((jsonObj.get("cumBase") != null && !jsonObj.get("cumBase").isJsonNull())
-                && !jsonObj.get("cumBase").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `cumBase` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("cumBase").toString()));
         }
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {

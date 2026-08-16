@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelCmConditionalOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelCmConditionalOrderResponse {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -153,7 +153,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -173,7 +173,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -193,7 +193,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -213,7 +213,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -232,7 +232,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -251,7 +251,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -271,7 +271,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -290,7 +290,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -310,7 +310,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -330,7 +330,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -349,7 +349,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -369,7 +369,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -389,7 +389,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -409,7 +409,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -428,7 +428,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get bookTime
+     * order place time
      *
      * @return bookTime
      */
@@ -448,7 +448,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -468,7 +468,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -488,7 +488,7 @@ public class CancelCmConditionalOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * Price Protect.
      *
      * @return priceProtect
      */

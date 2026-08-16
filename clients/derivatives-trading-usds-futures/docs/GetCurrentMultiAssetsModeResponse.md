@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**multiAssetsMargin** | **Boolean** |  |  [optional] |
+|**multiAssetsMargin** | **Boolean** | \&quot;true\&quot;: Multi-Assets Mode; \&quot;false\&quot;: Single-Asset Mode |  [optional] |
 
 
 

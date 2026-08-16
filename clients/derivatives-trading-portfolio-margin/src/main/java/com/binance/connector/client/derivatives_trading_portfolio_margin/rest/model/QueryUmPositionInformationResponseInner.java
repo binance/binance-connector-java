@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryUmPositionInformationResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryUmPositionInformationResponseInner {
     public static final String SERIALIZED_NAME_ENTRY_PRICE = "entryPrice";
 
@@ -111,7 +111,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * average entry price
      *
      * @return entryPrice
      */
@@ -131,7 +131,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -151,7 +151,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark Price.
      *
      * @return markPrice
      */
@@ -171,7 +171,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get maxNotionalValue
+     * Max Notional Value.
      *
      * @return maxNotionalValue
      */
@@ -191,7 +191,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * position amount
      *
      * @return positionAmt
      */
@@ -211,7 +211,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get notional
+     * Notional.
      *
      * @return notional
      */
@@ -231,7 +231,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -251,7 +251,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * Un Realized Profit.
      *
      * @return unRealizedProfit
      */
@@ -271,7 +271,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation Price.
      *
      * @return liquidationPrice
      */
@@ -291,7 +291,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -311,7 +311,7 @@ public class QueryUmPositionInformationResponseInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */

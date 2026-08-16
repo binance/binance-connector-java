@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -30,6 +30,7 @@ import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SendQuoteRequestRequest;
 import com.binance.connector.client.derivatives_trading_usds_futures.rest.model.SendQuoteRequestResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -83,15 +84,14 @@ public class ConvertApiTest {
     /**
      * Accept the offered quote (USER_DATA)
      *
-     * <p>Accept the offered quote by quote ID. Weight: 200(IP)
+     * <p>Accept the offered quote by quote ID. Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void acceptTheOfferedQuoteTest() throws ApiException, CryptoException {
+    public void acceptTheOfferedQuoteTest() throws ApiException, CryptoException, IOException {
         AcceptTheOfferedQuoteRequest acceptTheOfferedQuoteRequest =
                 new AcceptTheOfferedQuoteRequest();
-
         acceptTheOfferedQuoteRequest.quoteId("1");
 
         ApiResponse<AcceptTheOfferedQuoteResponse> response =
@@ -117,17 +117,17 @@ public class ConvertApiTest {
     /**
      * List All Convert Pairs
      *
-     * <p>Query for all convertible token pairs and the tokens’ respective upper/lower limits * User
-     * needs to supply either or both of the input parameter * If not defined for both fromAsset and
-     * toAsset, only partial token pairs will be returned * Asset BNFCR is only available to convert
-     * for MICA region users. Weight: 20(IP)
+     * <p>Query for all convertible token pairs and the tokens’ respective upper/lower limits
+     * Weight(IP): 20 Notes: - User needs to supply either or both of the input parameter - If not
+     * defined for both fromAsset and toAsset, only partial token pairs will be returned - Asset
+     * BNFCR is only available to convert for MICA region users.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void listAllConvertPairsTest() throws ApiException, CryptoException {
-        String fromAsset = "";
-        String toAsset = "";
+    public void listAllConvertPairsTest() throws ApiException, CryptoException, IOException {
+        String fromAsset = "BTC";
+        String toAsset = "USDT";
         ApiResponse<ListAllConvertPairsResponse> response =
                 api.listAllConvertPairs(fromAsset, toAsset);
 
@@ -138,20 +138,21 @@ public class ConvertApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/convert/exchangeInfo", actualRequest.url().encodedPath());
     }
 
     /**
-     * Order status(USER_DATA)
+     * Order status (USER_DATA)
      *
-     * <p>Query order status by order ID. Weight: 50(IP)
+     * <p>Query order status by order ID. Weight(IP): 50 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void orderStatusTest() throws ApiException, CryptoException {
-        Long orderId = 1L;
+    public void orderStatusTest() throws ApiException, CryptoException, IOException {
+        String orderId = "933256278426274400";
         String quoteId = "1";
         ApiResponse<OrderStatusResponse> response = api.orderStatus(orderId, quoteId);
 
@@ -165,28 +166,25 @@ public class ConvertApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("orderId=1&quoteId=1&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "c8ea02b290636497dfc9f4f59d01ea6ceff503bf1955b020615bd7bb133a81c4",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("orderId=933256278426274400&quoteId=1&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("9e19105826128423d09b9ea712efeef117dd60f49001b56378cdf1e987a582f0", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/convert/orderStatus", actualRequest.url().encodedPath());
     }
 
     /**
-     * Send Quote Request(USER_DATA)
+     * Send Quote Request (USER_DATA)
      *
-     * <p>Request a quote for the requested token pairs * Either fromAmount or toAmount should be
-     * sent * &#x60;quoteId&#x60; will be returned only if you have enough funds to convert Weight:
-     * 50(IP)
+     * <p>Request a quote for the requested token pairs Weight: 50(IP) 360/hour, 500/day Security
+     * Type: USER_DATA Notes: - Either fromAmount or toAmount should be sent - &#x60;quoteId&#x60;
+     * will be returned only if you have enough funds to convert
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void sendQuoteRequestTest() throws ApiException, CryptoException {
+    public void sendQuoteRequestTest() throws ApiException, CryptoException, IOException {
         SendQuoteRequestRequest sendQuoteRequestRequest = new SendQuoteRequestRequest();
-
-        sendQuoteRequestRequest.fromAsset("");
-        sendQuoteRequestRequest.toAsset("");
+        sendQuoteRequestRequest.fromAsset("BTC");
+        sendQuoteRequestRequest.toAsset("USDT");
 
         ApiResponse<SendQuoteRequestResponse> response =
                 api.sendQuoteRequest(sendQuoteRequestRequest);
@@ -201,10 +199,9 @@ public class ConvertApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000toAsset=&fromAsset=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000toAsset=USDT&fromAsset=BTC", signInputCaptor.getValue());
         assertEquals(
-                "b018f458ed01eaa557ea9adbacf293f684bee81ed29da077d1a5e54a264000c3",
-                actualRequest.url().queryParameter("signature"));
+                "f56c7aca9dc41f61b04a4494c9a17280dbfe9f8495368d25aa4397711693af9b", actualRequest.url().queryParameter("signature"));
         assertEquals("/fapi/v1/convert/getQuote", actualRequest.url().encodedPath());
     }
 }

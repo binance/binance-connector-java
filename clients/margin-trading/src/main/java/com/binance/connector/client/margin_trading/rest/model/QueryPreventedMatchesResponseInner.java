@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryPreventedMatchesResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryPreventedMatchesResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -105,7 +105,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -125,7 +125,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get preventedMatchId
+     * prevented Match Id.
      *
      * @return preventedMatchId
      */
@@ -145,7 +145,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get takerOrderId
+     * taker Order Id.
      *
      * @return takerOrderId
      */
@@ -165,7 +165,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get makerSymbol
+     * maker Symbol.
      *
      * @return makerSymbol
      */
@@ -185,7 +185,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get makerOrderId
+     * maker Order Id.
      *
      * @return makerOrderId
      */
@@ -205,7 +205,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get tradeGroupId
+     * trade Group Id.
      *
      * @return tradeGroupId
      */
@@ -225,7 +225,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */
@@ -245,7 +245,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -265,7 +265,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get makerPreventedQuantity
+     * maker Prevented Quantity.
      *
      * @return makerPreventedQuantity
      */
@@ -286,7 +286,7 @@ public class QueryPreventedMatchesResponseInner {
     }
 
     /**
-     * Get transactTime
+     * transact Time.
      *
      * @return transactTime
      */

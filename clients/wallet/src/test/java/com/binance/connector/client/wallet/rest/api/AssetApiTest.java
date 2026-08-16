@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,20 +23,28 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
+import com.binance.connector.client.wallet.rest.model.AccountType;
 import com.binance.connector.client.wallet.rest.model.AssetDetailResponse;
 import com.binance.connector.client.wallet.rest.model.AssetDividendRecordResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertResponse;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsRequest;
+import com.binance.connector.client.wallet.rest.model.DustConvertibleAssetsResponse;
 import com.binance.connector.client.wallet.rest.model.DustTransferRequest;
 import com.binance.connector.client.wallet.rest.model.DustTransferResponse;
 import com.binance.connector.client.wallet.rest.model.DustlogResponse;
+import com.binance.connector.client.wallet.rest.model.FromSymbol;
 import com.binance.connector.client.wallet.rest.model.FundingWalletRequest;
 import com.binance.connector.client.wallet.rest.model.FundingWalletResponse;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbRequest;
 import com.binance.connector.client.wallet.rest.model.GetAssetsThatCanBeConvertedIntoBnbResponse;
 import com.binance.connector.client.wallet.rest.model.GetCloudMiningPaymentAndRefundHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.GetOpenSymbolListResponse;
+import com.binance.connector.client.wallet.rest.model.OrderType;
 import com.binance.connector.client.wallet.rest.model.QueryUserDelegationHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserUniversalTransferHistoryResponse;
 import com.binance.connector.client.wallet.rest.model.QueryUserWalletBalanceResponse;
+import com.binance.connector.client.wallet.rest.model.ToSymbol;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestRequest;
 import com.binance.connector.client.wallet.rest.model.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse;
 import com.binance.connector.client.wallet.rest.model.TradeFeeResponse;
@@ -45,6 +53,7 @@ import com.binance.connector.client.wallet.rest.model.UserAssetResponse;
 import com.binance.connector.client.wallet.rest.model.UserUniversalTransferRequest;
 import com.binance.connector.client.wallet.rest.model.UserUniversalTransferResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -98,15 +107,17 @@ public class AssetApiTest {
     /**
      * Asset Detail (USER_DATA)
      *
-     * <p>Fetch details of assets supported on Binance. * Please get network and other deposit or
-     * withdraw details from &#x60;&#x60;GET /sapi/v1/capital/config/getall&#x60;&#x60;. Weight: 1
+     * <p>Fetch details of assets supported on Binance. Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - Please get network and other deposit or withdraw details from &#x60;GET
+     * /sapi/v1/capital/config/getall&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void assetDetailTest() throws ApiException, CryptoException {
+    public void assetDetailTest() throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
         Long recvWindow = 5000L;
-        ApiResponse<AssetDetailResponse> response = api.assetDetail("BTCUSDT", recvWindow);
+        ApiResponse<AssetDetailResponse> response = api.assetDetail(asset, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -118,27 +129,25 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("asset=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "016fc03fd04451f16c6eba4bd92c9769396a6229a5fb8ca539d2ba74e3038a25",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("asset=BTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("34cb82e49b7593f1656dc5e9f9c353c60ac924411707c46e3d5a527235965fe5", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/assetDetail", actualRequest.url().encodedPath());
     }
 
     /**
      * Asset Dividend Record (USER_DATA)
      *
-     * <p>Query asset dividend record. * There cannot be more than 180 days between parameter
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60;. Weight: 10
+     * <p>Query asset dividend record. Weight(IP): 10 Security Type: USER_DATA Notes: - There cannot
+     * be more than 180 days between parameter &#x60;startTime&#x60; and &#x60;endTime&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void assetDividendRecordTest() throws ApiException, CryptoException {
-        String asset = "";
+    public void assetDividendRecordTest() throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 7L;
+        Long limit = 20L;
         Long recvWindow = 5000L;
         ApiResponse<AssetDividendRecordResponse> response =
                 api.assetDividendRecord(asset, startTime, endTime, limit, recvWindow);
@@ -153,28 +162,87 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BTC&startTime=1623319461670&endTime=1641782889000&limit=20&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&startTime=1623319461670&endTime=1641782889000&limit=7&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "68e772371d381d772449272107ff583a7c33dce3bd72ee211bd0ff3e4d9de7d9",
-                actualRequest.url().queryParameter("signature"));
+                "2b571831eba7db2fe1ac62252bacd3f5fa7e856d45ae16710993408424684a5a", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/assetDividend", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Dust Convert (USER_DATA)
+     *
+     * <p>Convert dust assets Weight(UID): 10 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void dustConvertTest() throws ApiException, CryptoException, IOException {
+        DustConvertRequest dustConvertRequest = new DustConvertRequest();
+        dustConvertRequest.asset("USDT");
+
+        ApiResponse<DustConvertResponse> response = api.dustConvert(dustConvertRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000asset=USDT", signInputCaptor.getValue());
+        assertEquals("e1f5de10e9064f8425b012d548b9d16e21b37b194141422bc9ae05b8ed5f1c68", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/asset/dust-convert/convert", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Dust Convertible Assets (USER_DATA)
+     *
+     * <p>Query dust convertible assets Weight(IP): 1 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void dustConvertibleAssetsTest() throws ApiException, CryptoException, IOException {
+        DustConvertibleAssetsRequest dustConvertibleAssetsRequest =
+                new DustConvertibleAssetsRequest();
+        dustConvertibleAssetsRequest.targetAsset("BTC");
+
+        ApiResponse<DustConvertibleAssetsResponse> response =
+                api.dustConvertibleAssets(dustConvertibleAssetsRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000targetAsset=BTC", signInputCaptor.getValue());
+        assertEquals(
+                "f15138b7fd156b5048ecb8b8b87f3d371e65ee6d2a468b5d3e9dd13c1cefbb71",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/asset/dust-convert/query-convertible-assets", actualRequest.url().encodedPath());
     }
 
     /**
      * Dust Transfer (USER_DATA)
      *
-     * <p>Convert dust assets to BNB. * You need to open&#x60;Enable Spot &amp; Margin Trading&#x60;
-     * permission for the API Key which requests this endpoint. Weight: 10
+     * <p>Convert dust assets to BNB. Weight(UID): 10 Security Type: USER_DATA Notes: - You need to
+     * open&#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests
+     * this endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void dustTransferTest() throws ApiException, CryptoException {
+    public void dustTransferTest() throws ApiException, CryptoException, IOException {
         DustTransferRequest dustTransferRequest = new DustTransferRequest();
-
-        dustTransferRequest.asset("");
+        dustTransferRequest.asset("BTC");
 
         ApiResponse<DustTransferResponse> response = api.dustTransfer(dustTransferRequest);
 
@@ -188,26 +256,27 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000asset=", signInputCaptor.getValue());
-        assertEquals(
-                "733c2733b75fbea096af9abd7a6e22ac4cce318248e66e514087362c82db2bf1",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000asset=BTC", signInputCaptor.getValue());
+        assertEquals("b4fd40e7e7afd13ae0d8945c84dfd847e5f7f2fd316cda06c13465e107a3eb78", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/dust", actualRequest.url().encodedPath());
     }
 
     /**
-     * DustLog(USER_DATA)
+     * DustLog (USER_DATA)
      *
-     * <p>Dustlog * Only return last 100 records * Only return records after 2020/12/01 Weight: 1
+     * <p>Dustlog Weight(IP): 1 Security Type: USER_DATA Notes: - Only return last 100 records -
+     * Only return records after 2020/12/01
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void dustlogTest() throws ApiException, CryptoException {
+    public void dustlogTest() throws ApiException, CryptoException, IOException {
+        AccountType accountType = AccountType.SPOT;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
-        ApiResponse<DustlogResponse> response = api.dustlog("", startTime, endTime, recvWindow);
+        ApiResponse<DustlogResponse> response =
+                api.dustlog(accountType, startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -219,25 +288,22 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "accountType=&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "80bec9d0114cf17ecc91114a2fa12987d44598afe1067a64d0a4641af84b67bc",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("accountType=SPOT&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("8d08897a225fad28d0edf49ccf59ae39ddb3b03af9cd70fb4c7c3686250cad3f", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/dribblet", actualRequest.url().encodedPath());
     }
 
     /**
      * Funding Wallet (USER_DATA)
      *
-     * <p>Query Funding Wallet * Currently supports querying the following business assets：Binance
-     * Pay, Binance Card, Binance Gift Card, Stock Token Weight: 1
+     * <p>Query Funding Wallet Weight(IP): 1 Security Type: USER_DATA Notes: - Currently supports
+     * querying the following business assets：Binance Pay, Binance Card, Binance Gift Card, Stock
+     * Token
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void fundingWalletTest() throws ApiException, CryptoException {
+    public void fundingWalletTest() throws ApiException, CryptoException, IOException {
         FundingWalletRequest fundingWalletRequest = new FundingWalletRequest();
 
         ApiResponse<FundingWalletResponse> response = api.fundingWallet(fundingWalletRequest);
@@ -253,21 +319,20 @@ public class AssetApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/get-funding-asset", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Assets That Can Be Converted Into BNB (USER_DATA)
      *
-     * <p>Get Assets That Can Be Converted Into BNB Weight: 1
+     * <p>Get Assets That Can Be Converted Into BNB Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getAssetsThatCanBeConvertedIntoBnbTest() throws ApiException, CryptoException {
+    public void getAssetsThatCanBeConvertedIntoBnbTest()
+            throws ApiException, CryptoException, IOException {
         GetAssetsThatCanBeConvertedIntoBnbRequest getAssetsThatCanBeConvertedIntoBnbRequest =
                 new GetAssetsThatCanBeConvertedIntoBnbRequest();
 
@@ -284,29 +349,32 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/asset/dust-btc", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/asset/dust-btc", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Cloud-Mining payment and refund history (USER_DATA)
      *
-     * <p>The query of Cloud-Mining payment and refund history * Just return the SUCCESS records of
-     * payment and refund. * For response, type &#x3D; 248 means payment, type &#x3D; 249 means
-     * refund, status &#x3D;S means SUCCESS. Weight: 600
+     * <p>The query of Cloud-Mining payment and refund history Weight(UID): 600 Security Type:
+     * USER_DATA Notes: - Just return the SUCCESS records of payment and refund. - For response,
+     * type &#x3D; 248 means payment, type &#x3D; 249 means refund, status &#x3D;S means SUCCESS.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCloudMiningPaymentAndRefundHistoryTest() throws ApiException, CryptoException {
+    public void getCloudMiningPaymentAndRefundHistoryTest()
+            throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long tranId = 1L;
         String clientTranId = "1";
-        String asset = "";
+        String asset = "BTC";
         Long current = 1L;
         Long size = 10L;
         ApiResponse<GetCloudMiningPaymentAndRefundHistoryResponse> response =
@@ -324,26 +392,25 @@ public class AssetApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "tranId=1&clientTranId=1&asset=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&timestamp=1736393892000",
+                "tranId=1&clientTranId=1&asset=BTC&startTime=1623319461670&endTime=1641782889000&current=1&size=10&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "8ef5140dd72003ac47e15d9ab53c2d9f14ce6cdcd5ad9c8f13aad7ff76691f2d",
+                "f4276d5d65c60e3b05fb5a38d21b75fa4fff9a7642cb39f8135e705b6741793c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
-                "/sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage",
-                actualRequest.url().encodedPath());
+                "/sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Open Symbol List (MARKET_DATA)
      *
-     * <p>Get the list of symbols that are scheduled to be opened for trading in the market. Weight:
-     * 100
+     * <p>Get the list of symbols that are scheduled to be opened for trading in the market.
+     * Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getOpenSymbolListTest() throws ApiException, CryptoException {
+    public void getOpenSymbolListTest() throws ApiException, CryptoException, IOException {
         ApiResponse<GetOpenSymbolListResponse> response = api.getOpenSymbolList();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
@@ -353,25 +420,25 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null, actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/spot/open-symbol-list", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query User Delegation History(For Master Account)(USER_DATA)
+     * Query User Delegation History(For Master Account) (USER_DATA)
      *
-     * <p>Query User Delegation History * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint Weight: 60
+     * <p>Query User Delegation History Weight(IP): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryUserDelegationHistoryTest() throws ApiException, CryptoException {
-        String email = "";
+    public void queryUserDelegationHistoryTest() throws ApiException, CryptoException, IOException {
+        String email = "abc@test.com";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        String type = "";
-        String asset = "";
+        OrderType type = OrderType.MAIN_UMFUTURE;
+        String asset = "BTC";
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
@@ -389,35 +456,35 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("email=abc%40test.com&startTime=1623319461670&endTime=1641782889000&type=MAIN_UMFUTURE&asset=BTC&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "email=&startTime=1623319461670&endTime=1641782889000&type=&asset=&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "275c21d8b18284d8e829a5b0cbde5f90d8fbf2213ab01193deaf7129ec87a1d8",
+                "62cc22829c5c10a160845d7676893226ebf1a387c209114e55180df2bac4d2d8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/custody/transfer-history", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query User Universal Transfer History(USER_DATA)
+     * Query User Universal Transfer History (USER_DATA)
      *
-     * <p>Query User Universal Transfer History * &#x60;fromSymbol&#x60; must be sent when type are
-     * ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN * &#x60;toSymbol&#x60; must be sent
-     * when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN * Support query within
-     * the last 6 months only * If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent, return
-     * records of the last 7 days by default Weight: 1
+     * <p>Query User Universal Transfer History Weight(IP): 1 Security Type: USER_DATA Notes: -
+     * &#x60;fromSymbol&#x60; must be sent when type are ISOLATEDMARGIN_MARGIN and
+     * ISOLATEDMARGIN_ISOLATEDMARGIN - &#x60;toSymbol&#x60; must be sent when type are
+     * MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN - Support query within the last 6
+     * months only - If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent, return records of the
+     * last 7 days by default
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryUserUniversalTransferHistoryTest() throws ApiException, CryptoException {
+    public void queryUserUniversalTransferHistoryTest()
+            throws ApiException, CryptoException, IOException {
         String type = "";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
         Long size = 10L;
-        String fromSymbol = "";
-        String toSymbol = "";
+        FromSymbol fromSymbol = FromSymbol.ISOLATEDMARGIN_MARGIN;
+        ToSymbol toSymbol = ToSymbol.MARGIN_ISOLATEDMARGIN;
         Long recvWindow = 5000L;
         ApiResponse<QueryUserUniversalTransferHistoryResponse> response =
                 api.queryUserUniversalTransferHistory(
@@ -434,10 +501,9 @@ public class AssetApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "type=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&fromSymbol=&toSymbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "type=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&fromSymbol=ISOLATEDMARGIN_MARGIN&toSymbol=MARGIN_ISOLATEDMARGIN&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "ffae64ec239a949e8770619077f2814a553facac70bc81b25a3a04c9947dde91",
+                "3ab935d5af37f84ea291184b5fb086e173a9baca86673e619c27336d0e1503fd",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/transfer", actualRequest.url().encodedPath());
     }
@@ -445,13 +511,12 @@ public class AssetApiTest {
     /**
      * Query User Wallet Balance (USER_DATA)
      *
-     * <p>Query User Wallet Balance * You need to open Permits Universal Transfer permission for the
-     * API Key which requests this endpoint. Weight: 60
+     * <p>Query User Wallet Balance Weight(IP): 60 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryUserWalletBalanceTest() throws ApiException, CryptoException {
+    public void queryUserWalletBalanceTest() throws ApiException, CryptoException, IOException {
         String quoteAsset = "BTC";
         Long recvWindow = 5000L;
         ApiResponse<QueryUserWalletBalanceResponse> response =
@@ -467,9 +532,7 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "quoteAsset=BTC&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+        assertEquals("quoteAsset=BTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "fb7a854542348a3445f9dbdab6d6639e8d3dedbacc4a203868c4bb12fe280d54",
                 actualRequest.url().queryParameter("signature"));
@@ -479,14 +542,15 @@ public class AssetApiTest {
     /**
      * Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA)
      *
-     * <p>Toggle BNB Burn On Spot Trade And Margin Interest * \&quot;spotBNBBurn\&quot; and
-     * \&quot;interestBNBBurn\&quot; should be sent at least one. Weight: 1(IP)
+     * <p>Toggle BNB Burn On Spot Trade And Margin Interest Weight(IP): 1 Security Type: USER_DATA
+     * Notes: - \&quot;spotBNBBurn\&quot; and \&quot;interestBNBBurn\&quot; should be sent at least
+     * one.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void toggleBnbBurnOnSpotTradeAndMarginInterestTest()
-            throws ApiException, CryptoException {
+            throws ApiException, CryptoException, IOException {
         ToggleBnbBurnOnSpotTradeAndMarginInterestRequest
                 toggleBnbBurnOnSpotTradeAndMarginInterestRequest =
                         new ToggleBnbBurnOnSpotTradeAndMarginInterestRequest();
@@ -505,23 +569,27 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "timestamp=1736393892000",
+                signInputCaptor.getValue());
         assertEquals(
                 "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/bnbBurn", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/bnbBurn",
+                actualRequest.url().encodedPath());
     }
 
     /**
      * Trade Fee (USER_DATA)
      *
-     * <p>Fetch trade fee Weight: 1
+     * <p>Fetch trade fee Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void tradeFeeTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void tradeFeeTest() throws ApiException, CryptoException, IOException {
+        String symbol = "ADABNB";
         Long recvWindow = 5000L;
         ApiResponse<TradeFeeResponse> response = api.tradeFee(symbol, recvWindow);
 
@@ -535,24 +603,22 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("symbol=ADABNB&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("84d2f23cb20862b24e7548b23c3e8e6cca380b58d553dd5f7589220f9e6c66bb", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/tradeFee", actualRequest.url().encodedPath());
     }
 
     /**
      * User Asset (USER_DATA)
      *
-     * <p>Get user assets, just for positive data. * If asset is set, then return this asset,
-     * otherwise return all assets positive. * If needBtcValuation is set, then return
-     * btcValudation. Weight: 5
+     * <p>Get user assets, just for positive data. Weight(IP): 5 Security Type: USER_DATA Notes: -
+     * If asset is set, then return this asset, otherwise return all assets positive. - If
+     * needBtcValuation is set, then return btcValudation.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void userAssetTest() throws ApiException, CryptoException {
+    public void userAssetTest() throws ApiException, CryptoException, IOException {
         UserAssetRequest userAssetRequest = new UserAssetRequest();
 
         ApiResponse<UserAssetResponse> response = api.userAsset(userAssetRequest);
@@ -568,52 +634,49 @@ public class AssetApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v3/asset/getUserAsset", actualRequest.url().encodedPath());
     }
 
     /**
      * User Universal Transfer (USER_DATA)
      *
-     * <p>user universal transfer * &#x60;fromSymbol&#x60; must be sent when type are
-     * ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN * &#x60;toSymbol&#x60; must be sent
-     * when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN * ENUM of transfer
-     * types: * MAIN_UMFUTURE Spot account transfer to USDⓈ-M Futures account * MAIN_CMFUTURE Spot
-     * account transfer to COIN-M Futures account * MAIN_MARGIN Spot account transfer to
-     * Margin（cross）account * UMFUTURE_MAIN USDⓈ-M Futures account transfer to Spot account *
-     * UMFUTURE_MARGIN USDⓈ-M Futures account transfer to Margin（cross）account * CMFUTURE_MAIN
-     * COIN-M Futures account transfer to Spot account * CMFUTURE_MARGIN COIN-M Futures account
-     * transfer to Margin(cross) account * MARGIN_MAIN Margin（cross）account transfer to Spot account
-     * * MARGIN_UMFUTURE Margin（cross）account transfer to USDⓈ-M Futures * MARGIN_CMFUTURE
-     * Margin（cross）account transfer to COIN-M Futures * ISOLATEDMARGIN_MARGIN Isolated margin
-     * account transfer to Margin(cross) account * MARGIN_ISOLATEDMARGIN Margin(cross) account
-     * transfer to Isolated margin account * ISOLATEDMARGIN_ISOLATEDMARGIN Isolated margin account
-     * transfer to Isolated margin account * MAIN_FUNDING Spot account transfer to Funding account *
-     * FUNDING_MAIN Funding account transfer to Spot account * FUNDING_UMFUTURE Funding account
-     * transfer to UMFUTURE account * UMFUTURE_FUNDING UMFUTURE account transfer to Funding account
-     * * MARGIN_FUNDING MARGIN account transfer to Funding account * FUNDING_MARGIN Funding account
-     * transfer to Margin account * FUNDING_CMFUTURE Funding account transfer to CMFUTURE account *
-     * CMFUTURE_FUNDING CMFUTURE account transfer to Funding account * MAIN_OPTION Spot account
-     * transfer to Options account * OPTION_MAIN Options account transfer to Spot account *
-     * UMFUTURE_OPTION USDⓈ-M Futures account transfer to Options account * OPTION_UMFUTURE Options
-     * account transfer to USDⓈ-M Futures account * MARGIN_OPTION Margin（cross）account transfer to
-     * Options account * OPTION_MARGIN Options account transfer to Margin（cross）account *
-     * FUNDING_OPTION Funding account transfer to Options account * OPTION_FUNDING Options account
-     * transfer to Funding account * MAIN_PORTFOLIO_MARGIN Spot account transfer to Portfolio Margin
-     * account * PORTFOLIO_MARGIN_MAIN Portfolio Margin account transfer to Spot account Weight: 900
+     * <p>User universal transfer Weight(UID): 900 Security Type: USER_DATA Notes: - You need to
+     * enable Permits Universal Transfer option for the API Key that requests this endpoint. -
+     * &#x60;fromSymbol&#x60; must be sent when type is &#x60;ISOLATEDMARGIN_MARGIN&#x60; or
+     * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - &#x60;toSymbol&#x60; must be sent when type is
+     * &#x60;MARGIN_ISOLATEDMARGIN&#x60; or &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;. - ENUM of
+     * transfer types: - &#x60;MAIN_UMFUTURE&#x60;: Spot → USDⓈ-M Futures -
+     * &#x60;MAIN_CMFUTURE&#x60;: Spot → COIN-M Futures - &#x60;MAIN_MARGIN&#x60;: Spot → Margin
+     * (cross) - &#x60;UMFUTURE_MAIN&#x60;: USDⓈ-M Futures → Spot - &#x60;UMFUTURE_MARGIN&#x60;:
+     * USDⓈ-M Futures → Margin (cross) - &#x60;CMFUTURE_MAIN&#x60;: COIN-M Futures → Spot -
+     * &#x60;CMFUTURE_MARGIN&#x60;: COIN-M Futures → Margin (cross) - &#x60;MARGIN_MAIN&#x60;:
+     * Margin (cross) → Spot - &#x60;MARGIN_UMFUTURE&#x60;: Margin (cross) → USDⓈ-M Futures -
+     * &#x60;MARGIN_CMFUTURE&#x60;: Margin (cross) → COIN-M Futures -
+     * &#x60;ISOLATEDMARGIN_MARGIN&#x60;: Isolated margin → Margin (cross) -
+     * &#x60;MARGIN_ISOLATEDMARGIN&#x60;: Margin (cross) → Isolated margin -
+     * &#x60;ISOLATEDMARGIN_ISOLATEDMARGIN&#x60;: Isolated margin → Isolated margin -
+     * &#x60;MAIN_FUNDING&#x60;: Spot → Funding - &#x60;FUNDING_MAIN&#x60;: Funding → Spot -
+     * &#x60;FUNDING_UMFUTURE&#x60;: Funding → USDⓈ-M Futures - &#x60;UMFUTURE_FUNDING&#x60;: USDⓈ-M
+     * Futures → Funding - &#x60;MARGIN_FUNDING&#x60;: Margin (cross) → Funding -
+     * &#x60;FUNDING_MARGIN&#x60;: Funding → Margin (cross) - &#x60;FUNDING_CMFUTURE&#x60;: Funding
+     * → COIN-M Futures - &#x60;CMFUTURE_FUNDING&#x60;: COIN-M Futures → Funding -
+     * &#x60;MAIN_OPTION&#x60;: Spot → Options - &#x60;OPTION_MAIN&#x60;: Options → Spot -
+     * &#x60;UMFUTURE_OPTION&#x60;: USDⓈ-M Futures → Options - &#x60;OPTION_UMFUTURE&#x60;: Options
+     * → USDⓈ-M Futures - &#x60;MARGIN_OPTION&#x60;: Margin (cross) → Options -
+     * &#x60;OPTION_MARGIN&#x60;: Options → Margin (cross) - &#x60;FUNDING_OPTION&#x60;: Funding →
+     * Options - &#x60;OPTION_FUNDING&#x60;: Options → Funding - &#x60;MAIN_PORTFOLIO_MARGIN&#x60;:
+     * Spot → Portfolio Margin - &#x60;PORTFOLIO_MARGIN_MAIN&#x60;: Portfolio Margin → Spot
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void userUniversalTransferTest() throws ApiException, CryptoException {
+    public void userUniversalTransferTest() throws ApiException, CryptoException, IOException {
         UserUniversalTransferRequest userUniversalTransferRequest =
                 new UserUniversalTransferRequest();
-
-        userUniversalTransferRequest.type("");
-        userUniversalTransferRequest.asset("");
-        userUniversalTransferRequest.amount(1d);
+        userUniversalTransferRequest.type(OrderType.MAIN_UMFUTURE);
+        userUniversalTransferRequest.asset("BTC");
+        userUniversalTransferRequest.amount(1.0d);
 
         ApiResponse<UserUniversalTransferResponse> response =
                 api.userUniversalTransfer(userUniversalTransferRequest);
@@ -628,9 +691,9 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&type=&asset=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000amount=1&type=MAIN_UMFUTURE&asset=BTC", signInputCaptor.getValue());
         assertEquals(
-                "99b384ce1ec34b5e4e6569c568238a6da2b12e52e022fe55e390faf2d1ce3e60",
+                "6cc8439cfda358f95d88a28a7cfbedf428c482e32913ab4b293a5da300a29e63",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/transfer", actualRequest.url().encodedPath());
     }

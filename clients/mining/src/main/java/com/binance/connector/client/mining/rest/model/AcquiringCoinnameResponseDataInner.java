@@ -1,6 +1,6 @@
 /*
- * Binance Mining REST API
- * OpenAPI Specification for the Binance Mining REST API
+ * Mining REST API
+ * Query mining status, earnings, and account data via the Binance Pool API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AcquiringCoinnameResponseDataInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AcquiringCoinnameResponseDataInner {
     public static final String SERIALIZED_NAME_COIN_NAME = "coinName";
 
@@ -75,7 +75,7 @@ public class AcquiringCoinnameResponseDataInner {
     }
 
     /**
-     * Get coinName
+     * Currency name
      *
      * @return coinName
      */
@@ -94,7 +94,7 @@ public class AcquiringCoinnameResponseDataInner {
     }
 
     /**
-     * Get coinId
+     * ID
      *
      * @return coinId
      */
@@ -114,7 +114,7 @@ public class AcquiringCoinnameResponseDataInner {
     }
 
     /**
-     * Get poolIndex
+     * Sort
      *
      * @return poolIndex
      */
@@ -133,7 +133,7 @@ public class AcquiringCoinnameResponseDataInner {
     }
 
     /**
-     * Get algoId
+     * Algorithm
      *
      * @return algoId
      */
@@ -153,7 +153,7 @@ public class AcquiringCoinnameResponseDataInner {
     }
 
     /**
-     * Get algoName
+     * Name of algorithm
      *
      * @return algoName
      */

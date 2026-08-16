@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **String** |  |  [optional] |
-|**asset** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
-|**type** | **Long** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
+|**amount** | **String** | Amount. |  [optional] |
+|**asset** | **String** | asset name |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**time** | **Long** | Time |  [optional] |
+|**type** | **Long** | Order type. |  [optional] |
+|**positionSide** | **String** | Position side |  [optional] |
 
 
 

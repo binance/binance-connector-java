@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,7 +35,7 @@ import org.hibernate.validator.constraints.*;
 /** NewUmConditionalOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class NewUmConditionalOrderRequest {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -53,7 +53,7 @@ public class NewUmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide;
+    private PositionSide positionSide = PositionSide.BOTH;
 
     public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
 
@@ -77,7 +77,7 @@ public class NewUmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly;
+    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -89,13 +89,13 @@ public class NewUmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nullable
-    private WorkingType workingType;
+    private WorkingType workingType = WorkingType.CONTRACT_PRICE;
 
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private String priceProtect;
+    private PriceProtect priceProtect = PriceProtect.FALSE;
 
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -154,7 +154,7 @@ public class NewUmConditionalOrderRequest {
     }
 
     /**
-     * Get symbol
+     * Symbol
      *
      * @return symbol
      */
@@ -273,7 +273,8 @@ public class NewUmConditionalOrderRequest {
         this.quantity = quantity;
     }
 
-    public NewUmConditionalOrderRequest reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public NewUmConditionalOrderRequest reduceOnly(
+            @jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -284,11 +285,12 @@ public class NewUmConditionalOrderRequest {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public String getReduceOnly() {
+    @Valid
+    public ReduceOnly getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
@@ -334,7 +336,7 @@ public class NewUmConditionalOrderRequest {
     }
 
     public NewUmConditionalOrderRequest priceProtect(
-            @jakarta.annotation.Nullable String priceProtect) {
+            @jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
         return this;
     }
@@ -345,11 +347,12 @@ public class NewUmConditionalOrderRequest {
      * @return priceProtect
      */
     @jakarta.annotation.Nullable
-    public String getPriceProtect() {
+    @Valid
+    public PriceProtect getPriceProtect() {
         return priceProtect;
     }
 
-    public void setPriceProtect(@jakarta.annotation.Nullable String priceProtect) {
+    public void setPriceProtect(@jakarta.annotation.Nullable PriceProtect priceProtect) {
         this.priceProtect = priceProtect;
     }
 
@@ -360,7 +363,8 @@ public class NewUmConditionalOrderRequest {
     }
 
     /**
-     * Get newClientStrategyId
+     * A unique id among open orders. Automatically generated if not sent. Can only be string
+     * following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60;
      *
      * @return newClientStrategyId
      */
@@ -379,7 +383,7 @@ public class NewUmConditionalOrderRequest {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
      *
      * @return stopPrice
      */
@@ -400,7 +404,7 @@ public class NewUmConditionalOrderRequest {
     }
 
     /**
-     * Get activationPrice
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
      *
      * @return activationPrice
      */
@@ -421,12 +425,14 @@ public class NewUmConditionalOrderRequest {
     }
 
     /**
-     * Get callbackRate
+     * Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. minimum: 0.1 maximum: 5
      *
      * @return callbackRate
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMin("0.1")
+    @DecimalMax("5")
     public Double getCallbackRate() {
         return callbackRate;
     }
@@ -485,7 +491,10 @@ public class NewUmConditionalOrderRequest {
     }
 
     /**
-     * Get goodTillDate
+     * order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set
+     * to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be
+     * ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds
+     * and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
      *
      * @return goodTillDate
      */
@@ -785,25 +794,17 @@ public class NewUmConditionalOrderRequest {
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForce.validateJsonElement(jsonObj.get("timeInForce"));
         }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
         // validate the optional field `workingType`
         if (jsonObj.get("workingType") != null && !jsonObj.get("workingType").isJsonNull()) {
             WorkingType.validateJsonElement(jsonObj.get("workingType"));
         }
-        if ((jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull())
-                && !jsonObj.get("priceProtect").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `priceProtect` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("priceProtect").toString()));
+        // validate the optional field `priceProtect`
+        if (jsonObj.get("priceProtect") != null && !jsonObj.get("priceProtect").isJsonNull()) {
+            PriceProtect.validateJsonElement(jsonObj.get("priceProtect"));
         }
         if ((jsonObj.get("newClientStrategyId") != null
                         && !jsonObj.get("newClientStrategyId").isJsonNull())

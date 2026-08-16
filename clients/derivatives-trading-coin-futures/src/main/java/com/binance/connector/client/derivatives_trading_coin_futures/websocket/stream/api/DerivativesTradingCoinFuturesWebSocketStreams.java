@@ -38,14 +38,14 @@ import com.binance.connector.client.derivatives_trading_coin_futures.websocket.s
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.IndividualSymbolTickerStreamsResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.KlineCandlestickStreamsRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.KlineCandlestickStreamsResponse;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.LiquidationOrderStreamsRequest;
-import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.LiquidationOrderStreamsResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceKlineCandlestickStreamsRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceKlineCandlestickStreamsResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceOfAllSymbolsOfAPairRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceOfAllSymbolsOfAPairResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceStreamRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarkPriceStreamResponse;
+import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarketLiquidationOrderStreamsRequest;
+import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.MarketLiquidationOrderStreamsResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.PartialBookDepthStreamsRequest;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.PartialBookDepthStreamsResponse;
 import com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream.model.UserDataStreamEventsResponse;
@@ -58,12 +58,12 @@ import java.util.UUID;
 public class DerivativesTradingCoinFuturesWebSocketStreams {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/7.1.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private final StreamConnectionInterface connection;
 
-    private WebsocketMarketStreamsApi websocketMarketStreamsApi;
+    private DefaultApi defaultApi;
 
     public DerivativesTradingCoinFuturesWebSocketStreams(
             WebSocketClientConfiguration configuration) {
@@ -80,7 +80,7 @@ public class DerivativesTradingCoinFuturesWebSocketStreams {
         }
         this.connection = connection;
 
-        this.websocketMarketStreamsApi = new WebsocketMarketStreamsApi(connection);
+        this.defaultApi = new DefaultApi(connection);
     }
 
     public void stop() throws Exception {
@@ -91,33 +91,31 @@ public class DerivativesTradingCoinFuturesWebSocketStreams {
 
     public StreamBlockingQueueWrapper<AggregateTradeStreamsResponse> aggregateTradeStreams(
             AggregateTradeStreamsRequest aggregateTradeStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.aggregateTradeStreams(aggregateTradeStreamsRequest);
+        return defaultApi.aggregateTradeStreams(aggregateTradeStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<AllBookTickersStreamResponse> allBookTickersStream(
             AllBookTickersStreamRequest allBookTickersStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.allBookTickersStream(allBookTickersStreamRequest);
+        return defaultApi.allBookTickersStream(allBookTickersStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<AllMarketLiquidationOrderStreamsResponse>
             allMarketLiquidationOrderStreams(
                     AllMarketLiquidationOrderStreamsRequest allMarketLiquidationOrderStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.allMarketLiquidationOrderStreams(
-                allMarketLiquidationOrderStreamsRequest);
+        return defaultApi.allMarketLiquidationOrderStreams(allMarketLiquidationOrderStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<AllMarketMiniTickersStreamResponse>
             allMarketMiniTickersStream(
                     AllMarketMiniTickersStreamRequest allMarketMiniTickersStreamRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.allMarketMiniTickersStream(
-                allMarketMiniTickersStreamRequest);
+        return defaultApi.allMarketMiniTickersStream(allMarketMiniTickersStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<AllMarketTickersStreamsResponse> allMarketTickersStreams(
             AllMarketTickersStreamsRequest allMarketTickersStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.allMarketTickersStreams(allMarketTickersStreamsRequest);
+        return defaultApi.allMarketTickersStreams(allMarketTickersStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<ContinuousContractKlineCandlestickStreamsResponse>
@@ -125,31 +123,30 @@ public class DerivativesTradingCoinFuturesWebSocketStreams {
                     ContinuousContractKlineCandlestickStreamsRequest
                             continuousContractKlineCandlestickStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.continuousContractKlineCandlestickStreams(
+        return defaultApi.continuousContractKlineCandlestickStreams(
                 continuousContractKlineCandlestickStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<ContractInfoStreamResponse> contractInfoStream(
             ContractInfoStreamRequest contractInfoStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.contractInfoStream(contractInfoStreamRequest);
+        return defaultApi.contractInfoStream(contractInfoStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> diffBookDepthStreams(
             DiffBookDepthStreamsRequest diffBookDepthStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.diffBookDepthStreams(diffBookDepthStreamsRequest);
+        return defaultApi.diffBookDepthStreams(diffBookDepthStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<IndexKlineCandlestickStreamsResponse>
             indexKlineCandlestickStreams(
                     IndexKlineCandlestickStreamsRequest indexKlineCandlestickStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.indexKlineCandlestickStreams(
-                indexKlineCandlestickStreamsRequest);
+        return defaultApi.indexKlineCandlestickStreams(indexKlineCandlestickStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<IndexPriceStreamResponse> indexPriceStream(
             IndexPriceStreamRequest indexPriceStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.indexPriceStream(indexPriceStreamRequest);
+        return defaultApi.indexPriceStream(indexPriceStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse>
@@ -157,7 +154,7 @@ public class DerivativesTradingCoinFuturesWebSocketStreams {
                     IndividualSymbolBookTickerStreamsRequest
                             individualSymbolBookTickerStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.individualSymbolBookTickerStreams(
+        return defaultApi.individualSymbolBookTickerStreams(
                 individualSymbolBookTickerStreamsRequest);
     }
 
@@ -165,52 +162,50 @@ public class DerivativesTradingCoinFuturesWebSocketStreams {
             individualSymbolMiniTickerStream(
                     IndividualSymbolMiniTickerStreamRequest individualSymbolMiniTickerStreamRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.individualSymbolMiniTickerStream(
-                individualSymbolMiniTickerStreamRequest);
+        return defaultApi.individualSymbolMiniTickerStream(individualSymbolMiniTickerStreamRequest);
     }
 
     public StreamBlockingQueueWrapper<IndividualSymbolTickerStreamsResponse>
             individualSymbolTickerStreams(
                     IndividualSymbolTickerStreamsRequest individualSymbolTickerStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.individualSymbolTickerStreams(
-                individualSymbolTickerStreamsRequest);
+        return defaultApi.individualSymbolTickerStreams(individualSymbolTickerStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<KlineCandlestickStreamsResponse> klineCandlestickStreams(
             KlineCandlestickStreamsRequest klineCandlestickStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.klineCandlestickStreams(klineCandlestickStreamsRequest);
-    }
-
-    public StreamBlockingQueueWrapper<LiquidationOrderStreamsResponse> liquidationOrderStreams(
-            LiquidationOrderStreamsRequest liquidationOrderStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.liquidationOrderStreams(liquidationOrderStreamsRequest);
+        return defaultApi.klineCandlestickStreams(klineCandlestickStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<MarkPriceKlineCandlestickStreamsResponse>
             markPriceKlineCandlestickStreams(
                     MarkPriceKlineCandlestickStreamsRequest markPriceKlineCandlestickStreamsRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.markPriceKlineCandlestickStreams(
-                markPriceKlineCandlestickStreamsRequest);
+        return defaultApi.markPriceKlineCandlestickStreams(markPriceKlineCandlestickStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<MarkPriceOfAllSymbolsOfAPairResponse>
             markPriceOfAllSymbolsOfAPair(
                     MarkPriceOfAllSymbolsOfAPairRequest markPriceOfAllSymbolsOfAPairRequest)
                     throws ApiException {
-        return websocketMarketStreamsApi.markPriceOfAllSymbolsOfAPair(
-                markPriceOfAllSymbolsOfAPairRequest);
+        return defaultApi.markPriceOfAllSymbolsOfAPair(markPriceOfAllSymbolsOfAPairRequest);
     }
 
     public StreamBlockingQueueWrapper<MarkPriceStreamResponse> markPriceStream(
             MarkPriceStreamRequest markPriceStreamRequest) throws ApiException {
-        return websocketMarketStreamsApi.markPriceStream(markPriceStreamRequest);
+        return defaultApi.markPriceStream(markPriceStreamRequest);
+    }
+
+    public StreamBlockingQueueWrapper<MarketLiquidationOrderStreamsResponse>
+            marketLiquidationOrderStreams(
+                    MarketLiquidationOrderStreamsRequest marketLiquidationOrderStreamsRequest)
+                    throws ApiException {
+        return defaultApi.marketLiquidationOrderStreams(marketLiquidationOrderStreamsRequest);
     }
 
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
             PartialBookDepthStreamsRequest partialBookDepthStreamsRequest) throws ApiException {
-        return websocketMarketStreamsApi.partialBookDepthStreams(partialBookDepthStreamsRequest);
+        return defaultApi.partialBookDepthStreams(partialBookDepthStreamsRequest);
     }
 
     /**

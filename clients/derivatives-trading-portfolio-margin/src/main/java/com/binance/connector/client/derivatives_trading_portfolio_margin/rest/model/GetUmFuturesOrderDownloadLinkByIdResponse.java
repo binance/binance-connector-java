@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetUmFuturesOrderDownloadLinkByIdResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetUmFuturesOrderDownloadLinkByIdResponse {
     public static final String SERIALIZED_NAME_DOWNLOAD_ID = "downloadId";
 
@@ -87,7 +87,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get downloadId
+     * Download ID.
      *
      * @return downloadId
      */
@@ -107,7 +107,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get status
+     * Enum：completed，processing
      *
      * @return status
      */
@@ -126,7 +126,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get url
+     * The link is mapped to download id
      *
      * @return url
      */
@@ -146,7 +146,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get s3Link
+     * S3 Link.
      *
      * @return s3Link
      */
@@ -166,7 +166,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get notified
+     * ignore
      *
      * @return notified
      */
@@ -186,7 +186,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get expirationTimestamp
+     * The link would expire after this timestamp
      *
      * @return expirationTimestamp
      */
@@ -206,7 +206,7 @@ public class GetUmFuturesOrderDownloadLinkByIdResponse {
     }
 
     /**
-     * Get isExpired
+     * Is Expired.
      *
      * @return isExpired
      */

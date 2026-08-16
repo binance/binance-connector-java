@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** IndexKlineCandlestickStreamsResponseK */
+/** Kline payload */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -150,7 +150,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get tLowerCase
+     * Kline start time
      *
      * @return tLowerCase
      */
@@ -169,7 +169,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get T
+     * transactionTime
      *
      * @return T
      */
@@ -189,7 +189,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * symbol
      *
      * @return sLowerCase
      */
@@ -209,7 +209,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get iLowerCase
+     * interval
      *
      * @return iLowerCase
      */
@@ -229,7 +229,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * Ignore
      *
      * @return fLowerCase
      */
@@ -248,7 +248,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Ignore
      *
      * @return L
      */
@@ -268,7 +268,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * openPrice
      *
      * @return oLowerCase
      */
@@ -288,7 +288,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * closePrice
      *
      * @return cLowerCase
      */
@@ -308,7 +308,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * highPrice
      *
      * @return hLowerCase
      */
@@ -328,7 +328,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * lowPrice
      *
      * @return lLowerCase
      */
@@ -348,7 +348,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * volume
      *
      * @return vLowerCase
      */
@@ -368,7 +368,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * tradeNum
      *
      * @return nLowerCase
      */
@@ -388,7 +388,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get xLowerCase
+     * Is this kline closed?
      *
      * @return xLowerCase
      */
@@ -408,7 +408,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * quoteVolume
      *
      * @return qLowerCase
      */
@@ -427,7 +427,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get V
+     * Taker buy volume
      *
      * @return V
      */
@@ -446,7 +446,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get Q
+     * lastTradeVolume
      *
      * @return Q
      */
@@ -465,7 +465,7 @@ public class IndexKlineCandlestickStreamsResponseK extends BaseDTO {
     }
 
     /**
-     * Get B
+     * Best bid qty
      *
      * @return B
      */

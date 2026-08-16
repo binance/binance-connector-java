@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** SetAutoCancelAllOpenOrdersRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SetAutoCancelAllOpenOrdersRequest {
     public static final String SERIALIZED_NAME_UNDERLYING = "underlying";
 
@@ -84,7 +84,8 @@ public class SetAutoCancelAllOpenOrdersRequest {
     }
 
     /**
-     * Get countdownTime
+     * Countdown time in milliseconds (ex. 1,000 for 1 second). 0 to disable the timer. Negative
+     * values (ex. -10000) are not accepted. Minimum acceptable value is 5,000
      *
      * @return countdownTime
      */

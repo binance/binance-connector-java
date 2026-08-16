@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,13 +23,16 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
-import com.binance.connector.client.margin_trading.rest.model.AssetNames;
 import com.binance.connector.client.margin_trading.rest.model.CreateSpecialKeyRequest;
 import com.binance.connector.client.margin_trading.rest.model.CreateSpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.EditIpForSpecialKeyRequest;
+import com.binance.connector.client.margin_trading.rest.model.ExitSpecialKeyModeRequest;
 import com.binance.connector.client.margin_trading.rest.model.GetForceLiquidationRecordResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeCoinListResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityExchangeHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
+import com.binance.connector.client.margin_trading.rest.model.LiquidationLoanRepayRequest;
+import com.binance.connector.client.margin_trading.rest.model.LiquidationLoanRepayResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelAllOpenOrdersOnASymbolResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountCancelOrderResponse;
@@ -43,7 +46,13 @@ import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOt
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountNewOtocoResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginManualLiquidationRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginManualLiquidationResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
+import com.binance.connector.client.margin_trading.rest.model.PendingAboveType;
+import com.binance.connector.client.margin_trading.rest.model.PendingSide;
+import com.binance.connector.client.margin_trading.rest.model.PendingType;
 import com.binance.connector.client.margin_trading.rest.model.QueryCurrentMarginOrderCountUsageResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryLiquidationLoanRepayHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryLiquidationLoanResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsAllOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsAllOrdersResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOcoResponse;
@@ -51,11 +60,15 @@ import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccount
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOrdersResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOrderResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsTradeListResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryPreventedMatchesResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyListResponse;
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.Side;
 import com.binance.connector.client.margin_trading.rest.model.SmallLiabilityExchangeRequest;
+import com.binance.connector.client.margin_trading.rest.model.WorkingSide;
+import com.binance.connector.client.margin_trading.rest.model.WorkingType;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -107,31 +120,46 @@ public class TradeApiTest {
     }
 
     /**
-     * Create Special Key(Low-Latency Trading)(TRADE)
+     * Create Special Key(Low-Latency Trading) (TRADE)
      *
-     * <p>**Binance Margin offers low-latency trading through a [special
+     * <p>**Eligibility** - Binance Margin offers low-latency trading through a [special
      * key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e),
-     * available exclusively to users with VIP level 4 or higher. ** **If you are VIP level 3 or
-     * below, please contact your VIP manager for eligibility criterias.** We support several types
-     * of API keys: * Ed25519 (recommended) * HMAC * RSA We recommend to **use Ed25519 API keys** as
-     * it should provide the best performance and security out of all supported key types. We accept
-     * PKCS#8 (BEGIN PUBLIC KEY). For how to generate an RSA key pair to send API requests on
-     * Binance. Please refer to the document below
+     * available exclusively to users with VIP level 7 or higher. - If you are VIP level 6 or below,
+     * please contact your VIP manager for eligibility criterias. - All new Margin Special Key users
+     * are required to read, understand, and agree to the Margin Special Key Supplemental Product
+     * Terms at the master account level before creating a Margin Special Key. - Once signed at the
+     * master account level, the agreement applies to all sub-accounts. The master account and all
+     * sub-accounts (Cross Margin Classic and Portfolio Margin Pro) are authorized to create a
+     * Margin Special Key and are subject to the LiquidationLoan policy. For more information,
+     * please refer to
+     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
+     * **Supported Products:** - Cross Margin - Isolated Margin - Portfolio Margin Pro **Unsupported
+     * Products:** - Portfolio Margin We support several types of API keys: * Ed25519 (recommended)
+     * * HMAC * RSA We recommend to **use Ed25519 API keys** as it should provide the best
+     * performance and security out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY).
+     * For how to generate an RSA key pair to send API requests on Binance. Please refer to the
+     * document below
      * [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db)
-     * . Read [REST
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#signed-trade-and-user_data-endpoint-security)
-     * or [WebSocket
-     * API](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md#request-security)
-     * documentation to learn how to use different API keys You need to enable Permits “Enable Spot
-     * &amp; Margin Trading” option for the API Key which requests this endpoint. Weight: 1(UID)
+     * . **How to use the Margin Special Key** - Use the below &#x60;sapi&#x60; endpoint to create
+     * your margin special API Key. - For accessing the Cross Margin account, do not send the
+     * &#x60;symbol&#x60; parameter. - For accessing the Isolated Margin account(s), pass the
+     * relevant &#x60;symbol&#x60; parameter in the API Key creation request. - Use the generated
+     * API Key (and Secret key, if applicable) to perform margin trading and listenKey generation
+     * via **Spot** REST API (&#x60;https://api.binance.com/api/v3/_*&#x60;) endpoints. Read [REST
+     * API](/products/spot/rest-api#signed-trade-and-user_data-endpoint-security) or [WebSocket
+     * API](/products/spot/web-socket-api#request-security) documentation to learn how to use
+     * different API keys You need to enable Permits “Enable Spot &amp; Margin Trading” option for
+     * the API Key which requests this endpoint. Weight(UID): 1 Security Type: TRADE Response Notes:
+     * - Error Code Description - **UNSUPPORTED_OPERATION** : Portfolio Margin is an unsupported
+     * product, please change the account type to a supported margin product. - **Forbidden**: Cross
+     * Margin Pro accounts require additional agreements, please contact your relationship manager.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createSpecialKeyTest() throws ApiException, CryptoException {
+    public void createSpecialKeyTest() throws ApiException, CryptoException, IOException {
         CreateSpecialKeyRequest createSpecialKeyRequest = new CreateSpecialKeyRequest();
-
-        createSpecialKeyRequest.apiName("");
+        createSpecialKeyRequest.apiName("apiName");
 
         ApiResponse<CreateSpecialKeyResponse> response =
                 api.createSpecialKey(createSpecialKeyRequest);
@@ -146,27 +174,32 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000apiName=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000apiName=apiName&permissionMode=TRADE", signInputCaptor.getValue());
         assertEquals(
-                "a2ad423c0df49a3d8b7f2faeda0307aade418bcd976219b90d89fa8ef3f2a712",
-                actualRequest.url().queryParameter("signature"));
+                "22ad46fa1d14a2448abca205b7b6e6fb378ba7cd23940c41ecb8830c63c877c6", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/apiKey", actualRequest.url().encodedPath());
     }
 
     /**
-     * Delete Special Key(Low-Latency Trading)(TRADE)
+     * Delete Special Key(Low-Latency Trading) (TRADE)
      *
-     * <p>This only applies to Special Key for Low Latency Trading. If apiKey is given, apiName will
-     * be ignored. If apiName is given with no apiKey, all apikeys with given apiName will be
-     * deleted. You need to enable Permits “Enable Spot &amp; Margin Trading” option for the API Key
-     * which requests this endpoint. Weight: 1(UID)
+     * <p>Deleting your Margin Special Key alone does not exit you from the Margin Special Key
+     * framework or discharge your obligations under the Margin Special Key Supplemental Product
+     * Terms. To fully exit, you must: 1. Delete your Margin Special Key. 2. Ensure there are no
+     * outstanding liabilities on the account. 3. Call the Exit Margin Special Key API endpoint. 4.
+     * Confirm the exit status via the API response. Only after step 4 is completed and the exit
+     * status is confirmed by Binance will your account revert to standard liquidation logic and no
+     * longer be subject to the Margin Special Key Supplemental Product Terms. If apiKey is given,
+     * apiName will be ignored. If apiName is given with no apiKey, all apikeys with given apiName
+     * will be deleted. You need to enable Permits “Enable Spot &amp; Margin” option for the API Key
+     * which requests this endpoint. Weight(UID): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deleteSpecialKeyTest() throws ApiException, CryptoException {
-        String apiName = "";
-        String symbol = "";
+    public void deleteSpecialKeyTest() throws ApiException, CryptoException, IOException {
+        String apiName = "apiName";
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         api.deleteSpecialKey(apiName, symbol, recvWindow);
 
@@ -179,29 +212,25 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("apiName=apiName&symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "apiName=&symbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "9cb386225deeface4c3aea3d1600f720006f7e67c5fe0f7dc7ec4ff0fdc53fcf",
-                actualRequest.url().queryParameter("signature"));
+                "f9a6e8734c31de67e1021ab62810f62413aa4ff56845eaa120ed4946bfcff9fe", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/apiKey", actualRequest.url().encodedPath());
     }
 
     /**
-     * Edit ip for Special Key(Low-Latency Trading)(TRADE)
+     * Edit ip for Special Key(Low-Latency Trading) (TRADE)
      *
      * <p>Edit ip restriction. This only applies to Special Key for Low Latency Trading. You need to
-     * enable Permits “Enable Spot &amp; Margin Trading” option for the API Key which requests this
-     * endpoint. Weight: 1(UID)
+     * enable Permits “Enable Spot &amp; Margin” option for the API Key which requests this
+     * endpoint. Weight(UID): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void editIpForSpecialKeyTest() throws ApiException, CryptoException {
+    public void editIpForSpecialKeyTest() throws ApiException, CryptoException, IOException {
         EditIpForSpecialKeyRequest editIpForSpecialKeyRequest = new EditIpForSpecialKeyRequest();
-
-        editIpForSpecialKeyRequest.ip("");
+        editIpForSpecialKeyRequest.ip("24.156.99.202");
 
         api.editIpForSpecialKey(editIpForSpecialKeyRequest);
 
@@ -214,25 +243,70 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000ip=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000ip=24.156.99.202", signInputCaptor.getValue());
         assertEquals(
-                "66267361179ca0a67b144a0ceadbd0338510680bed6f7d4546abbd4e4eb7fee0",
-                actualRequest.url().queryParameter("signature"));
+                "d57cc55c617d2beae2382f7ff82e1d2d446a47c1c90581dfda966fbcfd48620e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/apiKey/ip", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Exit Special Key Mode (TRADE)
+     *
+     * <p>Exit the Margin Special Key mode for Cross Margin Classic accounts. **All outstanding
+     * liabilities under the Cross Margin Classic account must be fully repaid before calling this
+     * endpoint.** Deleting the Margin Special Key alone does not constitute a valid exit. When a
+     * user creates a Margin Special API Key, the account enters \&quot;Special Key Mode\&quot;.
+     * Upon a successful request, the following actions will be performed atomically: 1. All
+     * existing Margin Special API Keys under the Cross Margin Classic mode account will be deleted.
+     * 2. All pre-execution margin checks (including Open-order-loss calculation) will revert to
+     * standard mode. 3. A cooldown period (default: 24 hours) will be enforced, during which the
+     * account will not be permitted to create new Margin Special API Keys. For more information,
+     * please refer to
+     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
+     * **Preconditions:** The following conditions must be met; otherwise the request will be
+     * rejected: - Account type must be **Cross Margin Classic**. - Account must currently be in
+     * **Special Key Mode**. If not, the request silently succeeds. - Account must **not be in
+     * liquidation**. - Account must **have no liability**. You need to enable \&quot;Permits Enable
+     * Spot &amp; Margin Trading\&quot; option for the API Key which requests this endpoint.
+     * Weight(UID): 10 Security Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void exitSpecialKeyModeTest() throws ApiException, CryptoException, IOException {
+        ExitSpecialKeyModeRequest exitSpecialKeyModeRequest = new ExitSpecialKeyModeRequest();
+
+        ApiResponse<Object> response = api.exitSpecialKeyMode(exitSpecialKeyModeRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c", actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/exit-special-key-mode", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Force Liquidation Record (USER_DATA)
      *
-     * <p>Get Force Liquidation Record * Response in descending order Weight: 1(IP)
+     * <p>Get Force Liquidation Record Weight(IP): 1 Security Type: USER_DATA Notes: - Response in
+     * descending order
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getForceLiquidationRecordTest() throws ApiException, CryptoException {
+    public void getForceLiquidationRecordTest() throws ApiException, CryptoException, IOException {
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        String isolatedSymbol = "";
+        String isolatedSymbol = "BTCUSDT";
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;
@@ -250,11 +324,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("startTime=1623319461670&endTime=1641782889000&isolatedSymbol=BTCUSDT&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "startTime=1623319461670&endTime=1641782889000&isolatedSymbol=&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "dff844dbf8ae3029286ecfaf18cd34dbda2bc10e91ca64e3b9f17c59a4d9d12c",
+                "5d884a89dda04b4bd06504586dd5e7697e5e533cea5516e46d37a06fbdb94fab",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/forceLiquidationRec", actualRequest.url().encodedPath());
     }
@@ -262,12 +334,14 @@ public class TradeApiTest {
     /**
      * Get Small Liability Exchange Coin List (USER_DATA)
      *
-     * <p>Query the coins which can be small liability exchange Weight: 100
+     * <p>Query the coins which can be small liability exchange Weight(IP): 100 Security Type:
+     * USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSmallLiabilityExchangeCoinListTest() throws ApiException, CryptoException {
+    public void getSmallLiabilityExchangeCoinListTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSmallLiabilityExchangeCoinListResponse> response =
                 api.getSmallLiabilityExchangeCoinList(recvWindow);
@@ -282,7 +356,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
                 actualRequest.url().queryParameter("signature"));
@@ -292,12 +367,13 @@ public class TradeApiTest {
     /**
      * Get Small Liability Exchange History (USER_DATA)
      *
-     * <p>Get Small liability Exchange History Weight: 100(UID)
+     * <p>Get Small liability Exchange History Weight(UID): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSmallLiabilityExchangeHistoryTest() throws ApiException, CryptoException {
+    public void getSmallLiabilityExchangeHistoryTest()
+            throws ApiException, CryptoException, IOException {
         Long current = 1L;
         Long size = 10L;
         Long startTime = 1623319461670L;
@@ -317,29 +393,63 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "current=1&size=10&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "current=1&size=10&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
                 "cf3665c6ad1ae7c4af54fc90d8cae844164449f5f850748c21373dd86013616b",
                 actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/exchange-small-liability-history", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Liquidation Loan Repay (MARGIN)
+     *
+     * <p>Repays the outstanding cross-margin liquidation loan from the user&#39;s spot wallet. A
+     * liquidation loan represents the account deficit incurred when account equity turns negative
+     * during liquidation (bankruptcy). The repayment amount must be greater than 0 and cannot
+     * exceed the remaining loan balance. If the Spot Account has insufficient USDC balance, the
+     * repayment will fail. Weight(UID): 100 Security Type: MARGIN
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void liquidationLoanRepayTest() throws ApiException, CryptoException, IOException {
+        LiquidationLoanRepayRequest liquidationLoanRepayRequest = new LiquidationLoanRepayRequest();
+        liquidationLoanRepayRequest.asset("USDT");
+        liquidationLoanRepayRequest.amount(300.00d);
+
+        ApiResponse<LiquidationLoanRepayResponse> response =
+                api.liquidationLoanRepay(liquidationLoanRepayRequest);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("timestamp=1736393892000amount=300&asset=USDT", signInputCaptor.getValue());
         assertEquals(
-                "/sapi/v1/margin/exchange-small-liability-history",
-                actualRequest.url().encodedPath());
+                "be0084a4d7e91219e6a5861bc3795375aafc9b972b31d68162d75127402a7305",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/liquidation-loan/repay", actualRequest.url().encodedPath());
     }
 
     /**
      * Margin Account Cancel all Open Orders on a Symbol (TRADE)
      *
      * <p>Cancels all active orders on a symbol for margin account.&lt;br&gt;&lt;/br&gt; This
-     * includes OCO orders. Weight: 1
+     * includes OCO orders. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void marginAccountCancelAllOpenOrdersOnASymbolTest()
-            throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long recvWindow = 5000L;
         ApiResponse<MarginAccountCancelAllOpenOrdersOnASymbolResponse> response =
                 api.marginAccountCancelAllOpenOrdersOnASymbol(symbol, isIsolated, recvWindow);
@@ -355,26 +465,28 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "symbol=&isIsolated=false&recvWindow=5000&timestamp=1736393892000",
+                "symbol=BTCUSDT&isIsolated=TRUE&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "add65e05865fdd18a5031b8cd03b817c53044ab47bc775e023898c5f451f9fab",
+                "a9e5c495bc4c2b347c88d6dd2ae2e0734124518b2dc7ba8cf04757535cd454a8",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/margin/openOrders", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/margin/openOrders",
+                actualRequest.url().encodedPath());
     }
 
     /**
      * Margin Account Cancel OCO (TRADE)
      *
-     * <p>Cancel an entire Order List for a margin account. * Canceling an individual leg will
-     * cancel the entire OCO Weight: 1(UID)
+     * <p>Cancel an entire Order List for a margin account. Weight(UID): 1 Security Type: TRADE
+     * Notes: - Canceling an individual leg will cancel the entire OCO
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountCancelOcoTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void marginAccountCancelOcoTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderListId = 1L;
         String listClientOrderId = "1";
         String newClientOrderId = "1";
@@ -398,11 +510,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BTCUSDT&isIsolated=TRUE&orderListId=1&listClientOrderId=1&newClientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&isIsolated=false&orderListId=1&listClientOrderId=1&newClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b9b55143daefd9ab6b09b85bfeb910d085e7558d9dc486af9975f9815ca1f72a",
+                "8f0b0f39d4dda8b1fbf7b78f69780ae7dfe6e590961dd9b0d400344252821c89",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/orderList", actualRequest.url().encodedPath());
     }
@@ -410,15 +520,15 @@ public class TradeApiTest {
     /**
      * Margin Account Cancel Order (TRADE)
      *
-     * <p>Cancel an active order for margin account. * Either orderId or origClientOrderId must be
-     * sent. Weight: 10(IP)
+     * <p>Cancel an active order for margin account. Weight(IP): 10 Security Type: TRADE Notes: -
+     * Either orderId or origClientOrderId must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountCancelOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void marginAccountCancelOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "LTCBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         String origClientOrderId = "1";
         String newClientOrderId = "1";
@@ -442,11 +552,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=LTCBTC&isIsolated=TRUE&orderId=1&origClientOrderId=1&newClientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&isIsolated=false&orderId=1&origClientOrderId=1&newClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "524eb7d8ebb73bd66897f739ec254947072e8149af95053fd246d59bc6cff1f3",
+                "9739ba02f6ebf14f5f01d2ef9de088033f241bc20c903dcd8147c8b20b2a479c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order", actualRequest.url().encodedPath());
     }
@@ -454,21 +562,21 @@ public class TradeApiTest {
     /**
      * Margin Account New OCO (TRADE)
      *
-     * <p>Send in a new OCO for a margin account * autoRepayAtCancel is suggested to set as “FALSE”
-     * to keep liability unrepaid under high frequent new order/cancel order execution Weight:
-     * 6(UID)
+     * <p>Send in a new OCO for a margin account Weight: 6(UID) or 1500(UID) when sideEffectType is
+     * MARGIN_BUY or AUTO_BORROW_REPAY Security Type: TRADE Notes: - autoRepayAtCancel is suggested
+     * to set as “FALSE” to keep liability unrepaid under high frequent new order/cancel order
+     * execution
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountNewOcoTest() throws ApiException, CryptoException {
+    public void marginAccountNewOcoTest() throws ApiException, CryptoException, IOException {
         MarginAccountNewOcoRequest marginAccountNewOcoRequest = new MarginAccountNewOcoRequest();
-
-        marginAccountNewOcoRequest.symbol("");
+        marginAccountNewOcoRequest.symbol("LTCBTC");
         marginAccountNewOcoRequest.side(Side.BUY);
-        marginAccountNewOcoRequest.quantity(1d);
-        marginAccountNewOcoRequest.price(1d);
-        marginAccountNewOcoRequest.stopPrice(1d);
+        marginAccountNewOcoRequest.quantity(1.0d);
+        marginAccountNewOcoRequest.price(1.0d);
+        marginAccountNewOcoRequest.stopPrice(1.0d);
 
         ApiResponse<MarginAccountNewOcoResponse> response =
                 api.marginAccountNewOco(marginAccountNewOcoRequest);
@@ -483,31 +591,29 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000symbol=LTCBTC&side=BUY&stopPrice=1&quantity=1&price=1&autoRepayAtCancel=true&isIsolated=FALSE", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000symbol=&side=BUY&stopPrice=1&quantity=1&price=1",
-                signInputCaptor.getValue());
-        assertEquals(
-                "a44f38881c72baae22ef0ab8d4275a3dad363487848a7ea9ea3c7ba58a6ccdb9",
-                actualRequest.url().queryParameter("signature"));
+                "5778123f3f43ebc1f9647ee561ecd4e1784f03979a36a0f140304d70c387e04e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order/oco", actualRequest.url().encodedPath());
     }
 
     /**
      * Margin Account New Order (TRADE)
      *
-     * <p>Post a new order for margin account. * autoRepayAtCancel is suggested to set as “FALSE” to
-     * keep liability unrepaid under high frequent new order/cancel order execution Weight: 6(UID)
+     * <p>Post a new order for margin account. Weight: 6(UID) or 1500(UID) when sideEffectType is
+     * MARGIN_BUY or AUTO_BORROW_REPAY Security Type: TRADE Notes: - autoRepayAtCancel is suggested
+     * to set as “FALSE” to keep liability unrepaid under high frequent new order/cancel order
+     * execution
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountNewOrderTest() throws ApiException, CryptoException {
+    public void marginAccountNewOrderTest() throws ApiException, CryptoException, IOException {
         MarginAccountNewOrderRequest marginAccountNewOrderRequest =
                 new MarginAccountNewOrderRequest();
-
-        marginAccountNewOrderRequest.symbol("");
+        marginAccountNewOrderRequest.symbol("BTCUSDT");
         marginAccountNewOrderRequest.side(Side.BUY);
-        marginAccountNewOrderRequest.type("");
+        marginAccountNewOrderRequest.type(OrderType.ROLL_IN);
 
         ApiResponse<MarginAccountNewOrderResponse> response =
                 api.marginAccountNewOrder(marginAccountNewOrderRequest);
@@ -522,9 +628,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=&side=BUY&type=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&autoRepayAtCancel=true&isIsolated=FALSE&type=ROLL_IN", signInputCaptor.getValue());
         assertEquals(
-                "fa7ddab4a660903f7305421c43e7705a88aa40d3039a17e6bf6ad242ec379289",
+                "9fea4d490515e66415334514c3d1e8b1d2aad4df84452386fac145306aa31be9",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order", actualRequest.url().encodedPath());
     }
@@ -544,26 +650,38 @@ public class TradeApiTest {
      * order as &#x60;FILLED&#x60; but the pending order will still appear as
      * &#x60;PENDING_NEW&#x60;. You need to query the status of the pending order again to see its
      * updated status. - OTOs add **2 orders** to the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. *
-     * autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid under high
-     * frequent new order/cancel order execution * Depending on the &#x60;pendingType&#x60; or
-     * &#x60;workingType&#x60;, some optional parameters will become mandatory: Weight: 6(UID)
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
+     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
+     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
+     * under high frequent new order/cancel order execution - Depending on the
+     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;, some optional - parameters will become
+     * mandatory: | Type | Additional mandatory parameters | Additional information | |
+     * -------------------------------------------------------- |
+     * ------------------------------------------------------------ | ---------------------- | |
+     * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
+     * &#x60;pendingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or
+     * &#x60;TAKE_PROFIT&#x60; | &#x60;pendingStopPrice&#x60; and/or
+     * &#x60;pendingTrailingDelta&#x60; | | | &#x60;pendingType&#x60; &#x3D;
+     * &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;,
+     * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingTrailingDelta&#x60; is provided |
+     * &#x60;pendingPrice&#x60; | |
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountNewOtoTest() throws ApiException, CryptoException {
+    public void marginAccountNewOtoTest() throws ApiException, CryptoException, IOException {
         MarginAccountNewOtoRequest marginAccountNewOtoRequest = new MarginAccountNewOtoRequest();
-
-        marginAccountNewOtoRequest.symbol("");
-        marginAccountNewOtoRequest.workingType("");
-        marginAccountNewOtoRequest.workingSide("");
-        marginAccountNewOtoRequest.workingPrice(1d);
-        marginAccountNewOtoRequest.workingQuantity(1d);
-        marginAccountNewOtoRequest.workingIcebergQty(1d);
-        marginAccountNewOtoRequest.pendingType("Order Types");
-        marginAccountNewOtoRequest.pendingSide("");
-        marginAccountNewOtoRequest.pendingQuantity(1d);
+        marginAccountNewOtoRequest.symbol("BTCUSDT");
+        marginAccountNewOtoRequest.workingType(WorkingType.LIMIT);
+        marginAccountNewOtoRequest.workingSide(WorkingSide.BUY);
+        marginAccountNewOtoRequest.workingPrice(1.0d);
+        marginAccountNewOtoRequest.workingQuantity(1.0d);
+        marginAccountNewOtoRequest.workingIcebergQty(1.0d);
+        marginAccountNewOtoRequest.pendingType(PendingType.LIMIT);
+        marginAccountNewOtoRequest.pendingSide(PendingSide.BUY);
+        marginAccountNewOtoRequest.pendingQuantity(1.0d);
 
         ApiResponse<MarginAccountNewOtoResponse> response =
                 api.marginAccountNewOto(marginAccountNewOtoRequest);
@@ -578,12 +696,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&workingIcebergQty=1&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&autoRepayAtCancel=true&isIsolated=FALSE&pendingType=LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000symbol=&workingIcebergQty=1&workingQuantity=1&pendingSide=&pendingQuantity=1&pendingType=Order%20Types&workingSide=&workingPrice=1&workingType=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b3e064facb953c7bfe41bc98b73c1d1e77e572950f680288dcac3fb4abee16e0",
-                actualRequest.url().queryParameter("signature"));
+                "379233b57f601659c1aeae73fea08e66e2062d7efa58701f82b939a359559d2e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order/oto", actualRequest.url().encodedPath());
     }
 
@@ -597,28 +712,46 @@ public class TradeApiTest {
      * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
      * only placed on the order book when the working order gets **fully filled**. - The rules of
      * the pending above and pending below follow the same rules as the [Order List
-     * OCO](https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO). -
-     * OTOCOs add **3 orders** against the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;
-     * filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. * autoRepayAtCancel is suggested to set as
-     * “FALSE” to keep liability unrepaid under high frequent new order/cancel order execution *
-     * Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
-     * &#x60;workingType&#x60;, some optional parameters will become mandatory: Weight: 6(UID)
+     * OCO](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco).
+     * - OTOCOs add **3 orders** against the unfilled order count,
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
+     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
+     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
+     * under high frequent new order/cancel order execution - Depending on the
+     * &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;, some
+     * optional parameters will become mandatory: | Type | Additional mandatory parameters |
+     * Additional information | | ------------------------------------ |
+     * ------------------------------------------------------------ | ---------------------- | |
+     * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
+     * &#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; | &#x60;pendingAbovePrice&#x60; |
+     * | | &#x60;pendingAboveType&#x60;&#x3D; &#x60;STOP_LOSS&#x60; |
+     * &#x60;pendingAboveStopPrice&#x60; and/or &#x60;pendingAboveTrailingDelta&#x60; | | |
+     * &#x60;pendingAboveType&#x60;&#x3D;&#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;pendingAbovePrice&#x60;, &#x60;pendingAboveStopPrice&#x60; and/or
+     * &#x60;pendingAboveTrailingDelta&#x60;, &#x60;pendingAboveTimeInForce&#x60; | | |
+     * &#x60;pendingBelowType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; | &#x60;pendingBelowPrice&#x60; |
+     * | | &#x60;pendingBelowType&#x60;&#x3D; &#x60;STOP_LOSS&#x60; |
+     * &#x60;pendingBelowStopPrice&#x60; and/or &#x60;pendingBelowTrailingDelta&#x60; | | |
+     * &#x60;pendingBelowType&#x60;&#x3D;&#x60;STOP_LOSS_LIMIT&#x60; |
+     * &#x60;pendingBelowPrice&#x60;, &#x60;pendingBelowStopPrice&#x60; and/or
+     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60; | | |
+     * &#x60;pendingAboveTrailingDelta&#x60; is provided | &#x60;pendingAbovePrice&#x60; | | |
+     * &#x60;pendingBelowTrailingDelta&#x60; is provided | &#x60;pendingBelowPrice&#x60; | |
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountNewOtocoTest() throws ApiException, CryptoException {
+    public void marginAccountNewOtocoTest() throws ApiException, CryptoException, IOException {
         MarginAccountNewOtocoRequest marginAccountNewOtocoRequest =
                 new MarginAccountNewOtocoRequest();
-
-        marginAccountNewOtocoRequest.symbol("");
-        marginAccountNewOtocoRequest.workingType("");
-        marginAccountNewOtocoRequest.workingSide("");
-        marginAccountNewOtocoRequest.workingPrice(1d);
-        marginAccountNewOtocoRequest.workingQuantity(1d);
-        marginAccountNewOtocoRequest.pendingSide("");
-        marginAccountNewOtocoRequest.pendingQuantity(1d);
-        marginAccountNewOtocoRequest.pendingAboveType("");
+        marginAccountNewOtocoRequest.symbol("BTCUSDT");
+        marginAccountNewOtocoRequest.workingType(WorkingType.LIMIT);
+        marginAccountNewOtocoRequest.workingSide(WorkingSide.BUY);
+        marginAccountNewOtocoRequest.workingPrice(1.0d);
+        marginAccountNewOtocoRequest.workingQuantity(1.0d);
+        marginAccountNewOtocoRequest.pendingSide(PendingSide.BUY);
+        marginAccountNewOtocoRequest.pendingQuantity(1.0d);
+        marginAccountNewOtocoRequest.pendingAboveType(PendingAboveType.LIMIT_MAKER);
 
         ApiResponse<MarginAccountNewOtocoResponse> response =
                 api.marginAccountNewOtoco(marginAccountNewOtocoRequest);
@@ -633,29 +766,27 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingAboveType=LIMIT_MAKER&autoRepayAtCancel=true&isIsolated=FALSE&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000symbol=&workingQuantity=1&pendingSide=&pendingQuantity=1&pendingAboveType=&workingSide=&workingPrice=1&workingType=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b59af59f8ffdb7c77917fb2e5103f247b6ec76aa2f533042bc1277beebf0c112",
+                "4a4535c84c91075ac62ed418061bd9b56bcdebfc2197cb5caa30b33d7d3ded4d",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order/otoco", actualRequest.url().encodedPath());
     }
 
     /**
-     * Margin Manual Liquidation(MARGIN)
+     * Margin Manual Liquidation (TRADE)
      *
-     * <p>Margin Manual Liquidation * This endpoint can support Cross Margin Classic Mode and Pro
-     * Mode. * And only support Isolated Margin for restricted region. Weight: 3000
+     * <p>Margin Manual Liquidation Weight(UID): 3000 Security Type: TRADE Notes: - This endpoint
+     * supports Cross Margin Classic Mode and Pro Mode. - Isolated Margin is only supported in
+     * restricted regions.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginManualLiquidationTest() throws ApiException, CryptoException {
+    public void marginManualLiquidationTest() throws ApiException, CryptoException, IOException {
         MarginManualLiquidationRequest marginManualLiquidationRequest =
                 new MarginManualLiquidationRequest();
-
-        marginManualLiquidationRequest.type("");
+        marginManualLiquidationRequest.type(OrderType.ROLL_IN);
 
         ApiResponse<MarginManualLiquidationResponse> response =
                 api.marginManualLiquidation(marginManualLiquidationRequest);
@@ -670,9 +801,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000type=", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000type=ROLL_IN", signInputCaptor.getValue());
         assertEquals(
-                "c32d33d6407f8d47d4fd8e91fbc9fbacb0db2d899069618021e801a0cf447157",
+                "a04dc574a8036f72e99afb75473a5f85eaba56d15fed01f013334e6a6d771051",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/manual-liquidation", actualRequest.url().encodedPath());
     }
@@ -680,14 +811,16 @@ public class TradeApiTest {
     /**
      * Query Current Margin Order Count Usage (TRADE)
      *
-     * <p>Displays the user&#39;s current margin order count usage for all intervals. Weight: 20(IP)
+     * <p>Displays the user&#39;s current margin order count usage for all intervals. Weight(IP): 20
+     * Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryCurrentMarginOrderCountUsageTest() throws ApiException, CryptoException {
-        String isIsolated = "false";
-        String symbol = "";
+    public void queryCurrentMarginOrderCountUsageTest()
+            throws ApiException, CryptoException, IOException {
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryCurrentMarginOrderCountUsageResponse> response =
                 api.queryCurrentMarginOrderCountUsage(isIsolated, symbol, recvWindow);
@@ -703,30 +836,103 @@ public class TradeApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "isIsolated=false&symbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
+                "isIsolated=TRUE&symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "4af886ac30fe924fc1b3a164db48b5dc0a90f78ef1bc9ccff06a9c29e6ea221c",
+                "c2079648a70b986c96d6fb791c8f35ee9f2e91f6ba62bac3dc20773166a2eb84",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/rateLimit/order", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Liquidation Loan (USER_DATA)
+     *
+     * <p>Query the current user&#39;s cross-margin liquidation loan information, including the
+     * original loan amount, repaid amount, and remaining amount. When a cross-margin account is
+     * liquidated and the account equity turns negative (bankruptcy), the system generates a
+     * liquidation loan record representing the deficit. This represents the shortfall amount
+     * denominated in USDC. Weight(UID): 100 Security Type: USER_DATA
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryLiquidationLoanTest() throws ApiException, CryptoException, IOException {
+        Long recvWindow = 5000L;
+        ApiResponse<QueryLiquidationLoanResponse> response = api.queryLiquidationLoan(recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "2cdd1e484bce80021437bee6b762e6a276b1954c3a0c011a16f6f2f6a47aba75",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/liquidation-loan", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Liquidation Loan Repay History (USER_DATA)
+     *
+     * <p>Query the repayment history of cross-margin liquidation loans (deficit caused by
+     * bankruptcy during liquidation). Supports time-range filtering and pagination. Weight(UID):
+     * 100 Security Type: USER_DATA Notes: - The maximum query range is 90 days. If
+     * &#x60;startTime&#x60; is earlier than 90 days ago, it will be clamped to 90 days ago. - Only
+     * records with status &#x60;SUCCESS&#x60; or &#x60;PENDING&#x60; are returned. Failed repayment
+     * records are excluded.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void queryLiquidationLoanRepayHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        Long startTime = 1714492800000L;
+        Long endTime = 1714579200000L;
+        Long current = 1L;
+        Long size = 50L;
+        Long recvWindow = 5000L;
+        ApiResponse<QueryLiquidationLoanRepayHistoryResponse> response =
+                api.queryLiquidationLoanRepayHistory(startTime, endTime, current, size, recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals(
+                "startTime=1714492800000&endTime=1714579200000&current=1&size=50&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "ed9ec6f53e92748df5a9a00b893537f636ddd3edee89be38934854bf472f4493",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/liquidation-loan/repay-history", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Margin Account&#39;s all OCO (USER_DATA)
      *
      * <p>Retrieves all OCO for a specific margin account based on provided optional parameters
-     * Weight: 200(IP)
+     * Weight(IP): 200 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsAllOcoTest() throws ApiException, CryptoException {
-        String isIsolated = "false";
-        String symbol = "";
+    public void queryMarginAccountsAllOcoTest() throws ApiException, CryptoException, IOException {
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        String symbol = "LTCBTC";
         Long fromId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 500L;
+        Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsAllOcoResponse> response =
                 api.queryMarginAccountsAllOco(
@@ -742,11 +948,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("isIsolated=TRUE&symbol=LTCBTC&fromId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "isIsolated=false&symbol=&fromId=1&startTime=1623319461670&endTime=1641782889000&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "59e78917e0ee7b158e98245287910e232a5b54ff6cbdece62b598c580665a879",
+                "2f7e0754b63ddfe1a9d23b36fd007a6c6bef752b53897687f39571a6897efb95",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/allOrderList", actualRequest.url().encodedPath());
     }
@@ -754,21 +958,22 @@ public class TradeApiTest {
     /**
      * Query Margin Account&#39;s All Orders (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s All Orders * If orderId is set, it will get orders &gt;&#x3D;
-     * that orderId. Otherwise the orders within 24 hours are returned. * For some historical orders
-     * cummulativeQuoteQty will be &lt; 0, meaning the data is not available at this time. * Less
-     * than 24 hours between startTime and endTime. Weight: 200(IP)
+     * <p>Query Margin Account&#39;s All Orders Weight(IP): 200 Security Type: USER_DATA Notes: - If
+     * orderId is set, it will get orders &gt;&#x3D; that orderId. Otherwise the orders within 24
+     * hours are returned. - For some historical orders cummulativeQuoteQty will be &lt; 0, meaning
+     * the data is not available at this time. - Less than 24 hours between startTime and endTime.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsAllOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsAllOrdersTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        Long limit = 500L;
+        Long limit = 100L;
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsAllOrdersResponse> response =
                 api.queryMarginAccountsAllOrders(
@@ -784,11 +989,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BNBBTC&isIsolated=TRUE&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=100&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&isIsolated=false&orderId=1&startTime=1623319461670&endTime=1641782889000&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "b19144d8ecaee65d9a44334e0bff7233225b2e742455de322f7d6cee6585236d",
+                "c56160ca5934c0ab21347e3b4a82052c7b26dcbdc3c5ad9f7f06ba524fc4beeb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/allOrders", actualRequest.url().encodedPath());
     }
@@ -796,14 +999,15 @@ public class TradeApiTest {
     /**
      * Query Margin Account&#39;s OCO (USER_DATA)
      *
-     * <p>Retrieves a specific OCO based on provided optional parameters Weight: 10(IP)
+     * <p>Retrieves a specific OCO based on provided optional parameters Weight(IP): 10 Security
+     * Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsOcoTest() throws ApiException, CryptoException {
-        String isIsolated = "false";
-        String symbol = "";
+    public void queryMarginAccountsOcoTest() throws ApiException, CryptoException, IOException {
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        String symbol = "LTCBTC";
         Long orderListId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;
@@ -821,11 +1025,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("isIsolated=TRUE&symbol=LTCBTC&orderListId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "isIsolated=false&symbol=&orderListId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "65c1de468d71a9069148cfd2ab6a625c99380dc889980ab0420d121b301b8a44",
+                "f184108814decd244cd7ccd90febab16d5dd997c67f31153073092a97876df0c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/orderList", actualRequest.url().encodedPath());
     }
@@ -833,14 +1035,14 @@ public class TradeApiTest {
     /**
      * Query Margin Account&#39;s Open OCO (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Open OCO Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Open OCO Weight(IP): 10 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsOpenOcoTest() throws ApiException, CryptoException {
-        String isIsolated = "false";
-        String symbol = "";
+    public void queryMarginAccountsOpenOcoTest() throws ApiException, CryptoException, IOException {
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        String symbol = "LTCBTC";
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsOpenOcoResponse> response =
                 api.queryMarginAccountsOpenOco(isIsolated, symbol, recvWindow);
@@ -855,11 +1057,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("isIsolated=TRUE&symbol=LTCBTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "isIsolated=false&symbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "4af886ac30fe924fc1b3a164db48b5dc0a90f78ef1bc9ccff06a9c29e6ea221c",
+                "5921b2aaafab24e97440e1efda2ce30cca40a6853f6d455a55db14d4544d7329",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/openOrderList", actualRequest.url().encodedPath());
     }
@@ -867,17 +1067,19 @@ public class TradeApiTest {
     /**
      * Query Margin Account&#39;s Open Orders (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Open Orders * If the symbol is not sent, orders for all symbols
-     * will be returned in an array. * When all symbols are returned, the number of requests counted
-     * against the rate limiter is equal to the number of symbols currently trading on the exchange.
-     * * If isIsolated &#x3D;\&quot;TRUE\&quot;, symbol must be sent. Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Open Orders Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * the symbol is not sent, orders for all symbols will be returned in an array. - When all
+     * symbols are returned, the number of requests counted against the rate limiter is equal to the
+     * number of symbols currently trading on the exchange. - If isIsolated
+     * &#x3D;\&quot;TRUE\&quot;, symbol must be sent.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsOpenOrdersTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsOpenOrdersTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long recvWindow = 5000L;
         ApiResponse<QueryMarginAccountsOpenOrdersResponse> response =
                 api.queryMarginAccountsOpenOrders(symbol, isIsolated, recvWindow);
@@ -892,11 +1094,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BNBBTC&isIsolated=TRUE&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&isIsolated=false&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "add65e05865fdd18a5031b8cd03b817c53044ab47bc775e023898c5f451f9fab",
+                "25e5a5034a529c39ad62c9deb0a2934506ffbad48b159321a398d6fbe7a9c21e",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/openOrders", actualRequest.url().encodedPath());
     }
@@ -904,16 +1104,16 @@ public class TradeApiTest {
     /**
      * Query Margin Account&#39;s Order (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Order * Either orderId or origClientOrderId must be sent. * For
-     * some historical orders cummulativeQuoteQty will be &lt; 0, meaning the data is not available
-     * at this time. Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Order Weight(IP): 10 Security Type: USER_DATA Notes: - Either
+     * orderId or origClientOrderId must be sent. - For some historical orders cummulativeQuoteQty
+     * will be &lt; 0, meaning the data is not available at this time.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsOrderTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsOrderTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         String origClientOrderId = "1";
         Long recvWindow = 5000L;
@@ -931,11 +1131,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BNBBTC&isIsolated=TRUE&orderId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&isIsolated=false&orderId=1&origClientOrderId=1&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "28c77d755a10d018e01fcdf7982e25569fd38c91bd89e0dea2a98c986cebd842",
+                "a4124527493265570bbb4209580ae65b79d96a9953c2032c68f13badaa7ecc52",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order", actualRequest.url().encodedPath());
     }
@@ -943,16 +1141,17 @@ public class TradeApiTest {
     /**
      * Query Margin Account&#39;s Trade List (USER_DATA)
      *
-     * <p>Query Margin Account&#39;s Trade List * If fromId is set, it will get trades &gt;&#x3D;
-     * that fromId. Otherwise the trades within 24 hours are returned. * Less than 24 hours between
-     * startTime and endTime. Weight: 10(IP)
+     * <p>Query Margin Account&#39;s Trade List Weight(IP): 10 Security Type: USER_DATA Notes: - If
+     * fromId is set, it will get trades &gt;&#x3D; that fromId. Otherwise the trades within 24
+     * hours are returned. - Less than 24 hours between startTime and endTime.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginAccountsTradeListTest() throws ApiException, CryptoException {
-        String symbol = "";
-        String isIsolated = "false";
+    public void queryMarginAccountsTradeListTest()
+            throws ApiException, CryptoException, IOException {
+        String symbol = "BNBBTC";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         Long orderId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -973,26 +1172,73 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("symbol=BNBBTC&isIsolated=TRUE&orderId=1&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "symbol=&isIsolated=false&orderId=1&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "54ee52c6763e418b1d66b1520323fe3d0b3ace00a4e5fe68bd2fa0513d8d93e7",
+                "1cc5e937fe111eaaf139627d15a765f371bd57aa895dca0499218ff9516e121c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/myTrades", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Special key(Low Latency Trading)(TRADE)
+     * Query Prevented Matches (USER_DATA)
      *
-     * <p>Query Special Key Information. This only applies to Special Key for Low Latency Trading.
-     * Weight: 1(UID)
+     * <p>Displays the list of orders that were expired due to STP. (Self-Trade Prevention).
+     * Weight(IP): 10 Security Type: USER_DATA Notes: - Supported parameter combinations: -
+     * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; - &#x60;symbol&#x60; + &#x60;orderId&#x60;
+     * - &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; - If
+     * &#x60;orderId&#x60; is provided, all prevented matches for that order will be returned. - If
+     * &#x60;preventedMatchId&#x60; is provided, the specific prevented match will be returned. - A
+     * single request returns a maximum of 500 records. If there are more than 500 records, use
+     * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; combination for
+     * pagination.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySpecialKeyTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void queryPreventedMatchesTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
+        Long preventedMatchId = 1L;
+        Long orderId = 1L;
+        Long fromPreventedMatchId = 1L;
+        IsIsolated isIsolated = IsIsolated.TRUE;
+        Long recvWindow = 5000L;
+        ApiResponse<QueryPreventedMatchesResponse> response =
+                api.queryPreventedMatches(
+                        symbol,
+                        preventedMatchId,
+                        orderId,
+                        fromPreventedMatchId,
+                        isIsolated,
+                        recvWindow);
+
+        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
+        Mockito.verify(apiClientSpy)
+                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
+
+        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
+
+        Call captorValue = callArgumentCaptor.getValue();
+        Request actualRequest = captorValue.request();
+
+        assertEquals("symbol=BTCUSDT&preventedMatchId=1&orderId=1&fromPreventedMatchId=1&isIsolated=TRUE&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals(
+                "cc5323d524bd25462542e8f5dc8b4cb238570cd91e39c842a06c5cda27319588",
+                actualRequest.url().queryParameter("signature"));
+        assertEquals("/sapi/v1/margin/myPreventedMatches", actualRequest.url().encodedPath());
+    }
+
+    /**
+     * Query Special key(Low Latency Trading) (TRADE)
+     *
+     * <p>Query Special Key Information. This only applies to Special Key for Low Latency Trading.
+     * Weight(UID): 1 Security Type: TRADE
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void querySpecialKeyTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QuerySpecialKeyResponse> response = api.querySpecialKey(symbol, recvWindow);
 
@@ -1006,23 +1252,23 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
-                actualRequest.url().queryParameter("signature"));
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/apiKey", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query Special key List(Low Latency Trading)(TRADE)
+     * Query Special key List(Low Latency Trading) (TRADE)
      *
-     * <p>This only applies to Special Key for Low Latency Trading. Weight: 1(UID)
+     * <p>This only applies to Special Key for Low Latency Trading. Weight(UID): 1 Security Type:
+     * TRADE
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void querySpecialKeyListTest() throws ApiException, CryptoException {
-        String symbol = "";
+    public void querySpecialKeyListTest() throws ApiException, CryptoException, IOException {
+        String symbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QuerySpecialKeyListResponse> response =
                 api.querySpecialKeyList(symbol, recvWindow);
@@ -1037,27 +1283,26 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("symbol=&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "db1a455af0a2e82b4ec79595d994eb2e7f6b8a93c91a67a2aa59e2b2eae4bc68",
-                actualRequest.url().queryParameter("signature"));
+                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/api-key-list", actualRequest.url().encodedPath());
     }
 
     /**
      * Small Liability Exchange (MARGIN)
      *
-     * <p>Small Liability Exchange * Only convert once within 6 hours * Only liability valuation
-     * less than 10 USDT are supported * The maximum number of coin is 10 Weight: 3000(UID)
+     * <p>Small Liability Exchange Weight(UID): 3000 Security Type: MARGIN Notes: - Only convert
+     * once within 6 hours - Only liability valuation less than 10 USDT are supported - The maximum
+     * number of coin is 10
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void smallLiabilityExchangeTest() throws ApiException, CryptoException {
+    public void smallLiabilityExchangeTest() throws ApiException, CryptoException, IOException {
         SmallLiabilityExchangeRequest smallLiabilityExchangeRequest =
                 new SmallLiabilityExchangeRequest();
-
-        smallLiabilityExchangeRequest.assetNames(new AssetNames());
+        smallLiabilityExchangeRequest.assetNames("BTC,ETH");
 
         api.smallLiabilityExchange(smallLiabilityExchangeRequest);
 
@@ -1070,9 +1315,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000assetNames=%5B%5D", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000assetNames=BTC%2CETH", signInputCaptor.getValue());
         assertEquals(
-                "ba2268aff20977513c2ec557cdf2b6721242a78d2f8bf2791821f1fecffd01e2",
+                "b3624d3b89e7717231e6ab1bbff1a13efe4528ca72df1ce313b73074b30a457a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/exchange-small-liability", actualRequest.url().encodedPath());
     }

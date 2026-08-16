@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetCmAccountDetailResponseAssetsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetCmAccountDetailResponseAssetsInner {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
@@ -92,7 +92,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get asset
+     * asset name
      *
      * @return asset
      */
@@ -112,7 +112,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get crossWalletBalance
+     * total wallet balance
      *
      * @return crossWalletBalance
      */
@@ -132,7 +132,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get crossUnPnl
+     * unrealized profit or loss
      *
      * @return crossUnPnl
      */
@@ -152,7 +152,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get maintMargin
+     * maintenance margin
      *
      * @return maintMargin
      */
@@ -172,7 +172,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get initialMargin
+     * total intial margin required with the latest mark price
      *
      * @return initialMargin
      */
@@ -192,7 +192,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get positionInitialMargin
+     * positions margin required with the latest mark price
      *
      * @return positionInitialMargin
      */
@@ -213,7 +213,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * open orders intial margin required with the latest mark price
      *
      * @return openOrderInitialMargin
      */
@@ -234,7 +234,7 @@ public class GetCmAccountDetailResponseAssetsInner {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */

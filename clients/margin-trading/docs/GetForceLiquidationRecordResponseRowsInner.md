@@ -7,16 +7,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**avgPrice** | **String** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**orderId** | **Long** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**qty** | **String** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**isIsolated** | **Boolean** |  |  [optional] |
-|**updatedTime** | **Long** |  |  [optional] |
+|**avgPrice** | **String** | avg Price. |  [optional] |
+|**executedQty** | **String** | executed Qty. |  [optional] |
+|**orderId** | **Long** | order Id. |  [optional] |
+|**price** | **String** | price. |  [optional] |
+|**qty** | **String** | qty. |  [optional] |
+|**side** | **String** | side. |  [optional] |
+|**symbol** | **String** | symbol. |  [optional] |
+|**timeInForce** | **String** | time In Force. |  [optional] |
+|**isIsolated** | **Boolean** | is Isolated. |  [optional] |
+|**updatedTime** | **Long** | updated Time. |  [optional] |
 
 
 

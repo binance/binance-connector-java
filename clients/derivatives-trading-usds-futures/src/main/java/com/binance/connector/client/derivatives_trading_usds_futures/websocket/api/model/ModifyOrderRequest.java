@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,7 +39,7 @@ import org.hibernate.validator.constraints.*;
 /** ModifyOrderRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ModifyOrderRequest extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -89,6 +89,12 @@ public class ModifyOrderRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private PriceMatch priceMatch;
 
+    public static final String SERIALIZED_NAME_MODIFY_ID = "modifyId";
+
+    @SerializedName(SERIALIZED_NAME_MODIFY_ID)
+    @jakarta.annotation.Nullable
+    private Long modifyId;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -103,7 +109,7 @@ public class ModifyOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get id
+     * Id.
      *
      * @return id
      */
@@ -122,7 +128,7 @@ public class ModifyOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get orderId
+     * Order Id.
      *
      * @return orderId
      */
@@ -142,7 +148,7 @@ public class ModifyOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get origClientOrderId
+     * Orig Client Order Id.
      *
      * @return origClientOrderId
      */
@@ -161,7 +167,7 @@ public class ModifyOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -202,7 +208,7 @@ public class ModifyOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get quantity
+     * Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;
      *
      * @return quantity
      */
@@ -223,7 +229,7 @@ public class ModifyOrderRequest extends BaseDTO {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -258,13 +264,33 @@ public class ModifyOrderRequest extends BaseDTO {
         this.priceMatch = priceMatch;
     }
 
+    public ModifyOrderRequest modifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+        return this;
+    }
+
+    /**
+     * User-defined modification identifier, returned as-is in the response. Optional; not validated
+     * for uniqueness.
+     *
+     * @return modifyId
+     */
+    @jakarta.annotation.Nullable
+    public Long getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(@jakarta.annotation.Nullable Long modifyId) {
+        this.modifyId = modifyId;
+    }
+
     public ModifyOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
     }
 
     /**
-     * Get recvWindow
+     * Recv Window.
      *
      * @return recvWindow
      */
@@ -294,6 +320,7 @@ public class ModifyOrderRequest extends BaseDTO {
                 && Objects.equals(this.quantity, modifyOrderRequest.quantity)
                 && Objects.equals(this.price, modifyOrderRequest.price)
                 && Objects.equals(this.priceMatch, modifyOrderRequest.priceMatch)
+                && Objects.equals(this.modifyId, modifyOrderRequest.modifyId)
                 && Objects.equals(this.recvWindow, modifyOrderRequest.recvWindow);
     }
 
@@ -308,6 +335,7 @@ public class ModifyOrderRequest extends BaseDTO {
                 quantity,
                 price,
                 priceMatch,
+                modifyId,
                 recvWindow);
     }
 
@@ -323,6 +351,7 @@ public class ModifyOrderRequest extends BaseDTO {
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -372,6 +401,11 @@ public class ModifyOrderRequest extends BaseDTO {
             String priceMatchValueAsString = priceMatchValue.toString();
             valMap.put("priceMatch", priceMatchValueAsString);
         }
+        Long modifyIdValue = getModifyId();
+        if (modifyIdValue != null) {
+            String modifyIdValueAsString = modifyIdValue.toString();
+            valMap.put("modifyId", modifyIdValueAsString);
+        }
         Long recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             String recvWindowValueAsString = recvWindowValue.toString();
@@ -420,6 +454,10 @@ public class ModifyOrderRequest extends BaseDTO {
         if (priceMatchValue != null) {
             valMap.put("priceMatch", priceMatchValue);
         }
+        Object modifyIdValue = getModifyId();
+        if (modifyIdValue != null) {
+            valMap.put("modifyId", modifyIdValue);
+        }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             valMap.put("recvWindow", recvWindowValue);
@@ -458,6 +496,7 @@ public class ModifyOrderRequest extends BaseDTO {
         openapiFields.add("quantity");
         openapiFields.add("price");
         openapiFields.add("priceMatch");
+        openapiFields.add("modifyId");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)

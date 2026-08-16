@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryBorrowRepayRecordsInMarginAccountResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     public static final String SERIALIZED_NAME_TYPE = "type";
 
@@ -99,7 +99,8 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get type
+     * AUTO,MANUAL for Cross Margin Borrow; MANUAL，AUTO，BNB_AUTO_REPAY，POINT_AUTO_REPAY for Cross
+     * Margin Repay; AUTO，MANUAL for Isolated Margin Borrow/Repay;
      *
      * @return type
      */
@@ -119,7 +120,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get isolatedSymbol
+     * isolated symbol, will not be returned for crossed margin
      *
      * @return isolatedSymbol
      */
@@ -139,7 +140,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get amount
+     * Total amount borrowed/repaid
      *
      * @return amount
      */
@@ -159,7 +160,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -179,7 +180,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get interest
+     * Interest repaid
      *
      * @return interest
      */
@@ -199,7 +200,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get principal
+     * Principal repaid
      *
      * @return principal
      */
@@ -219,7 +220,8 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get status
+     * one of PENDING (pending execution), CONFIRMED (successfully execution), FAILED (execution
+     * failed, nothing happened to your account);
      *
      * @return status
      */
@@ -239,7 +241,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get timestamp
+     * timestamp.
      *
      * @return timestamp
      */
@@ -259,7 +261,7 @@ public class QueryBorrowRepayRecordsInMarginAccountResponseRowsInner {
     }
 
     /**
-     * Get txId
+     * tx Id.
      *
      * @return txId
      */

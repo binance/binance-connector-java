@@ -22,8 +22,22 @@
 |**side** | **String** |  |  [optional] |
 |**workingTime** | **Long** |  |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
-|**stopPrice** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |
+|**icebergQty** | **String** | Appears only if the parameter icebergQty was sent in the request. |  [optional] |
+|**preventedMatchId** | **Long** | Appears only if the order expired due to STP. |  [optional] |
+|**preventedQuantity** | **String** | Order quantity that expired due to STP. |  [optional] |
+|**stopPrice** | **String** | Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders. |  [optional] |
+|**strategyId** | **Long** | Appears only if the strategyId parameter was provided upon order placement. |  [optional] |
+|**strategyType** | **Long** | Appears only if the strategyType parameter was provided upon order placement. |  [optional] |
+|**trailingDelta** | **Long** | Delta price change required before order activation. |  [optional] |
+|**trailingTime** | **Long** | Time when the trailing order is now active and tracking price changes. |  [optional] |
+|**usedSor** | **Boolean** | Field that determines whether order used SOR. |  [optional] |
+|**workingFloor** | **String** | Determines whether the order is being filled by the SOR or by the order book. |  [optional] |
+|**pegPriceType** | **String** | Price peg type. Only for pegged orders. |  [optional] |
+|**pegOffsetType** | **String** | Price peg offset type. Only for pegged orders, if requested. |  [optional] |
+|**pegOffsetValue** | **Long** | Price peg offset value. Only for pegged orders, if requested. |  [optional] |
+|**peggedPrice** | **String** | Current price order is pegged at. Only for pegged orders, once determined. |  [optional] |
+|**expiryReason** | **String** | Cause of the order&#39;s expiration. Appears when an order has expired. |  [optional] |
 
 
 

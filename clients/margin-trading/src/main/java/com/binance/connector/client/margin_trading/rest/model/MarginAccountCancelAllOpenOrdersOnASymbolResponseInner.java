@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** MarginAccountCancelAllOpenOrdersOnASymbolResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -185,7 +185,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -205,7 +205,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get isIsolated
+     * if isolated margin
      *
      * @return isIsolated
      */
@@ -225,7 +225,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get origClientOrderId
+     * orig Client Order Id.
      *
      * @return origClientOrderId
      */
@@ -245,7 +245,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -265,7 +265,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderListId
+     * order List Id.
      *
      * @return orderListId
      */
@@ -285,7 +285,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -305,7 +305,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -325,7 +325,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -345,7 +345,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -365,7 +365,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -385,7 +385,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -405,7 +405,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -425,7 +425,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -445,7 +445,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -465,7 +465,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */
@@ -486,7 +486,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get contingencyType
+     * contingency Type.
      *
      * @return contingencyType
      */
@@ -506,7 +506,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listStatusType
+     * list Status Type.
      *
      * @return listStatusType
      */
@@ -526,7 +526,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listOrderStatus
+     * list Order Status.
      *
      * @return listOrderStatus
      */
@@ -546,7 +546,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get listClientOrderId
+     * list Client Order Id.
      *
      * @return listClientOrderId
      */
@@ -566,7 +566,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get transactionTime
+     * transaction Time.
      *
      * @return transactionTime
      */
@@ -597,7 +597,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orders
+     * orders list.
      *
      * @return orders
      */
@@ -636,7 +636,7 @@ public class MarginAccountCancelAllOpenOrdersOnASymbolResponseInner {
     }
 
     /**
-     * Get orderReports
+     * order Reports list.
      *
      * @return orderReports
      */

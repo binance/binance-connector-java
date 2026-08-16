@@ -13,9 +13,9 @@ All URIs are relative to *https://api.binance.com*
 | [**getOnChainYieldsLockedSubscriptionRecord**](OnChainYieldsApi.md#getOnChainYieldsLockedSubscriptionRecord) | **GET** /sapi/v1/onchain-yields/locked/history/subscriptionRecord | Get On-chain Yields Locked Subscription Record (USER_DATA) |
 | [**onChainYieldsAccount**](OnChainYieldsApi.md#onChainYieldsAccount) | **GET** /sapi/v1/onchain-yields/account | On-chain Yields Account (USER_DATA) |
 | [**redeemOnChainYieldsLockedProduct**](OnChainYieldsApi.md#redeemOnChainYieldsLockedProduct) | **POST** /sapi/v1/onchain-yields/locked/redeem | Redeem On-chain Yields Locked Product (TRADE) |
-| [**setOnChainYieldsLockedAutoSubscribe**](OnChainYieldsApi.md#setOnChainYieldsLockedAutoSubscribe) | **POST** /sapi/v1/onchain-yields/locked/setAutoSubscribe | Set On-chain Yields Locked Auto Subscribe(USER_DATA) |
-| [**setOnChainYieldsLockedProductRedeemOption**](OnChainYieldsApi.md#setOnChainYieldsLockedProductRedeemOption) | **POST** /sapi/v1/onchain-yields/locked/setRedeemOption | Set On-chain Yields Locked Product Redeem Option(USER_DATA) |
-| [**subscribeOnChainYieldsLockedProduct**](OnChainYieldsApi.md#subscribeOnChainYieldsLockedProduct) | **POST** /sapi/v1/onchain-yields/locked/subscribe | Subscribe On-chain Yields Locked Product(TRADE) |
+| [**setOnChainYieldsLockedAutoSubscribe**](OnChainYieldsApi.md#setOnChainYieldsLockedAutoSubscribe) | **POST** /sapi/v1/onchain-yields/locked/setAutoSubscribe | Set On-chain Yields Locked Auto Subscribe (USER_DATA) |
+| [**setOnChainYieldsLockedProductRedeemOption**](OnChainYieldsApi.md#setOnChainYieldsLockedProductRedeemOption) | **POST** /sapi/v1/onchain-yields/locked/setRedeemOption | Set On-chain Yields Locked Product Redeem Option (USER_DATA) |
+| [**subscribeOnChainYieldsLockedProduct**](OnChainYieldsApi.md#subscribeOnChainYieldsLockedProduct) | **POST** /sapi/v1/onchain-yields/locked/subscribe | Subscribe On-chain Yields Locked Product (TRADE) |
 
 
 <a id="getOnChainYieldsLockedPersonalLeftQuota"></a>
@@ -24,7 +24,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get On-chain Yields Locked Personal Left Quota (USER_DATA)
 
-Get On-chain Yields Locked Personal Left Quota  Weight: 50
+Get On-chain Yields Locked Personal Left Quota  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -41,8 +41,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String projectId = "projectId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String projectId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedPersonalLeftQuotaResponse result = apiInstance.getOnChainYieldsLockedPersonalLeftQuota(projectId, recvWindow);
       System.out.println(result);
@@ -62,7 +62,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -88,7 +88,7 @@ No authorization required
 
 Get On-chain Yields Locked Product List (USER_DATA)
 
-Get available On-chain Yields Locked product list  * Get available On-chain Yields Locked product list  Weight: 50
+Get available On-chain Yields Locked product list  Weight(IP): 50  Security Type: USER_DATA  Notes: - Get available On-chain Yields Locked product list
 
 ### Example
 ```java
@@ -105,10 +105,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String asset = "SOL"; // String | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedProductListResponse result = apiInstance.getOnChainYieldsLockedProductList(asset, current, size, recvWindow);
       System.out.println(result);
@@ -128,9 +128,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -156,7 +156,7 @@ No authorization required
 
 Get On-chain Yields Locked Product Position (USER_DATA)
 
-Get On-chain Yields Locked Product Position  Weight: 50
+Get On-chain Yields Locked Product Position  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -173,12 +173,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    String positionId = "positionId_example"; // String | 
-    String projectId = "projectId_example"; // String | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String asset = "BTC"; // String | 
+    String positionId = "1"; // String | 
+    String projectId = "1"; // String | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | Number of results per page.
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedProductPositionResponse result = apiInstance.getOnChainYieldsLockedProductPosition(asset, positionId, projectId, current, size, recvWindow);
       System.out.println(result);
@@ -200,9 +200,9 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **positionId** | **String**|  | [optional] |
 | **projectId** | **String**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**| Number of results per page. | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -228,7 +228,7 @@ No authorization required
 
 Get On-chain Yields Locked Redemption Record (USER_DATA)
 
-Get On-chain Yields Locked Redemption Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 50
+Get On-chain Yields Locked Redemption Record  Weight(IP): 50  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -245,14 +245,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String positionId = "positionId_example"; // String | 
-    String redeemId = "redeemId_example"; // String | 
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String positionId = "1"; // String | 
+    String redeemId = "1"; // String | 
+    String asset = "BTC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedRedemptionRecordResponse result = apiInstance.getOnChainYieldsLockedRedemptionRecord(positionId, redeemId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -276,9 +276,9 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -304,7 +304,7 @@ No authorization required
 
 Get On-chain Yields Locked Rewards History (USER_DATA)
 
-Get On-chain Yields Locked Rewards History  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 50
+Get On-chain Yields Locked Rewards History  Weight(IP): 50  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -321,13 +321,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String positionId = "positionId_example"; // String | 
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String positionId = "1"; // String | 
+    String asset = "BTC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedRewardsHistoryResponse result = apiInstance.getOnChainYieldsLockedRewardsHistory(positionId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -350,9 +350,9 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -378,7 +378,7 @@ No authorization required
 
 Get On-chain Yields Locked Subscription Preview (USER_DATA)
 
-Get On-chain Yields Locked Subscription Preview  Weight: 50
+Get On-chain Yields Locked Subscription Preview  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -395,10 +395,10 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String projectId = "projectId_example"; // String | 
-    Double amount = 3.4D; // Double | 
-    Boolean autoSubscribe = true; // Boolean | true or false, default true.
-    Long recvWindow = 56L; // Long | 
+    String projectId = "1"; // String | 
+    Double amount = 1.0D; // Double | 
+    Boolean autoSubscribe = true; // Boolean | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedSubscriptionPreviewResponse result = apiInstance.getOnChainYieldsLockedSubscriptionPreview(projectId, amount, autoSubscribe, recvWindow);
       System.out.println(result);
@@ -419,8 +419,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | **String**|  | |
 | **amount** | **Double**|  | |
-| **autoSubscribe** | **Boolean**| true or false, default true. | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **autoSubscribe** | **Boolean**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -446,7 +446,7 @@ No authorization required
 
 Get On-chain Yields Locked Subscription Record (USER_DATA)
 
-Get On-chain Yields Locked Subscription Record  * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. * If &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.  Weight: 50
+Get On-chain Yields Locked Subscription Record  Weight(IP): 50  Security Type: USER_DATA  Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 3 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60;   are both not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not   sent, the next 30 days&#39; data beginning from &#x60;startTime&#x60; will be returned. - If &#x60;endTime&#x60; is sent but   &#x60;startTime&#x60; is not sent, the 30 days&#39; data before &#x60;endTime&#x60; will be returned.
 
 ### Example
 ```java
@@ -463,14 +463,14 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    String purchaseId = "purchaseId_example"; // String | 
-    String clientId = "clientId_example"; // String | 
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10, Max:100
-    Long recvWindow = 56L; // Long | 
+    String purchaseId = "1"; // String | 
+    String clientId = "1"; // String | 
+    String asset = "BTC"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Currently querying page
+    Long size = 10L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds.
     try {
       GetOnChainYieldsLockedSubscriptionRecordResponse result = apiInstance.getOnChainYieldsLockedSubscriptionRecord(purchaseId, clientId, asset, startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -494,9 +494,9 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10, Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Currently querying page | [optional] |
+| **size** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds. | [optional] |
 
 ### Return type
 
@@ -522,7 +522,7 @@ No authorization required
 
 On-chain Yields Account (USER_DATA)
 
-On-chain Yields Account query  Weight: 50
+On-chain Yields Account query  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -539,7 +539,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     OnChainYieldsApi apiInstance = new OnChainYieldsApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than `60000`
     try {
       OnChainYieldsAccountResponse result = apiInstance.onChainYieldsAccount(recvWindow);
       System.out.println(result);
@@ -558,7 +558,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than &#x60;60000&#x60; | [optional] |
 
 ### Return type
 
@@ -584,7 +584,7 @@ No authorization required
 
 Redeem On-chain Yields Locked Product (TRADE)
 
-Redeem On-chain Yields Locked Product  * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.  Weight: 1/3s per account
+Redeem On-chain Yields Locked Product  Weight(IP): 200  Security Type: TRADE  Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
 
 ### Example
 ```java
@@ -644,9 +644,9 @@ No authorization required
 # **setOnChainYieldsLockedAutoSubscribe**
 > SetOnChainYieldsLockedAutoSubscribeResponse setOnChainYieldsLockedAutoSubscribe(setOnChainYieldsLockedAutoSubscribeRequest)
 
-Set On-chain Yields Locked Auto Subscribe(USER_DATA)
+Set On-chain Yields Locked Auto Subscribe (USER_DATA)
 
-Set On-chain Yield locked auto subscribe  Weight: 50
+Set On-chain Yield locked auto subscribe  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -706,9 +706,9 @@ No authorization required
 # **setOnChainYieldsLockedProductRedeemOption**
 > SetOnChainYieldsLockedProductRedeemOptionResponse setOnChainYieldsLockedProductRedeemOption(setOnChainYieldsLockedProductRedeemOptionRequest)
 
-Set On-chain Yields Locked Product Redeem Option(USER_DATA)
+Set On-chain Yields Locked Product Redeem Option (USER_DATA)
 
-Set On-chain Yields redeem option for Locked product  Weight: 50
+Set On-chain Yields redeem option for Locked product  Weight(IP): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -768,9 +768,9 @@ No authorization required
 # **subscribeOnChainYieldsLockedProduct**
 > SubscribeOnChainYieldsLockedProductResponse subscribeOnChainYieldsLockedProduct(subscribeOnChainYieldsLockedProductRequest)
 
-Subscribe On-chain Yields Locked Product(TRADE)
+Subscribe On-chain Yields Locked Product (TRADE)
 
-Subscribe On-chain Yields Locked Product  * You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.  Weight: 200
+Subscribe On-chain Yields Locked Product  Weight(IP): 200  Security Type: TRADE  Notes: - You need to open &#x60;Enable Spot &amp; Margin Trading&#x60; permission for the API Key which requests this endpoint.
 
 ### Example
 ```java

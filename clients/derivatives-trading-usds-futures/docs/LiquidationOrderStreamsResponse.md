@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
+|**eLowerCase** | **String** | Event Type |  [optional] |
+|**E** | **Long** | Event Time |  [optional] |
 |**oLowerCase** | [**AllMarketLiquidationOrderStreamsResponseO**](AllMarketLiquidationOrderStreamsResponseO.md) |  |  [optional] |
 
 

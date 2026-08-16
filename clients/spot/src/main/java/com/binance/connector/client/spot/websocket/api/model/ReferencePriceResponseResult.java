@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** ReferencePriceResponseResult */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ReferencePriceResponseResult extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -55,7 +55,7 @@ public class ReferencePriceResponseResult extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_TIMESTAMP)
     @jakarta.annotation.Nullable
-    private Long timestamp;
+    private String timestamp;
 
     public static final String SERIALIZED_NAME_CODE = "code";
 
@@ -110,22 +110,22 @@ public class ReferencePriceResponseResult extends BaseDTO {
         this.referencePrice = referencePrice;
     }
 
-    public ReferencePriceResponseResult timestamp(@jakarta.annotation.Nullable Long timestamp) {
+    public ReferencePriceResponseResult timestamp(@jakarta.annotation.Nullable String timestamp) {
         this.timestamp = timestamp;
         return this;
     }
 
     /**
-     * Get timestamp
+     * Timestamp when the reference price was valid
      *
      * @return timestamp
      */
     @jakarta.annotation.Nullable
     public String getTimestamp() {
-        return String.valueOf(timestamp);
+        return timestamp;
     }
 
-    public void setTimestamp(@jakarta.annotation.Nullable Long timestamp) {
+    public void setTimestamp(@jakarta.annotation.Nullable String timestamp) {
         this.timestamp = timestamp;
     }
 

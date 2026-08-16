@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.0 - 2026-07-29
+
+### Added (1)
+
+- `getVIPLoanRepaymentHistory()` (`GET /sapi/v1/loan/vip/repay/history`)
+
 ## 3.0.1 - 2026-04-30
 
 - Update `binance/common` module to version `2.4.2`.

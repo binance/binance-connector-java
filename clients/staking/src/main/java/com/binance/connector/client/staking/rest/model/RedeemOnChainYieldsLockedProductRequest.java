@@ -1,6 +1,6 @@
 /*
- * Binance Staking REST API
- * OpenAPI Specification for the Binance Staking REST API
+ * Staking REST API
+ * Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** RedeemOnChainYieldsLockedProductRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RedeemOnChainYieldsLockedProductRequest {
     public static final String SERIALIZED_NAME_POSITION_ID = "positionId";
 
@@ -63,7 +63,7 @@ public class RedeemOnChainYieldsLockedProductRequest {
     }
 
     /**
-     * Get positionId
+     * Locked product position ID
      *
      * @return positionId
      */
@@ -104,11 +104,12 @@ public class RedeemOnChainYieldsLockedProductRequest {
     }
 
     /**
-     * Get recvWindow
+     * Request validity window in milliseconds. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

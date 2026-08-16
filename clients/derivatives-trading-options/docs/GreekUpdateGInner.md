@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**uLowerCase** | **String** |  |  [optional] |
-|**dLowerCase** | **String** |  |  [optional] |
-|**gLowerCase** | **String** |  |  [optional] |
-|**tLowerCase** | **String** |  |  [optional] |
-|**vLowerCase** | **String** |  |  [optional] |
+|**uLowerCase** | **String** | Underlying |  [optional] |
+|**dLowerCase** | **String** | Delta |  [optional] |
+|**gLowerCase** | **String** | Gamma |  [optional] |
+|**tLowerCase** | **String** | Theta |  [optional] |
+|**vLowerCase** | **String** | Vega |  [optional] |
 
 
 

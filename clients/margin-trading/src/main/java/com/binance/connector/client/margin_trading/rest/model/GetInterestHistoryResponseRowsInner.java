@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** GetInterestHistoryResponseRowsInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetInterestHistoryResponseRowsInner {
     public static final String SERIALIZED_NAME_TX_ID = "txId";
 
@@ -98,7 +98,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get txId
+     * tx Id.
      *
      * @return txId
      */
@@ -118,7 +118,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get interestAccuredTime
+     * interest Accured Time.
      *
      * @return interestAccuredTime
      */
@@ -137,7 +137,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get asset
+     * asset.
      *
      * @return asset
      */
@@ -157,7 +157,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get rawAsset
+     * will not be returned for isolated margin
      *
      * @return rawAsset
      */
@@ -177,7 +177,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get principal
+     * principal.
      *
      * @return principal
      */
@@ -197,7 +197,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get interest
+     * interest.
      *
      * @return interest
      */
@@ -217,7 +217,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get interestRate
+     * interest Rate.
      *
      * @return interestRate
      */
@@ -236,7 +236,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -256,7 +256,7 @@ public class GetInterestHistoryResponseRowsInner {
     }
 
     /**
-     * Get isolatedSymbol
+     * isolated symbol, will not be returned for crossed margin
      *
      * @return isolatedSymbol
      */

@@ -36,7 +36,7 @@ import org.mockito.Mockito;
 /** API tests for PayApi */
 public class PayApiTest {
 
-    private PayApi api;
+    private PayRestApi api;
     private ApiClient apiClientSpy;
     private SignatureGenerator signatureGeneratorSpy;
 
@@ -72,7 +72,7 @@ public class PayApiTest {
         Mockito.doReturn(new ApiResponse<>(200, null)).when(apiClientSpy).execute(Mockito.any());
         Mockito.doReturn("1736393892000").when(apiClientSpy).buildTimestamp();
 
-        api = new PayApi(apiClientSpy);
+        api = new PayRestApi(apiClientSpy);
     }
 
     /**

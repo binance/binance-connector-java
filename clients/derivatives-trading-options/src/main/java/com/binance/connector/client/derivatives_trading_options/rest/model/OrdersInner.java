@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -35,12 +36,12 @@ import org.hibernate.validator.constraints.*;
 /** OrdersInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrdersInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private String symbol;
 
     /** Gets or Sets side */
@@ -97,7 +98,7 @@ public class OrdersInner {
     public static final String SERIALIZED_NAME_SIDE = "side";
 
     @SerializedName(SERIALIZED_NAME_SIDE)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private SideEnum side;
 
     /** Gets or Sets type */
@@ -152,20 +153,20 @@ public class OrdersInner {
     public static final String SERIALIZED_NAME_TYPE = "type";
 
     @SerializedName(SERIALIZED_NAME_TYPE)
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
     private TypeEnum type;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
     @SerializedName(SERIALIZED_NAME_QUANTITY)
-    @jakarta.annotation.Nullable
-    private String quantity;
+    @jakarta.annotation.Nonnull
+    private Double quantity;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
-    private String price;
+    private Double price;
 
     /** Gets or Sets timeInForce */
     @JsonAdapter(TimeInForceEnum.Adapter.class)
@@ -226,19 +227,19 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForceEnum timeInForce;
+    private TimeInForceEnum timeInForce = TimeInForceEnum.GTC;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly;
+    private Boolean reduceOnly = false;
 
     public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
 
     @SerializedName(SERIALIZED_NAME_POST_ONLY)
     @jakarta.annotation.Nullable
-    private String postOnly;
+    private Boolean postOnly = false;
 
     /** Gets or Sets newOrderRespType */
     @JsonAdapter(NewOrderRespTypeEnum.Adapter.class)
@@ -295,7 +296,7 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespTypeEnum newOrderRespType;
+    private NewOrderRespTypeEnum newOrderRespType = NewOrderRespTypeEnum.ACK;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -307,16 +308,19 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_IS_MMP)
     @jakarta.annotation.Nullable
-    private String isMmp;
+    private Boolean isMmp;
 
-    /** Gets or Sets selfTradePreventionMode */
+    /**
+     * EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire maker order when STP
+     * triggers/ EXPIRE_BOTH:expire both orders when STP triggers; Default EXPIRE_MAKER
+     */
     @JsonAdapter(SelfTradePreventionModeEnum.Adapter.class)
     public enum SelfTradePreventionModeEnum {
         EXPIRE_TAKER("EXPIRE_TAKER"),
 
-        EXPIRE_BOTH("EXPIRE_BOTH"),
+        EXPIRE_MAKER("EXPIRE_MAKER"),
 
-        EXPIRE_MAKER("EXPIRE_MAKER");
+        EXPIRE_BOTH("EXPIRE_BOTH");
 
         private String value;
 
@@ -369,11 +373,12 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionModeEnum selfTradePreventionMode;
+    private SelfTradePreventionModeEnum selfTradePreventionMode =
+            SelfTradePreventionModeEnum.EXPIRE_MAKER;
 
     public OrdersInner() {}
 
-    public OrdersInner symbol(@jakarta.annotation.Nullable String symbol) {
+    public OrdersInner symbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
         return this;
     }
@@ -383,16 +388,17 @@ public class OrdersInner {
      *
      * @return symbol
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(@jakarta.annotation.Nullable String symbol) {
+    public void setSymbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
     }
 
-    public OrdersInner side(@jakarta.annotation.Nullable SideEnum side) {
+    public OrdersInner side(@jakarta.annotation.Nonnull SideEnum side) {
         this.side = side;
         return this;
     }
@@ -402,16 +408,17 @@ public class OrdersInner {
      *
      * @return side
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     public SideEnum getSide() {
         return side;
     }
 
-    public void setSide(@jakarta.annotation.Nullable SideEnum side) {
+    public void setSide(@jakarta.annotation.Nonnull SideEnum side) {
         this.side = side;
     }
 
-    public OrdersInner type(@jakarta.annotation.Nullable TypeEnum type) {
+    public OrdersInner type(@jakarta.annotation.Nonnull TypeEnum type) {
         this.type = type;
         return this;
     }
@@ -421,50 +428,54 @@ public class OrdersInner {
      *
      * @return type
      */
-    @jakarta.annotation.Nullable
+    @jakarta.annotation.Nonnull
+    @NotNull
     public TypeEnum getType() {
         return type;
     }
 
-    public void setType(@jakarta.annotation.Nullable TypeEnum type) {
+    public void setType(@jakarta.annotation.Nonnull TypeEnum type) {
         this.type = type;
     }
 
-    public OrdersInner quantity(@jakarta.annotation.Nullable String quantity) {
+    public OrdersInner quantity(@jakarta.annotation.Nonnull Double quantity) {
         this.quantity = quantity;
         return this;
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
-    @jakarta.annotation.Nullable
-    public String getQuantity() {
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(@jakarta.annotation.Nullable String quantity) {
+    public void setQuantity(@jakarta.annotation.Nonnull Double quantity) {
         this.quantity = quantity;
     }
 
-    public OrdersInner price(@jakarta.annotation.Nullable String price) {
+    public OrdersInner price(@jakarta.annotation.Nullable Double price) {
         this.price = price;
         return this;
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
     @jakarta.annotation.Nullable
-    public String getPrice() {
+    @Valid
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(@jakarta.annotation.Nullable String price) {
+    public void setPrice(@jakarta.annotation.Nullable Double price) {
         this.price = price;
     }
 
@@ -487,7 +498,7 @@ public class OrdersInner {
         this.timeInForce = timeInForce;
     }
 
-    public OrdersInner reduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public OrdersInner reduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
         return this;
     }
@@ -498,15 +509,15 @@ public class OrdersInner {
      * @return reduceOnly
      */
     @jakarta.annotation.Nullable
-    public String getReduceOnly() {
+    public Boolean getReduceOnly() {
         return reduceOnly;
     }
 
-    public void setReduceOnly(@jakarta.annotation.Nullable String reduceOnly) {
+    public void setReduceOnly(@jakarta.annotation.Nullable Boolean reduceOnly) {
         this.reduceOnly = reduceOnly;
     }
 
-    public OrdersInner postOnly(@jakarta.annotation.Nullable String postOnly) {
+    public OrdersInner postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
         this.postOnly = postOnly;
         return this;
     }
@@ -517,11 +528,11 @@ public class OrdersInner {
      * @return postOnly
      */
     @jakarta.annotation.Nullable
-    public String getPostOnly() {
+    public Boolean getPostOnly() {
         return postOnly;
     }
 
-    public void setPostOnly(@jakarta.annotation.Nullable String postOnly) {
+    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
         this.postOnly = postOnly;
     }
 
@@ -552,7 +563,7 @@ public class OrdersInner {
     }
 
     /**
-     * Get clientOrderId
+     * User-defined order ID cannot be repeated in pending orders
      *
      * @return clientOrderId
      */
@@ -565,22 +576,22 @@ public class OrdersInner {
         this.clientOrderId = clientOrderId;
     }
 
-    public OrdersInner isMmp(@jakarta.annotation.Nullable String isMmp) {
+    public OrdersInner isMmp(@jakarta.annotation.Nullable Boolean isMmp) {
         this.isMmp = isMmp;
         return this;
     }
 
     /**
-     * Get isMmp
+     * is market maker protection order
      *
      * @return isMmp
      */
     @jakarta.annotation.Nullable
-    public String getIsMmp() {
+    public Boolean getIsMmp() {
         return isMmp;
     }
 
-    public void setIsMmp(@jakarta.annotation.Nullable String isMmp) {
+    public void setIsMmp(@jakarta.annotation.Nullable Boolean isMmp) {
         this.isMmp = isMmp;
     }
 
@@ -591,7 +602,8 @@ public class OrdersInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire maker order when STP
+     * triggers/ EXPIRE_BOTH:expire both orders when STP triggers; Default EXPIRE_MAKER
      *
      * @return selfTradePreventionMode
      */
@@ -764,6 +776,10 @@ public class OrdersInner {
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("symbol");
+        openapiRequiredFields.add("side");
+        openapiRequiredFields.add("type");
+        openapiRequiredFields.add("quantity");
     }
 
     /**
@@ -783,55 +799,42 @@ public class OrdersInner {
                                 OrdersInner.openapiRequiredFields.toString()));
             }
         }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : OrdersInner.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field `%s` is not found in the JSON string: %s",
+                                requiredField, jsonElement.toString()));
+            }
+        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("symbol") != null && !jsonObj.get("symbol").isJsonNull())
-                && !jsonObj.get("symbol").isJsonPrimitive()) {
+        if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `symbol` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("symbol").toString()));
         }
-        if ((jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull())
-                && !jsonObj.get("side").isJsonPrimitive()) {
+        if (!jsonObj.get("side").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `side` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("side").toString()));
         }
-        // validate the optional field `side`
-        if (jsonObj.get("side") != null && !jsonObj.get("side").isJsonNull()) {
-            SideEnum.validateJsonElement(jsonObj.get("side"));
-        }
-        if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull())
-                && !jsonObj.get("type").isJsonPrimitive()) {
+        // validate the required field `side`
+        SideEnum.validateJsonElement(jsonObj.get("side"));
+        if (!jsonObj.get("type").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
                             "Expected the field `type` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("type").toString()));
         }
-        // validate the optional field `type`
-        if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-            TypeEnum.validateJsonElement(jsonObj.get("type"));
-        }
-        if ((jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull())
-                && !jsonObj.get("quantity").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `quantity` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("quantity").toString()));
-        }
-        if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull())
-                && !jsonObj.get("price").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `price` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("price").toString()));
-        }
+        // validate the required field `type`
+        TypeEnum.validateJsonElement(jsonObj.get("type"));
         if ((jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull())
                 && !jsonObj.get("timeInForce").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -843,22 +846,6 @@ public class OrdersInner {
         // validate the optional field `timeInForce`
         if (jsonObj.get("timeInForce") != null && !jsonObj.get("timeInForce").isJsonNull()) {
             TimeInForceEnum.validateJsonElement(jsonObj.get("timeInForce"));
-        }
-        if ((jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull())
-                && !jsonObj.get("reduceOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `reduceOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("reduceOnly").toString()));
-        }
-        if ((jsonObj.get("postOnly") != null && !jsonObj.get("postOnly").isJsonNull())
-                && !jsonObj.get("postOnly").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `postOnly` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("postOnly").toString()));
         }
         if ((jsonObj.get("newOrderRespType") != null
                         && !jsonObj.get("newOrderRespType").isJsonNull())
@@ -881,14 +868,6 @@ public class OrdersInner {
                             "Expected the field `clientOrderId` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("clientOrderId").toString()));
-        }
-        if ((jsonObj.get("isMmp") != null && !jsonObj.get("isMmp").isJsonNull())
-                && !jsonObj.get("isMmp").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `isMmp` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("isMmp").toString()));
         }
         if ((jsonObj.get("selfTradePreventionMode") != null
                         && !jsonObj.get("selfTradePreventionMode").isJsonNull())

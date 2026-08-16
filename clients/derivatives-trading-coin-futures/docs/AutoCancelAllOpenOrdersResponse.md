@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**countdownTime** | **String** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**countdownTime** | **String** | Countdown cancellation time in milliseconds. |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** ExchangeInformationResponseRateLimitsInner */
+/** API */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ExchangeInformationResponseRateLimitsInner {
     public static final String SERIALIZED_NAME_INTERVAL = "interval";
 
@@ -69,7 +69,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get interval
+     * Interval.
      *
      * @return interval
      */
@@ -89,7 +89,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get intervalNum
+     * Interval Num.
      *
      * @return intervalNum
      */
@@ -109,7 +109,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get limit
+     * Limit.
      *
      * @return limit
      */
@@ -129,7 +129,7 @@ public class ExchangeInformationResponseRateLimitsInner {
     }
 
     /**
-     * Get rateLimitType
+     * Rate Limit Type.
      *
      * @return rateLimitType
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -25,12 +25,15 @@ import com.binance.connector.client.common.sign.HmacSignatureGenerator;
 import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.margin_trading.rest.model.GetFutureHourlyInterestRateResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetInterestHistoryResponse;
+import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayRequest;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayResponse;
+import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryBorrowRepayRecordsInMarginAccountResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginInterestRateHistoryResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxBorrowResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -84,14 +87,15 @@ public class BorrowRepayApiTest {
     /**
      * Get future hourly interest rate (USER_DATA)
      *
-     * <p>Get future hourly interest rate Weight: 100
+     * <p>Get future hourly interest rate Weight(IP): 100 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getFutureHourlyInterestRateTest() throws ApiException, CryptoException {
-        String assets = "";
-        String isIsolated = "false";
+    public void getFutureHourlyInterestRateTest()
+            throws ApiException, CryptoException, IOException {
+        String assets = "BTC,ETH";
+        IsIsolated isIsolated = IsIsolated.TRUE;
         ApiResponse<GetFutureHourlyInterestRateResponse> response =
                 api.getFutureHourlyInterestRate(assets, isIsolated);
 
@@ -105,38 +109,35 @@ public class BorrowRepayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("assets=BTC%2CETH&isIsolated=TRUE&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "assets=&isIsolated=false&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "2387652ad7bac3e1193d741e641740cf64adb884868d4a1e300d99a49a15ea31",
+                "ce42d7d2f9cda5c0fd781420f7e8d4e60ec1c56b3003888573449623341962a7",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/sapi/v1/margin/next-hourly-interest-rate", actualRequest.url().encodedPath());
+        assertEquals("/sapi/v1/margin/next-hourly-interest-rate", actualRequest.url().encodedPath());
     }
 
     /**
      * Get Interest History (USER_DATA)
      *
-     * <p>Get Interest History * Response in descending order * If isolatedSymbol is not sent,
-     * crossed margin data will be returned * The max interval between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; is 30 days. It is a MUST to ensure data correctness. * If
-     * &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent, return records of the last 7 days by
-     * default. * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, return
-     * records of [max(&#x60;startTime&#x60;, now-30d), now]. * If &#x60;startTime&#x60; is not sent
-     * and &#x60;endTime&#x60; is sent, return records of [&#x60;endTime&#x60;-7,
-     * &#x60;endTime&#x60;] * &#x60;type&#x60; in response has 4 enums: * &#x60;PERIODIC&#x60;
-     * interest charged per hour * &#x60;ON_BORROW&#x60; first interest charged on borrow *
-     * &#x60;PERIODIC_CONVERTED&#x60; interest charged per hour converted into BNB *
-     * &#x60;ON_BORROW_CONVERTED&#x60; first interest charged on borrow converted into BNB *
-     * &#x60;PORTFOLIO&#x60; interest charged daily on the portfolio margin negative balance Weight:
-     * 1(IP)
+     * <p>Get Interest History Weight(IP): 1 Security Type: USER_DATA Notes: - Response in
+     * descending order - If isolatedSymbol is not sent, crossed margin data will be returned - The
+     * max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. It is a MUST
+     * to ensure data correctness. - If &#x60;startTime&#x60;and &#x60;endTime&#x60; not sent,
+     * return records of the last 7 days by default. - If &#x60;startTime&#x60; is sent and
+     * &#x60;endTime&#x60; is not sent, return records of [max(&#x60;startTime&#x60;, now-30d),
+     * now]. - If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, return records
+     * of [&#x60;endTime&#x60;-7, &#x60;endTime&#x60;] - &#x60;type&#x60; in response has 4 enums: -
+     * &#x60;PERIODIC&#x60; interest charged per hour - &#x60;ON_BORROW&#x60; first interest charged
+     * on borrow - &#x60;PERIODIC_CONVERTED&#x60; interest charged per hour converted into BNB -
+     * &#x60;ON_BORROW_CONVERTED&#x60; first interest charged on borrow converted into BNB -
+     * &#x60;PORTFOLIO&#x60; interest charged daily on the portfolio margin negative balance
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getInterestHistoryTest() throws ApiException, CryptoException {
-        String asset = "";
-        String isolatedSymbol = "";
+    public void getInterestHistoryTest() throws ApiException, CryptoException, IOException {
+        String asset = "USDT";
+        String isolatedSymbol = "BNBUSDT";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -156,32 +157,27 @@ public class BorrowRepayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=USDT&isolatedSymbol=BNBUSDT&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&isolatedSymbol=&startTime=1623319461670&endTime=1641782889000&current=1&size=10&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "dbde03d1c3fdbcc6436ec6818d4e920ff1602671280b0d98f33673c254b22efd",
-                actualRequest.url().queryParameter("signature"));
+                "a9713be993d941a0f191adc129144cf2fcc0a379d668d8db7c877ffcf2fb6c2b", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/interestHistory", actualRequest.url().encodedPath());
     }
 
     /**
-     * Margin account borrow/repay(MARGIN)
+     * Margin account borrow/repay (USER_DATA)
      *
-     * <p>Margin account borrow/repay(MARGIN) Weight: 1500
+     * <p>Margin account borrow/repay Weight(UID): 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void marginAccountBorrowRepayTest() throws ApiException, CryptoException {
+    public void marginAccountBorrowRepayTest() throws ApiException, CryptoException, IOException {
         MarginAccountBorrowRepayRequest marginAccountBorrowRepayRequest =
                 new MarginAccountBorrowRepayRequest();
-
-        marginAccountBorrowRepayRequest.asset("");
-        marginAccountBorrowRepayRequest.isIsolated("false");
-        marginAccountBorrowRepayRequest.symbol("");
-        marginAccountBorrowRepayRequest.amount("");
-        marginAccountBorrowRepayRequest.type("");
+        marginAccountBorrowRepayRequest.asset("USDT");
+        marginAccountBorrowRepayRequest.isIsolated(IsIsolated.TRUE);
+        marginAccountBorrowRepayRequest.amount("1.0");
+        marginAccountBorrowRepayRequest.type(OrderType.ROLL_IN);
 
         ApiResponse<MarginAccountBorrowRepayResponse> response =
                 api.marginAccountBorrowRepay(marginAccountBorrowRepayRequest);
@@ -196,32 +192,32 @@ public class BorrowRepayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("timestamp=1736393892000amount=1.0&isIsolated=TRUE&asset=USDT&type=ROLL_IN", signInputCaptor.getValue());
         assertEquals(
-                "timestamp=1736393892000symbol=&amount=&isIsolated=false&asset=&type=",
-                signInputCaptor.getValue());
-        assertEquals(
-                "cf39a535a9ce053d58cc411f8ed47fa0998432f15bf01424a936f508b6134ec8",
+                "3fba8c816720664dd968ac8a7a255bdc1a4024e739d1ff5c906ddec56cc950f7",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/borrow-repay", actualRequest.url().encodedPath());
     }
 
     /**
-     * Query borrow/repay records in Margin account(USER_DATA)
+     * Query borrow/repay records in Margin account (USER_DATA)
      *
-     * <p>Query borrow/repay records in Margin account * &#x60;txId&#x60; or &#x60;startTime&#x60;
-     * must be sent. &#x60;txId&#x60; takes precedence. * If an asset is sent, data within 30 days
-     * before &#x60;endTime&#x60;; If an asset is not sent, data within 7 days before
-     * &#x60;endTime&#x60; * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the
-     * recent 7-day data will be returned. * &#x60;startTime&#x60; set as &#x60;endTime&#x60; -
-     * 7days by default, &#x60;endTime&#x60; set as current time by default Weight: 10(IP)
+     * <p>Query borrow/repay records in Margin account Weight(IP): 10 Security Type: USER_DATA
+     * Notes: - &#x60;txId&#x60; or &#x60;startTime&#x60; must be sent. &#x60;txId&#x60; takes
+     * precedence. - Response in descending order - If an asset is sent, data within 30 days before
+     * &#x60;endTime&#x60;; If an asset is not sent, data within 7 days before &#x60;endTime&#x60; -
+     * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the recent 7-day data will
+     * be returned. - &#x60;startTime&#x60; set as &#x60;endTime&#x60; - 7 days by default,
+     * &#x60;endTime&#x60; set as current time by default
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryBorrowRepayRecordsInMarginAccountTest() throws ApiException, CryptoException {
-        String type = "";
-        String asset = "";
-        String isolatedSymbol = "";
+    public void queryBorrowRepayRecordsInMarginAccountTest()
+            throws ApiException, CryptoException, IOException {
+        OrderType type = OrderType.ROLL_IN;
+        String asset = "BNB";
+        String isolatedSymbol = "BNBUSDT";
         Long txId = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -251,24 +247,26 @@ public class BorrowRepayApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "asset=&isolatedSymbol=&txId=1&startTime=1623319461670&endTime=1641782889000&current=1&size=10&type=&recvWindow=5000&timestamp=1736393892000",
+                "asset=BNB&isolatedSymbol=BNBUSDT&txId=1&startTime=1623319461670&endTime=1641782889000&current=1&size=10&type=ROLL_IN&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "412d39a43c198510d843f932bec86af52957fc98447679840459426d9f3547ce",
+                "d3860b61343432bef178bc57c332d8c23bf6a93190060be5114e5ae32d4a5c24",
                 actualRequest.url().queryParameter("signature"));
-        assertEquals("/sapi/v1/margin/borrow-repay", actualRequest.url().encodedPath());
+        assertEquals(
+                "/sapi/v1/margin/borrow-repay", actualRequest.url().encodedPath());
     }
 
     /**
      * Query Margin Interest Rate History (USER_DATA)
      *
-     * <p>Query Margin Interest Rate History Weight: 1(IP)
+     * <p>Query Margin Interest Rate History Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMarginInterestRateHistoryTest() throws ApiException, CryptoException {
-        String asset = "";
+    public void queryMarginInterestRateHistoryTest()
+            throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
         Long vipLevel = 1L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -286,11 +284,9 @@ public class BorrowRepayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
+        assertEquals("asset=BTC&vipLevel=1&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "asset=&vipLevel=1&startTime=1623319461670&endTime=1641782889000&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "6dd354c5666cefbda9607a5594913706b6681a6f388625f6781b39c2be2a858f",
+                "5dd2d2da84e45c1048b2e917120a0de1f10fa8471711a6eee7a0755679736ca0",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/interestRateHistory", actualRequest.url().encodedPath());
     }
@@ -298,16 +294,16 @@ public class BorrowRepayApiTest {
     /**
      * Query Max Borrow (USER_DATA)
      *
-     * <p>Query Max Borrow * If isolatedSymbol is not sent, crossed margin data will be sent. *
-     * &#x60;borrowLimit&#x60; is also available from
-     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee) Weight: 50(IP)
+     * <p>Query Max Borrow Weight(IP): 50 Security Type: USER_DATA Notes: - If isolatedSymbol is not
+     * sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60; is also available from
+     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void queryMaxBorrowTest() throws ApiException, CryptoException {
-        String asset = "";
-        String isolatedSymbol = "";
+    public void queryMaxBorrowTest() throws ApiException, CryptoException, IOException {
+        String asset = "BTC";
+        String isolatedSymbol = "BTCUSDT";
         Long recvWindow = 5000L;
         ApiResponse<QueryMaxBorrowResponse> response =
                 api.queryMaxBorrow(asset, isolatedSymbol, recvWindow);
@@ -322,12 +318,8 @@ public class BorrowRepayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(
-                "asset=&isolatedSymbol=&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "90c4a3668764b733f6c643c57f90568be4756aa70d3d7923c44995f762b25e21",
-                actualRequest.url().queryParameter("signature"));
+        assertEquals("asset=BTC&isolatedSymbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("ef15bb58e0af88d3e358c8e7b014798133d267e863c514921894375c6bd22336", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/maxBorrowable", actualRequest.url().encodedPath());
     }
 }

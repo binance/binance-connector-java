@@ -1,6 +1,6 @@
 /*
- * Binance Sub Account REST API
- * OpenAPI Specification for the Binance Sub Account REST API
+ * Sub Account REST API
+ * Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AddIpRestrictionForSubAccountApiKeyRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AddIpRestrictionForSubAccountApiKeyRequest {
     public static final String SERIALIZED_NAME_EMAIL = "email";
 
@@ -117,7 +117,8 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
     }
 
     /**
-     * Get status
+     * IP Restriction status. 1 &#x3D; IP Unrestricted. 2 &#x3D; Restrict access to trusted IPs
+     * only.
      *
      * @return status
      */
@@ -138,7 +139,7 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
     }
 
     /**
-     * Get ipAddress
+     * Insert static IP in batch, separated by commas.
      *
      * @return ipAddress
      */
@@ -158,11 +159,12 @@ public class AddIpRestrictionForSubAccountApiKeyRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

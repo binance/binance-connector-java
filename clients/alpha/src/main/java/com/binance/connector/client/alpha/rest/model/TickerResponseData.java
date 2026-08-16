@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -31,10 +31,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** TickerResponseData */
+/** 24-hour rolling window ticker statistics. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerResponseData {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -140,7 +140,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get symbol
+     * Trading pair symbol.
      *
      * @return symbol
      */
@@ -159,7 +159,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get priceChange
+     * Absolute price change in the 24h window.
      *
      * @return priceChange
      */
@@ -179,7 +179,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get priceChangePercent
+     * Percentage price change in the 24h window.
      *
      * @return priceChangePercent
      */
@@ -199,7 +199,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get weightedAvgPrice
+     * Weighted average price in the 24h window.
      *
      * @return weightedAvgPrice
      */
@@ -218,7 +218,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get lastPrice
+     * Latest traded price.
      *
      * @return lastPrice
      */
@@ -237,7 +237,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get lastQty
+     * Quantity of the latest trade.
      *
      * @return lastQty
      */
@@ -256,7 +256,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get openPrice
+     * Opening price of the 24h window.
      *
      * @return openPrice
      */
@@ -275,7 +275,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get highPrice
+     * Highest price in the 24h window.
      *
      * @return highPrice
      */
@@ -294,7 +294,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get lowPrice
+     * Lowest price in the 24h window.
      *
      * @return lowPrice
      */
@@ -313,7 +313,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get volume
+     * Base asset volume in the 24h window.
      *
      * @return volume
      */
@@ -332,7 +332,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get quoteVolume
+     * Quote asset volume in the 24h window.
      *
      * @return quoteVolume
      */
@@ -351,7 +351,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get openTime
+     * Start time of the 24h window (milliseconds).
      *
      * @return openTime
      */
@@ -370,7 +370,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get closeTime
+     * End time of the 24h window (milliseconds).
      *
      * @return closeTime
      */
@@ -389,7 +389,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get firstId
+     * First trade ID in the 24h window.
      *
      * @return firstId
      */
@@ -408,7 +408,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get lastId
+     * Last trade ID in the 24h window.
      *
      * @return lastId
      */
@@ -427,7 +427,7 @@ public class TickerResponseData {
     }
 
     /**
-     * Get count
+     * Total number of trades in the 24h window.
      *
      * @return count
      */

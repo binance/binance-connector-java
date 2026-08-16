@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountProfits** | [**List&lt;MiningAccountEarningResponseDataAccountProfitsInner&gt;**](MiningAccountEarningResponseDataAccountProfitsInner.md) |  |  [optional] |
-|**totalNum** | **Long** |  |  [optional] |
-|**pageSize** | **Long** |  |  [optional] |
+|**totalNum** | **Long** | Total records |  [optional] |
+|**pageSize** | **Long** | Rows per page |  [optional] |
 
 
 

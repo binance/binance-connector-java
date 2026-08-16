@@ -3,7 +3,7 @@ package com.binance.connector.client.margin_trading.websocket.stream;
 import com.binance.connector.client.common.websocket.configuration.WebSocketClientConfiguration;
 
 public class MarginTradingWebSocketStreamsUtil {
-    private static final String BASE_URL = "wss://stream.binance.com:9443";
+    private static final String BASE_URL = "wss://margin-stream.binance.com";
     private static final boolean HAS_TIME_UNIT = false;
 
     public static WebSocketClientConfiguration getClientConfiguration() {

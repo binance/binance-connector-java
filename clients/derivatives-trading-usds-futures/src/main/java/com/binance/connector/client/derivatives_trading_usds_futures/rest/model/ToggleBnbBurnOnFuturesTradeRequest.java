@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** ToggleBnbBurnOnFuturesTradeRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ToggleBnbBurnOnFuturesTradeRequest {
     public static final String SERIALIZED_NAME_FEE_BURN = "feeBurn";
 
@@ -56,7 +56,7 @@ public class ToggleBnbBurnOnFuturesTradeRequest {
     }
 
     /**
-     * Get feeBurn
+     * \&quot;true\&quot;: Fee Discount On; \&quot;false\&quot;: Fee Discount Off
      *
      * @return feeBurn
      */
@@ -77,11 +77,12 @@ public class ToggleBnbBurnOnFuturesTradeRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }

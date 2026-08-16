@@ -7,9 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** | Client-generated request identifier. |  [optional] |
 |**symbol** | **String** |  |  [optional] |
 |**symbols** | **Symbols** |  |  [optional] |
-|**tickerType** | **TickerType** |  |  [optional] |
+|**type** | **TickerType** |  |  [optional] |
 |**symbolStatus** | **SymbolStatus** |  |  [optional] |
 
 

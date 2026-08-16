@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**isLeadTrader** | **Boolean** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**isLeadTrader** | **Boolean** | Whether the user is a futures lead trader |  [optional] |
+|**time** | **Long** | Server timestamp in milliseconds |  [optional] |
 
 
 

@@ -13,7 +13,7 @@
 |**bidQty** | **String** |  |  [optional] |
 |**askPrice** | **String** |  |  [optional] |
 |**askQty** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**time** | **Long** | Transaction time |  [optional] |
 
 
 

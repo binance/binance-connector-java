@@ -2,28 +2,29 @@
 
 # MarkPriceKlineCandlestickStreamsResponseK
 
+Kline payload
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tLowerCase** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**iLowerCase** | **String** |  |  [optional] |
-|**fLowerCase** | **Long** |  |  [optional] |
-|**L** | **Long** |  |  [optional] |
-|**oLowerCase** | **String** |  |  [optional] |
-|**cLowerCase** | **String** |  |  [optional] |
-|**hLowerCase** | **String** |  |  [optional] |
-|**lLowerCase** | **String** |  |  [optional] |
-|**vLowerCase** | **String** |  |  [optional] |
-|**nLowerCase** | **Long** |  |  [optional] |
-|**xLowerCase** | **Boolean** |  |  [optional] |
-|**qLowerCase** | **String** |  |  [optional] |
-|**V** | **String** |  |  [optional] |
-|**Q** | **String** |  |  [optional] |
-|**B** | **String** |  |  [optional] |
+|**tLowerCase** | **Long** | Kline start time |  [optional] |
+|**T** | **Long** | Kline close time |  [optional] |
+|**sLowerCase** | **String** | Symbol |  [optional] |
+|**iLowerCase** | **String** | Interval |  [optional] |
+|**fLowerCase** | **Long** | ignore |  [optional] |
+|**L** | **Long** | ignore |  [optional] |
+|**oLowerCase** | **String** | Open price |  [optional] |
+|**cLowerCase** | **String** | Close price |  [optional] |
+|**hLowerCase** | **String** | High price |  [optional] |
+|**lLowerCase** | **String** | Low price |  [optional] |
+|**vLowerCase** | **String** | ignore |  [optional] |
+|**nLowerCase** | **Long** | Number of basic data |  [optional] |
+|**xLowerCase** | **Boolean** | Is this kline closed? |  [optional] |
+|**qLowerCase** | **String** | ignore |  [optional] |
+|**V** | **String** | ignore |  [optional] |
+|**Q** | **String** | ignore |  [optional] |
+|**B** | **String** | ignore |  [optional] |
 
 
 

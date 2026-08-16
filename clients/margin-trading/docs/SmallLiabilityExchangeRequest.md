@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**assetNames** | **AssetNames** |  |  |
+|**assetNames** | **String** | The assets list of small liability exchange |  |
 |**recvWindow** | **Long** |  |  [optional] |
 
 

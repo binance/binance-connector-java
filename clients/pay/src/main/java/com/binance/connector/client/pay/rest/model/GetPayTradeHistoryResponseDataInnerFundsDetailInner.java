@@ -1,6 +1,6 @@
 /*
  * Binance Pay REST API
- * OpenAPI Specification for the Binance Pay REST API
+ * Query Binance Pay transaction history.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,20 +22,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
 /** GetPayTradeHistoryResponseDataInnerFundsDetailInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
 
@@ -53,7 +54,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
 
     @SerializedName(SERIALIZED_NAME_WALLET_ASSET_COST)
     @jakarta.annotation.Nullable
-    private GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost walletAssetCost;
+    private Map<String, String> walletAssetCost;
 
     public GetPayTradeHistoryResponseDataInnerFundsDetailInner() {}
 
@@ -64,7 +65,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     }
 
     /**
-     * Get currency
+     * Asset.
      *
      * @return currency
      */
@@ -84,7 +85,7 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     }
 
     /**
-     * Get amount
+     * Asset amount.
      *
      * @return amount
      */
@@ -98,28 +99,33 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
     }
 
     public GetPayTradeHistoryResponseDataInnerFundsDetailInner walletAssetCost(
-            @jakarta.annotation.Nullable
-                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
-                            walletAssetCost) {
+            @jakarta.annotation.Nullable Map<String, String> walletAssetCost) {
         this.walletAssetCost = walletAssetCost;
         return this;
     }
 
+    public GetPayTradeHistoryResponseDataInnerFundsDetailInner putWalletAssetCostItem(
+            String key, String walletAssetCostItem) {
+        if (this.walletAssetCost == null) {
+            this.walletAssetCost = new HashMap<>();
+        }
+        this.walletAssetCost.put(key, walletAssetCostItem);
+        return this;
+    }
+
     /**
-     * Get walletAssetCost
+     * Asset cost details per wallet type. Keys are wallet type IDs (e.g. \&quot;1\&quot;,
+     * \&quot;2\&quot;), values are cost amounts.
      *
      * @return walletAssetCost
      */
     @jakarta.annotation.Nullable
-    @Valid
-    public GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost getWalletAssetCost() {
+    public Map<String, String> getWalletAssetCost() {
         return walletAssetCost;
     }
 
     public void setWalletAssetCost(
-            @jakarta.annotation.Nullable
-                    GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
-                            walletAssetCost) {
+            @jakarta.annotation.Nullable Map<String, String> walletAssetCost) {
         this.walletAssetCost = walletAssetCost;
     }
 
@@ -247,12 +253,6 @@ public class GetPayTradeHistoryResponseDataInnerFundsDetailInner {
                             "Expected the field `amount` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("amount").toString()));
-        }
-        // validate the optional field `walletAssetCost`
-        if (jsonObj.get("walletAssetCost") != null
-                && !jsonObj.get("walletAssetCost").isJsonNull()) {
-            GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.validateJsonElement(
-                    jsonObj.get("walletAssetCost"));
         }
     }
 

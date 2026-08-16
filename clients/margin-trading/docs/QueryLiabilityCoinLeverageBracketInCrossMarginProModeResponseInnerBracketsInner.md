@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**leverage** | **Long** |  |  [optional] |
-|**maxDebt** | **Double** |  |  [optional] |
-|**maintenanceMarginRate** | **Double** |  |  [optional] |
-|**initialMarginRate** | **Double** |  |  [optional] |
-|**fastNum** | **Double** |  |  [optional] |
+|**leverage** | **Long** | leverage. |  [optional] |
+|**maxDebt** | **Double** | max Debt. |  [optional] |
+|**maintenanceMarginRate** | **Double** | maintenance Margin Rate. |  [optional] |
+|**initialMarginRate** | **Double** | initial Margin Rate. |  [optional] |
+|**fastNum** | **Double** | fast Num. |  [optional] |
 
 
 

@@ -7,13 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**aLowerCase** | **Long** |  |  [optional] |
-|**pLowerCase** | **String** |  |  [optional] |
-|**qLowerCase** | **String** |  |  [optional] |
-|**fLowerCase** | **Long** |  |  [optional] |
-|**lLowerCase** | **Long** |  |  [optional] |
-|**T** | **Long** |  |  [optional] |
-|**mLowerCase** | **Boolean** |  |  [optional] |
+|**aLowerCase** | **Long** | Aggregate tradeId |  [optional] |
+|**pLowerCase** | **String** | Price |  [optional] |
+|**qLowerCase** | **String** | Quantity |  [optional] |
+|**nq** | **String** | Normal quantity without the trades involving RPI orders |  [optional] |
+|**fLowerCase** | **Long** | First tradeId |  [optional] |
+|**lLowerCase** | **Long** | Last tradeId |  [optional] |
+|**T** | **Long** | Timestamp |  [optional] |
+|**mLowerCase** | **Boolean** | Was the buyer the maker? |  [optional] |
 
 
 

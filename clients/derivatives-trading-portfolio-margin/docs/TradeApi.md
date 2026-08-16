@@ -4,78 +4,78 @@ All URIs are relative to *https://papi.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**cancelAllCmOpenConditionalOrders**](TradeApi.md#cancelAllCmOpenConditionalOrders) | **DELETE** /papi/v1/cm/conditional/allOpenOrders | Cancel All CM Open Conditional Orders(TRADE) |
-| [**cancelAllCmOpenOrders**](TradeApi.md#cancelAllCmOpenOrders) | **DELETE** /papi/v1/cm/allOpenOrders | Cancel All CM Open Orders(TRADE) |
+| [**cancelAllCmOpenConditionalOrders**](TradeApi.md#cancelAllCmOpenConditionalOrders) | **DELETE** /papi/v1/cm/conditional/allOpenOrders | Cancel All CM Open Conditional Orders (TRADE) |
+| [**cancelAllCmOpenOrders**](TradeApi.md#cancelAllCmOpenOrders) | **DELETE** /papi/v1/cm/allOpenOrders | Cancel All CM Open Orders (TRADE) |
 | [**cancelAllUmAlgoOpenOrders**](TradeApi.md#cancelAllUmAlgoOpenOrders) | **DELETE** /papi/v1/um/algo/allOpenOrders | Cancel All UM Algo Open Orders (TRADE) |
-| [**cancelAllUmOpenConditionalOrders**](TradeApi.md#cancelAllUmOpenConditionalOrders) | **DELETE** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders |
-| [**cancelAllUmOpenOrders**](TradeApi.md#cancelAllUmOpenOrders) | **DELETE** /papi/v1/um/allOpenOrders | Cancel All UM Open Orders(TRADE) |
-| [**cancelCmConditionalOrder**](TradeApi.md#cancelCmConditionalOrder) | **DELETE** /papi/v1/cm/conditional/order | Cancel CM Conditional Order(TRADE) |
-| [**cancelCmOrder**](TradeApi.md#cancelCmOrder) | **DELETE** /papi/v1/cm/order | Cancel CM Order(TRADE) |
-| [**cancelMarginAccountAllOpenOrdersOnASymbol**](TradeApi.md#cancelMarginAccountAllOpenOrdersOnASymbol) | **DELETE** /papi/v1/margin/allOpenOrders | Cancel Margin Account All Open Orders on a Symbol(TRADE) |
-| [**cancelMarginAccountOcoOrders**](TradeApi.md#cancelMarginAccountOcoOrders) | **DELETE** /papi/v1/margin/orderList | Cancel Margin Account OCO Orders(TRADE) |
-| [**cancelMarginAccountOrder**](TradeApi.md#cancelMarginAccountOrder) | **DELETE** /papi/v1/margin/order | Cancel Margin Account Order(TRADE) |
+| [**cancelAllUmOpenConditionalOrders**](TradeApi.md#cancelAllUmOpenConditionalOrders) | **DELETE** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders (TRADE) |
+| [**cancelAllUmOpenOrders**](TradeApi.md#cancelAllUmOpenOrders) | **DELETE** /papi/v1/um/allOpenOrders | Cancel All UM Open Orders (TRADE) |
+| [**cancelCmConditionalOrder**](TradeApi.md#cancelCmConditionalOrder) | **DELETE** /papi/v1/cm/conditional/order | Cancel CM Conditional Order (TRADE) |
+| [**cancelCmOrder**](TradeApi.md#cancelCmOrder) | **DELETE** /papi/v1/cm/order | Cancel CM Order (TRADE) |
+| [**cancelMarginAccountAllOpenOrdersOnASymbol**](TradeApi.md#cancelMarginAccountAllOpenOrdersOnASymbol) | **DELETE** /papi/v1/margin/allOpenOrders | Cancel Margin Account All Open Orders on a Symbol (TRADE) |
+| [**cancelMarginAccountOcoOrders**](TradeApi.md#cancelMarginAccountOcoOrders) | **DELETE** /papi/v1/margin/orderList | Cancel Margin Account OCO Orders (TRADE) |
+| [**cancelMarginAccountOrder**](TradeApi.md#cancelMarginAccountOrder) | **DELETE** /papi/v1/margin/order | Cancel Margin Account Order (TRADE) |
 | [**cancelUmAlgoOrder**](TradeApi.md#cancelUmAlgoOrder) | **DELETE** /papi/v1/um/algo/order | Cancel UM Algo Order (TRADE) |
-| [**cancelUmConditionalOrder**](TradeApi.md#cancelUmConditionalOrder) | **DELETE** /papi/v1/um/conditional/order | Cancel UM Conditional Order |
-| [**cancelUmOrder**](TradeApi.md#cancelUmOrder) | **DELETE** /papi/v1/um/order | Cancel UM Order(TRADE) |
-| [**cmAccountTradeList**](TradeApi.md#cmAccountTradeList) | **GET** /papi/v1/cm/userTrades | CM Account Trade List(USER_DATA) |
-| [**cmPositionAdlQuantileEstimation**](TradeApi.md#cmPositionAdlQuantileEstimation) | **GET** /papi/v1/cm/adlQuantile | CM Position ADL Quantile Estimation(USER_DATA) |
-| [**futuresTradfiPerpsContract**](TradeApi.md#futuresTradfiPerpsContract) | **POST** /papi/v1/um/stock/contract | Futures TradFi Perps Contract(USER_DATA) |
+| [**cancelUmConditionalOrder**](TradeApi.md#cancelUmConditionalOrder) | **DELETE** /papi/v1/um/conditional/order | Cancel UM Conditional Order (TRADE) |
+| [**cancelUmOrder**](TradeApi.md#cancelUmOrder) | **DELETE** /papi/v1/um/order | Cancel UM Order (TRADE) |
+| [**cmAccountTradeList**](TradeApi.md#cmAccountTradeList) | **GET** /papi/v1/cm/userTrades | CM Account Trade List (USER_DATA) |
+| [**cmPositionAdlQuantileEstimation**](TradeApi.md#cmPositionAdlQuantileEstimation) | **GET** /papi/v1/cm/adlQuantile | CM Position ADL Quantile Estimation (USER_DATA) |
+| [**futuresTradfiPerpsContract**](TradeApi.md#futuresTradfiPerpsContract) | **POST** /papi/v1/um/stock/contract | Futures TradFi Perps Contract (USER_DATA) |
 | [**getUmFuturesBnbBurnStatus**](TradeApi.md#getUmFuturesBnbBurnStatus) | **GET** /papi/v1/um/feeBurn | Get UM Futures BNB Burn Status (USER_DATA) |
-| [**marginAccountBorrow**](TradeApi.md#marginAccountBorrow) | **POST** /papi/v1/marginLoan | Margin Account Borrow(MARGIN) |
-| [**marginAccountNewOco**](TradeApi.md#marginAccountNewOco) | **POST** /papi/v1/margin/order/oco | Margin Account New OCO(TRADE) |
-| [**marginAccountRepay**](TradeApi.md#marginAccountRepay) | **POST** /papi/v1/repayLoan | Margin Account Repay(MARGIN) |
-| [**marginAccountRepayDebt**](TradeApi.md#marginAccountRepayDebt) | **POST** /papi/v1/margin/repay-debt | Margin Account Repay Debt(TRADE) |
+| [**marginAccountBorrow**](TradeApi.md#marginAccountBorrow) | **POST** /papi/v1/marginLoan | Margin Account Borrow (MARGIN) |
+| [**marginAccountNewOco**](TradeApi.md#marginAccountNewOco) | **POST** /papi/v1/margin/order/oco | Margin Account New OCO (TRADE) |
+| [**marginAccountRepay**](TradeApi.md#marginAccountRepay) | **POST** /papi/v1/repayLoan | Margin Account Repay (MARGIN) |
+| [**marginAccountRepayDebt**](TradeApi.md#marginAccountRepayDebt) | **POST** /papi/v1/margin/repay-debt | Margin Account Repay Debt (TRADE) |
 | [**marginAccountTradeList**](TradeApi.md#marginAccountTradeList) | **GET** /papi/v1/margin/myTrades | Margin Account Trade List (USER_DATA) |
-| [**modifyCmOrder**](TradeApi.md#modifyCmOrder) | **PUT** /papi/v1/cm/order | Modify CM Order(TRADE) |
-| [**modifyUmOrder**](TradeApi.md#modifyUmOrder) | **PUT** /papi/v1/um/order | Modify UM Order(TRADE) |
-| [**newCmConditionalOrder**](TradeApi.md#newCmConditionalOrder) | **POST** /papi/v1/cm/conditional/order | New CM Conditional Order(TRADE) |
-| [**newCmOrder**](TradeApi.md#newCmOrder) | **POST** /papi/v1/cm/order | New CM Order(TRADE) |
-| [**newMarginOrder**](TradeApi.md#newMarginOrder) | **POST** /papi/v1/margin/order | New Margin Order(TRADE) |
+| [**modifyCmOrder**](TradeApi.md#modifyCmOrder) | **PUT** /papi/v1/cm/order | Modify CM Order (TRADE) |
+| [**modifyUmOrder**](TradeApi.md#modifyUmOrder) | **PUT** /papi/v1/um/order | Modify UM Order (TRADE) |
+| [**newCmConditionalOrder**](TradeApi.md#newCmConditionalOrder) | **POST** /papi/v1/cm/conditional/order | New CM Conditional Order (TRADE) |
+| [**newCmOrder**](TradeApi.md#newCmOrder) | **POST** /papi/v1/cm/order | New CM Order (TRADE) |
+| [**newMarginOrder**](TradeApi.md#newMarginOrder) | **POST** /papi/v1/margin/order | New Margin Order (TRADE) |
 | [**newUmAlgoOrder**](TradeApi.md#newUmAlgoOrder) | **POST** /papi/v1/um/algo/order | New UM Algo Order (TRADE) |
-| [**newUmConditionalOrder**](TradeApi.md#newUmConditionalOrder) | **POST** /papi/v1/um/conditional/order | New UM Conditional Order |
+| [**newUmConditionalOrder**](TradeApi.md#newUmConditionalOrder) | **POST** /papi/v1/um/conditional/order | New UM Conditional Order (TRADE) |
 | [**newUmOrder**](TradeApi.md#newUmOrder) | **POST** /papi/v1/um/order | New UM Order (TRADE) |
-| [**queryAllCmConditionalOrders**](TradeApi.md#queryAllCmConditionalOrders) | **GET** /papi/v1/cm/conditional/allOrders | Query All CM Conditional Orders(USER_DATA) |
+| [**queryAllCmConditionalOrders**](TradeApi.md#queryAllCmConditionalOrders) | **GET** /papi/v1/cm/conditional/allOrders | Query All CM Conditional Orders (USER_DATA) |
 | [**queryAllCmOrders**](TradeApi.md#queryAllCmOrders) | **GET** /papi/v1/cm/allOrders | Query All CM Orders (USER_DATA) |
 | [**queryAllCurrentCmOpenConditionalOrders**](TradeApi.md#queryAllCurrentCmOpenConditionalOrders) | **GET** /papi/v1/cm/conditional/openOrders | Query All Current CM Open Conditional Orders (USER_DATA) |
-| [**queryAllCurrentCmOpenOrders**](TradeApi.md#queryAllCurrentCmOpenOrders) | **GET** /papi/v1/cm/openOrders | Query All Current CM Open Orders(USER_DATA) |
+| [**queryAllCurrentCmOpenOrders**](TradeApi.md#queryAllCurrentCmOpenOrders) | **GET** /papi/v1/cm/openOrders | Query All Current CM Open Orders (USER_DATA) |
 | [**queryAllCurrentUmOpenAlgoOrders**](TradeApi.md#queryAllCurrentUmOpenAlgoOrders) | **GET** /papi/v1/um/algo/openAlgoOrders | Query All Current UM Open Algo Orders (USER_DATA) |
-| [**queryAllCurrentUmOpenConditionalOrders**](TradeApi.md#queryAllCurrentUmOpenConditionalOrders) | **GET** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders |
-| [**queryAllCurrentUmOpenOrders**](TradeApi.md#queryAllCurrentUmOpenOrders) | **GET** /papi/v1/um/openOrders | Query All Current UM Open Orders(USER_DATA) |
+| [**queryAllCurrentUmOpenConditionalOrders**](TradeApi.md#queryAllCurrentUmOpenConditionalOrders) | **GET** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders (USER_DATA) |
+| [**queryAllCurrentUmOpenOrders**](TradeApi.md#queryAllCurrentUmOpenOrders) | **GET** /papi/v1/um/openOrders | Query All Current UM Open Orders (USER_DATA) |
 | [**queryAllMarginAccountOrders**](TradeApi.md#queryAllMarginAccountOrders) | **GET** /papi/v1/margin/allOrders | Query All Margin Account Orders (USER_DATA) |
-| [**queryAllUmConditionalOrders**](TradeApi.md#queryAllUmConditionalOrders) | **GET** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders |
-| [**queryAllUmOrders**](TradeApi.md#queryAllUmOrders) | **GET** /papi/v1/um/allOrders | Query All UM Orders(USER_DATA) |
-| [**queryCmConditionalOrderHistory**](TradeApi.md#queryCmConditionalOrderHistory) | **GET** /papi/v1/cm/conditional/orderHistory | Query CM Conditional Order History(USER_DATA) |
-| [**queryCmModifyOrderHistory**](TradeApi.md#queryCmModifyOrderHistory) | **GET** /papi/v1/cm/orderAmendment | Query CM Modify Order History(TRADE) |
-| [**queryCmOrder**](TradeApi.md#queryCmOrder) | **GET** /papi/v1/cm/order | Query CM Order(USER_DATA) |
-| [**queryCurrentCmOpenConditionalOrder**](TradeApi.md#queryCurrentCmOpenConditionalOrder) | **GET** /papi/v1/cm/conditional/openOrder | Query Current CM Open Conditional Order(USER_DATA) |
+| [**queryAllUmConditionalOrders**](TradeApi.md#queryAllUmConditionalOrders) | **GET** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders (USER_DATA) |
+| [**queryAllUmOrders**](TradeApi.md#queryAllUmOrders) | **GET** /papi/v1/um/allOrders | Query All UM Orders (USER_DATA) |
+| [**queryCmConditionalOrderHistory**](TradeApi.md#queryCmConditionalOrderHistory) | **GET** /papi/v1/cm/conditional/orderHistory | Query CM Conditional Order History (USER_DATA) |
+| [**queryCmModifyOrderHistory**](TradeApi.md#queryCmModifyOrderHistory) | **GET** /papi/v1/cm/orderAmendment | Query CM Modify Order History (TRADE) |
+| [**queryCmOrder**](TradeApi.md#queryCmOrder) | **GET** /papi/v1/cm/order | Query CM Order (USER_DATA) |
+| [**queryCurrentCmOpenConditionalOrder**](TradeApi.md#queryCurrentCmOpenConditionalOrder) | **GET** /papi/v1/cm/conditional/openOrder | Query Current CM Open Conditional Order (USER_DATA) |
 | [**queryCurrentCmOpenOrder**](TradeApi.md#queryCurrentCmOpenOrder) | **GET** /papi/v1/cm/openOrder | Query Current CM Open Order (USER_DATA) |
 | [**queryCurrentMarginOpenOrder**](TradeApi.md#queryCurrentMarginOpenOrder) | **GET** /papi/v1/margin/openOrders | Query Current Margin Open Order (USER_DATA) |
 | [**queryCurrentUmOpenAlgoOrder**](TradeApi.md#queryCurrentUmOpenAlgoOrder) | **GET** /papi/v1/um/algo/algoOrder | Query Current UM Open Algo Order (USER_DATA) |
-| [**queryCurrentUmOpenConditionalOrder**](TradeApi.md#queryCurrentUmOpenConditionalOrder) | **GET** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order |
-| [**queryCurrentUmOpenOrder**](TradeApi.md#queryCurrentUmOpenOrder) | **GET** /papi/v1/um/openOrder | Query Current UM Open Order(USER_DATA) |
+| [**queryCurrentUmOpenConditionalOrder**](TradeApi.md#queryCurrentUmOpenConditionalOrder) | **GET** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order (USER_DATA) |
+| [**queryCurrentUmOpenOrder**](TradeApi.md#queryCurrentUmOpenOrder) | **GET** /papi/v1/um/openOrder | Query Current UM Open Order (USER_DATA) |
 | [**queryMarginAccountOrder**](TradeApi.md#queryMarginAccountOrder) | **GET** /papi/v1/margin/order | Query Margin Account Order (USER_DATA) |
 | [**queryMarginAccountsAllOco**](TradeApi.md#queryMarginAccountsAllOco) | **GET** /papi/v1/margin/allOrderList | Query Margin Account&#39;s all OCO (USER_DATA) |
 | [**queryMarginAccountsOco**](TradeApi.md#queryMarginAccountsOco) | **GET** /papi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA) |
 | [**queryMarginAccountsOpenOco**](TradeApi.md#queryMarginAccountsOpenOco) | **GET** /papi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA) |
 | [**queryUmAlgoOrderHistory**](TradeApi.md#queryUmAlgoOrderHistory) | **GET** /papi/v1/um/algo/allAlgoOrders | Query UM Algo Order History (USER_DATA) |
-| [**queryUmConditionalOrderHistory**](TradeApi.md#queryUmConditionalOrderHistory) | **GET** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History |
-| [**queryUmModifyOrderHistory**](TradeApi.md#queryUmModifyOrderHistory) | **GET** /papi/v1/um/orderAmendment | Query UM Modify Order History(TRADE) |
+| [**queryUmConditionalOrderHistory**](TradeApi.md#queryUmConditionalOrderHistory) | **GET** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History (USER_DATA) |
+| [**queryUmModifyOrderHistory**](TradeApi.md#queryUmModifyOrderHistory) | **GET** /papi/v1/um/orderAmendment | Query UM Modify Order History (TRADE) |
 | [**queryUmOrder**](TradeApi.md#queryUmOrder) | **GET** /papi/v1/um/order | Query UM Order (USER_DATA) |
-| [**queryUsersCmForceOrders**](TradeApi.md#queryUsersCmForceOrders) | **GET** /papi/v1/cm/forceOrders | Query User&#39;s CM Force Orders(USER_DATA) |
-| [**queryUsersMarginForceOrders**](TradeApi.md#queryUsersMarginForceOrders) | **GET** /papi/v1/margin/forceOrders | Query User&#39;s Margin Force Orders(USER_DATA) |
+| [**queryUsersCmForceOrders**](TradeApi.md#queryUsersCmForceOrders) | **GET** /papi/v1/cm/forceOrders | Query User&#39;s CM Force Orders (USER_DATA) |
+| [**queryUsersMarginForceOrders**](TradeApi.md#queryUsersMarginForceOrders) | **GET** /papi/v1/margin/forceOrders | Query User&#39;s Margin Force Orders (USER_DATA) |
 | [**queryUsersUmForceOrders**](TradeApi.md#queryUsersUmForceOrders) | **GET** /papi/v1/um/forceOrders | Query User&#39;s UM Force Orders (USER_DATA) |
 | [**toggleBnbBurnOnUmFuturesTrade**](TradeApi.md#toggleBnbBurnOnUmFuturesTrade) | **POST** /papi/v1/um/feeBurn | Toggle BNB Burn On UM Futures Trade (TRADE) |
-| [**umAccountTradeList**](TradeApi.md#umAccountTradeList) | **GET** /papi/v1/um/userTrades | UM Account Trade List(USER_DATA) |
-| [**umPositionAdlQuantileEstimation**](TradeApi.md#umPositionAdlQuantileEstimation) | **GET** /papi/v1/um/adlQuantile | UM Position ADL Quantile Estimation(USER_DATA) |
+| [**umAccountTradeList**](TradeApi.md#umAccountTradeList) | **GET** /papi/v1/um/userTrades | UM Account Trade List (USER_DATA) |
+| [**umPositionAdlQuantileEstimation**](TradeApi.md#umPositionAdlQuantileEstimation) | **GET** /papi/v1/um/adlQuantile | UM Position ADL Quantile Estimation (USER_DATA) |
 
 
 <a id="cancelAllCmOpenConditionalOrders"></a>
 # **cancelAllCmOpenConditionalOrders**
 > CancelAllCmOpenConditionalOrdersResponse cancelAllCmOpenConditionalOrders(symbol, recvWindow)
 
-Cancel All CM Open Conditional Orders(TRADE)
+Cancel All CM Open Conditional Orders (TRADE)
 
-Cancel All CM Open Conditional Orders  Weight: 1
+Cancel All CM Open Conditional Orders  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -92,8 +92,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelAllCmOpenConditionalOrdersResponse result = apiInstance.cancelAllCmOpenConditionalOrders(symbol, recvWindow);
       System.out.println(result);
@@ -112,7 +112,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -137,9 +137,9 @@ No authorization required
 # **cancelAllCmOpenOrders**
 > CancelAllCmOpenOrdersResponse cancelAllCmOpenOrders(symbol, recvWindow)
 
-Cancel All CM Open Orders(TRADE)
+Cancel All CM Open Orders (TRADE)
 
-Cancel all active LIMIT orders on specific symbol  Weight: 1
+Cancel all active LIMIT orders on specific symbol  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -156,8 +156,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelAllCmOpenOrdersResponse result = apiInstance.cancelAllCmOpenOrders(symbol, recvWindow);
       System.out.println(result);
@@ -176,7 +176,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -203,7 +203,7 @@ No authorization required
 
 Cancel All UM Algo Open Orders (TRADE)
 
-Cancel All UM Algo Open Orders  Weight: 1
+Cancel All UM Algo Open Orders  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -220,8 +220,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BNBUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelAllUmAlgoOpenOrdersResponse result = apiInstance.cancelAllUmAlgoOpenOrders(symbol, recvWindow);
       System.out.println(result);
@@ -240,7 +240,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -265,9 +265,9 @@ No authorization required
 # **cancelAllUmOpenConditionalOrders**
 > CancelAllUmOpenConditionalOrdersResponse cancelAllUmOpenConditionalOrders(symbol, recvWindow)
 
-Cancel All UM Open Conditional Orders
+Cancel All UM Open Conditional Orders (TRADE)
 
-Cancel All UM Open Conditional Orders  Weight: 1
+Cancel All UM Open Conditional Orders  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -284,8 +284,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelAllUmOpenConditionalOrdersResponse result = apiInstance.cancelAllUmOpenConditionalOrders(symbol, recvWindow);
       System.out.println(result);
@@ -304,7 +304,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -329,9 +329,9 @@ No authorization required
 # **cancelAllUmOpenOrders**
 > CancelAllUmOpenOrdersResponse cancelAllUmOpenOrders(symbol, recvWindow)
 
-Cancel All UM Open Orders(TRADE)
+Cancel All UM Open Orders (TRADE)
 
-Cancel all active LIMIT orders on specific symbol  Weight: 1
+Cancel all active LIMIT orders on specific symbol  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -348,8 +348,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelAllUmOpenOrdersResponse result = apiInstance.cancelAllUmOpenOrders(symbol, recvWindow);
       System.out.println(result);
@@ -368,7 +368,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -393,9 +393,9 @@ No authorization required
 # **cancelCmConditionalOrder**
 > CancelCmConditionalOrderResponse cancelCmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Cancel CM Conditional Order(TRADE)
+Cancel CM Conditional Order (TRADE)
 
-Cancel CM Conditional Order  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.  Weight: 1
+Cancel CM Conditional Order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.
 
 ### Example
 ```java
@@ -412,10 +412,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    String newClientStrategyId = "newClientStrategyId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long strategyId = 1L; // Long | 
+    String newClientStrategyId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelCmConditionalOrderResponse result = apiInstance.cancelCmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
       System.out.println(result);
@@ -434,7 +434,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **strategyId** | **Long**|  | [optional] |
 | **newClientStrategyId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -461,9 +461,9 @@ No authorization required
 # **cancelCmOrder**
 > CancelCmOrderResponse cancelCmOrder(symbol, orderId, origClientOrderId, recvWindow)
 
-Cancel CM Order(TRADE)
+Cancel CM Order (TRADE)
 
-Cancel an active LIMIT order  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.  Weight: 1
+Cancel an active LIMIT order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
 
 ### Example
 ```java
@@ -480,10 +480,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200925"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelCmOrderResponse result = apiInstance.cancelCmOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -502,7 +502,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -529,9 +529,9 @@ No authorization required
 # **cancelMarginAccountAllOpenOrdersOnASymbol**
 > CancelMarginAccountAllOpenOrdersOnASymbolResponse cancelMarginAccountAllOpenOrdersOnASymbol(symbol, recvWindow)
 
-Cancel Margin Account All Open Orders on a Symbol(TRADE)
+Cancel Margin Account All Open Orders on a Symbol (TRADE)
 
-Cancel Margin Account All Open Orders on a Symbol  Weight: 5
+Cancel Margin Account All Open Orders on a Symbol  Weight(IP): 5  Security Type: TRADE
 
 ### Example
 ```java
@@ -548,8 +548,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelMarginAccountAllOpenOrdersOnASymbolResponse result = apiInstance.cancelMarginAccountAllOpenOrdersOnASymbol(symbol, recvWindow);
       System.out.println(result);
@@ -568,7 +568,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -593,9 +593,9 @@ No authorization required
 # **cancelMarginAccountOcoOrders**
 > CancelMarginAccountOcoOrdersResponse cancelMarginAccountOcoOrders(symbol, orderListId, listClientOrderId, newClientOrderId, recvWindow)
 
-Cancel Margin Account OCO Orders(TRADE)
+Cancel Margin Account OCO Orders (TRADE)
 
-Cancel Margin Account OCO Orders  * Additional notes: Canceling an individual leg will cancel the entire OCO  Weight: 2
+Cancel Margin Account OCO Orders  Weight(IP): 2  Security Type: TRADE  Notes: - Additional notes: Canceling an individual leg will cancel the entire OCO
 
 ### Example
 ```java
@@ -612,11 +612,11 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderListId = 56L; // Long | Either `orderListId` or `listClientOrderId` must be provided
-    String listClientOrderId = "listClientOrderId_example"; // String | Either `orderListId` or `listClientOrderId` must be provided
-    String newClientOrderId = "newClientOrderId_example"; // String | Used to uniquely identify this cancel. Automatically generated by default
-    Long recvWindow = 56L; // Long | 
+    String symbol = "LTCBTC"; // String | Symbol
+    Long orderListId = 1L; // Long | Either `orderListId` or `listClientOrderId` must be provided
+    String listClientOrderId = "1"; // String | Either `orderListId` or `listClientOrderId` must be provided
+    String newClientOrderId = "1"; // String | Used to uniquely identify this cancel request.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       CancelMarginAccountOcoOrdersResponse result = apiInstance.cancelMarginAccountOcoOrders(symbol, orderListId, listClientOrderId, newClientOrderId, recvWindow);
       System.out.println(result);
@@ -635,11 +635,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderListId** | **Long**| Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | [optional] |
 | **listClientOrderId** | **String**| Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | [optional] |
-| **newClientOrderId** | **String**| Used to uniquely identify this cancel. Automatically generated by default | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **newClientOrderId** | **String**| Used to uniquely identify this cancel request. | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -663,9 +663,9 @@ No authorization required
 # **cancelMarginAccountOrder**
 > CancelMarginAccountOrderResponse cancelMarginAccountOrder(symbol, orderId, origClientOrderId, newClientOrderId, recvWindow)
 
-Cancel Margin Account Order(TRADE)
+Cancel Margin Account Order (TRADE)
 
-Cancel Margin Account Order  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.  Weight: 2
+Cancel Margin Account Order  Weight(IP): 2  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
 
 ### Example
 ```java
@@ -682,11 +682,11 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    String newClientOrderId = "newClientOrderId_example"; // String | Used to uniquely identify this cancel. Automatically generated by default
-    Long recvWindow = 56L; // Long | 
+    String symbol = "LTCBTC"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    String newClientOrderId = "1"; // String | Used to uniquely identify this cancel request.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than `60000`
     try {
       CancelMarginAccountOrderResponse result = apiInstance.cancelMarginAccountOrder(symbol, orderId, origClientOrderId, newClientOrderId, recvWindow);
       System.out.println(result);
@@ -705,11 +705,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
-| **newClientOrderId** | **String**| Used to uniquely identify this cancel. Automatically generated by default | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **newClientOrderId** | **String**| Used to uniquely identify this cancel request. | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than &#x60;60000&#x60; | [optional] |
 
 ### Return type
 
@@ -735,7 +735,7 @@ No authorization required
 
 Cancel UM Algo Order (TRADE)
 
-Cancel an active UM algo order.  * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.  Weight: 1
+Cancel an active UM algo order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
 
 ### Example
 ```java
@@ -752,9 +752,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long algoId = 56L; // Long | 
-    String clientAlgoId = "clientAlgoId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    Long algoId = 2146760L; // Long | Algo order ID
+    String clientAlgoId = "6B2I9XVcJpCjqPAJ4YoFX7"; // String | Client algo order ID
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelUmAlgoOrderResponse result = apiInstance.cancelUmAlgoOrder(algoId, clientAlgoId, recvWindow);
       System.out.println(result);
@@ -773,8 +773,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **algoId** | **Long**|  | [optional] |
-| **clientAlgoId** | **String**|  | [optional] |
+| **algoId** | **Long**| Algo order ID | [optional] |
+| **clientAlgoId** | **String**| Client algo order ID | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -799,9 +799,9 @@ No authorization required
 # **cancelUmConditionalOrder**
 > CancelUmConditionalOrderResponse cancelUmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Cancel UM Conditional Order
+Cancel UM Conditional Order (TRADE)
 
-Cancel UM Conditional Order  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.  Weight: 1
+Cancel UM Conditional Order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.
 
 ### Example
 ```java
@@ -818,10 +818,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    String newClientStrategyId = "newClientStrategyId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long strategyId = 1L; // Long | 
+    String newClientStrategyId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelUmConditionalOrderResponse result = apiInstance.cancelUmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
       System.out.println(result);
@@ -840,7 +840,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **strategyId** | **Long**|  | [optional] |
 | **newClientStrategyId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -867,9 +867,9 @@ No authorization required
 # **cancelUmOrder**
 > CancelUmOrderResponse cancelUmOrder(symbol, orderId, origClientOrderId, recvWindow)
 
-Cancel UM Order(TRADE)
+Cancel UM Order (TRADE)
 
-Cancel an active UM LIMIT order  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.  Weight: 1
+Cancel an active UM LIMIT order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.
 
 ### Example
 ```java
@@ -886,10 +886,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       CancelUmOrderResponse result = apiInstance.cancelUmOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -908,7 +908,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -935,9 +935,9 @@ No authorization required
 # **cmAccountTradeList**
 > CmAccountTradeListResponse cmAccountTradeList(symbol, pair, startTime, endTime, fromId, limit, recvWindow)
 
-CM Account Trade List(USER_DATA)
+CM Account Trade List (USER_DATA)
 
-Get trades for a specific account and CM symbol.  * Either &#x60;symbol&#x60; or &#x60;pair&#x60; must be sent * &#x60;symbol&#x60; and &#x60;pair&#x60; cannot be sent together * &#x60;pair&#x60; and &#x60;fromId&#x60; cannot be sent together * &#x60;OrderId&#x60; can only be sent together with symbol * If a &#x60;pair&#x60; is sent, tickers for all symbols of the &#x60;pair&#x60; will be returned * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60; * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;24 hours&#39; data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 24 hours.  Weight: 20 with symbol, 40 with pair
+Get trades for a specific account and CM symbol.  Weight: - 20 with &#x60;symbol&#x60; - 40 with &#x60;pair&#x60;  Security Type: USER_DATA  Notes: - Either &#x60;symbol&#x60; or &#x60;pair&#x60; must be sent - &#x60;symbol&#x60; and &#x60;pair&#x60; cannot be sent together - &#x60;pair&#x60; and &#x60;fromId&#x60; cannot be sent together - &#x60;OrderId&#x60; can only be sent together with symbol - If a &#x60;pair&#x60; is sent, tickers for all symbols of the &#x60;pair&#x60; will be returned - The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60; - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;24 hours&#39; data will be returned. - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 24 hours.
 
 ### Example
 ```java
@@ -954,13 +954,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    String pair = "pair_example"; // String | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long fromId = 56L; // Long | Trade id to fetch from. Default gets most recent trades.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200626"; // String | 
+    String pair = "BTCUSD"; // String | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long fromId = 1L; // Long | Trade ID to fetch from.
+    Long limit = 50L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       CmAccountTradeListResponse result = apiInstance.cmAccountTradeList(symbol, pair, startTime, endTime, fromId, limit, recvWindow);
       System.out.println(result);
@@ -983,8 +983,8 @@ public class Example {
 | **pair** | **String**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **fromId** | **Long**| Trade id to fetch from. Default gets most recent trades. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **fromId** | **Long**| Trade ID to fetch from. | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1009,9 +1009,9 @@ No authorization required
 # **cmPositionAdlQuantileEstimation**
 > CmPositionAdlQuantileEstimationResponse cmPositionAdlQuantileEstimation(symbol, recvWindow)
 
-CM Position ADL Quantile Estimation(USER_DATA)
+CM Position ADL Quantile Estimation (USER_DATA)
 
-Query CM Position ADL Quantile Estimation * Values update every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from low to high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge Mode, \&quot;LONG\&quot;, \&quot;SHORT\&quot;, and \&quot;BOTH\&quot; will be returned to show the positions&#39; adl quantiles of different position sides. * If the positions of the symbol are crossed margined in Hedge Mode: * \&quot;HEDGE\&quot; as a sign will be returned instead of \&quot;BOTH\&quot;; * A same value caculated on unrealized pnls on long and short sides&#39; positions will be shown for \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there are positions in both of long and short sides.  Weight: 5
+Query CM Position ADL Quantile Estimation * Values update every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from low to high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge Mode, \&quot;LONG\&quot;, \&quot;SHORT\&quot;, and \&quot;BOTH\&quot; will be returned to show the positions&#39; adl quantiles of different position sides. * If the positions of the symbol are crossed margined in Hedge Mode: * \&quot;HEDGE\&quot; as a sign will be returned instead of \&quot;BOTH\&quot;; * A same value caculated on unrealized pnls on long and short sides&#39; positions will be shown for \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there are positions in both of long and short sides.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1028,8 +1028,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_201225"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       CmPositionAdlQuantileEstimationResponse result = apiInstance.cmPositionAdlQuantileEstimation(symbol, recvWindow);
       System.out.println(result);
@@ -1073,9 +1073,9 @@ No authorization required
 # **futuresTradfiPerpsContract**
 > FuturesTradfiPerpsContractResponse futuresTradfiPerpsContract(futuresTradfiPerpsContractRequest)
 
-Futures TradFi Perps Contract(USER_DATA)
+Futures TradFi Perps Contract (USER_DATA)
 
-Sign TradFi-Perps agreement contract  Weight: 5
+Sign TradFi-Perps agreement contract  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1111,7 +1111,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **futuresTradfiPerpsContractRequest** | [**FuturesTradfiPerpsContractRequest**](FuturesTradfiPerpsContractRequest.md)|  | |
+| **futuresTradfiPerpsContractRequest** | [**FuturesTradfiPerpsContractRequest**](FuturesTradfiPerpsContractRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1137,7 +1137,7 @@ No authorization required
 
 Get UM Futures BNB Burn Status (USER_DATA)
 
-Get user&#39;s BNB Fee Discount for UM Futures (Fee Discount On or Fee Discount Off )  Weight: 30
+Get user&#39;s BNB Fee Discount for UM Futures (Fee Discount On or Fee Discount Off )  Weight(IP): 30  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1154,7 +1154,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmFuturesBnbBurnStatusResponse result = apiInstance.getUmFuturesBnbBurnStatus(recvWindow);
       System.out.println(result);
@@ -1197,9 +1197,9 @@ No authorization required
 # **marginAccountBorrow**
 > MarginAccountBorrowResponse marginAccountBorrow(marginAccountBorrowRequest)
 
-Margin Account Borrow(MARGIN)
+Margin Account Borrow (MARGIN)
 
-Apply for a margin loan.  Weight: 100
+Apply for a margin loan.  Weight(IP): 100  Security Type: MARGIN
 
 ### Example
 ```java
@@ -1259,9 +1259,9 @@ No authorization required
 # **marginAccountNewOco**
 > MarginAccountNewOcoResponse marginAccountNewOco(marginAccountNewOcoRequest)
 
-Margin Account New OCO(TRADE)
+Margin Account New OCO (TRADE)
 
-Send in a new OCO for a margin account  * Price Restrictions: * &#x60;SELL&#x60;: Limit Price &gt; Last Price &gt; Stop Price * &#x60;BUY&#x60;: Limit Price &lt; Last Price &lt; Stop Price * Quantity Restrictions: * Both legs must have the same quantity * &#x60;ICEBERG&#x60; quantities however do not have to be the same. * Order Rate Limit * &#x60;OCO&#x60; counts as 2 orders against the order rate limit.  Weight: 1
+Send in a new OCO for a margin account  Weight(IP): 1  Security Type: TRADE  Notes: - Other Info:   - Price Restrictions:   - &#x60;SELL&#x60;: Limit Price &gt; Last Price &gt; Stop Price   - &#x60;BUY&#x60;: Limit Price  * Quantity Restrictions:   - Both legs must have the same quantity   - &#x60;ICEBERG&#x60; quantities however do not have to be the same.   - Order Rate Limit   - &#x60;OCO&#x60; counts as 2 orders against the order rate limit.
 
 ### Example
 ```java
@@ -1321,9 +1321,9 @@ No authorization required
 # **marginAccountRepay**
 > MarginAccountRepayResponse marginAccountRepay(marginAccountRepayRequest)
 
-Margin Account Repay(MARGIN)
+Margin Account Repay (MARGIN)
 
-Repay for a margin loan.  Weight: 100
+Repay for a margin loan.  Weight(IP): 100  Security Type: MARGIN
 
 ### Example
 ```java
@@ -1383,9 +1383,9 @@ No authorization required
 # **marginAccountRepayDebt**
 > MarginAccountRepayDebtResponse marginAccountRepayDebt(marginAccountRepayDebtRequest)
 
-Margin Account Repay Debt(TRADE)
+Margin Account Repay Debt (TRADE)
 
-Repay debt for a margin loan.  * The repay asset amount cannot exceed 50000 USD equivalent value for a single request. * If &#x60;amount&#x60; is not sent, all the asset loan will be repaid if having enough specific repay assets. * If &#x60;amount&#x60; is sent, only the certain amount of the asset loan will be repaid if having enough specific repay assets. * The system will use the same asset to repay the loan first (if have) no matter whether put the asset in &#x60;specifyRepayAssets&#x60;  Weight: 3000
+Repay debt for a margin loan.  Weight(IP): 3000  Security Type: TRADE  Notes: - The repay asset amount cannot exceed 50000 USD equivalent value for a single request. - If &#x60;amount&#x60; is not sent, all the asset loan will be repaid if having enough specific repay assets. - If &#x60;amount&#x60; is sent, only the certain amount of the asset loan will be repaid if having enough specific repay assets. - The system will use the same asset to repay the loan first (if have) no matter whether put the asset in &#x60;specifyRepayAssets&#x60;
 
 ### Example
 ```java
@@ -1447,7 +1447,7 @@ No authorization required
 
 Margin Account Trade List (USER_DATA)
 
-Margin Account Trade List  Weight: 5
+Margin Account Trade List  Weight(IP): 5  Security Type: USER_DATA  Notes: - **Note:** * If &#x60;fromId&#x60; is set, returns orders with id &gt;&#x3D; &#x60;fromId&#x60;; otherwise returns recent order history. - The interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 24 hours.
 
 ### Example
 ```java
@@ -1464,13 +1464,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long fromId = 56L; // Long | Trade id to fetch from. Default gets most recent trades.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long fromId = 1L; // Long | Trade ID to fetch from.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       MarginAccountTradeListResponse result = apiInstance.marginAccountTradeList(symbol, orderId, startTime, endTime, fromId, limit, recvWindow);
       System.out.println(result);
@@ -1489,13 +1489,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **fromId** | **Long**| Trade id to fetch from. Default gets most recent trades. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **fromId** | **Long**| Trade ID to fetch from. | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -1519,9 +1519,9 @@ No authorization required
 # **modifyCmOrder**
 > ModifyCmOrderResponse modifyCmOrder(modifyCmOrderRequest)
 
-Modify CM Order(TRADE)
+Modify CM Order (TRADE)
 
-Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent. * Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent * When the new &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. * However the order will be cancelled by the amendment in the following situations: * when the order is in partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; * When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately  Weight: 1
+Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent. - Both &#x60;quantity&#x60; and &#x60;price&#x60; must be sent - When the new &#x60;quantity&#x60; or &#x60;price&#x60; doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. - However the order will be cancelled by the amendment in the following situations:   - when the order is in partially filled status and the new &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60;   - When the order is &#x60;GTX&#x60; and the new price will cause it to be executed immediately
 
 ### Example
 ```java
@@ -1581,9 +1581,9 @@ No authorization required
 # **modifyUmOrder**
 > ModifyUmOrderResponse modifyUmOrder(modifyUmOrderRequest)
 
-Modify UM Order(TRADE)
+Modify UM Order (TRADE)
 
-Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  * Either orderId or origClientOrderId must be sent, and the orderId will prevail if both are sent. * Both quantity and price must be sent * When the new quantity or price doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. * However the order will be cancelled by the amendment in the following situations: * when the order is in partially filled status and the new quantity &lt;&#x3D; executedQty * When the order is GTX and the new price will cause it to be executed immediately  Weight: 1
+Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue  Weight(IP): 1  Security Type: TRADE  Notes: - Either orderId or origClientOrderId must be sent, and the orderId will prevail if both are sent. - Both quantity and price must be sent - When the new quantity or price doesn&#39;t satisfy PRICE_FILTER / PERCENT_FILTER / LOT_SIZE, amendment will be rejected and the order will stay as it is. - However the order will be cancelled by the amendment in the following situations:   - when the order is in partially filled status and the new quantity &lt;&#x3D; executedQty   - When the order is GTX and the new price will cause it to be executed immediately - The amendment keeps the order&#39;s original selfTradePreventionMode.
 
 ### Example
 ```java
@@ -1643,9 +1643,9 @@ No authorization required
 # **newCmConditionalOrder**
 > NewCmConditionalOrderResponse newCmConditionalOrder(newCmConditionalOrderRequest)
 
-New CM Conditional Order(TRADE)
+New CM Conditional Order (TRADE)
 
-New CM Conditional Order  * Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be triggered when: * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: \&quot;MARK_PRICE\&quot;  &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: \&quot;MARK_PRICE\&quot; &lt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: \&quot;MARK_PRICE\&quot; &lt;&#x3D; &#x60;stopPrice&#x60; * SELL: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest mark price after order placed &#x60;&lt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &gt;&#x60;&#x3D; the lowest mark price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &lt;&#x3D; the highest mark price * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; means that the parameters you send do not meet the following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest mark price. * SELL: &#x60;activationPrice&#x60; should be larger than latest mark price. * Condition orders will be triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60;  Weight: 1
+New CM Conditional Order  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on type:   - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;).   - Condition orders will be triggered when:   - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;:   - BUY: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60;   - SELL: \&quot;MARK_PRICE\&quot; &#x3D; &#x60;stopPrice&#x60;   - &#x60;TRAILING_STOP_MARKET&#x60;:   - BUY: the lowest mark price after order placed &#x60;&#x60;&#x3D; the lowest mark price   - (1 + &#x60;callbackRate&#x60;)   - SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &#x3D; &#x60;stopPrice&#x60;   - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60;
 
 ### Example
 ```java
@@ -1705,9 +1705,9 @@ No authorization required
 # **newCmOrder**
 > NewCmOrderResponse newCmOrder(newCmOrderRequest)
 
-New CM Order(TRADE)
+New CM Order (TRADE)
 
-Place new CM order  * If &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly. * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be returned directly.  Weight: 1
+Place new CM order  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on &#x60;type&#x60;:   - If &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60; :   - &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly.   - &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be returned directly.
 
 ### Example
 ```java
@@ -1767,9 +1767,9 @@ No authorization required
 # **newMarginOrder**
 > NewMarginOrderResponse newMarginOrder(newMarginOrderRequest)
 
-New Margin Order(TRADE)
+New Margin Order (TRADE)
 
-New Margin Order  Weight: 1
+New Margin Order  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -1831,7 +1831,7 @@ No authorization required
 
 New UM Algo Order (TRADE)
 
-Place new UM conditional order  * Algo order with type &#x60;STOP&#x60;,  parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Algo order with type &#x60;TAKE_PROFIT&#x60;,  parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be triggered when:  * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the &#x60;triggerPrice&#x60; , the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET /fapi/v1/exchangeInfo&#x60;  * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;triggerPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;triggerPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest price after order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &gt;&#x3D; the lowest price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and the latest price &lt;&#x3D; the highest price * (1 - &#x60;callbackRate&#x60;)  * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &#x60;&#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60;&#x60; means that the parameters you send do not meet the following requirements: * BUY: &#x60;activatePrice&#x60; should be smaller than latest price. * SELL: &#x60;activatePrice&#x60; should be larger than latest price.  * &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: * Follow the same rules for condition orders. * If triggered, **close all** current long position( if &#x60;SELL&#x60;) or current short position( if &#x60;BUY&#x60;). * Cannot be used with &#x60;quantity&#x60; paremeter * Cannot be used with &#x60;reduceOnly&#x60; parameter * In Hedge Mode,cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side. and cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.  Weight: 1
+Place new UM conditional order  Weight(IP): 1  Security Type: TRADE  Notes: - Algo order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Algo order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Condition orders will be triggered when price reaches the &#x60;triggerPrice&#x60;. - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: BUY: latest price &gt;&#x3D; &#x60;triggerPrice&#x60;; SELL: latest price &lt;&#x3D; &#x60;triggerPrice&#x60;. - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: BUY: latest price &lt;&#x3D; &#x60;triggerPrice&#x60;; SELL: latest price &gt;&#x3D; &#x60;triggerPrice&#x60;. - &#x60;TRAILING_STOP_MARKET&#x60;: BUY: lowest price after order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and latest price &gt;&#x3D; lowest price * (1 + &#x60;callbackRate&#x60;); SELL: highest price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and latest price &lt;&#x3D; highest price * (1 - &#x60;callbackRate&#x60;). - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
 
 ### Example
 ```java
@@ -1891,9 +1891,9 @@ No authorization required
 # **newUmConditionalOrder**
 > NewUmConditionalOrderResponse newUmConditionalOrder(newUmConditionalOrderRequest)
 
-New UM Conditional Order
+New UM Conditional Order (TRADE)
 
-Place new UM conditional order  * Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). * Condition orders will be triggered when: * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: \&quot;MARK_PRICE\&quot;  &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: \&quot;MARK_PRICE\&quot; &lt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: \&quot;MARK_PRICE\&quot; &lt;&#x3D; &#x60;stopPrice&#x60; * SELL: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TRAILING_STOP_MARKET&#x60;: * BUY: the lowest mark price after order placed &#x60;&lt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &gt;&#x60;&#x3D; the lowest mark price * (1 + &#x60;callbackRate&#x60;) * SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &lt;&#x3D; the highest mark price * (1 - &#x60;callbackRate&#x60;) * For &#x60;TRAILING_STOP_MARKET&#x60;, if you got such error code. &#x60;{\&quot;code\&quot;: -2021, \&quot;msg\&quot;: \&quot;Order would immediately trigger.\&quot;}&#x60; means that the parameters you send do not meet the following requirements: * BUY: &#x60;activationPrice&#x60; should be smaller than latest mark price. * SELL: &#x60;activationPrice&#x60; should be larger than latest mark price. * Condition orders will be triggered when: * If parameter&#x60;priceProtect&#x60;is sent as true: * when price reaches the &#x60;stopPrice&#x60; ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the \&quot;triggerProtect\&quot; of the symbol * \&quot;triggerProtect\&quot; of a symbol can be got from &#x60;GET /fapi/v1/exchangeInfo&#x60; * &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; * &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: * BUY: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &lt;&#x3D; &#x60;stopPrice&#x60; * SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &gt;&#x3D; &#x60;stopPrice&#x60; * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;  Weight: 1
+Place new UM conditional order  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on type:   - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;).   - Condition orders will be triggered when:   - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;:   - BUY: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60;   - SELL: \&quot;MARK_PRICE\&quot; &#x3D; &#x60;stopPrice&#x60;   - &#x60;TRAILING_STOP_MARKET&#x60;:   - BUY: the lowest mark price after order placed &#x60;&#x60;&#x3D; the lowest mark price   - (1 + &#x60;callbackRate&#x60;)   - SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &#x3D; &#x60;stopPrice&#x60;   - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60;   - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.   - In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;
 
 ### Example
 ```java
@@ -1955,7 +1955,7 @@ No authorization required
 
 New UM Order (TRADE)
 
-Place new UM order  * If &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60; : * &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly. * &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be returned directly. * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. * In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;  Weight: 1
+Place new UM order  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on type:   - If &#x60;newOrderRespType&#x60; is sent as &#x60;RESULT&#x60; :   - &#x60;MARKET&#x60; order: the final FILLED result of the order will be return directly.   - &#x60;LIMIT&#x60; order with special &#x60;timeInForce&#x60;: the final status result of the order(FILLED or EXPIRED) will be returned directly.   - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.   - In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;
 
 ### Example
 ```java
@@ -2015,9 +2015,9 @@ No authorization required
 # **queryAllCmConditionalOrders**
 > QueryAllCmConditionalOrdersResponse queryAllCmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow)
 
-Query All CM Conditional Orders(USER_DATA)
+Query All CM Conditional Orders (USER_DATA)
 
-Query All CM Conditional Orders  * These orders will not be found: * order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 7 days &lt; current time * The query time period must be less than 7 days( default as the recent 7 days).  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted
+Query All CM Conditional Orders  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - These orders will not be found:   - order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days  * The query time period must be less than 7 days( default as the recent 7 days).
 
 ### Example
 ```java
@@ -2034,12 +2034,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long strategyId = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCmConditionalOrdersResponse result = apiInstance.queryAllCmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -2062,7 +2062,7 @@ public class Example {
 | **strategyId** | **Long**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2089,7 +2089,7 @@ No authorization required
 
 Query All CM Orders (USER_DATA)
 
-Get all account CM orders; active, canceled, or filled.  * Either &#x60;symbol&#x60; or &#x60;pair&#x60; must be sent. * If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that orderId. Otherwise most recent orders are returned. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 3 days &lt; current time  Weight: 20 with symbol, 40 with pair
+Get all account CM orders; active, canceled, or filled.  Weight: - 20 with &#x60;symbol&#x60; - 40 with &#x60;pair&#x60;  Security Type: USER_DATA  Notes: - Either &#x60;symbol&#x60; or &#x60;pair&#x60; must be sent. - If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that orderId. Otherwise most recent orders are returned. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 3 days &lt; current time
 
 ### Example
 ```java
@@ -2106,13 +2106,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    String pair = "pair_example"; // String | 
-    Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200925"; // String | Symbol
+    String pair = "BTCUSD"; // String | 
+    Long orderId = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCmOrdersResponse result = apiInstance.queryAllCmOrders(symbol, pair, orderId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -2131,12 +2131,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | [optional] |
 | **pair** | **String**|  | [optional] |
 | **orderId** | **Long**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2163,7 +2163,7 @@ No authorization required
 
 Query All Current CM Open Conditional Orders (USER_DATA)
 
-Get all open conditional orders on a symbol. **Careful** when accessing this with no symbol.  * If the symbol is not sent, orders for all symbols will be returned in an array.  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted
+Get all open conditional orders on a symbol. **Careful** when accessing this with no symbol.  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - If the symbol is not sent, orders for all symbols will be returned in an array.
 
 ### Example
 ```java
@@ -2180,8 +2180,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCurrentCmOpenConditionalOrdersResponse result = apiInstance.queryAllCurrentCmOpenConditionalOrders(symbol, recvWindow);
       System.out.println(result);
@@ -2225,9 +2225,9 @@ No authorization required
 # **queryAllCurrentCmOpenOrders**
 > QueryAllCurrentCmOpenOrdersResponse queryAllCurrentCmOpenOrders(symbol, pair, recvWindow)
 
-Query All Current CM Open Orders(USER_DATA)
+Query All Current CM Open Orders (USER_DATA)
 
-Get all open orders on a symbol.  * If the symbol is not sent, orders for all symbols will be returned in an array.  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no symbol.
+Get all open orders on a symbol.  * If the symbol is not sent, orders for all symbols will be returned in an array.  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2244,9 +2244,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    String pair = "pair_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200925"; // String | 
+    String pair = "BTCUSD"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCurrentCmOpenOrdersResponse result = apiInstance.queryAllCurrentCmOpenOrders(symbol, pair, recvWindow);
       System.out.println(result);
@@ -2293,7 +2293,7 @@ No authorization required
 
 Query All Current UM Open Algo Orders (USER_DATA)
 
-Get all UM open algo orders on a symbol.  * If the symbol is not sent, orders for all symbols will be returned in an array.  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no symbol.
+Get all UM open algo orders on a symbol. If the symbol is not sent, orders for all symbols will be returned.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Weight: 1 for a single symbol; 40 when the symbol parameter is omitted.
 
 ### Example
 ```java
@@ -2310,10 +2310,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String algoType = "algoType_example"; // String | 
-    String symbol = "symbol_example"; // String | 
-    Long algoId = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    String algoType = "CONDITIONAL"; // String | 
+    String symbol = "BNBUSDT"; // String | 
+    Long algoId = 2146760L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCurrentUmOpenAlgoOrdersResponse result = apiInstance.queryAllCurrentUmOpenAlgoOrders(algoType, symbol, algoId, recvWindow);
       System.out.println(result);
@@ -2353,15 +2353,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | All Current UM Open Algo Orders |  -  |
+| **200** | Query All Current UM Open Algo Orders |  -  |
 
 <a id="queryAllCurrentUmOpenConditionalOrders"></a>
 # **queryAllCurrentUmOpenConditionalOrders**
 > QueryAllCurrentUmOpenConditionalOrdersResponse queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow)
 
-Query All Current UM Open Conditional Orders
+Query All Current UM Open Conditional Orders (USER_DATA)
 
-Get all open conditional orders on a symbol.  * If the symbol is not sent, orders for all symbols will be returned in an array.  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted Careful when accessing this with no symbol.
+Get all open conditional orders on a symbol.  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - If &#x60;symbol&#x60; is not provided, conditional open orders for all symbols are returned.
 
 ### Example
 ```java
@@ -2378,8 +2378,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCurrentUmOpenConditionalOrdersResponse result = apiInstance.queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow);
       System.out.println(result);
@@ -2423,9 +2423,9 @@ No authorization required
 # **queryAllCurrentUmOpenOrders**
 > QueryAllCurrentUmOpenOrdersResponse queryAllCurrentUmOpenOrders(symbol, recvWindow)
 
-Query All Current UM Open Orders(USER_DATA)
+Query All Current UM Open Orders (USER_DATA)
 
-Get all open orders on a symbol.   * If the symbol is not sent, orders for all symbols will be returned in an array.  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted
+Get all open orders on a symbol.  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - If the symbol is not sent, orders for all symbols will be returned in an array.
 
 ### Example
 ```java
@@ -2442,8 +2442,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllCurrentUmOpenOrdersResponse result = apiInstance.queryAllCurrentUmOpenOrders(symbol, recvWindow);
       System.out.println(result);
@@ -2489,7 +2489,7 @@ No authorization required
 
 Query All Margin Account Orders (USER_DATA)
 
-Query All Margin Account Orders  Weight: 100
+Query All Margin Account Orders  Weight(IP): 100  Security Type: USER_DATA  Notes: - If &#x60;orderId&#x60; is set, returns orders with id &gt;&#x3D; &#x60;orderId&#x60;; otherwise returns recent order history. - For some historical orders, &#x60;cummulativeQuoteQty &lt; 0&#x60; means the data is unavailable at this time.
 
 ### Example
 ```java
@@ -2506,12 +2506,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       QueryAllMarginAccountOrdersResponse result = apiInstance.queryAllMarginAccountOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -2530,12 +2530,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -2559,9 +2559,9 @@ No authorization required
 # **queryAllUmConditionalOrders**
 > QueryAllUmConditionalOrdersResponse queryAllUmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow)
 
-Query All UM Conditional Orders
+Query All UM Conditional Orders (USER_DATA)
 
-Query All UM Conditional Orders  * These orders will not be found: * order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 7 days &lt; current time * The query time period must be less than 7 days( default as the recent 7 days).  Weight: 1 for a single symbol; 40 when the symbol parameter is omitted
+Query All UM Conditional Orders  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - These orders will not be found:   - order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days  * The query time period must be less than 7 days( default as the recent 7 days).
 
 ### Example
 ```java
@@ -2578,12 +2578,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long strategyId = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllUmConditionalOrdersResponse result = apiInstance.queryAllUmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -2606,7 +2606,7 @@ public class Example {
 | **strategyId** | **Long**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2631,9 +2631,9 @@ No authorization required
 # **queryAllUmOrders**
 > QueryAllUmOrdersResponse queryAllUmOrders(symbol, orderId, startTime, endTime, limit, recvWindow)
 
-Query All UM Orders(USER_DATA)
+Query All UM Orders (USER_DATA)
 
-Get all account UM orders; active, canceled, or filled. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 3 days &lt; current time  * If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that orderId. Otherwise most recent orders are returned. * The query time period must be less then 7 days( default as the recent 7 days).  Weight: 5
+Get all account UM orders; active, canceled, or filled.  Weight(IP): 5  Security Type: USER_DATA  Notes: - If &#x60;orderId&#x60; is set, it will get orders &gt;&#x3D; that orderId. Otherwise most recent orders are returned. - The query time period must be less then 7 days( default as the recent 7 days).
 
 ### Example
 ```java
@@ -2650,12 +2650,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryAllUmOrdersResponse result = apiInstance.queryAllUmOrders(symbol, orderId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -2674,11 +2674,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2703,9 +2703,9 @@ No authorization required
 # **queryCmConditionalOrderHistory**
 > QueryCmConditionalOrderHistoryResponse queryCmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Query CM Conditional Order History(USER_DATA)
+Query CM Conditional Order History (USER_DATA)
 
-Query CM Conditional Order History   * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * &#x60;NEW&#x60; orders will not be found. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 7 days &lt; current time  Weight: 1
+Query CM Conditional Order History  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60; orders will not be found. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days &lt; current time
 
 ### Example
 ```java
@@ -2722,10 +2722,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    String newClientStrategyId = "newClientStrategyId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long strategyId = 1L; // Long | 
+    String newClientStrategyId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCmConditionalOrderHistoryResponse result = apiInstance.queryCmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow);
       System.out.println(result);
@@ -2744,7 +2744,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **strategyId** | **Long**|  | [optional] |
 | **newClientStrategyId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -2771,9 +2771,9 @@ No authorization required
 # **queryCmModifyOrderHistory**
 > QueryCmModifyOrderHistoryResponse queryCmModifyOrderHistory(symbol, orderId, origClientOrderId, startTime, endTime, limit, recvWindow)
 
-Query CM Modify Order History(TRADE)
+Query CM Modify Order History (TRADE)
 
-Get order modification history  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent.  Weight: 1
+Get order modification history  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent.
 
 ### Example
 ```java
@@ -2790,13 +2790,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | Order ID
+    String origClientOrderId = "1"; // String | Client order ID
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCmModifyOrderHistoryResponse result = apiInstance.queryCmModifyOrderHistory(symbol, orderId, origClientOrderId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -2815,12 +2815,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
-| **orderId** | **Long**|  | [optional] |
-| **origClientOrderId** | **String**|  | [optional] |
+| **symbol** | **String**| Symbol | |
+| **orderId** | **Long**| Order ID | [optional] |
+| **origClientOrderId** | **String**| Client order ID | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2845,9 +2845,9 @@ No authorization required
 # **queryCmOrder**
 > QueryCmOrderResponse queryCmOrder(symbol, orderId, origClientOrderId, recvWindow)
 
-Query CM Order(USER_DATA)
+Query CM Order (USER_DATA)
 
-Check an CM order&#39;s status.  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 3 days &lt; current time  Weight: 1
+Check an CM order&#39;s status.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 3 days &lt; current time
 
 ### Example
 ```java
@@ -2864,10 +2864,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200925"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCmOrderResponse result = apiInstance.queryCmOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -2886,7 +2886,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -2913,9 +2913,9 @@ No authorization required
 # **queryCurrentCmOpenConditionalOrder**
 > QueryCurrentCmOpenConditionalOrderResponse queryCurrentCmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Query Current CM Open Conditional Order(USER_DATA)
+Query Current CM Open Conditional Order (USER_DATA)
 
-Query Current CM Open Conditional Order  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * If the queried order has been triggered, cancelled or expired, the error message \&quot;Order does not exist\&quot; will be returned.  Weight: 1
+Query Current CM Open Conditional Order  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - If the queried order has been triggered, cancelled or expired, the error message \&quot;Order does not exist\&quot; will be returned.
 
 ### Example
 ```java
@@ -2932,10 +2932,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    String newClientStrategyId = "newClientStrategyId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200925"; // String | Symbol
+    Long strategyId = 1L; // Long | 
+    String newClientStrategyId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCurrentCmOpenConditionalOrderResponse result = apiInstance.queryCurrentCmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
       System.out.println(result);
@@ -2954,7 +2954,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **strategyId** | **Long**|  | [optional] |
 | **newClientStrategyId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -2983,7 +2983,7 @@ No authorization required
 
 Query Current CM Open Order (USER_DATA)
 
-Query current CM open order  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * If the queried order has been filled or cancelled, the error message \&quot;Order does not exist\&quot; will be returned.  Weight: 1
+Query current CM open order  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. - If the queried order has been filled or cancelled, the error message \&quot;Order does not exist\&quot; will be returned.
 
 ### Example
 ```java
@@ -3000,10 +3000,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Trading pair.
+    Long orderId = 1917641L; // Long | Order ID.
+    String origClientOrderId = "abc"; // String | User-defined order ID.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCurrentCmOpenOrderResponse result = apiInstance.queryCurrentCmOpenOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -3022,9 +3022,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
-| **orderId** | **Long**|  | [optional] |
-| **origClientOrderId** | **String**|  | [optional] |
+| **symbol** | **String**| Trading pair. | |
+| **orderId** | **Long**| Order ID. | [optional] |
+| **origClientOrderId** | **String**| User-defined order ID. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -3051,7 +3051,7 @@ No authorization required
 
 Query Current Margin Open Order (USER_DATA)
 
-Query Current Margin Open Order  Weight: 5
+Query Current Margin Open Order  Weight(IP): 5  Security Type: USER_DATA  Notes: - If &#x60;symbol&#x60; is not sent, order records for all symbols are returned. - When returning all symbols, the request count charged to the rate limiter equals the number of symbols currently trading on the exchange.
 
 ### Example
 ```java
@@ -3068,8 +3068,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       QueryCurrentMarginOpenOrderResponse result = apiInstance.queryCurrentMarginOpenOrder(symbol, recvWindow);
       System.out.println(result);
@@ -3088,8 +3088,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **symbol** | **String**| Symbol | |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -3115,7 +3115,7 @@ No authorization required
 
 Query Current UM Open Algo Order (USER_DATA)
 
-Check an UM algo order&#39;s status.  * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60; **AND** order has NO filled trade **AND** created time + 3 days &lt; current time * order create time + 90 days &lt; current time  * Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. * &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60;  Weight: 1
+Check an UM algo order&#39;s status. Orders will not be found if: status is CANCELED/EXPIRED with no fills and created 3+ days ago; or created 90+ days ago.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. &#x60;algoId&#x60; is self-increment for each specific &#x60;symbol&#x60;.
 
 ### Example
 ```java
@@ -3132,9 +3132,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long algoId = 56L; // Long | 
-    String clientAlgoId = "clientAlgoId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    Long algoId = 2146760L; // Long | Algo order ID
+    String clientAlgoId = "6B2I9XVcJpCjqPAJ4YoFX7"; // String | Client algo order ID
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCurrentUmOpenAlgoOrderResponse result = apiInstance.queryCurrentUmOpenAlgoOrder(algoId, clientAlgoId, recvWindow);
       System.out.println(result);
@@ -3153,8 +3153,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **algoId** | **Long**|  | [optional] |
-| **clientAlgoId** | **String**|  | [optional] |
+| **algoId** | **Long**| Algo order ID | [optional] |
+| **clientAlgoId** | **String**| Client algo order ID | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -3173,15 +3173,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Current UM Open Algo Order |  -  |
+| **200** | Query UM Algo Order |  -  |
 
 <a id="queryCurrentUmOpenConditionalOrder"></a>
 # **queryCurrentUmOpenConditionalOrder**
 > QueryCurrentUmOpenConditionalOrderResponse queryCurrentUmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Query Current UM Open Conditional Order
+Query Current UM Open Conditional Order (USER_DATA)
 
-Query Current UM Open Conditional Order  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.  Weight: 1
+Query Current UM Open Conditional Order  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.
 
 ### Example
 ```java
@@ -3198,10 +3198,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    String newClientStrategyId = "newClientStrategyId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long strategyId = 1L; // Long | 
+    String newClientStrategyId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCurrentUmOpenConditionalOrderResponse result = apiInstance.queryCurrentUmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
       System.out.println(result);
@@ -3220,7 +3220,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **strategyId** | **Long**|  | [optional] |
 | **newClientStrategyId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -3247,9 +3247,9 @@ No authorization required
 # **queryCurrentUmOpenOrder**
 > QueryCurrentUmOpenOrderResponse queryCurrentUmOpenOrder(symbol, orderId, origClientOrderId, recvWindow)
 
-Query Current UM Open Order(USER_DATA)
+Query Current UM Open Order (USER_DATA)
 
-Query current UM open order   * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * If the queried order has been filled or cancelled, the error message \&quot;Order does not exist\&quot; will be returned.  Weight: 1
+Query current UM open order  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. - If the queried order has been filled or cancelled, the error message \&quot;Order does not exist\&quot; will be returned.
 
 ### Example
 ```java
@@ -3266,10 +3266,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCurrentUmOpenOrderResponse result = apiInstance.queryCurrentUmOpenOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -3288,7 +3288,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -3317,7 +3317,7 @@ No authorization required
 
 Query Margin Account Order (USER_DATA)
 
-Query Margin Account Order  Weight: 10
+Query Margin Account Order  Weight(IP): 10  Security Type: USER_DATA  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. - For some historical orders, &#x60;cummulativeQuoteQty &lt; 0&#x60; means the data is unavailable at this time.
 
 ### Example
 ```java
@@ -3334,10 +3334,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       QueryMarginAccountOrderResponse result = apiInstance.queryMarginAccountOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -3356,10 +3356,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -3385,7 +3385,7 @@ No authorization required
 
 Query Margin Account&#39;s all OCO (USER_DATA)
 
-Query all OCO for a specific margin account based on provided optional parameters  Weight: 100
+Query all OCO for a specific margin account based on provided optional parameters  Weight(IP): 100  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -3402,11 +3402,11 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long fromId = 56L; // Long | Trade id to fetch from. Default gets most recent trades.
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    Long fromId = 1L; // Long | Trade ID to fetch from.
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       QueryMarginAccountsAllOcoResponse result = apiInstance.queryMarginAccountsAllOco(fromId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -3425,11 +3425,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **fromId** | **Long**| Trade id to fetch from. Default gets most recent trades. | [optional] |
+| **fromId** | **Long**| Trade ID to fetch from. | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -3455,7 +3455,7 @@ No authorization required
 
 Query Margin Account&#39;s OCO (USER_DATA)
 
-Retrieves a specific OCO based on provided optional parameters  Weight: 5
+Retrieves a specific OCO based on provided optional parameters  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -3472,9 +3472,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long orderListId = 56L; // Long | Either `orderListId` or `listClientOrderId` must be provided
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    Long orderListId = 1L; // Long | Either `orderListId` or `listClientOrderId` must be provided
+    String origClientOrderId = "1"; // String | `orderListId` or `listClientOrderId` must be provided.
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       QueryMarginAccountsOcoResponse result = apiInstance.queryMarginAccountsOco(orderListId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -3494,8 +3494,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderListId** | **Long**| Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | [optional] |
-| **origClientOrderId** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **origClientOrderId** | **String**| &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided. | [optional] |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -3521,7 +3521,7 @@ No authorization required
 
 Query Margin Account&#39;s Open OCO (USER_DATA)
 
-Query Margin Account&#39;s Open OCO  Weight: 5
+Query Margin Account&#39;s Open OCO  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -3538,7 +3538,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Value cannot be greater than 60000
     try {
       QueryMarginAccountsOpenOcoResponse result = apiInstance.queryMarginAccountsOpenOco(recvWindow);
       System.out.println(result);
@@ -3557,7 +3557,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -3583,7 +3583,7 @@ No authorization required
 
 Query UM Algo Order History (USER_DATA)
 
-Get all algo orders; ACTIVE, CANCELED, TRIGGERED or FINISHED .  * If &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are returned. * The query time period must be less then 7 days( default as the recent 7 days).  Weight: 5
+Get all algo orders: ACTIVE, CANCELED, TRIGGERED or FINISHED.  Weight(IP): 5  Security Type: USER_DATA  Notes: - If &#x60;algoId&#x60; is set, it will get orders &gt;&#x3D; that &#x60;algoId&#x60;. Otherwise most recent orders are returned. - The query time period must be less than 7 days (default as the recent 7 days).
 
 ### Example
 ```java
@@ -3600,12 +3600,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long algoId = 56L; // Long | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BNBUSDT"; // String | 
+    Long algoId = 2146760L; // Long | Only return orders >= this algoId
+    Long startTime = 1770130294138L; // Long | 
+    Long endTime = 1770736694138L; // Long | 
+    Long limit = 500L; // Long | Default 500; max 1000
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUmAlgoOrderHistoryResponse result = apiInstance.queryUmAlgoOrderHistory(symbol, algoId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -3625,10 +3625,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **algoId** | **Long**|  | [optional] |
-| **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
-| **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **algoId** | **Long**| Only return orders &gt;&#x3D; this algoId | [optional] |
+| **startTime** | **Long**|  | [optional] |
+| **endTime** | **Long**|  | [optional] |
+| **limit** | **Long**| Default 500; max 1000 | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -3647,15 +3647,15 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | UM Algo Order History |  -  |
+| **200** | Query UM Algo Order History |  -  |
 
 <a id="queryUmConditionalOrderHistory"></a>
 # **queryUmConditionalOrderHistory**
 > QueryUmConditionalOrderHistoryResponse queryUmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Query UM Conditional Order History
+Query UM Conditional Order History (USER_DATA)
 
-Query UM Conditional Order History  * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. * &#x60;NEW&#x60; orders will not be found. * These orders will not be found: * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 7 days &lt; current time  Weight: 1
+Query UM Conditional Order History  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60; orders will not be found. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days &lt; current time
 
 ### Example
 ```java
@@ -3672,10 +3672,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long strategyId = 56L; // Long | 
-    String newClientStrategyId = "newClientStrategyId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long strategyId = 1L; // Long | 
+    String newClientStrategyId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUmConditionalOrderHistoryResponse result = apiInstance.queryUmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow);
       System.out.println(result);
@@ -3694,7 +3694,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **strategyId** | **Long**|  | [optional] |
 | **newClientStrategyId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -3721,9 +3721,9 @@ No authorization required
 # **queryUmModifyOrderHistory**
 > QueryUmModifyOrderHistoryResponse queryUmModifyOrderHistory(symbol, orderId, origClientOrderId, startTime, endTime, limit, recvWindow)
 
-Query UM Modify Order History(TRADE)
+Query UM Modify Order History (TRADE)
 
-Get order modification history  * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent.  Weight: 1
+Get order modification history  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent, and the &#x60;orderId&#x60; will prevail if both are sent.
 
 ### Example
 ```java
@@ -3740,13 +3740,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | Order ID
+    String origClientOrderId = "1"; // String | Client order ID
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUmModifyOrderHistoryResponse result = apiInstance.queryUmModifyOrderHistory(symbol, orderId, origClientOrderId, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -3765,12 +3765,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
-| **orderId** | **Long**|  | [optional] |
-| **origClientOrderId** | **String**|  | [optional] |
+| **symbol** | **String**| Symbol | |
+| **orderId** | **Long**| Order ID | [optional] |
+| **origClientOrderId** | **String**| Client order ID | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -3797,7 +3797,7 @@ No authorization required
 
 Query UM Order (USER_DATA)
 
-Check an UM order&#39;s status.  * These orders will not be found: * Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent. * order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** * order has NO filled trade, **AND** * created time + 3 days &lt; current time  Weight: 1
+Check an UM order&#39;s status.  Weight(IP): 1  Security Type: USER_DATA  Notes: - These orders will not be found:   - Either &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent.   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 3 days &lt; current time
 
 ### Example
 ```java
@@ -3814,10 +3814,10 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long orderId = 56L; // Long | 
-    String origClientOrderId = "origClientOrderId_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long orderId = 1L; // Long | 
+    String origClientOrderId = "1"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUmOrderResponse result = apiInstance.queryUmOrder(symbol, orderId, origClientOrderId, recvWindow);
       System.out.println(result);
@@ -3836,7 +3836,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -3863,9 +3863,9 @@ No authorization required
 # **queryUsersCmForceOrders**
 > QueryUsersCmForceOrdersResponse queryUsersCmForceOrders(symbol, autoCloseType, startTime, endTime, limit, recvWindow)
 
-Query User&#39;s CM Force Orders(USER_DATA)
+Query User&#39;s CM Force Orders (USER_DATA)
 
-Query User&#39;s CM Force Orders  * If \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned * If \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be queried * Only support querying data in the past 90 days  Weight: 20 with symbol, 50 without symbol
+Query User&#39;s CM Force Orders  Weight: - 20 with &#x60;symbol&#x60; - 50 without &#x60;symbol&#x60;  Security Type: USER_DATA  Notes: - If \&quot;autoCloseType\&quot; is not sent, orders with both of the types will be returned - If \&quot;startTime\&quot; is not sent, data within 7 days before \&quot;endTime\&quot; can be queried
 
 ### Example
 ```java
@@ -3882,12 +3882,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
+    String symbol = "BTCUSDT"; // String | 
     AutoCloseType autoCloseType = AutoCloseType.fromValue("LIQUIDATION"); // AutoCloseType | `LIQUIDATION` for liquidation orders, `ADL` for ADL orders.
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       QueryUsersCmForceOrdersResponse result = apiInstance.queryUsersCmForceOrders(symbol, autoCloseType, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -3910,8 +3910,8 @@ public class Example {
 | **autoCloseType** | [**AutoCloseType**](.md)| &#x60;LIQUIDATION&#x60; for liquidation orders, &#x60;ADL&#x60; for ADL orders. | [optional] [enum: LIQUIDATION, ADL] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -3935,9 +3935,9 @@ No authorization required
 # **queryUsersMarginForceOrders**
 > QueryUsersMarginForceOrdersResponse queryUsersMarginForceOrders(startTime, endTime, current, size, recvWindow)
 
-Query User&#39;s Margin Force Orders(USER_DATA)
+Query User&#39;s Margin Force Orders (USER_DATA)
 
-Query user&#39;s margin force orders  Weight: 1
+Query user&#39;s margin force orders  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -3954,11 +3954,11 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10 Max:100
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long current = 1L; // Long | Current page number.
+    Long size = 10L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       QueryUsersMarginForceOrdersResponse result = apiInstance.queryUsersMarginForceOrders(startTime, endTime, current, size, recvWindow);
       System.out.println(result);
@@ -3979,9 +3979,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current page number. | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -4007,7 +4007,7 @@ No authorization required
 
 Query User&#39;s UM Force Orders (USER_DATA)
 
-Query User&#39;s UM Force Orders  * If &#x60;autoCloseType&#x60; is not sent, orders with both of the types will be returned * If &#x60;startTime&#x60; is not sent, data within 7 days before &#x60;endTime&#x60; can be queried * Only support querying data in the past 90 days  Weight: 20 with symbol, 50 without symbol
+Query User&#39;s UM Force Orders  Weight: - 20 with &#x60;symbol&#x60; - 50 without &#x60;symbol&#x60;  Security Type: USER_DATA  Notes: - If &#x60;autoCloseType&#x60; is not sent, orders with both of the types will be returned - If &#x60;startTime&#x60; is not sent, data within 7 days before &#x60;endTime&#x60; can be queried
 
 ### Example
 ```java
@@ -4024,12 +4024,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
+    String symbol = "BTCUSDT"; // String | 
     AutoCloseType autoCloseType = AutoCloseType.fromValue("LIQUIDATION"); // AutoCloseType | `LIQUIDATION` for liquidation orders, `ADL` for ADL orders.
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       QueryUsersUmForceOrdersResponse result = apiInstance.queryUsersUmForceOrders(symbol, autoCloseType, startTime, endTime, limit, recvWindow);
       System.out.println(result);
@@ -4052,8 +4052,8 @@ public class Example {
 | **autoCloseType** | [**AutoCloseType**](.md)| &#x60;LIQUIDATION&#x60; for liquidation orders, &#x60;ADL&#x60; for ADL orders. | [optional] [enum: LIQUIDATION, ADL] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -4079,7 +4079,7 @@ No authorization required
 
 Toggle BNB Burn On UM Futures Trade (TRADE)
 
-Change user&#39;s BNB Fee Discount for UM Futures (Fee Discount On or Fee Discount Off ) on ***EVERY symbol***   * The BNB would not be collected from UM-PM account to the Portfolio Margin account.  Weight: 1
+Change user&#39;s BNB Fee Discount for UM Futures (Fee Discount On or Fee Discount Off ) on ***EVERY symbol***  Weight(IP): 1  Security Type: TRADE  Notes: - The BNB would not be collected from UM-PM account to the Portfolio Margin account.
 
 ### Example
 ```java
@@ -4139,9 +4139,9 @@ No authorization required
 # **umAccountTradeList**
 > UmAccountTradeListResponse umAccountTradeList(symbol, startTime, endTime, fromId, limit, recvWindow)
 
-UM Account Trade List(USER_DATA)
+UM Account Trade List (USER_DATA)
 
-Get trades for a specific account and UM symbol.   * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;7 days&#39; data will be returned. * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. * The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;.  Weight: 5
+Get trades for a specific account and UM symbol.  Weight(IP): 5  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last &#39;7 days&#39; data will be returned. - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;.
 
 ### Example
 ```java
@@ -4158,12 +4158,12 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long fromId = 56L; // Long | Trade id to fetch from. Default gets most recent trades.
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long fromId = 1L; // Long | Trade ID to fetch from.
+    Long limit = 500L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       UmAccountTradeListResponse result = apiInstance.umAccountTradeList(symbol, startTime, endTime, fromId, limit, recvWindow);
       System.out.println(result);
@@ -4182,11 +4182,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **fromId** | **Long**| Trade id to fetch from. Default gets most recent trades. | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **fromId** | **Long**| Trade ID to fetch from. | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -4211,9 +4211,9 @@ No authorization required
 # **umPositionAdlQuantileEstimation**
 > UmPositionAdlQuantileEstimationResponse umPositionAdlQuantileEstimation(symbol, recvWindow)
 
-UM Position ADL Quantile Estimation(USER_DATA)
+UM Position ADL Quantile Estimation (USER_DATA)
 
-Query UM Position ADL Quantile Estimation  * Values update every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from low to high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge Mode, \&quot;LONG\&quot;, \&quot;SHORT\&quot;, and \&quot;BOTH\&quot; will be returned to show the positions&#39; adl quantiles of different position sides. * If the positions of the symbol are crossed margined in Hedge Mode: * \&quot;HEDGE\&quot; as a sign will be returned instead of \&quot;BOTH\&quot;; * A same value caculated on unrealized pnls on long and short sides&#39; positions will be shown for \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there are positions in both of long and short sides.  Weight: 5
+Query UM Position ADL Quantile Estimation  * Values update every 30s. * Values 0, 1, 2, 3, 4 shows the queue position and possibility of ADL from low to high. * For positions of the symbol are in One-way Mode or isolated margined in Hedge Mode, \&quot;LONG\&quot;, \&quot;SHORT\&quot;, and \&quot;BOTH\&quot; will be returned to show the positions&#39; adl quantiles of different position sides. * If the positions of the symbol are crossed margined in Hedge Mode: * \&quot;HEDGE\&quot; as a sign will be returned instead of \&quot;BOTH\&quot;; * A same value caculated on unrealized pnls on long and short sides&#39; positions will be shown for \&quot;LONG\&quot; and \&quot;SHORT\&quot; when there are positions in both of long and short sides.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -4230,8 +4230,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       UmPositionAdlQuantileEstimationResponse result = apiInstance.umPositionAdlQuantileEstimation(symbol, recvWindow);
       System.out.println(result);

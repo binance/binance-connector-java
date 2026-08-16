@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AllMarketRollingWindowTickerResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -150,7 +150,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -169,7 +169,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -189,7 +189,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -209,7 +209,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Price change
      *
      * @return pLowerCase
      */
@@ -228,7 +228,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get P
+     * Price change percent
      *
      * @return P
      */
@@ -248,7 +248,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get oLowerCase
+     * Open price
      *
      * @return oLowerCase
      */
@@ -268,7 +268,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get hLowerCase
+     * High price
      *
      * @return hLowerCase
      */
@@ -288,7 +288,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Low price
      *
      * @return lLowerCase
      */
@@ -308,7 +308,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get cLowerCase
+     * Last price
      *
      * @return cLowerCase
      */
@@ -328,7 +328,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get wLowerCase
+     * Weighted average price
      *
      * @return wLowerCase
      */
@@ -348,7 +348,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get vLowerCase
+     * Total traded base asset volume
      *
      * @return vLowerCase
      */
@@ -368,7 +368,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Total traded quote asset volume
      *
      * @return qLowerCase
      */
@@ -387,7 +387,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get O
+     * Statistics open time
      *
      * @return O
      */
@@ -406,7 +406,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get C
+     * Statistics close time
      *
      * @return C
      */
@@ -425,7 +425,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get F
+     * First trade ID
      *
      * @return F
      */
@@ -444,7 +444,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get L
+     * Last trade Id
      *
      * @return L
      */
@@ -464,7 +464,7 @@ public class AllMarketRollingWindowTickerResponseInner extends BaseDTO {
     }
 
     /**
-     * Get nLowerCase
+     * Total number of trades
      *
      * @return nLowerCase
      */

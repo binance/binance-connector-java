@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **String** |  |  [optional] |
+|**amount** | **String** | amount. |  [optional] |
 
 
 

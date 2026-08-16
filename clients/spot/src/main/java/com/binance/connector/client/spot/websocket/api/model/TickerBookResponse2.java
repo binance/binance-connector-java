@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** TickerBookResponse2 */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TickerBookResponse2 extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -59,13 +59,13 @@ public class TickerBookResponse2 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
-    private List<@Valid TickerBookResponse1Result> result;
+    private List<@Valid TickerBookResponse2ResultInner> result;
 
     public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid RateLimits> rateLimits;
+    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
 
     public TickerBookResponse2() {}
 
@@ -108,12 +108,12 @@ public class TickerBookResponse2 extends BaseDTO {
     }
 
     public TickerBookResponse2 result(
-            @jakarta.annotation.Nullable List<@Valid TickerBookResponse1Result> result) {
+            @jakarta.annotation.Nullable List<@Valid TickerBookResponse2ResultInner> result) {
         this.result = result;
         return this;
     }
 
-    public TickerBookResponse2 addResultItem(TickerBookResponse1Result resultItem) {
+    public TickerBookResponse2 addResultItem(TickerBookResponse2ResultInner resultItem) {
         if (this.result == null) {
             this.result = new ArrayList<>();
         }
@@ -128,22 +128,24 @@ public class TickerBookResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid TickerBookResponse1Result> getResult() {
+    public List<@Valid TickerBookResponse2ResultInner> getResult() {
         return result;
     }
 
     public void setResult(
-            @jakarta.annotation.Nullable List<@Valid TickerBookResponse1Result> result) {
+            @jakarta.annotation.Nullable List<@Valid TickerBookResponse2ResultInner> result) {
         this.result = result;
     }
 
     public TickerBookResponse2 rateLimits(
-            @jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
-    public TickerBookResponse2 addRateLimitsItem(RateLimits rateLimitsItem) {
+    public TickerBookResponse2 addRateLimitsItem(
+            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -158,11 +160,13 @@ public class TickerBookResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid RateLimits> getRateLimits() {
+    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
-    public void setRateLimits(@jakarta.annotation.Nullable List<@Valid RateLimits> rateLimits) {
+    public void setRateLimits(
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -212,12 +216,12 @@ public class TickerBookResponse2 extends BaseDTO {
             String statusValueAsString = statusValue.toString();
             valMap.put("status", statusValueAsString);
         }
-        List<@Valid TickerBookResponse1Result> resultValue = getResult();
+        List<@Valid TickerBookResponse2ResultInner> resultValue = getResult();
         if (resultValue != null) {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid RateLimits> rateLimitsValue = getRateLimits();
+        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -336,7 +340,7 @@ public class TickerBookResponse2 extends BaseDTO {
 
                 // validate the optional field `result` (array)
                 for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    TickerBookResponse1Result.validateJsonElement(jsonArrayresult.get(i));
+                    TickerBookResponse2ResultInner.validateJsonElement(jsonArrayresult.get(i));
                 }
                 ;
             }
@@ -355,7 +359,8 @@ public class TickerBookResponse2 extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    RateLimits.validateJsonElement(jsonArrayrateLimits.get(i));
+                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                            jsonArrayrateLimits.get(i));
                 }
                 ;
             }

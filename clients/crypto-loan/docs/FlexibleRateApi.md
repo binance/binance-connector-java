@@ -4,27 +4,27 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**checkCollateralRepayRate**](FlexibleRateApi.md#checkCollateralRepayRate) | **GET** /sapi/v2/loan/flexible/repay/rate | Check Collateral Repay Rate (USER_DATA) |
-| [**flexibleLoanAdjustLtv**](FlexibleRateApi.md#flexibleLoanAdjustLtv) | **POST** /sapi/v2/loan/flexible/adjust/ltv | Flexible Loan Adjust LTV(TRADE) |
-| [**flexibleLoanBorrow**](FlexibleRateApi.md#flexibleLoanBorrow) | **POST** /sapi/v2/loan/flexible/borrow | Flexible Loan Borrow(TRADE) |
-| [**flexibleLoanRepay**](FlexibleRateApi.md#flexibleLoanRepay) | **POST** /sapi/v2/loan/flexible/repay | Flexible Loan Repay(TRADE) |
-| [**getFlexibleLoanAssetsData**](FlexibleRateApi.md#getFlexibleLoanAssetsData) | **GET** /sapi/v2/loan/flexible/loanable/data | Get Flexible Loan Assets Data(USER_DATA) |
-| [**getFlexibleLoanBorrowHistory**](FlexibleRateApi.md#getFlexibleLoanBorrowHistory) | **GET** /sapi/v2/loan/flexible/borrow/history | Get Flexible Loan Borrow History(USER_DATA) |
-| [**getFlexibleLoanCollateralAssetsData**](FlexibleRateApi.md#getFlexibleLoanCollateralAssetsData) | **GET** /sapi/v2/loan/flexible/collateral/data | Get Flexible Loan Collateral Assets Data(USER_DATA) |
+| [**checkCollateralRepayRate**](FlexibleRateApi.md#checkCollateralRepayRate) | **GET** /sapi/v2/loan/flexible/repay/rate | Check Collateral Flexible Repay Rate (USER_DATA) |
+| [**flexibleLoanAdjustLtv**](FlexibleRateApi.md#flexibleLoanAdjustLtv) | **POST** /sapi/v2/loan/flexible/adjust/ltv | Flexible Loan Adjust LTV (TRADE) |
+| [**flexibleLoanBorrow**](FlexibleRateApi.md#flexibleLoanBorrow) | **POST** /sapi/v2/loan/flexible/borrow | Flexible Loan Borrow (TRADE) |
+| [**flexibleLoanRepay**](FlexibleRateApi.md#flexibleLoanRepay) | **POST** /sapi/v2/loan/flexible/repay | Flexible Loan Repay (TRADE) |
+| [**getFlexibleLoanAssetsData**](FlexibleRateApi.md#getFlexibleLoanAssetsData) | **GET** /sapi/v2/loan/flexible/loanable/data | Get Flexible Loan Assets Data (USER_DATA) |
+| [**getFlexibleLoanBorrowHistory**](FlexibleRateApi.md#getFlexibleLoanBorrowHistory) | **GET** /sapi/v2/loan/flexible/borrow/history | Get Flexible Loan Borrow History (USER_DATA) |
+| [**getFlexibleLoanCollateralAssetsData**](FlexibleRateApi.md#getFlexibleLoanCollateralAssetsData) | **GET** /sapi/v2/loan/flexible/collateral/data | Get Flexible Loan Collateral Assets Data (USER_DATA) |
 | [**getFlexibleLoanInterestRateHistory**](FlexibleRateApi.md#getFlexibleLoanInterestRateHistory) | **GET** /sapi/v2/loan/interestRateHistory | Get Flexible Loan Interest Rate History (USER_DATA) |
 | [**getFlexibleLoanLiquidationHistory**](FlexibleRateApi.md#getFlexibleLoanLiquidationHistory) | **GET** /sapi/v2/loan/flexible/liquidation/history | Get Flexible Loan Liquidation History (USER_DATA) |
-| [**getFlexibleLoanLtvAdjustmentHistory**](FlexibleRateApi.md#getFlexibleLoanLtvAdjustmentHistory) | **GET** /sapi/v2/loan/flexible/ltv/adjustment/history | Get Flexible Loan LTV Adjustment History(USER_DATA) |
-| [**getFlexibleLoanOngoingOrders**](FlexibleRateApi.md#getFlexibleLoanOngoingOrders) | **GET** /sapi/v2/loan/flexible/ongoing/orders | Get Flexible Loan Ongoing Orders(USER_DATA) |
-| [**getFlexibleLoanRepaymentHistory**](FlexibleRateApi.md#getFlexibleLoanRepaymentHistory) | **GET** /sapi/v2/loan/flexible/repay/history | Get Flexible Loan Repayment History(USER_DATA) |
+| [**getFlexibleLoanLtvAdjustmentHistory**](FlexibleRateApi.md#getFlexibleLoanLtvAdjustmentHistory) | **GET** /sapi/v2/loan/flexible/ltv/adjustment/history | Get Flexible Loan LTV Adjustment History (USER_DATA) |
+| [**getFlexibleLoanOngoingOrders**](FlexibleRateApi.md#getFlexibleLoanOngoingOrders) | **GET** /sapi/v2/loan/flexible/ongoing/orders | Get Flexible Loan Ongoing Orders (USER_DATA) |
+| [**getFlexibleLoanRepaymentHistory**](FlexibleRateApi.md#getFlexibleLoanRepaymentHistory) | **GET** /sapi/v2/loan/flexible/repay/history | Get Flexible Loan Repayment History (USER_DATA) |
 
 
 <a id="checkCollateralRepayRate"></a>
 # **checkCollateralRepayRate**
 > CheckCollateralRepayRateResponse checkCollateralRepayRate(loanCoin, collateralCoin, recvWindow)
 
-Check Collateral Repay Rate (USER_DATA)
+Check Collateral Flexible Repay Rate (USER_DATA)
 
- Weight: 6000
+Get the latest rate of collateral coin/loan coin when using collateral repay.  Weight(IP): 6000  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -41,9 +41,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    String collateralCoin = "BNB"; // String | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       CheckCollateralRepayRateResponse result = apiInstance.checkCollateralRepayRate(loanCoin, collateralCoin, recvWindow);
       System.out.println(result);
@@ -64,7 +64,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **loanCoin** | **String**|  | |
 | **collateralCoin** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -88,9 +88,9 @@ No authorization required
 # **flexibleLoanAdjustLtv**
 > FlexibleLoanAdjustLtvResponse flexibleLoanAdjustLtv(flexibleLoanAdjustLtvRequest)
 
-Flexible Loan Adjust LTV(TRADE)
+Flexible Loan Adjust LTV (TRADE)
 
-Flexible Loan Adjust LTV  * API Key needs Spot &amp; Margin Trading permission for this endpoint  Weight: 6000
+Flexible Loan Adjust LTV  Weight(UID): 6000  Security Type: TRADE  Notes: - API key needs Spot &amp; Margin Trading permission for this endpoint.
 
 ### Example
 ```java
@@ -150,9 +150,9 @@ No authorization required
 # **flexibleLoanBorrow**
 > FlexibleLoanBorrowResponse flexibleLoanBorrow(flexibleLoanBorrowRequest)
 
-Flexible Loan Borrow(TRADE)
+Flexible Loan Borrow (TRADE)
 
-Borrow Flexible Loan   * Only available for master account * You can customize LTV by entering loanAmount and collateralAmount.  Weight: 6000
+Borrow Flexible Loan  Weight(IP): 6000  Security Type: TRADE  Notes: - This endpoint is available for both master and sub-accounts. - You can customize LTV by entering &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;.
 
 ### Example
 ```java
@@ -212,9 +212,9 @@ No authorization required
 # **flexibleLoanRepay**
 > FlexibleLoanRepayResponse flexibleLoanRepay(flexibleLoanRepayRequest)
 
-Flexible Loan Repay(TRADE)
+Flexible Loan Repay (TRADE)
 
-Flexible Loan Repay   * repayAmount is mandatory even fullRepayment &#x3D; FALSE  Weight: 6000
+Flexible Loan Repay  Weight(IP): 6000  Security Type: TRADE  Notes: - &#x60;repayAmount&#x60; is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;.
 
 ### Example
 ```java
@@ -274,9 +274,9 @@ No authorization required
 # **getFlexibleLoanAssetsData**
 > GetFlexibleLoanAssetsDataResponse getFlexibleLoanAssetsData(loanCoin, recvWindow)
 
-Get Flexible Loan Assets Data(USER_DATA)
+Get Flexible Loan Assets Data (USER_DATA)
 
-Get interest rate and borrow limit of flexible loanable assets. The borrow limit is shown in USD value.  Weight: 400
+Get interest rate and borrow limit of flexible loanable assets. The borrow limit is shown in USD value.  Weight(IP): 400  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -293,8 +293,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanAssetsDataResponse result = apiInstance.getFlexibleLoanAssetsData(loanCoin, recvWindow);
       System.out.println(result);
@@ -314,7 +314,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **loanCoin** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -338,9 +338,9 @@ No authorization required
 # **getFlexibleLoanBorrowHistory**
 > GetFlexibleLoanBorrowHistoryResponse getFlexibleLoanBorrowHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow)
 
-Get Flexible Loan Borrow History(USER_DATA)
+Get Flexible Loan Borrow History (USER_DATA)
 
-Get Flexible Loan Borrow History  * If startTime and endTime are not sent, the recent 90-day data will be returned. * The max interval between startTime and endTime is 180 days.  Weight: 400
+Get Flexible Loan Borrow History. It can be used to check history before 2024-02-27 08:00.  Weight(IP): 400  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
 
 ### Example
 ```java
@@ -357,13 +357,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
-    Long limit = 56L; // Long | Default: 10; max: 100
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    String collateralCoin = "BNB"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Current querying page
+    Long limit = 10L; // Long | Number of records to return
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanBorrowHistoryResponse result = apiInstance.getFlexibleLoanBorrowHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow);
       System.out.println(result);
@@ -386,9 +386,9 @@ public class Example {
 | **collateralCoin** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
-| **limit** | **Long**| Default: 10; max: 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page | [optional] |
+| **limit** | **Long**| Number of records to return | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -412,9 +412,9 @@ No authorization required
 # **getFlexibleLoanCollateralAssetsData**
 > GetFlexibleLoanCollateralAssetsDataResponse getFlexibleLoanCollateralAssetsData(collateralCoin, recvWindow)
 
-Get Flexible Loan Collateral Assets Data(USER_DATA)
+Get Flexible Loan Collateral Assets Data (USER_DATA)
 
-Get LTV information and collateral limit of flexible loan&#39;s collateral assets. The collateral limit is shown in USD value.  Weight: 400
+Get LTV information and collateral limit of flexible loan&#39;s collateral assets. The collateral limit is shown in USD value.  Weight(IP): 400  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -431,8 +431,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String collateralCoin = "BNB"; // String | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanCollateralAssetsDataResponse result = apiInstance.getFlexibleLoanCollateralAssetsData(collateralCoin, recvWindow);
       System.out.println(result);
@@ -452,7 +452,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collateralCoin** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -478,7 +478,7 @@ No authorization required
 
 Get Flexible Loan Interest Rate History (USER_DATA)
 
-Check Flexible Loan interest rate history  * If startTime and endTime are not sent, the recent 90-day data will be returned * The max interval between startTime and endTime is 90 days. * Time based on UTC+0.  Weight: 400
+Check Flexible Loan interest rate history  Weight(IP): 400  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days. - Time is based on UTC+0.
 
 ### Example
 ```java
@@ -495,12 +495,12 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String coin = "coin_example"; // String | 
-    Long recvWindow = 56L; // Long | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
-    Long limit = 56L; // Long | Default: 10; max: 100
+    String coin = "USDT"; // String | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Current querying page
+    Long limit = 10L; // Long | Number of records to return
     try {
       GetFlexibleLoanInterestRateHistoryResponse result = apiInstance.getFlexibleLoanInterestRateHistory(coin, recvWindow, startTime, endTime, current, limit);
       System.out.println(result);
@@ -520,11 +520,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **coin** | **String**|  | |
-| **recvWindow** | **Long**|  | |
+| **recvWindow** | **Long**| Request validity window in milliseconds | |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
-| **limit** | **Long**| Default: 10; max: 100 | [optional] |
+| **current** | **Long**| Current querying page | [optional] |
+| **limit** | **Long**| Number of records to return | [optional] |
 
 ### Return type
 
@@ -550,7 +550,7 @@ No authorization required
 
 Get Flexible Loan Liquidation History (USER_DATA)
 
- Weight: 400
+Get Flexible Loan Liquidation History  Weight(IP): 400  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -567,13 +567,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
-    Long limit = 56L; // Long | Default: 10; max: 100
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    String collateralCoin = "BNB"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Current querying page
+    Long limit = 10L; // Long | Number of records to return
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanLiquidationHistoryResponse result = apiInstance.getFlexibleLoanLiquidationHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow);
       System.out.println(result);
@@ -596,9 +596,9 @@ public class Example {
 | **collateralCoin** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
-| **limit** | **Long**| Default: 10; max: 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page | [optional] |
+| **limit** | **Long**| Number of records to return | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -622,9 +622,9 @@ No authorization required
 # **getFlexibleLoanLtvAdjustmentHistory**
 > GetFlexibleLoanLtvAdjustmentHistoryResponse getFlexibleLoanLtvAdjustmentHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow)
 
-Get Flexible Loan LTV Adjustment History(USER_DATA)
+Get Flexible Loan LTV Adjustment History (USER_DATA)
 
-Get Flexible Loan LTV Adjustment History  * If startTime and endTime are not sent, the recent 90-day data will be returned. * The max interval between startTime and endTime is 180 days.  Weight: 400
+Get Flexible Loan LTV Adjustment History. It can be used to check history before 2024-02-27 08:00.  Weight(UID): 400  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
 
 ### Example
 ```java
@@ -641,13 +641,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
-    Long limit = 56L; // Long | Default: 10; max: 100
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    String collateralCoin = "BNB"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Current querying page
+    Long limit = 10L; // Long | Number of records to return
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanLtvAdjustmentHistoryResponse result = apiInstance.getFlexibleLoanLtvAdjustmentHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow);
       System.out.println(result);
@@ -670,9 +670,9 @@ public class Example {
 | **collateralCoin** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
-| **limit** | **Long**| Default: 10; max: 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page | [optional] |
+| **limit** | **Long**| Number of records to return | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -696,9 +696,9 @@ No authorization required
 # **getFlexibleLoanOngoingOrders**
 > GetFlexibleLoanOngoingOrdersResponse getFlexibleLoanOngoingOrders(loanCoin, collateralCoin, current, limit, recvWindow)
 
-Get Flexible Loan Ongoing Orders(USER_DATA)
+Get Flexible Loan Ongoing Orders (USER_DATA)
 
-Get Flexible Loan Ongoing Orders  Weight: 300
+Get Flexible Loan Ongoing Orders  Weight(IP): 300  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -715,11 +715,11 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
-    Long limit = 56L; // Long | Default: 10; max: 100
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    String collateralCoin = "BNB"; // String | 
+    Long current = 1L; // Long | Current querying page
+    Long limit = 10L; // Long | Number of records to return
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanOngoingOrdersResponse result = apiInstance.getFlexibleLoanOngoingOrders(loanCoin, collateralCoin, current, limit, recvWindow);
       System.out.println(result);
@@ -740,9 +740,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **loanCoin** | **String**|  | [optional] |
 | **collateralCoin** | **String**|  | [optional] |
-| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
-| **limit** | **Long**| Default: 10; max: 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page | [optional] |
+| **limit** | **Long**| Number of records to return | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -766,9 +766,9 @@ No authorization required
 # **getFlexibleLoanRepaymentHistory**
 > GetFlexibleLoanRepaymentHistoryResponse getFlexibleLoanRepaymentHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow)
 
-Get Flexible Loan Repayment History(USER_DATA)
+Get Flexible Loan Repayment History (USER_DATA)
 
-Get Flexible Loan Repayment History  * If startTime and endTime are not sent, the recent 90-day data will be returned. * The max interval between startTime and endTime is 180 days.  Weight: 400
+Get Flexible Loan Repayment History. It can be used to check history before 2024-02-27 08:00.  Weight(IP): 400  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
 
 ### Example
 ```java
@@ -785,13 +785,13 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FlexibleRateApi apiInstance = new FlexibleRateApi(defaultClient);
-    String loanCoin = "loanCoin_example"; // String | 
-    String collateralCoin = "collateralCoin_example"; // String | 
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long current = 56L; // Long | Current querying page. Start from 1; default: 1; max: 1000
-    Long limit = 56L; // Long | Default: 10; max: 100
-    Long recvWindow = 56L; // Long | 
+    String loanCoin = "BUSD"; // String | 
+    String collateralCoin = "BNB"; // String | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long current = 1L; // Long | Current querying page
+    Long limit = 10L; // Long | Number of records to return
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFlexibleLoanRepaymentHistoryResponse result = apiInstance.getFlexibleLoanRepaymentHistory(loanCoin, collateralCoin, startTime, endTime, current, limit, recvWindow);
       System.out.println(result);
@@ -814,9 +814,9 @@ public class Example {
 | **collateralCoin** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **current** | **Long**| Current querying page. Start from 1; default: 1; max: 1000 | [optional] |
-| **limit** | **Long**| Default: 10; max: 100 | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current querying page | [optional] |
+| **limit** | **Long**| Number of records to return | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 

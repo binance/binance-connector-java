@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+ * Portfolio Margin Pro REST API
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -35,19 +35,19 @@ import org.hibernate.validator.constraints.*;
 /** TransferLdusdtRwusdForPortfolioMarginRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class TransferLdusdtRwusdForPortfolioMarginRequest {
     public static final String SERIALIZED_NAME_ASSET = "asset";
 
     @SerializedName(SERIALIZED_NAME_ASSET)
     @jakarta.annotation.Nonnull
-    private String asset;
+    private Asset asset;
 
     public static final String SERIALIZED_NAME_TRANSFER_TYPE = "transferType";
 
     @SerializedName(SERIALIZED_NAME_TRANSFER_TYPE)
     @jakarta.annotation.Nonnull
-    private String transferType;
+    private TransferType transferType;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -64,7 +64,7 @@ public class TransferLdusdtRwusdForPortfolioMarginRequest {
     public TransferLdusdtRwusdForPortfolioMarginRequest() {}
 
     public TransferLdusdtRwusdForPortfolioMarginRequest asset(
-            @jakarta.annotation.Nonnull String asset) {
+            @jakarta.annotation.Nonnull Asset asset) {
         this.asset = asset;
         return this;
     }
@@ -76,16 +76,17 @@ public class TransferLdusdtRwusdForPortfolioMarginRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getAsset() {
+    @Valid
+    public Asset getAsset() {
         return asset;
     }
 
-    public void setAsset(@jakarta.annotation.Nonnull String asset) {
+    public void setAsset(@jakarta.annotation.Nonnull Asset asset) {
         this.asset = asset;
     }
 
     public TransferLdusdtRwusdForPortfolioMarginRequest transferType(
-            @jakarta.annotation.Nonnull String transferType) {
+            @jakarta.annotation.Nonnull TransferType transferType) {
         this.transferType = transferType;
         return this;
     }
@@ -97,11 +98,12 @@ public class TransferLdusdtRwusdForPortfolioMarginRequest {
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    public String getTransferType() {
+    @Valid
+    public TransferType getTransferType() {
         return transferType;
     }
 
-    public void setTransferType(@jakarta.annotation.Nonnull String transferType) {
+    public void setTransferType(@jakarta.annotation.Nonnull TransferType transferType) {
         this.transferType = transferType;
     }
 
@@ -274,20 +276,10 @@ public class TransferLdusdtRwusdForPortfolioMarginRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (!jsonObj.get("asset").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `asset` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("asset").toString()));
-        }
-        if (!jsonObj.get("transferType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `transferType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("transferType").toString()));
-        }
+        // validate the required field `asset`
+        Asset.validateJsonElement(jsonObj.get("asset"));
+        // validate the required field `transferType`
+        TransferType.validateJsonElement(jsonObj.get("transferType"));
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

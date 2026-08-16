@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**email** | **String** |  |  [optional] |
 |**asset** | **String** |  |  [optional] |
-|**assets** | [**List&lt;GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner&gt;**](GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner.md) |  |  [optional] |
+|**assets** | [**List&lt;GetDetailOnSubAccountsFuturesAccountResponseAssetsInner&gt;**](GetDetailOnSubAccountsFuturesAccountResponseAssetsInner.md) |  |  [optional] |
 |**canDeposit** | **Boolean** |  |  [optional] |
 |**canTrade** | **Boolean** |  |  [optional] |
 |**canWithdraw** | **Boolean** |  |  [optional] |

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -113,42 +113,7 @@ public class JSON {
                                                 "listenKeyExpired",
                                                 com.binance.connector.client
                                                         .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.Listenkeyexpired.class);
-                                        classByDiscriminatorValue.put(
-                                                "accountConfigUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.AccountConfigUpdate.class);
-                                        classByDiscriminatorValue.put(
-                                                "accountUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.AccountUpdate.class);
-                                        classByDiscriminatorValue.put(
-                                                "gridUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.GridUpdate.class);
-                                        classByDiscriminatorValue.put(
-                                                "listenkeyexpired",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.Listenkeyexpired.class);
-                                        classByDiscriminatorValue.put(
-                                                "marginCall",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.MarginCall.class);
-                                        classByDiscriminatorValue.put(
-                                                "orderTradeUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.OrderTradeUpdate.class);
-                                        classByDiscriminatorValue.put(
-                                                "strategyUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_coin_futures.websocket
-                                                        .stream.model.StrategyUpdate.class);
+                                                        .stream.model.ListenKeyExpired.class);
                                         classByDiscriminatorValue.put(
                                                 "UserDataStreamEventsResponse",
                                                 com.binance.connector.client
@@ -296,12 +261,6 @@ public class JSON {
                         .model.DiffBookDepthStreamsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.DiffBookDepthStreamsResponseAItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.DiffBookDepthStreamsResponseBItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
                         .model.GridUpdate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
@@ -351,13 +310,7 @@ public class JSON {
                         .model.KlineCandlestickStreamsResponseK.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.LiquidationOrderStreamsRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.LiquidationOrderStreamsResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.Listenkeyexpired.CustomTypeAdapterFactory());
+                        .model.ListenKeyExpired.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
                         .model.MarginCall.CustomTypeAdapterFactory());
@@ -392,6 +345,12 @@ public class JSON {
                         .model.MarkPriceStreamResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
+                        .model.MarketLiquidationOrderStreamsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
+                        .model.MarketLiquidationOrderStreamsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
                         .model.OrderTradeUpdate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
@@ -402,12 +361,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
                         .model.PartialBookDepthStreamsResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.PartialBookDepthStreamsResponseAItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(
-                new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
-                        .model.PartialBookDepthStreamsResponseBItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_coin_futures.websocket.stream
                         .model.StrategyUpdate.CustomTypeAdapterFactory());

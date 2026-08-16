@@ -7,10 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**recvWindow** | **Long** |  |  [optional] |
 |**currency** | **String** |  |  |
-|**apiPaymentMethod** | **String** |  |  |
-|**amount** | **Long** |  |  |
+|**apiPaymentMethod** | **ApiPaymentMethod** |  |  |
+|**amount** | **String** | deposit amount |  |
 |**ext** | **Object** |  |  [optional] |
 
 

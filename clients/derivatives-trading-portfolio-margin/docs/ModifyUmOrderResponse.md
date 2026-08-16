@@ -7,26 +7,25 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**orderId** | **Long** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
-|**price** | **String** |  |  [optional] |
-|**avgPrice** | **String** |  |  [optional] |
-|**origQty** | **String** |  |  [optional] |
-|**executedQty** | **String** |  |  [optional] |
-|**cumQty** | **String** |  |  [optional] |
-|**cumQuote** | **String** |  |  [optional] |
-|**timeInForce** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**reduceOnly** | **Boolean** |  |  [optional] |
-|**side** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**origType** | **String** |  |  [optional] |
-|**selfTradePreventionMode** | **String** |  |  [optional] |
-|**goodTillDate** | **Long** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
-|**priceMatch** | **String** |  |  [optional] |
+|**orderId** | **Long** | Normal orderID after trigger if appliable, only have when the strategy is triggered |  [optional] |
+|**symbol** | **String** | Trade symbol, if existing. |  [optional] |
+|**status** | **String** | Status. |  [optional] |
+|**clientOrderId** | **String** | Client Order ID. |  [optional] |
+|**modifyId** | **Long** | user-defined modification identifier, only returned if provided in the request |  [optional] |
+|**price** | **String** | Price. |  [optional] |
+|**origQty** | **String** | Orig Qty. |  [optional] |
+|**executedQty** | **String** | Executed Qty. |  [optional] |
+|**cumQty** | **String** | Cum Qty. |  [optional] |
+|**timeInForce** | **String** | Time In Force. |  [optional] |
+|**type** | **String** | Normal order type after trigger if appliable |  [optional] |
+|**reduceOnly** | **Boolean** | Reduce Only. |  [optional] |
+|**side** | **String** | Side. |  [optional] |
+|**positionSide** | **String** | BOTH means that it is the position of One-way Mode |  [optional] |
+|**origType** | **String** | Orig Type. |  [optional] |
+|**selfTradePreventionMode** | **String** | self trading preventation mode |  [optional] |
+|**goodTillDate** | **Long** | order pre-set auot cancel time for TIF GTD order |  [optional] |
+|**updateTime** | **Long** | last update time |  [optional] |
+|**priceMatch** | **String** | Price Match. |  [optional] |
 
 
 

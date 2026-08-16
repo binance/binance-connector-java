@@ -4,17 +4,17 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getFuturesLeadTraderStatus**](FutureCopyTradingApi.md#getFuturesLeadTraderStatus) | **GET** /sapi/v1/copyTrading/futures/userStatus | Get Futures Lead Trader Status(TRADE) |
-| [**getFuturesLeadTradingSymbolWhitelist**](FutureCopyTradingApi.md#getFuturesLeadTradingSymbolWhitelist) | **GET** /sapi/v1/copyTrading/futures/leadSymbol | Get Futures Lead Trading Symbol Whitelist(USER_DATA) |
+| [**getFuturesLeadTraderStatus**](FutureCopyTradingApi.md#getFuturesLeadTraderStatus) | **GET** /sapi/v1/copyTrading/futures/userStatus | Get Futures Lead Trader Status (TRADE) |
+| [**getFuturesLeadTradingSymbolWhitelist**](FutureCopyTradingApi.md#getFuturesLeadTradingSymbolWhitelist) | **GET** /sapi/v1/copyTrading/futures/leadSymbol | Get Futures Lead Trading Symbol Whitelist (USER_DATA) |
 
 
 <a id="getFuturesLeadTraderStatus"></a>
 # **getFuturesLeadTraderStatus**
 > GetFuturesLeadTraderStatusResponse getFuturesLeadTraderStatus(recvWindow)
 
-Get Futures Lead Trader Status(TRADE)
+Get Futures Lead Trader Status (TRADE)
 
-Get Futures Lead Trader Status  Weight: 20
+Get Futures Lead Trader Status  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -31,7 +31,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FutureCopyTradingApi apiInstance = new FutureCopyTradingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFuturesLeadTraderStatusResponse result = apiInstance.getFuturesLeadTraderStatus(recvWindow);
       System.out.println(result);
@@ -50,7 +50,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 
@@ -74,9 +74,9 @@ No authorization required
 # **getFuturesLeadTradingSymbolWhitelist**
 > GetFuturesLeadTradingSymbolWhitelistResponse getFuturesLeadTradingSymbolWhitelist(recvWindow)
 
-Get Futures Lead Trading Symbol Whitelist(USER_DATA)
+Get Futures Lead Trading Symbol Whitelist (USER_DATA)
 
-Get Futures Lead Trading Symbol Whitelist  Weight: 20
+Get Futures Lead Trading Symbol Whitelist  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -93,7 +93,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     FutureCopyTradingApi apiInstance = new FutureCopyTradingApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
       GetFuturesLeadTradingSymbolWhitelistResponse result = apiInstance.getFuturesLeadTradingSymbolWhitelist(recvWindow);
       System.out.println(result);
@@ -112,7 +112,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type
 

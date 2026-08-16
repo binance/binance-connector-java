@@ -1,6 +1,6 @@
 /*
- * Binance Spot REST API
- * OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+ * Spot REST API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.*;
 
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlinesItemInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(KlinesItemInner.class.getName());
 
@@ -45,10 +45,10 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'KlinesItemInner' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<String> adapterString =
-                    gson.getDelegateAdapter(this, TypeToken.get(String.class));
             final TypeAdapter<Long> adapterLong =
                     gson.getDelegateAdapter(this, TypeToken.get(Long.class));
+            final TypeAdapter<String> adapterString =
+                    gson.getDelegateAdapter(this, TypeToken.get(String.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<KlinesItemInner>() {
@@ -60,20 +60,20 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
                                 return;
                             }
 
-                            // check if the actual instance is of the type `String`
-                            if (value.getActualInstance() instanceof String) {
-                                JsonPrimitive primitive =
-                                        adapterString
-                                                .toJsonTree((String) value.getActualInstance())
-                                                .getAsJsonPrimitive();
-                                elementAdapter.write(out, primitive);
-                                return;
-                            }
                             // check if the actual instance is of the type `Long`
                             if (value.getActualInstance() instanceof Long) {
                                 JsonPrimitive primitive =
                                         adapterLong
                                                 .toJsonTree((Long) value.getActualInstance())
+                                                .getAsJsonPrimitive();
+                                elementAdapter.write(out, primitive);
+                                return;
+                            }
+                            // check if the actual instance is of the type `String`
+                            if (value.getActualInstance() instanceof String) {
+                                JsonPrimitive primitive =
+                                        adapterString
+                                                .toJsonTree((String) value.getActualInstance())
                                                 .getAsJsonPrimitive();
                                 elementAdapter.write(out, primitive);
                                 return;
@@ -92,6 +92,27 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
                             ArrayList<String> errorMessages = new ArrayList<>();
                             TypeAdapter actualAdapter = elementAdapter;
 
+                            // deserialize Long
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                if (!jsonElement.getAsJsonPrimitive().isNumber()) {
+                                    throw new IllegalArgumentException(
+                                            String.format(
+                                                    "Expected json element to be of type Number in"
+                                                            + " the JSON string but got `%s`",
+                                                    jsonElement.toString()));
+                                }
+                                actualAdapter = adapterLong;
+                                match++;
+                                log.log(Level.FINER, "Input data matches schema 'Long'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for Long failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(Level.FINER, "Input data does not match schema 'Long'", e);
+                            }
                             // deserialize String
                             try {
                                 // validate the JSON object to see if any exception is thrown
@@ -115,27 +136,6 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
                                         Level.FINER,
                                         "Input data does not match schema 'String'",
                                         e);
-                            }
-                            // deserialize Long
-                            try {
-                                // validate the JSON object to see if any exception is thrown
-                                if (!jsonElement.getAsJsonPrimitive().isNumber()) {
-                                    throw new IllegalArgumentException(
-                                            String.format(
-                                                    "Expected json element to be of type Number in"
-                                                            + " the JSON string but got `%s`",
-                                                    jsonElement.toString()));
-                                }
-                                actualAdapter = adapterLong;
-                                match++;
-                                log.log(Level.FINER, "Input data matches schema 'Long'");
-                            } catch (Exception e) {
-                                // deserialization failed, continue
-                                errorMessages.add(
-                                        String.format(
-                                                "Deserialization for Long failed with `%s`.",
-                                                e.getMessage()));
-                                log.log(Level.FINER, "Input data does not match schema 'Long'", e);
                             }
 
                             if (match == 1) {
@@ -168,8 +168,8 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("String", String.class);
         schemas.put("Long", Long.class);
+        schemas.put("String", String.class);
     }
 
     @Override
@@ -185,12 +185,12 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof String) {
+        if (instance instanceof Long) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof Long) {
+        if (instance instanceof String) {
             super.setActualInstance(instance);
             return;
         }
@@ -210,17 +210,6 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `String`. If the actual instance is not `String`, the
-     * ClassCastException will be thrown.
-     *
-     * @return The actual instance of `String`
-     * @throws ClassCastException if the instance is not `String`
-     */
-    public String getString() throws ClassCastException {
-        return (String) super.getActualInstance();
-    }
-
-    /**
      * Get the actual instance of `Long`. If the actual instance is not `Long`, the
      * ClassCastException will be thrown.
      *
@@ -229,6 +218,17 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
      */
     public Long getLong() throws ClassCastException {
         return (Long) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `String`. If the actual instance is not `String`, the
+     * ClassCastException will be thrown.
+     *
+     * @return The actual instance of `String`
+     * @throws ClassCastException if the instance is not `String`
+     */
+    public String getString() throws ClassCastException {
+        return (String) super.getActualInstance();
     }
 
     /**
@@ -241,21 +241,6 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with String
-        try {
-            if (!jsonElement.getAsJsonPrimitive().isString()) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "Expected json element to be of type String in the JSON string but"
-                                        + " got `%s`",
-                                jsonElement.toString()));
-            }
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(
-                    String.format("Deserialization for String failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
         // validate the json string with Long
         try {
             if (!jsonElement.getAsJsonPrimitive().isNumber()) {
@@ -269,6 +254,21 @@ public class KlinesItemInner extends AbstractOpenApiSchema {
         } catch (Exception e) {
             errorMessages.add(
                     String.format("Deserialization for Long failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with String
+        try {
+            if (!jsonElement.getAsJsonPrimitive().isString()) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Expected json element to be of type String in the JSON string but"
+                                        + " got `%s`",
+                                jsonElement.toString()));
+            }
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format("Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {

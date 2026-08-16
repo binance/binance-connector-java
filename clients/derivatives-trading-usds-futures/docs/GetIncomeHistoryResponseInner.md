@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**incomeType** | **String** |  |  [optional] |
-|**income** | **String** |  |  [optional] |
-|**asset** | **String** |  |  [optional] |
-|**info** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
-|**tranId** | **Long** |  |  [optional] |
-|**tradeId** | **String** |  |  [optional] |
+|**symbol** | **String** | trade symbol, if existing |  [optional] |
+|**incomeType** | **String** | income type |  [optional] |
+|**income** | **String** | income amount |  [optional] |
+|**asset** | **String** | income asset |  [optional] |
+|**info** | **String** | extra information |  [optional] |
+|**time** | **Long** | Time. |  [optional] |
+|**tranId** | **Long** | transaction id |  [optional] |
+|**tradeId** | **String** | trade id, if existing |  [optional] |
 
 
 

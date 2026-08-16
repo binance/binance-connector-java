@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryMarginAccountsOpenOcoResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginAccountsOpenOcoResponseInner {
     public static final String SERIALIZED_NAME_ORDER_LIST_ID = "orderListId";
 
@@ -99,7 +99,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get orderListId
+     * Order List ID.
      *
      * @return orderListId
      */
@@ -119,7 +119,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get contingencyType
+     * Contingency Type.
      *
      * @return contingencyType
      */
@@ -139,7 +139,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get listStatusType
+     * List Status Type.
      *
      * @return listStatusType
      */
@@ -159,7 +159,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get listOrderStatus
+     * List Order Status.
      *
      * @return listOrderStatus
      */
@@ -179,7 +179,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get listClientOrderId
+     * List Client Order ID.
      *
      * @return listClientOrderId
      */
@@ -199,7 +199,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get transactionTime
+     * Transaction Time.
      *
      * @return transactionTime
      */
@@ -219,7 +219,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -249,7 +249,7 @@ public class QueryMarginAccountsOpenOcoResponseInner {
     }
 
     /**
-     * Get orders
+     * Orders.
      *
      * @return orders
      */

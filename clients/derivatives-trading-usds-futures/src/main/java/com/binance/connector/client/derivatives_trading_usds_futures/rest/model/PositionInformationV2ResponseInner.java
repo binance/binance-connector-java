@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** PositionInformationV2ResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationV2ResponseInner {
     public static final String SERIALIZED_NAME_ENTRY_PRICE = "entryPrice";
 
@@ -141,7 +141,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get entryPrice
+     * Entry Price.
      *
      * @return entryPrice
      */
@@ -161,7 +161,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get breakEvenPrice
+     * Break Even Price.
      *
      * @return breakEvenPrice
      */
@@ -181,7 +181,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get marginType
+     * Margin Type.
      *
      * @return marginType
      */
@@ -221,7 +221,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get isolatedMargin
+     * Isolated Margin.
      *
      * @return isolatedMargin
      */
@@ -241,7 +241,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get leverage
+     * Leverage.
      *
      * @return leverage
      */
@@ -261,7 +261,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get liquidationPrice
+     * Liquidation Price.
      *
      * @return liquidationPrice
      */
@@ -281,7 +281,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get markPrice
+     * Mark Price.
      *
      * @return markPrice
      */
@@ -301,7 +301,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get maxNotionalValue
+     * Max Notional Value.
      *
      * @return maxNotionalValue
      */
@@ -321,7 +321,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get positionAmt
+     * Position Amt.
      *
      * @return positionAmt
      */
@@ -380,7 +380,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get symbol
+     * Symbol.
      *
      * @return symbol
      */
@@ -400,7 +400,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get unRealizedProfit
+     * Un Realized Profit.
      *
      * @return unRealizedProfit
      */
@@ -420,7 +420,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position Side.
      *
      * @return positionSide
      */
@@ -440,7 +440,7 @@ public class PositionInformationV2ResponseInner {
     }
 
     /**
-     * Get updateTime
+     * Update Time.
      *
      * @return updateTime
      */

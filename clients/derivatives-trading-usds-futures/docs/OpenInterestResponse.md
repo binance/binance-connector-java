@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**openInterest** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
+|**openInterest** | **String** | Open Interest. |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**time** | **Long** | Transaction time |  [optional] |
 
 
 

@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -67,7 +67,8 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account Commission Rates Get current account commission rates. Weight: 20
+     * Account Commission Rates (USER_DATA) Get current account commission rates. Weight(IP): 20
+     * Security Type: USER_DATA Notes: **Data Source:** Database
      *
      * @param accountCommissionRequest (required)
      * @return AccountCommissionResponse
@@ -81,8 +82,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-commission-rates-user_data">WebSocket
-     *     Account Commission Rates Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-commission">Account
+     *     Commission Rates (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountCommissionResponse> accountCommission(
             AccountCommissionRequest accountCommissionRequest) throws ApiException {
@@ -129,8 +130,8 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Unfilled Order Count Query your current unfilled order count for all intervals.
-     * Weight: 40
+     * Unfilled Order Count (USER_DATA) Query your current unfilled order count for all intervals.
+     * Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      *
      * @param accountRateLimitsOrdersRequest (optional)
      * @return AccountRateLimitsOrdersResponse
@@ -144,8 +145,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#unfilled-order-count-user_data">WebSocket
-     *     Unfilled Order Count Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-rate-limits-orders">Unfilled
+     *     Order Count (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountRateLimitsOrdersResponse> accountRateLimitsOrders(
             AccountRateLimitsOrdersRequest accountRateLimitsOrdersRequest) throws ApiException {
@@ -194,7 +195,8 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account information Query information about your account. Weight: 20
+     * Account information (USER_DATA) Query information about your account. Weight(IP): 20 Security
+     * Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database
      *
      * @param accountStatusRequest (optional)
      * @return AccountStatusResponse
@@ -208,8 +210,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-information-user_data">WebSocket
-     *     Account information Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-status">Account
+     *     information (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AccountStatusResponse> accountStatus(
             AccountStatusRequest accountStatusRequest) throws ApiException {
@@ -255,8 +257,14 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account order list history Query information about all your order lists, filtered
-     * by time range. Weight: 20
+     * Account order list history (USER_DATA) Query information about all your order lists, filtered
+     * by time range. Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database
+     * Notes: * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified,
+     * &#x60;fromId&#x60; is ignored. Order lists are filtered by &#x60;transactionTime&#x60; of the
+     * last order list execution status update. * If &#x60;fromId&#x60; is specified, return order
+     * lists with order list ID &gt;&#x3D; &#x60;fromId&#x60;. * If no condition is specified, the
+     * most recent order lists are returned. * The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      *
      * @param allOrderListsRequest (optional)
      * @return AllOrderListsResponse
@@ -270,8 +278,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-list-history-user_data">WebSocket
-     *     Account order list history Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#all-order-lists">Account
+     *     order list history (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AllOrderListsResponse> allOrderLists(
             AllOrderListsRequest allOrderListsRequest) throws ApiException {
@@ -317,8 +325,15 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account order history Query information about all your orders – active, canceled,
-     * filled – filtered by time range. Weight: 20
+     * Account order history (USER_DATA) Query information about all your orders – active, canceled,
+     * filled – filtered by time range. Weight(IP): 20 Security Type: USER_DATA Notes: **Data
+     * Source:** Database Notes: * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are
+     * specified, &#x60;orderId&#x60; is ignored. Orders are filtered by &#x60;time&#x60; of the
+     * last execution status update. * If &#x60;orderId&#x60; is specified, return orders with order
+     * ID &gt;&#x3D; &#x60;orderId&#x60;. * If no condition is specified, the most recent orders are
+     * returned. * For some historical orders the &#x60;cummulativeQuoteQty&#x60; response field may
+     * be negative, meaning the data is not available at this time. * The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      *
      * @param allOrdersRequest (required)
      * @return AllOrdersResponse
@@ -332,8 +347,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-history-user_data">WebSocket
-     *     Account order history Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#all-orders">Account
+     *     order history (USER_DATA) Documentation</a>
      */
     public CompletableFuture<AllOrdersResponse> allOrders(AllOrdersRequest allOrdersRequest)
             throws ApiException {
@@ -379,8 +394,18 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account allocations Retrieves allocations resulting from SOR order placement.
-     * Weight: 20
+     * Account allocations (USER_DATA) Retrieves allocations resulting from SOR order placement.
+     * Weight(IP): 20 Security Type: USER_DATA Notes: **Data Source:** Database Supported parameter
+     * combinations: Parameters | Response | ------------------------------------------- | --------
+     * | &#x60;symbol&#x60; | allocations from oldest to newest | &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; | oldest allocations since &#x60;startTime&#x60; | &#x60;symbol&#x60; +
+     * &#x60;endTime&#x60; | newest allocations until &#x60;endTime&#x60; | &#x60;symbol&#x60; +
+     * &#x60;startTime&#x60; + &#x60;endTime&#x60; | allocations within the time range |
+     * &#x60;symbol&#x60; + &#x60;fromAllocationId&#x60; | allocations by allocation ID |
+     * &#x60;symbol&#x60; + &#x60;orderId&#x60; | allocations related to an order starting with
+     * oldest | &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromAllocationId&#x60; |
+     * allocations related to an order by allocation ID | **Note:** The time between
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
      *
      * @param myAllocationsRequest (required)
      * @return MyAllocationsResponse
@@ -394,8 +419,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-allocations-user_data">WebSocket
-     *     Account allocations Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-allocations">Account
+     *     allocations (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyAllocationsResponse> myAllocations(
             MyAllocationsRequest myAllocationsRequest) throws ApiException {
@@ -441,9 +466,10 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Query Relevant Filters Retrieves the list of [filters](filters.md) relevant to an
-     * account on a given symbol. This is the only method that shows if an account has
-     * &#x60;MAX_ASSET&#x60; filters applied to it. Weight: 40
+     * Query Relevant Filters (USER_DATA) Retrieves the list of [filters](/products/spot/filters)
+     * relevant to an account on a given symbol. This is the only method that shows if an account
+     * has [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it.
+     * Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      *
      * @param myFiltersRequest (required)
      * @return MyFiltersResponse
@@ -457,8 +483,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-relevant-filters-user_data">WebSocket
-     *     Query Relevant Filters Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-filters">Query
+     *     Relevant Filters (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyFiltersResponse> myFilters(MyFiltersRequest myFiltersRequest)
             throws ApiException {
@@ -504,13 +530,14 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account prevented matches Displays the list of orders that were expired due to STP.
-     * These are the combinations supported: * &#x60;symbol&#x60; + &#x60;preventedMatchId&#x60; *
-     * &#x60;symbol&#x60; + &#x60;orderId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; +
-     * &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to 500) * &#x60;symbol&#x60;
-     * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; + &#x60;limit&#x60; Weight: Case |
-     * Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2 Querying by
-     * &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20
+     * Account prevented matches (USER_DATA) Displays the list of orders that were expired due to
+     * STP. These are the combinations supported: * &#x60;symbol&#x60; +
+     * &#x60;preventedMatchId&#x60; * &#x60;symbol&#x60; + &#x60;orderId&#x60; * &#x60;symbol&#x60;
+     * + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; (&#x60;limit&#x60; will default to
+     * 500) * &#x60;symbol&#x60; + &#x60;orderId&#x60; + &#x60;fromPreventedMatchId&#x60; +
+     * &#x60;limit&#x60; Weight: Case | Weight ---- | ----- If &#x60;symbol&#x60; is invalid | 2
+     * Querying by &#x60;preventedMatchId&#x60; | 2 Querying by &#x60;orderId&#x60; | 20 Security
+     * Type: USER_DATA Notes: **Data Source:** Database
      *
      * @param myPreventedMatchesRequest (required)
      * @return MyPreventedMatchesResponse
@@ -524,8 +551,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-prevented-matches-user_data">WebSocket
-     *     Account prevented matches Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-prevented-matches">Account
+     *     prevented matches (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyPreventedMatchesResponse> myPreventedMatches(
             MyPreventedMatchesRequest myPreventedMatchesRequest) throws ApiException {
@@ -572,8 +599,17 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Account trade history Query information about all your trades, filtered by time
-     * range. Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5|
+     * Account trade history (USER_DATA) Query information about all your trades, filtered by time
+     * range. Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5| Security
+     * Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60;
+     * is specified, return trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If
+     * &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, trades are filtered by
+     * execution time (&#x60;time&#x60;). - &#x60;fromId&#x60; cannot be used together with
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If &#x60;orderId&#x60; is specified, only
+     * trades related to that order are returned. - &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be used together with &#x60;orderId&#x60;. - If no condition is specified, the most
+     * recent trades are returned. - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * can&#39;t be longer than 24 hours.
      *
      * @param myTradesRequest (required)
      * @return MyTradesResponse
@@ -587,8 +623,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-trade-history-user_data">WebSocket
-     *     Account trade history Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-trades">Account
+     *     trade history (USER_DATA) Documentation</a>
      */
     public CompletableFuture<MyTradesResponse> myTrades(MyTradesRequest myTradesRequest)
             throws ApiException {
@@ -633,10 +669,11 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Current open Order lists Query execution status of all open order lists. If you
+     * Current open Order lists (USER_DATA) Query execution status of all open order lists. If you
      * need to continuously monitor order status updates, please consider using WebSocket Streams: *
-     * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event
-     * Weight: 6
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight(IP): 6 Security Type: USER_DATA Notes: **Data Source:** Memory -&gt; Database
      *
      * @param openOrderListsStatusRequest (optional)
      * @return OpenOrderListsStatusResponse
@@ -650,8 +687,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#current-open-order-lists-user_data">WebSocket
-     *     Current open Order lists Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-order-lists-status">Current
+     *     open Order lists (USER_DATA) Documentation</a>
      */
     public CompletableFuture<OpenOrderListsStatusResponse> openOrderListsStatus(
             OpenOrderListsStatusRequest openOrderListsStatusRequest) throws ApiException {
@@ -698,11 +735,12 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Current open orders Query execution status of all open orders. If you need to
+     * Current open orders (USER_DATA) Query execution status of all open orders. If you need to
      * continuously monitor order status updates, please consider using WebSocket Streams: *
-     * &#x60;userDataStream.start&#x60; request * &#x60;executionReport&#x60; user data stream event
-     * Weight: Adjusted based on the number of requested symbols: | Parameter | Weight | | ---------
-     * | ------ | | &#x60;symbol&#x60; | 6 | | none | 80 |
+     * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
+     * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
+     * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
+     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
      *
      * @param openOrdersStatusRequest (optional)
      * @return OpenOrdersStatusResponse
@@ -716,8 +754,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#current-open-orders-user_data">WebSocket
-     *     Current open orders Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-orders-status">Current
+     *     open orders (USER_DATA) Documentation</a>
      */
     public CompletableFuture<OpenOrdersStatusResponse> openOrdersStatus(
             OpenOrdersStatusRequest openOrdersStatusRequest) throws ApiException {
@@ -764,7 +802,8 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Query Order Amendments Queries all amendments of a single order. Weight: 4
+     * Query Order Amendments (USER_DATA) Queries all amendments of a single order. Weight(IP): 4
+     * Security Type: USER_DATA Notes: **Data Source:** Database
      *
      * @param orderAmendmentsRequest (required)
      * @return OrderAmendmentsResponse
@@ -778,8 +817,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-amendments-user_data">WebSocket
-     *     Query Order Amendments Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-amendments">Query
+     *     Order Amendments (USER_DATA) Documentation</a>
      */
     public CompletableFuture<OrderAmendmentsResponse> orderAmendments(
             OrderAmendmentsRequest orderAmendmentsRequest) throws ApiException {
@@ -825,8 +864,12 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Query Order list Check execution status of an Order list. For execution status of
-     * individual orders, use &#x60;order.status&#x60;. Weight: 4
+     * Query Order list (USER_DATA) Check execution status of an Order list. For execution status of
+     * individual orders, use &#x60;order.status&#x60;. Weight(IP): 4 Security Type: USER_DATA
+     * Notes: **Data Source:** Database Notes: * &#x60;origClientOrderId&#x60; refers to
+     * &#x60;listClientOrderId&#x60; of the order list itself. * If both
+     * &#x60;origClientOrderId&#x60; and &#x60;orderListId&#x60; parameters are specified, only
+     * &#x60;origClientOrderId&#x60; is used and &#x60;orderListId&#x60; is ignored.
      *
      * @param orderListStatusRequest (optional)
      * @return OrderListStatusResponse
@@ -840,8 +883,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-list-user_data">WebSocket
-     *     Query Order list Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-list-status">Query
+     *     Order list (USER_DATA) Documentation</a>
      */
     public CompletableFuture<OrderListStatusResponse> orderListStatus(
             OrderListStatusRequest orderListStatusRequest) throws ApiException {
@@ -887,7 +930,13 @@ public class AccountApi {
     }
 
     /**
-     * WebSocket Query order Check execution status of an order. Weight: 4
+     * Query order (USER_DATA) Check execution status of an order. Weight(IP): 4 Security Type:
+     * USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database Notes: * If both
+     * &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the &#x60;orderId&#x60;
+     * is searched first, then the &#x60;origClientOrderId&#x60; from that result is checked against
+     * that order. If both conditions are not met the request will be rejected. * For some
+     * historical orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning
+     * the data is not available at this time.
      *
      * @param orderStatusRequest (required)
      * @return OrderStatusResponse
@@ -901,8 +950,8 @@ public class AccountApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-user_data">WebSocket
-     *     Query order Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-status">Query
+     *     order (USER_DATA) Documentation</a>
      */
     public CompletableFuture<OrderStatusResponse> orderStatus(OrderStatusRequest orderStatusRequest)
             throws ApiException {

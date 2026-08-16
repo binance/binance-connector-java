@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -22,7 +22,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -35,13 +34,13 @@ import org.hibernate.validator.constraints.*;
 /** SmallLiabilityExchangeRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SmallLiabilityExchangeRequest {
     public static final String SERIALIZED_NAME_ASSET_NAMES = "assetNames";
 
     @SerializedName(SERIALIZED_NAME_ASSET_NAMES)
     @jakarta.annotation.Nonnull
-    private AssetNames assetNames;
+    private String assetNames;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
@@ -51,25 +50,23 @@ public class SmallLiabilityExchangeRequest {
 
     public SmallLiabilityExchangeRequest() {}
 
-    public SmallLiabilityExchangeRequest assetNames(
-            @jakarta.annotation.Nonnull AssetNames assetNames) {
+    public SmallLiabilityExchangeRequest assetNames(@jakarta.annotation.Nonnull String assetNames) {
         this.assetNames = assetNames;
         return this;
     }
 
     /**
-     * Get assetNames
+     * The assets list of small liability exchange
      *
      * @return assetNames
      */
     @jakarta.annotation.Nonnull
     @NotNull
-    @Valid
-    public AssetNames getAssetNames() {
+    public String getAssetNames() {
         return assetNames;
     }
 
-    public void setAssetNames(@jakarta.annotation.Nonnull AssetNames assetNames) {
+    public void setAssetNames(@jakarta.annotation.Nonnull String assetNames) {
         this.assetNames = assetNames;
     }
 
@@ -79,11 +76,12 @@ public class SmallLiabilityExchangeRequest {
     }
 
     /**
-     * Get recvWindow
+     * Get recvWindow maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
+    @Max(60000L)
     public Long getRecvWindow() {
         return recvWindow;
     }
@@ -197,6 +195,13 @@ public class SmallLiabilityExchangeRequest {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("assetNames").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `assetNames` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("assetNames").toString()));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

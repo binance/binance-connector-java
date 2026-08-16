@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**dualSidePosition** | **Boolean** |  |  [optional] |
+|**dualSidePosition** | **Boolean** | Whether dual-side position mode is enabled. |  [optional] |
 
 
 

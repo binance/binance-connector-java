@@ -1,6 +1,6 @@
 /*
- * Binance Alpha REST API
- * OpenAPI Specification for the Binance Alpha REST API
+ * Alpha Trading REST API
+ * APIs for Binance Alpha Trading.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,7 +39,7 @@ import org.hibernate.validator.constraints.*;
 /** KlinesResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class KlinesResponse {
     public static final String SERIALIZED_NAME_CODE = "code";
 
@@ -69,7 +69,7 @@ public class KlinesResponse {
 
     @SerializedName(SERIALIZED_NAME_DATA)
     @jakarta.annotation.Nullable
-    private List<KlinesResponseDataItem> data;
+    private List<List<KlinesResponseDataInnerInner>> data;
 
     public KlinesResponse() {}
 
@@ -79,7 +79,7 @@ public class KlinesResponse {
     }
 
     /**
-     * Get code
+     * API response code. \&quot;000000\&quot; indicates success.
      *
      * @return code
      */
@@ -98,7 +98,7 @@ public class KlinesResponse {
     }
 
     /**
-     * Get message
+     * Response message.
      *
      * @return message
      */
@@ -117,7 +117,7 @@ public class KlinesResponse {
     }
 
     /**
-     * Get messageDetail
+     * Detailed response message.
      *
      * @return messageDetail
      */
@@ -136,7 +136,7 @@ public class KlinesResponse {
     }
 
     /**
-     * Get success
+     * Whether request is successful.
      *
      * @return success
      */
@@ -149,12 +149,13 @@ public class KlinesResponse {
         this.success = success;
     }
 
-    public KlinesResponse data(@jakarta.annotation.Nullable List<KlinesResponseDataItem> data) {
+    public KlinesResponse data(
+            @jakarta.annotation.Nullable List<List<KlinesResponseDataInnerInner>> data) {
         this.data = data;
         return this;
     }
 
-    public KlinesResponse addDataItem(KlinesResponseDataItem dataItem) {
+    public KlinesResponse addDataItem(List<KlinesResponseDataInnerInner> dataItem) {
         if (this.data == null) {
             this.data = new ArrayList<>();
         }
@@ -163,17 +164,20 @@ public class KlinesResponse {
     }
 
     /**
-     * Get data
+     * Array of kline rows. Each row contains: open time, open, high, low, close, volume, close
+     * time, quote volume, trade count, taker buy base volume, taker buy quote volume, and a static
+     * 0.
      *
      * @return data
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<KlinesResponseDataItem> getData() {
+    public List<List<KlinesResponseDataInnerInner>> getData() {
         return data;
     }
 
-    public void setData(@jakarta.annotation.Nullable List<KlinesResponseDataItem> data) {
+    public void setData(
+            @jakarta.annotation.Nullable List<List<KlinesResponseDataInnerInner>> data) {
         this.data = data;
     }
 

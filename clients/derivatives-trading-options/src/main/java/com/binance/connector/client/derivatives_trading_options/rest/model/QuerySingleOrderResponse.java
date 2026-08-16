@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QuerySingleOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QuerySingleOrderResponse {
     public static final String SERIALIZED_NAME_ORDER_ID = "orderId";
 
@@ -89,6 +89,12 @@ public class QuerySingleOrderResponse {
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
     private Boolean reduceOnly;
+
+    public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
+
+    @SerializedName(SERIALIZED_NAME_POST_ONLY)
+    @jakarta.annotation.Nullable
+    private Boolean postOnly;
 
     public static final String SERIALIZED_NAME_CREATE_TIME = "createTime";
 
@@ -165,7 +171,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get orderId
+     * System order id
      *
      * @return orderId
      */
@@ -184,7 +190,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Option trading pair
      *
      * @return symbol
      */
@@ -203,7 +209,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get price
+     * Order Price
      *
      * @return price
      */
@@ -222,7 +228,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get quantity
+     * Order Quantity
      *
      * @return quantity
      */
@@ -241,7 +247,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get executedQty
+     * Number of executed quantity
      *
      * @return executedQty
      */
@@ -260,7 +266,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get side
+     * Buy/sell direction
      *
      * @return side
      */
@@ -279,7 +285,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get type
+     * Order type
      *
      * @return type
      */
@@ -298,7 +304,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time in force method
      *
      * @return timeInForce
      */
@@ -317,7 +323,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Order is reduce only Y/N
      *
      * @return reduceOnly
      */
@@ -330,13 +336,32 @@ public class QuerySingleOrderResponse {
         this.reduceOnly = reduceOnly;
     }
 
+    public QuerySingleOrderResponse postOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+        this.postOnly = postOnly;
+        return this;
+    }
+
+    /**
+     * post Only
+     *
+     * @return postOnly
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getPostOnly() {
+        return postOnly;
+    }
+
+    public void setPostOnly(@jakarta.annotation.Nullable Boolean postOnly) {
+        this.postOnly = postOnly;
+    }
+
     public QuerySingleOrderResponse createTime(@jakarta.annotation.Nullable Long createTime) {
         this.createTime = createTime;
         return this;
     }
 
     /**
-     * Get createTime
+     * Order Time
      *
      * @return createTime
      */
@@ -355,7 +380,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * Update time
      *
      * @return updateTime
      */
@@ -374,7 +399,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get status
+     * Order status
      *
      * @return status
      */
@@ -393,7 +418,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get avgPrice
+     * Average price of completed trade
      *
      * @return avgPrice
      */
@@ -413,7 +438,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get clientOrderId
+     * Client order ID
      *
      * @return clientOrderId
      */
@@ -432,7 +457,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get priceScale
+     * price Scale
      *
      * @return priceScale
      */
@@ -451,7 +476,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get quantityScale
+     * quantity Scale
      *
      * @return quantityScale
      */
@@ -470,7 +495,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get optionSide
+     * option Side
      *
      * @return optionSide
      */
@@ -489,7 +514,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get quoteAsset
+     * quote Asset
      *
      * @return quoteAsset
      */
@@ -508,7 +533,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get mmp
+     * mmp
      *
      * @return mmp
      */
@@ -528,7 +553,7 @@ public class QuerySingleOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * Self trade prevention mode.
      *
      * @return selfTradePreventionMode
      */
@@ -560,6 +585,7 @@ public class QuerySingleOrderResponse {
                 && Objects.equals(this.type, querySingleOrderResponse.type)
                 && Objects.equals(this.timeInForce, querySingleOrderResponse.timeInForce)
                 && Objects.equals(this.reduceOnly, querySingleOrderResponse.reduceOnly)
+                && Objects.equals(this.postOnly, querySingleOrderResponse.postOnly)
                 && Objects.equals(this.createTime, querySingleOrderResponse.createTime)
                 && Objects.equals(this.updateTime, querySingleOrderResponse.updateTime)
                 && Objects.equals(this.status, querySingleOrderResponse.status)
@@ -587,6 +613,7 @@ public class QuerySingleOrderResponse {
                 type,
                 timeInForce,
                 reduceOnly,
+                postOnly,
                 createTime,
                 updateTime,
                 status,
@@ -613,6 +640,7 @@ public class QuerySingleOrderResponse {
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
+        sb.append("		postOnly: ").append(toIndentedString(postOnly)).append("\n");
         sb.append("		createTime: ").append(toIndentedString(createTime)).append("\n");
         sb.append("		updateTime: ").append(toIndentedString(updateTime)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
@@ -669,6 +697,10 @@ public class QuerySingleOrderResponse {
         String reduceOnlyValueAsString = "";
         reduceOnlyValueAsString = reduceOnlyValue.toString();
         sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
+        Object postOnlyValue = getPostOnly();
+        String postOnlyValueAsString = "";
+        postOnlyValueAsString = postOnlyValue.toString();
+        sb.append("postOnly=").append(urlEncode(postOnlyValueAsString)).append("");
         Object createTimeValue = getCreateTime();
         String createTimeValueAsString = "";
         createTimeValueAsString = createTimeValue.toString();
@@ -752,6 +784,7 @@ public class QuerySingleOrderResponse {
         openapiFields.add("type");
         openapiFields.add("timeInForce");
         openapiFields.add("reduceOnly");
+        openapiFields.add("postOnly");
         openapiFields.add("createTime");
         openapiFields.add("updateTime");
         openapiFields.add("status");

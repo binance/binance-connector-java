@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** SymbolOrderBookTickerResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class SymbolOrderBookTickerResponseInner {
     public static final String SERIALIZED_NAME_LAST_UPDATE_ID = "lastUpdateId";
 
@@ -93,7 +93,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get lastUpdateId
+     * Last update ID.
      *
      * @return lastUpdateId
      */
@@ -112,7 +112,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -131,7 +131,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -151,7 +151,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get bidPrice
+     * Best bid price.
      *
      * @return bidPrice
      */
@@ -170,7 +170,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get bidQty
+     * Best bid quantity.
      *
      * @return bidQty
      */
@@ -190,7 +190,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get askPrice
+     * Best ask price.
      *
      * @return askPrice
      */
@@ -209,7 +209,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get askQty
+     * Best ask quantity.
      *
      * @return askQty
      */
@@ -228,7 +228,7 @@ public class SymbolOrderBookTickerResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -47,7 +47,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class PublicApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -75,8 +75,11 @@ public class PublicApi {
 
     /**
      * All Book Tickers Stream Pushes any update to the best bid or ask&#39;s price or quantity in
-     * real-time for all symbols. Retail Price Improvement(RPI) orders are not visible and excluded
-     * in the response message. Update Speed: 5s
+     * real-time for all symbols. &gt; **After CM migration**, this stream pushes the merged UM + CM
+     * universe (subscribable on both &#x60;fstream&#x60; and &#x60;dstream&#x60;); each payload is
+     * appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM)
+     * and a new &#x60;ps&#x60; field (pair symbol). Update Speed: 5s Response Notes: - Retail Price
+     * Improvement(RPI) orders are not visible and excluded in the response message.
      *
      * @param allBookTickersStreamRequest (required)
      * @return AllBookTickersStreamResponse
@@ -90,7 +93,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Book-Tickers-Stream">All
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#all-book-tickers-stream">All
      *     Book Tickers Stream Documentation</a>
      */
     public StreamBlockingQueueWrapper<AllBookTickersStreamResponse> allBookTickersStream(
@@ -155,8 +158,10 @@ public class PublicApi {
 
     /**
      * Diff. Book Depth Streams Bids and asks, pushed every 250 milliseconds, 500 milliseconds, 100
-     * milliseconds (if existing) Retail Price Improvement(RPI) orders are not visible and excluded
-     * in the response message. Update Speed: 250ms, 500ms, 100ms
+     * milliseconds (if existing). &gt; **After CM migration**, the payload is appended with a new
+     * &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new
+     * &#x60;ps&#x60; field (pair symbol). Update Speed: 250ms, 500ms, 100ms Response Notes: -
+     * Retail Price Improvement(RPI) orders are not visible and excluded in the response message.
      *
      * @param diffBookDepthStreamsRequest (required)
      * @return DiffBookDepthStreamsResponse
@@ -170,7 +175,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Diff-Book-Depth-Streams">Diff.
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#diff-book-depth-streams">Diff.
      *     Book Depth Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<DiffBookDepthStreamsResponse> diffBookDepthStreams(
@@ -245,8 +250,10 @@ public class PublicApi {
 
     /**
      * Individual Symbol Book Ticker Streams Pushes any update to the best bid or ask&#39;s price or
-     * quantity in real-time for a specified symbol. Retail Price Improvement(RPI) orders are not
-     * visible and excluded in the response message. Update Speed: Real-time
+     * quantity in real-time for a specified symbol. &gt; **After CM migration**, the payload is
+     * appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM).
+     * Update Speed: Real-time Response Notes: Retail Price Improvement (RPI) orders are not visible
+     * and excluded in the response message.
      *
      * @param individualSymbolBookTickerStreamsRequest (required)
      * @return IndividualSymbolBookTickerStreamsResponse
@@ -260,7 +267,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Individual-Symbol-Book-Ticker-Streams">Individual
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#individual-symbol-book-ticker-streams">Individual
      *     Symbol Book Ticker Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<IndividualSymbolBookTickerStreamsResponse>
@@ -340,9 +347,11 @@ public class PublicApi {
     }
 
     /**
-     * Partial Book Depth Streams Top **&lt;levels\\&gt;** bids and asks, Valid **&lt;levels\\&gt;**
-     * are 5, 10, or 20. Retail Price Improvement(RPI) orders are not visible and excluded in the
-     * response message. Update Speed: 250ms, 500ms or 100ms
+     * Partial Book Depth Streams Top &lt;levels&gt; bids and asks &gt; **After CM migration**, the
+     * payload is appended with a new &#x60;st&#x60; field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60;
+     * &#x3D; CM) and a new &#x60;ps&#x60; field (pair symbol). Update Speed: 250ms or 500ms or
+     * 100ms Response Notes: Retail Price Improvement (RPI) orders are not visible and excluded in
+     * the response message.
      *
      * @param partialBookDepthStreamsRequest (required)
      * @return PartialBookDepthStreamsResponse
@@ -356,7 +365,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Partial-Book-Depth-Streams">Partial
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#partial-book-depth-streams">Partial
      *     Book Depth Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<PartialBookDepthStreamsResponse> partialBookDepthStreams(
@@ -437,10 +446,12 @@ public class PublicApi {
 
     /**
      * RPI Diff. Book Depth Streams Bids and asks including RPI orders, pushed every 500
-     * milliseconds RPI(Retail Price Improvement) orders are included and aggreated in the response
-     * message. When the quantity of a price level to be updated is equal to 0, it means either all
-     * quotations for this price have been filled/canceled, or the quantity of crossed RPI orders
-     * for this price are hidden Update Speed: 500ms
+     * milliseconds &gt; **After CM migration**, the payload is appended with a new &#x60;st&#x60;
+     * field (&#x60;1&#x60; &#x3D; UM, &#x60;2&#x60; &#x3D; CM) and a new &#x60;ps&#x60; field (pair
+     * symbol). Update Speed: 500ms Response Notes: - RPI(Retail Price Improvement) orders are
+     * included and aggreated in the response message. When the quantity of a price level to be
+     * updated is equal to 0, it means either all quotations for this price have been
+     * filled/canceled, or the quantity of crossed RPI orders for this price are hidden
      *
      * @param rpiDiffBookDepthStreamsRequest (required)
      * @return RpiDiffBookDepthStreamsResponse
@@ -454,7 +465,7 @@ public class PublicApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Diff-Book-Depth-Streams-RPI">RPI
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#rpi-diff-book-depth-streams">RPI
      *     Diff. Book Depth Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<RpiDiffBookDepthStreamsResponse> rpiDiffBookDepthStreams(

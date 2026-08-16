@@ -1,6 +1,6 @@
 /*
- * Binance Simple Earn REST API
- * OpenAPI Specification for the Binance Simple Earn REST API
+ * Simple Earn REST API
+ * Earn rewards by subscribing to flexible or locked Simple Earn products.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -20,6 +20,7 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.simple_earn.rest.model.Asset;
 import com.binance.connector.client.simple_earn.rest.model.GetRwusdAccountResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetRwusdQuotaDetailsResponse;
 import com.binance.connector.client.simple_earn.rest.model.GetRwusdRateHistoryResponse;
@@ -53,7 +54,7 @@ public class RwusdApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/6.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/7.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -103,8 +104,9 @@ public class RwusdApi {
      * <tr><td> 200 </td><td> Get RWUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/account/">Get RWUSD
-     *     Account (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-account">Get
+     *     RWUSD Account (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRwusdAccountCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -196,7 +198,8 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight: 150
+     * Get RWUSD Account (USER_DATA) Get RWUSD account information. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdAccountResponse&gt;
@@ -209,10 +212,11 @@ public class RwusdApi {
      * <tr><td> 200 </td><td> Get RWUSD Account </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/account/">Get RWUSD
-     *     Account (USER_DATA) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-account">Get
+     *     RWUSD Account (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdAccountResponse> getRwusdAccount(Long recvWindow)
+    public ApiResponse<GetRwusdAccountResponse> getRwusdAccount(@Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall = getRwusdAccountValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -234,7 +238,7 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/account/Get-RWUSD-Quota-Details">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-quota-details">Get
      *     RWUSD Quota Details (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRwusdQuotaDetailsCall(Long recvWindow) throws ApiException {
@@ -329,7 +333,8 @@ public class RwusdApi {
 
     /**
      * Get RWUSD Quota Details (USER_DATA) Get RWUSD quota details including subscription quota,
-     * fast redemption quota, and standard redemption quota. Weight: 150
+     * fast redemption quota, and standard redemption quota. Weight(IP): 150 Security Type:
+     * USER_DATA
      *
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdQuotaDetailsResponse&gt;
@@ -343,11 +348,11 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/account/Get-RWUSD-Quota-Details">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-quota-details">Get
      *     RWUSD Quota Details (USER_DATA) Documentation</a>
      */
-    public ApiResponse<GetRwusdQuotaDetailsResponse> getRwusdQuotaDetails(Long recvWindow)
-            throws ApiException {
+    public ApiResponse<GetRwusdQuotaDetailsResponse> getRwusdQuotaDetails(
+            @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall = getRwusdQuotaDetailsValidateBeforeCall(recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetRwusdQuotaDetailsResponse>() {}.getType();
@@ -359,8 +364,8 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -372,7 +377,7 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rate-history">Get
      *     RWUSD Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRwusdRateHistoryCall(
@@ -493,20 +498,20 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Rate History (USER_DATA) Get RWUSD rate history sorted by descending order. * The
-     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. *
-     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30
-     * days&#39; data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60;
-     * is not sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get RWUSD Rate History (USER_DATA) Get RWUSD rate history sorted by descending order.
+     * Weight(IP): 150 Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -519,11 +524,15 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rate-history">Get
      *     RWUSD Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdRateHistoryResponse> getRwusdRateHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getRwusdRateHistoryValidateBeforeCall(
@@ -538,8 +547,8 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -551,7 +560,7 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Redemption-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-redemption-history">Get
      *     RWUSD Redemption History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRwusdRedemptionHistoryCall(
@@ -672,20 +681,20 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Redemption History (USER_DATA) Get RWUSD redemption history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get RWUSD Redemption History (USER_DATA) Get RWUSD redemption history. Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time minus one month, and data between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; will be returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRedemptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -698,11 +707,15 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Redemption-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-redemption-history">Get
      *     RWUSD Redemption History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdRedemptionHistoryResponse> getRwusdRedemptionHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getRwusdRedemptionHistoryValidateBeforeCall(
@@ -717,8 +730,8 @@ public class RwusdApi {
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -730,7 +743,7 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rewards-history">Get
      *     RWUSD Rewards History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRwusdRewardsHistoryCall(
@@ -851,20 +864,20 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD Rewards History (USER_DATA) Get RWUSD rewards history. * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time minus
-     * one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be returned.
-     * Weight: 150
+     * Get RWUSD Rewards History (USER_DATA) Get RWUSD rewards history. Weight(IP): 150 Security
+     * Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60;
+     * cannot be longer than 6 months. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both
+     * not sent, then the last 30 days&#39; data will be returned. - If &#x60;startTime&#x60; is
+     * sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will default to current time,
+     * and results from &#x60;startTime&#x60; onward will be returned. - If &#x60;endTime&#x60; is
+     * sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current
+     * time minus one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
+     * returned.
      *
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdRewardsHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -877,11 +890,15 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rewards-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rewards-history">Get
      *     RWUSD Rewards History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdRewardsHistoryResponse> getRwusdRewardsHistory(
-            Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getRwusdRewardsHistoryValidateBeforeCall(
@@ -894,11 +911,11 @@ public class RwusdApi {
     /**
      * Build call for getRwusdSubscriptionHistory
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -910,11 +927,11 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-subscription-history">Get
-     *     RWUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-subscription-history">Get
+     *     RWUSD subscription history (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getRwusdSubscriptionHistoryCall(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -996,7 +1013,7 @@ public class RwusdApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getRwusdSubscriptionHistoryValidateBeforeCall(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -1012,7 +1029,7 @@ public class RwusdApi {
                     this.getClass()
                             .getMethod(
                                     "getRwusdSubscriptionHistory",
-                                    String.class,
+                                    Asset.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -1037,21 +1054,21 @@ public class RwusdApi {
     }
 
     /**
-     * Get RWUSD subscription history(USER_DATA) Get RWUSD subscription history * The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 6 months. * If
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; are both not sent, then the last 30 days&#39;
-     * data will be returned. * If &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not
-     * sent, &#x60;endTime&#x60; will default to current time, and results from
-     * &#x60;startTime&#x60; onward will be returned. * If &#x60;endTime&#x60; is sent but
-     * &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60; defaults to the current time
-     * advanced by one month, and data between &#x60;startTime&#x60; and &#x60;endTime&#x60; will be
-     * returned. Weight: 150
+     * Get RWUSD subscription history (USER_DATA) Get RWUSD subscription history Weight(IP): 150
+     * Security Type: USER_DATA Notes: - The time between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; cannot be longer than 6 months. - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are both not sent, then the last 30 days&#39; data will be returned. - If
+     * &#x60;startTime&#x60; is sent but &#x60;endTime&#x60; is not sent, &#x60;endTime&#x60; will
+     * default to current time, and results from &#x60;startTime&#x60; onward will be returned. - If
+     * &#x60;endTime&#x60; is sent but &#x60;startTime&#x60; is not sent, &#x60;startTime&#x60;
+     * defaults to the current time advanced by one month, and data between &#x60;startTime&#x60;
+     * and &#x60;endTime&#x60; will be returned.
      *
-     * @param asset USDC or USDT (optional)
+     * @param asset (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Currently querying page. Starts from 1. Default: 1 (optional)
-     * @param size Number of results per page. Default: 10, Max: 100 (optional)
+     * @param current Currently querying page (optional)
+     * @param size Number of results per page (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
      * @return ApiResponse&lt;GetRwusdSubscriptionHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1064,11 +1081,16 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-subscription-history">Get
-     *     RWUSD subscription history(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-subscription-history">Get
+     *     RWUSD subscription history (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetRwusdSubscriptionHistoryResponse> getRwusdSubscriptionHistory(
-            String asset, Long startTime, Long endTime, Long current, Long size, Long recvWindow)
+            Asset asset,
+            Long startTime,
+            Long endTime,
+            @Min(1L) Long current,
+            @Max(100L) Long size,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getRwusdSubscriptionHistoryValidateBeforeCall(
@@ -1091,8 +1113,9 @@ public class RwusdApi {
      * <tr><td> 200 </td><td> Redeem RWUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Redeem-RWUSD">Redeem
-     *     RWUSD(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#redeem-rwusd">Redeem
+     *     RWUSD (TRADE) Documentation</a>
      */
     private okhttp3.Call redeemRwusdCall(RedeemRwusdRequest redeemRwusdRequest)
             throws ApiException {
@@ -1196,8 +1219,10 @@ public class RwusdApi {
     }
 
     /**
-     * Redeem RWUSD(TRADE) Redeem RWUSD to USDC * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Redeem RWUSD (TRADE) Redeem RWUSD to USDC Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports RWUSD redemption to the Spot Account. Redemptions to the
+     * Funding Account or any other account type are not supported.
      *
      * @param redeemRwusdRequest (required)
      * @return ApiResponse&lt;RedeemRwusdResponse&gt;
@@ -1210,8 +1235,9 @@ public class RwusdApi {
      * <tr><td> 200 </td><td> Redeem RWUSD </td><td>  -  </td></tr>
      * </table>
      *
-     * @see <a href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Redeem-RWUSD">Redeem
-     *     RWUSD(TRADE) Documentation</a>
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#redeem-rwusd">Redeem
+     *     RWUSD (TRADE) Documentation</a>
      */
     public ApiResponse<RedeemRwusdResponse> redeemRwusd(
             @Valid @NotNull RedeemRwusdRequest redeemRwusdRequest) throws ApiException {
@@ -1235,8 +1261,8 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Subscribe-RWUSD">Subscribe
-     *     RWUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#subscribe-rwusd">Subscribe
+     *     RWUSD (TRADE) Documentation</a>
      */
     private okhttp3.Call subscribeRwusdCall(SubscribeRwusdRequest subscribeRwusdRequest)
             throws ApiException {
@@ -1341,8 +1367,10 @@ public class RwusdApi {
     }
 
     /**
-     * Subscribe RWUSD(TRADE) Subscribe RWUSD * You need to open Enable Spot &amp; Margin Trading
-     * permission for the API Key which requests this endpoint. Weight: 150
+     * Subscribe RWUSD (TRADE) Subscribe RWUSD Weight(IP): 150 Security Type: TRADE Notes: - You
+     * need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this
+     * endpoint. - This API only supports RWUSD subscription using assets held in the Spot Account.
+     * Subscriptions initiated from the Funding Account or any other account type are not supported.
      *
      * @param subscribeRwusdRequest (required)
      * @return ApiResponse&lt;SubscribeRwusdResponse&gt;
@@ -1356,8 +1384,8 @@ public class RwusdApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/simple_earn/rwusd/earn/Subscribe-RWUSD">Subscribe
-     *     RWUSD(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#subscribe-rwusd">Subscribe
+     *     RWUSD (TRADE) Documentation</a>
      */
     public ApiResponse<SubscribeRwusdResponse> subscribeRwusd(
             @Valid @NotNull SubscribeRwusdRequest subscribeRwusdRequest) throws ApiException {

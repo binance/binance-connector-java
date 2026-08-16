@@ -2,21 +2,22 @@
 
 # AccountInformationV3ResponsePositionsInner
 
+positions of all symbols user had position/ open orders are returned
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
-|**positionAmt** | **String** |  |  [optional] |
-|**unrealizedProfit** | **String** |  |  [optional] |
-|**isolatedMargin** | **String** |  |  [optional] |
-|**notional** | **String** |  |  [optional] |
-|**isolatedWallet** | **String** |  |  [optional] |
-|**initialMargin** | **String** |  |  [optional] |
-|**maintMargin** | **String** |  |  [optional] |
-|**updateTime** | **Long** |  |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**positionSide** | **String** | Position side. |  [optional] |
+|**positionAmt** | **String** | Position quantity. |  [optional] |
+|**unrealizedProfit** | **String** | Unrealized profit. |  [optional] |
+|**isolatedMargin** | **String** | Isolated margin. |  [optional] |
+|**notional** | **String** | Position notional value. |  [optional] |
+|**isolatedWallet** | **String** | Isolated wallet balance. |  [optional] |
+|**initialMargin** | **String** | Initial margin requirement. |  [optional] |
+|**maintMargin** | **String** | Maintenance margin requirement. |  [optional] |
+|**updateTime** | **Long** | Last update time in milliseconds. |  [optional] |
 
 
 

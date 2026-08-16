@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -40,7 +40,7 @@ import org.hibernate.validator.constraints.*;
 /** RpiDiffBookDepthStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -88,13 +88,25 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_B_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<RpiDiffBookDepthStreamsResponseBItem> bLowerCase;
+    private List<List<String>> bLowerCase;
 
     public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
 
     @SerializedName(SERIALIZED_NAME_A_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private List<RpiDiffBookDepthStreamsResponseAItem> aLowerCase;
+    private List<List<String>> aLowerCase;
+
+    public static final String SERIALIZED_NAME_PS = "ps";
+
+    @SerializedName(SERIALIZED_NAME_PS)
+    @jakarta.annotation.Nullable
+    private String ps;
+
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
 
     public RpiDiffBookDepthStreamsResponse() {}
 
@@ -105,7 +117,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -124,7 +136,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -143,7 +155,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Transaction time
      *
      * @return T
      */
@@ -163,7 +175,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -182,7 +194,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get U
+     * First update ID in event
      *
      * @return U
      */
@@ -202,7 +214,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * Final update ID in event
      *
      * @return uLowerCase
      */
@@ -221,7 +233,7 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get pu
+     * Final update Id in last stream(ie &#x60;u&#x60; in last stream)
      *
      * @return pu
      */
@@ -235,13 +247,12 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     public RpiDiffBookDepthStreamsResponse bLowerCase(
-            @jakarta.annotation.Nullable List<RpiDiffBookDepthStreamsResponseBItem> bLowerCase) {
+            @jakarta.annotation.Nullable List<List<String>> bLowerCase) {
         this.bLowerCase = bLowerCase;
         return this;
     }
 
-    public RpiDiffBookDepthStreamsResponse addBLowerCaseItem(
-            RpiDiffBookDepthStreamsResponseBItem bLowerCaseItem) {
+    public RpiDiffBookDepthStreamsResponse addBLowerCaseItem(List<String> bLowerCaseItem) {
         if (this.bLowerCase == null) {
             this.bLowerCase = new ArrayList<>();
         }
@@ -250,29 +261,27 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * Bids to be updated
      *
      * @return bLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<RpiDiffBookDepthStreamsResponseBItem> getbLowerCase() {
+    public List<List<String>> getbLowerCase() {
         return bLowerCase;
     }
 
-    public void setbLowerCase(
-            @jakarta.annotation.Nullable List<RpiDiffBookDepthStreamsResponseBItem> bLowerCase) {
+    public void setbLowerCase(@jakarta.annotation.Nullable List<List<String>> bLowerCase) {
         this.bLowerCase = bLowerCase;
     }
 
     public RpiDiffBookDepthStreamsResponse aLowerCase(
-            @jakarta.annotation.Nullable List<RpiDiffBookDepthStreamsResponseAItem> aLowerCase) {
+            @jakarta.annotation.Nullable List<List<String>> aLowerCase) {
         this.aLowerCase = aLowerCase;
         return this;
     }
 
-    public RpiDiffBookDepthStreamsResponse addALowerCaseItem(
-            RpiDiffBookDepthStreamsResponseAItem aLowerCaseItem) {
+    public RpiDiffBookDepthStreamsResponse addALowerCaseItem(List<String> aLowerCaseItem) {
         if (this.aLowerCase == null) {
             this.aLowerCase = new ArrayList<>();
         }
@@ -281,19 +290,56 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Asks to be updated
      *
      * @return aLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<RpiDiffBookDepthStreamsResponseAItem> getaLowerCase() {
+    public List<List<String>> getaLowerCase() {
         return aLowerCase;
     }
 
-    public void setaLowerCase(
-            @jakarta.annotation.Nullable List<RpiDiffBookDepthStreamsResponseAItem> aLowerCase) {
+    public void setaLowerCase(@jakarta.annotation.Nullable List<List<String>> aLowerCase) {
         this.aLowerCase = aLowerCase;
+    }
+
+    public RpiDiffBookDepthStreamsResponse ps(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Pair symbol
+     *
+     * @return ps
+     */
+    @jakarta.annotation.Nullable
+    public String getPs() {
+        return ps;
+    }
+
+    public void setPs(@jakarta.annotation.Nullable String ps) {
+        this.ps = ps;
+    }
+
+    public RpiDiffBookDepthStreamsResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
     }
 
     @Override
@@ -314,13 +360,15 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
                 && Objects.equals(this.uLowerCase, rpiDiffBookDepthStreamsResponse.uLowerCase)
                 && Objects.equals(this.pu, rpiDiffBookDepthStreamsResponse.pu)
                 && Objects.equals(this.bLowerCase, rpiDiffBookDepthStreamsResponse.bLowerCase)
-                && Objects.equals(this.aLowerCase, rpiDiffBookDepthStreamsResponse.aLowerCase);
+                && Objects.equals(this.aLowerCase, rpiDiffBookDepthStreamsResponse.aLowerCase)
+                && Objects.equals(this.ps, rpiDiffBookDepthStreamsResponse.ps)
+                && Objects.equals(this.st, rpiDiffBookDepthStreamsResponse.st);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                eLowerCase, E, T, sLowerCase, U, uLowerCase, pu, bLowerCase, aLowerCase);
+                eLowerCase, E, T, sLowerCase, U, uLowerCase, pu, bLowerCase, aLowerCase, ps, st);
     }
 
     @Override
@@ -336,6 +384,8 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
         sb.append("		pu: ").append(toIndentedString(pu)).append("\n");
         sb.append("		bLowerCase: ").append(toIndentedString(bLowerCase)).append("\n");
         sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
+        sb.append("		ps: ").append(toIndentedString(ps)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -379,15 +429,25 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
             String puValueAsString = puValue.toString();
             valMap.put("pu", puValueAsString);
         }
-        List<RpiDiffBookDepthStreamsResponseBItem> bLowerCaseValue = getbLowerCase();
+        List<List<String>> bLowerCaseValue = getbLowerCase();
         if (bLowerCaseValue != null) {
             String bLowerCaseValueAsString = JSON.getGson().toJson(bLowerCaseValue);
             valMap.put("bLowerCase", bLowerCaseValueAsString);
         }
-        List<RpiDiffBookDepthStreamsResponseAItem> aLowerCaseValue = getaLowerCase();
+        List<List<String>> aLowerCaseValue = getaLowerCase();
         if (aLowerCaseValue != null) {
             String aLowerCaseValueAsString = JSON.getGson().toJson(aLowerCaseValue);
             valMap.put("aLowerCase", aLowerCaseValueAsString);
+        }
+        String psValue = getPs();
+        if (psValue != null) {
+            String psValueAsString = psValue.toString();
+            valMap.put("ps", psValueAsString);
+        }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -436,6 +496,14 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
         if (aLowerCaseValue != null) {
             valMap.put("aLowerCase", aLowerCaseValue);
         }
+        Object psValue = getPs();
+        if (psValue != null) {
+            valMap.put("ps", psValue);
+        }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -471,6 +539,8 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
         openapiFields.add("pu");
         openapiFields.add("b");
         openapiFields.add("a");
+        openapiFields.add("ps");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -540,6 +610,14 @@ public class RpiDiffBookDepthStreamsResponse extends BaseDTO {
                     String.format(
                             "Expected the field `a` to be an array in the JSON string but got `%s`",
                             jsonObj.get("a").toString()));
+        }
+        if ((jsonObj.get("ps") != null && !jsonObj.get("ps").isJsonNull())
+                && !jsonObj.get("ps").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `ps` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("ps").toString()));
         }
     }
 

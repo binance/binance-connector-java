@@ -1,6 +1,6 @@
 /*
- * Binance Crypto Loan REST API
- * OpenAPI Specification for the Binance Crypto Loan REST API
+ * Crypto Loan REST API
+ * Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -58,7 +58,7 @@ public class FlexibleRateApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-crypto-loan/4.0.0 (Java/%s; %s; %s)",
+                    "binance-crypto-loan/5.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,7 +100,7 @@ public class FlexibleRateApi {
      *
      * @param loanCoin (required)
      * @param collateralCoin (required)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -111,8 +111,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Check-Collateral-Repay-Rate">Check
-     *     Collateral Repay Rate (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#check-collateral-repay-rate">Check
+     *     Collateral Flexible Repay Rate (USER_DATA) Documentation</a>
      */
     private okhttp3.Call checkCollateralRepayRateCall(
             String loanCoin, String collateralCoin, Long recvWindow) throws ApiException {
@@ -221,11 +221,12 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Check Collateral Repay Rate (USER_DATA) Weight: 6000
+     * Check Collateral Flexible Repay Rate (USER_DATA) Get the latest rate of collateral coin/loan
+     * coin when using collateral repay. Weight(IP): 6000 Security Type: USER_DATA
      *
      * @param loanCoin (required)
      * @param collateralCoin (required)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CheckCollateralRepayRateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -237,11 +238,11 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Check-Collateral-Repay-Rate">Check
-     *     Collateral Repay Rate (USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#check-collateral-repay-rate">Check
+     *     Collateral Flexible Repay Rate (USER_DATA) Documentation</a>
      */
     public ApiResponse<CheckCollateralRepayRateResponse> checkCollateralRepayRate(
-            @NotNull String loanCoin, @NotNull String collateralCoin, Long recvWindow)
+            @NotNull String loanCoin, @NotNull String collateralCoin, @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 checkCollateralRepayRateValidateBeforeCall(loanCoin, collateralCoin, recvWindow);
@@ -264,8 +265,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Adjust-LTV">Flexible
-     *     Loan Adjust LTV(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-adjust-ltv">Flexible
+     *     Loan Adjust LTV (TRADE) Documentation</a>
      */
     private okhttp3.Call flexibleLoanAdjustLtvCall(
             FlexibleLoanAdjustLtvRequest flexibleLoanAdjustLtvRequest) throws ApiException {
@@ -381,8 +382,8 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Flexible Loan Adjust LTV(TRADE) Flexible Loan Adjust LTV * API Key needs Spot &amp; Margin
-     * Trading permission for this endpoint Weight: 6000
+     * Flexible Loan Adjust LTV (TRADE) Flexible Loan Adjust LTV Weight(UID): 6000 Security Type:
+     * TRADE Notes: - API key needs Spot &amp; Margin Trading permission for this endpoint.
      *
      * @param flexibleLoanAdjustLtvRequest (required)
      * @return ApiResponse&lt;FlexibleLoanAdjustLtvResponse&gt;
@@ -396,8 +397,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Adjust-LTV">Flexible
-     *     Loan Adjust LTV(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-adjust-ltv">Flexible
+     *     Loan Adjust LTV (TRADE) Documentation</a>
      */
     public ApiResponse<FlexibleLoanAdjustLtvResponse> flexibleLoanAdjustLtv(
             @Valid @NotNull FlexibleLoanAdjustLtvRequest flexibleLoanAdjustLtvRequest)
@@ -423,8 +424,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Borrow">Flexible
-     *     Loan Borrow(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-borrow">Flexible
+     *     Loan Borrow (TRADE) Documentation</a>
      */
     private okhttp3.Call flexibleLoanBorrowCall(FlexibleLoanBorrowRequest flexibleLoanBorrowRequest)
             throws ApiException {
@@ -542,8 +543,9 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Flexible Loan Borrow(TRADE) Borrow Flexible Loan * Only available for master account * You
-     * can customize LTV by entering loanAmount and collateralAmount. Weight: 6000
+     * Flexible Loan Borrow (TRADE) Borrow Flexible Loan Weight(IP): 6000 Security Type: TRADE
+     * Notes: - This endpoint is available for both master and sub-accounts. - You can customize LTV
+     * by entering &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;.
      *
      * @param flexibleLoanBorrowRequest (required)
      * @return ApiResponse&lt;FlexibleLoanBorrowResponse&gt;
@@ -557,8 +559,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Borrow">Flexible
-     *     Loan Borrow(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-borrow">Flexible
+     *     Loan Borrow (TRADE) Documentation</a>
      */
     public ApiResponse<FlexibleLoanBorrowResponse> flexibleLoanBorrow(
             @Valid @NotNull FlexibleLoanBorrowRequest flexibleLoanBorrowRequest)
@@ -583,8 +585,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Repay">Flexible
-     *     Loan Repay(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-repay">Flexible
+     *     Loan Repay (TRADE) Documentation</a>
      */
     private okhttp3.Call flexibleLoanRepayCall(FlexibleLoanRepayRequest flexibleLoanRepayRequest)
             throws ApiException {
@@ -707,8 +709,8 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Flexible Loan Repay(TRADE) Flexible Loan Repay * repayAmount is mandatory even fullRepayment
-     * &#x3D; FALSE Weight: 6000
+     * Flexible Loan Repay (TRADE) Flexible Loan Repay Weight(IP): 6000 Security Type: TRADE Notes:
+     * - &#x60;repayAmount&#x60; is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;.
      *
      * @param flexibleLoanRepayRequest (required)
      * @return ApiResponse&lt;FlexibleLoanRepayResponse&gt;
@@ -722,8 +724,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Repay">Flexible
-     *     Loan Repay(TRADE) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-repay">Flexible
+     *     Loan Repay (TRADE) Documentation</a>
      */
     public ApiResponse<FlexibleLoanRepayResponse> flexibleLoanRepay(
             @Valid @NotNull FlexibleLoanRepayRequest flexibleLoanRepayRequest) throws ApiException {
@@ -737,7 +739,7 @@ public class FlexibleRateApi {
      * Build call for getFlexibleLoanAssetsData
      *
      * @param loanCoin (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -748,8 +750,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Assets-Data">Get
-     *     Flexible Loan Assets Data(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-assets-data">Get
+     *     Flexible Loan Assets Data (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanAssetsDataCall(String loanCoin, Long recvWindow)
             throws ApiException {
@@ -849,11 +851,12 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan Assets Data(USER_DATA) Get interest rate and borrow limit of flexible
-     * loanable assets. The borrow limit is shown in USD value. Weight: 400
+     * Get Flexible Loan Assets Data (USER_DATA) Get interest rate and borrow limit of flexible
+     * loanable assets. The borrow limit is shown in USD value. Weight(IP): 400 Security Type:
+     * USER_DATA
      *
      * @param loanCoin (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanAssetsDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -865,11 +868,11 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Assets-Data">Get
-     *     Flexible Loan Assets Data(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-assets-data">Get
+     *     Flexible Loan Assets Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanAssetsDataResponse> getFlexibleLoanAssetsData(
-            String loanCoin, Long recvWindow) throws ApiException {
+            String loanCoin, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanAssetsDataValidateBeforeCall(loanCoin, recvWindow);
         java.lang.reflect.Type localVarReturnType =
@@ -884,9 +887,9 @@ public class FlexibleRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -897,8 +900,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Borrow-History">Get
-     *     Flexible Loan Borrow History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-borrow-history">Get
+     *     Flexible Loan Borrow History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanBorrowHistoryCall(
             String loanCoin,
@@ -1044,17 +1047,19 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan Borrow History(USER_DATA) Get Flexible Loan Borrow History * If startTime
-     * and endTime are not sent, the recent 90-day data will be returned. * The max interval between
-     * startTime and endTime is 180 days. Weight: 400
+     * Get Flexible Loan Borrow History (USER_DATA) Get Flexible Loan Borrow History. It can be used
+     * to check history before 2024-02-27 08:00. Weight(IP): 400 Security Type: USER_DATA Notes: -
+     * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
+     * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
+     * days.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanBorrowHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1066,17 +1071,17 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Borrow-History">Get
-     *     Flexible Loan Borrow History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-borrow-history">Get
+     *     Flexible Loan Borrow History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanBorrowHistoryResponse> getFlexibleLoanBorrowHistory(
             String loanCoin,
             String collateralCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanBorrowHistoryValidateBeforeCall(
@@ -1090,7 +1095,7 @@ public class FlexibleRateApi {
      * Build call for getFlexibleLoanCollateralAssetsData
      *
      * @param collateralCoin (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1101,8 +1106,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Collateral-Assets-Data">Get
-     *     Flexible Loan Collateral Assets Data(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-collateral-assets-data">Get
+     *     Flexible Loan Collateral Assets Data (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanCollateralAssetsDataCall(
             String collateralCoin, Long recvWindow) throws ApiException {
@@ -1206,12 +1211,12 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan Collateral Assets Data(USER_DATA) Get LTV information and collateral limit
-     * of flexible loan&#39;s collateral assets. The collateral limit is shown in USD value. Weight:
-     * 400
+     * Get Flexible Loan Collateral Assets Data (USER_DATA) Get LTV information and collateral limit
+     * of flexible loan&#39;s collateral assets. The collateral limit is shown in USD value.
+     * Weight(IP): 400 Security Type: USER_DATA
      *
      * @param collateralCoin (optional)
-     * @param recvWindow (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanCollateralAssetsDataResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1223,11 +1228,11 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Collateral-Assets-Data">Get
-     *     Flexible Loan Collateral Assets Data(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-collateral-assets-data">Get
+     *     Flexible Loan Collateral Assets Data (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanCollateralAssetsDataResponse>
-            getFlexibleLoanCollateralAssetsData(String collateralCoin, Long recvWindow)
+            getFlexibleLoanCollateralAssetsData(String collateralCoin, @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanCollateralAssetsDataValidateBeforeCall(collateralCoin, recvWindow);
@@ -1240,11 +1245,11 @@ public class FlexibleRateApi {
      * Build call for getFlexibleLoanInterestRateHistory
      *
      * @param coin (required)
-     * @param recvWindow (required)
+     * @param recvWindow Request validity window in milliseconds (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1255,7 +1260,7 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Interest-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-interest-rate-history">Get
      *     Flexible Loan Interest Rate History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanInterestRateHistoryCall(
@@ -1383,15 +1388,16 @@ public class FlexibleRateApi {
 
     /**
      * Get Flexible Loan Interest Rate History (USER_DATA) Check Flexible Loan interest rate history
-     * * If startTime and endTime are not sent, the recent 90-day data will be returned * The max
-     * interval between startTime and endTime is 90 days. * Time based on UTC+0. Weight: 400
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days. - Time is based on UTC+0.
      *
      * @param coin (required)
-     * @param recvWindow (required)
+     * @param recvWindow Request validity window in milliseconds (required)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
      * @return ApiResponse&lt;GetFlexibleLoanInterestRateHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1403,17 +1409,17 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Interest-Rate-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-interest-rate-history">Get
      *     Flexible Loan Interest Rate History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanInterestRateHistoryResponse>
             getFlexibleLoanInterestRateHistory(
                     @NotNull String coin,
-                    @NotNull Long recvWindow,
+                    @NotNull @Max(60000L) Long recvWindow,
                     Long startTime,
                     Long endTime,
-                    Long current,
-                    Long limit)
+                    @Min(1L) @Max(1000L) Long current,
+                    @Max(100L) Long limit)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanInterestRateHistoryValidateBeforeCall(
@@ -1430,9 +1436,9 @@ public class FlexibleRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1443,7 +1449,7 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Liquidation-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-liquidation-history">Get
      *     Flexible Loan Liquidation History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanLiquidationHistoryCall(
@@ -1590,15 +1596,16 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan Liquidation History (USER_DATA) Weight: 400
+     * Get Flexible Loan Liquidation History (USER_DATA) Get Flexible Loan Liquidation History
+     * Weight(IP): 400 Security Type: USER_DATA
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanLiquidationHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1610,7 +1617,7 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Liquidation-History">Get
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-liquidation-history">Get
      *     Flexible Loan Liquidation History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanLiquidationHistoryResponse> getFlexibleLoanLiquidationHistory(
@@ -1618,9 +1625,9 @@ public class FlexibleRateApi {
             String collateralCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanLiquidationHistoryValidateBeforeCall(
@@ -1637,9 +1644,9 @@ public class FlexibleRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1650,8 +1657,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-LTV-Adjustment-History">Get
-     *     Flexible Loan LTV Adjustment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-ltv-adjustment-history">Get
+     *     Flexible Loan LTV Adjustment History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanLtvAdjustmentHistoryCall(
             String loanCoin,
@@ -1797,17 +1804,19 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan LTV Adjustment History(USER_DATA) Get Flexible Loan LTV Adjustment History
-     * * If startTime and endTime are not sent, the recent 90-day data will be returned. * The max
-     * interval between startTime and endTime is 180 days. Weight: 400
+     * Get Flexible Loan LTV Adjustment History (USER_DATA) Get Flexible Loan LTV Adjustment
+     * History. It can be used to check history before 2024-02-27 08:00. Weight(UID): 400 Security
+     * Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the
+     * recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and
+     * &#x60;endTime&#x60; is 180 days.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanLtvAdjustmentHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1819,8 +1828,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-LTV-Adjustment-History">Get
-     *     Flexible Loan LTV Adjustment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-ltv-adjustment-history">Get
+     *     Flexible Loan LTV Adjustment History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanLtvAdjustmentHistoryResponse>
             getFlexibleLoanLtvAdjustmentHistory(
@@ -1828,9 +1837,9 @@ public class FlexibleRateApi {
                     String collateralCoin,
                     Long startTime,
                     Long endTime,
-                    Long current,
-                    Long limit,
-                    Long recvWindow)
+                    @Min(1L) @Max(1000L) Long current,
+                    @Max(100L) Long limit,
+                    @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanLtvAdjustmentHistoryValidateBeforeCall(
@@ -1845,9 +1854,9 @@ public class FlexibleRateApi {
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -1858,8 +1867,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Ongoing-Orders">Get
-     *     Flexible Loan Ongoing Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-ongoing-orders">Get
+     *     Flexible Loan Ongoing Orders (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanOngoingOrdersCall(
             String loanCoin, String collateralCoin, Long current, Long limit, Long recvWindow)
@@ -1981,13 +1990,14 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan Ongoing Orders(USER_DATA) Get Flexible Loan Ongoing Orders Weight: 300
+     * Get Flexible Loan Ongoing Orders (USER_DATA) Get Flexible Loan Ongoing Orders Weight(IP): 300
+     * Security Type: USER_DATA
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanOngoingOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -1999,11 +2009,15 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Ongoing-Orders">Get
-     *     Flexible Loan Ongoing Orders(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-ongoing-orders">Get
+     *     Flexible Loan Ongoing Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanOngoingOrdersResponse> getFlexibleLoanOngoingOrders(
-            String loanCoin, String collateralCoin, Long current, Long limit, Long recvWindow)
+            String loanCoin,
+            String collateralCoin,
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanOngoingOrdersValidateBeforeCall(
@@ -2020,9 +2034,9 @@ public class FlexibleRateApi {
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
@@ -2033,8 +2047,8 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Repayment-History">Get
-     *     Flexible Loan Repayment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-repayment-history">Get
+     *     Flexible Loan Repayment History (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getFlexibleLoanRepaymentHistoryCall(
             String loanCoin,
@@ -2180,17 +2194,19 @@ public class FlexibleRateApi {
     }
 
     /**
-     * Get Flexible Loan Repayment History(USER_DATA) Get Flexible Loan Repayment History * If
-     * startTime and endTime are not sent, the recent 90-day data will be returned. * The max
-     * interval between startTime and endTime is 180 days. Weight: 400
+     * Get Flexible Loan Repayment History (USER_DATA) Get Flexible Loan Repayment History. It can
+     * be used to check history before 2024-02-27 08:00. Weight(IP): 400 Security Type: USER_DATA
+     * Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day
+     * data is returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is
+     * 180 days.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
      * @param startTime (optional)
      * @param endTime (optional)
-     * @param current Current querying page. Start from 1; default: 1; max: 1000 (optional)
-     * @param limit Default: 10; max: 100 (optional)
-     * @param recvWindow (optional)
+     * @param current Current querying page (optional)
+     * @param limit Number of records to return (optional)
+     * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetFlexibleLoanRepaymentHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
@@ -2202,17 +2218,17 @@ public class FlexibleRateApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Repayment-History">Get
-     *     Flexible Loan Repayment History(USER_DATA) Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-repayment-history">Get
+     *     Flexible Loan Repayment History (USER_DATA) Documentation</a>
      */
     public ApiResponse<GetFlexibleLoanRepaymentHistoryResponse> getFlexibleLoanRepaymentHistory(
             String loanCoin,
             String collateralCoin,
             Long startTime,
             Long endTime,
-            Long current,
-            Long limit,
-            Long recvWindow)
+            @Min(1L) @Max(1000L) Long current,
+            @Max(100L) Long limit,
+            @Max(60000L) Long recvWindow)
             throws ApiException {
         okhttp3.Call localVarCall =
                 getFlexibleLoanRepaymentHistoryValidateBeforeCall(

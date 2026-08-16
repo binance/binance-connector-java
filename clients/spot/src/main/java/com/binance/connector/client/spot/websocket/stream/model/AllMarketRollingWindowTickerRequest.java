@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket Streams
- * OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+ * Spot WebSocket Market Streams
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -38,18 +38,43 @@ import org.hibernate.validator.constraints.*;
 /** AllMarketRollingWindowTickerRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AllMarketRollingWindowTickerRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_WINDOW_SIZE = "windowSize";
 
     @SerializedName(SERIALIZED_NAME_WINDOW_SIZE)
-    @jakarta.annotation.Nonnull
+    @jakarta.annotation.Nullable
     private WindowSize windowSize;
 
     public AllMarketRollingWindowTickerRequest() {}
 
+    public AllMarketRollingWindowTickerRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Unique WebSocket request ID.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
+
     public AllMarketRollingWindowTickerRequest windowSize(
-            @jakarta.annotation.Nonnull WindowSize windowSize) {
+            @jakarta.annotation.Nullable WindowSize windowSize) {
         this.windowSize = windowSize;
         return this;
     }
@@ -59,14 +84,13 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
      *
      * @return windowSize
      */
-    @jakarta.annotation.Nonnull
-    @NotNull
+    @jakarta.annotation.Nullable
     @Valid
     public WindowSize getWindowSize() {
         return windowSize;
     }
 
-    public void setWindowSize(@jakarta.annotation.Nonnull WindowSize windowSize) {
+    public void setWindowSize(@jakarta.annotation.Nullable WindowSize windowSize) {
         this.windowSize = windowSize;
     }
 
@@ -80,18 +104,20 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
         }
         AllMarketRollingWindowTickerRequest allMarketRollingWindowTickerRequest =
                 (AllMarketRollingWindowTickerRequest) o;
-        return Objects.equals(this.windowSize, allMarketRollingWindowTickerRequest.windowSize);
+        return Objects.equals(this.id, allMarketRollingWindowTickerRequest.id)
+                && Objects.equals(this.windowSize, allMarketRollingWindowTickerRequest.windowSize);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(windowSize);
+        return Objects.hash(id, windowSize);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class AllMarketRollingWindowTickerRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		windowSize: ").append(toIndentedString(windowSize)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -101,6 +127,11 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         WindowSize windowSizeValue = getWindowSize();
         if (windowSizeValue != null) {
             String windowSizeValueAsString = windowSizeValue.toString();
@@ -117,6 +148,10 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object windowSizeValue = getWindowSize();
         if (windowSizeValue != null) {
             valMap.put("windowSize", windowSizeValue);
@@ -147,11 +182,11 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("windowSize");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("windowSize");
     }
 
     /**
@@ -185,19 +220,19 @@ public class AllMarketRollingWindowTickerRequest extends BaseDTO {
                                 entry.getKey(), jsonElement.toString()));
             }
         }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : AllMarketRollingWindowTickerRequest.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // validate the required field `windowSize`
-        WindowSize.validateJsonElement(jsonObj.get("windowSize"));
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
+        // validate the optional field `windowSize`
+        if (jsonObj.get("windowSize") != null && !jsonObj.get("windowSize").isJsonNull()) {
+            WindowSize.validateJsonElement(jsonObj.get("windowSize"));
+        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

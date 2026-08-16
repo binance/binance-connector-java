@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+ * Portfolio Margin WebSocket Market Streams
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -95,7 +95,8 @@ public class JSON {
                                                 "ALGO_UPDATE",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.AlgoUpdate.class);
+                                                        .websocket.stream.model.AlgoOrderUpdate
+                                                        .class);
                                         classByDiscriminatorValue.put(
                                                 "CONDITIONAL_ORDER_TRADE_UPDATE",
                                                 com.binance.connector.client
@@ -112,114 +113,43 @@ public class JSON {
                                                 "balanceUpdate",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Balanceupdate
+                                                        .websocket.stream.model.BalanceUpdate
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "executionReport",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Executionreport
+                                                        .websocket.stream.model.ExecutionReport
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "liabilityChange",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Liabilitychange
+                                                        .websocket.stream.model.LiabilityChange
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "listenKeyExpired",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Listenkeyexpired
+                                                        .websocket.stream.model.ListenKeyExpired
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "openOrderLoss",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Openorderloss
+                                                        .websocket.stream.model.OpenOrderLoss
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "outboundAccountPosition",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
                                                         .websocket.stream.model
-                                                        .Outboundaccountposition.class);
+                                                        .OutboundAccountPosition.class);
                                         classByDiscriminatorValue.put(
                                                 "riskLevelChange",
                                                 com.binance.connector.client
                                                         .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Risklevelchange
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "accountConfigUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.AccountConfigUpdate
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "accountUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.AccountUpdate
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "algoUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.AlgoUpdate.class);
-                                        classByDiscriminatorValue.put(
-                                                "balanceupdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Balanceupdate
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "conditionalOrderTradeUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model
-                                                        .ConditionalOrderTradeUpdate.class);
-                                        classByDiscriminatorValue.put(
-                                                "executionreport",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Executionreport
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "liabilitychange",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Liabilitychange
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "listenkeyexpired",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Listenkeyexpired
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "openorderloss",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Openorderloss
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "orderTradeUpdate",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.OrderTradeUpdate
-                                                        .class);
-                                        classByDiscriminatorValue.put(
-                                                "outboundaccountposition",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model
-                                                        .Outboundaccountposition.class);
-                                        classByDiscriminatorValue.put(
-                                                "risklevelchange",
-                                                com.binance.connector.client
-                                                        .derivatives_trading_portfolio_margin
-                                                        .websocket.stream.model.Risklevelchange
+                                                        .websocket.stream.model.RiskLevelChange
                                                         .class);
                                         classByDiscriminatorValue.put(
                                                 "UserDataStreamEventsResponse",
@@ -301,13 +231,13 @@ public class JSON {
                         .stream.model.AccountUpdateAPInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.AlgoUpdate.CustomTypeAdapterFactory());
+                        .stream.model.AlgoOrderUpdate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.AlgoUpdateAo.CustomTypeAdapterFactory());
+                        .stream.model.AlgoOrderUpdateAo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Balanceupdate.CustomTypeAdapterFactory());
+                        .stream.model.BalanceUpdate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
                         .stream.model.ConditionalOrderTradeUpdate.CustomTypeAdapterFactory());
@@ -316,19 +246,19 @@ public class JSON {
                         .stream.model.ConditionalOrderTradeUpdateSo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Executionreport.CustomTypeAdapterFactory());
+                        .stream.model.ExecutionReport.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Liabilitychange.CustomTypeAdapterFactory());
+                        .stream.model.LiabilityChange.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Listenkeyexpired.CustomTypeAdapterFactory());
+                        .stream.model.ListenKeyExpired.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Openorderloss.CustomTypeAdapterFactory());
+                        .stream.model.OpenOrderLoss.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.OpenorderlossOInner.CustomTypeAdapterFactory());
+                        .stream.model.OpenOrderLossOInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
                         .stream.model.OrderTradeUpdate.CustomTypeAdapterFactory());
@@ -337,13 +267,13 @@ public class JSON {
                         .stream.model.OrderTradeUpdateO.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Outboundaccountposition.CustomTypeAdapterFactory());
+                        .stream.model.OutboundAccountPosition.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.OutboundaccountpositionBInner.CustomTypeAdapterFactory());
+                        .stream.model.OutboundAccountPositionBInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
-                        .stream.model.Risklevelchange.CustomTypeAdapterFactory());
+                        .stream.model.RiskLevelChange.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.derivatives_trading_portfolio_margin.websocket
                         .stream.model.UserDataStreamEventsResponse.CustomTypeAdapterFactory());

@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**pair** | **String** |  |  |
-|**contractType** | **String** |  |  |
-|**interval** | **String** |  |  |
+|**id** | **String** | Unique WebSocket request ID. |  [optional] |
+|**pair** | **String** |  |  [optional] |
+|**contractType** | **ContractType** |  |  [optional] |
+|**interval** | **Interval** |  |  [optional] |
 
 
 

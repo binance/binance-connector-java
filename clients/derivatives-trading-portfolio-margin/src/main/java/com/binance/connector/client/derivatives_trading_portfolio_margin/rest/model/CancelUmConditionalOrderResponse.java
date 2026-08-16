@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CancelUmConditionalOrderResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CancelUmConditionalOrderResponse {
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 
@@ -172,7 +172,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get newClientStrategyId
+     * New Client Strategy ID.
      *
      * @return newClientStrategyId
      */
@@ -192,7 +192,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyId
+     * Strategy ID.
      *
      * @return strategyId
      */
@@ -212,7 +212,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyStatus
+     * Strategy Status.
      *
      * @return strategyStatus
      */
@@ -232,7 +232,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get strategyType
+     * Strategy Type.
      *
      * @return strategyType
      */
@@ -251,7 +251,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get origQty
+     * Orig Qty.
      *
      * @return origQty
      */
@@ -270,7 +270,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get price
+     * Price.
      *
      * @return price
      */
@@ -290,7 +290,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get reduceOnly
+     * Reduce Only.
      *
      * @return reduceOnly
      */
@@ -309,7 +309,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get side
+     * Side.
      *
      * @return side
      */
@@ -329,7 +329,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get positionSide
+     * BOTH means that it is the position of One-way Mode
      *
      * @return positionSide
      */
@@ -349,7 +349,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get stopPrice
+     * please ignore when order type is TRAILING_STOP_MARKET
      *
      * @return stopPrice
      */
@@ -368,7 +368,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get symbol
+     * Trade symbol, if existing.
      *
      * @return symbol
      */
@@ -388,7 +388,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get timeInForce
+     * Time In Force.
      *
      * @return timeInForce
      */
@@ -408,7 +408,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get activatePrice
+     * activation price, only return with TRAILING_STOP_MARKET order
      *
      * @return activatePrice
      */
@@ -428,7 +428,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get priceRate
+     * callback rate, only return with TRAILING_STOP_MARKET order
      *
      * @return priceRate
      */
@@ -447,7 +447,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get bookTime
+     * order place time
      *
      * @return bookTime
      */
@@ -467,7 +467,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get updateTime
+     * last update time
      *
      * @return updateTime
      */
@@ -487,7 +487,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get workingType
+     * Working Type.
      *
      * @return workingType
      */
@@ -507,7 +507,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get priceProtect
+     * Price Protect.
      *
      * @return priceProtect
      */
@@ -527,7 +527,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self trading preventation mode
      *
      * @return selfTradePreventionMode
      */
@@ -548,7 +548,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get goodTillDate
+     * order pre-set auot cancel time for TIF GTD order
      *
      * @return goodTillDate
      */
@@ -568,7 +568,7 @@ public class CancelUmConditionalOrderResponse {
     }
 
     /**
-     * Get priceMatch
+     * Price Match.
      *
      * @return priceMatch
      */

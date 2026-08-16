@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**symbol** | **String** |  |  [optional] |
-|**recvWindow** | **Long** |  |  [optional] |
+|**id** | **String** | Id. |  [optional] |
+|**symbol** | **String** | Symbol. |  [optional] |
+|**recvWindow** | **Long** | Recv Window. |  [optional] |
 
 
 

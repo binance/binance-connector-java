@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -42,7 +42,7 @@ public class UserDataStreamsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -92,7 +92,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Close-User-Data-Stream">Close
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/user-data-streams#close-user-data-stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     private okhttp3.Call closeUserDataStreamCall() throws ApiException {
@@ -180,7 +180,8 @@ public class UserDataStreamsApi {
     }
 
     /**
-     * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight: 1
+     * Close User Data Stream (USER_STREAM) Close out a user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -193,7 +194,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Close-User-Data-Stream">Close
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/user-data-streams#close-user-data-stream">Close
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<Void> closeUserDataStream() throws ApiException {
@@ -214,7 +215,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Keepalive-User-Data-Stream">Keepalive
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/user-data-streams#keepalive-user-data-stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     private okhttp3.Call keepaliveUserDataStreamCall() throws ApiException {
@@ -304,7 +305,7 @@ public class UserDataStreamsApi {
     /**
      * Keepalive User Data Stream (USER_STREAM) Keepalive a user data stream to prevent a time out.
      * User data streams will close after 60 minutes. It&#39;s recommended to send a ping about
-     * every 60 minutes. Weight: 1
+     * every 60 minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -317,7 +318,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Keepalive-User-Data-Stream">Keepalive
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/user-data-streams#keepalive-user-data-stream">Keepalive
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<Void> keepaliveUserDataStream() throws ApiException {
@@ -338,7 +339,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Start-User-Data-Stream">Start
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/user-data-streams#start-user-data-stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     private okhttp3.Call startUserDataStreamCall() throws ApiException {
@@ -429,7 +430,7 @@ public class UserDataStreamsApi {
      * Start User Data Stream (USER_STREAM) Start a new user data stream. The stream will close
      * after 60 minutes unless a keepalive is sent. If the account has an active
      * &#x60;listenKey&#x60;, that &#x60;listenKey&#x60; will be returned and its validity will be
-     * extended for 60 minutes. Weight: 1
+     * extended for 60 minutes. Weight(IP): 1 Security Type: USER_STREAM
      *
      * @return ApiResponse&lt;StartUserDataStreamResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -442,7 +443,7 @@ public class UserDataStreamsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Start-User-Data-Stream">Start
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/user-data-streams#start-user-data-stream">Start
      *     User Data Stream (USER_STREAM) Documentation</a>
      */
     public ApiResponse<StartUserDataStreamResponse> startUserDataStream() throws ApiException {

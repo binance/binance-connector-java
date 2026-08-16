@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin REST API
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+ * Portfolio Margin REST API
+ * Access account information, manage margin positions, and trade with Binance Portfolio Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryAllCurrentUmOpenAlgoOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
     public static final String SERIALIZED_NAME_ALGO_ID = "algoId";
 
@@ -96,18 +96,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
     @jakarta.annotation.Nullable
     private String algoStatus;
 
-    public static final String SERIALIZED_NAME_ACTUAL_ORDER_ID = "actualOrderId";
-
-    @SerializedName(SERIALIZED_NAME_ACTUAL_ORDER_ID)
-    @jakarta.annotation.Nullable
-    private String actualOrderId;
-
-    public static final String SERIALIZED_NAME_ACTUAL_PRICE = "actualPrice";
-
-    @SerializedName(SERIALIZED_NAME_ACTUAL_PRICE)
-    @jakarta.annotation.Nullable
-    private String actualPrice;
-
     public static final String SERIALIZED_NAME_TRIGGER_PRICE = "triggerPrice";
 
     @SerializedName(SERIALIZED_NAME_TRIGGER_PRICE)
@@ -119,42 +107,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
     @SerializedName(SERIALIZED_NAME_PRICE)
     @jakarta.annotation.Nullable
     private String price;
-
-    public static final String SERIALIZED_NAME_ICEBERG_QUANTITY = "icebergQuantity";
-
-    @SerializedName(SERIALIZED_NAME_ICEBERG_QUANTITY)
-    @jakarta.annotation.Nullable
-    private String icebergQuantity;
-
-    public static final String SERIALIZED_NAME_TP_TRIGGER_PRICE = "tpTriggerPrice";
-
-    @SerializedName(SERIALIZED_NAME_TP_TRIGGER_PRICE)
-    @jakarta.annotation.Nullable
-    private String tpTriggerPrice;
-
-    public static final String SERIALIZED_NAME_TP_PRICE = "tpPrice";
-
-    @SerializedName(SERIALIZED_NAME_TP_PRICE)
-    @jakarta.annotation.Nullable
-    private String tpPrice;
-
-    public static final String SERIALIZED_NAME_SL_TRIGGER_PRICE = "slTriggerPrice";
-
-    @SerializedName(SERIALIZED_NAME_SL_TRIGGER_PRICE)
-    @jakarta.annotation.Nullable
-    private String slTriggerPrice;
-
-    public static final String SERIALIZED_NAME_SL_PRICE = "slPrice";
-
-    @SerializedName(SERIALIZED_NAME_SL_PRICE)
-    @jakarta.annotation.Nullable
-    private String slPrice;
-
-    public static final String SERIALIZED_NAME_TP_ORDER_TYPE = "tpOrderType";
-
-    @SerializedName(SERIALIZED_NAME_TP_ORDER_TYPE)
-    @jakarta.annotation.Nullable
-    private String tpOrderType;
 
     public static final String SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE =
             "selfTradePreventionMode";
@@ -419,46 +371,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
         this.algoStatus = algoStatus;
     }
 
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner actualOrderId(
-            @jakarta.annotation.Nullable String actualOrderId) {
-        this.actualOrderId = actualOrderId;
-        return this;
-    }
-
-    /**
-     * Get actualOrderId
-     *
-     * @return actualOrderId
-     */
-    @jakarta.annotation.Nullable
-    public String getActualOrderId() {
-        return actualOrderId;
-    }
-
-    public void setActualOrderId(@jakarta.annotation.Nullable String actualOrderId) {
-        this.actualOrderId = actualOrderId;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner actualPrice(
-            @jakarta.annotation.Nullable String actualPrice) {
-        this.actualPrice = actualPrice;
-        return this;
-    }
-
-    /**
-     * Get actualPrice
-     *
-     * @return actualPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getActualPrice() {
-        return actualPrice;
-    }
-
-    public void setActualPrice(@jakarta.annotation.Nullable String actualPrice) {
-        this.actualPrice = actualPrice;
-    }
-
     public QueryAllCurrentUmOpenAlgoOrdersResponseInner triggerPrice(
             @jakarta.annotation.Nullable String triggerPrice) {
         this.triggerPrice = triggerPrice;
@@ -497,126 +409,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
 
     public void setPrice(@jakarta.annotation.Nullable String price) {
         this.price = price;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner icebergQuantity(
-            @jakarta.annotation.Nullable String icebergQuantity) {
-        this.icebergQuantity = icebergQuantity;
-        return this;
-    }
-
-    /**
-     * Get icebergQuantity
-     *
-     * @return icebergQuantity
-     */
-    @jakarta.annotation.Nullable
-    public String getIcebergQuantity() {
-        return icebergQuantity;
-    }
-
-    public void setIcebergQuantity(@jakarta.annotation.Nullable String icebergQuantity) {
-        this.icebergQuantity = icebergQuantity;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner tpTriggerPrice(
-            @jakarta.annotation.Nullable String tpTriggerPrice) {
-        this.tpTriggerPrice = tpTriggerPrice;
-        return this;
-    }
-
-    /**
-     * Get tpTriggerPrice
-     *
-     * @return tpTriggerPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getTpTriggerPrice() {
-        return tpTriggerPrice;
-    }
-
-    public void setTpTriggerPrice(@jakarta.annotation.Nullable String tpTriggerPrice) {
-        this.tpTriggerPrice = tpTriggerPrice;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner tpPrice(
-            @jakarta.annotation.Nullable String tpPrice) {
-        this.tpPrice = tpPrice;
-        return this;
-    }
-
-    /**
-     * Get tpPrice
-     *
-     * @return tpPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getTpPrice() {
-        return tpPrice;
-    }
-
-    public void setTpPrice(@jakarta.annotation.Nullable String tpPrice) {
-        this.tpPrice = tpPrice;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner slTriggerPrice(
-            @jakarta.annotation.Nullable String slTriggerPrice) {
-        this.slTriggerPrice = slTriggerPrice;
-        return this;
-    }
-
-    /**
-     * Get slTriggerPrice
-     *
-     * @return slTriggerPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getSlTriggerPrice() {
-        return slTriggerPrice;
-    }
-
-    public void setSlTriggerPrice(@jakarta.annotation.Nullable String slTriggerPrice) {
-        this.slTriggerPrice = slTriggerPrice;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner slPrice(
-            @jakarta.annotation.Nullable String slPrice) {
-        this.slPrice = slPrice;
-        return this;
-    }
-
-    /**
-     * Get slPrice
-     *
-     * @return slPrice
-     */
-    @jakarta.annotation.Nullable
-    public String getSlPrice() {
-        return slPrice;
-    }
-
-    public void setSlPrice(@jakarta.annotation.Nullable String slPrice) {
-        this.slPrice = slPrice;
-    }
-
-    public QueryAllCurrentUmOpenAlgoOrdersResponseInner tpOrderType(
-            @jakarta.annotation.Nullable String tpOrderType) {
-        this.tpOrderType = tpOrderType;
-        return this;
-    }
-
-    /**
-     * Get tpOrderType
-     *
-     * @return tpOrderType
-     */
-    @jakarta.annotation.Nullable
-    public String getTpOrderType() {
-        return tpOrderType;
-    }
-
-    public void setTpOrderType(@jakarta.annotation.Nullable String tpOrderType) {
-        this.tpOrderType = tpOrderType;
     }
 
     public QueryAllCurrentUmOpenAlgoOrdersResponseInner selfTradePreventionMode(
@@ -850,29 +642,9 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
                 && Objects.equals(
                         this.algoStatus, queryAllCurrentUmOpenAlgoOrdersResponseInner.algoStatus)
                 && Objects.equals(
-                        this.actualOrderId,
-                        queryAllCurrentUmOpenAlgoOrdersResponseInner.actualOrderId)
-                && Objects.equals(
-                        this.actualPrice, queryAllCurrentUmOpenAlgoOrdersResponseInner.actualPrice)
-                && Objects.equals(
                         this.triggerPrice,
                         queryAllCurrentUmOpenAlgoOrdersResponseInner.triggerPrice)
                 && Objects.equals(this.price, queryAllCurrentUmOpenAlgoOrdersResponseInner.price)
-                && Objects.equals(
-                        this.icebergQuantity,
-                        queryAllCurrentUmOpenAlgoOrdersResponseInner.icebergQuantity)
-                && Objects.equals(
-                        this.tpTriggerPrice,
-                        queryAllCurrentUmOpenAlgoOrdersResponseInner.tpTriggerPrice)
-                && Objects.equals(
-                        this.tpPrice, queryAllCurrentUmOpenAlgoOrdersResponseInner.tpPrice)
-                && Objects.equals(
-                        this.slTriggerPrice,
-                        queryAllCurrentUmOpenAlgoOrdersResponseInner.slTriggerPrice)
-                && Objects.equals(
-                        this.slPrice, queryAllCurrentUmOpenAlgoOrdersResponseInner.slPrice)
-                && Objects.equals(
-                        this.tpOrderType, queryAllCurrentUmOpenAlgoOrdersResponseInner.tpOrderType)
                 && Objects.equals(
                         this.selfTradePreventionMode,
                         queryAllCurrentUmOpenAlgoOrdersResponseInner.selfTradePreventionMode)
@@ -912,16 +684,8 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
                 timeInForce,
                 quantity,
                 algoStatus,
-                actualOrderId,
-                actualPrice,
                 triggerPrice,
                 price,
-                icebergQuantity,
-                tpTriggerPrice,
-                tpPrice,
-                slTriggerPrice,
-                slPrice,
-                tpOrderType,
                 selfTradePreventionMode,
                 workingType,
                 priceMatch,
@@ -948,16 +712,8 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
         sb.append("		timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
         sb.append("		quantity: ").append(toIndentedString(quantity)).append("\n");
         sb.append("		algoStatus: ").append(toIndentedString(algoStatus)).append("\n");
-        sb.append("		actualOrderId: ").append(toIndentedString(actualOrderId)).append("\n");
-        sb.append("		actualPrice: ").append(toIndentedString(actualPrice)).append("\n");
         sb.append("		triggerPrice: ").append(toIndentedString(triggerPrice)).append("\n");
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
-        sb.append("		icebergQuantity: ").append(toIndentedString(icebergQuantity)).append("\n");
-        sb.append("		tpTriggerPrice: ").append(toIndentedString(tpTriggerPrice)).append("\n");
-        sb.append("		tpPrice: ").append(toIndentedString(tpPrice)).append("\n");
-        sb.append("		slTriggerPrice: ").append(toIndentedString(slTriggerPrice)).append("\n");
-        sb.append("		slPrice: ").append(toIndentedString(slPrice)).append("\n");
-        sb.append("		tpOrderType: ").append(toIndentedString(tpOrderType)).append("\n");
         sb.append("		selfTradePreventionMode: ")
                 .append(toIndentedString(selfTradePreventionMode))
                 .append("\n");
@@ -1017,14 +773,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
         String algoStatusValueAsString = "";
         algoStatusValueAsString = algoStatusValue.toString();
         sb.append("algoStatus=").append(urlEncode(algoStatusValueAsString)).append("");
-        Object actualOrderIdValue = getActualOrderId();
-        String actualOrderIdValueAsString = "";
-        actualOrderIdValueAsString = actualOrderIdValue.toString();
-        sb.append("actualOrderId=").append(urlEncode(actualOrderIdValueAsString)).append("");
-        Object actualPriceValue = getActualPrice();
-        String actualPriceValueAsString = "";
-        actualPriceValueAsString = actualPriceValue.toString();
-        sb.append("actualPrice=").append(urlEncode(actualPriceValueAsString)).append("");
         Object triggerPriceValue = getTriggerPrice();
         String triggerPriceValueAsString = "";
         triggerPriceValueAsString = triggerPriceValue.toString();
@@ -1033,30 +781,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
         String priceValueAsString = "";
         priceValueAsString = priceValue.toString();
         sb.append("price=").append(urlEncode(priceValueAsString)).append("");
-        Object icebergQuantityValue = getIcebergQuantity();
-        String icebergQuantityValueAsString = "";
-        icebergQuantityValueAsString = icebergQuantityValue.toString();
-        sb.append("icebergQuantity=").append(urlEncode(icebergQuantityValueAsString)).append("");
-        Object tpTriggerPriceValue = getTpTriggerPrice();
-        String tpTriggerPriceValueAsString = "";
-        tpTriggerPriceValueAsString = tpTriggerPriceValue.toString();
-        sb.append("tpTriggerPrice=").append(urlEncode(tpTriggerPriceValueAsString)).append("");
-        Object tpPriceValue = getTpPrice();
-        String tpPriceValueAsString = "";
-        tpPriceValueAsString = tpPriceValue.toString();
-        sb.append("tpPrice=").append(urlEncode(tpPriceValueAsString)).append("");
-        Object slTriggerPriceValue = getSlTriggerPrice();
-        String slTriggerPriceValueAsString = "";
-        slTriggerPriceValueAsString = slTriggerPriceValue.toString();
-        sb.append("slTriggerPrice=").append(urlEncode(slTriggerPriceValueAsString)).append("");
-        Object slPriceValue = getSlPrice();
-        String slPriceValueAsString = "";
-        slPriceValueAsString = slPriceValue.toString();
-        sb.append("slPrice=").append(urlEncode(slPriceValueAsString)).append("");
-        Object tpOrderTypeValue = getTpOrderType();
-        String tpOrderTypeValueAsString = "";
-        tpOrderTypeValueAsString = tpOrderTypeValue.toString();
-        sb.append("tpOrderType=").append(urlEncode(tpOrderTypeValueAsString)).append("");
         Object selfTradePreventionModeValue = getSelfTradePreventionMode();
         String selfTradePreventionModeValueAsString = "";
         selfTradePreventionModeValueAsString = selfTradePreventionModeValue.toString();
@@ -1137,16 +861,8 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
         openapiFields.add("timeInForce");
         openapiFields.add("quantity");
         openapiFields.add("algoStatus");
-        openapiFields.add("actualOrderId");
-        openapiFields.add("actualPrice");
         openapiFields.add("triggerPrice");
         openapiFields.add("price");
-        openapiFields.add("icebergQuantity");
-        openapiFields.add("tpTriggerPrice");
-        openapiFields.add("tpPrice");
-        openapiFields.add("slTriggerPrice");
-        openapiFields.add("slPrice");
-        openapiFields.add("tpOrderType");
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("workingType");
         openapiFields.add("priceMatch");
@@ -1255,22 +971,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
                                     + " string but got `%s`",
                             jsonObj.get("algoStatus").toString()));
         }
-        if ((jsonObj.get("actualOrderId") != null && !jsonObj.get("actualOrderId").isJsonNull())
-                && !jsonObj.get("actualOrderId").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `actualOrderId` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("actualOrderId").toString()));
-        }
-        if ((jsonObj.get("actualPrice") != null && !jsonObj.get("actualPrice").isJsonNull())
-                && !jsonObj.get("actualPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `actualPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("actualPrice").toString()));
-        }
         if ((jsonObj.get("triggerPrice") != null && !jsonObj.get("triggerPrice").isJsonNull())
                 && !jsonObj.get("triggerPrice").isJsonPrimitive()) {
             throw new IllegalArgumentException(
@@ -1286,54 +986,6 @@ public class QueryAllCurrentUmOpenAlgoOrdersResponseInner {
                             "Expected the field `price` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("price").toString()));
-        }
-        if ((jsonObj.get("icebergQuantity") != null && !jsonObj.get("icebergQuantity").isJsonNull())
-                && !jsonObj.get("icebergQuantity").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `icebergQuantity` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("icebergQuantity").toString()));
-        }
-        if ((jsonObj.get("tpTriggerPrice") != null && !jsonObj.get("tpTriggerPrice").isJsonNull())
-                && !jsonObj.get("tpTriggerPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `tpTriggerPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("tpTriggerPrice").toString()));
-        }
-        if ((jsonObj.get("tpPrice") != null && !jsonObj.get("tpPrice").isJsonNull())
-                && !jsonObj.get("tpPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `tpPrice` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("tpPrice").toString()));
-        }
-        if ((jsonObj.get("slTriggerPrice") != null && !jsonObj.get("slTriggerPrice").isJsonNull())
-                && !jsonObj.get("slTriggerPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `slTriggerPrice` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("slTriggerPrice").toString()));
-        }
-        if ((jsonObj.get("slPrice") != null && !jsonObj.get("slPrice").isJsonNull())
-                && !jsonObj.get("slPrice").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `slPrice` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("slPrice").toString()));
-        }
-        if ((jsonObj.get("tpOrderType") != null && !jsonObj.get("tpOrderType").isJsonNull())
-                && !jsonObj.get("tpOrderType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `tpOrderType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("tpOrderType").toString()));
         }
         if ((jsonObj.get("selfTradePreventionMode") != null
                         && !jsonObj.get("selfTradePreventionMode").isJsonNull())

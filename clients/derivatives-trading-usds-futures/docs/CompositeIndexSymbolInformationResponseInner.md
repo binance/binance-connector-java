@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**time** | **Long** |  |  [optional] |
-|**component** | **String** |  |  [optional] |
+|**time** | **Long** | Current time |  [optional] |
+|**component** | **String** | Component asset |  [optional] |
 |**baseAssetList** | [**List&lt;CompositeIndexSymbolInformationResponseInnerBaseAssetListInner&gt;**](CompositeIndexSymbolInformationResponseInnerBaseAssetListInner.md) |  |  [optional] |
 
 

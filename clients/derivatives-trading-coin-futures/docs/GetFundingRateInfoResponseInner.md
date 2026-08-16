@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**symbol** | **String** |  |  [optional] |
-|**adjustedFundingRateCap** | **String** |  |  [optional] |
-|**adjustedFundingRateFloor** | **String** |  |  [optional] |
-|**fundingIntervalHours** | **Long** |  |  [optional] |
-|**disclaimer** | **Boolean** |  |  [optional] |
+|**symbol** | **String** | Trading symbol |  [optional] |
+|**adjustedFundingRateCap** | **String** | Adjusted funding rate cap. |  [optional] |
+|**adjustedFundingRateFloor** | **String** | Adjusted funding rate floor. |  [optional] |
+|**fundingIntervalHours** | **Long** | Funding interval in hours. |  [optional] |
+|**disclaimer** | **Boolean** | Disclaimer text. |  [optional] |
 
 
 

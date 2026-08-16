@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**orderId** | **Long** |  |  [optional] |
 |**symbol** | **String** |  |  [optional] |
+|**pair** | **String** | Pair. |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
@@ -16,6 +17,7 @@
 |**origQty** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
 |**cumQuote** | **String** |  |  [optional] |
+|**cumBase** | **String** | Cum Base. |  [optional] |
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |

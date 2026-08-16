@@ -1,6 +1,6 @@
 /*
- * Binance Wallet REST API
- * OpenAPI Specification for the Binance Wallet REST API
+ * Wallet REST API
+ * Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -26,6 +26,7 @@ import com.binance.connector.client.common.sign.SignatureGenerator;
 import com.binance.connector.client.wallet.rest.model.GetSymbolsDelistScheduleForSpotResponse;
 import com.binance.connector.client.wallet.rest.model.SystemStatusResponse;
 import jakarta.validation.constraints.*;
+import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Request;
 import org.bouncycastle.crypto.CryptoException;
@@ -77,14 +78,15 @@ public class OthersApiTest {
     }
 
     /**
-     * Get symbols delist schedule for spot (MARKET_DATA)
+     * Get Spot Delist Schedule (MARKET_DATA)
      *
-     * <p>Get symbols delist schedule for spot Weight: 100
+     * <p>Get symbols delist schedule for spot Weight(IP): 100 Security Type: MARKET_DATA
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getSymbolsDelistScheduleForSpotTest() throws ApiException, CryptoException {
+    public void getSymbolsDelistScheduleForSpotTest()
+            throws ApiException, CryptoException, IOException {
         Long recvWindow = 5000L;
         ApiResponse<GetSymbolsDelistScheduleForSpotResponse> response =
                 api.getSymbolsDelistScheduleForSpot(recvWindow);
@@ -96,19 +98,21 @@ public class OthersApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals(null, actualRequest.url().queryParameter("signature"));
+        assertEquals(
+                null,
+                actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/spot/delist-schedule", actualRequest.url().encodedPath());
     }
 
     /**
-     * System Status (System)
+     * System Status
      *
-     * <p>Fetch system status. Weight: 1
+     * <p>Fetch system status. Weight(IP): 1 Security Type: System
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void systemStatusTest() throws ApiException, CryptoException {
+    public void systemStatusTest() throws ApiException, CryptoException, IOException {
         ApiResponse<SystemStatusResponse> response = api.systemStatus();
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options REST API
- * OpenAPI Specification for the Binance Derivatives Trading Options REST API
+ * Options REST API
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** Ticker24hrPriceChangeStatisticsResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class Ticker24hrPriceChangeStatisticsResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -153,7 +153,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol
      *
      * @return symbol
      */
@@ -173,7 +173,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get priceChange
+     * 24-hour price change
      *
      * @return priceChange
      */
@@ -193,7 +193,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get priceChangePercent
+     * 24-hour percent price change
      *
      * @return priceChangePercent
      */
@@ -213,7 +213,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastPrice
+     * Last trade price
      *
      * @return lastPrice
      */
@@ -233,7 +233,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get lastQty
+     * Last trade amount
      *
      * @return lastQty
      */
@@ -253,7 +253,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get open
+     * 24-hour open price
      *
      * @return open
      */
@@ -273,7 +273,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get high
+     * 24-hour high
      *
      * @return high
      */
@@ -293,7 +293,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get low
+     * 24-hour low
      *
      * @return low
      */
@@ -313,7 +313,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get volume
+     * Trading volume(contracts)
      *
      * @return volume
      */
@@ -333,7 +333,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get amount
+     * Trade amount(in quote asset)
      *
      * @return amount
      */
@@ -353,7 +353,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get bidPrice
+     * The best buy price
      *
      * @return bidPrice
      */
@@ -373,7 +373,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get askPrice
+     * The best sell price
      *
      * @return askPrice
      */
@@ -393,7 +393,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get openTime
+     * Time the first trade occurred within the last 24 hours
      *
      * @return openTime
      */
@@ -413,7 +413,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get closeTime
+     * Time the last trade occurred within the last 24 hours
      *
      * @return closeTime
      */
@@ -433,7 +433,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get firstTradeId
+     * First trade ID
      *
      * @return firstTradeId
      */
@@ -453,7 +453,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get tradeCount
+     * Number of trades
      *
      * @return tradeCount
      */
@@ -473,7 +473,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get strikePrice
+     * Strike price
      *
      * @return strikePrice
      */
@@ -493,7 +493,7 @@ public class Ticker24hrPriceChangeStatisticsResponseInner {
     }
 
     /**
-     * Get exercisePrice
+     * return estimated settlement price one hour before exercise, return index price at other times
      *
      * @return exercisePrice
      */

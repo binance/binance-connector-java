@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**longShortRatio** | **String** |  |  [optional] |
-|**longAccount** | **String** |  |  [optional] |
-|**shortAccount** | **String** |  |  [optional] |
-|**timestamp** | **String** |  |  [optional] |
+|**longShortRatio** | **String** | long/short position ratio of top traders |  [optional] |
+|**longAccount** | **String** | long positions ratio of top traders |  [optional] |
+|**shortAccount** | **String** | short positions ratio of top traders |  [optional] |
+|**timestamp** | **Long** | End time of the period, in milliseconds. |  [optional] |
 
 
 

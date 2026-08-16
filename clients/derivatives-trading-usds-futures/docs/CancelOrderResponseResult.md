@@ -9,7 +9,6 @@
 |------------ | ------------- | ------------- | -------------|
 |**clientOrderId** | **String** |  |  [optional] |
 |**cumQty** | **String** |  |  [optional] |
-|**cumQuote** | **String** |  |  [optional] |
 |**executedQty** | **String** |  |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |

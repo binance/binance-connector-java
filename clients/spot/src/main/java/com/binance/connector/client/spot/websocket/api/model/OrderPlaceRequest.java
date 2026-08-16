@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -39,8 +39,14 @@ import org.hibernate.validator.constraints.*;
 /** OrderPlaceRequest */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class OrderPlaceRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
     @SerializedName(SERIALIZED_NAME_SYMBOL)
@@ -157,6 +163,25 @@ public class OrderPlaceRequest extends BaseDTO {
     private Double recvWindow;
 
     public OrderPlaceRequest() {}
+
+    public OrderPlaceRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Client-generated request identifier.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public OrderPlaceRequest symbol(@jakarta.annotation.Nonnull String symbol) {
         this.symbol = symbol;
@@ -307,7 +332,9 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get newClientOrderId
+     * A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with
+     * the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled,
+     * otherwise the order will be rejected.
      *
      * @return newClientOrderId
      */
@@ -348,7 +375,8 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get stopPrice
+     * Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and
+     * &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
      *
      * @return stopPrice
      */
@@ -368,7 +396,7 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get trailingDelta
+     * See Trailing Stop order FAQ
      *
      * @return trailingDelta
      */
@@ -387,7 +415,8 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get icebergQty
+     * Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60;
+     * to create an iceberg order.
      *
      * @return icebergQty
      */
@@ -426,11 +455,12 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get strategyType
+     * The value cannot be less than &#x60;1000000&#x60;. minimum: 1000000
      *
      * @return strategyType
      */
     @jakarta.annotation.Nullable
+    @Min(1000000)
     public Integer getStrategyType() {
         return strategyType;
     }
@@ -487,11 +517,12 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get pegOffsetValue
+     * Price level to peg the price to (max: 100). See Pegged Orders Info maximum: 100
      *
      * @return pegOffsetValue
      */
     @jakarta.annotation.Nullable
+    @Max(100)
     public Integer getPegOffsetValue() {
         return pegOffsetValue;
     }
@@ -527,12 +558,14 @@ public class OrderPlaceRequest extends BaseDTO {
     }
 
     /**
-     * Get recvWindow
+     * Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be
+     * specified. maximum: 60000
      *
      * @return recvWindow
      */
     @jakarta.annotation.Nullable
     @Valid
+    @DecimalMax("60000")
     public Double getRecvWindow() {
         return recvWindow;
     }
@@ -550,7 +583,8 @@ public class OrderPlaceRequest extends BaseDTO {
             return false;
         }
         OrderPlaceRequest orderPlaceRequest = (OrderPlaceRequest) o;
-        return Objects.equals(this.symbol, orderPlaceRequest.symbol)
+        return Objects.equals(this.id, orderPlaceRequest.id)
+                && Objects.equals(this.symbol, orderPlaceRequest.symbol)
                 && Objects.equals(this.side, orderPlaceRequest.side)
                 && Objects.equals(this.type, orderPlaceRequest.type)
                 && Objects.equals(this.timeInForce, orderPlaceRequest.timeInForce)
@@ -575,6 +609,7 @@ public class OrderPlaceRequest extends BaseDTO {
     @Override
     public int hashCode() {
         return Objects.hash(
+                id,
                 symbol,
                 side,
                 type,
@@ -600,6 +635,7 @@ public class OrderPlaceRequest extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderPlaceRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		side: ").append(toIndentedString(side)).append("\n");
         sb.append("		type: ").append(toIndentedString(type)).append("\n");
@@ -629,6 +665,11 @@ public class OrderPlaceRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
             String symbolValueAsString = symbolValue.toString();
@@ -738,6 +779,10 @@ public class OrderPlaceRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
             valMap.put("symbol", symbolValue);
@@ -840,6 +885,7 @@ public class OrderPlaceRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("symbol");
         openapiFields.add("side");
         openapiFields.add("type");
@@ -907,6 +953,14 @@ public class OrderPlaceRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if (!jsonObj.get("symbol").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(

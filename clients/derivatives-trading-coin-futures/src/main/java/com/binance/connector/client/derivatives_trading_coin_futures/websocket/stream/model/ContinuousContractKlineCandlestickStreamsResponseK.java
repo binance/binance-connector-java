@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+ * Futures (COIN-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** ContinuousContractKlineCandlestickStreamsResponseK */
+/** Kline payload */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO {
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
@@ -144,7 +144,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get tLowerCase
+     * Kline start time
      *
      * @return tLowerCase
      */
@@ -164,7 +164,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get T
+     * transactionTime
      *
      * @return T
      */
@@ -184,7 +184,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get iLowerCase
+     * interval
      *
      * @return iLowerCase
      */
@@ -204,7 +204,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get fLowerCase
+     * First update ID
      *
      * @return fLowerCase
      */
@@ -224,7 +224,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get L
+     * Last update ID
      *
      * @return L
      */
@@ -244,7 +244,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get oLowerCase
+     * openPrice
      *
      * @return oLowerCase
      */
@@ -264,7 +264,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get cLowerCase
+     * closePrice
      *
      * @return cLowerCase
      */
@@ -284,7 +284,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get hLowerCase
+     * highPrice
      *
      * @return hLowerCase
      */
@@ -304,7 +304,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get lLowerCase
+     * lowPrice
      *
      * @return lLowerCase
      */
@@ -324,7 +324,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get vLowerCase
+     * volume
      *
      * @return vLowerCase
      */
@@ -344,7 +344,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get nLowerCase
+     * tradeNum
      *
      * @return nLowerCase
      */
@@ -364,7 +364,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get xLowerCase
+     * Is this kline closed?
      *
      * @return xLowerCase
      */
@@ -384,7 +384,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get qLowerCase
+     * quoteVolume
      *
      * @return qLowerCase
      */
@@ -404,7 +404,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get V
+     * Taker buy volume
      *
      * @return V
      */
@@ -424,7 +424,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get Q
+     * lastTradeVolume
      *
      * @return Q
      */
@@ -444,7 +444,7 @@ public class ContinuousContractKlineCandlestickStreamsResponseK extends BaseDTO 
     }
 
     /**
-     * Get B
+     * Best bid qty
      *
      * @return B
      */

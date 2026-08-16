@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**sLowerCase** | **String** |  |  [optional] |
-|**oLowerCase** | **String** |  |  [optional] |
-|**hLowerCase** | **String** |  |  [optional] |
+|**eLowerCase** | **String** | Event type |  [optional] |
+|**E** | **Long** | Event time |  [optional] |
+|**sLowerCase** | **String** | Option symbol |  [optional] |
+|**oLowerCase** | **String** | Open interest in contracts |  [optional] |
+|**hLowerCase** | **String** | Open interest in USDT |  [optional] |
 
 
 

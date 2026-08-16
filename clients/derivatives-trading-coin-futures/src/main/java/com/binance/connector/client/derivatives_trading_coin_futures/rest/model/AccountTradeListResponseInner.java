@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading COIN Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+ * Futures (COIN-M) REST API
+ * Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** AccountTradeListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AccountTradeListResponseInner {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -96,6 +96,12 @@ public class AccountTradeListResponseInner {
     @jakarta.annotation.Nullable
     private String baseQty;
 
+    public static final String SERIALIZED_NAME_QUOTE_QTY = "quoteQty";
+
+    @SerializedName(SERIALIZED_NAME_QUOTE_QTY)
+    @jakarta.annotation.Nullable
+    private String quoteQty;
+
     public static final String SERIALIZED_NAME_COMMISSION = "commission";
 
     @SerializedName(SERIALIZED_NAME_COMMISSION)
@@ -140,7 +146,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get symbol
+     * Trading symbol
      *
      * @return symbol
      */
@@ -159,7 +165,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get id
+     * positionId
      *
      * @return id
      */
@@ -178,7 +184,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get orderId
+     * Sub-order ID
      *
      * @return orderId
      */
@@ -197,7 +203,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get pair
+     * Pair
      *
      * @return pair
      */
@@ -216,7 +222,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get side
+     * Trading side
      *
      * @return side
      */
@@ -235,7 +241,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get price
+     * Latest token price.
      *
      * @return price
      */
@@ -254,7 +260,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get qty
+     * Quantity.
      *
      * @return qty
      */
@@ -274,7 +280,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get realizedPnl
+     * Realized PnL.
      *
      * @return realizedPnl
      */
@@ -294,7 +300,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get marginAsset
+     * Margin asset.
      *
      * @return marginAsset
      */
@@ -313,7 +319,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get baseQty
+     * Base asset quantity.
      *
      * @return baseQty
      */
@@ -326,6 +332,25 @@ public class AccountTradeListResponseInner {
         this.baseQty = baseQty;
     }
 
+    public AccountTradeListResponseInner quoteQty(@jakarta.annotation.Nullable String quoteQty) {
+        this.quoteQty = quoteQty;
+        return this;
+    }
+
+    /**
+     * Quote asset quantity.
+     *
+     * @return quoteQty
+     */
+    @jakarta.annotation.Nullable
+    public String getQuoteQty() {
+        return quoteQty;
+    }
+
+    public void setQuoteQty(@jakarta.annotation.Nullable String quoteQty) {
+        this.quoteQty = quoteQty;
+    }
+
     public AccountTradeListResponseInner commission(
             @jakarta.annotation.Nullable String commission) {
         this.commission = commission;
@@ -333,7 +358,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commission
+     * Transaction Fee (in Crypto)
      *
      * @return commission
      */
@@ -353,7 +378,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get commissionAsset
+     * Commission asset.
      *
      * @return commissionAsset
      */
@@ -372,7 +397,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get time
+     * Time
      *
      * @return time
      */
@@ -392,7 +417,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get positionSide
+     * Position side
      *
      * @return positionSide
      */
@@ -411,7 +436,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get buyer
+     * Whether the trade is a buy side for the account.
      *
      * @return buyer
      */
@@ -430,7 +455,7 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Get maker
+     * Whether the account is maker in this trade.
      *
      * @return maker
      */
@@ -463,6 +488,7 @@ public class AccountTradeListResponseInner {
                 && Objects.equals(this.realizedPnl, accountTradeListResponseInner.realizedPnl)
                 && Objects.equals(this.marginAsset, accountTradeListResponseInner.marginAsset)
                 && Objects.equals(this.baseQty, accountTradeListResponseInner.baseQty)
+                && Objects.equals(this.quoteQty, accountTradeListResponseInner.quoteQty)
                 && Objects.equals(this.commission, accountTradeListResponseInner.commission)
                 && Objects.equals(
                         this.commissionAsset, accountTradeListResponseInner.commissionAsset)
@@ -485,6 +511,7 @@ public class AccountTradeListResponseInner {
                 realizedPnl,
                 marginAsset,
                 baseQty,
+                quoteQty,
                 commission,
                 commissionAsset,
                 time,
@@ -507,6 +534,7 @@ public class AccountTradeListResponseInner {
         sb.append("		realizedPnl: ").append(toIndentedString(realizedPnl)).append("\n");
         sb.append("		marginAsset: ").append(toIndentedString(marginAsset)).append("\n");
         sb.append("		baseQty: ").append(toIndentedString(baseQty)).append("\n");
+        sb.append("		quoteQty: ").append(toIndentedString(quoteQty)).append("\n");
         sb.append("		commission: ").append(toIndentedString(commission)).append("\n");
         sb.append("		commissionAsset: ").append(toIndentedString(commissionAsset)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
@@ -560,6 +588,10 @@ public class AccountTradeListResponseInner {
         String baseQtyValueAsString = "";
         baseQtyValueAsString = baseQtyValue.toString();
         sb.append("baseQty=").append(urlEncode(baseQtyValueAsString)).append("");
+        Object quoteQtyValue = getQuoteQty();
+        String quoteQtyValueAsString = "";
+        quoteQtyValueAsString = quoteQtyValue.toString();
+        sb.append("quoteQty=").append(urlEncode(quoteQtyValueAsString)).append("");
         Object commissionValue = getCommission();
         String commissionValueAsString = "";
         commissionValueAsString = commissionValue.toString();
@@ -622,6 +654,7 @@ public class AccountTradeListResponseInner {
         openapiFields.add("realizedPnl");
         openapiFields.add("marginAsset");
         openapiFields.add("baseQty");
+        openapiFields.add("quoteQty");
         openapiFields.add("commission");
         openapiFields.add("commissionAsset");
         openapiFields.add("time");
@@ -715,6 +748,14 @@ public class AccountTradeListResponseInner {
                             "Expected the field `baseQty` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("baseQty").toString()));
+        }
+        if ((jsonObj.get("quoteQty") != null && !jsonObj.get("quoteQty").isJsonNull())
+                && !jsonObj.get("quoteQty").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `quoteQty` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("quoteQty").toString()));
         }
         if ((jsonObj.get("commission") != null && !jsonObj.get("commission").isJsonNull())
                 && !jsonObj.get("commission").isJsonPrimitive()) {

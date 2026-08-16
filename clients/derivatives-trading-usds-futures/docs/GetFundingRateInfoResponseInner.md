@@ -11,7 +11,7 @@
 |**adjustedFundingRateCap** | **String** |  |  [optional] |
 |**adjustedFundingRateFloor** | **String** |  |  [optional] |
 |**fundingIntervalHours** | **Long** |  |  [optional] |
-|**disclaimer** | **Boolean** |  |  [optional] |
+|**disclaimer** | **Boolean** | ingore |  [optional] |
 
 
 

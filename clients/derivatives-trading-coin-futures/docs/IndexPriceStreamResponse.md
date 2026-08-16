@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eLowerCase** | **String** |  |  [optional] |
-|**E** | **Long** |  |  [optional] |
-|**iLowerCase** | **String** |  |  [optional] |
-|**pLowerCase** | **String** |  |  [optional] |
+|**eLowerCase** | **String** | Event type |  [optional] |
+|**E** | **Long** | Event time |  [optional] |
+|**iLowerCase** | **String** | Pair |  [optional] |
+|**pLowerCase** | **String** | Index Price |  [optional] |
 
 
 

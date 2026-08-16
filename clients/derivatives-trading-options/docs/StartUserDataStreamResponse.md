@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**listenKey** | **String** |  |  [optional] |
-|**expiration** | **Long** |  |  [optional] |
+|**listenKey** | **String** | listen Key |  [optional] |
+|**expiration** | **Long** | Listen key expiration timestamp in milliseconds |  [optional] |
 
 
 

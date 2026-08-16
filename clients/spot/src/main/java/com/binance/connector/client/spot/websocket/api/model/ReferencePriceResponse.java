@@ -1,6 +1,6 @@
 /*
- * Binance Spot WebSocket API
- * OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+ * Spot WebSocket API
+ * Access market data, manage accounts, and trade on Binance Spot.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -15,6 +15,7 @@ package com.binance.connector.client.spot.websocket.api.model;
 import com.binance.connector.client.common.websocket.dtos.BaseDTO;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -27,7 +28,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -38,7 +41,7 @@ import org.hibernate.validator.constraints.*;
 /** ReferencePriceResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class ReferencePriceResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_ID = "id";
 
@@ -57,6 +60,12 @@ public class ReferencePriceResponse extends BaseDTO {
     @SerializedName(SERIALIZED_NAME_RESULT)
     @jakarta.annotation.Nullable
     private ReferencePriceResponseResult result;
+
+    public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
+
+    @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
+    @jakarta.annotation.Nullable
+    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
 
     public ReferencePriceResponse() {}
 
@@ -119,6 +128,39 @@ public class ReferencePriceResponse extends BaseDTO {
         this.result = result;
     }
 
+    public ReferencePriceResponse rateLimits(
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+        this.rateLimits = rateLimits;
+        return this;
+    }
+
+    public ReferencePriceResponse addRateLimitsItem(
+            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
+        if (this.rateLimits == null) {
+            this.rateLimits = new ArrayList<>();
+        }
+        this.rateLimits.add(rateLimitsItem);
+        return this;
+    }
+
+    /**
+     * Get rateLimits
+     *
+     * @return rateLimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+        return rateLimits;
+    }
+
+    public void setRateLimits(
+            @jakarta.annotation.Nullable
+                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+        this.rateLimits = rateLimits;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -130,12 +172,13 @@ public class ReferencePriceResponse extends BaseDTO {
         ReferencePriceResponse referencePriceResponse = (ReferencePriceResponse) o;
         return Objects.equals(this.id, referencePriceResponse.id)
                 && Objects.equals(this.status, referencePriceResponse.status)
-                && Objects.equals(this.result, referencePriceResponse.result);
+                && Objects.equals(this.result, referencePriceResponse.result)
+                && Objects.equals(this.rateLimits, referencePriceResponse.rateLimits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, result);
+        return Objects.hash(id, status, result, rateLimits);
     }
 
     @Override
@@ -145,6 +188,7 @@ public class ReferencePriceResponse extends BaseDTO {
         sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		result: ").append(toIndentedString(result)).append("\n");
+        sb.append("		rateLimits: ").append(toIndentedString(rateLimits)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -168,6 +212,11 @@ public class ReferencePriceResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
+        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        if (rateLimitsValue != null) {
+            String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
+            valMap.put("rateLimits", rateLimitsValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -190,6 +239,10 @@ public class ReferencePriceResponse extends BaseDTO {
         Object resultValue = getResult();
         if (resultValue != null) {
             valMap.put("result", resultValue);
+        }
+        Object rateLimitsValue = getRateLimits();
+        if (rateLimitsValue != null) {
+            valMap.put("rateLimits", rateLimitsValue);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -220,6 +273,7 @@ public class ReferencePriceResponse extends BaseDTO {
         openapiFields.add("id");
         openapiFields.add("status");
         openapiFields.add("result");
+        openapiFields.add("rateLimits");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -266,6 +320,26 @@ public class ReferencePriceResponse extends BaseDTO {
         // validate the optional field `result`
         if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
             ReferencePriceResponseResult.validateJsonElement(jsonObj.get("result"));
+        }
+        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
+            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
+            if (jsonArrayrateLimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("rateLimits").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `rateLimits` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("rateLimits").toString()));
+                }
+
+                // validate the optional field `rateLimits` (array)
+                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
+                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                            jsonArrayrateLimits.get(i));
+                }
+                ;
+            }
         }
     }
 

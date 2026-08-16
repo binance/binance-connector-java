@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+ * Portfolio Margin Pro WebSocket Market Streams
+ * Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,10 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** PmProAccountUpdate */
+/** Pushed every 5 seconds with account asset status. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PmProAccountUpdate extends BaseDTO {
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -95,7 +95,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event Time
      *
      * @return E
      */
@@ -114,7 +114,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * uniMMR level
      *
      * @return uLowerCase
      */
@@ -133,7 +133,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get eq
+     * Account equity in USD
      *
      * @return eq
      */
@@ -152,7 +152,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get ae
+     * Actual equity without collateral rate in USD
      *
      * @return ae
      */
@@ -171,7 +171,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get im
+     * Total initial margin in USD
      *
      * @return im
      */
@@ -190,7 +190,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get mm
+     * Total maintenance margin in USD
      *
      * @return mm
      */
@@ -209,7 +209,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get avb
+     * Total available balance in USD
      *
      * @return avb
      */
@@ -228,7 +228,7 @@ public class PmProAccountUpdate extends BaseDTO {
     }
 
     /**
-     * Get vmw
+     * Virtual maxWithdraw amount in USD
      *
      * @return vmw
      */

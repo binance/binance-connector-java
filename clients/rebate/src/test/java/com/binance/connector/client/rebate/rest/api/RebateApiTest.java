@@ -36,7 +36,7 @@ import org.mockito.Mockito;
 /** API tests for RebateApi */
 public class RebateApiTest {
 
-    private RebateApi api;
+    private RebateRestApi api;
     private ApiClient apiClientSpy;
     private SignatureGenerator signatureGeneratorSpy;
 
@@ -72,7 +72,7 @@ public class RebateApiTest {
         Mockito.doReturn(new ApiResponse<>(200, null)).when(apiClientSpy).execute(Mockito.any());
         Mockito.doReturn("1736393892000").when(apiClientSpy).buildTimestamp();
 
-        api = new RebateApi(apiClientSpy);
+        api = new RebateRestApi(apiClientSpy);
     }
 
     /**

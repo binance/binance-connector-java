@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** CompressedAggregateTradesListResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class CompressedAggregateTradesListResponseInner {
     public static final String SERIALIZED_NAME_A_LOWER_CASE = "a";
 
@@ -53,6 +53,12 @@ public class CompressedAggregateTradesListResponseInner {
     @SerializedName(SERIALIZED_NAME_Q_LOWER_CASE)
     @jakarta.annotation.Nullable
     private String qLowerCase;
+
+    public static final String SERIALIZED_NAME_NQ = "nq";
+
+    @SerializedName(SERIALIZED_NAME_NQ)
+    @jakarta.annotation.Nullable
+    private String nq;
 
     public static final String SERIALIZED_NAME_F_LOWER_CASE = "f";
 
@@ -87,7 +93,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get aLowerCase
+     * Aggregate tradeId
      *
      * @return aLowerCase
      */
@@ -107,7 +113,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get pLowerCase
+     * Price
      *
      * @return pLowerCase
      */
@@ -127,7 +133,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get qLowerCase
+     * Quantity
      *
      * @return qLowerCase
      */
@@ -140,6 +146,25 @@ public class CompressedAggregateTradesListResponseInner {
         this.qLowerCase = qLowerCase;
     }
 
+    public CompressedAggregateTradesListResponseInner nq(@jakarta.annotation.Nullable String nq) {
+        this.nq = nq;
+        return this;
+    }
+
+    /**
+     * Normal quantity without the trades involving RPI orders
+     *
+     * @return nq
+     */
+    @jakarta.annotation.Nullable
+    public String getNq() {
+        return nq;
+    }
+
+    public void setNq(@jakarta.annotation.Nullable String nq) {
+        this.nq = nq;
+    }
+
     public CompressedAggregateTradesListResponseInner fLowerCase(
             @jakarta.annotation.Nullable Long fLowerCase) {
         this.fLowerCase = fLowerCase;
@@ -147,7 +172,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get fLowerCase
+     * First tradeId
      *
      * @return fLowerCase
      */
@@ -167,7 +192,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get lLowerCase
+     * Last tradeId
      *
      * @return lLowerCase
      */
@@ -186,7 +211,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get T
+     * Timestamp
      *
      * @return T
      */
@@ -206,7 +231,7 @@ public class CompressedAggregateTradesListResponseInner {
     }
 
     /**
-     * Get mLowerCase
+     * Was the buyer the maker?
      *
      * @return mLowerCase
      */
@@ -235,6 +260,7 @@ public class CompressedAggregateTradesListResponseInner {
                         this.pLowerCase, compressedAggregateTradesListResponseInner.pLowerCase)
                 && Objects.equals(
                         this.qLowerCase, compressedAggregateTradesListResponseInner.qLowerCase)
+                && Objects.equals(this.nq, compressedAggregateTradesListResponseInner.nq)
                 && Objects.equals(
                         this.fLowerCase, compressedAggregateTradesListResponseInner.fLowerCase)
                 && Objects.equals(
@@ -247,7 +273,7 @@ public class CompressedAggregateTradesListResponseInner {
     @Override
     public int hashCode() {
         return Objects.hash(
-                aLowerCase, pLowerCase, qLowerCase, fLowerCase, lLowerCase, T, mLowerCase);
+                aLowerCase, pLowerCase, qLowerCase, nq, fLowerCase, lLowerCase, T, mLowerCase);
     }
 
     @Override
@@ -257,6 +283,7 @@ public class CompressedAggregateTradesListResponseInner {
         sb.append("		aLowerCase: ").append(toIndentedString(aLowerCase)).append("\n");
         sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
         sb.append("		qLowerCase: ").append(toIndentedString(qLowerCase)).append("\n");
+        sb.append("		nq: ").append(toIndentedString(nq)).append("\n");
         sb.append("		fLowerCase: ").append(toIndentedString(fLowerCase)).append("\n");
         sb.append("		lLowerCase: ").append(toIndentedString(lLowerCase)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
@@ -280,6 +307,10 @@ public class CompressedAggregateTradesListResponseInner {
         String qLowerCaseValueAsString = "";
         qLowerCaseValueAsString = qLowerCaseValue.toString();
         sb.append("qLowerCase=").append(urlEncode(qLowerCaseValueAsString)).append("");
+        Object nqValue = getNq();
+        String nqValueAsString = "";
+        nqValueAsString = nqValue.toString();
+        sb.append("nq=").append(urlEncode(nqValueAsString)).append("");
         Object fLowerCaseValue = getfLowerCase();
         String fLowerCaseValueAsString = "";
         fLowerCaseValueAsString = fLowerCaseValue.toString();
@@ -327,6 +358,7 @@ public class CompressedAggregateTradesListResponseInner {
         openapiFields.add("a");
         openapiFields.add("p");
         openapiFields.add("q");
+        openapiFields.add("nq");
         openapiFields.add("f");
         openapiFields.add("l");
         openapiFields.add("T");
@@ -372,6 +404,14 @@ public class CompressedAggregateTradesListResponseInner {
                             "Expected the field `q` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("q").toString()));
+        }
+        if ((jsonObj.get("nq") != null && !jsonObj.get("nq").isJsonNull())
+                && !jsonObj.get("nq").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `nq` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("nq").toString()));
         }
     }
 

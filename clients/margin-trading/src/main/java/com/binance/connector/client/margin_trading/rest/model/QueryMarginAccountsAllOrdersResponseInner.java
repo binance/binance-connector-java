@@ -1,6 +1,6 @@
 /*
- * Binance Margin Trading REST API
- * OpenAPI Specification for the Binance Margin Trading REST API
+ * Margin REST API
+ * Access account information, borrow and repay assets, and trade with Binance Margin.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -34,7 +34,7 @@ import org.hibernate.validator.constraints.*;
 /** QueryMarginAccountsAllOrdersResponseInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class QueryMarginAccountsAllOrdersResponseInner {
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -154,7 +154,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get clientOrderId
+     * client Order Id.
      *
      * @return clientOrderId
      */
@@ -174,7 +174,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get cummulativeQuoteQty
+     * cummulative Quote Qty.
      *
      * @return cummulativeQuoteQty
      */
@@ -194,7 +194,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get executedQty
+     * executed Qty.
      *
      * @return executedQty
      */
@@ -214,7 +214,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get icebergQty
+     * iceberg Qty.
      *
      * @return icebergQty
      */
@@ -234,7 +234,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get isWorking
+     * is Working.
      *
      * @return isWorking
      */
@@ -254,7 +254,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get orderId
+     * order Id.
      *
      * @return orderId
      */
@@ -274,7 +274,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get origQty
+     * orig Qty.
      *
      * @return origQty
      */
@@ -294,7 +294,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get price
+     * price.
      *
      * @return price
      */
@@ -314,7 +314,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get side
+     * side.
      *
      * @return side
      */
@@ -334,7 +334,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get status
+     * status.
      *
      * @return status
      */
@@ -354,7 +354,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get stopPrice
+     * stop Price.
      *
      * @return stopPrice
      */
@@ -374,7 +374,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get symbol
+     * symbol.
      *
      * @return symbol
      */
@@ -394,7 +394,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get isIsolated
+     * is Isolated.
      *
      * @return isIsolated
      */
@@ -413,7 +413,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get time
+     * time.
      *
      * @return time
      */
@@ -433,7 +433,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get timeInForce
+     * time In Force.
      *
      * @return timeInForce
      */
@@ -453,7 +453,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get type
+     * type.
      *
      * @return type
      */
@@ -473,7 +473,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get selfTradePreventionMode
+     * self Trade Prevention Mode.
      *
      * @return selfTradePreventionMode
      */
@@ -494,7 +494,7 @@ public class QueryMarginAccountsAllOrdersResponseInner {
     }
 
     /**
-     * Get updateTime
+     * update Time.
      *
      * @return updateTime
      */

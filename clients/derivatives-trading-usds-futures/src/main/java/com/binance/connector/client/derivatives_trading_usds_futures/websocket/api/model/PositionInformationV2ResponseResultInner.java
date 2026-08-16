@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+ * Futures (USDⓈ-M) WebSocket API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** PositionInformationV2ResponseResultInner */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class PositionInformationV2ResponseResultInner extends BaseDTO {
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -188,7 +188,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get positionSide
+     * Position Side
      *
      * @return positionSide
      */
@@ -288,7 +288,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get unRealizedProfit
+     * Unrealized Profit
      *
      * @return unRealizedProfit
      */
@@ -408,7 +408,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get initialMargin
+     * Initial Margin
      *
      * @return initialMargin
      */
@@ -428,7 +428,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get maintMargin
+     * Maintainance Margin
      *
      * @return maintMargin
      */
@@ -448,7 +448,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get positionInitialMargin
+     * Position Initial Margin
      *
      * @return positionInitialMargin
      */
@@ -469,7 +469,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get openOrderInitialMargin
+     * Open Order Initial Margin
      *
      * @return openOrderInitialMargin
      */
@@ -549,7 +549,7 @@ public class PositionInformationV2ResponseResultInner extends BaseDTO {
     }
 
     /**
-     * Get updateTime
+     * Update Time
      *
      * @return updateTime
      */

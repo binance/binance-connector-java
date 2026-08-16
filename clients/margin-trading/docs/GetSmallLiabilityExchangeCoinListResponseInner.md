@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**asset** | **String** |  |  [optional] |
-|**interest** | **String** |  |  [optional] |
-|**principal** | **String** |  |  [optional] |
-|**liabilityAsset** | **String** |  |  [optional] |
-|**liabilityQty** | **Double** |  |  [optional] |
+|**asset** | **String** | asset. |  [optional] |
+|**interest** | **String** | interest. |  [optional] |
+|**principal** | **String** | principal. |  [optional] |
+|**liabilityAsset** | **String** | liability Asset. |  [optional] |
+|**liabilityQty** | **Double** | liability Qty. |  [optional] |
 
 
 

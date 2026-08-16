@@ -6,16 +6,16 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**crossMarginCollateralRatio**](MarketDataApi.md#crossMarginCollateralRatio) | **GET** /sapi/v1/margin/crossMarginCollateralRatio | Cross margin collateral ratio (MARKET_DATA) |
 | [**getAllCrossMarginPairs**](MarketDataApi.md#getAllCrossMarginPairs) | **GET** /sapi/v1/margin/allPairs | Get All Cross Margin Pairs (MARKET_DATA) |
-| [**getAllIsolatedMarginSymbol**](MarketDataApi.md#getAllIsolatedMarginSymbol) | **GET** /sapi/v1/margin/isolated/allPairs | Get All Isolated Margin Symbol(MARKET_DATA) |
+| [**getAllIsolatedMarginSymbol**](MarketDataApi.md#getAllIsolatedMarginSymbol) | **GET** /sapi/v1/margin/isolated/allPairs | Get All Isolated Margin Symbol (MARKET_DATA) |
 | [**getAllMarginAssets**](MarketDataApi.md#getAllMarginAssets) | **GET** /sapi/v1/margin/allAssets | Get All Margin Assets (MARKET_DATA) |
 | [**getDelistSchedule**](MarketDataApi.md#getDelistSchedule) | **GET** /sapi/v1/margin/delist-schedule | Get Delist Schedule (MARKET_DATA) |
-| [**getLimitPricePairs**](MarketDataApi.md#getLimitPricePairs) | **GET** /sapi/v1/margin/limit-price-pairs | Get Limit Price Pairs(MARKET_DATA) |
+| [**getLimitPricePairs**](MarketDataApi.md#getLimitPricePairs) | **GET** /sapi/v1/margin/limit-price-pairs | Get Limit Price Pairs (MARKET_DATA) |
 | [**getListSchedule**](MarketDataApi.md#getListSchedule) | **GET** /sapi/v1/margin/list-schedule | Get list Schedule (MARKET_DATA) |
 | [**getMarginAssetRiskBasedLiquidationRatio**](MarketDataApi.md#getMarginAssetRiskBasedLiquidationRatio) | **GET** /sapi/v1/margin/risk-based-liquidation-ratio | Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA) |
 | [**getMarginRestrictedAssets**](MarketDataApi.md#getMarginRestrictedAssets) | **GET** /sapi/v1/margin/restricted-asset | Get Margin Restricted Assets (MARKET_DATA) |
 | [**queryIsolatedMarginTierData**](MarketDataApi.md#queryIsolatedMarginTierData) | **GET** /sapi/v1/margin/isolatedMarginTier | Query Isolated Margin Tier Data (USER_DATA) |
-| [**queryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataApi.md#queryLiabilityCoinLeverageBracketInCrossMarginProMode) | **GET** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA) |
-| [**queryMarginAvailableInventory**](MarketDataApi.md#queryMarginAvailableInventory) | **GET** /sapi/v1/margin/available-inventory | Query Margin Available Inventory(USER_DATA) |
+| [**queryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataApi.md#queryLiabilityCoinLeverageBracketInCrossMarginProMode) | **GET** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA) |
+| [**queryMarginAvailableInventory**](MarketDataApi.md#queryMarginAvailableInventory) | **GET** /sapi/v1/margin/available-inventory | Query Margin Available Inventory (USER_DATA) |
 | [**queryMarginPriceindex**](MarketDataApi.md#queryMarginPriceindex) | **GET** /sapi/v1/margin/priceIndex | Query Margin PriceIndex (MARKET_DATA) |
 
 
@@ -25,7 +25,7 @@ All URIs are relative to *https://api.binance.com*
 
 Cross margin collateral ratio (MARKET_DATA)
 
-Cross margin collateral ratio  Weight: 100(IP)
+Cross margin collateral ratio  Weight(IP): 100  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -83,7 +83,7 @@ No authorization required
 
 Get All Cross Margin Pairs (MARKET_DATA)
 
-Get All Cross Margin Pairs  Weight: 1(IP)
+Get All Cross Margin Pairs  Weight(IP): 1  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -100,7 +100,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | isolated margin pair
+    String symbol = "BNBBTC"; // String | 
     try {
       GetAllCrossMarginPairsResponse result = apiInstance.getAllCrossMarginPairs(symbol);
       System.out.println(result);
@@ -119,7 +119,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| isolated margin pair | [optional] |
+| **symbol** | **String**|  | [optional] |
 
 ### Return type
 
@@ -143,9 +143,9 @@ No authorization required
 # **getAllIsolatedMarginSymbol**
 > GetAllIsolatedMarginSymbolResponse getAllIsolatedMarginSymbol(symbol, recvWindow)
 
-Get All Isolated Margin Symbol(MARKET_DATA)
+Get All Isolated Margin Symbol (MARKET_DATA)
 
-Get All Isolated Margin Symbol  Weight: 10(IP)
+Get All Isolated Margin Symbol  Weight(IP): 10  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -162,8 +162,8 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | isolated margin pair
-    Long recvWindow = 56L; // Long | No more than 60000
+    String symbol = "BNBBTC"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetAllIsolatedMarginSymbolResponse result = apiInstance.getAllIsolatedMarginSymbol(symbol, recvWindow);
       System.out.println(result);
@@ -182,8 +182,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| isolated margin pair | [optional] |
-| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **symbol** | **String**|  | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -209,7 +209,7 @@ No authorization required
 
 Get All Margin Assets (MARKET_DATA)
 
-Get All Margin Assets.  Weight: 1(IP)
+Get All Margin Assets.  Weight(IP): 1  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -226,7 +226,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String asset = "asset_example"; // String | 
+    String asset = "USDC"; // String | 
     try {
       GetAllMarginAssetsResponse result = apiInstance.getAllMarginAssets(asset);
       System.out.println(result);
@@ -271,7 +271,7 @@ No authorization required
 
 Get Delist Schedule (MARKET_DATA)
 
-Get tokens or symbols delist schedule for cross margin and isolated margin  Weight: 100
+Get tokens or symbols delist schedule for cross margin and isolated margin  Weight(IP): 100  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -288,7 +288,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    Long recvWindow = 56L; // Long | No more than 60000
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDelistScheduleResponse result = apiInstance.getDelistSchedule(recvWindow);
       System.out.println(result);
@@ -307,7 +307,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -331,9 +331,9 @@ No authorization required
 # **getLimitPricePairs**
 > GetLimitPricePairsResponse getLimitPricePairs()
 
-Get Limit Price Pairs(MARKET_DATA)
+Get Limit Price Pairs (MARKET_DATA)
 
-Query trading pairs with restriction on limit price range. In margin trading, you can place orders with limit price. Limit price should be within (-15%, 15%) of current index price for a list of margin trading pairs. This rule only impacts limit sell orders with limit price that is lower than current index price and limit buy orders with limit price that is higher than current index price.  - Buy order: Your order will be rejected with an error message notification if the limit price is 15% above the index price. - Sell order: Your order will be rejected with an error message notification if the limit price is 15% below the index price. Please review the limit price order placing strategy, backtest and calibrate the planned order size with the trading volume and order book depth to prevent trading loss.  Weight: 1
+Query trading pairs with restriction on limit price range.  In margin trading, you can place orders with limit price. Limit price should be within (-15%, 15%) of current index price for a list of margin trading pairs. This rule only impacts limit sell orders with limit price that is lower than current index price and limit buy orders with limit price that is higher than current index price.  - Buy order: Your order will be rejected with an error message notification if the limit price is 15% above the index price.  - Sell order: Your order will be rejected with an error message notification if the limit price is 15% below the index price.  Please review the limit price order placing strategy, backtest and calibrate the planned order size with the trading volume and order book depth to prevent trading loss.  Weight(IP): 1  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -391,7 +391,7 @@ No authorization required
 
 Get list Schedule (MARKET_DATA)
 
-Get the upcoming tokens or symbols listing schedule for Cross Margin and Isolated Margin.  Weight: 100
+Get the upcoming tokens or symbols listing schedule for Cross Margin and Isolated Margin.  Weight(IP): 100  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -408,7 +408,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    Long recvWindow = 56L; // Long | No more than 60000
+    Long recvWindow = 5000L; // Long | 
     try {
       GetListScheduleResponse result = apiInstance.getListSchedule(recvWindow);
       System.out.println(result);
@@ -427,7 +427,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -453,7 +453,7 @@ No authorization required
 
 Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
 
-Get Margin Asset Risk-Based Liquidation Ratio  Weight: 1
+Get Margin Asset Risk-Based Liquidation Ratio  Weight(IP): 1  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -511,7 +511,7 @@ No authorization required
 
 Get Margin Restricted Assets (MARKET_DATA)
 
-Get Margin Restricted Assets  Weight: 1
+Get the list of margin-restricted assets.  Weight(IP): 1  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -569,7 +569,7 @@ No authorization required
 
 Query Isolated Margin Tier Data (USER_DATA)
 
-Get isolated margin tier data collection with any tier as https://www.binance.com/en/margin-data  Weight: 1(IP)
+Get isolated margin tier data collection with any tier as https://www.binance.com/en/margin-data  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -586,9 +586,9 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long tier = 56L; // Long | All margin tier data will be returned if tier is omitted
-    Long recvWindow = 56L; // Long | No more than 60000
+    String symbol = "BTCUSDT"; // String | 
+    Long tier = 1L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryIsolatedMarginTierDataResponse result = apiInstance.queryIsolatedMarginTierData(symbol, tier, recvWindow);
       System.out.println(result);
@@ -608,8 +608,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **tier** | **Long**| All margin tier data will be returned if tier is omitted | [optional] |
-| **recvWindow** | **Long**| No more than 60000 | [optional] |
+| **tier** | **Long**|  | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
 
@@ -633,9 +633,9 @@ No authorization required
 # **queryLiabilityCoinLeverageBracketInCrossMarginProMode**
 > QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse queryLiabilityCoinLeverageBracketInCrossMarginProMode()
 
-Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
+Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA)
 
-Liability Coin Leverage Bracket in Cross Margin Pro Mode  Weight: 1
+Liability Coin Leverage Bracket in Cross Margin Pro Mode  Weight(IP): 1  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -691,9 +691,9 @@ No authorization required
 # **queryMarginAvailableInventory**
 > QueryMarginAvailableInventoryResponse queryMarginAvailableInventory(type)
 
-Query Margin Available Inventory(USER_DATA)
+Query Margin Available Inventory (USER_DATA)
 
-Margin available Inventory query  Weight: 50
+Margin available Inventory query  Weight(UID): 50  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -710,7 +710,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String type = "type_example"; // String | MARGIN,ISOLATED
+    OrderType type = OrderType.fromValue("ROLL_IN"); // OrderType | 
     try {
       QueryMarginAvailableInventoryResponse result = apiInstance.queryMarginAvailableInventory(type);
       System.out.println(result);
@@ -729,7 +729,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | **String**| MARGIN,ISOLATED | |
+| **type** | [**OrderType**](.md)|  | [enum: ROLL_IN, ROLL_OUT] |
 
 ### Return type
 
@@ -755,7 +755,7 @@ No authorization required
 
 Query Margin PriceIndex (MARKET_DATA)
 
-Query Margin PriceIndex  Weight: 10(IP)
+Query Margin PriceIndex  Weight(IP): 10  Security Type: MARKET_DATA
 
 ### Example
 ```java
@@ -772,7 +772,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
+    String symbol = "BNBBTC"; // String | 
     try {
       QueryMarginPriceindexResponse result = apiInstance.queryMarginPriceindex(symbol);
       System.out.println(result);

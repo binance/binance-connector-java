@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading Options WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+ * Options WebSocket Market Streams
+ * Access market data, manage accounts, and trade Binance Options.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** IndividualSymbolBookTickerStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -102,7 +102,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * event type
      *
      * @return eLowerCase
      */
@@ -122,7 +122,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get uLowerCase
+     * order book updateId
      *
      * @return uLowerCase
      */
@@ -142,7 +142,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * symbol
      *
      * @return sLowerCase
      */
@@ -162,7 +162,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get bLowerCase
+     * best bid price
      *
      * @return bLowerCase
      */
@@ -181,7 +181,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get B
+     * bid bid quantity
      *
      * @return B
      */
@@ -201,7 +201,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * best ask price
      *
      * @return aLowerCase
      */
@@ -220,7 +220,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get A
+     * best ask quantity
      *
      * @return A
      */
@@ -239,7 +239,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * transaction time
      *
      * @return T
      */
@@ -258,7 +258,7 @@ public class IndividualSymbolBookTickerStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * event time
      *
      * @return E
      */

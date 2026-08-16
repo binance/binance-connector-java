@@ -4,47 +4,47 @@ All URIs are relative to *https://papi.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**accountBalance**](AccountApi.md#accountBalance) | **GET** /papi/v1/balance | Account Balance(USER_DATA) |
-| [**accountInformation**](AccountApi.md#accountInformation) | **GET** /papi/v1/account | Account Information(USER_DATA) |
+| [**accountBalance**](AccountApi.md#accountBalance) | **GET** /papi/v1/balance | Account Balance (USER_DATA) |
+| [**accountInformation**](AccountApi.md#accountInformation) | **GET** /papi/v1/account | Account Information (USER_DATA) |
 | [**bnbTransfer**](AccountApi.md#bnbTransfer) | **POST** /papi/v1/bnb-transfer | BNB transfer (TRADE) |
-| [**changeAutoRepayFuturesStatus**](AccountApi.md#changeAutoRepayFuturesStatus) | **POST** /papi/v1/repay-futures-switch | Change Auto-repay-futures Status(TRADE) |
+| [**changeAutoRepayFuturesStatus**](AccountApi.md#changeAutoRepayFuturesStatus) | **POST** /papi/v1/repay-futures-switch | Change Auto-repay-futures Status (TRADE) |
 | [**changeCmInitialLeverage**](AccountApi.md#changeCmInitialLeverage) | **POST** /papi/v1/cm/leverage | Change CM Initial Leverage (TRADE) |
-| [**changeCmPositionMode**](AccountApi.md#changeCmPositionMode) | **POST** /papi/v1/cm/positionSide/dual | Change CM Position Mode(TRADE) |
-| [**changeUmInitialLeverage**](AccountApi.md#changeUmInitialLeverage) | **POST** /papi/v1/um/leverage | Change UM Initial Leverage(TRADE) |
-| [**changeUmPositionMode**](AccountApi.md#changeUmPositionMode) | **POST** /papi/v1/um/positionSide/dual | Change UM Position Mode(TRADE) |
-| [**cmNotionalAndLeverageBrackets**](AccountApi.md#cmNotionalAndLeverageBrackets) | **GET** /papi/v1/cm/leverageBracket | CM Notional and Leverage Brackets(USER_DATA) |
-| [**fundAutoCollection**](AccountApi.md#fundAutoCollection) | **POST** /papi/v1/auto-collection | Fund Auto-collection(TRADE) |
-| [**fundCollectionByAsset**](AccountApi.md#fundCollectionByAsset) | **POST** /papi/v1/asset-collection | Fund Collection by Asset(TRADE) |
-| [**getAutoRepayFuturesStatus**](AccountApi.md#getAutoRepayFuturesStatus) | **GET** /papi/v1/repay-futures-switch | Get Auto-repay-futures Status(USER_DATA) |
-| [**getCmAccountDetail**](AccountApi.md#getCmAccountDetail) | **GET** /papi/v1/cm/account | Get CM Account Detail(USER_DATA) |
-| [**getCmCurrentPositionMode**](AccountApi.md#getCmCurrentPositionMode) | **GET** /papi/v1/cm/positionSide/dual | Get CM Current Position Mode(USER_DATA) |
-| [**getCmIncomeHistory**](AccountApi.md#getCmIncomeHistory) | **GET** /papi/v1/cm/income | Get CM Income History(USER_DATA) |
+| [**changeCmPositionMode**](AccountApi.md#changeCmPositionMode) | **POST** /papi/v1/cm/positionSide/dual | Change CM Position Mode (TRADE) |
+| [**changeUmInitialLeverage**](AccountApi.md#changeUmInitialLeverage) | **POST** /papi/v1/um/leverage | Change UM Initial Leverage (TRADE) |
+| [**changeUmPositionMode**](AccountApi.md#changeUmPositionMode) | **POST** /papi/v1/um/positionSide/dual | Change UM Position Mode (TRADE) |
+| [**cmNotionalAndLeverageBrackets**](AccountApi.md#cmNotionalAndLeverageBrackets) | **GET** /papi/v1/cm/leverageBracket | CM Notional and Leverage Brackets (USER_DATA) |
+| [**fundAutoCollection**](AccountApi.md#fundAutoCollection) | **POST** /papi/v1/auto-collection | Fund Auto-collection (TRADE) |
+| [**fundCollectionByAsset**](AccountApi.md#fundCollectionByAsset) | **POST** /papi/v1/asset-collection | Fund Collection by Asset (TRADE) |
+| [**getAutoRepayFuturesStatus**](AccountApi.md#getAutoRepayFuturesStatus) | **GET** /papi/v1/repay-futures-switch | Get Auto-repay-futures Status (USER_DATA) |
+| [**getCmAccountDetail**](AccountApi.md#getCmAccountDetail) | **GET** /papi/v1/cm/account | Get CM Account Detail (USER_DATA) |
+| [**getCmCurrentPositionMode**](AccountApi.md#getCmCurrentPositionMode) | **GET** /papi/v1/cm/positionSide/dual | Get CM Current Position Mode (USER_DATA) |
+| [**getCmIncomeHistory**](AccountApi.md#getCmIncomeHistory) | **GET** /papi/v1/cm/income | Get CM Income History (USER_DATA) |
 | [**getDownloadIdForUmFuturesOrderHistory**](AccountApi.md#getDownloadIdForUmFuturesOrderHistory) | **GET** /papi/v1/um/order/asyn | Get Download Id For UM Futures Order History (USER_DATA) |
 | [**getDownloadIdForUmFuturesTradeHistory**](AccountApi.md#getDownloadIdForUmFuturesTradeHistory) | **GET** /papi/v1/um/trade/asyn | Get Download Id For UM Futures Trade History (USER_DATA) |
 | [**getDownloadIdForUmFuturesTransactionHistory**](AccountApi.md#getDownloadIdForUmFuturesTransactionHistory) | **GET** /papi/v1/um/income/asyn | Get Download Id For UM Futures Transaction History (USER_DATA) |
-| [**getMarginBorrowLoanInterestHistory**](AccountApi.md#getMarginBorrowLoanInterestHistory) | **GET** /papi/v1/margin/marginInterestHistory | Get Margin Borrow/Loan Interest History(USER_DATA) |
-| [**getUmAccountDetail**](AccountApi.md#getUmAccountDetail) | **GET** /papi/v1/um/account | Get UM Account Detail(USER_DATA) |
-| [**getUmAccountDetailV2**](AccountApi.md#getUmAccountDetailV2) | **GET** /papi/v2/um/account | Get UM Account Detail V2(USER_DATA) |
-| [**getUmCurrentPositionMode**](AccountApi.md#getUmCurrentPositionMode) | **GET** /papi/v1/um/positionSide/dual | Get UM Current Position Mode(USER_DATA) |
-| [**getUmFuturesOrderDownloadLinkById**](AccountApi.md#getUmFuturesOrderDownloadLinkById) | **GET** /papi/v1/um/order/asyn/id | Get UM Futures Order Download Link by Id(USER_DATA) |
-| [**getUmFuturesTradeDownloadLinkById**](AccountApi.md#getUmFuturesTradeDownloadLinkById) | **GET** /papi/v1/um/trade/asyn/id | Get UM Futures Trade Download Link by Id(USER_DATA) |
-| [**getUmFuturesTransactionDownloadLinkById**](AccountApi.md#getUmFuturesTransactionDownloadLinkById) | **GET** /papi/v1/um/income/asyn/id | Get UM Futures Transaction Download Link by Id(USER_DATA) |
-| [**getUmIncomeHistory**](AccountApi.md#getUmIncomeHistory) | **GET** /papi/v1/um/income | Get UM Income History(USER_DATA) |
-| [**getUserCommissionRateForCm**](AccountApi.md#getUserCommissionRateForCm) | **GET** /papi/v1/cm/commissionRate | Get User Commission Rate for CM(USER_DATA) |
-| [**getUserCommissionRateForUm**](AccountApi.md#getUserCommissionRateForUm) | **GET** /papi/v1/um/commissionRate | Get User Commission Rate for UM(USER_DATA) |
-| [**marginMaxBorrow**](AccountApi.md#marginMaxBorrow) | **GET** /papi/v1/margin/maxBorrowable | Margin Max Borrow(USER_DATA) |
-| [**portfolioMarginUmTradingQuantitativeRulesIndicators**](AccountApi.md#portfolioMarginUmTradingQuantitativeRulesIndicators) | **GET** /papi/v1/um/apiTradingStatus | Portfolio Margin UM Trading Quantitative Rules Indicators(USER_DATA) |
-| [**queryCmPositionInformation**](AccountApi.md#queryCmPositionInformation) | **GET** /papi/v1/cm/positionRisk | Query CM Position Information(USER_DATA) |
-| [**queryMarginLoanRecord**](AccountApi.md#queryMarginLoanRecord) | **GET** /papi/v1/margin/marginLoan | Query Margin Loan Record(USER_DATA) |
-| [**queryMarginMaxWithdraw**](AccountApi.md#queryMarginMaxWithdraw) | **GET** /papi/v1/margin/maxWithdraw | Query Margin Max Withdraw(USER_DATA) |
-| [**queryMarginRepayRecord**](AccountApi.md#queryMarginRepayRecord) | **GET** /papi/v1/margin/repayLoan | Query Margin repay Record(USER_DATA) |
-| [**queryPortfolioMarginNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginNegativeBalanceInterestHistory) | **GET** /papi/v1/portfolio/interest-history | Query Portfolio Margin Negative Balance Interest History(USER_DATA) |
-| [**queryUmPositionInformation**](AccountApi.md#queryUmPositionInformation) | **GET** /papi/v1/um/positionRisk | Query UM Position Information(USER_DATA) |
+| [**getMarginBorrowLoanInterestHistory**](AccountApi.md#getMarginBorrowLoanInterestHistory) | **GET** /papi/v1/margin/marginInterestHistory | Get Margin Borrow/Loan Interest History (USER_DATA) |
+| [**getUmAccountDetail**](AccountApi.md#getUmAccountDetail) | **GET** /papi/v1/um/account | Get UM Account Detail (USER_DATA) |
+| [**getUmAccountDetailV2**](AccountApi.md#getUmAccountDetailV2) | **GET** /papi/v2/um/account | Get UM Account Detail V2 (USER_DATA) |
+| [**getUmCurrentPositionMode**](AccountApi.md#getUmCurrentPositionMode) | **GET** /papi/v1/um/positionSide/dual | Get UM Current Position Mode (USER_DATA) |
+| [**getUmFuturesOrderDownloadLinkById**](AccountApi.md#getUmFuturesOrderDownloadLinkById) | **GET** /papi/v1/um/order/asyn/id | Get UM Futures Order Download Link by Id (USER_DATA) |
+| [**getUmFuturesTradeDownloadLinkById**](AccountApi.md#getUmFuturesTradeDownloadLinkById) | **GET** /papi/v1/um/trade/asyn/id | Get UM Futures Trade Download Link by Id (USER_DATA) |
+| [**getUmFuturesTransactionDownloadLinkById**](AccountApi.md#getUmFuturesTransactionDownloadLinkById) | **GET** /papi/v1/um/income/asyn/id | Get UM Futures Transaction Download Link by Id (USER_DATA) |
+| [**getUmIncomeHistory**](AccountApi.md#getUmIncomeHistory) | **GET** /papi/v1/um/income | Get UM Income History (USER_DATA) |
+| [**getUserCommissionRateForCm**](AccountApi.md#getUserCommissionRateForCm) | **GET** /papi/v1/cm/commissionRate | Get User Commission Rate for CM (USER_DATA) |
+| [**getUserCommissionRateForUm**](AccountApi.md#getUserCommissionRateForUm) | **GET** /papi/v1/um/commissionRate | Get User Commission Rate for UM (USER_DATA) |
+| [**marginMaxBorrow**](AccountApi.md#marginMaxBorrow) | **GET** /papi/v1/margin/maxBorrowable | Margin Max Borrow (USER_DATA) |
+| [**portfolioMarginUmTradingQuantitativeRulesIndicators**](AccountApi.md#portfolioMarginUmTradingQuantitativeRulesIndicators) | **GET** /papi/v1/um/apiTradingStatus | Portfolio Margin UM Trading Quantitative Rules Indicators (USER_DATA) |
+| [**queryCmPositionInformation**](AccountApi.md#queryCmPositionInformation) | **GET** /papi/v1/cm/positionRisk | Query CM Position Information (USER_DATA) |
+| [**queryMarginLoanRecord**](AccountApi.md#queryMarginLoanRecord) | **GET** /papi/v1/margin/marginLoan | Query Margin Loan Record (USER_DATA) |
+| [**queryMarginMaxWithdraw**](AccountApi.md#queryMarginMaxWithdraw) | **GET** /papi/v1/margin/maxWithdraw | Query Margin Max Withdraw (USER_DATA) |
+| [**queryMarginRepayRecord**](AccountApi.md#queryMarginRepayRecord) | **GET** /papi/v1/margin/repayLoan | Query Margin repay Record (USER_DATA) |
+| [**queryPortfolioMarginNegativeBalanceInterestHistory**](AccountApi.md#queryPortfolioMarginNegativeBalanceInterestHistory) | **GET** /papi/v1/portfolio/interest-history | Query Portfolio Margin Negative Balance Interest History (USER_DATA) |
+| [**queryUmPositionInformation**](AccountApi.md#queryUmPositionInformation) | **GET** /papi/v1/um/positionRisk | Query UM Position Information (USER_DATA) |
 | [**queryUserNegativeBalanceAutoExchangeRecord**](AccountApi.md#queryUserNegativeBalanceAutoExchangeRecord) | **GET** /papi/v1/portfolio/negative-balance-exchange-record | Query User Negative Balance Auto Exchange Record (USER_DATA) |
 | [**queryUserRateLimit**](AccountApi.md#queryUserRateLimit) | **GET** /papi/v1/rateLimit/order | Query User Rate Limit (USER_DATA) |
-| [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /papi/v1/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA) |
-| [**umFuturesAccountConfiguration**](AccountApi.md#umFuturesAccountConfiguration) | **GET** /papi/v1/um/accountConfig | UM Futures Account Configuration(USER_DATA) |
-| [**umFuturesSymbolConfiguration**](AccountApi.md#umFuturesSymbolConfiguration) | **GET** /papi/v1/um/symbolConfig | UM Futures Symbol Configuration(USER_DATA) |
+| [**repayFuturesNegativeBalance**](AccountApi.md#repayFuturesNegativeBalance) | **POST** /papi/v1/repay-futures-negative-balance | Repay futures Negative Balance (USER_DATA) |
+| [**umFuturesAccountConfiguration**](AccountApi.md#umFuturesAccountConfiguration) | **GET** /papi/v1/um/accountConfig | UM Futures Account Configuration (USER_DATA) |
+| [**umFuturesSymbolConfiguration**](AccountApi.md#umFuturesSymbolConfiguration) | **GET** /papi/v1/um/symbolConfig | UM Futures Symbol Configuration (USER_DATA) |
 | [**umNotionalAndLeverageBrackets**](AccountApi.md#umNotionalAndLeverageBrackets) | **GET** /papi/v1/um/leverageBracket | UM Notional and Leverage Brackets (USER_DATA) |
 
 
@@ -52,9 +52,9 @@ All URIs are relative to *https://papi.binance.com*
 # **accountBalance**
 > AccountBalanceResponse accountBalance(asset, recvWindow)
 
-Account Balance(USER_DATA)
+Account Balance (USER_DATA)
 
-Query account balance  Weight: 20
+Query account balance  Weight(IP): 20  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -71,8 +71,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       AccountBalanceResponse result = apiInstance.accountBalance(asset, recvWindow);
       System.out.println(result);
@@ -116,9 +116,9 @@ No authorization required
 # **accountInformation**
 > AccountInformationResponse accountInformation(recvWindow)
 
-Account Information(USER_DATA)
+Account Information (USER_DATA)
 
-Query account information  Weight: 20
+Query account information  Weight(IP): 20  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -135,7 +135,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       AccountInformationResponse result = apiInstance.accountInformation(recvWindow);
       System.out.println(result);
@@ -180,7 +180,7 @@ No authorization required
 
 BNB transfer (TRADE)
 
-Transfer BNB in and out of UM  * The endpoint can only be called 10 times per 10 minutes in a rolling manner  Weight: 750
+Transfer BNB in and out of UM  Weight(IP): 750  Security Type: TRADE  Notes: - The endpoint can only be called 10 times per 10 minutes in a rolling manner
 
 ### Example
 ```java
@@ -240,9 +240,9 @@ No authorization required
 # **changeAutoRepayFuturesStatus**
 > ChangeAutoRepayFuturesStatusResponse changeAutoRepayFuturesStatus(changeAutoRepayFuturesStatusRequest)
 
-Change Auto-repay-futures Status(TRADE)
+Change Auto-repay-futures Status (TRADE)
 
-Change Auto-repay-futures Status  Weight: 750
+Change Auto-repay-futures Status  Weight(IP): 750  Security Type: TRADE
 
 ### Example
 ```java
@@ -304,7 +304,7 @@ No authorization required
 
 Change CM Initial Leverage (TRADE)
 
-Change user&#39;s initial leverage of specific symbol in CM.  Weight: 1
+Change user&#39;s initial leverage of specific symbol in CM.  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -364,9 +364,9 @@ No authorization required
 # **changeCmPositionMode**
 > ChangeCmPositionModeResponse changeCmPositionMode(changeCmPositionModeRequest)
 
-Change CM Position Mode(TRADE)
+Change CM Position Mode (TRADE)
 
-Change user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in CM  Weight: 1
+Change user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in CM  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -426,9 +426,9 @@ No authorization required
 # **changeUmInitialLeverage**
 > ChangeUmInitialLeverageResponse changeUmInitialLeverage(changeUmInitialLeverageRequest)
 
-Change UM Initial Leverage(TRADE)
+Change UM Initial Leverage (TRADE)
 
-Change user&#39;s initial leverage of specific symbol in UM.  Weight: 1
+Change user&#39;s initial leverage of specific symbol in UM.  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -488,9 +488,9 @@ No authorization required
 # **changeUmPositionMode**
 > ChangeUmPositionModeResponse changeUmPositionMode(changeUmPositionModeRequest)
 
-Change UM Position Mode(TRADE)
+Change UM Position Mode (TRADE)
 
-Change user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM  Weight: 1
+Change user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -550,9 +550,9 @@ No authorization required
 # **cmNotionalAndLeverageBrackets**
 > CmNotionalAndLeverageBracketsResponse cmNotionalAndLeverageBrackets(symbol, recvWindow)
 
-CM Notional and Leverage Brackets(USER_DATA)
+CM Notional and Leverage Brackets (USER_DATA)
 
-Query CM notional and leverage brackets  Weight: 1
+Query CM notional and leverage brackets  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -569,8 +569,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_PERP"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       CmNotionalAndLeverageBracketsResponse result = apiInstance.cmNotionalAndLeverageBrackets(symbol, recvWindow);
       System.out.println(result);
@@ -614,9 +614,9 @@ No authorization required
 # **fundAutoCollection**
 > FundAutoCollectionResponse fundAutoCollection(fundAutoCollectionRequest)
 
-Fund Auto-collection(TRADE)
+Fund Auto-collection (TRADE)
 
-Fund collection for Portfolio Margin  * The BNB would not be collected from UM-PM account to the Portfolio Margin account. * You can only use this function 500 times per hour in a rolling manner.  Weight: 750
+Fund collection for Portfolio Margin  Weight(IP): 750  Security Type: TRADE  Notes: - BNB assets will not be auto-collected. - Rolling window endpoint can be called at most 500 times per hour.
 
 ### Example
 ```java
@@ -652,7 +652,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **fundAutoCollectionRequest** | [**FundAutoCollectionRequest**](FundAutoCollectionRequest.md)|  | |
+| **fundAutoCollectionRequest** | [**FundAutoCollectionRequest**](FundAutoCollectionRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -676,9 +676,9 @@ No authorization required
 # **fundCollectionByAsset**
 > FundCollectionByAssetResponse fundCollectionByAsset(fundCollectionByAssetRequest)
 
-Fund Collection by Asset(TRADE)
+Fund Collection by Asset (TRADE)
 
-Transfers specific asset from Futures Account to Margin account  * The BNB transfer is not be supported  Weight: 30
+Transfers specific asset from Futures Account to Margin account  Weight(IP): 30  Security Type: TRADE  Notes: - The BNB transfer is not be supported
 
 ### Example
 ```java
@@ -738,9 +738,9 @@ No authorization required
 # **getAutoRepayFuturesStatus**
 > GetAutoRepayFuturesStatusResponse getAutoRepayFuturesStatus(recvWindow)
 
-Get Auto-repay-futures Status(USER_DATA)
+Get Auto-repay-futures Status (USER_DATA)
 
-Query Auto-repay-futures Status  Weight: 30
+Query Auto-repay-futures Status  Weight(IP): 30  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -757,7 +757,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetAutoRepayFuturesStatusResponse result = apiInstance.getAutoRepayFuturesStatus(recvWindow);
       System.out.println(result);
@@ -800,9 +800,9 @@ No authorization required
 # **getCmAccountDetail**
 > GetCmAccountDetailResponse getCmAccountDetail(recvWindow)
 
-Get CM Account Detail(USER_DATA)
+Get CM Account Detail (USER_DATA)
 
-Get current CM account asset and position information.  Weight: 5
+Get current CM account asset and position information.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -819,7 +819,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetCmAccountDetailResponse result = apiInstance.getCmAccountDetail(recvWindow);
       System.out.println(result);
@@ -862,9 +862,9 @@ No authorization required
 # **getCmCurrentPositionMode**
 > GetCmCurrentPositionModeResponse getCmCurrentPositionMode(recvWindow)
 
-Get CM Current Position Mode(USER_DATA)
+Get CM Current Position Mode (USER_DATA)
 
-Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in CM  Weight: 30
+Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in CM  Weight(IP): 30  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -881,7 +881,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetCmCurrentPositionModeResponse result = apiInstance.getCmCurrentPositionMode(recvWindow);
       System.out.println(result);
@@ -924,9 +924,9 @@ No authorization required
 # **getCmIncomeHistory**
 > GetCmIncomeHistoryResponse getCmIncomeHistory(symbol, incomeType, startTime, endTime, page, limit, recvWindow)
 
-Get CM Income History(USER_DATA)
+Get CM Income History (USER_DATA)
 
-Get CM Income History   * If &#x60;incomeType&#x60; is not sent, all kinds of flow will be returned * \&quot;trandId\&quot; is unique in the same \&quot;incomeType\&quot; for a user * The interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not exceed 200 days: * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the last 200 days will be returned  Weight: 30
+Get CM Income History.  Weight(IP): 30  Security Type: USER_DATA  Notes: - If &#x60;incomeType&#x60; is not sent, all kinds of flow will be returned - \&quot;trandId\&quot; is unique in the same \&quot;incomeType\&quot; for a user - The interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not exceed 200 days:   - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the last 200 days will be returned
 
 ### Example
 ```java
@@ -943,13 +943,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    String incomeType = "incomeType_example"; // String | TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long page = 56L; // Long | 
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_200925"; // String | 
+    IncomeType incomeType = IncomeType.fromValue("TRANSFER"); // IncomeType | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long page = 1L; // Long | 
+    Long limit = 100L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       GetCmIncomeHistoryResponse result = apiInstance.getCmIncomeHistory(symbol, incomeType, startTime, endTime, page, limit, recvWindow);
       System.out.println(result);
@@ -969,11 +969,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | [optional] |
-| **incomeType** | **String**| TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE | [optional] |
+| **incomeType** | [**IncomeType**](.md)|  | [optional] [enum: TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
 | **page** | **Long**|  | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1000,7 +1000,7 @@ No authorization required
 
 Get Download Id For UM Futures Order History (USER_DATA)
 
-Get download id for UM futures order history  * Request Limitation is 10 times per month, shared by front end download page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year  Weight: 1500
+Get download id for UM futures order history  Weight(IP): 1500  Security Type: USER_DATA  Notes: - Request Limitation is 10 times per month, shared by front end download page and rest api - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
 
 ### Example
 ```java
@@ -1017,9 +1017,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms
+    Long endTime = 1641782889000L; // Long | Timestamp in ms
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDownloadIdForUmFuturesOrderHistoryResponse result = apiInstance.getDownloadIdForUmFuturesOrderHistory(startTime, endTime, recvWindow);
       System.out.println(result);
@@ -1038,8 +1038,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**|  | |
-| **endTime** | **Long**|  | |
+| **startTime** | **Long**| Timestamp in ms | |
+| **endTime** | **Long**| Timestamp in ms | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1066,7 +1066,7 @@ No authorization required
 
 Get Download Id For UM Futures Trade History (USER_DATA)
 
-Get download id for UM futures trade history  * Request Limitation is 5 times per month, shared by front end download page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year  Weight: 1500
+Get download id for UM futures trade history  Weight(IP): 1500  Security Type: USER_DATA  Notes: - Request Limitation is 5 times per month, shared by front end download page and rest api - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
 
 ### Example
 ```java
@@ -1083,9 +1083,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms
+    Long endTime = 1641782889000L; // Long | Timestamp in ms
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDownloadIdForUmFuturesTradeHistoryResponse result = apiInstance.getDownloadIdForUmFuturesTradeHistory(startTime, endTime, recvWindow);
       System.out.println(result);
@@ -1104,8 +1104,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**|  | |
-| **endTime** | **Long**|  | |
+| **startTime** | **Long**| Timestamp in ms | |
+| **endTime** | **Long**| Timestamp in ms | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1132,7 +1132,7 @@ No authorization required
 
 Get Download Id For UM Futures Transaction History (USER_DATA)
 
-Get download id for UM futures transaction history  * Request Limitation is 5 times per month, shared by front end download page and rest api * The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year  Weight: 1500
+Get download id for UM futures transaction history  Weight(IP): 1500  Security Type: USER_DATA  Notes: - Request Limitation is 5 times per month, shared by front end download page and rest api - The time between &#x60;startTime&#x60; and &#x60;endTime&#x60; can not be longer than 1 year
 
 ### Example
 ```java
@@ -1149,9 +1149,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms
+    Long endTime = 1641782889000L; // Long | Timestamp in ms
+    Long recvWindow = 5000L; // Long | 
     try {
       GetDownloadIdForUmFuturesTransactionHistoryResponse result = apiInstance.getDownloadIdForUmFuturesTransactionHistory(startTime, endTime, recvWindow);
       System.out.println(result);
@@ -1170,8 +1170,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startTime** | **Long**|  | |
-| **endTime** | **Long**|  | |
+| **startTime** | **Long**| Timestamp in ms | |
+| **endTime** | **Long**| Timestamp in ms | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1196,9 +1196,9 @@ No authorization required
 # **getMarginBorrowLoanInterestHistory**
 > GetMarginBorrowLoanInterestHistoryResponse getMarginBorrowLoanInterestHistory(asset, startTime, endTime, current, size, archived, recvWindow)
 
-Get Margin Borrow/Loan Interest History(USER_DATA)
+Get Margin Borrow/Loan Interest History (USER_DATA)
 
-Get Margin Borrow/Loan Interest History   * Response in descending order * The max interval between startTime and endTime is 30 days. It is a MUST to ensure data correctness. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, the records from &#x60;startTime&#x60; to the present will be returned; if &#x60;startTime&#x60; is more than 30 days ago, the records of the past 30 days will be returned. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, the records of the 7 days before &#x60;endTime&#x60; is returned. * Type in response has 5 enums: * &#x60;PERIODIC&#x60; interest charged per hour * &#x60;ON_BORROW&#x60; first interest charged on borrow * &#x60;PERIODIC_CONVERTED&#x60; interest charged per hour converted into BNB * &#x60;ON_BORROW_CONVERTED&#x60; first interest charged on borrow converted into BNB * &#x60;PORTFOLIO&#x60; Portfolio Margin negative balance daily interest  Weight: 1
+Get Margin Borrow/Loan Interest History  Weight(IP): 1  Security Type: USER_DATA  Notes: - Response in descending order - The max interval between startTime and endTime is 30 days. It is a MUST to ensure data correctness. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, the records from &#x60;startTime&#x60; to the present will be returned; if &#x60;startTime&#x60; is more than 30 days ago, the records of the past 30 days will be returned. - If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, the records of the 7 days before &#x60;endTime&#x60; is returned. - Type in response has 5 enums:   - &#x60;PERIODIC&#x60; interest charged per hour   - &#x60;ON_BORROW&#x60; first interest charged on borrow   - &#x60;PERIODIC_CONVERTED&#x60; interest charged per hour converted into BNB   - &#x60;ON_BORROW_CONVERTED&#x60; first interest charged on borrow converted into BNB   - &#x60;PORTFOLIO&#x60; Portfolio Margin negative balance daily interest
 
 ### Example
 ```java
@@ -1215,13 +1215,13 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10 Max:100
-    String archived = "archived_example"; // String | Default: `false`. Set to `true` for archived data from 6 months ago
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long current = 1L; // Long | Current page number.
+    Long size = 10L; // Long | Number of results returned.
+    Archived archived = Archived.fromValue("true"); // Archived | Set to true to query archived data from 6 months ago.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than `60000`
     try {
       GetMarginBorrowLoanInterestHistoryResponse result = apiInstance.getMarginBorrowLoanInterestHistory(asset, startTime, endTime, current, size, archived, recvWindow);
       System.out.println(result);
@@ -1243,10 +1243,10 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
-| **archived** | **String**| Default: &#x60;false&#x60;. Set to &#x60;true&#x60; for archived data from 6 months ago | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current page number. | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
+| **archived** | [**Archived**](.md)| Set to true to query archived data from 6 months ago. | [optional] [default to false] [enum: true, false] |
+| **recvWindow** | **Long**| The value cannot be greater than &#x60;60000&#x60; | [optional] |
 
 ### Return type
 
@@ -1270,9 +1270,9 @@ No authorization required
 # **getUmAccountDetail**
 > GetUmAccountDetailResponse getUmAccountDetail(recvWindow)
 
-Get UM Account Detail(USER_DATA)
+Get UM Account Detail (USER_DATA)
 
-Get current UM account asset and position information.  Weight: 5
+Get current UM account asset and position information.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1289,7 +1289,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmAccountDetailResponse result = apiInstance.getUmAccountDetail(recvWindow);
       System.out.println(result);
@@ -1332,9 +1332,9 @@ No authorization required
 # **getUmAccountDetailV2**
 > GetUmAccountDetailV2Response getUmAccountDetailV2(recvWindow)
 
-Get UM Account Detail V2(USER_DATA)
+Get UM Account Detail V2 (USER_DATA)
 
-Get current UM account asset and position information.  Weight: 5
+Get current UM account asset and position information.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1351,7 +1351,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmAccountDetailV2Response result = apiInstance.getUmAccountDetailV2(recvWindow);
       System.out.println(result);
@@ -1394,9 +1394,9 @@ No authorization required
 # **getUmCurrentPositionMode**
 > GetUmCurrentPositionModeResponse getUmCurrentPositionMode(recvWindow)
 
-Get UM Current Position Mode(USER_DATA)
+Get UM Current Position Mode (USER_DATA)
 
-Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM  Weight: 30
+Get user&#39;s position mode (Hedge Mode or One-way Mode ) on EVERY symbol in UM  Weight(IP): 30  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1413,7 +1413,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmCurrentPositionModeResponse result = apiInstance.getUmCurrentPositionMode(recvWindow);
       System.out.println(result);
@@ -1456,9 +1456,9 @@ No authorization required
 # **getUmFuturesOrderDownloadLinkById**
 > GetUmFuturesOrderDownloadLinkByIdResponse getUmFuturesOrderDownloadLinkById(downloadId, recvWindow)
 
-Get UM Futures Order Download Link by Id(USER_DATA)
+Get UM Futures Order Download Link by Id (USER_DATA)
 
-Get UM futures order download link by Id  * Download link expiration: 7 days  Weight: 10
+Get UM futures order download link by Id  Weight(IP): 10  Security Type: USER_DATA  Notes: - Download link expiration: 7 days
 
 ### Example
 ```java
@@ -1475,8 +1475,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String downloadId = "downloadId_example"; // String | get by download id api
-    Long recvWindow = 56L; // Long | 
+    String downloadId = "545923594199212032"; // String | get by download id api
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmFuturesOrderDownloadLinkByIdResponse result = apiInstance.getUmFuturesOrderDownloadLinkById(downloadId, recvWindow);
       System.out.println(result);
@@ -1520,9 +1520,9 @@ No authorization required
 # **getUmFuturesTradeDownloadLinkById**
 > GetUmFuturesTradeDownloadLinkByIdResponse getUmFuturesTradeDownloadLinkById(downloadId, recvWindow)
 
-Get UM Futures Trade Download Link by Id(USER_DATA)
+Get UM Futures Trade Download Link by Id (USER_DATA)
 
-Get UM futures trade download link by Id  * Download link expiration: 7 days  Weight: 10
+Get UM futures trade download link by Id  Weight(IP): 10  Security Type: USER_DATA  Notes: - Download link expiration: 7 days
 
 ### Example
 ```java
@@ -1539,8 +1539,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String downloadId = "downloadId_example"; // String | get by download id api
-    Long recvWindow = 56L; // Long | 
+    String downloadId = "545923594199212032"; // String | get by download id api
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmFuturesTradeDownloadLinkByIdResponse result = apiInstance.getUmFuturesTradeDownloadLinkById(downloadId, recvWindow);
       System.out.println(result);
@@ -1584,9 +1584,9 @@ No authorization required
 # **getUmFuturesTransactionDownloadLinkById**
 > GetUmFuturesTransactionDownloadLinkByIdResponse getUmFuturesTransactionDownloadLinkById(downloadId, recvWindow)
 
-Get UM Futures Transaction Download Link by Id(USER_DATA)
+Get UM Futures Transaction Download Link by Id (USER_DATA)
 
-Get UM futures Transaction download link by Id  * Download link expiration: 7 days  Weight: 10
+Get UM futures Transaction download link by Id  Weight(IP): 10  Security Type: USER_DATA  Notes: - Download link expiration: 7 days
 
 ### Example
 ```java
@@ -1603,8 +1603,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String downloadId = "downloadId_example"; // String | get by download id api
-    Long recvWindow = 56L; // Long | 
+    String downloadId = "1"; // String | get by download id api
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmFuturesTransactionDownloadLinkByIdResponse result = apiInstance.getUmFuturesTransactionDownloadLinkById(downloadId, recvWindow);
       System.out.println(result);
@@ -1648,9 +1648,9 @@ No authorization required
 # **getUmIncomeHistory**
 > GetUmIncomeHistoryResponse getUmIncomeHistory(symbol, incomeType, startTime, endTime, page, limit, recvWindow)
 
-Get UM Income History(USER_DATA)
+Get UM Income History (USER_DATA)
 
-Get UM Income History  * If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the recent 7-day data will be returned. * If &#x60;incomeType&#x60; is not sent, all kinds of flow will be returned * \&quot;trandId\&quot; is unique in the same incomeType for a user * Income history only contains data for the last three months  Weight: 30
+Get UM Income History.  Weight(IP): 30  Security Type: USER_DATA  Notes: - If neither &#x60;startTime&#x60; nor &#x60;endTime&#x60; is sent, the recent 7-day data will be returned. - If &#x60;incomeType&#x60; is not sent, all kinds of flow will be returned - \&quot;trandId\&quot; is unique in the same incomeType for a user - Income history only contains data for the last three months
 
 ### Example
 ```java
@@ -1668,12 +1668,12 @@ public class Example {
 
     AccountApi apiInstance = new AccountApi(defaultClient);
     String symbol = "symbol_example"; // String | 
-    String incomeType = "incomeType_example"; // String | TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long page = 56L; // Long | 
-    Long limit = 56L; // Long | Default 100; max 1000
-    Long recvWindow = 56L; // Long | 
+    IncomeType incomeType = IncomeType.fromValue("TRANSFER"); // IncomeType | Income type.
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long page = 1L; // Long | Page number.
+    Long limit = 100L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUmIncomeHistoryResponse result = apiInstance.getUmIncomeHistory(symbol, incomeType, startTime, endTime, page, limit, recvWindow);
       System.out.println(result);
@@ -1693,11 +1693,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | [optional] |
-| **incomeType** | **String**| TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE | [optional] |
+| **incomeType** | [**IncomeType**](.md)| Income type. | [optional] [enum: TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **page** | **Long**|  | [optional] |
-| **limit** | **Long**| Default 100; max 1000 | [optional] |
+| **page** | **Long**| Page number. | [optional] |
+| **limit** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1722,9 +1722,9 @@ No authorization required
 # **getUserCommissionRateForCm**
 > GetUserCommissionRateForCmResponse getUserCommissionRateForCm(symbol, recvWindow)
 
-Get User Commission Rate for CM(USER_DATA)
+Get User Commission Rate for CM (USER_DATA)
 
-Get User Commission Rate for CM  Weight: 20
+Get User Commission Rate for CM  Weight(IP): 20  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1741,8 +1741,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSD_PERP"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUserCommissionRateForCmResponse result = apiInstance.getUserCommissionRateForCm(symbol, recvWindow);
       System.out.println(result);
@@ -1761,7 +1761,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1786,9 +1786,9 @@ No authorization required
 # **getUserCommissionRateForUm**
 > GetUserCommissionRateForUmResponse getUserCommissionRateForUm(symbol, recvWindow)
 
-Get User Commission Rate for UM(USER_DATA)
+Get User Commission Rate for UM (USER_DATA)
 
-Get User Commission Rate for UM  Weight: 20
+Get User Commission Rate for UM  Weight(IP): 20  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1805,8 +1805,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       GetUserCommissionRateForUmResponse result = apiInstance.getUserCommissionRateForUm(symbol, recvWindow);
       System.out.println(result);
@@ -1825,7 +1825,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | |
+| **symbol** | **String**| Symbol | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1850,9 +1850,9 @@ No authorization required
 # **marginMaxBorrow**
 > MarginMaxBorrowResponse marginMaxBorrow(asset, recvWindow)
 
-Margin Max Borrow(USER_DATA)
+Margin Max Borrow (USER_DATA)
 
-Query margin max borrow  Weight: 5
+Query margin max borrow  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1869,8 +1869,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long recvWindow = 5000L; // Long | The value cannot be greater than `60000`
     try {
       MarginMaxBorrowResponse result = apiInstance.marginMaxBorrow(asset, recvWindow);
       System.out.println(result);
@@ -1890,7 +1890,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | |
-| **recvWindow** | **Long**|  | [optional] |
+| **recvWindow** | **Long**| The value cannot be greater than &#x60;60000&#x60; | [optional] |
 
 ### Return type
 
@@ -1914,9 +1914,9 @@ No authorization required
 # **portfolioMarginUmTradingQuantitativeRulesIndicators**
 > PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponse portfolioMarginUmTradingQuantitativeRulesIndicators(symbol, recvWindow)
 
-Portfolio Margin UM Trading Quantitative Rules Indicators(USER_DATA)
+Portfolio Margin UM Trading Quantitative Rules Indicators (USER_DATA)
 
-Portfolio Margin UM Trading Quantitative Rules Indicators  Weight: 1 for a single symbol 10 when the symbol parameter is omitted
+Portfolio Margin UM Trading Quantitative Rules Indicators  Weight: - 1 for a single &#x60;symbol&#x60; - 10 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -1933,8 +1933,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponse result = apiInstance.portfolioMarginUmTradingQuantitativeRulesIndicators(symbol, recvWindow);
       System.out.println(result);
@@ -1978,9 +1978,9 @@ No authorization required
 # **queryCmPositionInformation**
 > QueryCmPositionInformationResponse queryCmPositionInformation(marginAsset, pair, recvWindow)
 
-Query CM Position Information(USER_DATA)
+Query CM Position Information (USER_DATA)
 
-Get current CM position information.  * If neither &#x60;marginAsset&#x60; nor &#x60;pair&#x60; is sent, positions of all symbols with &#x60;TRADING&#x60; status will be returned. * for One-way Mode user, the response will only show the \&quot;BOTH\&quot; positions * for Hedge Mode user, the response will show \&quot;LONG\&quot;, and \&quot;SHORT\&quot; positions. * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.  Weight: 1
+Get current CM position information.  Weight(IP): 1  Security Type: USER_DATA  Notes: - If neither &#x60;marginAsset&#x60; nor &#x60;pair&#x60; is sent, positions of all symbols with &#x60;TRADING&#x60; status will be returned. - for One-way Mode user, the response will only show the \&quot;BOTH\&quot; positions - for Hedge Mode user, the response will show \&quot;LONG\&quot;, and \&quot;SHORT\&quot; positions. **Note** - Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs.
 
 ### Example
 ```java
@@ -1997,9 +1997,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String marginAsset = "marginAsset_example"; // String | 
-    String pair = "pair_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String marginAsset = "USDT"; // String | 
+    String pair = "BTCUSD_201225"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryCmPositionInformationResponse result = apiInstance.queryCmPositionInformation(marginAsset, pair, recvWindow);
       System.out.println(result);
@@ -2044,9 +2044,9 @@ No authorization required
 # **queryMarginLoanRecord**
 > QueryMarginLoanRecordResponse queryMarginLoanRecord(asset, txId, startTime, endTime, current, size, archived, recvWindow)
 
-Query Margin Loan Record(USER_DATA)
+Query Margin Loan Record (USER_DATA)
 
-Query margin loan record  * txId or startTime must be sent. txId takes precedence. * Response in descending order * The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default * Set &#x60;archived&#x60; to &#x60;true&#x60; to query data from 6 months ago  Weight: 10
+Query margin loan record  Weight(IP): 10  Security Type: USER_DATA  Notes: - txId or startTime must be sent. txId takes precedence. - Response in descending order - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default - Set &#x60;archived&#x60; to &#x60;true&#x60; to query data from 6 months ago
 
 ### Example
 ```java
@@ -2063,14 +2063,14 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long txId = 56L; // Long | the `tranId` in `POST/papi/v1/marginLoan`
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10 Max:100
-    String archived = "archived_example"; // String | Default: `false`. Set to `true` for archived data from 6 months ago
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long txId = 1L; // Long | the `tranId` in `POST/papi/v1/marginLoan`
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long current = 1L; // Long | Current page number.
+    Long size = 10L; // Long | Number of results returned.
+    Archived archived = Archived.fromValue("true"); // Archived | Set to true to query archived data from 6 months ago.
+    Long recvWindow = 5000L; // Long | The value cannot be greater than 60000
     try {
       QueryMarginLoanRecordResponse result = apiInstance.queryMarginLoanRecord(asset, txId, startTime, endTime, current, size, archived, recvWindow);
       System.out.println(result);
@@ -2093,10 +2093,10 @@ public class Example {
 | **txId** | **Long**| the &#x60;tranId&#x60; in &#x60;POST/papi/v1/marginLoan&#x60; | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
-| **archived** | **String**| Default: &#x60;false&#x60;. Set to &#x60;true&#x60; for archived data from 6 months ago | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
+| **current** | **Long**| Current page number. | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
+| **archived** | [**Archived**](.md)| Set to true to query archived data from 6 months ago. | [optional] [default to false] [enum: true, false] |
+| **recvWindow** | **Long**| The value cannot be greater than 60000 | [optional] |
 
 ### Return type
 
@@ -2120,9 +2120,9 @@ No authorization required
 # **queryMarginMaxWithdraw**
 > QueryMarginMaxWithdrawResponse queryMarginMaxWithdraw(asset, recvWindow)
 
-Query Margin Max Withdraw(USER_DATA)
+Query Margin Max Withdraw (USER_DATA)
 
-Query Margin Max Withdraw  Weight: 5
+Query Margin Max Withdraw  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2139,8 +2139,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryMarginMaxWithdrawResponse result = apiInstance.queryMarginMaxWithdraw(asset, recvWindow);
       System.out.println(result);
@@ -2184,9 +2184,9 @@ No authorization required
 # **queryMarginRepayRecord**
 > QueryMarginRepayRecordResponse queryMarginRepayRecord(asset, txId, startTime, endTime, current, size, archived, recvWindow)
 
-Query Margin repay Record(USER_DATA)
+Query Margin repay Record (USER_DATA)
 
-Query margin repay record.  * txId or startTime must be sent. txId takes precedence. * Response in descending order * The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default * Set &#x60;archived&#x60; to &#x60;true&#x60; to query data from 6 months ago  Weight: 10
+Query margin repay record.  Weight(IP): 10  Security Type: USER_DATA  Notes: - txId or startTime must be sent. txId takes precedence. - Response in descending order - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 30 days. - If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default - Set &#x60;archived&#x60; to &#x60;true&#x60; to query data from 6 months ago
 
 ### Example
 ```java
@@ -2203,14 +2203,14 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long txId = 56L; // Long | the `tranId` in `POST/papi/v1/marginLoan`
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long current = 56L; // Long | Currently querying page. Start from 1. Default:1
-    Long size = 56L; // Long | Default:10 Max:100
-    String archived = "archived_example"; // String | Default: `false`. Set to `true` for archived data from 6 months ago
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long txId = 1L; // Long | the `tranId` in `POST /papi/v1/repayLoan`
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long current = 1L; // Long | Current page number.
+    Long size = 10L; // Long | Number of results returned.
+    Archived archived = Archived.fromValue("true"); // Archived | Set to true to query archived data from 6 months ago.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryMarginRepayRecordResponse result = apiInstance.queryMarginRepayRecord(asset, txId, startTime, endTime, current, size, archived, recvWindow);
       System.out.println(result);
@@ -2230,12 +2230,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | |
-| **txId** | **Long**| the &#x60;tranId&#x60; in &#x60;POST/papi/v1/marginLoan&#x60; | [optional] |
+| **txId** | **Long**| the &#x60;tranId&#x60; in &#x60;POST /papi/v1/repayLoan&#x60; | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **current** | **Long**| Currently querying page. Start from 1. Default:1 | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
-| **archived** | **String**| Default: &#x60;false&#x60;. Set to &#x60;true&#x60; for archived data from 6 months ago | [optional] |
+| **current** | **Long**| Current page number. | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
+| **archived** | [**Archived**](.md)| Set to true to query archived data from 6 months ago. | [optional] [default to false] [enum: true, false] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2260,9 +2260,9 @@ No authorization required
 # **queryPortfolioMarginNegativeBalanceInterestHistory**
 > QueryPortfolioMarginNegativeBalanceInterestHistoryResponse queryPortfolioMarginNegativeBalanceInterestHistory(asset, startTime, endTime, size, recvWindow)
 
-Query Portfolio Margin Negative Balance Interest History(USER_DATA)
+Query Portfolio Margin Negative Balance Interest History (USER_DATA)
 
-Query interest history of negative balance for portfolio margin.  * Response in descending order * The max interval between startTime and endTime is 30 days. It is a MUST to ensure data correctness. * If &#x60;startTime&#x60; and &#x60;endTime&#x60; not sent, return records of the last 7 days by default * If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is not sent, the records from &#x60;startTime&#x60; to the present will be returned; if &#x60;startTime&#x60; is more than 30 days ago, the records of the past 30 days will be returned. * If &#x60;startTime&#x60; is not sent and &#x60;endTime&#x60; is sent, the records of the 7 days before &#x60;endTime&#x60; is returned.  Weight: 50
+Query interest history of negative balance for portfolio margin.  Weight(IP): 50  Security Type: USER_DATA  Notes: - Results are returned in descending order. - The query range cannot exceed 30 days to ensure data correctness. - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are omitted, the most recent 7 days are returned by default. - If &#x60;startTime&#x60; is provided but &#x60;endTime&#x60; is omitted, records from &#x60;startTime&#x60; to now are returned; if that exceeds 30 days, only the most recent 30 days are returned. - If &#x60;endTime&#x60; is provided but &#x60;startTime&#x60; is omitted, records from the 7 days before &#x60;endTime&#x60; are returned.
 
 ### Example
 ```java
@@ -2279,11 +2279,11 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String asset = "asset_example"; // String | 
-    Long startTime = 56L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 56L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long size = 56L; // Long | Default:10 Max:100
-    Long recvWindow = 56L; // Long | 
+    String asset = "USDT"; // String | 
+    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
+    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
+    Long size = 10L; // Long | Number of results returned.
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryPortfolioMarginNegativeBalanceInterestHistoryResponse result = apiInstance.queryPortfolioMarginNegativeBalanceInterestHistory(asset, startTime, endTime, size, recvWindow);
       System.out.println(result);
@@ -2305,7 +2305,7 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
 | **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **size** | **Long**| Default:10 Max:100 | [optional] |
+| **size** | **Long**| Number of results returned. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2330,9 +2330,9 @@ No authorization required
 # **queryUmPositionInformation**
 > QueryUmPositionInformationResponse queryUmPositionInformation(symbol, recvWindow)
 
-Query UM Position Information(USER_DATA)
+Query UM Position Information (USER_DATA)
 
-Get current UM position information.  * Please use with user data stream &#x60;ACCOUNT_UPDATE&#x60; to meet your timeliness and accuracy needs. * for One-way Mode user, the response will only show the \&quot;BOTH\&quot; positions * for Hedge Mode user, the response will show \&quot;LONG\&quot;, and \&quot;SHORT\&quot; positions.  Weight: 5
+Get current UM position information.  Weight(IP): 5  Security Type: USER_DATA  Notes: - Please use with account push event &#x60;ACCOUNT_UPDATE&#x60; for timeliness and accuracy. - In One-way Mode, only positions with side &#x60;BOTH&#x60; are shown. - In Hedge Mode, positions with sides &#x60;BOTH&#x60;, &#x60;LONG&#x60;, and &#x60;SHORT&#x60; are shown.
 
 ### Example
 ```java
@@ -2349,8 +2349,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUmPositionInformationResponse result = apiInstance.queryUmPositionInformation(symbol, recvWindow);
       System.out.println(result);
@@ -2396,7 +2396,7 @@ No authorization required
 
 Query User Negative Balance Auto Exchange Record (USER_DATA)
 
-Query user negative balance auto exchange record  * Response in descending order * The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 3 months.  Weight: 100
+Query user negative balance auto exchange record  Weight(IP): 100  Security Type: USER_DATA  Notes: - Response in descending order - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 3 months.
 
 ### Example
 ```java
@@ -2413,9 +2413,9 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long startTime = 56L; // Long | 
-    Long endTime = 56L; // Long | 
-    Long recvWindow = 56L; // Long | 
+    Long startTime = 1623319461670L; // Long | 
+    Long endTime = 1641782889000L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUserNegativeBalanceAutoExchangeRecordResponse result = apiInstance.queryUserNegativeBalanceAutoExchangeRecord(startTime, endTime, recvWindow);
       System.out.println(result);
@@ -2462,7 +2462,7 @@ No authorization required
 
 Query User Rate Limit (USER_DATA)
 
-Query User Rate Limit  Weight: 1
+Query User Rate Limit  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2479,7 +2479,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       QueryUserRateLimitResponse result = apiInstance.queryUserRateLimit(recvWindow);
       System.out.println(result);
@@ -2522,9 +2522,9 @@ No authorization required
 # **repayFuturesNegativeBalance**
 > RepayFuturesNegativeBalanceResponse repayFuturesNegativeBalance(repayFuturesNegativeBalanceRequest)
 
-Repay futures Negative Balance(USER_DATA)
+Repay futures Negative Balance (USER_DATA)
 
-Repay futures Negative Balance  Weight: 750
+Repay futures Negative Balance  Weight(IP): 750  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2560,7 +2560,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **repayFuturesNegativeBalanceRequest** | [**RepayFuturesNegativeBalanceRequest**](RepayFuturesNegativeBalanceRequest.md)|  | |
+| **repayFuturesNegativeBalanceRequest** | [**RepayFuturesNegativeBalanceRequest**](RepayFuturesNegativeBalanceRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -2584,9 +2584,9 @@ No authorization required
 # **umFuturesAccountConfiguration**
 > UmFuturesAccountConfigurationResponse umFuturesAccountConfiguration(recvWindow)
 
-UM Futures Account Configuration(USER_DATA)
+UM Futures Account Configuration (USER_DATA)
 
-Query UM Futures account configuration  Weight: 5
+Query UM Futures account configuration  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2603,7 +2603,7 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    Long recvWindow = 56L; // Long | 
+    Long recvWindow = 5000L; // Long | 
     try {
       UmFuturesAccountConfigurationResponse result = apiInstance.umFuturesAccountConfiguration(recvWindow);
       System.out.println(result);
@@ -2646,9 +2646,9 @@ No authorization required
 # **umFuturesSymbolConfiguration**
 > UmFuturesSymbolConfigurationResponse umFuturesSymbolConfiguration(symbol, recvWindow)
 
-UM Futures Symbol Configuration(USER_DATA)
+UM Futures Symbol Configuration (USER_DATA)
 
-Get current UM account symbol configuration.  Weight: 5
+Get current UM account symbol configuration.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2665,8 +2665,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "BTCUSDT"; // String | Symbol
+    Long recvWindow = 5000L; // Long | 
     try {
       UmFuturesSymbolConfigurationResponse result = apiInstance.umFuturesSymbolConfiguration(symbol, recvWindow);
       System.out.println(result);
@@ -2685,7 +2685,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | [optional] |
+| **symbol** | **String**| Symbol | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -2712,7 +2712,7 @@ No authorization required
 
 UM Notional and Leverage Brackets (USER_DATA)
 
-Query UM notional and leverage brackets  Weight: 1
+Query UM notional and leverage brackets  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -2729,8 +2729,8 @@ public class Example {
     defaultClient.setBasePath("https://papi.binance.com");
 
     AccountApi apiInstance = new AccountApi(defaultClient);
-    String symbol = "symbol_example"; // String | 
-    Long recvWindow = 56L; // Long | 
+    String symbol = "ETHUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
     try {
       UmNotionalAndLeverageBracketsResponse result = apiInstance.umNotionalAndLeverageBrackets(symbol, recvWindow);
       System.out.println(result);

@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures WebSocket Market Streams
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+ * Futures (USDⓈ-M) WebSocket Market Streams
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -37,7 +37,7 @@ import org.hibernate.validator.constraints.*;
 /** AggregateTradeStreamsResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        comments = "Generator version: 7.12.0")
+        comments = "Generator version: 7.22.0")
 public class AggregateTradeStreamsResponse extends BaseDTO {
     public static final String SERIALIZED_NAME_E_LOWER_CASE = "e";
 
@@ -105,6 +105,12 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     @jakarta.annotation.Nullable
     private Boolean mLowerCase;
 
+    public static final String SERIALIZED_NAME_ST = "st";
+
+    @SerializedName(SERIALIZED_NAME_ST)
+    @jakarta.annotation.Nullable
+    private Integer st;
+
     public AggregateTradeStreamsResponse() {}
 
     public AggregateTradeStreamsResponse eLowerCase(
@@ -114,7 +120,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get eLowerCase
+     * Event type
      *
      * @return eLowerCase
      */
@@ -133,7 +139,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get E
+     * Event time
      *
      * @return E
      */
@@ -153,7 +159,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get sLowerCase
+     * Symbol
      *
      * @return sLowerCase
      */
@@ -172,7 +178,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get aLowerCase
+     * Aggregate trade ID
      *
      * @return aLowerCase
      */
@@ -192,7 +198,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get pLowerCase
+     * Price
      *
      * @return pLowerCase
      */
@@ -212,7 +218,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get qLowerCase
+     * Quantity with all the market trades
      *
      * @return qLowerCase
      */
@@ -231,7 +237,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get nq
+     * Normal quantity without the trades involving RPI orders
      *
      * @return nq
      */
@@ -250,7 +256,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get fLowerCase
+     * First trade ID
      *
      * @return fLowerCase
      */
@@ -269,7 +275,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get lLowerCase
+     * Last trade ID
      *
      * @return lLowerCase
      */
@@ -288,7 +294,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get T
+     * Trade time
      *
      * @return T
      */
@@ -308,7 +314,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
     }
 
     /**
-     * Get mLowerCase
+     * Is the buyer the market maker?
      *
      * @return mLowerCase
      */
@@ -319,6 +325,25 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
 
     public void setmLowerCase(@jakarta.annotation.Nullable Boolean mLowerCase) {
         this.mLowerCase = mLowerCase;
+    }
+
+    public AggregateTradeStreamsResponse st(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
+        return this;
+    }
+
+    /**
+     * (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM
+     *
+     * @return st
+     */
+    @jakarta.annotation.Nullable
+    public Integer getSt() {
+        return st;
+    }
+
+    public void setSt(@jakarta.annotation.Nullable Integer st) {
+        this.st = st;
     }
 
     @Override
@@ -341,7 +366,8 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
                 && Objects.equals(this.fLowerCase, aggregateTradeStreamsResponse.fLowerCase)
                 && Objects.equals(this.lLowerCase, aggregateTradeStreamsResponse.lLowerCase)
                 && Objects.equals(this.T, aggregateTradeStreamsResponse.T)
-                && Objects.equals(this.mLowerCase, aggregateTradeStreamsResponse.mLowerCase);
+                && Objects.equals(this.mLowerCase, aggregateTradeStreamsResponse.mLowerCase)
+                && Objects.equals(this.st, aggregateTradeStreamsResponse.st);
     }
 
     @Override
@@ -357,7 +383,8 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
                 fLowerCase,
                 lLowerCase,
                 T,
-                mLowerCase);
+                mLowerCase,
+                st);
     }
 
     @Override
@@ -375,6 +402,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         sb.append("		lLowerCase: ").append(toIndentedString(lLowerCase)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		mLowerCase: ").append(toIndentedString(mLowerCase)).append("\n");
+        sb.append("		st: ").append(toIndentedString(st)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -438,6 +466,11 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
             String mLowerCaseValueAsString = mLowerCaseValue.toString();
             valMap.put("mLowerCase", mLowerCaseValueAsString);
         }
+        Integer stValue = getSt();
+        if (stValue != null) {
+            String stValueAsString = stValue.toString();
+            valMap.put("st", stValueAsString);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return asciiEncode(
@@ -493,6 +526,10 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         if (mLowerCaseValue != null) {
             valMap.put("mLowerCase", mLowerCaseValue);
         }
+        Object stValue = getSt();
+        if (stValue != null) {
+            valMap.put("st", stValue);
+        }
 
         valMap.put("timestamp", getTimestamp());
         return valMap;
@@ -530,6 +567,7 @@ public class AggregateTradeStreamsResponse extends BaseDTO {
         openapiFields.add("l");
         openapiFields.add("T");
         openapiFields.add("m");
+        openapiFields.add("st");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

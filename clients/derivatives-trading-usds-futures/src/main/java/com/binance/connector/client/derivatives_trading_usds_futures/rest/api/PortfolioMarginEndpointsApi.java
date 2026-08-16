@@ -1,6 +1,6 @@
 /*
- * Binance Derivatives Trading USDS Futures REST API
- * OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+ * Futures (USDⓈ-M) REST API
+ * Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
  *
  * The version of the OpenAPI document: 1.0.0
  *
@@ -42,7 +42,7 @@ public class PortfolioMarginEndpointsApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/11.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -94,7 +94,7 @@ public class PortfolioMarginEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/portfolio-margin-endpoints/Classic-Portfolio-Margin-Account-Information">Classic
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/portfolio-margin-endpoints#classic-portfolio-margin-account-information">Classic
      *     Portfolio Margin Account Information (USER_DATA) Documentation</a>
      */
     private okhttp3.Call classicPortfolioMarginAccountInformationCall(String asset, Long recvWindow)
@@ -199,8 +199,8 @@ public class PortfolioMarginEndpointsApi {
 
     /**
      * Classic Portfolio Margin Account Information (USER_DATA) Get Classic Portfolio Margin current
-     * account information. * maxWithdrawAmount is for asset transfer out to the spot wallet.
-     * Weight: 5
+     * account information. Weight(IP): 5 Security Type: USER_DATA Notes: - maxWithdrawAmount is for
+     * asset transfer out to the spot wallet.
      *
      * @param asset (required)
      * @param recvWindow (optional)
@@ -215,12 +215,12 @@ public class PortfolioMarginEndpointsApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/docs/derivatives/usds-margined-futures/portfolio-margin-endpoints/Classic-Portfolio-Margin-Account-Information">Classic
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/portfolio-margin-endpoints#classic-portfolio-margin-account-information">Classic
      *     Portfolio Margin Account Information (USER_DATA) Documentation</a>
      */
     public ApiResponse<ClassicPortfolioMarginAccountInformationResponse>
-            classicPortfolioMarginAccountInformation(@NotNull String asset, Long recvWindow)
-                    throws ApiException {
+            classicPortfolioMarginAccountInformation(
+                    @NotNull String asset, @Max(60000L) Long recvWindow) throws ApiException {
         okhttp3.Call localVarCall =
                 classicPortfolioMarginAccountInformationValidateBeforeCall(asset, recvWindow);
         java.lang.reflect.Type localVarReturnType =

@@ -12,7 +12,7 @@
 |**exercisedCoin** | **String** |  |  [optional] |
 |**subscriptionAmount** | **String** |  |  [optional] |
 |**duration** | **Long** |  |  [optional] |
-|**autoCompoundPlan** | **String** |  |  [optional] |
+|**autoCompoundPlan** | **String** | STANDARD, ADVANCED, this field won&#39;t display when autocompound is set to None |  [optional] |
 |**strikePrice** | **String** |  |  [optional] |
 |**settleDate** | **Long** |  |  [optional] |
 |**purchaseStatus** | **String** |  |  [optional] |
