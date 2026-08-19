@@ -45,7 +45,7 @@ public class WalletApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -102,7 +102,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio">Get
-     *     Portfolio (USER_DATA) Documentation</a>
+     *     Portfolio (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call getPortfolioCall(
             String walletAddress,
@@ -242,9 +242,9 @@ public class WalletApi {
     }
 
     /**
-     * Get Portfolio (USER_DATA) Get the authenticated user&#39;s prediction portfolio overview
-     * including active positions count, aggregated PnL, and full position list. Weight(IP): 200
-     * Security Type: USER_DATA
+     * Get Portfolio (PREDICTION_TRADE) Get the authenticated user&#39;s prediction portfolio
+     * overview including active positions count, aggregated PnL, and full position list.
+     * Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Filter by prediction token ID (optional)
@@ -264,7 +264,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio">Get
-     *     Portfolio (USER_DATA) Documentation</a>
+     *     Portfolio (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<GetPortfolioResponse> getPortfolio(
             @NotNull String walletAddress,
@@ -297,7 +297,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status">Get
-     *     Quota Status (USER_DATA) Documentation</a>
+     *     Quota Status (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call getQuotaStatusCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -389,8 +389,9 @@ public class WalletApi {
     }
 
     /**
-     * Get Quota Status (USER_DATA) Query the current user&#39;s daily trading quota limit and
-     * remaining allowance for prediction markets. Weight(IP): 200 Security Type: USER_DATA
+     * Get Quota Status (PREDICTION_TRADE) Query the current user&#39;s daily trading quota limit
+     * and remaining allowance for prediction markets. Weight(IP): 200 Security Type:
+     * PREDICTION_TRADE
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetQuotaStatusResponse&gt;
@@ -405,7 +406,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status">Get
-     *     Quota Status (USER_DATA) Documentation</a>
+     *     Quota Status (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<GetQuotaStatusResponse> getQuotaStatus(@Max(60000L) Long recvWindow)
             throws ApiException {
@@ -430,7 +431,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets">List
-     *     Prediction Wallets (USER_DATA) Documentation</a>
+     *     Prediction Wallets (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call listPredictionWalletsCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -523,8 +524,8 @@ public class WalletApi {
     }
 
     /**
-     * List Prediction Wallets (USER_DATA) Get all prediction wallets registered for the
-     * authenticated user. Weight(IP): 200 Security Type: USER_DATA
+     * List Prediction Wallets (PREDICTION_TRADE) Get all prediction wallets registered for the
+     * authenticated user. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;ListPredictionWalletsResponse&gt;
@@ -539,7 +540,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets">List
-     *     Prediction Wallets (USER_DATA) Documentation</a>
+     *     Prediction Wallets (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<ListPredictionWalletsResponse> listPredictionWallets(
             @Max(60000L) Long recvWindow) throws ApiException {
@@ -564,7 +565,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances">Query
-     *     Payment Option Balances (USER_DATA) Documentation</a>
+     *     Payment Option Balances (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call queryPaymentOptionBalancesCall(Long recvWindow) throws ApiException {
         String basePath = null;
@@ -657,8 +658,9 @@ public class WalletApi {
     }
 
     /**
-     * Query Payment Option Balances (USER_DATA) Get available balances for each payment option that
-     * can be used for prediction trading. Weight(IP): 200 Security Type: USER_DATA
+     * Query Payment Option Balances (PREDICTION_TRADE) Get available balances for each payment
+     * option that can be used for prediction trading. Weight(IP): 200 Security Type:
+     * PREDICTION_TRADE
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryPaymentOptionBalancesResponse&gt;
@@ -673,7 +675,7 @@ public class WalletApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances">Query
-     *     Payment Option Balances (USER_DATA) Documentation</a>
+     *     Payment Option Balances (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QueryPaymentOptionBalancesResponse> queryPaymentOptionBalances(
             @Max(60000L) Long recvWindow) throws ApiException {

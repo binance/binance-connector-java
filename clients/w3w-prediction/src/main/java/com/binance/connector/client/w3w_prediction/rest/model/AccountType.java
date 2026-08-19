@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Source CEX account. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60; */
+/** Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60; */
 @JsonAdapter(AccountType.Adapter.class)
 public enum AccountType {
     SPOT("SPOT"),

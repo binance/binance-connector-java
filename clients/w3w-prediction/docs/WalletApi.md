@@ -4,19 +4,19 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPortfolio**](WalletApi.md#getPortfolio) | **GET** /sapi/v1/w3w/wallet/prediction/pnl/portfolio | Get Portfolio (USER_DATA) |
-| [**getQuotaStatus**](WalletApi.md#getQuotaStatus) | **GET** /sapi/v1/w3w/wallet/prediction/quota/limit/status | Get Quota Status (USER_DATA) |
-| [**listPredictionWallets**](WalletApi.md#listPredictionWallets) | **GET** /sapi/v1/w3w/wallet/prediction/wallet/list | List Prediction Wallets (USER_DATA) |
-| [**queryPaymentOptionBalances**](WalletApi.md#queryPaymentOptionBalances) | **GET** /sapi/v1/w3w/wallet/prediction/balance/payment-options | Query Payment Option Balances (USER_DATA) |
+| [**getPortfolio**](WalletApi.md#getPortfolio) | **GET** /sapi/v1/w3w/wallet/prediction/pnl/portfolio | Get Portfolio (PREDICTION_TRADE) |
+| [**getQuotaStatus**](WalletApi.md#getQuotaStatus) | **GET** /sapi/v1/w3w/wallet/prediction/quota/limit/status | Get Quota Status (PREDICTION_TRADE) |
+| [**listPredictionWallets**](WalletApi.md#listPredictionWallets) | **GET** /sapi/v1/w3w/wallet/prediction/wallet/list | List Prediction Wallets (PREDICTION_TRADE) |
+| [**queryPaymentOptionBalances**](WalletApi.md#queryPaymentOptionBalances) | **GET** /sapi/v1/w3w/wallet/prediction/balance/payment-options | Query Payment Option Balances (PREDICTION_TRADE) |
 
 
 <a id="getPortfolio"></a>
 # **getPortfolio**
 > GetPortfolioResponse getPortfolio(walletAddress, tokenId, marketId, marketTopicId, activeOnly, recvWindow)
 
-Get Portfolio (USER_DATA)
+Get Portfolio (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s prediction portfolio overview including active positions count, aggregated PnL, and full position list.  Weight(IP): 200  Security Type: USER_DATA
+Get the authenticated user&#39;s prediction portfolio overview including active positions count, aggregated PnL, and full position list.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -86,9 +86,9 @@ No authorization required
 # **getQuotaStatus**
 > GetQuotaStatusResponse getQuotaStatus(recvWindow)
 
-Get Quota Status (USER_DATA)
+Get Quota Status (PREDICTION_TRADE)
 
-Query the current user&#39;s daily trading quota limit and remaining allowance for prediction markets.  Weight(IP): 200  Security Type: USER_DATA
+Query the current user&#39;s daily trading quota limit and remaining allowance for prediction markets.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -148,9 +148,9 @@ No authorization required
 # **listPredictionWallets**
 > ListPredictionWalletsResponse listPredictionWallets(recvWindow)
 
-List Prediction Wallets (USER_DATA)
+List Prediction Wallets (PREDICTION_TRADE)
 
-Get all prediction wallets registered for the authenticated user.  Weight(IP): 200  Security Type: USER_DATA
+Get all prediction wallets registered for the authenticated user.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -210,9 +210,9 @@ No authorization required
 # **queryPaymentOptionBalances**
 > QueryPaymentOptionBalancesResponse queryPaymentOptionBalances(recvWindow)
 
-Query Payment Option Balances (USER_DATA)
+Query Payment Option Balances (PREDICTION_TRADE)
 
-Get available balances for each payment option that can be used for prediction trading.  Weight(IP): 200  Security Type: USER_DATA
+Get available balances for each payment option that can be used for prediction trading.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java

@@ -30,13 +30,13 @@ public class PlaceOrderExample {
     }
 
     /**
-     * Place Order (TRADE)
+     * Place Order (PREDICTION_TRADE)
      *
      * <p>Place a prediction order using a previously obtained quote. Requires SAS authorization.
-     * Weight(IP): 200 Security Type: TRADE Notes: - Validation rules: | orderType | timeInForce |
-     * priceLimit | | --------- | ------------- | --------------------- | | &#x60;MARKET&#x60; |
-     * Must be &#x60;FOK&#x60; | Not required | | &#x60;LIMIT&#x60; | Must be &#x60;GTC&#x60; |
-     * Required, must be &gt; 0 |
+     * Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: - Validation rules: | orderType |
+     * timeInForce | priceLimit | | --------- | ------------- | --------------------- | |
+     * &#x60;MARKET&#x60; | Must be &#x60;FOK&#x60; | Not required | | &#x60;LIMIT&#x60; | Must be
+     * &#x60;GTC&#x60; | Required, must be &gt; 0 |
      *
      * @throws ApiException if the Api call fails
      */

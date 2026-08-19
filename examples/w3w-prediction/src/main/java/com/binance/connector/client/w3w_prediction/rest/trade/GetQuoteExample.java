@@ -30,13 +30,13 @@ public class GetQuoteExample {
     }
 
     /**
-     * Get Quote (TRADE)
+     * Get Quote (PREDICTION_TRADE)
      *
      * <p>Get a price quote for a prediction order. The returned &#x60;quoteId&#x60; must be used in
-     * the subsequent Place Order request. Weight(IP): 200 Security Type: TRADE Response Notes: -
-     * &#x60;feeAmount&#x60; is a string because it is denominated in wei (18 decimals) and may
-     * exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is also a string to
-     * allow fractional basis-point values in the future. &#x60;feeRateBps&#x60; and
+     * the subsequent Place Order request. Weight(IP): 200 Security Type: PREDICTION_TRADE Response
+     * Notes: - &#x60;feeAmount&#x60; is a string because it is denominated in wei (18 decimals) and
+     * may exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is also a string
+     * to allow fractional basis-point values in the future. &#x60;feeRateBps&#x60; and
      * &#x60;slippageBps&#x60; are integers and will never exceed safe integer bounds. - **MARKET
      * order minimum amount:** For &#x60;MARKET&#x60; orders, &#x60;amountIn&#x60; must be at least
      * approximately **1.5 USDT** (in wei: &#x60;1500000000000000000&#x60;). The exact minimum

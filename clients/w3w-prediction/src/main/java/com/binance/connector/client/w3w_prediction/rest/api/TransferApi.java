@@ -19,6 +19,10 @@ import com.binance.connector.client.common.Pair;
 import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
+import com.binance.connector.client.w3w_prediction.rest.model.ApplyMmDepositRequest;
+import com.binance.connector.client.w3w_prediction.rest.model.ApplyMmDepositResponse;
+import com.binance.connector.client.w3w_prediction.rest.model.ApplyMmWithdrawRequest;
+import com.binance.connector.client.w3w_prediction.rest.model.ApplyMmWithdrawResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateInboundTransferRequest;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateInboundTransferResponse;
 import com.binance.connector.client.w3w_prediction.rest.model.CreateOutboundTransferRequest;
@@ -49,7 +53,7 @@ public class TransferApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -87,6 +91,334 @@ public class TransferApi {
     }
 
     /**
+     * Build call for applyMmDeposit
+     *
+     * @param applyMmDepositRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Apply MM Deposit </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-deposit">Apply
+     *     MM Deposit (PREDICTION_TRADE) Documentation</a>
+     */
+    private okhttp3.Call applyMmDepositCall(ApplyMmDepositRequest applyMmDepositRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/w3w/wallet/prediction/deposit/apply";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (applyMmDepositRequest.getFromToken() != null) {
+            localVarFormParams.put("fromToken", applyMmDepositRequest.getFromToken());
+        }
+
+        if (applyMmDepositRequest.getFromTokenAmount() != null) {
+            localVarFormParams.put("fromTokenAmount", applyMmDepositRequest.getFromTokenAmount());
+        }
+
+        if (applyMmDepositRequest.getToToken() != null) {
+            localVarFormParams.put("toToken", applyMmDepositRequest.getToToken());
+        }
+
+        if (applyMmDepositRequest.getAccountType() != null) {
+            localVarFormParams.put("accountType", applyMmDepositRequest.getAccountType());
+        }
+
+        if (applyMmDepositRequest.getChainId() != null) {
+            localVarFormParams.put("chainId", applyMmDepositRequest.getChainId());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call applyMmDepositValidateBeforeCall(
+            ApplyMmDepositRequest applyMmDepositRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {applyMmDepositRequest};
+            Method method =
+                    this.getClass().getMethod("applyMmDeposit", ApplyMmDepositRequest.class);
+            Set<ConstraintViolation<TransferApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return applyMmDepositCall(applyMmDepositRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Apply MM Deposit (PREDICTION_TRADE) Move funds from the user&#39;s bound CeDeFi MPC wallet to
+     * their CEX account (SPOT/FUNDING) via a contract escrow + credit flow. The maker wallet is
+     * resolved server-side by &#x60;userId&#x60;; the caller does not pass wallet or signature.
+     * Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: - Restricted to authorized market
+     * makers. Requests from unauthorized accounts are rejected — contact BD to request access. -
+     * \&quot;Note on &#x60;fromToken&#x60; / &#x60;toToken&#x60;: typically the same symbol (e.g.
+     * both &#x60;USDT&#x60;). When they differ, the backend may attempt a swap, but cross-symbol
+     * conversion is not guaranteed for all pairs — prefer using the same symbol.\&quot;
+     *
+     * @param applyMmDepositRequest (required)
+     * @return ApiResponse&lt;ApplyMmDepositResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Apply MM Deposit </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-deposit">Apply
+     *     MM Deposit (PREDICTION_TRADE) Documentation</a>
+     */
+    public ApiResponse<ApplyMmDepositResponse> applyMmDeposit(
+            @Valid @NotNull ApplyMmDepositRequest applyMmDepositRequest) throws ApiException {
+        okhttp3.Call localVarCall = applyMmDepositValidateBeforeCall(applyMmDepositRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<ApplyMmDepositResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for applyMmWithdraw
+     *
+     * @param applyMmWithdrawRequest (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Apply MM Withdraw </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-withdraw">Apply
+     *     MM Withdraw (PREDICTION_TRADE) Documentation</a>
+     */
+    private okhttp3.Call applyMmWithdrawCall(ApplyMmWithdrawRequest applyMmWithdrawRequest)
+            throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/w3w/wallet/prediction/withdraw/apply";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (applyMmWithdrawRequest.getCoin() != null) {
+            localVarFormParams.put("coin", applyMmWithdrawRequest.getCoin());
+        }
+
+        if (applyMmWithdrawRequest.getNetwork() != null) {
+            localVarFormParams.put("network", applyMmWithdrawRequest.getNetwork());
+        }
+
+        if (applyMmWithdrawRequest.getAmount() != null) {
+            localVarFormParams.put("amount", applyMmWithdrawRequest.getAmount());
+        }
+
+        if (applyMmWithdrawRequest.getWithdrawOrderId() != null) {
+            localVarFormParams.put("withdrawOrderId", applyMmWithdrawRequest.getWithdrawOrderId());
+        }
+
+        if (applyMmWithdrawRequest.getWalletType() != null) {
+            localVarFormParams.put("walletType", applyMmWithdrawRequest.getWalletType());
+        }
+
+        if (applyMmWithdrawRequest.getName() != null) {
+            localVarFormParams.put("name", applyMmWithdrawRequest.getName());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call applyMmWithdrawValidateBeforeCall(
+            ApplyMmWithdrawRequest applyMmWithdrawRequest) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {applyMmWithdrawRequest};
+            Method method =
+                    this.getClass().getMethod("applyMmWithdraw", ApplyMmWithdrawRequest.class);
+            Set<ConstraintViolation<TransferApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return applyMmWithdrawCall(applyMmWithdrawRequest);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Apply MM Withdraw (PREDICTION_TRADE) Withdraw funds from the user&#39;s CEX account
+     * (SPOT/FUNDING) to their bound CeDeFi MPC wallet address. Unlike
+     * &#x60;v1/capital/withdraw/apply&#x60;, the caller does NOT pass &#x60;address&#x60;; the
+     * backend resolves the user&#39;s bound CeDeFi MPC wallet address by &#x60;userId&#x60; and
+     * reuses the existing capital withdraw flow with that address as the target. Weight(IP): 200
+     * Security Type: PREDICTION_TRADE Notes: - Restricted to authorized market makers. Requests
+     * from unauthorized accounts are rejected — contact BD to request access. - walletType
+     * Validation: | Value | Behavior | | --------------- | ------------------------------- | |
+     * &#x60;null&#x60; | Allowed — defaults to SPOT | | &#x60;0&#x60; | Allowed — source &#x3D;
+     * SPOT | | &#x60;1&#x60; | Allowed — source &#x3D; FUNDING | | Other (e.g. &#x60;99&#x60;) |
+     * Rejected — returns validation error | - \&quot;Note on field naming: this endpoint uses
+     * &#x60;walletType&#x60; (INT &#x60;0&#x60;/&#x60;1&#x60;) for the source CEX account, while
+     * Apply MM Deposit uses &#x60;accountType&#x60; (STRING &#x60;SPOT&#x60;/&#x60;FUNDING&#x60;)
+     * for the target. The difference is intentional: withdraw reuses the existing
+     * &#x60;v1/capital/withdraw/apply&#x60; flow, which inherits that flow&#39;s integer
+     * &#x60;walletType&#x60; field.\&quot;
+     *
+     * @param applyMmWithdrawRequest (required)
+     * @return ApiResponse&lt;ApplyMmWithdrawResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Apply MM Withdraw </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-withdraw">Apply
+     *     MM Withdraw (PREDICTION_TRADE) Documentation</a>
+     */
+    public ApiResponse<ApplyMmWithdrawResponse> applyMmWithdraw(
+            @Valid @NotNull ApplyMmWithdrawRequest applyMmWithdrawRequest) throws ApiException {
+        okhttp3.Call localVarCall = applyMmWithdrawValidateBeforeCall(applyMmWithdrawRequest);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<ApplyMmWithdrawResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for createInboundTransfer
      *
      * @param createInboundTransferRequest (required)
@@ -101,7 +433,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
-     *     Inbound Transfer (TRADE) Documentation</a>
+     *     Inbound Transfer (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call createInboundTransferCall(
             CreateInboundTransferRequest createInboundTransferRequest) throws ApiException {
@@ -223,12 +555,12 @@ public class TransferApi {
     }
 
     /**
-     * Create Inbound Transfer (TRADE) Transfer funds from the prediction wallet back to the
-     * user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization
-     * Required:** This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is
-     * not enabled for the wallet, the request will be rejected with &#x60;-31003 SAS authorization
-     * required&#x60;. Enable SAS for your wallet before calling this endpoint. Weight(IP): 200
-     * Security Type: TRADE
+     * Create Inbound Transfer (PREDICTION_TRADE) Transfer funds from the prediction wallet back to
+     * the user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization. ⚠️ **SAS
+     * Authorization Required:** This endpoint enforces SAS (Self-Authorization Service)
+     * authorization. If SAS is not enabled for the wallet, the request will be rejected with
+     * &#x60;-31003 SAS authorization required&#x60;. Enable SAS for your wallet before calling this
+     * endpoint. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param createInboundTransferRequest (required)
      * @return ApiResponse&lt;CreateInboundTransferResponse&gt;
@@ -243,7 +575,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer">Create
-     *     Inbound Transfer (TRADE) Documentation</a>
+     *     Inbound Transfer (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<CreateInboundTransferResponse> createInboundTransfer(
             @Valid @NotNull CreateInboundTransferRequest createInboundTransferRequest)
@@ -270,7 +602,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
-     *     Outbound Transfer (TRADE) Documentation</a>
+     *     Outbound Transfer (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call createOutboundTransferCall(
             CreateOutboundTransferRequest createOutboundTransferRequest) throws ApiException {
@@ -397,9 +729,9 @@ public class TransferApi {
     }
 
     /**
-     * Create Outbound Transfer (TRADE) Transfer funds from the user&#39;s CEX account (SPOT or
-     * FUNDING) into the prediction wallet. Requires SAS authorization. Weight(IP): 200 Security
-     * Type: TRADE
+     * Create Outbound Transfer (PREDICTION_TRADE) Transfer funds from the user&#39;s CEX account
+     * (SPOT or FUNDING) into the prediction wallet. Requires SAS authorization. Weight(IP): 200
+     * Security Type: PREDICTION_TRADE
      *
      * @param createOutboundTransferRequest (required)
      * @return ApiResponse&lt;CreateOutboundTransferResponse&gt;
@@ -414,7 +746,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer">Create
-     *     Outbound Transfer (TRADE) Documentation</a>
+     *     Outbound Transfer (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<CreateOutboundTransferResponse> createOutboundTransfer(
             @Valid @NotNull CreateOutboundTransferRequest createOutboundTransferRequest)
@@ -451,7 +783,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
-     *     Transfer List (USER_DATA) Documentation</a>
+     *     Transfer List (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call queryTransferListCall(
             String walletAddress,
@@ -612,8 +944,8 @@ public class TransferApi {
     }
 
     /**
-     * Query Transfer List (USER_DATA) Get the authenticated user&#39;s prediction wallet transfer
-     * history within a date range. Weight(IP): 200 Security Type: USER_DATA
+     * Query Transfer List (PREDICTION_TRADE) Get the authenticated user&#39;s prediction wallet
+     * transfer history within a date range. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param startDate Start date. Format: &#x60;yyyy-MM-dd&#x60;. Must be ≤ &#x60;endDate&#x60;
@@ -638,7 +970,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list">Query
-     *     Transfer List (USER_DATA) Documentation</a>
+     *     Transfer List (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QueryTransferListResponse> queryTransferList(
             @NotNull String walletAddress,
@@ -681,7 +1013,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
-     *     Transfer Status (USER_DATA) Documentation</a>
+     *     Transfer Status (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call queryTransferStatusCall(String transferId, Long recvWindow)
             throws ApiException {
@@ -780,11 +1112,11 @@ public class TransferApi {
     }
 
     /**
-     * Query Transfer Status (USER_DATA) Query the current status of a prediction wallet transfer by
-     * transfer ID. **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
-     * &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;.
-     * **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state. Weight(IP): 200
-     * Security Type: USER_DATA
+     * Query Transfer Status (PREDICTION_TRADE) Query the current status of a prediction wallet
+     * transfer by transfer ID. **&#x60;status&#x60; values:** Terminal states are
+     * &#x60;COMPLETED&#x60; and &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60;
+     * and &#x60;PENDING&#x60;. **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal
+     * state. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param transferId Transfer ID returned from outbound/inbound transfer (required)
      * @param recvWindow Request validity window in milliseconds (optional)
@@ -800,7 +1132,7 @@ public class TransferApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status">Query
-     *     Transfer Status (USER_DATA) Documentation</a>
+     *     Transfer Status (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QueryTransferStatusResponse> queryTransferStatus(
             @NotNull String transferId, @Max(60000L) Long recvWindow) throws ApiException {

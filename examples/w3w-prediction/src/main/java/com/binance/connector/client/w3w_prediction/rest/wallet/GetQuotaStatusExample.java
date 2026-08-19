@@ -27,10 +27,10 @@ public class GetQuotaStatusExample {
     }
 
     /**
-     * Get Quota Status (USER_DATA)
+     * Get Quota Status (PREDICTION_TRADE)
      *
      * <p>Query the current user&#39;s daily trading quota limit and remaining allowance for
-     * prediction markets. Weight(IP): 200 Security Type: USER_DATA
+     * prediction markets. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

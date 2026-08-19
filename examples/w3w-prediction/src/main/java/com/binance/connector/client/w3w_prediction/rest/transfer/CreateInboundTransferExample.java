@@ -29,13 +29,14 @@ public class CreateInboundTransferExample {
     }
 
     /**
-     * Create Inbound Transfer (TRADE)
+     * Create Inbound Transfer (PREDICTION_TRADE)
      *
      * <p>Transfer funds from the prediction wallet back to the user&#39;s CEX account (SPOT or
      * FUNDING). Requires SAS authorization. ⚠️ **SAS Authorization Required:** This endpoint
      * enforces SAS (Self-Authorization Service) authorization. If SAS is not enabled for the
      * wallet, the request will be rejected with &#x60;-31003 SAS authorization required&#x60;.
-     * Enable SAS for your wallet before calling this endpoint. Weight(IP): 200 Security Type: TRADE
+     * Enable SAS for your wallet before calling this endpoint. Weight(IP): 200 Security Type:
+     * PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

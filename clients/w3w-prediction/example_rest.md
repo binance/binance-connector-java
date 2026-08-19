@@ -12,6 +12,24 @@
 
 [GET /sapi/v1/w3w/wallet/prediction/order-book](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book) - queryOrderBook - [QueryOrderBookExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/QueryOrderBookExample.java#L37)
 
+## Otc
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/create](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#create-otc-blocktrade) - createOtcBlocktrade - [CreateOtcBlocktradeExample.java:52](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/CreateOtcBlocktradeExample.java#L52)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/fulfil](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#fulfil-otc-blocktrade) - fulfilOtcBlocktrade - [FulfilOtcBlocktradeExample.java:41](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/FulfilOtcBlocktradeExample.java#L41)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/detail](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#get-otc-blocktrade-detail) - getOtcBlocktradeDetail - [GetOtcBlocktradeDetailExample.java:40](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/GetOtcBlocktradeDetailExample.java#L40)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/events](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#get-otc-blocktrade-events) - getOtcBlocktradeEvents - [GetOtcBlocktradeEventsExample.java:40](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/GetOtcBlocktradeEventsExample.java#L40)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/reserved-balances](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#get-otc-reserved-balances) - getOtcReservedBalances - [GetOtcReservedBalancesExample.java:49](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/GetOtcReservedBalancesExample.java#L49)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/list](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#list-otc-blocktrades) - listOtcBlocktrades - [ListOtcBlocktradesExample.java:39](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/ListOtcBlocktradesExample.java#L39)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/preview](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#preview-otc-blocktrade) - previewOtcBlocktrade - [PreviewOtcBlocktradeExample.java:42](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/PreviewOtcBlocktradeExample.java#L42)
+
+[POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/remove](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/otc#remove-otc-blocktrades) - removeOtcBlocktrades - [RemoveOtcBlocktradesExample.java:42](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/otc/RemoveOtcBlocktradesExample.java#L42)
+
 ## Position
 
 [GET /sapi/v1/w3w/wallet/prediction/position/token](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token) - getPositionByToken - [GetPositionByTokenExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/position/GetPositionByTokenExample.java#L37)
@@ -44,7 +62,11 @@
 
 ## Transfer
 
-[POST /sapi/v1/w3w/wallet/prediction/transfer/inbound](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer) - createInboundTransfer - [CreateInboundTransferExample.java:42](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/transfer/CreateInboundTransferExample.java#L42)
+[POST /sapi/v1/w3w/wallet/prediction/deposit/apply](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-deposit) - applyMmDeposit - [ApplyMmDepositExample.java:45](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/transfer/ApplyMmDepositExample.java#L45)
+
+[POST /sapi/v1/w3w/wallet/prediction/withdraw/apply](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-withdraw) - applyMmWithdraw - [ApplyMmWithdrawExample.java:51](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/transfer/ApplyMmWithdrawExample.java#L51)
+
+[POST /sapi/v1/w3w/wallet/prediction/transfer/inbound](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer) - createInboundTransfer - [CreateInboundTransferExample.java:43](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/transfer/CreateInboundTransferExample.java#L43)
 
 [POST /sapi/v1/w3w/wallet/prediction/transfer/outbound](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer) - createOutboundTransfer - [CreateOutboundTransferExample.java:40](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/transfer/CreateOutboundTransferExample.java#L40)
 
@@ -54,7 +76,7 @@
 
 ## Wallet
 
-[GET /sapi/v1/w3w/wallet/prediction/pnl/portfolio](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio) - getPortfolio - [GetPortfolioExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/wallet/GetPortfolioExample.java#L37)
+[GET /sapi/v1/w3w/wallet/prediction/pnl/portfolio](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio) - getPortfolio - [GetPortfolioExample.java:38](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/wallet/GetPortfolioExample.java#L38)
 
 [GET /sapi/v1/w3w/wallet/prediction/quota/limit/status](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status) - getQuotaStatus - [GetQuotaStatusExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/wallet/GetQuotaStatusExample.java#L37)
 

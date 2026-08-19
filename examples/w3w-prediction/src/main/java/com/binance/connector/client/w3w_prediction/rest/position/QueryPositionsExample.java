@@ -27,10 +27,10 @@ public class QueryPositionsExample {
     }
 
     /**
-     * Query Positions (USER_DATA)
+     * Query Positions (PREDICTION_TRADE)
      *
      * <p>Get the authenticated user&#39;s prediction token positions with portfolio summary and
-     * tab-based filtering. Weight(IP): 200 Security Type: USER_DATA
+     * tab-based filtering. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

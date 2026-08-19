@@ -46,7 +46,7 @@ public class RedeemApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -98,7 +98,7 @@ public class RedeemApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem">Batch
-     *     Redeem (TRADE) Documentation</a>
+     *     Redeem (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call batchRedeemCall(BatchRedeemRequest batchRedeemRequest)
             throws ApiException {
@@ -205,8 +205,8 @@ public class RedeemApi {
     }
 
     /**
-     * Batch Redeem (TRADE) Redeem one or more settled prediction tokens on-chain to claim winnings.
-     * Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
+     * Batch Redeem (PREDICTION_TRADE) Redeem one or more settled prediction tokens on-chain to
+     * claim winnings. Requires SAS authorization. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param batchRedeemRequest (required)
      * @return ApiResponse&lt;BatchRedeemResponse&gt;
@@ -221,7 +221,7 @@ public class RedeemApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem">Batch
-     *     Redeem (TRADE) Documentation</a>
+     *     Redeem (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<BatchRedeemResponse> batchRedeem(
             @Valid @NotNull BatchRedeemRequest batchRedeemRequest) throws ApiException {
@@ -248,7 +248,7 @@ public class RedeemApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status">Get
-     *     Redeem Status (USER_DATA) Documentation</a>
+     *     Redeem Status (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call getRedeemStatusCall(String walletAddress, String txHash, Long recvWindow)
             throws ApiException {
@@ -353,12 +353,13 @@ public class RedeemApi {
     }
 
     /**
-     * Get Redeem Status (USER_DATA) Query the on-chain transaction status of a previously submitted
-     * redeem request. Weight(IP): 200 Security Type: USER_DATA Response Notes: - Status values: |
-     * Value | Description | | ----------- | -------------------------------------------- | |
-     * &#x60;PENDING&#x60; | Transaction submitted, awaiting confirmation | | &#x60;CONFIRMED&#x60;
-     * | Transaction confirmed on-chain | | &#x60;FAILED&#x60; | Transaction failed | |
-     * &#x60;NOT_FOUND&#x60; | Transaction hash not found |
+     * Get Redeem Status (PREDICTION_TRADE) Query the on-chain transaction status of a previously
+     * submitted redeem request. Weight(IP): 200 Security Type: PREDICTION_TRADE Response Notes: -
+     * Status values: | Value | Description | | ----------- |
+     * -------------------------------------------- | | &#x60;PENDING&#x60; | Transaction submitted,
+     * awaiting confirmation | | &#x60;CONFIRMED&#x60; | Transaction confirmed on-chain | |
+     * &#x60;FAILED&#x60; | Transaction failed | | &#x60;NOT_FOUND&#x60; | Transaction hash not
+     * found |
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param txHash Redeem transaction hash (required)
@@ -375,7 +376,7 @@ public class RedeemApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status">Get
-     *     Redeem Status (USER_DATA) Documentation</a>
+     *     Redeem Status (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<GetRedeemStatusResponse> getRedeemStatus(
             @NotNull String walletAddress, @NotNull String txHash, @Max(60000L) Long recvWindow)

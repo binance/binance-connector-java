@@ -27,13 +27,13 @@ public class QueryTransferStatusExample {
     }
 
     /**
-     * Query Transfer Status (USER_DATA)
+     * Query Transfer Status (PREDICTION_TRADE)
      *
      * <p>Query the current status of a prediction wallet transfer by transfer ID.
      * **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and
      * &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;.
      * **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state. Weight(IP): 200
-     * Security Type: USER_DATA
+     * Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

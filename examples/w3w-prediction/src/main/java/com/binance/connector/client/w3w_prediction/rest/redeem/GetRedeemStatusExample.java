@@ -27,10 +27,10 @@ public class GetRedeemStatusExample {
     }
 
     /**
-     * Get Redeem Status (USER_DATA)
+     * Get Redeem Status (PREDICTION_TRADE)
      *
      * <p>Query the on-chain transaction status of a previously submitted redeem request.
-     * Weight(IP): 200 Security Type: USER_DATA Response Notes: - Status values: | Value |
+     * Weight(IP): 200 Security Type: PREDICTION_TRADE Response Notes: - Status values: | Value |
      * Description | | ----------- | -------------------------------------------- | |
      * &#x60;PENDING&#x60; | Transaction submitted, awaiting confirmation | | &#x60;CONFIRMED&#x60;
      * | Transaction confirmed on-chain | | &#x60;FAILED&#x60; | Transaction failed | |

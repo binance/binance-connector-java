@@ -46,7 +46,7 @@ public class PositionApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.0.0 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -100,7 +100,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token">Get
-     *     Position by Token (USER_DATA) Documentation</a>
+     *     Position by Token (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call getPositionByTokenCall(
             String walletAddress, String tokenId, Long recvWindow) throws ApiException {
@@ -206,8 +206,8 @@ public class PositionApi {
     }
 
     /**
-     * Get Position by Token (USER_DATA) Get the authenticated user&#39;s position detail for a
-     * specific prediction token. Weight(IP): 200 Security Type: USER_DATA
+     * Get Position by Token (PREDICTION_TRADE) Get the authenticated user&#39;s position detail for
+     * a specific prediction token. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Prediction outcome token ID (required)
@@ -224,7 +224,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token">Get
-     *     Position by Token (USER_DATA) Documentation</a>
+     *     Position by Token (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<GetPositionByTokenResponse> getPositionByToken(
             @NotNull String walletAddress, @NotNull String tokenId, @Max(60000L) Long recvWindow)
@@ -256,7 +256,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l">Query
-     *     PnL (USER_DATA) Documentation</a>
+     *     PnL (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call queryPnLCall(
             String walletAddress,
@@ -396,10 +396,10 @@ public class PositionApi {
     }
 
     /**
-     * Query PnL (USER_DATA) Query profit and loss records for the authenticated user&#39;s
+     * Query PnL (PREDICTION_TRADE) Query profit and loss records for the authenticated user&#39;s
      * prediction positions. When &#x60;tokenId&#x60; is provided, returns a single record in
      * &#x60;pnl&#x60;; otherwise returns a list in &#x60;pnlList&#x60;. Weight(IP): 200 Security
-     * Type: USER_DATA
+     * Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Filter by prediction token ID (optional)
@@ -419,7 +419,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l">Query
-     *     PnL (USER_DATA) Documentation</a>
+     *     PnL (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QueryPnLResponse> queryPnL(
             @NotNull String walletAddress,
@@ -456,7 +456,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions">Query
-     *     Positions (USER_DATA) Documentation</a>
+     *     Positions (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call queryPositionsCall(
             String walletAddress, String tab, Integer offset, Integer limit, Long recvWindow)
@@ -577,8 +577,9 @@ public class PositionApi {
     }
 
     /**
-     * Query Positions (USER_DATA) Get the authenticated user&#39;s prediction token positions with
-     * portfolio summary and tab-based filtering. Weight(IP): 200 Security Type: USER_DATA
+     * Query Positions (PREDICTION_TRADE) Get the authenticated user&#39;s prediction token
+     * positions with portfolio summary and tab-based filtering. Weight(IP): 200 Security Type:
+     * PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tab Position status tab. Values from &#x60;PositionQueryType&#x60;. Default
@@ -598,7 +599,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions">Query
-     *     Positions (USER_DATA) Documentation</a>
+     *     Positions (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QueryPositionsResponse> queryPositions(
             @NotNull String walletAddress,
@@ -631,7 +632,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter">Query
-     *     Positions by Filter (USER_DATA) Documentation</a>
+     *     Positions by Filter (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call queryPositionsByFilterCall(
             String walletAddress, Long marketTopicId, Long recvWindow) throws ApiException {
@@ -738,9 +739,9 @@ public class PositionApi {
     }
 
     /**
-     * Query Positions by Filter (USER_DATA) Get prediction positions filtered by wallet address
-     * and/or market topic ID. Both parameters are optional. Weight(IP): 200 Security Type:
-     * USER_DATA
+     * Query Positions by Filter (PREDICTION_TRADE) Get prediction positions filtered by wallet
+     * address and/or market topic ID. Both parameters are optional. Weight(IP): 200 Security Type:
+     * PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (optional)
      * @param marketTopicId Filter by market topic ID (optional)
@@ -757,7 +758,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter">Query
-     *     Positions by Filter (USER_DATA) Documentation</a>
+     *     Positions by Filter (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QueryPositionsByFilterResponse> queryPositionsByFilter(
             String walletAddress, Long marketTopicId, @Max(60000L) Long recvWindow)
@@ -793,7 +794,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history">Query
-     *     Settled Position History (USER_DATA) Documentation</a>
+     *     Settled Position History (PREDICTION_TRADE) Documentation</a>
      */
     private okhttp3.Call querySettledPositionHistoryCall(
             String walletAddress,
@@ -953,9 +954,9 @@ public class PositionApi {
     }
 
     /**
-     * Query Settled Position History (USER_DATA) Get the authenticated user&#39;s settled
+     * Query Settled Position History (PREDICTION_TRADE) Get the authenticated user&#39;s settled
      * (resolved) prediction position history with optional filters. Weight(IP): 200 Security Type:
-     * USER_DATA
+     * PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)
@@ -979,7 +980,7 @@ public class PositionApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history">Query
-     *     Settled Position History (USER_DATA) Documentation</a>
+     *     Settled Position History (PREDICTION_TRADE) Documentation</a>
      */
     public ApiResponse<QuerySettledPositionHistoryResponse> querySettledPositionHistory(
             @NotNull String walletAddress,
