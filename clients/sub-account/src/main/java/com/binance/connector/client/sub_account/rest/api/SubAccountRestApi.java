@@ -41,6 +41,7 @@ import com.binance.connector.client.sub_account.rest.model.ModifySubAccountApiKe
 import com.binance.connector.client.sub_account.rest.model.MovePositionForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.MovePositionForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.OrderType;
+import com.binance.connector.client.sub_account.rest.model.ProductType;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountAssetDetailsResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountFuturesAssetDetailsResponse;
 import com.binance.connector.client.sub_account.rest.model.QueryManagedSubAccountListResponse;
@@ -615,14 +616,15 @@ public class SubAccountRestApi {
      * Get Move Position History for Sub-account (For Master Account) (USER_DATA) Query move
      * position history Weight(IP): 1 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
      * &#x60;endTime&#x60; are both omitted, records from the last 90 days are returned by default
-     * (up to 1000 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted,
+     * (up to 100 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted,
      * records in &#x60;[max(startTime, now-90d), now]&#x60; are returned. - If
      * &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in &#x60;[max(now,
      * endTime-90d), endTime]&#x60; are returned.
      *
      * @param symbol (required)
      * @param page (required)
-     * @param rows (required)
+     * @param rows Max 100. (required)
+     * @param productType Default UM. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -645,12 +647,13 @@ public class SubAccountRestApi {
                     String symbol,
                     Long page,
                     Long rows,
+                    ProductType productType,
                     Long startTime,
                     Long endTime,
                     Long recvWindow)
                     throws ApiException {
         return assetManagementApi.getMovePositionHistoryForSubAccount(
-                symbol, page, rows, startTime, endTime, recvWindow);
+                symbol, page, rows, productType, startTime, endTime, recvWindow);
     }
 
     /**

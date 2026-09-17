@@ -32,7 +32,8 @@ public class FlexibleLoanAdjustLtvExample {
      * Flexible Loan Adjust LTV (TRADE)
      *
      * <p>Flexible Loan Adjust LTV Weight(UID): 6000 Security Type: TRADE Notes: - API key needs
-     * Spot &amp; Margin Trading permission for this endpoint.
+     * Spot &amp; Margin Trading permission for this endpoint. - Rate limit: 1 request per second
+     * per loan position (account + loan coin + collateral coin combination).
      *
      * @throws ApiException if the Api call fails
      */

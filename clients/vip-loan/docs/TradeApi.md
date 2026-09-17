@@ -16,7 +16,7 @@ All URIs are relative to *https://api.binance.com*
 
 VIP Loan Borrow (TRADE)
 
-VIP loan is available for VIP users only.  Weight(UID): 6000  Security Type: TRADE  Notes: - &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only master account applications are supported. - &#x60;loanAccountId&#x60; and &#x60;collateralAccountId&#x60; must be under the same master account. - &#x60;loanTerm&#x60; is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
+VIP loan is available for VIP users only.  Weight(UID): 6000  Security Type: TRADE  Notes: - &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only master account applications are supported. - &#x60;loanAccountId&#x60; and &#x60;collateralAccountId&#x60; must be under the same master account. - &#x60;loanTerm&#x60; is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;). - Rate limit: 1 request per 2 seconds per account.
 
 ### Example
 ```java
@@ -140,7 +140,7 @@ No authorization required
 
 VIP Loan Renew (TRADE)
 
-VIP loan is available for VIP users only.  Weight(UID): 6000  Security Type: TRADE
+VIP loan is available for VIP users only.  Weight(UID): 6000  Security Type: TRADE  Notes: - Rate limit: 1 request per second per account.
 
 ### Example
 ```java

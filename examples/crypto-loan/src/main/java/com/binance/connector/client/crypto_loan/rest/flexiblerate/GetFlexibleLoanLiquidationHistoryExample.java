@@ -29,7 +29,8 @@ public class GetFlexibleLoanLiquidationHistoryExample {
     /**
      * Get Flexible Loan Liquidation History (USER_DATA)
      *
-     * <p>Get Flexible Loan Liquidation History Weight(IP): 400 Security Type: USER_DATA
+     * <p>Get Flexible Loan Liquidation History Weight(IP): 400 Security Type: USER_DATA Notes: -
+     * Rate limit: 1 request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

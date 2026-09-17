@@ -802,9 +802,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=LTCBTC&side=BUY&stopPrice=1&quantity=1&price=1&newOrderRespType=ACK&sideEffectType=NO_SIDE_EFFECT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=LTCBTC&side=BUY&stopPrice=1&quantity=1&price=1", signInputCaptor.getValue());
         assertEquals(
-                "605aa4be5e50a8565466d69a77ddff4f83ca932c5caa3b580c256e9f13f3a21a", actualRequest.url().queryParameter("signature"));
+                "585cf02730acd5c71009e8c1db961f631621eb47648edd087f9ed1ffdecfa9ab", actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/margin/order/oco", actualRequest.url().encodedPath());
     }
 
@@ -1036,9 +1036,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&reduceOnly=false&positionSide=BOTH&priceProtect=false&workingType=CONTRACT_PRICE&strategyType=STOP", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&strategyType=STOP", signInputCaptor.getValue());
         assertEquals(
-                "0cadb888351cd284dbab18a1500611d7b9afa104ef004839ab07b3411fd67850",
+                "714c4bda09768d457c8539f310805ed00dcba5bf63ab22d86f627101211c49cc",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/cm/conditional/order", actualRequest.url().encodedPath());
     }
@@ -1073,8 +1073,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&reduceOnly=false&positionSide=BOTH&newOrderRespType=ACK&type=STOP", signInputCaptor.getValue());
-        assertEquals("8ee3f1f8588ca74e78928a3a8cf1f4332192186c1f45c09bab3c217159c0bb2f", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&type=STOP", signInputCaptor.getValue());
+        assertEquals("e2a5180d8b241e57a97aa49a1ed000414502e20e96553cac79c2e4eae8171c63", actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/cm/order", actualRequest.url().encodedPath());
     }
 
@@ -1104,8 +1104,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&autoRepayAtCancel=true&newOrderRespType=ACK&sideEffectType=NO_SIDE_EFFECT&type=STOP", signInputCaptor.getValue());
-        assertEquals("1fee066ce11e9e9606c09df34e2e51a5dc232f31b8bb9399481320f2aac13c86", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&type=STOP", signInputCaptor.getValue());
+        assertEquals("e2a5180d8b241e57a97aa49a1ed000414502e20e96553cac79c2e4eae8171c63", actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/margin/order", actualRequest.url().encodedPath());
     }
 
@@ -1150,8 +1150,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&quantity=0.01&reduceOnly=false&algoType=CONDITIONAL&positionSide=BOTH&newOrderRespType=ACK&type=STOP&priceProtect=false&workingType=CONTRACT_PRICE", signInputCaptor.getValue());
-        assertEquals("6d5d9cd12d99c5ea2cf81fa80399080dbbf7693d92b2b5c242877e92af9436f9", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&quantity=0.01&algoType=CONDITIONAL&type=STOP", signInputCaptor.getValue());
+        assertEquals("051e93f9f141dd03c4372d9634c96fdd2e43ad08b3b32181a639049a35a3622f", actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/um/algo/order", actualRequest.url().encodedPath());
     }
 
@@ -1196,9 +1196,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&reduceOnly=false&positionSide=BOTH&priceProtect=false&workingType=CONTRACT_PRICE&strategyType=STOP", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&strategyType=STOP", signInputCaptor.getValue());
         assertEquals(
-                "0cadb888351cd284dbab18a1500611d7b9afa104ef004839ab07b3411fd67850",
+                "714c4bda09768d457c8539f310805ed00dcba5bf63ab22d86f627101211c49cc",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/um/conditional/order", actualRequest.url().encodedPath());
     }
@@ -1236,8 +1236,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&reduceOnly=false&positionSide=BOTH&newOrderRespType=ACK&type=STOP", signInputCaptor.getValue());
-        assertEquals("8ee3f1f8588ca74e78928a3a8cf1f4332192186c1f45c09bab3c217159c0bb2f", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&type=STOP", signInputCaptor.getValue());
+        assertEquals("e2a5180d8b241e57a97aa49a1ed000414502e20e96553cac79c2e4eae8171c63", actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/um/order", actualRequest.url().encodedPath());
     }
 

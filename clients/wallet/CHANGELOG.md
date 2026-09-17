@@ -1,5 +1,26 @@
 # Changelog
 
+## 6.2.0 - 2026-08-25
+
+### Added (1)
+
+- `getSpotAssetTags()` (`GET /sapi/v1/spot/asset/tags`)
+
+### Changed (7)
+
+- Removed default values in Request objects.
+- Added parameter `needBalanceDetail`
+  - affected methods:
+    - `queryUserWalletBalance()` (`GET /sapi/v1/asset/wallet/balance`)
+- Modified response for `queryUserWalletBalance()` (`GET /sapi/v1/asset/wallet/balance`):
+  - items: property `assetBalances` added
+  - items: item property `assetBalances` added
+
+- Added response schema `getSpotAssetTagsResponse`
+- Modified response schema `queryUserWalletBalanceResponse`:
+  - items: property `assetBalances` added
+  - items: item property `assetBalances` added
+
 ## 6.1.0 - 2026-08-10
 
 ### Added (1)

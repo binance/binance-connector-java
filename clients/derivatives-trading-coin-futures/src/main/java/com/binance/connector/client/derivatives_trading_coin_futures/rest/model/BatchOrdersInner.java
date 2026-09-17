@@ -357,7 +357,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private ReduceOnlyEnum reduceOnly = ReduceOnlyEnum.FALSE;
+    private ReduceOnlyEnum reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -444,7 +444,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nullable
-    private WorkingTypeEnum workingType = WorkingTypeEnum.CONTRACT_PRICE;
+    private WorkingTypeEnum workingType;
 
     /**
      * Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
@@ -503,7 +503,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private PriceProtectEnum priceProtect = PriceProtectEnum.FALSE;
+    private PriceProtectEnum priceProtect;
 
     /** Gets or Sets newOrderRespType */
     @JsonAdapter(NewOrderRespTypeEnum.Adapter.class)
@@ -560,7 +560,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespTypeEnum newOrderRespType = NewOrderRespTypeEnum.ACK;
+    private NewOrderRespTypeEnum newOrderRespType;
 
     /**
      * only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order;
@@ -698,8 +698,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionModeEnum selfTradePreventionMode =
-            SelfTradePreventionModeEnum.EXPIRE_MAKER;
+    private SelfTradePreventionModeEnum selfTradePreventionMode;
 
     public BatchOrdersInner() {}
 

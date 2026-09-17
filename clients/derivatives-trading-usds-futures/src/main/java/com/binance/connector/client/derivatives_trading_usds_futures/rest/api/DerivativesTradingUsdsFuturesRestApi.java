@@ -935,9 +935,9 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Compressed/Aggregate Trades List Get compressed, aggregate market trades. Market trades that
      * fill in 100ms with the same price and the same taking side will have the quantity aggregated.
      * Retail Price Improvement(RPI) orders are aggregated and without special tags to be
-     * distinguished. Weight(IP): 20 Notes: - support querying futures trade histories that are not
-     * older than 24 hours - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If
+     * distinguished. Weight(IP): 20 Notes: - only trade histories within the past 48 hours (counted
+     * from now) can be queried - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent,
+     * time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If
      * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
      * recent aggregate trades will be returned. - Only market trades will be aggregated and
      * returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. -
@@ -1726,12 +1726,13 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Trading Schedule Trading session schedules for the underlying assets of TradFi Perps are
      * provided for a one-week period forward and one-week period backward starting from the day
      * prior to the query time, covering the U.S. equity market, Korean equity market, Hong Kong
-     * equity market, and the commodity market. Session types per market: - U.S. equity market:
-     * \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
-     * \&quot;OVERNIGHT\&quot;, \&quot;NO_TRADING\&quot;. - Commodity market: \&quot;REGULAR\&quot;,
-     * \&quot;NO_TRADING\&quot;. - Korean equity market: \&quot;REGULAR\&quot;,
-     * \&quot;NO_TRADING\&quot;. - Hong Kong equity market: \&quot;REGULAR\&quot;,
-     * \&quot;NO_TRADING\&quot;. Weight(IP): 5
+     * equity market, China equity market, and the commodity market. Session types per market: -
+     * U.S. equity market: \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
+     * \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, \&quot;NO_TRADING\&quot;. - Commodity
+     * market: \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - Korean equity market:
+     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - Hong Kong equity market:
+     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - China equity market:
+     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. Weight(IP): 5
      *
      * @return ApiResponse&lt;TradingScheduleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1785,7 +1786,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * not sent, then the last 7 days&#39; data will be returned. - The time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter
      * &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;. - Only
-     * support querying trade in the past 6 months
+     * support querying trade in the past 3 months
      *
      * @param symbol (required)
      * @param orderId Must be used together with parameter &#x60;symbol&#x60;. (optional)
@@ -1830,7 +1831,7 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * most recent orders are returned. - The query time period must be less then 7 days( default as
      * the recent 7 days).
      *
-     * @param symbol (required)
+     * @param symbol (optional)
      * @param orderId (optional)
      * @param startTime Start time (optional)
      * @param endTime End time (optional)

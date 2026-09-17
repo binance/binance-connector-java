@@ -565,9 +565,9 @@ public class OnChainYieldsApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000amount=1&sourceAccount=SPOT&redeemTo=FLEXIBLE&autoSubscribe=false&projectId=1", signInputCaptor.getValue());
+                "timestamp=1736393892000amount=1&projectId=1", signInputCaptor.getValue());
         assertEquals(
-                "08d0295c51d9b1c64b3d0d607b234347f113741c6e1fc995b31e680001149ee7",
+                "7ef22d632c2aec6bea9e728707f8eac15fbf16144341682080788f00ceb268ac",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/onchain-yields/locked/subscribe", actualRequest.url().encodedPath());

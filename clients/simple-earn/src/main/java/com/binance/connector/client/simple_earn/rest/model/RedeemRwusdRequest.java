@@ -47,7 +47,7 @@ public class RedeemRwusdRequest {
 
     @SerializedName(SERIALIZED_NAME_TYPE)
     @jakarta.annotation.Nonnull
-    private OrderType type = OrderType.STANDARD;
+    private OrderType type;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

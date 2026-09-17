@@ -1,6 +1,6 @@
 ## FutureAlgo
 
-[DELETE /sapi/v1/algo/futures/order](https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#cancel-algo-order-future-algo) - cancelAlgoOrderFutureAlgo - [CancelAlgoOrderFutureAlgoExample.java:37](/examples/algo/src/main/java/com/binance/connector/client/algo/rest/futurealgo/CancelAlgoOrderFutureAlgoExample.java#L37)
+[DELETE /sapi/v1/algo/futures/order](https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#cancel-algo-order-future-algo) - cancelAlgoOrderFutureAlgo - [CancelAlgoOrderFutureAlgoExample.java:38](/examples/algo/src/main/java/com/binance/connector/client/algo/rest/futurealgo/CancelAlgoOrderFutureAlgoExample.java#L38)
 
 [GET /sapi/v1/algo/futures/openOrders](https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#query-current-algo-open-orders-future-algo) - queryCurrentAlgoOpenOrdersFutureAlgo - [QueryCurrentAlgoOpenOrdersFutureAlgoExample.java:37](/examples/algo/src/main/java/com/binance/connector/client/algo/rest/futurealgo/QueryCurrentAlgoOpenOrdersFutureAlgoExample.java#L37)
 
@@ -14,7 +14,7 @@
 
 ## SpotAlgo
 
-[DELETE /sapi/v1/algo/spot/order](https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#cancel-algo-order-spot-algo) - cancelAlgoOrderSpotAlgo - [CancelAlgoOrderSpotAlgoExample.java:35](/examples/algo/src/main/java/com/binance/connector/client/algo/rest/spotalgo/CancelAlgoOrderSpotAlgoExample.java#L35)
+[DELETE /sapi/v1/algo/spot/order](https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#cancel-algo-order-spot-algo) - cancelAlgoOrderSpotAlgo - [CancelAlgoOrderSpotAlgoExample.java:36](/examples/algo/src/main/java/com/binance/connector/client/algo/rest/spotalgo/CancelAlgoOrderSpotAlgoExample.java#L36)
 
 [GET /sapi/v1/algo/spot/openOrders](https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-current-algo-open-orders-spot-algo) - queryCurrentAlgoOpenOrdersSpotAlgo - [QueryCurrentAlgoOpenOrdersSpotAlgoExample.java:35](/examples/algo/src/main/java/com/binance/connector/client/algo/rest/spotalgo/QueryCurrentAlgoOpenOrdersSpotAlgoExample.java#L35)
 

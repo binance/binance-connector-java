@@ -162,7 +162,7 @@ public class SubmitDepositQuestionnaireRequest {
     }
 
     /**
-     * JSON format beneficiary Pii.
+     * JSON format beneficiary Pii, see StandardPii section below
      *
      * @return beneficiaryPii
      */

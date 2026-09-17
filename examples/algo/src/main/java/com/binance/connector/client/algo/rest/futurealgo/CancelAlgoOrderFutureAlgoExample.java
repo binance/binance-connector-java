@@ -28,7 +28,8 @@ public class CancelAlgoOrderFutureAlgoExample {
     /**
      * Cancel Futures Algo Order (TRADE)
      *
-     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - You need to enable
+     * <p>Cancel an active order. Weight(IP): 1 Security Type: TRADE Notes: - Either
+     * &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. - You need to enable
      * &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. - Base
      * URL: &#x60;https://api.binance.com&#x60;
      *
@@ -36,9 +37,10 @@ public class CancelAlgoOrderFutureAlgoExample {
      */
     public void cancelAlgoOrderFutureAlgoExample() throws ApiException, IOException {
         Long algoId = 1L;
+        String clientAlgoId = "65ce1630101a480b85915d7e11fd5078";
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderFutureAlgoResponse> response =
-                getApi().cancelAlgoOrderFutureAlgo(algoId, recvWindow);
+                getApi().cancelAlgoOrderFutureAlgo(algoId, clientAlgoId, recvWindow);
         System.out.println(response.getData());
     }
 }

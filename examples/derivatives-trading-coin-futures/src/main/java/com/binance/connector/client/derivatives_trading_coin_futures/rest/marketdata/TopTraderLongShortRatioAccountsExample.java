@@ -6,6 +6,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ContractType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Period;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.TopTraderLongShortRatioAccountsResponse;
 import java.io.IOException;
@@ -42,13 +43,15 @@ public class TopTraderLongShortRatioAccountsExample {
      * @throws ApiException if the Api call fails
      */
     public void topTraderLongShortRatioAccountsExample() throws ApiException, IOException {
-        String symbol = "";
+        String pair = "BTCUSD";
         Period period = Period.PERIOD_5m;
+        ContractType contractType = ContractType.PERPETUAL;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioAccountsResponse> response =
-                getApi().topTraderLongShortRatioAccounts(symbol, period, limit, startTime, endTime);
+                getApi().topTraderLongShortRatioAccounts(
+                                pair, period, contractType, limit, startTime, endTime);
         System.out.println(response.getData());
     }
 }

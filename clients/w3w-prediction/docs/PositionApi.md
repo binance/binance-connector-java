@@ -4,20 +4,20 @@ All URIs are relative to *https://api.binance.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPositionByToken**](PositionApi.md#getPositionByToken) | **GET** /sapi/v1/w3w/wallet/prediction/position/token | Get Position by Token (USER_DATA) |
-| [**queryPnL**](PositionApi.md#queryPnL) | **GET** /sapi/v1/w3w/wallet/prediction/pnl/query | Query PnL (USER_DATA) |
-| [**queryPositions**](PositionApi.md#queryPositions) | **GET** /sapi/v1/w3w/wallet/prediction/position/list | Query Positions (USER_DATA) |
-| [**queryPositionsByFilter**](PositionApi.md#queryPositionsByFilter) | **GET** /sapi/v1/w3w/wallet/prediction/position/filter | Query Positions by Filter (USER_DATA) |
-| [**querySettledPositionHistory**](PositionApi.md#querySettledPositionHistory) | **GET** /sapi/v1/w3w/wallet/prediction/position/settled-history | Query Settled Position History (USER_DATA) |
+| [**getPositionByToken**](PositionApi.md#getPositionByToken) | **GET** /sapi/v1/w3w/wallet/prediction/position/token | Get Position by Token (PREDICTION_TRADE) |
+| [**queryPnL**](PositionApi.md#queryPnL) | **GET** /sapi/v1/w3w/wallet/prediction/pnl/query | Query PnL (PREDICTION_TRADE) |
+| [**queryPositions**](PositionApi.md#queryPositions) | **GET** /sapi/v1/w3w/wallet/prediction/position/list | Query Positions (PREDICTION_TRADE) |
+| [**queryPositionsByFilter**](PositionApi.md#queryPositionsByFilter) | **GET** /sapi/v1/w3w/wallet/prediction/position/filter | Query Positions by Filter (PREDICTION_TRADE) |
+| [**querySettledPositionHistory**](PositionApi.md#querySettledPositionHistory) | **GET** /sapi/v1/w3w/wallet/prediction/position/settled-history | Query Settled Position History (PREDICTION_TRADE) |
 
 
 <a id="getPositionByToken"></a>
 # **getPositionByToken**
 > GetPositionByTokenResponse getPositionByToken(walletAddress, tokenId, recvWindow)
 
-Get Position by Token (USER_DATA)
+Get Position by Token (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s position detail for a specific prediction token.  Weight(IP): 200  Security Type: USER_DATA
+Get the authenticated user&#39;s position detail for a specific prediction token.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -81,9 +81,9 @@ No authorization required
 # **queryPnL**
 > QueryPnLResponse queryPnL(walletAddress, tokenId, marketId, marketTopicId, activeOnly, recvWindow)
 
-Query PnL (USER_DATA)
+Query PnL (PREDICTION_TRADE)
 
-Query profit and loss records for the authenticated user&#39;s prediction positions. When &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise returns a list in &#x60;pnlList&#x60;.  Weight(IP): 200  Security Type: USER_DATA
+Query profit and loss records for the authenticated user&#39;s prediction positions. When &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise returns a list in &#x60;pnlList&#x60;.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -153,9 +153,9 @@ No authorization required
 # **queryPositions**
 > QueryPositionsResponse queryPositions(walletAddress, tab, offset, limit, recvWindow)
 
-Query Positions (USER_DATA)
+Query Positions (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s prediction token positions with portfolio summary and tab-based filtering.  Weight(IP): 200  Security Type: USER_DATA
+Get the authenticated user&#39;s prediction token positions with portfolio summary and tab-based filtering.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -223,9 +223,9 @@ No authorization required
 # **queryPositionsByFilter**
 > QueryPositionsByFilterResponse queryPositionsByFilter(walletAddress, marketTopicId, recvWindow)
 
-Query Positions by Filter (USER_DATA)
+Query Positions by Filter (PREDICTION_TRADE)
 
-Get prediction positions filtered by wallet address and/or market topic ID. Both parameters are optional.  Weight(IP): 200  Security Type: USER_DATA
+Get prediction positions filtered by wallet address and/or market topic ID. Both parameters are optional.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -289,9 +289,9 @@ No authorization required
 # **querySettledPositionHistory**
 > QuerySettledPositionHistoryResponse querySettledPositionHistory(walletAddress, l1Category, result, startDate, endDate, offset, limit, recvWindow)
 
-Query Settled Position History (USER_DATA)
+Query Settled Position History (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s settled (resolved) prediction position history with optional filters.  Weight(IP): 200  Security Type: USER_DATA
+Get the authenticated user&#39;s settled (resolved) prediction position history with optional filters.  Weight(IP): 200  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java

@@ -17,7 +17,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get Borrow Interest Rate (USER_DATA)
 
-Get Borrow Interest Rate  Weight(IP): 400  Security Type: USER_DATA
+Get Borrow Interest Rate  Weight(IP): 400  Security Type: USER_DATA  Notes: - Rate limit: 5 requests per second per account.
 
 ### Example
 ```java
@@ -81,7 +81,7 @@ No authorization required
 
 Get Collateral Asset Data (USER_DATA)
 
-Get Collateral Asset Data  Weight(IP): 400  Security Type: USER_DATA
+Get Collateral Asset Data  Weight(IP): 400  Security Type: USER_DATA  Notes: - Rate limit: 1 request per second per account.
 
 ### Example
 ```java
@@ -145,7 +145,7 @@ No authorization required
 
 Get Loanable Assets Data (USER_DATA)
 
-Get interest rate and borrow limit of loanable assets. The borrow limit is shown in USD value.  Weight(IP): 400  Security Type: USER_DATA
+Get interest rate and borrow limit of loanable assets. The borrow limit is shown in USD value.  Weight(IP): 400  Security Type: USER_DATA  Notes: - Rate limit: 1 request per second per account.
 
 ### Example
 ```java

@@ -24,8 +24,6 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets contractType */
 @JsonAdapter(ContractType.Adapter.class)
 public enum ContractType {
-    ALL("ALL"),
-
     PERPETUAL("PERPETUAL"),
 
     CURRENT_QUARTER("CURRENT_QUARTER"),

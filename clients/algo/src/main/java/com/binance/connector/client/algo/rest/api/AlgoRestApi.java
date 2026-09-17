@@ -37,10 +37,12 @@ public class AlgoRestApi {
 
     /**
      * Cancel Futures Algo Order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE
-     * Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that
-     * requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
+     * Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. - You need to
+     * enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. -
+     * Base URL: &#x60;https://api.binance.com&#x60;
      *
-     * @param algoId eg. 14511 (required)
+     * @param algoId eg. 14511 (optional)
+     * @param clientAlgoId eg. \&quot;65ce1630101a480b85915d7e11fd5078\&quot; (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CancelAlgoOrderFutureAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -57,8 +59,8 @@ public class AlgoRestApi {
      *     Futures Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderFutureAlgoResponse> cancelAlgoOrderFutureAlgo(
-            Long algoId, Long recvWindow) throws ApiException {
-        return futureAlgoApi.cancelAlgoOrderFutureAlgo(algoId, recvWindow);
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        return futureAlgoApi.cancelAlgoOrderFutureAlgo(algoId, clientAlgoId, recvWindow);
     }
 
     /**
@@ -229,8 +231,10 @@ public class AlgoRestApi {
 
     /**
      * Cancel Spot Algo Order (TRADE) Cancel an open TWAP order Weight(IP): 1 Security Type: TRADE
+     * Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
-     * @param algoId (required)
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CancelAlgoOrderSpotAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -247,8 +251,8 @@ public class AlgoRestApi {
      *     Spot Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderSpotAlgoResponse> cancelAlgoOrderSpotAlgo(
-            Long algoId, Long recvWindow) throws ApiException {
-        return spotAlgoApi.cancelAlgoOrderSpotAlgo(algoId, recvWindow);
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
+        return spotAlgoApi.cancelAlgoOrderSpotAlgo(algoId, clientAlgoId, recvWindow);
     }
 
     /**

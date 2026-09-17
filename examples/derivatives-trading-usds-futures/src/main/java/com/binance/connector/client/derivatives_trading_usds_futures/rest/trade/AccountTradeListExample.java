@@ -34,7 +34,7 @@ public class AccountTradeListExample {
      * days&#39; data will be returned. - The time between &#x60;startTime&#x60; and
      * &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter &#x60;fromId&#x60; cannot
      * be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;. - Only support querying trade in
-     * the past 6 months
+     * the past 3 months
      *
      * @throws ApiException if the Api call fails
      */

@@ -28,10 +28,10 @@ public class QueryTransferListExample {
     }
 
     /**
-     * Query Transfer List (USER_DATA)
+     * Query Transfer List (PREDICTION_TRADE)
      *
      * <p>Get the authenticated user&#39;s prediction wallet transfer history within a date range.
-     * Weight(IP): 200 Security Type: USER_DATA
+     * Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

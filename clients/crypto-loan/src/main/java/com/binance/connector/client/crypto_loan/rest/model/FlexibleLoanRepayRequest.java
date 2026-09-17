@@ -59,19 +59,19 @@ public class FlexibleLoanRepayRequest {
 
     @SerializedName(SERIALIZED_NAME_COLLATERAL_RETURN)
     @jakarta.annotation.Nullable
-    private Boolean collateralReturn = true;
+    private Boolean collateralReturn;
 
     public static final String SERIALIZED_NAME_FULL_REPAYMENT = "fullRepayment";
 
     @SerializedName(SERIALIZED_NAME_FULL_REPAYMENT)
     @jakarta.annotation.Nullable
-    private Boolean fullRepayment = false;
+    private Boolean fullRepayment;
 
     public static final String SERIALIZED_NAME_REPAYMENT_TYPE = "repaymentType";
 
     @SerializedName(SERIALIZED_NAME_REPAYMENT_TYPE)
     @jakarta.annotation.Nullable
-    private RepaymentType repaymentType = RepaymentType.REPAYMENT_TYPE_1;
+    private RepaymentType repaymentType;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

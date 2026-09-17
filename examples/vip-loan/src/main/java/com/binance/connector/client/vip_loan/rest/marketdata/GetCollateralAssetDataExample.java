@@ -28,7 +28,8 @@ public class GetCollateralAssetDataExample {
     /**
      * Get Collateral Asset Data (USER_DATA)
      *
-     * <p>Get Collateral Asset Data Weight(IP): 400 Security Type: USER_DATA
+     * <p>Get Collateral Asset Data Weight(IP): 400 Security Type: USER_DATA Notes: - Rate limit: 1
+     * request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

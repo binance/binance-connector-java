@@ -53,7 +53,7 @@ public class NewCmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide = PositionSide.BOTH;
+    private PositionSide positionSide;
 
     public static final String SERIALIZED_NAME_TYPE = "type";
 
@@ -77,7 +77,7 @@ public class NewCmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
+    private ReduceOnly reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -101,7 +101,7 @@ public class NewCmOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
+    private NewOrderRespType newOrderRespType;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

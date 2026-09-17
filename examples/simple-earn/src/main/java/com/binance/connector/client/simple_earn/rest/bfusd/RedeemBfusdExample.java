@@ -41,7 +41,7 @@ public class RedeemBfusdExample {
     public void redeemBfusdExample() throws ApiException, IOException {
         RedeemBfusdRequest redeemBfusdRequest = new RedeemBfusdRequest();
         redeemBfusdRequest.amount(1.0d);
-        redeemBfusdRequest.type(OrderType.FAST);
+        redeemBfusdRequest.type(OrderType.BONUS);
         ApiResponse<RedeemBfusdResponse> response = getApi().redeemBfusd(redeemBfusdRequest);
         System.out.println(response.getData());
     }

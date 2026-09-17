@@ -117,9 +117,9 @@ public class TransferApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&fromTokenAmount=1000000000000000000&chainId=56&accountType=SPOT&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c&fromToken=USDT&toToken=USDT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&fromTokenAmount=1000000000000000000&accountType=SPOT&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c", signInputCaptor.getValue());
         assertEquals(
-                "dec3a713b953eff76f12bf609d51c8298963a76016957d81ad892ced90a49e8f",
+                "da0f31f44a95213a632855df3796c607b238f1cc075f83eb67252efadcab5ba4",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/w3w/wallet/prediction/transfer/inbound", actualRequest.url().encodedPath());
     }
@@ -155,9 +155,9 @@ public class TransferApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&fromTokenAmount=1000000000000000000&chainId=56&accountType=SPOT&sourceBiz=USER_TRANSFER&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c&fromToken=USDT&toToken=USDT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&fromTokenAmount=1000000000000000000&accountType=SPOT&sourceBiz=USER_TRANSFER&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c", signInputCaptor.getValue());
         assertEquals(
-                "e897706bbf1ea01c544168ff626c38086e34aabecd398ac829267cdb81734778",
+                "2b1bc4ddb381776ff9ac771a1c7aa6a2d59359585fdd16a7ada927efe8bce963",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/w3w/wallet/prediction/transfer/outbound", actualRequest.url().encodedPath());
     }

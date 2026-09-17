@@ -47,7 +47,7 @@ public class SetOnChainYieldsLockedProductRedeemOptionRequest {
 
     @SerializedName(SERIALIZED_NAME_REDEEM_TO)
     @jakarta.annotation.Nonnull
-    private RedeemTo redeemTo = RedeemTo.FLEXIBLE;
+    private RedeemTo redeemTo;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

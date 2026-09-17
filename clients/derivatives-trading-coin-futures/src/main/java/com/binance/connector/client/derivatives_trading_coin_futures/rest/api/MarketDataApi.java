@@ -69,7 +69,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-coin-futures/8.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-coin-futures/9.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -563,8 +563,8 @@ public class MarketDataApi {
     /**
      * Compressed/Aggregate Trades List Get compressed, aggregate trades. Market trades that fill in
      * 100ms with the same price and the same taking side will have the quantity aggregated.
-     * Weight(IP): 20 Notes: - support querying futures trade histories that are not older than 24
-     * hours - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * Weight(IP): 20 Notes: - only trade histories within the past 48 hours (counted from now) can
+     * be queried - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If
      * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
      * recent aggregate trades will be returned. - Only market trades will be aggregated and
@@ -1740,6 +1740,8 @@ public class MarketDataApi {
      *
      * @param pair BTCUSD (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -1757,7 +1759,12 @@ public class MarketDataApi {
      *     Ratio Documentation</a>
      */
     private okhttp3.Call longShortRatioCall(
-            String pair, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -1789,6 +1796,11 @@ public class MarketDataApi {
 
         if (period != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("period", period));
+        }
+
+        if (contractType != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("contractType", contractType));
         }
 
         if (limit != null) {
@@ -1834,7 +1846,12 @@ public class MarketDataApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call longShortRatioValidateBeforeCall(
-            String pair, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         try {
             Validator validator =
@@ -1845,13 +1862,14 @@ public class MarketDataApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {pair, period, limit, startTime, endTime};
+            Object[] parameterValues = {pair, period, contractType, limit, startTime, endTime};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "longShortRatio",
                                     String.class,
                                     Period.class,
+                                    ContractType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -1859,7 +1877,7 @@ public class MarketDataApi {
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return longShortRatioCall(pair, period, limit, startTime, endTime);
+                return longShortRatioCall(pair, period, contractType, limit, startTime, endTime);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -1879,6 +1897,8 @@ public class MarketDataApi {
      *
      * @param pair BTCUSD (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -1899,12 +1919,14 @@ public class MarketDataApi {
     public ApiResponse<LongShortRatioResponse> longShortRatio(
             @NotNull String pair,
             @NotNull Period period,
+            ContractType contractType,
             @Max(500L) Long limit,
             Long startTime,
             Long endTime)
             throws ApiException {
         okhttp3.Call localVarCall =
-                longShortRatioValidateBeforeCall(pair, period, limit, startTime, endTime);
+                longShortRatioValidateBeforeCall(
+                        pair, period, contractType, limit, startTime, endTime);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<LongShortRatioResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2381,8 +2403,9 @@ public class MarketDataApi {
      * Build call for openInterestStatistics
      *
      * @param pair (required)
-     * @param contractType (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -2401,8 +2424,8 @@ public class MarketDataApi {
      */
     private okhttp3.Call openInterestStatisticsCall(
             String pair,
-            ContractType contractType,
             Period period,
+            ContractType contractType,
             Long limit,
             Long startTime,
             Long endTime)
@@ -2488,8 +2511,8 @@ public class MarketDataApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call openInterestStatisticsValidateBeforeCall(
             String pair,
-            ContractType contractType,
             Period period,
+            ContractType contractType,
             Long limit,
             Long startTime,
             Long endTime)
@@ -2503,14 +2526,14 @@ public class MarketDataApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {pair, contractType, period, limit, startTime, endTime};
+            Object[] parameterValues = {pair, period, contractType, limit, startTime, endTime};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "openInterestStatistics",
                                     String.class,
-                                    ContractType.class,
                                     Period.class,
+                                    ContractType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -2519,7 +2542,7 @@ public class MarketDataApi {
 
             if (violations.size() == 0) {
                 return openInterestStatisticsCall(
-                        pair, contractType, period, limit, startTime, endTime);
+                        pair, period, contractType, limit, startTime, endTime);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -2538,8 +2561,9 @@ public class MarketDataApi {
      * is available.
      *
      * @param pair (required)
-     * @param contractType (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -2559,15 +2583,15 @@ public class MarketDataApi {
      */
     public ApiResponse<OpenInterestStatisticsResponse> openInterestStatistics(
             @NotNull String pair,
-            @NotNull ContractType contractType,
             @NotNull Period period,
+            ContractType contractType,
             @Max(500L) Long limit,
             Long startTime,
             Long endTime)
             throws ApiException {
         okhttp3.Call localVarCall =
                 openInterestStatisticsValidateBeforeCall(
-                        pair, contractType, period, limit, startTime, endTime);
+                        pair, period, contractType, limit, startTime, endTime);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<OpenInterestStatisticsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3914,8 +3938,10 @@ public class MarketDataApi {
     /**
      * Build call for topTraderLongShortRatioAccounts
      *
-     * @param symbol Symbol (required)
+     * @param pair Pair (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -3933,7 +3959,12 @@ public class MarketDataApi {
      *     Trader Long/Short Account Ratio Documentation</a>
      */
     private okhttp3.Call topTraderLongShortRatioAccountsCall(
-            String symbol, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -3959,12 +3990,17 @@ public class MarketDataApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (symbol != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        if (pair != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pair", pair));
         }
 
         if (period != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("period", period));
+        }
+
+        if (contractType != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("contractType", contractType));
         }
 
         if (limit != null) {
@@ -4010,7 +4046,12 @@ public class MarketDataApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call topTraderLongShortRatioAccountsValidateBeforeCall(
-            String symbol, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         try {
             Validator validator =
@@ -4021,13 +4062,14 @@ public class MarketDataApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, period, limit, startTime, endTime};
+            Object[] parameterValues = {pair, period, contractType, limit, startTime, endTime};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "topTraderLongShortRatioAccounts",
                                     String.class,
                                     Period.class,
+                                    ContractType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -4036,7 +4078,7 @@ public class MarketDataApi {
 
             if (violations.size() == 0) {
                 return topTraderLongShortRatioAccountsCall(
-                        symbol, period, limit, startTime, endTime);
+                        pair, period, contractType, limit, startTime, endTime);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -4059,8 +4101,10 @@ public class MarketDataApi {
      * Notes: - If startTime and endTime are not sent, the most recent data is returned. - Only the
      * data of the latest 30 days is available.
      *
-     * @param symbol Symbol (required)
+     * @param pair Pair (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -4079,15 +4123,16 @@ public class MarketDataApi {
      *     Trader Long/Short Account Ratio Documentation</a>
      */
     public ApiResponse<TopTraderLongShortRatioAccountsResponse> topTraderLongShortRatioAccounts(
-            @NotNull String symbol,
+            @NotNull String pair,
             @NotNull Period period,
+            ContractType contractType,
             @Max(500L) Long limit,
             Long startTime,
             Long endTime)
             throws ApiException {
         okhttp3.Call localVarCall =
                 topTraderLongShortRatioAccountsValidateBeforeCall(
-                        symbol, period, limit, startTime, endTime);
+                        pair, period, contractType, limit, startTime, endTime);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<TopTraderLongShortRatioAccountsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4098,6 +4143,8 @@ public class MarketDataApi {
      *
      * @param pair (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -4115,7 +4162,12 @@ public class MarketDataApi {
      *     Trader Long/Short Position Ratio Documentation</a>
      */
     private okhttp3.Call topTraderLongShortRatioPositionsCall(
-            String pair, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -4147,6 +4199,11 @@ public class MarketDataApi {
 
         if (period != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("period", period));
+        }
+
+        if (contractType != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("contractType", contractType));
         }
 
         if (limit != null) {
@@ -4192,7 +4249,12 @@ public class MarketDataApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call topTraderLongShortRatioPositionsValidateBeforeCall(
-            String pair, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         try {
             Validator validator =
@@ -4203,13 +4265,14 @@ public class MarketDataApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {pair, period, limit, startTime, endTime};
+            Object[] parameterValues = {pair, period, contractType, limit, startTime, endTime};
             Method method =
                     this.getClass()
                             .getMethod(
                                     "topTraderLongShortRatioPositions",
                                     String.class,
                                     Period.class,
+                                    ContractType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -4218,7 +4281,7 @@ public class MarketDataApi {
 
             if (violations.size() == 0) {
                 return topTraderLongShortRatioPositionsCall(
-                        pair, period, limit, startTime, endTime);
+                        pair, period, contractType, limit, startTime, endTime);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -4242,6 +4305,8 @@ public class MarketDataApi {
      *
      * @param pair (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -4262,13 +4327,14 @@ public class MarketDataApi {
     public ApiResponse<TopTraderLongShortRatioPositionsResponse> topTraderLongShortRatioPositions(
             @NotNull String pair,
             @NotNull Period period,
+            ContractType contractType,
             @Max(500L) Long limit,
             Long startTime,
             Long endTime)
             throws ApiException {
         okhttp3.Call localVarCall =
                 topTraderLongShortRatioPositionsValidateBeforeCall(
-                        pair, period, limit, startTime, endTime);
+                        pair, period, contractType, limit, startTime, endTime);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<TopTraderLongShortRatioPositionsResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

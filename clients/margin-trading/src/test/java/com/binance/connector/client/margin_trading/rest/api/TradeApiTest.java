@@ -174,9 +174,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000apiName=apiName&permissionMode=TRADE", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000apiName=apiName", signInputCaptor.getValue());
         assertEquals(
-                "22ad46fa1d14a2448abca205b7b6e6fb378ba7cd23940c41ecb8830c63c877c6", actualRequest.url().queryParameter("signature"));
+                "38ef950d5eae5c786df6f2d7c3a9dd746bbd51e7eb605007f836a9b5df643921", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/apiKey", actualRequest.url().encodedPath());
     }
 
@@ -591,9 +591,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=LTCBTC&side=BUY&stopPrice=1&quantity=1&price=1&autoRepayAtCancel=true&isIsolated=FALSE", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=LTCBTC&side=BUY&stopPrice=1&quantity=1&price=1", signInputCaptor.getValue());
         assertEquals(
-                "5778123f3f43ebc1f9647ee561ecd4e1784f03979a36a0f140304d70c387e04e", actualRequest.url().queryParameter("signature"));
+                "585cf02730acd5c71009e8c1db961f631621eb47648edd087f9ed1ffdecfa9ab", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order/oco", actualRequest.url().encodedPath());
     }
 
@@ -628,9 +628,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&autoRepayAtCancel=true&isIsolated=FALSE&type=ROLL_IN", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&type=ROLL_IN", signInputCaptor.getValue());
         assertEquals(
-                "9fea4d490515e66415334514c3d1e8b1d2aad4df84452386fac145306aa31be9",
+                "80c74b1160bd6a691d9de3bc80f79091bf5d0230ef243193674321644f75b921",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order", actualRequest.url().encodedPath());
     }
@@ -696,9 +696,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&workingIcebergQty=1&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&autoRepayAtCancel=true&isIsolated=FALSE&pendingType=LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&workingIcebergQty=1&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingType=LIMIT&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
         assertEquals(
-                "379233b57f601659c1aeae73fea08e66e2062d7efa58701f82b939a359559d2e", actualRequest.url().queryParameter("signature"));
+                "c7d4d784ab5934662cde04d9f589a94cdbad11a2c720f24002541207f63d7d94", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order/oto", actualRequest.url().encodedPath());
     }
 
@@ -766,9 +766,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingAboveType=LIMIT_MAKER&autoRepayAtCancel=true&isIsolated=FALSE&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&workingQuantity=1&pendingSide=BUY&pendingQuantity=1&pendingAboveType=LIMIT_MAKER&workingSide=BUY&workingPrice=1&workingType=LIMIT", signInputCaptor.getValue());
         assertEquals(
-                "4a4535c84c91075ac62ed418061bd9b56bcdebfc2197cb5caa30b33d7d3ded4d",
+                "981af81a92c12cd62eebf7c169eb536ac192f7bc7dcca013d8c5397f801e7cd3",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order/otoco", actualRequest.url().encodedPath());
     }

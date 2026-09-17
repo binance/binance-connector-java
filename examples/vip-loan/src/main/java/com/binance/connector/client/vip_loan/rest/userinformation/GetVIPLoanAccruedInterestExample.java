@@ -30,7 +30,8 @@ public class GetVIPLoanAccruedInterestExample {
      *
      * <p>Check VIP Loan interest record Weight(IP): 400 Security Type: USER_DATA Notes: - If
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is returned. -
-     * The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days.
+     * The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days. - Rate
+     * limit: 1 request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

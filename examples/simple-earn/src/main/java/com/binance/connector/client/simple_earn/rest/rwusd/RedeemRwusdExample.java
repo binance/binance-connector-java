@@ -41,7 +41,7 @@ public class RedeemRwusdExample {
     public void redeemRwusdExample() throws ApiException, IOException {
         RedeemRwusdRequest redeemRwusdRequest = new RedeemRwusdRequest();
         redeemRwusdRequest.amount(1.0d);
-        redeemRwusdRequest.type(OrderType.FAST);
+        redeemRwusdRequest.type(OrderType.BONUS);
         ApiResponse<RedeemRwusdResponse> response = getApi().redeemRwusd(redeemRwusdRequest);
         System.out.println(response.getData());
     }

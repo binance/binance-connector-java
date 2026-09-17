@@ -51,7 +51,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/4.0.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/4.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -232,7 +232,8 @@ public class TradeApi {
      * Type: TRADE Notes: - &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only
      * master account applications are supported. - &#x60;loanAccountId&#x60; and
      * &#x60;collateralAccountId&#x60; must be under the same master account. - &#x60;loanTerm&#x60;
-     * is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
+     * is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;). -
+     * Rate limit: 1 request per 2 seconds per account.
      *
      * @param vipLoanBorrowRequest (required)
      * @return ApiResponse&lt;VipLoanBorrowResponse&gt;
@@ -549,7 +550,7 @@ public class TradeApi {
 
     /**
      * VIP Loan Renew (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
-     * Type: TRADE
+     * Type: TRADE Notes: - Rate limit: 1 request per second per account.
      *
      * @param vipLoanRenewRequest (required)
      * @return ApiResponse&lt;VipLoanRenewResponse&gt;

@@ -65,19 +65,19 @@ public class CreateInboundTransferRequest {
 
     @SerializedName(SERIALIZED_NAME_FROM_TOKEN)
     @jakarta.annotation.Nullable
-    private String fromToken = "USDT";
+    private String fromToken;
 
     public static final String SERIALIZED_NAME_TO_TOKEN = "toToken";
 
     @SerializedName(SERIALIZED_NAME_TO_TOKEN)
     @jakarta.annotation.Nullable
-    private String toToken = "USDT";
+    private String toToken;
 
     public static final String SERIALIZED_NAME_CHAIN_ID = "chainId";
 
     @SerializedName(SERIALIZED_NAME_CHAIN_ID)
     @jakarta.annotation.Nullable
-    private String chainId = "56";
+    private String chainId;
 
     public CreateInboundTransferRequest() {}
 

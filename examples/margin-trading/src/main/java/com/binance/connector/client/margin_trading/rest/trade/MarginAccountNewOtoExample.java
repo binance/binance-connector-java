@@ -50,12 +50,10 @@ public class MarginAccountNewOtoExample {
      * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
      * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
      * under high frequent new order/cancel order execution - Depending on the
-     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;, some optional - parameters will become
-     * mandatory: | Type | Additional mandatory parameters | Additional information | |
-     * -------------------------------------------------------- |
-     * ------------------------------------------------------------ | ---------------------- | |
-     * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
-     * &#x60;pendingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;pendingPrice&#x60;,
+     * &#x60;pendingType&#x60; or &#x60;workingType&#x60;, some optional parameters will become
+     * mandatory: | Type | Additional mandatory parameters | Additional information | | --- | --- |
+     * --- | | &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | |
+     * | &#x60;pendingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;pendingPrice&#x60;,
      * &#x60;pendingTimeInForce&#x60; | | | &#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS&#x60; or
      * &#x60;TAKE_PROFIT&#x60; | &#x60;pendingStopPrice&#x60; and/or
      * &#x60;pendingTrailingDelta&#x60; | | | &#x60;pendingType&#x60; &#x3D;

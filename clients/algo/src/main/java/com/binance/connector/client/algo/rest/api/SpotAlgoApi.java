@@ -50,7 +50,7 @@ public class SpotAlgoApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-algo/2.0.0 (Java/%s; %s; %s)",
+                    "binance-algo/2.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -90,7 +90,8 @@ public class SpotAlgoApi {
     /**
      * Build call for cancelAlgoOrderSpotAlgo
      *
-     * @param algoId (required)
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -105,8 +106,8 @@ public class SpotAlgoApi {
      *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#cancel-algo-order-spot-algo">Cancel
      *     Spot Algo Order (TRADE) Documentation</a>
      */
-    private okhttp3.Call cancelAlgoOrderSpotAlgoCall(Long algoId, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call cancelAlgoOrderSpotAlgoCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -133,6 +134,11 @@ public class SpotAlgoApi {
 
         if (algoId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (clientAlgoId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("clientAlgoId", clientAlgoId));
         }
 
         if (recvWindow != null) {
@@ -170,8 +176,8 @@ public class SpotAlgoApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call cancelAlgoOrderSpotAlgoValidateBeforeCall(Long algoId, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call cancelAlgoOrderSpotAlgoValidateBeforeCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -181,14 +187,19 @@ public class SpotAlgoApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {algoId, recvWindow};
+            Object[] parameterValues = {algoId, clientAlgoId, recvWindow};
             Method method =
-                    this.getClass().getMethod("cancelAlgoOrderSpotAlgo", Long.class, Long.class);
+                    this.getClass()
+                            .getMethod(
+                                    "cancelAlgoOrderSpotAlgo",
+                                    Long.class,
+                                    String.class,
+                                    Long.class);
             Set<ConstraintViolation<SpotAlgoApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return cancelAlgoOrderSpotAlgoCall(algoId, recvWindow);
+                return cancelAlgoOrderSpotAlgoCall(algoId, clientAlgoId, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -203,8 +214,10 @@ public class SpotAlgoApi {
 
     /**
      * Cancel Spot Algo Order (TRADE) Cancel an open TWAP order Weight(IP): 1 Security Type: TRADE
+     * Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
      *
-     * @param algoId (required)
+     * @param algoId (optional)
+     * @param clientAlgoId (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CancelAlgoOrderSpotAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -221,8 +234,9 @@ public class SpotAlgoApi {
      *     Spot Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderSpotAlgoResponse> cancelAlgoOrderSpotAlgo(
-            @NotNull Long algoId, @Max(60000L) Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall = cancelAlgoOrderSpotAlgoValidateBeforeCall(algoId, recvWindow);
+            Long algoId, String clientAlgoId, @Max(60000L) Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                cancelAlgoOrderSpotAlgoValidateBeforeCall(algoId, clientAlgoId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CancelAlgoOrderSpotAlgoResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

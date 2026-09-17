@@ -41,7 +41,7 @@ public class PortfolioMarginProBankruptcyLoanRepayRequest {
 
     @SerializedName(SERIALIZED_NAME_FROM)
     @jakarta.annotation.Nullable
-    private From from = From.SPOT;
+    private From from;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

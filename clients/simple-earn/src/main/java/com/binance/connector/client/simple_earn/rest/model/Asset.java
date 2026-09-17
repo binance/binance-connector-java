@@ -24,9 +24,9 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets asset */
 @JsonAdapter(Asset.Adapter.class)
 public enum Asset {
-    USDT("USDT"),
+    USDC("USDC"),
 
-    USDC("USDC");
+    USDT("USDT");
 
     private String value;
 

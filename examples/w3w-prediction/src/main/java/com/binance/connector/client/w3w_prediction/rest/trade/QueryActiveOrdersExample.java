@@ -28,10 +28,10 @@ public class QueryActiveOrdersExample {
     }
 
     /**
-     * Query Active Orders (USER_DATA)
+     * Query Active Orders (PREDICTION_TRADE)
      *
      * <p>Get active (open) prediction orders for the authenticated user. Weight(IP): 200 Security
-     * Type: USER_DATA
+     * Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

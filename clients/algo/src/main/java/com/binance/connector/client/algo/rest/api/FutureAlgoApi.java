@@ -52,7 +52,7 @@ public class FutureAlgoApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-algo/2.0.0 (Java/%s; %s; %s)",
+                    "binance-algo/2.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -92,7 +92,8 @@ public class FutureAlgoApi {
     /**
      * Build call for cancelAlgoOrderFutureAlgo
      *
-     * @param algoId eg. 14511 (required)
+     * @param algoId eg. 14511 (optional)
+     * @param clientAlgoId eg. \&quot;65ce1630101a480b85915d7e11fd5078\&quot; (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -107,8 +108,8 @@ public class FutureAlgoApi {
      *     href="https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#cancel-algo-order-future-algo">Cancel
      *     Futures Algo Order (TRADE) Documentation</a>
      */
-    private okhttp3.Call cancelAlgoOrderFutureAlgoCall(Long algoId, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call cancelAlgoOrderFutureAlgoCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -135,6 +136,11 @@ public class FutureAlgoApi {
 
         if (algoId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("algoId", algoId));
+        }
+
+        if (clientAlgoId != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("clientAlgoId", clientAlgoId));
         }
 
         if (recvWindow != null) {
@@ -172,8 +178,8 @@ public class FutureAlgoApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call cancelAlgoOrderFutureAlgoValidateBeforeCall(Long algoId, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call cancelAlgoOrderFutureAlgoValidateBeforeCall(
+            Long algoId, String clientAlgoId, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -183,14 +189,19 @@ public class FutureAlgoApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {algoId, recvWindow};
+            Object[] parameterValues = {algoId, clientAlgoId, recvWindow};
             Method method =
-                    this.getClass().getMethod("cancelAlgoOrderFutureAlgo", Long.class, Long.class);
+                    this.getClass()
+                            .getMethod(
+                                    "cancelAlgoOrderFutureAlgo",
+                                    Long.class,
+                                    String.class,
+                                    Long.class);
             Set<ConstraintViolation<FutureAlgoApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return cancelAlgoOrderFutureAlgoCall(algoId, recvWindow);
+                return cancelAlgoOrderFutureAlgoCall(algoId, clientAlgoId, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -205,10 +216,12 @@ public class FutureAlgoApi {
 
     /**
      * Cancel Futures Algo Order (TRADE) Cancel an active order. Weight(IP): 1 Security Type: TRADE
-     * Notes: - You need to enable &#x60;Futures Trading Permission&#x60; for the API key that
-     * requests this endpoint. - Base URL: &#x60;https://api.binance.com&#x60;
+     * Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent. - You need to
+     * enable &#x60;Futures Trading Permission&#x60; for the API key that requests this endpoint. -
+     * Base URL: &#x60;https://api.binance.com&#x60;
      *
-     * @param algoId eg. 14511 (required)
+     * @param algoId eg. 14511 (optional)
+     * @param clientAlgoId eg. \&quot;65ce1630101a480b85915d7e11fd5078\&quot; (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;CancelAlgoOrderFutureAlgoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -225,8 +238,9 @@ public class FutureAlgoApi {
      *     Futures Algo Order (TRADE) Documentation</a>
      */
     public ApiResponse<CancelAlgoOrderFutureAlgoResponse> cancelAlgoOrderFutureAlgo(
-            @NotNull Long algoId, @Max(60000L) Long recvWindow) throws ApiException {
-        okhttp3.Call localVarCall = cancelAlgoOrderFutureAlgoValidateBeforeCall(algoId, recvWindow);
+            Long algoId, String clientAlgoId, @Max(60000L) Long recvWindow) throws ApiException {
+        okhttp3.Call localVarCall =
+                cancelAlgoOrderFutureAlgoValidateBeforeCall(algoId, clientAlgoId, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CancelAlgoOrderFutureAlgoResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

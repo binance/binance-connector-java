@@ -62,7 +62,7 @@ public class TravelRuleApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/6.1.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.2.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -262,7 +262,28 @@ public class TravelRuleApi {
      * different for each local entity, please refer to the &#x60;Withdraw Questionnaire
      * Contents&#x60; page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
      * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
-     * questionnaire and use URL-encoded format.
+     * questionnaire and use URL-encoded format. **StandardPii** **For Natural Person** -
+     * &#x60;piiType&#x60; (INTEGER, Mandatory): Fix to 0: Natural Person - &#x60;latinNames&#x60;
+     * (List&amp;lt;PiiName&amp;gt;, Mandatory): In case a person have complicated names or multiple
+     * names, this parameter is a list - &#x60;localNames&#x60; (List&amp;lt;PiiName&amp;gt;,
+     * Optional): In case a person have complicated names or multiple names, this parameter is a
+     * list - &#x60;nationality&#x60; (STRING, Optional) - &#x60;residenceCountry&#x60; (STRING,
+     * Mandatory) - &#x60;nationalIdentifier&#x60; (STRING, Optional) -
+     * &#x60;nationalIdentifierType&#x60; (STRING, Optional) -
+     * &#x60;nationalIdentifierIssueCountry&#x60; (STRING, Optional) - &#x60;dateOfBirth&#x60;
+     * (STRING, Optional): yyyy-mm-dd. Not required but strongly recommended. Providing DOB could
+     * greatly reduce false positive rate during risk checking process. - &#x60;placeOfBirth&#x60;
+     * (STRING, Optional) - &#x60;address&#x60; (STRING, Optional) **For Legal Person** -
+     * &#x60;piiType&#x60; (INTEGER, Mandatory): Fix to 1: Legal Person - &#x60;latinName&#x60;
+     * (STRING, Mandatory): It&#39;s company name for Legal Person - &#x60;localName&#x60; (STRING,
+     * Optional) - &#x60;registrationCountry&#x60; (STRING, Mandatory) -
+     * &#x60;nationalIdentifier&#x60; (STRING, Optional) - &#x60;nationalIdentifierType&#x60;
+     * (STRING, Optional) - &#x60;nationalIdentifierIssueCountry&#x60; (STRING, Optional) -
+     * &#x60;registrationDate&#x60; (STRING, Optional): yyyy-mm-dd. Not required but strongly
+     * recommended. - &#x60;address&#x60; (STRING, Optional) - &#x60;walletAddress&#x60; (STRING,
+     * Optional) - &#x60;walletTag&#x60; (STRING, Optional) **PiiName** - &#x60;firstName&#x60;
+     * (STRING, Mandatory): Mandatory for Natural person - &#x60;middleName&#x60; (STRING, Optional)
+     * - &#x60;lastName&#x60; (STRING, Optional)
      *
      * @param brokerWithdrawRequest (required)
      * @return ApiResponse&lt;BrokerWithdrawResponse&gt;
@@ -1549,7 +1570,28 @@ public class TravelRuleApi {
      * Questionnaire is different for each local entity, please refer to &#x60;Deposit Questionnaire
      * Content&#x60; page. - If getting error like &#x60;Questionnaire format not valid.&#x60; or
      * &#x60;Questionnaire must not be blank&#x60;, please try to verify the format of the
-     * questionnaire and use URL-encoded format.
+     * questionnaire and use URL-encoded format. **StandardPii** **For Natural Person** -
+     * &#x60;piiType&#x60; (INTEGER, Mandatory): Fix to 0: Natural Person - &#x60;latinNames&#x60;
+     * (List&amp;lt;PiiName&amp;gt;, Mandatory): In case a person have complicated names or multiple
+     * names, this parameter is a list - &#x60;localNames&#x60; (List&amp;lt;PiiName&amp;gt;,
+     * Optional): In case a person have complicated names or multiple names, this parameter is a
+     * list - &#x60;nationality&#x60; (STRING, Optional) - &#x60;residenceCountry&#x60; (STRING,
+     * Mandatory) - &#x60;nationalIdentifier&#x60; (STRING, Optional) -
+     * &#x60;nationalIdentifierType&#x60; (STRING, Optional) -
+     * &#x60;nationalIdentifierIssueCountry&#x60; (STRING, Optional) - &#x60;dateOfBirth&#x60;
+     * (STRING, Optional): yyyy-mm-dd. Not required but strongly recommended. Providing DOB could
+     * greatly reduce false positive rate during risk checking process. - &#x60;placeOfBirth&#x60;
+     * (STRING, Optional) - &#x60;address&#x60; (STRING, Optional) **For Legal Person** -
+     * &#x60;piiType&#x60; (INTEGER, Mandatory): Fix to 1: Legal Person - &#x60;latinName&#x60;
+     * (STRING, Mandatory): It&#39;s company name for Legal Person - &#x60;localName&#x60; (STRING,
+     * Optional) - &#x60;registrationCountry&#x60; (STRING, Mandatory) -
+     * &#x60;nationalIdentifier&#x60; (STRING, Optional) - &#x60;nationalIdentifierType&#x60;
+     * (STRING, Optional) - &#x60;nationalIdentifierIssueCountry&#x60; (STRING, Optional) -
+     * &#x60;registrationDate&#x60; (STRING, Optional): yyyy-mm-dd. Not required but strongly
+     * recommended. - &#x60;address&#x60; (STRING, Optional) - &#x60;walletAddress&#x60; (STRING,
+     * Optional) - &#x60;walletTag&#x60; (STRING, Optional) **PiiName** - &#x60;firstName&#x60;
+     * (STRING, Mandatory): Mandatory for Natural person - &#x60;middleName&#x60; (STRING, Optional)
+     * - &#x60;lastName&#x60; (STRING, Optional)
      *
      * @param submitDepositQuestionnaireRequest (required)
      * @return ApiResponse&lt;SubmitDepositQuestionnaireResponse&gt;

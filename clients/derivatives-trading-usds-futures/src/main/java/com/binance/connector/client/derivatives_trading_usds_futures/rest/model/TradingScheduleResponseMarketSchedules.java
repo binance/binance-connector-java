@@ -61,6 +61,12 @@ public class TradingScheduleResponseMarketSchedules {
     @jakarta.annotation.Nullable
     private TradingScheduleResponseMarketSchedulesHKEQUITY HK_EQUITY;
 
+    public static final String SERIALIZED_NAME_C_N_E_Q_U_I_T_Y = "CN_EQUITY";
+
+    @SerializedName(SERIALIZED_NAME_C_N_E_Q_U_I_T_Y)
+    @jakarta.annotation.Nullable
+    private TradingScheduleResponseMarketSchedulesHKEQUITY CN_EQUITY;
+
     public TradingScheduleResponseMarketSchedules() {}
 
     public TradingScheduleResponseMarketSchedules EQUITY(
@@ -153,6 +159,28 @@ public class TradingScheduleResponseMarketSchedules {
         this.HK_EQUITY = HK_EQUITY;
     }
 
+    public TradingScheduleResponseMarketSchedules CN_EQUITY(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesHKEQUITY CN_EQUITY) {
+        this.CN_EQUITY = CN_EQUITY;
+        return this;
+    }
+
+    /**
+     * Get CN_EQUITY
+     *
+     * @return CN_EQUITY
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TradingScheduleResponseMarketSchedulesHKEQUITY getCNEQUITY() {
+        return CN_EQUITY;
+    }
+
+    public void setCNEQUITY(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesHKEQUITY CN_EQUITY) {
+        this.CN_EQUITY = CN_EQUITY;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,12 +194,13 @@ public class TradingScheduleResponseMarketSchedules {
         return Objects.equals(this.EQUITY, tradingScheduleResponseMarketSchedules.EQUITY)
                 && Objects.equals(this.COMMODITY, tradingScheduleResponseMarketSchedules.COMMODITY)
                 && Objects.equals(this.KR_EQUITY, tradingScheduleResponseMarketSchedules.KR_EQUITY)
-                && Objects.equals(this.HK_EQUITY, tradingScheduleResponseMarketSchedules.HK_EQUITY);
+                && Objects.equals(this.HK_EQUITY, tradingScheduleResponseMarketSchedules.HK_EQUITY)
+                && Objects.equals(this.CN_EQUITY, tradingScheduleResponseMarketSchedules.CN_EQUITY);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(EQUITY, COMMODITY, KR_EQUITY, HK_EQUITY);
+        return Objects.hash(EQUITY, COMMODITY, KR_EQUITY, HK_EQUITY, CN_EQUITY);
     }
 
     @Override
@@ -182,6 +211,7 @@ public class TradingScheduleResponseMarketSchedules {
         sb.append("		COMMODITY: ").append(toIndentedString(COMMODITY)).append("\n");
         sb.append("		KR_EQUITY: ").append(toIndentedString(KR_EQUITY)).append("\n");
         sb.append("		HK_EQUITY: ").append(toIndentedString(HK_EQUITY)).append("\n");
+        sb.append("		CN_EQUITY: ").append(toIndentedString(CN_EQUITY)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -205,6 +235,10 @@ public class TradingScheduleResponseMarketSchedules {
         String HK_EQUITYValueAsString = "";
         HK_EQUITYValueAsString = HK_EQUITYValue.toString();
         sb.append("HK_EQUITY=").append(urlEncode(HK_EQUITYValueAsString)).append("");
+        Object CN_EQUITYValue = getCNEQUITY();
+        String CN_EQUITYValueAsString = "";
+        CN_EQUITYValueAsString = CN_EQUITYValue.toString();
+        sb.append("CN_EQUITY=").append(urlEncode(CN_EQUITYValueAsString)).append("");
         return sb.toString();
     }
 
@@ -237,6 +271,7 @@ public class TradingScheduleResponseMarketSchedules {
         openapiFields.add("COMMODITY");
         openapiFields.add("KR_EQUITY");
         openapiFields.add("HK_EQUITY");
+        openapiFields.add("CN_EQUITY");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -280,6 +315,11 @@ public class TradingScheduleResponseMarketSchedules {
         if (jsonObj.get("HK_EQUITY") != null && !jsonObj.get("HK_EQUITY").isJsonNull()) {
             TradingScheduleResponseMarketSchedulesHKEQUITY.validateJsonElement(
                     jsonObj.get("HK_EQUITY"));
+        }
+        // validate the optional field `CN_EQUITY`
+        if (jsonObj.get("CN_EQUITY") != null && !jsonObj.get("CN_EQUITY").isJsonNull()) {
+            TradingScheduleResponseMarketSchedulesHKEQUITY.validateJsonElement(
+                    jsonObj.get("CN_EQUITY"));
         }
     }
 

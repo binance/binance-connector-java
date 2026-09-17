@@ -38,7 +38,7 @@ public class BasisExample {
      */
     public void basisExample() throws ApiException, IOException {
         String pair = "";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Period period = Period.PERIOD_5m;
         Long limit = 30L;
         Long startTime = 1623319461670L;

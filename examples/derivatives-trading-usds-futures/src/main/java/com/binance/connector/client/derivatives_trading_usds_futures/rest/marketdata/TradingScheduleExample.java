@@ -31,12 +31,13 @@ public class TradingScheduleExample {
      *
      * <p>Trading session schedules for the underlying assets of TradFi Perps are provided for a
      * one-week period forward and one-week period backward starting from the day prior to the query
-     * time, covering the U.S. equity market, Korean equity market, Hong Kong equity market, and the
-     * commodity market. Session types per market: - U.S. equity market: \&quot;PRE_MARKET\&quot;,
-     * \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;,
-     * \&quot;NO_TRADING\&quot;. - Commodity market: \&quot;REGULAR\&quot;,
+     * time, covering the U.S. equity market, Korean equity market, Hong Kong equity market, China
+     * equity market, and the commodity market. Session types per market: - U.S. equity market:
+     * \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;, \&quot;AFTER_MARKET\&quot;,
+     * \&quot;OVERNIGHT\&quot;, \&quot;NO_TRADING\&quot;. - Commodity market: \&quot;REGULAR\&quot;,
      * \&quot;NO_TRADING\&quot;. - Korean equity market: \&quot;REGULAR\&quot;,
      * \&quot;NO_TRADING\&quot;. - Hong Kong equity market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. - China equity market: \&quot;REGULAR\&quot;,
      * \&quot;NO_TRADING\&quot;. Weight(IP): 5
      *
      * @throws ApiException if the Api call fails

@@ -47,7 +47,7 @@ public class MarginAccountNewOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
     @jakarta.annotation.Nullable
-    private IsIsolated isIsolated = IsIsolated.FALSE;
+    private IsIsolated isIsolated;
 
     public static final String SERIALIZED_NAME_LIST_CLIENT_ORDER_ID = "listClientOrderId";
 
@@ -138,7 +138,7 @@ public class MarginAccountNewOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL)
     @jakarta.annotation.Nullable
-    private Boolean autoRepayAtCancel = true;
+    private Boolean autoRepayAtCancel;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

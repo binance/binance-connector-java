@@ -884,7 +884,7 @@ No authorization required
 
 <a id="queryUserWalletBalance"></a>
 # **queryUserWalletBalance**
-> QueryUserWalletBalanceResponse queryUserWalletBalance(quoteAsset, recvWindow)
+> QueryUserWalletBalanceResponse queryUserWalletBalance(quoteAsset, needBalanceDetail, recvWindow)
 
 Query User Wallet Balance (USER_DATA)
 
@@ -906,9 +906,10 @@ public class Example {
 
     AssetApi apiInstance = new AssetApi(defaultClient);
     String quoteAsset = "BTC"; // String | 
+    Boolean needBalanceDetail = false; // Boolean | Whether to return the per-asset balance detail for each wallet. When `false` or omitted, the response is unchanged from current behavior.
     Long recvWindow = 5000L; // Long | 
     try {
-      QueryUserWalletBalanceResponse result = apiInstance.queryUserWalletBalance(quoteAsset, recvWindow);
+      QueryUserWalletBalanceResponse result = apiInstance.queryUserWalletBalance(quoteAsset, needBalanceDetail, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetApi#queryUserWalletBalance");
@@ -926,6 +927,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **quoteAsset** | **String**|  | [optional] |
+| **needBalanceDetail** | **Boolean**| Whether to return the per-asset balance detail for each wallet. When &#x60;false&#x60; or omitted, the response is unchanged from current behavior. | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

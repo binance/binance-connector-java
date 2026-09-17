@@ -40,7 +40,7 @@ public class SubscribeRwusdExample {
      */
     public void subscribeRwusdExample() throws ApiException, IOException {
         SubscribeRwusdRequest subscribeRwusdRequest = new SubscribeRwusdRequest();
-        subscribeRwusdRequest.asset(Asset.USDT);
+        subscribeRwusdRequest.asset(Asset.USDC);
         subscribeRwusdRequest.amount(1.0d);
         ApiResponse<SubscribeRwusdResponse> response =
                 getApi().subscribeRwusd(subscribeRwusdRequest);

@@ -56,7 +56,7 @@ public class Example {
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String pair = "pair_example"; // String | Pair.
-    ContractType contractType = ContractType.fromValue("ALL"); // ContractType | Contract type.
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | Contract type.
     Period period = Period.fromValue("5m"); // Period | Period interval.
     Long limit = 30L; // Long | Maximum number of records to return.
     Long startTime = 1623319461670L; // Long | 
@@ -80,7 +80,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pair** | **String**| Pair. | |
-| **contractType** | [**ContractType**](.md)| Contract type. | [enum: ALL, PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
+| **contractType** | [**ContractType**](.md)| Contract type. | [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **period** | [**Period**](.md)| Period interval. | [enum: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d] |
 | **limit** | **Long**| Maximum number of records to return. | [optional] |
 | **startTime** | **Long**|  | [optional] |
@@ -168,7 +168,7 @@ No authorization required
 
 Compressed/Aggregate Trades List
 
-Get compressed, aggregate trades. Market trades that fill in 100ms with the same price and the same taking side will have the quantity aggregated.  Weight(IP): 20  Notes: - support querying futures trade histories that are not older than 24 hours - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades will be returned. - Only market trades will be aggregated and returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. - Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
+Get compressed, aggregate trades. Market trades that fill in 100ms with the same price and the same taking side will have the quantity aggregated.  Weight(IP): 20  Notes: - only trade histories within the past 48 hours (counted from now) can be queried - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades will be returned. - Only market trades will be aggregated and returned, which means the insurance fund trades and ADL trades won&#39;t be aggregated. - Sending both &#x60;startTime&#x60;/&#x60;endTime&#x60; and &#x60;fromId&#x60; might cause response timeout, please send either &#x60;fromId&#x60; or &#x60;startTime&#x60;/&#x60;endTime&#x60;
 
 ### Example
 ```java
@@ -256,7 +256,7 @@ public class Example {
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String pair = "BTCUSD"; // String | After CM migration, accepts both CM and UM pair values.
-    ContractType contractType = ContractType.fromValue("ALL"); // ContractType | 
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | 
     Interval interval = Interval.fromValue("1m"); // Interval | Interval
     Long startTime = 1623319461670L; // Long | Start time
     Long endTime = 1641782889000L; // Long | End time
@@ -280,7 +280,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pair** | **String**| After CM migration, accepts both CM and UM pair values. | |
-| **contractType** | [**ContractType**](.md)|  | [enum: ALL, PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
+| **contractType** | [**ContractType**](.md)|  | [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **interval** | [**Interval**](.md)| Interval | [enum: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M] |
 | **startTime** | **Long**| Start time | [optional] |
 | **endTime** | **Long**| End time | [optional] |
@@ -694,7 +694,7 @@ No authorization required
 
 <a id="longShortRatio"></a>
 # **longShortRatio**
-> LongShortRatioResponse longShortRatio(pair, period, limit, startTime, endTime)
+> LongShortRatioResponse longShortRatio(pair, period, contractType, limit, startTime, endTime)
 
 Long/Short Ratio
 
@@ -717,11 +717,12 @@ public class Example {
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String pair = "pair_example"; // String | BTCUSD
     Period period = Period.fromValue("5m"); // Period | 
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | Contract type filter. If omitted, returns aggregated data across all contract types.
     Long limit = 30L; // Long | Maximum number of records to return.
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     try {
-      LongShortRatioResponse result = apiInstance.longShortRatio(pair, period, limit, startTime, endTime);
+      LongShortRatioResponse result = apiInstance.longShortRatio(pair, period, contractType, limit, startTime, endTime);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MarketDataApi#longShortRatio");
@@ -740,6 +741,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pair** | **String**| BTCUSD | |
 | **period** | [**Period**](.md)|  | [enum: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d] |
+| **contractType** | [**ContractType**](.md)| Contract type filter. If omitted, returns aggregated data across all contract types. | [optional] [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **limit** | **Long**| Maximum number of records to return. | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
@@ -962,7 +964,7 @@ No authorization required
 
 <a id="openInterestStatistics"></a>
 # **openInterestStatistics**
-> OpenInterestStatisticsResponse openInterestStatistics(pair, contractType, period, limit, startTime, endTime)
+> OpenInterestStatisticsResponse openInterestStatistics(pair, period, contractType, limit, startTime, endTime)
 
 Open Interest Statistics
 
@@ -984,13 +986,13 @@ public class Example {
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String pair = "BTCUSD"; // String | 
-    ContractType contractType = ContractType.fromValue("ALL"); // ContractType | 
     Period period = Period.fromValue("5m"); // Period | 
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | Contract type filter. If omitted, returns aggregated data across all contract types.
     Long limit = 30L; // Long | Maximum number of records to return.
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     try {
-      OpenInterestStatisticsResponse result = apiInstance.openInterestStatistics(pair, contractType, period, limit, startTime, endTime);
+      OpenInterestStatisticsResponse result = apiInstance.openInterestStatistics(pair, period, contractType, limit, startTime, endTime);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MarketDataApi#openInterestStatistics");
@@ -1008,8 +1010,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pair** | **String**|  | |
-| **contractType** | [**ContractType**](.md)|  | [enum: ALL, PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **period** | [**Period**](.md)|  | [enum: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d] |
+| **contractType** | [**ContractType**](.md)| Contract type filter. If omitted, returns aggregated data across all contract types. | [optional] [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **limit** | **Long**| Maximum number of records to return. | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
@@ -1444,7 +1446,7 @@ public class Example {
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String pair = "BTCUSD"; // String | 
-    ContractType contractType = ContractType.fromValue("ALL"); // ContractType | 
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | 
     Period period = Period.fromValue("5m"); // Period | 
     Long limit = 30L; // Long | Maximum number of records to return.
     Long startTime = 1623319461670L; // Long | 
@@ -1468,7 +1470,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pair** | **String**|  | |
-| **contractType** | [**ContractType**](.md)|  | [enum: ALL, PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
+| **contractType** | [**ContractType**](.md)|  | [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **period** | [**Period**](.md)|  | [enum: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d] |
 | **limit** | **Long**| Maximum number of records to return. | [optional] |
 | **startTime** | **Long**|  | [optional] |
@@ -1615,7 +1617,7 @@ No authorization required
 
 <a id="topTraderLongShortRatioAccounts"></a>
 # **topTraderLongShortRatioAccounts**
-> TopTraderLongShortRatioAccountsResponse topTraderLongShortRatioAccounts(symbol, period, limit, startTime, endTime)
+> TopTraderLongShortRatioAccountsResponse topTraderLongShortRatioAccounts(pair, period, contractType, limit, startTime, endTime)
 
 Top Trader Long/Short Account Ratio
 
@@ -1636,13 +1638,14 @@ public class Example {
     defaultClient.setBasePath("https://dapi.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    String symbol = "symbol_example"; // String | Symbol
+    String pair = "BTCUSD"; // String | Pair
     Period period = Period.fromValue("5m"); // Period | 
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | Contract type filter. If omitted, returns aggregated data across all contract types.
     Long limit = 30L; // Long | Maximum number of records to return.
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     try {
-      TopTraderLongShortRatioAccountsResponse result = apiInstance.topTraderLongShortRatioAccounts(symbol, period, limit, startTime, endTime);
+      TopTraderLongShortRatioAccountsResponse result = apiInstance.topTraderLongShortRatioAccounts(pair, period, contractType, limit, startTime, endTime);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MarketDataApi#topTraderLongShortRatioAccounts");
@@ -1659,8 +1662,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Symbol | |
+| **pair** | **String**| Pair | |
 | **period** | [**Period**](.md)|  | [enum: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d] |
+| **contractType** | [**ContractType**](.md)| Contract type filter. If omitted, returns aggregated data across all contract types. | [optional] [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **limit** | **Long**| Maximum number of records to return. | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
@@ -1685,7 +1689,7 @@ No authorization required
 
 <a id="topTraderLongShortRatioPositions"></a>
 # **topTraderLongShortRatioPositions**
-> TopTraderLongShortRatioPositionsResponse topTraderLongShortRatioPositions(pair, period, limit, startTime, endTime)
+> TopTraderLongShortRatioPositionsResponse topTraderLongShortRatioPositions(pair, period, contractType, limit, startTime, endTime)
 
 Top Trader Long/Short Position Ratio
 
@@ -1708,11 +1712,12 @@ public class Example {
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
     String pair = "BTCUSD"; // String | 
     Period period = Period.fromValue("5m"); // Period | 
+    ContractType contractType = ContractType.fromValue("PERPETUAL"); // ContractType | Contract type filter. If omitted, returns aggregated data across all contract types.
     Long limit = 30L; // Long | Maximum number of records to return.
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     try {
-      TopTraderLongShortRatioPositionsResponse result = apiInstance.topTraderLongShortRatioPositions(pair, period, limit, startTime, endTime);
+      TopTraderLongShortRatioPositionsResponse result = apiInstance.topTraderLongShortRatioPositions(pair, period, contractType, limit, startTime, endTime);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MarketDataApi#topTraderLongShortRatioPositions");
@@ -1731,6 +1736,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pair** | **String**|  | |
 | **period** | [**Period**](.md)|  | [enum: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d] |
+| **contractType** | [**ContractType**](.md)| Contract type filter. If omitted, returns aggregated data across all contract types. | [optional] [enum: PERPETUAL, CURRENT_QUARTER, NEXT_QUARTER] |
 | **limit** | **Long**| Maximum number of records to return. | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |

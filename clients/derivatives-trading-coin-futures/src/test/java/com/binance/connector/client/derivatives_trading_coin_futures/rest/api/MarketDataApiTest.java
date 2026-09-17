@@ -114,7 +114,7 @@ public class MarketDataApiTest {
     @Test
     public void basisTest() throws ApiException, CryptoException, IOException {
         String pair = "";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Period period = Period.PERIOD_5m;
         Long limit = 30L;
         Long startTime = 1623319461670L;
@@ -217,7 +217,7 @@ public class MarketDataApiTest {
     public void continuousContractKlineCandlestickDataTest()
             throws ApiException, CryptoException, IOException {
         String pair = "BTCUSD";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
@@ -440,11 +440,12 @@ public class MarketDataApiTest {
     public void longShortRatioTest() throws ApiException, CryptoException, IOException {
         String pair = "";
         Period period = Period.PERIOD_5m;
+        ContractType contractType = ContractType.PERPETUAL;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<LongShortRatioResponse> response =
-                api.longShortRatio(pair, period, limit, startTime, endTime);
+                api.longShortRatio(pair, period, contractType, limit, startTime, endTime);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -561,13 +562,13 @@ public class MarketDataApiTest {
     @Test
     public void openInterestStatisticsTest() throws ApiException, CryptoException, IOException {
         String pair = "BTCUSD";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Period period = Period.PERIOD_5m;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<OpenInterestStatisticsResponse> response =
-                api.openInterestStatistics(pair, contractType, period, limit, startTime, endTime);
+                api.openInterestStatistics(pair, period, contractType, limit, startTime, endTime);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -765,7 +766,7 @@ public class MarketDataApiTest {
     @Test
     public void takerBuySellVolumeTest() throws ApiException, CryptoException, IOException {
         String pair = "BTCUSD";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Period period = Period.PERIOD_5m;
         Long limit = 30L;
         Long startTime = 1623319461670L;
@@ -858,11 +859,12 @@ public class MarketDataApiTest {
             throws ApiException, CryptoException, IOException {
         String symbol = "";
         Period period = Period.PERIOD_5m;
+        ContractType contractType = ContractType.PERPETUAL;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioAccountsResponse> response =
-                api.topTraderLongShortRatioAccounts(symbol, period, limit, startTime, endTime);
+                api.topTraderLongShortRatioAccounts(symbol, period, contractType, limit, startTime, endTime);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -895,11 +897,12 @@ public class MarketDataApiTest {
             throws ApiException, CryptoException, IOException {
         String pair = "BTCUSD";
         Period period = Period.PERIOD_5m;
+        ContractType contractType = ContractType.PERPETUAL;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioPositionsResponse> response =
-                api.topTraderLongShortRatioPositions(pair, period, limit, startTime, endTime);
+                api.topTraderLongShortRatioPositions(pair, period, contractType, limit, startTime, endTime);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)

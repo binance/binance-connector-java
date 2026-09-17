@@ -71,7 +71,7 @@ public class VipLoanBorrowRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_FLEXIBLE_RATE)
     @jakarta.annotation.Nonnull
-    private Boolean isFlexibleRate = true;
+    private Boolean isFlexibleRate;
 
     public static final String SERIALIZED_NAME_LOAN_TERM = "loanTerm";
 

@@ -46,7 +46,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/4.0.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/4.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -199,7 +199,7 @@ public class MarketDataApi {
 
     /**
      * Get Borrow Interest Rate (USER_DATA) Get Borrow Interest Rate Weight(IP): 400 Security Type:
-     * USER_DATA
+     * USER_DATA Notes: - Rate limit: 5 requests per second per account.
      *
      * @param loanCoin Max 10 assets, Multiple split by \&quot;,\&quot; (required)
      * @param recvWindow (optional)
@@ -342,7 +342,7 @@ public class MarketDataApi {
 
     /**
      * Get Collateral Asset Data (USER_DATA) Get Collateral Asset Data Weight(IP): 400 Security
-     * Type: USER_DATA
+     * Type: USER_DATA Notes: - Rate limit: 1 request per second per account.
      *
      * @param collateralCoin (optional)
      * @param recvWindow (optional)
@@ -492,7 +492,8 @@ public class MarketDataApi {
 
     /**
      * Get Loanable Assets Data (USER_DATA) Get interest rate and borrow limit of loanable assets.
-     * The borrow limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA
+     * The borrow limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA Notes: -
+     * Rate limit: 1 request per second per account.
      *
      * @param loanCoin (optional)
      * @param vipLevel Defaults to the user&#39;s VIP level. (optional)

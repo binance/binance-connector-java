@@ -97,9 +97,10 @@ public class FutureAlgoApiTest {
     @Test
     public void cancelAlgoOrderFutureAlgoTest() throws ApiException, CryptoException, IOException {
         Long algoId = 1L;
+        String algoClientId = "client-id";
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderFutureAlgoResponse> response =
-                api.cancelAlgoOrderFutureAlgo(algoId, recvWindow);
+                api.cancelAlgoOrderFutureAlgo(algoId, algoClientId, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -111,9 +112,9 @@ public class FutureAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("algoId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("algoId=1&clientAlgoId=client-id&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "4dcc675276dcc7a5eddf3f11f98e221dc22b447b227be14ec73a51c61602f2a5",
+                "9bd35ef17039afab392fff6d06525cd018d165c562b2ecfdf0b8da16496ba666",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/algo/futures/order", actualRequest.url().encodedPath());
     }

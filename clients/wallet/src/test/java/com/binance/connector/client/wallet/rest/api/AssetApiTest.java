@@ -519,8 +519,9 @@ public class AssetApiTest {
     public void queryUserWalletBalanceTest() throws ApiException, CryptoException, IOException {
         String quoteAsset = "BTC";
         Long recvWindow = 5000L;
+        Boolean needBalanceDetail = true;
         ApiResponse<QueryUserWalletBalanceResponse> response =
-                api.queryUserWalletBalance(quoteAsset, recvWindow);
+                api.queryUserWalletBalance(quoteAsset, needBalanceDetail, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -532,9 +533,9 @@ public class AssetApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("quoteAsset=BTC&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("quoteAsset=BTC&needBalanceDetail=true&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "fb7a854542348a3445f9dbdab6d6639e8d3dedbacc4a203868c4bb12fe280d54",
+                "9c33273ef714ca63d094ba589d230e742c592c7268dd95badb2d87b95138bafd",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/asset/wallet/balance", actualRequest.url().encodedPath());
     }

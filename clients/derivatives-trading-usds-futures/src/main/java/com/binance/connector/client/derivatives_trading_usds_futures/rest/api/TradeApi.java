@@ -92,7 +92,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/12.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.0.3 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -300,7 +300,7 @@ public class TradeApi {
      * not sent, then the last 7 days&#39; data will be returned. - The time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; cannot be longer than 7 days. - The parameter
      * &#x60;fromId&#x60; cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60;. - Only
-     * support querying trade in the past 6 months
+     * support querying trade in the past 3 months
      *
      * @param symbol (required)
      * @param orderId Must be used together with parameter &#x60;symbol&#x60;. (optional)
@@ -343,7 +343,7 @@ public class TradeApi {
     /**
      * Build call for allOrders
      *
-     * @param symbol (required)
+     * @param symbol (optional)
      * @param orderId (optional)
      * @param startTime Start time (optional)
      * @param endTime End time (optional)
@@ -493,7 +493,7 @@ public class TradeApi {
      * most recent orders are returned. - The query time period must be less then 7 days( default as
      * the recent 7 days).
      *
-     * @param symbol (required)
+     * @param symbol (optional)
      * @param orderId (optional)
      * @param startTime Start time (optional)
      * @param endTime End time (optional)
@@ -514,7 +514,7 @@ public class TradeApi {
      *     Orders (USER_DATA) Documentation</a>
      */
     public ApiResponse<AllOrdersResponse> allOrders(
-            @NotNull String symbol,
+            String symbol,
             Long orderId,
             Long startTime,
             Long endTime,

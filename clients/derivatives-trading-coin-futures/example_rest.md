@@ -48,7 +48,7 @@
 
 [GET /dapi/v1/klines](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#kline-candlestick-data) - klineCandlestickData - [KlineCandlestickDataExample.java:47](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/KlineCandlestickDataExample.java#L47)
 
-[GET /futures/data/globalLongShortAccountRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#long-short-ratio) - longShortRatio - [LongShortRatioExample.java:38](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/LongShortRatioExample.java#L38)
+[GET /futures/data/globalLongShortAccountRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#long-short-ratio) - longShortRatio - [LongShortRatioExample.java:39](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/LongShortRatioExample.java#L39)
 
 [GET /dapi/v1/markPriceKlines](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#mark-price-kline-candlestick-data) - markPriceKlineCandlestickData - [MarkPriceKlineCandlestickDataExample.java:47](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/MarkPriceKlineCandlestickDataExample.java#L47)
 
@@ -76,9 +76,9 @@
 
 [GET /dapi/v1/ticker/24hr](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#ticker24hr-price-change-statistics) - ticker24hrPriceChangeStatistics - [Ticker24hrPriceChangeStatisticsExample.java:40](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/Ticker24hrPriceChangeStatisticsExample.java#L40)
 
-[GET /futures/data/topLongShortAccountRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-accounts) - topTraderLongShortRatioAccounts - [TopTraderLongShortRatioAccountsExample.java:44](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/TopTraderLongShortRatioAccountsExample.java#L44)
+[GET /futures/data/topLongShortAccountRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-accounts) - topTraderLongShortRatioAccounts - [TopTraderLongShortRatioAccountsExample.java:45](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/TopTraderLongShortRatioAccountsExample.java#L45)
 
-[GET /futures/data/topLongShortPositionRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-positions) - topTraderLongShortRatioPositions - [TopTraderLongShortRatioPositionsExample.java:43](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/TopTraderLongShortRatioPositionsExample.java#L43)
+[GET /futures/data/topLongShortPositionRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-positions) - topTraderLongShortRatioPositions - [TopTraderLongShortRatioPositionsExample.java:44](/examples/derivatives-trading-coin-futures/src/main/java/com/binance/connector/client/derivatives_trading_coin_futures/rest/marketdata/TopTraderLongShortRatioPositionsExample.java#L44)
 
 ## Trade
 

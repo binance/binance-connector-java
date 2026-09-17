@@ -30,7 +30,8 @@ public class GetFlexibleLoanAssetsDataExample {
      * Get Flexible Loan Assets Data (USER_DATA)
      *
      * <p>Get interest rate and borrow limit of flexible loanable assets. The borrow limit is shown
-     * in USD value. Weight(IP): 400 Security Type: USER_DATA
+     * in USD value. Weight(IP): 400 Security Type: USER_DATA Notes: - Rate limit: 1 request per
+     * second per account.
      *
      * @throws ApiException if the Api call fails
      */

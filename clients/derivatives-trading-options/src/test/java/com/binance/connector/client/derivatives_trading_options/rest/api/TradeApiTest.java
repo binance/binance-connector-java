@@ -295,8 +295,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000postOnly=false&symbol=BTC-200730-9000-C&side=BUY&quantity=1&reduceOnly=false&newOrderRespType=ACK&type=LIMIT&timeInForce=GTC", signInputCaptor.getValue());
-        assertEquals("321a0edb87e260766358c165667bfa76114e38305a7a63ae1cd30b058a926f16", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTC-200730-9000-C&side=BUY&quantity=1&type=LIMIT", signInputCaptor.getValue());
+        assertEquals("b64978079b447ca92b07edefe533c145fb37416f9cd254a0e4dd1b70db793539", actualRequest.url().queryParameter("signature"));
         assertEquals("/eapi/v1/order", actualRequest.url().encodedPath());
     }
 

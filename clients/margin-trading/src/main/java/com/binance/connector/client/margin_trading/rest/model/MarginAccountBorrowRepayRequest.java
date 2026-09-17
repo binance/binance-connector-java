@@ -47,7 +47,7 @@ public class MarginAccountBorrowRepayRequest {
 
     @SerializedName(SERIALIZED_NAME_IS_ISOLATED)
     @jakarta.annotation.Nonnull
-    private IsIsolated isIsolated = IsIsolated.FALSE;
+    private IsIsolated isIsolated;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 

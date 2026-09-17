@@ -242,9 +242,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000side=BUY&expiredType=1_D&limitPrice=1&walletType=SPOT&baseAsset=BTC&quoteAsset=USDT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000side=BUY&expiredType=1_D&limitPrice=1&baseAsset=BTC&quoteAsset=USDT", signInputCaptor.getValue());
         assertEquals(
-                "c81e0902397aa66deaa3db6a952fd561a8876e267b910bb198db369ea62e0068", actualRequest.url().queryParameter("signature"));
+                "687990e23cd7920537d266c4da6cf9656ff775d1261b333e8a2b69f778051a07", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/limit/placeOrder", actualRequest.url().encodedPath());
     }
 
@@ -305,9 +305,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000toAsset=USDT&walletType=SPOT&validTime=10s&fromAsset=BTC", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000toAsset=USDT&fromAsset=BTC", signInputCaptor.getValue());
         assertEquals(
-                "a87b4d643bd96609d7656c396eff6bae425242c552cf59a60f70cac71b38187c", actualRequest.url().queryParameter("signature"));
+                "f56c7aca9dc41f61b04a4494c9a17280dbfe9f8495368d25aa4397711693af9b", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/convert/getQuote", actualRequest.url().encodedPath());
     }
 }

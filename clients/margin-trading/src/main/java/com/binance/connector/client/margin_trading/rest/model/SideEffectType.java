@@ -26,7 +26,11 @@ import org.hibernate.validator.constraints.*;
 public enum SideEffectType {
     NO_SIDE_EFFECT("NO_SIDE_EFFECT"),
 
-    MARGIN_BUY("MARGIN_BUY");
+    MARGIN_BUY("MARGIN_BUY"),
+
+    AUTO_REPAY("AUTO_REPAY"),
+
+    AUTO_BORROW_REPAY("AUTO_BORROW_REPAY");
 
     private String value;
 

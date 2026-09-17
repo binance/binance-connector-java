@@ -41,7 +41,7 @@ public class ChangeAutoRepayFuturesStatusRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY)
     @jakarta.annotation.Nonnull
-    private AutoRepay autoRepay = AutoRepay.TRUE;
+    private AutoRepay autoRepay;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

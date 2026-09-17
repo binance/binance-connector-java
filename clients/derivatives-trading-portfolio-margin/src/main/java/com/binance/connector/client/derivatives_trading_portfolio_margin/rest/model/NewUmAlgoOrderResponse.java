@@ -127,6 +127,12 @@ public class NewUmAlgoOrderResponse {
     @jakarta.annotation.Nullable
     private String priceMatch;
 
+    public static final String SERIALIZED_NAME_CLOSE_POSITION = "closePosition";
+
+    @SerializedName(SERIALIZED_NAME_CLOSE_POSITION)
+    @jakarta.annotation.Nullable
+    private Boolean closePosition;
+
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
@@ -464,6 +470,26 @@ public class NewUmAlgoOrderResponse {
         this.priceMatch = priceMatch;
     }
 
+    public NewUmAlgoOrderResponse closePosition(
+            @jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+        return this;
+    }
+
+    /**
+     * Get closePosition
+     *
+     * @return closePosition
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getClosePosition() {
+        return closePosition;
+    }
+
+    public void setClosePosition(@jakarta.annotation.Nullable Boolean closePosition) {
+        this.closePosition = closePosition;
+    }
+
     public NewUmAlgoOrderResponse priceProtect(@jakarta.annotation.Nullable Boolean priceProtect) {
         this.priceProtect = priceProtect;
         return this;
@@ -642,6 +668,7 @@ public class NewUmAlgoOrderResponse {
                         newUmAlgoOrderResponse.selfTradePreventionMode)
                 && Objects.equals(this.workingType, newUmAlgoOrderResponse.workingType)
                 && Objects.equals(this.priceMatch, newUmAlgoOrderResponse.priceMatch)
+                && Objects.equals(this.closePosition, newUmAlgoOrderResponse.closePosition)
                 && Objects.equals(this.priceProtect, newUmAlgoOrderResponse.priceProtect)
                 && Objects.equals(this.reduceOnly, newUmAlgoOrderResponse.reduceOnly)
                 && Objects.equals(this.activatePrice, newUmAlgoOrderResponse.activatePrice)
@@ -670,6 +697,7 @@ public class NewUmAlgoOrderResponse {
                 selfTradePreventionMode,
                 workingType,
                 priceMatch,
+                closePosition,
                 priceProtect,
                 reduceOnly,
                 activatePrice,
@@ -701,6 +729,7 @@ public class NewUmAlgoOrderResponse {
                 .append("\n");
         sb.append("		workingType: ").append(toIndentedString(workingType)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
+        sb.append("		closePosition: ").append(toIndentedString(closePosition)).append("\n");
         sb.append("		priceProtect: ").append(toIndentedString(priceProtect)).append("\n");
         sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		activatePrice: ").append(toIndentedString(activatePrice)).append("\n");
@@ -778,6 +807,10 @@ public class NewUmAlgoOrderResponse {
         String priceMatchValueAsString = "";
         priceMatchValueAsString = priceMatchValue.toString();
         sb.append("priceMatch=").append(urlEncode(priceMatchValueAsString)).append("");
+        Object closePositionValue = getClosePosition();
+        String closePositionValueAsString = "";
+        closePositionValueAsString = closePositionValue.toString();
+        sb.append("closePosition=").append(urlEncode(closePositionValueAsString)).append("");
         Object priceProtectValue = getPriceProtect();
         String priceProtectValueAsString = "";
         priceProtectValueAsString = priceProtectValue.toString();
@@ -853,6 +886,7 @@ public class NewUmAlgoOrderResponse {
         openapiFields.add("selfTradePreventionMode");
         openapiFields.add("workingType");
         openapiFields.add("priceMatch");
+        openapiFields.add("closePosition");
         openapiFields.add("priceProtect");
         openapiFields.add("reduceOnly");
         openapiFields.add("activatePrice");

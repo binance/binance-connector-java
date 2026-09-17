@@ -339,7 +339,7 @@ public class Example {
     String asset = "USDC"; // String | 
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
-    OrderType type = OrderType.fromValue("FAST"); // OrderType | `BONUS` - Bonus tiered APR, `REALTIME` - Real-time APR, `REWARDS` - Historical rewards, `ALL` - All types. Default: `ALL`
+    OrderType type = OrderType.fromValue("BONUS"); // OrderType | `BONUS` - Bonus tiered APR, `REALTIME` - Real-time APR, `REWARDS` - Historical rewards, `ALL` - All types. Default: `ALL`
     Long current = 1L; // Long | Currently querying page. Starts from 1.
     Long size = 10L; // Long | Number of results per page.
     Long recvWindow = 5000L; // Long | The value cannot be greater than 60000 (ms)
@@ -365,7 +365,7 @@ public class Example {
 | **asset** | **String**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
-| **type** | [**OrderType**](.md)| &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR, &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default: &#x60;ALL&#x60; | [optional] [default to STANDARD] [enum: FAST, STANDARD] |
+| **type** | [**OrderType**](.md)| &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR, &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default: &#x60;ALL&#x60; | [optional] [enum: BONUS, REALTIME, REWARDS, ALL, FAST, STANDARD] |
 | **current** | **Long**| Currently querying page. Starts from 1. | [optional] |
 | **size** | **Long**| Number of results per page. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than 60000 (ms) | [optional] |

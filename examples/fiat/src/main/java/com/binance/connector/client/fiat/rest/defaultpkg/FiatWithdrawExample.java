@@ -42,7 +42,7 @@ public class FiatWithdrawExample {
     public void fiatWithdrawExample() throws ApiException, IOException {
         FiatWithdrawRequest fiatWithdrawRequest = new FiatWithdrawRequest();
         fiatWithdrawRequest.currency("BRL");
-        fiatWithdrawRequest.apiPaymentMethod(ApiPaymentMethod.bank_transfer);
+        fiatWithdrawRequest.apiPaymentMethod(ApiPaymentMethod.pix);
         fiatWithdrawRequest.amount(10L);
         fiatWithdrawRequest.accountInfo(new FiatWithdrawRequestAccountInfo());
         Long recvWindow = 5000L;

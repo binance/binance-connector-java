@@ -73,7 +73,7 @@ public class AssetApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/6.1.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.2.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -2256,6 +2256,8 @@ public class AssetApi {
      * Build call for queryUserWalletBalance
      *
      * @param quoteAsset (optional)
+     * @param needBalanceDetail Whether to return the per-asset balance detail for each wallet. When
+     *     &#x60;false&#x60; or omitted, the response is unchanged from current behavior. (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2270,8 +2272,8 @@ public class AssetApi {
      *     href="https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-wallet-balance">Query
      *     User Wallet Balance (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call queryUserWalletBalanceCall(String quoteAsset, Long recvWindow)
-            throws ApiException {
+    private okhttp3.Call queryUserWalletBalanceCall(
+            String quoteAsset, Boolean needBalanceDetail, Long recvWindow) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -2298,6 +2300,11 @@ public class AssetApi {
 
         if (quoteAsset != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("quoteAsset", quoteAsset));
+        }
+
+        if (needBalanceDetail != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("needBalanceDetail", needBalanceDetail));
         }
 
         if (recvWindow != null) {
@@ -2336,7 +2343,7 @@ public class AssetApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call queryUserWalletBalanceValidateBeforeCall(
-            String quoteAsset, Long recvWindow) throws ApiException {
+            String quoteAsset, Boolean needBalanceDetail, Long recvWindow) throws ApiException {
         try {
             Validator validator =
                     Validation.byDefaultProvider()
@@ -2346,14 +2353,19 @@ public class AssetApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {quoteAsset, recvWindow};
+            Object[] parameterValues = {quoteAsset, needBalanceDetail, recvWindow};
             Method method =
-                    this.getClass().getMethod("queryUserWalletBalance", String.class, Long.class);
+                    this.getClass()
+                            .getMethod(
+                                    "queryUserWalletBalance",
+                                    String.class,
+                                    Boolean.class,
+                                    Long.class);
             Set<ConstraintViolation<AssetApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
             if (violations.size() == 0) {
-                return queryUserWalletBalanceCall(quoteAsset, recvWindow);
+                return queryUserWalletBalanceCall(quoteAsset, needBalanceDetail, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -2371,6 +2383,8 @@ public class AssetApi {
      * USER_DATA
      *
      * @param quoteAsset (optional)
+     * @param needBalanceDetail Whether to return the per-asset balance detail for each wallet. When
+     *     &#x60;false&#x60; or omitted, the response is unchanged from current behavior. (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryUserWalletBalanceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2387,9 +2401,10 @@ public class AssetApi {
      *     User Wallet Balance (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryUserWalletBalanceResponse> queryUserWalletBalance(
-            String quoteAsset, @Max(60000L) Long recvWindow) throws ApiException {
+            String quoteAsset, Boolean needBalanceDetail, @Max(60000L) Long recvWindow)
+            throws ApiException {
         okhttp3.Call localVarCall =
-                queryUserWalletBalanceValidateBeforeCall(quoteAsset, recvWindow);
+                queryUserWalletBalanceValidateBeforeCall(quoteAsset, needBalanceDetail, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryUserWalletBalanceResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

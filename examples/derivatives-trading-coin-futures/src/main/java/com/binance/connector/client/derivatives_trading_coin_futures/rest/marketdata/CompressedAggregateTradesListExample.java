@@ -30,8 +30,8 @@ public class CompressedAggregateTradesListExample {
      * Compressed/Aggregate Trades List
      *
      * <p>Get compressed, aggregate trades. Market trades that fill in 100ms with the same price and
-     * the same taking side will have the quantity aggregated. Weight(IP): 20 Notes: - support
-     * querying futures trade histories that are not older than 24 hours - If both
+     * the same taking side will have the quantity aggregated. Weight(IP): 20 Notes: - only trade
+     * histories within the past 48 hours (counted from now) can be queried - If both
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between &#x60;startTime&#x60;
      * and &#x60;endTime&#x60; must be less than 1 hour. - If &#x60;fromId&#x60;,
      * &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most recent aggregate trades

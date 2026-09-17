@@ -53,19 +53,19 @@ public class SubscribeLockedProductRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_SUBSCRIBE)
     @jakarta.annotation.Nullable
-    private Boolean autoSubscribe = false;
+    private Boolean autoSubscribe;
 
     public static final String SERIALIZED_NAME_SOURCE_ACCOUNT = "sourceAccount";
 
     @SerializedName(SERIALIZED_NAME_SOURCE_ACCOUNT)
     @jakarta.annotation.Nullable
-    private SourceAccount sourceAccount = SourceAccount.SPOT;
+    private SourceAccount sourceAccount;
 
     public static final String SERIALIZED_NAME_REDEEM_TO = "redeemTo";
 
     @SerializedName(SERIALIZED_NAME_REDEEM_TO)
     @jakarta.annotation.Nullable
-    private RedeemTo redeemTo = RedeemTo.SPOT;
+    private RedeemTo redeemTo;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

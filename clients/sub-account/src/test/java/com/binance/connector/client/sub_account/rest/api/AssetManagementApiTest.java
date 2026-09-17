@@ -270,12 +270,13 @@ public class AssetManagementApiTest {
         String symbol = "BTCUSDT";
         Long page = 1L;
         Long rows = 1L;
+        ProductType productType = ProductType.UM;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long recvWindow = 5000L;
         ApiResponse<GetMovePositionHistoryForSubAccountResponse> response =
                 api.getMovePositionHistoryForSubAccount(
-                        symbol, page, rows, startTime, endTime, recvWindow);
+                        symbol, page, rows, productType, startTime, endTime, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -288,9 +289,9 @@ public class AssetManagementApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "symbol=BTCUSDT&startTime=1623319461670&endTime=1641782889000&page=1&rows=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+                "symbol=BTCUSDT&productType=UM&startTime=1623319461670&endTime=1641782889000&page=1&rows=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "8de4d8f77b968580be9fba1f25671a319d2930766c4b3aed8a43314b76a99423",
+                "d3f98256c396c7c4adade44d1fc20e589e569087ed8109858fc4ac83694862db",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/sub-account/futures/move-position", actualRequest.url().encodedPath());

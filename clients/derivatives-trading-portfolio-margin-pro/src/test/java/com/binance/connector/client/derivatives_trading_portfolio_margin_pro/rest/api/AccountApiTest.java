@@ -527,10 +527,10 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "timestamp=1736393892000from=SPOT",
+                "timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "8cec128d7bb384c1a8f565f7f3bb814f96672c17eae32ef1899a799ae06d5098",
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/portfolio/repay", actualRequest.url().encodedPath());
@@ -685,9 +685,9 @@ public class AccountApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000from=SPOT", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "8cec128d7bb384c1a8f565f7f3bb814f96672c17eae32ef1899a799ae06d5098",
+                "53668e00dc92eb93de0b253c301e9fc0c20042b13db384a0ad94b38688a5a84c",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/portfolio/repay-futures-negative-balance", actualRequest.url().encodedPath());
     }

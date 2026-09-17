@@ -30,10 +30,10 @@ public class CreateOutboundTransferExample {
     }
 
     /**
-     * Create Outbound Transfer (TRADE)
+     * Create Outbound Transfer (PREDICTION_TRADE)
      *
      * <p>Transfer funds from the user&#39;s CEX account (SPOT or FUNDING) into the prediction
-     * wallet. Requires SAS authorization. Weight(IP): 200 Security Type: TRADE
+     * wallet. Requires SAS authorization. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

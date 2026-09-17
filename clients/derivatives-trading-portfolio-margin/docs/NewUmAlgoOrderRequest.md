@@ -13,11 +13,12 @@
 |**positionSide** | **PositionSide** |  |  [optional] |
 |**type** | **OrderType** |  |  |
 |**timeInForce** | **TimeInForce** |  |  [optional] |
-|**quantity** | **Double** | Order quantity |  |
+|**quantity** | **Double** | Order quantity. Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) |  [optional] |
 |**price** | **Double** | Order price |  [optional] |
 |**triggerPrice** | **Double** | Trigger price |  [optional] |
 |**workingType** | **WorkingType** |  |  [optional] |
 |**priceMatch** | **PriceMatch** |  |  [optional] |
+|**closePosition** | **ClosePosition** |  |  [optional] |
 |**priceProtect** | **PriceProtect** |  |  [optional] |
 |**reduceOnly** | **ReduceOnly** |  |  [optional] |
 |**activatePrice** | **Double** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price |  [optional] |

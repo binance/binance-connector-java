@@ -46,7 +46,7 @@ public class UserInformationApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/4.0.0 (Java/%s; %s; %s)",
+                    "binance-vip-loan/4.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -413,7 +413,7 @@ public class UserInformationApi {
      * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record Weight(IP): 400
      * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
      * sent, recent 90-day data is returned. - The maximum interval between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; is 90 days.
+     * and &#x60;endTime&#x60; is 90 days. - Rate limit: 1 request per second per account.
      *
      * @param orderId (optional)
      * @param loanCoin (optional)
@@ -629,7 +629,7 @@ public class UserInformationApi {
 
     /**
      * Get VIP Loan Ongoing Orders (USER_DATA) VIP loan is available for VIP users only. Weight(IP):
-     * 400 Security Type: USER_DATA
+     * 400 Security Type: USER_DATA Notes: - Rate limit: 1 request per second per account.
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
@@ -1009,7 +1009,7 @@ public class UserInformationApi {
 
     /**
      * Query Application Status (USER_DATA) Query Application Status Weight(UID): 400 Security Type:
-     * USER_DATA
+     * USER_DATA Notes: - Rate limit: 5 requests per second per account.
      *
      * @param current Current page number, starting from 1. (optional)
      * @param limit (optional)

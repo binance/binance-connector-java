@@ -227,19 +227,19 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_TIME_IN_FORCE)
     @jakarta.annotation.Nullable
-    private TimeInForceEnum timeInForce = TimeInForceEnum.GTC;
+    private TimeInForceEnum timeInForce;
 
     public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean reduceOnly = false;
+    private Boolean reduceOnly;
 
     public static final String SERIALIZED_NAME_POST_ONLY = "postOnly";
 
     @SerializedName(SERIALIZED_NAME_POST_ONLY)
     @jakarta.annotation.Nullable
-    private Boolean postOnly = false;
+    private Boolean postOnly;
 
     /** Gets or Sets newOrderRespType */
     @JsonAdapter(NewOrderRespTypeEnum.Adapter.class)
@@ -296,7 +296,7 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespTypeEnum newOrderRespType = NewOrderRespTypeEnum.ACK;
+    private NewOrderRespTypeEnum newOrderRespType;
 
     public static final String SERIALIZED_NAME_CLIENT_ORDER_ID = "clientOrderId";
 
@@ -373,8 +373,7 @@ public class OrdersInner {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionModeEnum selfTradePreventionMode =
-            SelfTradePreventionModeEnum.EXPIRE_MAKER;
+    private SelfTradePreventionModeEnum selfTradePreventionMode;
 
     public OrdersInner() {}
 

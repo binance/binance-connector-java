@@ -31,7 +31,8 @@ public class FlexibleLoanRepayExample {
      * Flexible Loan Repay (TRADE)
      *
      * <p>Flexible Loan Repay Weight(IP): 6000 Security Type: TRADE Notes: - &#x60;repayAmount&#x60;
-     * is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;.
+     * is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;. - Rate limit: 1 request per
+     * second per loan position (account + loan coin + collateral coin combination).
      *
      * @throws ApiException if the Api call fails
      */

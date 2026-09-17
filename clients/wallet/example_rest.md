@@ -80,7 +80,7 @@
 
 ## TravelRule
 
-[POST /sapi/v1/localentity/broker/withdraw/apply](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#broker-withdraw) - brokerWithdraw - [BrokerWithdrawExample.java:44](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/BrokerWithdrawExample.java#L44)
+[POST /sapi/v1/localentity/broker/withdraw/apply](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#broker-withdraw) - brokerWithdraw - [BrokerWithdrawExample.java:65](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/BrokerWithdrawExample.java#L65)
 
 [GET /sapi/v1/localentity/questionnaire-requirements](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#check-questionnaire-requirements) - checkQuestionnaireRequirements - [CheckQuestionnaireRequirementsExample.java:37](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/CheckQuestionnaireRequirementsExample.java#L37)
 
@@ -94,7 +94,7 @@
 
 [GET /sapi/v1/localentity/region/list](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#get-region-list) - getRegionList - [GetRegionListExample.java:36](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/GetRegionListExample.java#L36)
 
-[PUT /sapi/v1/localentity/broker/deposit/provide-info](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire) - submitDepositQuestionnaire - [SubmitDepositQuestionnaireExample.java:43](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireExample.java#L43)
+[PUT /sapi/v1/localentity/broker/deposit/provide-info](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire) - submitDepositQuestionnaire - [SubmitDepositQuestionnaireExample.java:64](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireExample.java#L64)
 
 [PUT /sapi/v1/localentity/deposit/provide-info](https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire-travel-rule) - submitDepositQuestionnaireTravelRule - [SubmitDepositQuestionnaireTravelRuleExample.java:42](/examples/wallet/src/main/java/com/binance/connector/client/wallet/rest/travelrule/SubmitDepositQuestionnaireTravelRuleExample.java#L42)
 

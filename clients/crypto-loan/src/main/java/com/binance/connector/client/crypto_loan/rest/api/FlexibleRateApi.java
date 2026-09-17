@@ -58,7 +58,7 @@ public class FlexibleRateApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-crypto-loan/5.0.0 (Java/%s; %s; %s)",
+                    "binance-crypto-loan/5.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -222,7 +222,8 @@ public class FlexibleRateApi {
 
     /**
      * Check Collateral Flexible Repay Rate (USER_DATA) Get the latest rate of collateral coin/loan
-     * coin when using collateral repay. Weight(IP): 6000 Security Type: USER_DATA
+     * coin when using collateral repay. Weight(IP): 6000 Security Type: USER_DATA Notes: - Rate
+     * limit: 1 request per second per account.
      *
      * @param loanCoin (required)
      * @param collateralCoin (required)
@@ -383,7 +384,9 @@ public class FlexibleRateApi {
 
     /**
      * Flexible Loan Adjust LTV (TRADE) Flexible Loan Adjust LTV Weight(UID): 6000 Security Type:
-     * TRADE Notes: - API key needs Spot &amp; Margin Trading permission for this endpoint.
+     * TRADE Notes: - API key needs Spot &amp; Margin Trading permission for this endpoint. - Rate
+     * limit: 1 request per second per loan position (account + loan coin + collateral coin
+     * combination).
      *
      * @param flexibleLoanAdjustLtvRequest (required)
      * @return ApiResponse&lt;FlexibleLoanAdjustLtvResponse&gt;
@@ -545,7 +548,8 @@ public class FlexibleRateApi {
     /**
      * Flexible Loan Borrow (TRADE) Borrow Flexible Loan Weight(IP): 6000 Security Type: TRADE
      * Notes: - This endpoint is available for both master and sub-accounts. - You can customize LTV
-     * by entering &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;.
+     * by entering &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;. - Rate limit: 1 request
+     * per second per account.
      *
      * @param flexibleLoanBorrowRequest (required)
      * @return ApiResponse&lt;FlexibleLoanBorrowResponse&gt;
@@ -710,7 +714,9 @@ public class FlexibleRateApi {
 
     /**
      * Flexible Loan Repay (TRADE) Flexible Loan Repay Weight(IP): 6000 Security Type: TRADE Notes:
-     * - &#x60;repayAmount&#x60; is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;.
+     * - &#x60;repayAmount&#x60; is mandatory even when &#x60;fullRepayment &#x3D; FALSE&#x60;. -
+     * Rate limit: 1 request per second per loan position (account + loan coin + collateral coin
+     * combination).
      *
      * @param flexibleLoanRepayRequest (required)
      * @return ApiResponse&lt;FlexibleLoanRepayResponse&gt;
@@ -853,7 +859,7 @@ public class FlexibleRateApi {
     /**
      * Get Flexible Loan Assets Data (USER_DATA) Get interest rate and borrow limit of flexible
      * loanable assets. The borrow limit is shown in USD value. Weight(IP): 400 Security Type:
-     * USER_DATA
+     * USER_DATA Notes: - Rate limit: 1 request per second per account.
      *
      * @param loanCoin (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
@@ -1051,7 +1057,7 @@ public class FlexibleRateApi {
      * to check history before 2024-02-27 08:00. Weight(IP): 400 Security Type: USER_DATA Notes: -
      * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day data is
      * returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180
-     * days.
+     * days. - Rate limit: 5 requests per second per account.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
@@ -1213,7 +1219,8 @@ public class FlexibleRateApi {
     /**
      * Get Flexible Loan Collateral Assets Data (USER_DATA) Get LTV information and collateral limit
      * of flexible loan&#39;s collateral assets. The collateral limit is shown in USD value.
-     * Weight(IP): 400 Security Type: USER_DATA
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - Rate limit: 1 request per second per
+     * account.
      *
      * @param collateralCoin (optional)
      * @param recvWindow Request validity window in milliseconds (optional)
@@ -1597,7 +1604,8 @@ public class FlexibleRateApi {
 
     /**
      * Get Flexible Loan Liquidation History (USER_DATA) Get Flexible Loan Liquidation History
-     * Weight(IP): 400 Security Type: USER_DATA
+     * Weight(IP): 400 Security Type: USER_DATA Notes: - Rate limit: 1 request per second per
+     * account.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
@@ -1808,7 +1816,7 @@ public class FlexibleRateApi {
      * History. It can be used to check history before 2024-02-27 08:00. Weight(UID): 400 Security
      * Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the
      * recent 90-day data is returned. - The max interval between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; is 180 days.
+     * &#x60;endTime&#x60; is 180 days. - Rate limit: 5 requests per second per account.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
@@ -1991,7 +1999,7 @@ public class FlexibleRateApi {
 
     /**
      * Get Flexible Loan Ongoing Orders (USER_DATA) Get Flexible Loan Ongoing Orders Weight(IP): 300
-     * Security Type: USER_DATA
+     * Security Type: USER_DATA Notes: - Rate limit: 10 requests per second per account.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)
@@ -2198,7 +2206,7 @@ public class FlexibleRateApi {
      * be used to check history before 2024-02-27 08:00. Weight(IP): 400 Security Type: USER_DATA
      * Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the recent 90-day
      * data is returned. - The max interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is
-     * 180 days.
+     * 180 days. - Rate limit: 5 requests per second per account.
      *
      * @param loanCoin (optional)
      * @param collateralCoin (optional)

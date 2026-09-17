@@ -13,11 +13,11 @@ All URIs are relative to *https://api.binance.com*
 
 <a id="cancelAlgoOrderSpotAlgo"></a>
 # **cancelAlgoOrderSpotAlgo**
-> CancelAlgoOrderSpotAlgoResponse cancelAlgoOrderSpotAlgo(algoId, recvWindow)
+> CancelAlgoOrderSpotAlgoResponse cancelAlgoOrderSpotAlgo(algoId, clientAlgoId, recvWindow)
 
 Cancel Spot Algo Order (TRADE)
 
-Cancel an open TWAP order  Weight(IP): 1  Security Type: TRADE
+Cancel an open TWAP order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;algoId&#x60; or &#x60;clientAlgoId&#x60; must be sent.
 
 ### Example
 ```java
@@ -35,9 +35,10 @@ public class Example {
 
     SpotAlgoApi apiInstance = new SpotAlgoApi(defaultClient);
     Long algoId = 14511L; // Long | 
+    String clientAlgoId = "65ce1630101a480b85915d7e11fd5078"; // String | 
     Long recvWindow = 5000L; // Long | Request validity window in milliseconds
     try {
-      CancelAlgoOrderSpotAlgoResponse result = apiInstance.cancelAlgoOrderSpotAlgo(algoId, recvWindow);
+      CancelAlgoOrderSpotAlgoResponse result = apiInstance.cancelAlgoOrderSpotAlgo(algoId, clientAlgoId, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SpotAlgoApi#cancelAlgoOrderSpotAlgo");
@@ -54,7 +55,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **algoId** | **Long**|  | |
+| **algoId** | **Long**|  | [optional] |
+| **clientAlgoId** | **String**|  | [optional] |
 | **recvWindow** | **Long**| Request validity window in milliseconds | [optional] |
 
 ### Return type

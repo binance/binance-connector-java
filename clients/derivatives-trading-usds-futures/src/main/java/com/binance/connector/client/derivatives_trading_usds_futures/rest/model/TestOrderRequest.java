@@ -65,7 +65,7 @@ public class TestOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private ReduceOnly reduceOnly = ReduceOnly.FALSE;
+    private ReduceOnly reduceOnly;
 
     public static final String SERIALIZED_NAME_QUANTITY = "quantity";
 
@@ -119,19 +119,19 @@ public class TestOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nullable
-    private WorkingType workingType = WorkingType.CONTRACT_PRICE;
+    private WorkingType workingType;
 
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private PriceProtect priceProtect = PriceProtect.FALSE;
+    private PriceProtect priceProtect;
 
     public static final String SERIALIZED_NAME_NEW_ORDER_RESP_TYPE = "newOrderRespType";
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
+    private NewOrderRespType newOrderRespType;
 
     public static final String SERIALIZED_NAME_PRICE_MATCH = "priceMatch";
 
@@ -144,7 +144,7 @@ public class TestOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SELF_TRADE_PREVENTION_MODE)
     @jakarta.annotation.Nullable
-    private SelfTradePreventionMode selfTradePreventionMode = SelfTradePreventionMode.NONE;
+    private SelfTradePreventionMode selfTradePreventionMode;
 
     public static final String SERIALIZED_NAME_GOOD_TILL_DATE = "goodTillDate";
 

@@ -113,13 +113,13 @@ public class MarginAccountNewOcoRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
+    private NewOrderRespType newOrderRespType;
 
     public static final String SERIALIZED_NAME_SIDE_EFFECT_TYPE = "sideEffectType";
 
     @SerializedName(SERIALIZED_NAME_SIDE_EFFECT_TYPE)
     @jakarta.annotation.Nullable
-    private SideEffectType sideEffectType = SideEffectType.NO_SIDE_EFFECT;
+    private SideEffectType sideEffectType;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

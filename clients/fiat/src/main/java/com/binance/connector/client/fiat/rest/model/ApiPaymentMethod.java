@@ -21,9 +21,11 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** payment method; current supported: bank_transfer */
+/** payment method; current supported: pix */
 @JsonAdapter(ApiPaymentMethod.Adapter.class)
 public enum ApiPaymentMethod {
+    pix("pix"),
+
     bank_transfer("bank_transfer");
 
     private String value;

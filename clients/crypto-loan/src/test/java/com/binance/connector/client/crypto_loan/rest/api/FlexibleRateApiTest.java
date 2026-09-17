@@ -223,9 +223,9 @@ public class FlexibleRateApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000repaymentType=1&collateralCoin=BNB&loanCoin=BUSD&repayAmount=1&collateralReturn=true&fullRepayment=false", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000collateralCoin=BNB&loanCoin=BUSD&repayAmount=1", signInputCaptor.getValue());
         assertEquals(
-                "eb68927bc8457d0eaf536f856dc730749bdc4c85df617e5ce55e32f92083f254", actualRequest.url().queryParameter("signature"));
+                "f48d450d4ef6d3914b75cd77bb3602aed3c17806b5895225199c91983058e0ef", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v2/loan/flexible/repay", actualRequest.url().encodedPath());
     }
 

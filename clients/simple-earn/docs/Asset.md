@@ -5,9 +5,9 @@
 ## Enum
 
 
-* `USDT` (value: `"USDT"`)
-
 * `USDC` (value: `"USDC"`)
+
+* `USDT` (value: `"USDT"`)
 
 
 

@@ -102,7 +102,8 @@ public class OrderArgsInner {
     }
 
     /**
-     * Get positionSide
+     * Required when productType&#x3D;UM. Optional and ignored when productType&#x3D;OPTION (the
+     * response returns positionSide as null).
      *
      * @return positionSide
      */

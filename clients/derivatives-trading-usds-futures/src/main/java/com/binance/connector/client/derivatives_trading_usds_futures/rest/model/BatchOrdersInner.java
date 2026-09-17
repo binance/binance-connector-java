@@ -356,7 +356,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private ReduceOnlyEnum reduceOnly = ReduceOnlyEnum.FALSE;
+    private ReduceOnlyEnum reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -425,7 +425,7 @@ public class BatchOrdersInner {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespTypeEnum newOrderRespType = NewOrderRespTypeEnum.ACK;
+    private NewOrderRespTypeEnum newOrderRespType;
 
     /** only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can&#39;t be passed together with price */
     @JsonAdapter(PriceMatchEnum.Adapter.class)

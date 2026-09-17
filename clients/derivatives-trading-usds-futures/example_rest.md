@@ -120,7 +120,7 @@
 
 [GET /futures/data/topLongShortPositionRatio](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-positions) - topTraderLongShortRatioPositions - [TopTraderLongShortRatioPositionsExample.java:43](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TopTraderLongShortRatioPositionsExample.java#L43)
 
-[GET /fapi/v1/tradingSchedule](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#trading-schedule) - tradingSchedule - [TradingScheduleExample.java:44](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TradingScheduleExample.java#L44)
+[GET /fapi/v1/tradingSchedule](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#trading-schedule) - tradingSchedule - [TradingScheduleExample.java:45](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/rest/marketdata/TradingScheduleExample.java#L45)
 
 ## PortfolioMarginEndpoints
 

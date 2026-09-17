@@ -371,7 +371,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     RwusdApi apiInstance = new RwusdApi(defaultClient);
-    Asset asset = Asset.fromValue("USDT"); // Asset | 
+    Asset asset = Asset.fromValue("USDC"); // Asset | 
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     Long current = 1L; // Long | Currently querying page
@@ -395,7 +395,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **asset** | [**Asset**](.md)|  | [optional] [enum: USDT, USDC] |
+| **asset** | [**Asset**](.md)|  | [optional] [enum: USDC, USDT] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**| Currently querying page | [optional] |

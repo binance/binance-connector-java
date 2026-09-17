@@ -27,10 +27,10 @@ public class QueryPositionsByFilterExample {
     }
 
     /**
-     * Query Positions by Filter (USER_DATA)
+     * Query Positions by Filter (PREDICTION_TRADE)
      *
      * <p>Get prediction positions filtered by wallet address and/or market topic ID. Both
-     * parameters are optional. Weight(IP): 200 Security Type: USER_DATA
+     * parameters are optional. Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

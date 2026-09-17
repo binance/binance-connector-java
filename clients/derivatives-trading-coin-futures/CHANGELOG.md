@@ -1,5 +1,53 @@
 # Changelog
 
+## 9.0.0 - 2026-08-25
+
+### Changed (9)
+
+- Removed default values in Request objects.
+
+#### REST API
+
+- Added parameter `contractType`
+  - affected methods:
+    - `longShortRatio()` (`GET /futures/data/globalLongShortAccountRatio`)
+    - `topTraderLongShortRatioAccounts()` (`GET /futures/data/topLongShortAccountRatio`)
+    - `topTraderLongShortRatioPositions()` (`GET /futures/data/topLongShortPositionRatio`)
+- Added parameter `pair`
+  - affected methods:
+    - `topTraderLongShortRatioAccounts()` (`GET /futures/data/topLongShortAccountRatio`)
+- Deleted parameter `symbol`
+  - affected methods:
+    - `topTraderLongShortRatioAccounts()` (`GET /futures/data/topLongShortAccountRatio`)
+- Modified parameter `contractType`:
+  - required: `true` → `false`
+  - enum removed: `ALL`
+  - affected methods:
+    - `openInterestStatistics()` (`GET /futures/data/openInterestHist`)
+#### WebSocket Streams
+
+- Modified response for `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `a`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+- Modified response field `b`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+
 ## 8.0.1 - 2026-08-10
 
 ### Changed (20)

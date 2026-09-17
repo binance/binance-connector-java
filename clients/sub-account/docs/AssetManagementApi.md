@@ -287,11 +287,11 @@ No authorization required
 
 <a id="getMovePositionHistoryForSubAccount"></a>
 # **getMovePositionHistoryForSubAccount**
-> GetMovePositionHistoryForSubAccountResponse getMovePositionHistoryForSubAccount(symbol, page, rows, startTime, endTime, recvWindow)
+> GetMovePositionHistoryForSubAccountResponse getMovePositionHistoryForSubAccount(symbol, page, rows, productType, startTime, endTime, recvWindow)
 
 Get Move Position History for Sub-account (For Master Account) (USER_DATA)
 
-Query move position history  Weight(IP): 1  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both omitted, records from the last 90 days are returned by default (up to 1000 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted, records in &#x60;[max(startTime, now-90d), now]&#x60; are returned. - If &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in &#x60;[max(now, endTime-90d), endTime]&#x60; are returned.
+Query move position history  Weight(IP): 1  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are both omitted, records from the last 90 days are returned by default (up to 100 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted, records in &#x60;[max(startTime, now-90d), now]&#x60; are returned. - If &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in &#x60;[max(now, endTime-90d), endTime]&#x60; are returned.
 
 ### Example
 ```java
@@ -310,12 +310,13 @@ public class Example {
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
     String symbol = "BTCUSDT"; // String | 
     Long page = 1L; // Long | 
-    Long rows = 1L; // Long | 
+    Long rows = 1L; // Long | Max 100.
+    ProductType productType = ProductType.fromValue("UM"); // ProductType | Default UM.
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     Long recvWindow = 5000L; // Long | 
     try {
-      GetMovePositionHistoryForSubAccountResponse result = apiInstance.getMovePositionHistoryForSubAccount(symbol, page, rows, startTime, endTime, recvWindow);
+      GetMovePositionHistoryForSubAccountResponse result = apiInstance.getMovePositionHistoryForSubAccount(symbol, page, rows, productType, startTime, endTime, recvWindow);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AssetManagementApi#getMovePositionHistoryForSubAccount");
@@ -334,7 +335,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
 | **page** | **Long**|  | |
-| **rows** | **Long**|  | |
+| **rows** | **Long**| Max 100. | |
+| **productType** | [**ProductType**](.md)| Default UM. | [optional] [enum: UM, OPTION] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |

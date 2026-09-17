@@ -414,8 +414,8 @@ public class EthStakingApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&asset=BETH", signInputCaptor.getValue());
-        assertEquals("1ff8a7cd37584085d8c921503e1959a848713e382f31ee608a0c7eed04c2fac6", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000amount=1", signInputCaptor.getValue());
+        assertEquals("50d24733794b928836575c346769be26ee1fb5ffbf73f36933cd22c50116f74e", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/eth-staking/eth/redeem", actualRequest.url().encodedPath());
     }
 

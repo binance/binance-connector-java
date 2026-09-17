@@ -15,7 +15,6 @@
 |**totalLiabilityOfBtc** | **String** | total Liability Of Btc. |  [optional] |
 |**totalNetAssetOfBtc** | **String** | total Net Asset Of Btc. |  [optional] |
 |**totalCollateralValueInUSDT** | **String** | Total Collateral Value In USDT. |  [optional] |
-|**totalOpenOrderLossInUSDT** | **String** | total Open Order Loss In USDT. |  [optional] |
 |**tradeEnabled** | **Boolean** | trade Enabled. |  [optional] |
 |**transferInEnabled** | **Boolean** | transfer In Enabled. |  [optional] |
 |**transferOutEnabled** | **Boolean** | transfer Out Enabled. |  [optional] |

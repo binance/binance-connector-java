@@ -65,7 +65,7 @@ public class CreateSpecialKeyRequest {
 
     @SerializedName(SERIALIZED_NAME_PERMISSION_MODE)
     @jakarta.annotation.Nullable
-    private PermissionMode permissionMode = PermissionMode.TRADE;
+    private PermissionMode permissionMode;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

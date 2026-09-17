@@ -83,19 +83,19 @@ public class GetQuoteRequest {
 
     @SerializedName(SERIALIZED_NAME_CHAIN_ID)
     @jakarta.annotation.Nullable
-    private String chainId = "56";
+    private String chainId;
 
     public static final String SERIALIZED_NAME_FEE_RATE_BPS = "feeRateBps";
 
     @SerializedName(SERIALIZED_NAME_FEE_RATE_BPS)
     @jakarta.annotation.Nullable
-    private Integer feeRateBps = 200;
+    private Integer feeRateBps;
 
     public static final String SERIALIZED_NAME_FUNDING_SOURCE = "fundingSource";
 
     @SerializedName(SERIALIZED_NAME_FUNDING_SOURCE)
     @jakarta.annotation.Nullable
-    private FundingSource fundingSource = FundingSource.MPC;
+    private FundingSource fundingSource;
 
     public static final String SERIALIZED_NAME_FUND_TRANSFER_AMOUNT = "fundTransferAmount";
 

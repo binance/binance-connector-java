@@ -77,7 +77,7 @@ public class PlaceLimitOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_WALLET_TYPE)
     @jakarta.annotation.Nullable
-    private WalletType walletType = WalletType.SPOT;
+    private WalletType walletType;
 
     public static final String SERIALIZED_NAME_EXPIRED_TYPE = "expiredType";
 

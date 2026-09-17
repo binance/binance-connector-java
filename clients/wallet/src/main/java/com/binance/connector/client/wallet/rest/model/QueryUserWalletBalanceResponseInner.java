@@ -14,6 +14,7 @@ package com.binance.connector.client.wallet.rest.model;
 
 import com.binance.connector.client.wallet.rest.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -22,13 +23,18 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
 /** QueryUserWalletBalanceResponseInner */
@@ -53,6 +59,12 @@ public class QueryUserWalletBalanceResponseInner {
     @SerializedName(SERIALIZED_NAME_WALLET_NAME)
     @jakarta.annotation.Nullable
     private String walletName;
+
+    public static final String SERIALIZED_NAME_ASSET_BALANCES = "assetBalances";
+
+    @SerializedName(SERIALIZED_NAME_ASSET_BALANCES)
+    @jakarta.annotation.Nullable
+    private List<@Valid QueryUserWalletBalanceResponseInnerAssetBalancesInner> assetBalances;
 
     public QueryUserWalletBalanceResponseInner() {}
 
@@ -116,6 +128,42 @@ public class QueryUserWalletBalanceResponseInner {
         this.walletName = walletName;
     }
 
+    public QueryUserWalletBalanceResponseInner assetBalances(
+            @jakarta.annotation.Nullable
+                    List<@Valid QueryUserWalletBalanceResponseInnerAssetBalancesInner>
+                            assetBalances) {
+        this.assetBalances = assetBalances;
+        return this;
+    }
+
+    public QueryUserWalletBalanceResponseInner addAssetBalancesItem(
+            QueryUserWalletBalanceResponseInnerAssetBalancesInner assetBalancesItem) {
+        if (this.assetBalances == null) {
+            this.assetBalances = new ArrayList<>();
+        }
+        this.assetBalances.add(assetBalancesItem);
+        return this;
+    }
+
+    /**
+     * Per-asset balance detail for this wallet. Only present when
+     * &#x60;needBalanceDetail&#x3D;true&#x60; is passed; omitted entirely otherwise.
+     *
+     * @return assetBalances
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public List<@Valid QueryUserWalletBalanceResponseInnerAssetBalancesInner> getAssetBalances() {
+        return assetBalances;
+    }
+
+    public void setAssetBalances(
+            @jakarta.annotation.Nullable
+                    List<@Valid QueryUserWalletBalanceResponseInnerAssetBalancesInner>
+                            assetBalances) {
+        this.assetBalances = assetBalances;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -128,12 +176,14 @@ public class QueryUserWalletBalanceResponseInner {
                 (QueryUserWalletBalanceResponseInner) o;
         return Objects.equals(this.activate, queryUserWalletBalanceResponseInner.activate)
                 && Objects.equals(this.balance, queryUserWalletBalanceResponseInner.balance)
-                && Objects.equals(this.walletName, queryUserWalletBalanceResponseInner.walletName);
+                && Objects.equals(this.walletName, queryUserWalletBalanceResponseInner.walletName)
+                && Objects.equals(
+                        this.assetBalances, queryUserWalletBalanceResponseInner.assetBalances);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(activate, balance, walletName);
+        return Objects.hash(activate, balance, walletName, assetBalances);
     }
 
     @Override
@@ -143,6 +193,7 @@ public class QueryUserWalletBalanceResponseInner {
         sb.append("		activate: ").append(toIndentedString(activate)).append("\n");
         sb.append("		balance: ").append(toIndentedString(balance)).append("\n");
         sb.append("		walletName: ").append(toIndentedString(walletName)).append("\n");
+        sb.append("		assetBalances: ").append(toIndentedString(assetBalances)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -162,6 +213,13 @@ public class QueryUserWalletBalanceResponseInner {
         String walletNameValueAsString = "";
         walletNameValueAsString = walletNameValue.toString();
         sb.append("walletName=").append(urlEncode(walletNameValueAsString)).append("");
+        Object assetBalancesValue = getAssetBalances();
+        String assetBalancesValueAsString = "";
+        assetBalancesValueAsString =
+                (String)
+                        ((Collection) assetBalancesValue)
+                                .stream().map(Object::toString).collect(Collectors.joining(","));
+        sb.append("assetBalances=").append(urlEncode(assetBalancesValueAsString)).append("");
         return sb.toString();
     }
 
@@ -193,6 +251,7 @@ public class QueryUserWalletBalanceResponseInner {
         openapiFields.add("activate");
         openapiFields.add("balance");
         openapiFields.add("walletName");
+        openapiFields.add("assetBalances");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -233,6 +292,26 @@ public class QueryUserWalletBalanceResponseInner {
                             "Expected the field `walletName` to be a primitive type in the JSON"
                                     + " string but got `%s`",
                             jsonObj.get("walletName").toString()));
+        }
+        if (jsonObj.get("assetBalances") != null && !jsonObj.get("assetBalances").isJsonNull()) {
+            JsonArray jsonArrayassetBalances = jsonObj.getAsJsonArray("assetBalances");
+            if (jsonArrayassetBalances != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("assetBalances").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `assetBalances` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("assetBalances").toString()));
+                }
+
+                // validate the optional field `assetBalances` (array)
+                for (int i = 0; i < jsonArrayassetBalances.size(); i++) {
+                    QueryUserWalletBalanceResponseInnerAssetBalancesInner.validateJsonElement(
+                            jsonArrayassetBalances.get(i));
+                }
+                ;
+            }
         }
     }
 

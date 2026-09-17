@@ -28,7 +28,8 @@ public class GetVIPLoanOngoingOrdersExample {
     /**
      * Get VIP Loan Ongoing Orders (USER_DATA)
      *
-     * <p>VIP loan is available for VIP users only. Weight(IP): 400 Security Type: USER_DATA
+     * <p>VIP loan is available for VIP users only. Weight(IP): 400 Security Type: USER_DATA Notes:
+     * - Rate limit: 1 request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

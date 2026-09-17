@@ -1,5 +1,68 @@
 # Changelog
 
+## 12.0.3 - 2026-08-27
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `symbol`:
+  - required: `true` → `false`
+  - affected methods:
+    - `allOrders()` (`GET /fapi/v1/allOrders`)
+
+## 12.0.2 - 2026-08-25
+
+### Changed (9)
+
+- Removed default values in Request objects.
+
+#### REST API
+
+- Modified response for `tradingSchedule()` (`GET /fapi/v1/tradingSchedule`):
+  - `marketSchedules`: property `CN_EQUITY` added
+
+- Modified response field `marketSchedules`:
+  - property `CN_EQUITY` added
+  - affected events:
+    - `tradingScheduleResponse`
+#### WebSocket Streams
+
+- Modified response for `diffBookDepthStreams()` (`<symbol>@depth@<updateSpeed>` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response for `rpiDiffBookDepthStreams()` (`<symbol>@rpiDepth@500ms` stream):
+  - `a`.items: minItems `0` → `2`
+  - `a`.items: maxItems `null` → `2`
+  - `b`.items: minItems `0` → `2`
+  - `b`.items: maxItems `null` → `2`
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `o`:
+  - property `ia` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `algoUpdate`
+- Modified response field `a`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+    - `rpiDiffBookDepthStreamsResponse`
+- Modified response field `b`:
+  - items: minItems `0` → `2`
+  - items: maxItems `null` → `2`
+  - affected events:
+    - `diffBookDepthStreamsResponse`
+    - `rpiDiffBookDepthStreamsResponse`
+
 ## 12.0.1 - 2026-08-10
 
 ### Changed (26)

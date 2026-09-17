@@ -29,7 +29,8 @@ public class VipLoanRenewExample {
     /**
      * VIP Loan Renew (TRADE)
      *
-     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE
+     * <p>VIP loan is available for VIP users only. Weight(UID): 6000 Security Type: TRADE Notes: -
+     * Rate limit: 1 request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

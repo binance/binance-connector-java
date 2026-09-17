@@ -760,9 +760,9 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000productId=1&destAccount=SPOT&redeemAll=false", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000productId=1", signInputCaptor.getValue());
         assertEquals(
-                "1923492b39982c2a14769c4c96e75365b8627a00f73639458fbd03886e8097bc",
+                "c4c7af86a6a8cfafc9909bb0dec0f67695e17aba2a88ca75e983de6e0b915279",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/simple-earn/flexible/redeem", actualRequest.url().encodedPath());
     }
@@ -959,9 +959,9 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&productId=1&sourceAccount=SPOT&autoSubscribe=true", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000amount=1&productId=1", signInputCaptor.getValue());
         assertEquals(
-                "0360447bba35d792b76aff3e94da6ca8061180e0405465a27d6f0c25889c26a9",
+                "d71f21fc51817b324b37ac741557e5f0e37ba4c300b9b0dcf20dadffde1a1e1a",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/simple-earn/flexible/subscribe", actualRequest.url().encodedPath());
     }
@@ -995,9 +995,9 @@ public class FlexibleLockedApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1&sourceAccount=SPOT&redeemTo=SPOT&autoSubscribe=false&projectId=1", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000amount=1&projectId=1", signInputCaptor.getValue());
         assertEquals(
-                "a7686908b7fbd13b024b68567f206f1335df97bc0798274055745eee6e379047",
+                "7ef22d632c2aec6bea9e728707f8eac15fbf16144341682080788f00ceb268ac",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/simple-earn/locked/subscribe", actualRequest.url().encodedPath());
     }

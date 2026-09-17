@@ -106,8 +106,8 @@ public class RedeemApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&chainId=56&tokenIds=%5B%5D&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c", signInputCaptor.getValue());
-        assertEquals("5e51a5463ac4d89c3b13de400dba35ce60a0d43e8d62418de696ac97382d530f", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&tokenIds=%5B%5D&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c", signInputCaptor.getValue());
+        assertEquals("eafa1666d2170474c3945994d1cfed378972aeba1b04bf60d6e71e1f577083cf", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/w3w/wallet/prediction/batch-redeem", actualRequest.url().encodedPath());
     }
 

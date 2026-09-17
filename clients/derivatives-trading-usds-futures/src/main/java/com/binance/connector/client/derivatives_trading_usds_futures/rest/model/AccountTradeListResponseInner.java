@@ -300,7 +300,8 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Quote Qty.
+     * Quote asset quantity. Populated for USDⓈ-M symbols; returns \&quot;0\&quot; for COIN-M
+     * symbols.
      *
      * @return quoteQty
      */
@@ -319,7 +320,8 @@ public class AccountTradeListResponseInner {
     }
 
     /**
-     * Base Qty.
+     * Base asset quantity. Populated for COIN-M symbols; returns \&quot;0\&quot; for USDⓈ-M
+     * symbols.
      *
      * @return baseQty
      */

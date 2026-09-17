@@ -43,7 +43,7 @@ public class GetRwusdSubscriptionHistoryExample {
      * @throws ApiException if the Api call fails
      */
     public void getRwusdSubscriptionHistoryExample() throws ApiException, IOException {
-        Asset asset = Asset.USDT;
+        Asset asset = Asset.USDC;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

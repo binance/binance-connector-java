@@ -156,9 +156,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000supplyRequest=1212%3A0.12%3A100%3B3434%3A0.13%3A50&autoRepay=true&loanTerm=30&collateralCoin=BNB%2CETH%2CBTC&collateralAccountId=12345%2C67890%2C13579&borrowCoin=BUSD&borrowUid=12345678", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000supplyRequest=1212%3A0.12%3A100%3B3434%3A0.13%3A50&loanTerm=30&collateralCoin=BNB%2CETH%2CBTC&collateralAccountId=12345%2C67890%2C13579&borrowCoin=BUSD&borrowUid=12345678", signInputCaptor.getValue());
         assertEquals(
-                "ff1cf1d7f36839a77ef053ba03056c69ed25c2e80ac7f2589003dd434a94ccde",
+                "702d048b24657b3c40e3921d7faad0a0f86028f359c0acfc32d253bfcbb580fb",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/loan/vip/fixed/borrow", actualRequest.url().encodedPath());
     }

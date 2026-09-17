@@ -14,7 +14,7 @@
 |**priceType** | **String** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**quantity** | **String** |  |  [optional] |
-|**positionSide** | **String** |  |  [optional] |
+|**positionSide** | **String** | null when productType&#x3D;OPTION. |  [optional] |
 |**side** | **String** |  |  [optional] |
 |**success** | **Boolean** |  |  [optional] |
 

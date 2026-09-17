@@ -24,6 +24,14 @@ import org.hibernate.validator.constraints.*;
 /** Gets or Sets orderType */
 @JsonAdapter(OrderType.Adapter.class)
 public enum OrderType {
+    BONUS("BONUS"),
+
+    REALTIME("REALTIME"),
+
+    REWARDS("REWARDS"),
+
+    ALL("ALL"),
+
     FAST("FAST"),
 
     STANDARD("STANDARD");

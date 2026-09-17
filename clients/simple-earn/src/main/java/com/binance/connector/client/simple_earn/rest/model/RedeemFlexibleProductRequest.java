@@ -47,7 +47,7 @@ public class RedeemFlexibleProductRequest {
 
     @SerializedName(SERIALIZED_NAME_REDEEM_ALL)
     @jakarta.annotation.Nullable
-    private Boolean redeemAll = false;
+    private Boolean redeemAll;
 
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
 
@@ -59,7 +59,7 @@ public class RedeemFlexibleProductRequest {
 
     @SerializedName(SERIALIZED_NAME_DEST_ACCOUNT)
     @jakarta.annotation.Nullable
-    private DestAccount destAccount = DestAccount.SPOT;
+    private DestAccount destAccount;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

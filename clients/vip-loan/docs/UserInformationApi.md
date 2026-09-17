@@ -83,7 +83,7 @@ No authorization required
 
 Get VIP Loan Accrued Interest (USER_DATA)
 
-Check VIP Loan interest record  Weight(IP): 400  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is returned. - The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days.
+Check VIP Loan interest record  Weight(IP): 400  Security Type: USER_DATA  Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, recent 90-day data is returned. - The maximum interval between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 90 days. - Rate limit: 1 request per second per account.
 
 ### Example
 ```java
@@ -157,7 +157,7 @@ No authorization required
 
 Get VIP Loan Ongoing Orders (USER_DATA)
 
-VIP loan is available for VIP users only.  Weight(IP): 400  Security Type: USER_DATA
+VIP loan is available for VIP users only.  Weight(IP): 400  Security Type: USER_DATA  Notes: - Rate limit: 1 request per second per account.
 
 ### Example
 ```java
@@ -305,7 +305,7 @@ No authorization required
 
 Query Application Status (USER_DATA)
 
-Query Application Status  Weight(UID): 400  Security Type: USER_DATA
+Query Application Status  Weight(UID): 400  Security Type: USER_DATA  Notes: - Rate limit: 5 requests per second per account.
 
 ### Example
 ```java

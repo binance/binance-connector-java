@@ -27,9 +27,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /** MovePositionForSubAccountResponseMovePositionOrdersInner */
 @jakarta.annotation.Generated(
@@ -245,7 +247,7 @@ public class MovePositionForSubAccountResponseMovePositionOrdersInner {
     }
 
     /**
-     * Get positionSide
+     * null when productType&#x3D;OPTION.
      *
      * @return positionSide
      */
@@ -339,6 +341,15 @@ public class MovePositionForSubAccountResponseMovePositionOrdersInner {
                         movePositionForSubAccountResponseMovePositionOrdersInner.success);
     }
 
+    private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+        return a == b
+                || (a != null
+                        && b != null
+                        && a.isPresent()
+                        && b.isPresent()
+                        && Objects.deepEquals(a.get(), b.get()));
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(
@@ -352,6 +363,13 @@ public class MovePositionForSubAccountResponseMovePositionOrdersInner {
                 positionSide,
                 side,
                 success);
+    }
+
+    private static <T> int hashCodeNullable(JsonNullable<T> a) {
+        if (a == null) {
+            return 1;
+        }
+        return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
     }
 
     @Override

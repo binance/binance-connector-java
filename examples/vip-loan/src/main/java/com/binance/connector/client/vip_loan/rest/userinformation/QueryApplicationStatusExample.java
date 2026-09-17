@@ -28,7 +28,8 @@ public class QueryApplicationStatusExample {
     /**
      * Query Application Status (USER_DATA)
      *
-     * <p>Query Application Status Weight(UID): 400 Security Type: USER_DATA
+     * <p>Query Application Status Weight(UID): 400 Security Type: USER_DATA Notes: - Rate limit: 5
+     * requests per second per account.
      *
      * @throws ApiException if the Api call fails
      */

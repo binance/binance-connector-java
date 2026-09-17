@@ -32,7 +32,8 @@ public class FlexibleLoanBorrowExample {
      *
      * <p>Borrow Flexible Loan Weight(IP): 6000 Security Type: TRADE Notes: - This endpoint is
      * available for both master and sub-accounts. - You can customize LTV by entering
-     * &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;.
+     * &#x60;loanAmount&#x60; and &#x60;collateralAmount&#x60;. - Rate limit: 1 request per second
+     * per account.
      *
      * @throws ApiException if the Api call fails
      */

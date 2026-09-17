@@ -28,7 +28,7 @@
 
 [!markPrice@arr@<updateSpeed>](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#mark-price-stream-for-all-market) - markPriceStreamForAllMarket - [MarkPriceStreamForAllMarketExample.java:35](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/market/MarkPriceStreamForAllMarketExample.java#L35)
 
-[tradingSession](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#trading-session-stream) - tradingSessionStream - [TradingSessionStreamExample.java:42](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/market/TradingSessionStreamExample.java#L42)
+[tradingSession](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#trading-session-stream) - tradingSessionStream - [TradingSessionStreamExample.java:43](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/stream/market/TradingSessionStreamExample.java#L43)
 
 ## Public
 

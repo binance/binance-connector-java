@@ -7,7 +7,7 @@ All URIs are relative to *https://papi.binance.com*
 | [**cancelAllCmOpenConditionalOrders**](TradeApi.md#cancelAllCmOpenConditionalOrders) | **DELETE** /papi/v1/cm/conditional/allOpenOrders | Cancel All CM Open Conditional Orders (TRADE) |
 | [**cancelAllCmOpenOrders**](TradeApi.md#cancelAllCmOpenOrders) | **DELETE** /papi/v1/cm/allOpenOrders | Cancel All CM Open Orders (TRADE) |
 | [**cancelAllUmAlgoOpenOrders**](TradeApi.md#cancelAllUmAlgoOpenOrders) | **DELETE** /papi/v1/um/algo/allOpenOrders | Cancel All UM Algo Open Orders (TRADE) |
-| [**cancelAllUmOpenConditionalOrders**](TradeApi.md#cancelAllUmOpenConditionalOrders) | **DELETE** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders (TRADE) |
+| [**cancelAllUmOpenConditionalOrders**](TradeApi.md#cancelAllUmOpenConditionalOrders) | **DELETE** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders - Deprecated (TRADE) |
 | [**cancelAllUmOpenOrders**](TradeApi.md#cancelAllUmOpenOrders) | **DELETE** /papi/v1/um/allOpenOrders | Cancel All UM Open Orders (TRADE) |
 | [**cancelCmConditionalOrder**](TradeApi.md#cancelCmConditionalOrder) | **DELETE** /papi/v1/cm/conditional/order | Cancel CM Conditional Order (TRADE) |
 | [**cancelCmOrder**](TradeApi.md#cancelCmOrder) | **DELETE** /papi/v1/cm/order | Cancel CM Order (TRADE) |
@@ -15,7 +15,7 @@ All URIs are relative to *https://papi.binance.com*
 | [**cancelMarginAccountOcoOrders**](TradeApi.md#cancelMarginAccountOcoOrders) | **DELETE** /papi/v1/margin/orderList | Cancel Margin Account OCO Orders (TRADE) |
 | [**cancelMarginAccountOrder**](TradeApi.md#cancelMarginAccountOrder) | **DELETE** /papi/v1/margin/order | Cancel Margin Account Order (TRADE) |
 | [**cancelUmAlgoOrder**](TradeApi.md#cancelUmAlgoOrder) | **DELETE** /papi/v1/um/algo/order | Cancel UM Algo Order (TRADE) |
-| [**cancelUmConditionalOrder**](TradeApi.md#cancelUmConditionalOrder) | **DELETE** /papi/v1/um/conditional/order | Cancel UM Conditional Order (TRADE) |
+| [**cancelUmConditionalOrder**](TradeApi.md#cancelUmConditionalOrder) | **DELETE** /papi/v1/um/conditional/order | Cancel UM Conditional Order - Deprecated (TRADE) |
 | [**cancelUmOrder**](TradeApi.md#cancelUmOrder) | **DELETE** /papi/v1/um/order | Cancel UM Order (TRADE) |
 | [**cmAccountTradeList**](TradeApi.md#cmAccountTradeList) | **GET** /papi/v1/cm/userTrades | CM Account Trade List (USER_DATA) |
 | [**cmPositionAdlQuantileEstimation**](TradeApi.md#cmPositionAdlQuantileEstimation) | **GET** /papi/v1/cm/adlQuantile | CM Position ADL Quantile Estimation (USER_DATA) |
@@ -32,17 +32,17 @@ All URIs are relative to *https://papi.binance.com*
 | [**newCmOrder**](TradeApi.md#newCmOrder) | **POST** /papi/v1/cm/order | New CM Order (TRADE) |
 | [**newMarginOrder**](TradeApi.md#newMarginOrder) | **POST** /papi/v1/margin/order | New Margin Order (TRADE) |
 | [**newUmAlgoOrder**](TradeApi.md#newUmAlgoOrder) | **POST** /papi/v1/um/algo/order | New UM Algo Order (TRADE) |
-| [**newUmConditionalOrder**](TradeApi.md#newUmConditionalOrder) | **POST** /papi/v1/um/conditional/order | New UM Conditional Order (TRADE) |
+| [**newUmConditionalOrder**](TradeApi.md#newUmConditionalOrder) | **POST** /papi/v1/um/conditional/order | New UM Conditional Order - Deprecated (TRADE) |
 | [**newUmOrder**](TradeApi.md#newUmOrder) | **POST** /papi/v1/um/order | New UM Order (TRADE) |
 | [**queryAllCmConditionalOrders**](TradeApi.md#queryAllCmConditionalOrders) | **GET** /papi/v1/cm/conditional/allOrders | Query All CM Conditional Orders (USER_DATA) |
 | [**queryAllCmOrders**](TradeApi.md#queryAllCmOrders) | **GET** /papi/v1/cm/allOrders | Query All CM Orders (USER_DATA) |
 | [**queryAllCurrentCmOpenConditionalOrders**](TradeApi.md#queryAllCurrentCmOpenConditionalOrders) | **GET** /papi/v1/cm/conditional/openOrders | Query All Current CM Open Conditional Orders (USER_DATA) |
 | [**queryAllCurrentCmOpenOrders**](TradeApi.md#queryAllCurrentCmOpenOrders) | **GET** /papi/v1/cm/openOrders | Query All Current CM Open Orders (USER_DATA) |
 | [**queryAllCurrentUmOpenAlgoOrders**](TradeApi.md#queryAllCurrentUmOpenAlgoOrders) | **GET** /papi/v1/um/algo/openAlgoOrders | Query All Current UM Open Algo Orders (USER_DATA) |
-| [**queryAllCurrentUmOpenConditionalOrders**](TradeApi.md#queryAllCurrentUmOpenConditionalOrders) | **GET** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders (USER_DATA) |
+| [**queryAllCurrentUmOpenConditionalOrders**](TradeApi.md#queryAllCurrentUmOpenConditionalOrders) | **GET** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders - Deprecated (USER_DATA) |
 | [**queryAllCurrentUmOpenOrders**](TradeApi.md#queryAllCurrentUmOpenOrders) | **GET** /papi/v1/um/openOrders | Query All Current UM Open Orders (USER_DATA) |
 | [**queryAllMarginAccountOrders**](TradeApi.md#queryAllMarginAccountOrders) | **GET** /papi/v1/margin/allOrders | Query All Margin Account Orders (USER_DATA) |
-| [**queryAllUmConditionalOrders**](TradeApi.md#queryAllUmConditionalOrders) | **GET** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders (USER_DATA) |
+| [**queryAllUmConditionalOrders**](TradeApi.md#queryAllUmConditionalOrders) | **GET** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders - Deprecated (USER_DATA) |
 | [**queryAllUmOrders**](TradeApi.md#queryAllUmOrders) | **GET** /papi/v1/um/allOrders | Query All UM Orders (USER_DATA) |
 | [**queryCmConditionalOrderHistory**](TradeApi.md#queryCmConditionalOrderHistory) | **GET** /papi/v1/cm/conditional/orderHistory | Query CM Conditional Order History (USER_DATA) |
 | [**queryCmModifyOrderHistory**](TradeApi.md#queryCmModifyOrderHistory) | **GET** /papi/v1/cm/orderAmendment | Query CM Modify Order History (TRADE) |
@@ -51,14 +51,14 @@ All URIs are relative to *https://papi.binance.com*
 | [**queryCurrentCmOpenOrder**](TradeApi.md#queryCurrentCmOpenOrder) | **GET** /papi/v1/cm/openOrder | Query Current CM Open Order (USER_DATA) |
 | [**queryCurrentMarginOpenOrder**](TradeApi.md#queryCurrentMarginOpenOrder) | **GET** /papi/v1/margin/openOrders | Query Current Margin Open Order (USER_DATA) |
 | [**queryCurrentUmOpenAlgoOrder**](TradeApi.md#queryCurrentUmOpenAlgoOrder) | **GET** /papi/v1/um/algo/algoOrder | Query Current UM Open Algo Order (USER_DATA) |
-| [**queryCurrentUmOpenConditionalOrder**](TradeApi.md#queryCurrentUmOpenConditionalOrder) | **GET** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order (USER_DATA) |
+| [**queryCurrentUmOpenConditionalOrder**](TradeApi.md#queryCurrentUmOpenConditionalOrder) | **GET** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order - Deprecated (USER_DATA) |
 | [**queryCurrentUmOpenOrder**](TradeApi.md#queryCurrentUmOpenOrder) | **GET** /papi/v1/um/openOrder | Query Current UM Open Order (USER_DATA) |
 | [**queryMarginAccountOrder**](TradeApi.md#queryMarginAccountOrder) | **GET** /papi/v1/margin/order | Query Margin Account Order (USER_DATA) |
 | [**queryMarginAccountsAllOco**](TradeApi.md#queryMarginAccountsAllOco) | **GET** /papi/v1/margin/allOrderList | Query Margin Account&#39;s all OCO (USER_DATA) |
 | [**queryMarginAccountsOco**](TradeApi.md#queryMarginAccountsOco) | **GET** /papi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA) |
 | [**queryMarginAccountsOpenOco**](TradeApi.md#queryMarginAccountsOpenOco) | **GET** /papi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA) |
 | [**queryUmAlgoOrderHistory**](TradeApi.md#queryUmAlgoOrderHistory) | **GET** /papi/v1/um/algo/allAlgoOrders | Query UM Algo Order History (USER_DATA) |
-| [**queryUmConditionalOrderHistory**](TradeApi.md#queryUmConditionalOrderHistory) | **GET** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History (USER_DATA) |
+| [**queryUmConditionalOrderHistory**](TradeApi.md#queryUmConditionalOrderHistory) | **GET** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History - Deprecated (USER_DATA) |
 | [**queryUmModifyOrderHistory**](TradeApi.md#queryUmModifyOrderHistory) | **GET** /papi/v1/um/orderAmendment | Query UM Modify Order History (TRADE) |
 | [**queryUmOrder**](TradeApi.md#queryUmOrder) | **GET** /papi/v1/um/order | Query UM Order (USER_DATA) |
 | [**queryUsersCmForceOrders**](TradeApi.md#queryUsersCmForceOrders) | **GET** /papi/v1/cm/forceOrders | Query User&#39;s CM Force Orders (USER_DATA) |
@@ -265,9 +265,9 @@ No authorization required
 # **cancelAllUmOpenConditionalOrders**
 > CancelAllUmOpenConditionalOrdersResponse cancelAllUmOpenConditionalOrders(symbol, recvWindow)
 
-Cancel All UM Open Conditional Orders (TRADE)
+Cancel All UM Open Conditional Orders - Deprecated (TRADE)
 
-Cancel All UM Open Conditional Orders  Weight(IP): 1  Security Type: TRADE
+Cancel All UM Open Conditional Orders  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;DELETE /papi/v1/um/algo/allOpenOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -799,9 +799,9 @@ No authorization required
 # **cancelUmConditionalOrder**
 > CancelUmConditionalOrderResponse cancelUmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Cancel UM Conditional Order (TRADE)
+Cancel UM Conditional Order - Deprecated (TRADE)
 
-Cancel UM Conditional Order  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.
+Cancel UM Conditional Order  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;DELETE /papi/v1/um/algo/order&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.
 
 ### Example
 ```java
@@ -1831,7 +1831,7 @@ No authorization required
 
 New UM Algo Order (TRADE)
 
-Place new UM conditional order  Weight(IP): 1  Security Type: TRADE  Notes: - Algo order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Algo order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Condition orders will be triggered when price reaches the &#x60;triggerPrice&#x60;. - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: BUY: latest price &gt;&#x3D; &#x60;triggerPrice&#x60;; SELL: latest price &lt;&#x3D; &#x60;triggerPrice&#x60;. - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: BUY: latest price &lt;&#x3D; &#x60;triggerPrice&#x60;; SELL: latest price &gt;&#x3D; &#x60;triggerPrice&#x60;. - &#x60;TRAILING_STOP_MARKET&#x60;: BUY: lowest price after order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and latest price &gt;&#x3D; lowest price * (1 + &#x60;callbackRate&#x60;); SELL: highest price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and latest price &lt;&#x3D; highest price * (1 - &#x60;callbackRate&#x60;). - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
+Place new UM conditional order  Weight(IP): 1  Security Type: TRADE  Notes: - Algo order with type &#x60;STOP&#x60;, parameter &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Algo order with type &#x60;TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent (default &#x60;GTC&#x60;). - Condition orders will be triggered when price reaches the &#x60;triggerPrice&#x60;. - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: BUY: latest price &gt;&#x3D; &#x60;triggerPrice&#x60;; SELL: latest price &lt;&#x3D; &#x60;triggerPrice&#x60;. - &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;: BUY: latest price &lt;&#x3D; &#x60;triggerPrice&#x60;; SELL: latest price &gt;&#x3D; &#x60;triggerPrice&#x60;. - &#x60;TRAILING_STOP_MARKET&#x60;: BUY: lowest price after order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and latest price &gt;&#x3D; lowest price * (1 + &#x60;callbackRate&#x60;); SELL: highest price after order placed &gt;&#x3D; &#x60;activatePrice&#x60;, and latest price &lt;&#x3D; highest price * (1 - &#x60;callbackRate&#x60;). - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: follow the same rules for conditional orders; if triggered, close all current long position (if &#x60;SELL&#x60;) or current short position (if &#x60;BUY&#x60;); cannot be used with &#x60;quantity&#x60; parameter; cannot be used with &#x60;reduceOnly&#x60; parameter; in Hedge Mode, cannot be used with &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side, and cannot be used with &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side. - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
 
 ### Example
 ```java
@@ -1891,9 +1891,9 @@ No authorization required
 # **newUmConditionalOrder**
 > NewUmConditionalOrderResponse newUmConditionalOrder(newUmConditionalOrderRequest)
 
-New UM Conditional Order (TRADE)
+New UM Conditional Order - Deprecated (TRADE)
 
-Place new UM conditional order  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on type:   - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;).   - Condition orders will be triggered when:   - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;:   - BUY: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60;   - SELL: \&quot;MARK_PRICE\&quot; &#x3D; &#x60;stopPrice&#x60;   - &#x60;TRAILING_STOP_MARKET&#x60;:   - BUY: the lowest mark price after order placed &#x60;&#x60;&#x3D; the lowest mark price   - (1 + &#x60;callbackRate&#x60;)   - SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &#x3D; &#x60;stopPrice&#x60;   - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60;   - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.   - In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;
+Place new UM conditional order  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;POST /papi/v1/um/algo/order&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on type:   - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;).   - Condition orders will be triggered when:   - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;:   - BUY: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60;   - SELL: \&quot;MARK_PRICE\&quot; &#x3D; &#x60;stopPrice&#x60;   - &#x60;TRAILING_STOP_MARKET&#x60;:   - BUY: the lowest mark price after order placed &#x60;&#x60;&#x3D; the lowest mark price   - (1 + &#x60;callbackRate&#x60;)   - SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &#x3D; &#x60;stopPrice&#x60;   - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60;   - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.   - In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;
 
 ### Example
 ```java
@@ -2359,9 +2359,9 @@ No authorization required
 # **queryAllCurrentUmOpenConditionalOrders**
 > QueryAllCurrentUmOpenConditionalOrdersResponse queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow)
 
-Query All Current UM Open Conditional Orders (USER_DATA)
+Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
 
-Get all open conditional orders on a symbol.  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - If &#x60;symbol&#x60; is not provided, conditional open orders for all symbols are returned.
+Get all open conditional orders on a symbol.  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/openAlgoOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - If &#x60;symbol&#x60; is not provided, conditional open orders for all symbols are returned.
 
 ### Example
 ```java
@@ -2559,9 +2559,9 @@ No authorization required
 # **queryAllUmConditionalOrders**
 > QueryAllUmConditionalOrdersResponse queryAllUmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow)
 
-Query All UM Conditional Orders (USER_DATA)
+Query All UM Conditional Orders - Deprecated (USER_DATA)
 
-Query All UM Conditional Orders  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - These orders will not be found:   - order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days  * The query time period must be less than 7 days( default as the recent 7 days).
+Query All UM Conditional Orders  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/allAlgoOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - These orders will not be found:   - order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days  * The query time period must be less than 7 days( default as the recent 7 days).
 
 ### Example
 ```java
@@ -3179,9 +3179,9 @@ No authorization required
 # **queryCurrentUmOpenConditionalOrder**
 > QueryCurrentUmOpenConditionalOrderResponse queryCurrentUmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Query Current UM Open Conditional Order (USER_DATA)
+Query Current UM Open Conditional Order - Deprecated (USER_DATA)
 
-Query Current UM Open Conditional Order  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.
+Query Current UM Open Conditional Order  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/algoOrder&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.
 
 ### Example
 ```java
@@ -3653,9 +3653,9 @@ No authorization required
 # **queryUmConditionalOrderHistory**
 > QueryUmConditionalOrderHistoryResponse queryUmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow)
 
-Query UM Conditional Order History (USER_DATA)
+Query UM Conditional Order History - Deprecated (USER_DATA)
 
-Query UM Conditional Order History  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60; orders will not be found. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days &lt; current time
+Query UM Conditional Order History  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/allAlgoOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60; orders will not be found. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days &lt; current time
 
 ### Example
 ```java

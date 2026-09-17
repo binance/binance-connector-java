@@ -89,7 +89,7 @@ public class PlaceOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_FUNDING_SOURCE)
     @jakarta.annotation.Nullable
-    private FundingSource fundingSource = FundingSource.MPC;
+    private FundingSource fundingSource;
 
     public static final String SERIALIZED_NAME_FUND_TRANSFER_AMOUNT = "fundTransferAmount";
 

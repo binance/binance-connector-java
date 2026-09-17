@@ -362,6 +362,10 @@ public class JSON {
                 new com.binance.connector.client.wallet.rest.model
                         .QueryUserWalletBalanceResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.wallet.rest.model
+                        .QueryUserWalletBalanceResponseInnerAssetBalancesInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.wallet.rest.model.SubmitDepositQuestionnaireRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(

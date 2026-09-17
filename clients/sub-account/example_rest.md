@@ -42,7 +42,7 @@
 
 [GET /sapi/v1/sub-account/margin/account](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-margin-account) - getDetailOnSubAccountsMarginAccount - [GetDetailOnSubAccountsMarginAccountExample.java:36](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/GetDetailOnSubAccountsMarginAccountExample.java#L36)
 
-[GET /sapi/v1/sub-account/futures/move-position](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-move-position-history-for-sub-account) - getMovePositionHistoryForSubAccount - [GetMovePositionHistoryForSubAccountExample.java:41](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/GetMovePositionHistoryForSubAccountExample.java#L41)
+[GET /sapi/v1/sub-account/futures/move-position](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-move-position-history-for-sub-account) - getMovePositionHistoryForSubAccount - [GetMovePositionHistoryForSubAccountExample.java:42](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/GetMovePositionHistoryForSubAccountExample.java#L42)
 
 [GET /sapi/v1/capital/deposit/subAddress](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-address) - getSubAccountDepositAddress - [GetSubAccountDepositAddressExample.java:37](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/GetSubAccountDepositAddressExample.java#L37)
 

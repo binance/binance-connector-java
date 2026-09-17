@@ -1,5 +1,44 @@
 # Changelog
 
+## 7.0.3 - 2026-08-31
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `queryCrossMarginAccountDetails()` (`GET /sapi/v1/margin/account`):
+  - property `totalOpenOrderLossInUSDT` deleted
+
+- Removed response field `totalOpenOrderLossInUSDT`
+  - affected events:
+    - `queryCrossMarginAccountDetailsResponse`
+
+## 7.0.2 - 2026-08-25
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `sideEffectType`:
+  - enum added: `AUTO_BORROW_REPAY`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+
+## 7.0.1 - 2026-08-25
+
+### Changed (2)
+
+- Removed default values in Request objects.
+
+#### REST API
+
+- Modified parameter `sideEffectType`:
+  - enum added: `AUTO_BORROW_REPAY`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+
 ## 7.0.0 - 2026-07-29
 
 ### Added (4)

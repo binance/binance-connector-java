@@ -47,7 +47,7 @@ public class RedeemEthRequest {
 
     @SerializedName(SERIALIZED_NAME_ASSET)
     @jakarta.annotation.Nullable
-    private Asset asset = Asset.BETH;
+    private Asset asset;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

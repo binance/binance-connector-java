@@ -42,7 +42,7 @@ public class VipLoanRestApi {
 
     /**
      * Get Borrow Interest Rate (USER_DATA) Get Borrow Interest Rate Weight(IP): 400 Security Type:
-     * USER_DATA
+     * USER_DATA Notes: - Rate limit: 5 requests per second per account.
      *
      * @param loanCoin Max 10 assets, Multiple split by \&quot;,\&quot; (required)
      * @param recvWindow (optional)
@@ -67,7 +67,7 @@ public class VipLoanRestApi {
 
     /**
      * Get Collateral Asset Data (USER_DATA) Get Collateral Asset Data Weight(IP): 400 Security
-     * Type: USER_DATA
+     * Type: USER_DATA Notes: - Rate limit: 1 request per second per account.
      *
      * @param collateralCoin (optional)
      * @param recvWindow (optional)
@@ -92,7 +92,8 @@ public class VipLoanRestApi {
 
     /**
      * Get Loanable Assets Data (USER_DATA) Get interest rate and borrow limit of loanable assets.
-     * The borrow limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA
+     * The borrow limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA Notes: -
+     * Rate limit: 1 request per second per account.
      *
      * @param loanCoin (optional)
      * @param vipLevel Defaults to the user&#39;s VIP level. (optional)
@@ -186,7 +187,8 @@ public class VipLoanRestApi {
      * Type: TRADE Notes: - &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only
      * master account applications are supported. - &#x60;loanAccountId&#x60; and
      * &#x60;collateralAccountId&#x60; must be under the same master account. - &#x60;loanTerm&#x60;
-     * is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
+     * is mandatory if the user chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;). -
+     * Rate limit: 1 request per 2 seconds per account.
      *
      * @param vipLoanBorrowRequest (required)
      * @return ApiResponse&lt;VipLoanBorrowResponse&gt;
@@ -237,7 +239,7 @@ public class VipLoanRestApi {
 
     /**
      * VIP Loan Renew (TRADE) VIP loan is available for VIP users only. Weight(UID): 6000 Security
-     * Type: TRADE
+     * Type: TRADE Notes: - Rate limit: 1 request per second per account.
      *
      * @param vipLoanRenewRequest (required)
      * @return ApiResponse&lt;VipLoanRenewResponse&gt;
@@ -317,7 +319,7 @@ public class VipLoanRestApi {
      * Get VIP Loan Accrued Interest (USER_DATA) Check VIP Loan interest record Weight(IP): 400
      * Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not
      * sent, recent 90-day data is returned. - The maximum interval between &#x60;startTime&#x60;
-     * and &#x60;endTime&#x60; is 90 days.
+     * and &#x60;endTime&#x60; is 90 days. - Rate limit: 1 request per second per account.
      *
      * @param orderId (optional)
      * @param loanCoin (optional)
@@ -356,7 +358,7 @@ public class VipLoanRestApi {
 
     /**
      * Get VIP Loan Ongoing Orders (USER_DATA) VIP loan is available for VIP users only. Weight(IP):
-     * 400 Security Type: USER_DATA
+     * 400 Security Type: USER_DATA Notes: - Rate limit: 1 request per second per account.
      *
      * @param orderId (optional)
      * @param collateralAccountId (optional)
@@ -435,7 +437,7 @@ public class VipLoanRestApi {
 
     /**
      * Query Application Status (USER_DATA) Query Application Status Weight(UID): 400 Security Type:
-     * USER_DATA
+     * USER_DATA Notes: - Rate limit: 5 requests per second per account.
      *
      * @param current Current page number, starting from 1. (optional)
      * @param limit (optional)

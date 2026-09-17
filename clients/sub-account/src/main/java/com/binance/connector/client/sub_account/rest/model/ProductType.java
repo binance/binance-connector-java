@@ -21,10 +21,12 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets productType */
+/** A single request cannot mix UM and OPTION positions. */
 @JsonAdapter(ProductType.Adapter.class)
 public enum ProductType {
-    UM("UM");
+    UM("UM"),
+
+    OPTION("OPTION");
 
     private String value;
 

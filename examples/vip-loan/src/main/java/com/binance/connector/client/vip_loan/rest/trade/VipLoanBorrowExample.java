@@ -33,7 +33,8 @@ public class VipLoanBorrowExample {
      * &#x60;loanAccountId&#x60; refers to the loan receiving account. - Only master account
      * applications are supported. - &#x60;loanAccountId&#x60; and &#x60;collateralAccountId&#x60;
      * must be under the same master account. - &#x60;loanTerm&#x60; is mandatory if the user
-     * chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;).
+     * chooses a fixed rate (&#x60;isFlexibleRate &#x3D; FALSE&#x60;). - Rate limit: 1 request per 2
+     * seconds per account.
      *
      * @throws ApiException if the Api call fails
      */

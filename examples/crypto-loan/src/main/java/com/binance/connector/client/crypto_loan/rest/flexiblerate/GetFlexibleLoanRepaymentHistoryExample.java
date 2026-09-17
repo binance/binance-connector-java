@@ -32,7 +32,8 @@ public class GetFlexibleLoanRepaymentHistoryExample {
      * <p>Get Flexible Loan Repayment History. It can be used to check history before 2024-02-27
      * 08:00. Weight(IP): 400 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
      * &#x60;endTime&#x60; are not sent, the recent 90-day data is returned. - The max interval
-     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days.
+     * between &#x60;startTime&#x60; and &#x60;endTime&#x60; is 180 days. - Rate limit: 5 requests
+     * per second per account.
      *
      * @throws ApiException if the Api call fails
      */

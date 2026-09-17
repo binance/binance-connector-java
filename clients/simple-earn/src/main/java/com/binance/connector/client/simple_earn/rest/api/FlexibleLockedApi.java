@@ -76,7 +76,7 @@ public class FlexibleLockedApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-simple-earn/7.0.0 (Java/%s; %s; %s)",
+                    "binance-simple-earn/7.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -866,7 +866,7 @@ public class FlexibleLockedApi {
      * @param endTime (optional)
      * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR,
      *     &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default:
-     *     &#x60;ALL&#x60; (optional, default to STANDARD)
+     *     &#x60;ALL&#x60; (optional)
      * @param current Currently querying page. Starts from 1. (optional)
      * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)
@@ -1048,7 +1048,7 @@ public class FlexibleLockedApi {
      * @param endTime (optional)
      * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR,
      *     &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default:
-     *     &#x60;ALL&#x60; (optional, default to STANDARD)
+     *     &#x60;ALL&#x60; (optional)
      * @param current Currently querying page. Starts from 1. (optional)
      * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)

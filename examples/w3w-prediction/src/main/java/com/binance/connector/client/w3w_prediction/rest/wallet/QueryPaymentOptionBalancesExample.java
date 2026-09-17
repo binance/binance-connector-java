@@ -27,10 +27,10 @@ public class QueryPaymentOptionBalancesExample {
     }
 
     /**
-     * Query Payment Option Balances (USER_DATA)
+     * Query Payment Option Balances (PREDICTION_TRADE)
      *
      * <p>Get available balances for each payment option that can be used for prediction trading.
-     * Weight(IP): 200 Security Type: USER_DATA
+     * Weight(IP): 200 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

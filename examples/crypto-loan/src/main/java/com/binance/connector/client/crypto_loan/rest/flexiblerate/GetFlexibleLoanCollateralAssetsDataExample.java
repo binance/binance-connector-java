@@ -30,7 +30,8 @@ public class GetFlexibleLoanCollateralAssetsDataExample {
      * Get Flexible Loan Collateral Assets Data (USER_DATA)
      *
      * <p>Get LTV information and collateral limit of flexible loan&#39;s collateral assets. The
-     * collateral limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA
+     * collateral limit is shown in USD value. Weight(IP): 400 Security Type: USER_DATA Notes: -
+     * Rate limit: 1 request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

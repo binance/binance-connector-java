@@ -53,7 +53,7 @@ public class NewCmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_POSITION_SIDE)
     @jakarta.annotation.Nullable
-    private PositionSide positionSide = PositionSide.BOTH;
+    private PositionSide positionSide;
 
     public static final String SERIALIZED_NAME_STRATEGY_TYPE = "strategyType";
 
@@ -77,7 +77,7 @@ public class NewCmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
     @jakarta.annotation.Nullable
-    private String reduceOnly = "false";
+    private String reduceOnly;
 
     public static final String SERIALIZED_NAME_PRICE = "price";
 
@@ -89,13 +89,13 @@ public class NewCmConditionalOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_WORKING_TYPE)
     @jakarta.annotation.Nullable
-    private WorkingType workingType = WorkingType.CONTRACT_PRICE;
+    private WorkingType workingType;
 
     public static final String SERIALIZED_NAME_PRICE_PROTECT = "priceProtect";
 
     @SerializedName(SERIALIZED_NAME_PRICE_PROTECT)
     @jakarta.annotation.Nullable
-    private PriceProtect priceProtect = PriceProtect.FALSE;
+    private PriceProtect priceProtect;
 
     public static final String SERIALIZED_NAME_NEW_CLIENT_STRATEGY_ID = "newClientStrategyId";
 

@@ -109,6 +109,24 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.ApplyMmDepositRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.ApplyMmDepositResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.ApplyMmWithdrawRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.ApplyMmWithdrawResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.Assets
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.AssetsInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.BatchCancelOrdersRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
@@ -140,10 +158,25 @@ public class JSON {
                         .CreateInboundTransferResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model
+                        .CreateOtcBlocktradeRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .CreateOtcBlocktradeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
                         .CreateOutboundTransferRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model
                         .CreateOutboundTransferResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.EventTypes
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .FulfilOtcBlocktradeRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .FulfilOtcBlocktradeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.GetMarketDetailResponse
                         .CustomTypeAdapterFactory());
@@ -160,6 +193,33 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model
                         .GetMarketDetailResponseVariantData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcBlocktradeDetailRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcBlocktradeDetailResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcBlocktradeDetailResponseOrderData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcBlocktradeEventsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcBlocktradeEventsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcBlocktradeEventsResponseEventsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcReservedBalancesRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcReservedBalancesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .GetOtcReservedBalancesResponseBalancesInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.GetPortfolioResponse
                         .CustomTypeAdapterFactory());
@@ -184,6 +244,15 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.GetRedeemStatusResponse
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.ListOtcBlocktradesRequest
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .ListOtcBlocktradesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .ListOtcBlocktradesResponseBlocktradesInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model
                         .ListPredictionCategoriesResponse.CustomTypeAdapterFactory());
@@ -214,11 +283,23 @@ public class JSON {
                 new com.binance.connector.client.w3w_prediction.rest.model.MarketSearchResponseInner
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model.OrderIds
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.PlaceOrderRequest
                         .CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.PlaceOrderResponse
                         .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .PreviewOtcBlocktradeRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .PreviewOtcBlocktradeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .PreviewOtcBlocktradeResponseOrderData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.QueryActiveOrdersResponse
                         .CustomTypeAdapterFactory());
@@ -286,6 +367,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model
                         .QueryTransferStatusResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .RemoveOtcBlocktradesRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.w3w_prediction.rest.model
+                        .RemoveOtcBlocktradesResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.w3w_prediction.rest.model.TokenIds
                         .CustomTypeAdapterFactory());

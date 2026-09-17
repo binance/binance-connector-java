@@ -65,13 +65,13 @@ public class SendQuoteRequestRequest {
 
     @SerializedName(SERIALIZED_NAME_WALLET_TYPE)
     @jakarta.annotation.Nullable
-    private WalletType walletType = WalletType.SPOT;
+    private WalletType walletType;
 
     public static final String SERIALIZED_NAME_VALID_TIME = "validTime";
 
     @SerializedName(SERIALIZED_NAME_VALID_TIME)
     @jakarta.annotation.Nullable
-    private ValidTime validTime = ValidTime.VALID_TIME_10s;
+    private ValidTime validTime;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

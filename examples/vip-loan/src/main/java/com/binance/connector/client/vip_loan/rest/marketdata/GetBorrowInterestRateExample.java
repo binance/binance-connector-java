@@ -28,7 +28,8 @@ public class GetBorrowInterestRateExample {
     /**
      * Get Borrow Interest Rate (USER_DATA)
      *
-     * <p>Get Borrow Interest Rate Weight(IP): 400 Security Type: USER_DATA
+     * <p>Get Borrow Interest Rate Weight(IP): 400 Security Type: USER_DATA Notes: - Rate limit: 5
+     * requests per second per account.
      *
      * @throws ApiException if the Api call fails
      */

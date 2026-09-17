@@ -47,7 +47,7 @@ public class ContinuousContractKlineCandlestickDataExample {
      */
     public void continuousContractKlineCandlestickDataExample() throws ApiException, IOException {
         String pair = "BTCUSD";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Interval interval = Interval.INTERVAL_1m;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;

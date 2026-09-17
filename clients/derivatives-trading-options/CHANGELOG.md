@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.0.1 - 2026-08-25
+
+### Changed (4)
+
+- Removed default values in Request objects.
+
 ## 9.0.0 - 2026-07-29
 
 ### Added (3)

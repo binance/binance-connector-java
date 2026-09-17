@@ -173,8 +173,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000orderType=MARKET&slippageBps=1200&side=BUY&tokenId=112233&chainId=56&amountIn=1000000000000000000&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c&fundingSource=MPC&feeRateBps=200", signInputCaptor.getValue());
-        assertEquals("7acd89da1c0d3d8e4b794047614aa1ba5b1cf2de41d20ee4dbd35e502db8b338", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000orderType=MARKET&slippageBps=1200&side=BUY&tokenId=112233&amountIn=1000000000000000000&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c", signInputCaptor.getValue());
+        assertEquals("8d1f83675057086f11ae43e60749db804e149f4976a8ade609c932e53acd59f4", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/w3w/wallet/prediction/trade/get-quote", actualRequest.url().encodedPath());
     }
 
@@ -212,8 +212,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&orderType=MARKET&slippageBps=1200&accountType=SPOT&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c&fundingSource=MPC&timeInForce=FOK&quoteId=q_20260525_abc123xyz", signInputCaptor.getValue());
-        assertEquals("5037f8585fd2d908f01b435e2006c0c006e246266a2ce7850919680722a66c05", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000walletId=5b5c1ec3be4e4416a5872b21c1ca5d20&orderType=MARKET&slippageBps=1200&accountType=SPOT&walletAddress=0x12e32db8817e292508c34111cbc4b23340df542c&timeInForce=FOK&quoteId=q_20260525_abc123xyz", signInputCaptor.getValue());
+        assertEquals("74b893de257c6e5f9bdb86929e3f9893ec5dda0734e466f3eac7943e322aecc1", actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/w3w/wallet/prediction/trade/place-order-bundle", actualRequest.url().encodedPath());
     }
 

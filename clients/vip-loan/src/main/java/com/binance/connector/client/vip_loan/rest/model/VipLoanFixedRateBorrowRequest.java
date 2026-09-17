@@ -76,7 +76,7 @@ public class VipLoanFixedRateBorrowRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY)
     @jakarta.annotation.Nullable
-    private Boolean autoRepay = true;
+    private Boolean autoRepay;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

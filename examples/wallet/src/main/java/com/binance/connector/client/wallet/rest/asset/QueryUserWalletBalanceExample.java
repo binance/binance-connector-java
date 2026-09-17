@@ -34,9 +34,10 @@ public class QueryUserWalletBalanceExample {
      */
     public void queryUserWalletBalanceExample() throws ApiException, IOException {
         String quoteAsset = "BTC";
+        Boolean needBalanceDetail = false;
         Long recvWindow = 5000L;
         ApiResponse<QueryUserWalletBalanceResponse> response =
-                getApi().queryUserWalletBalance(quoteAsset, recvWindow);
+                getApi().queryUserWalletBalance(quoteAsset, needBalanceDetail, recvWindow);
         System.out.println(response.getData());
     }
 }

@@ -91,13 +91,6 @@ public class QueryCrossMarginAccountDetailsResponse {
     @jakarta.annotation.Nullable
     private String totalCollateralValueInUSDT;
 
-    public static final String SERIALIZED_NAME_TOTAL_OPEN_ORDER_LOSS_IN_U_S_D_T =
-            "totalOpenOrderLossInUSDT";
-
-    @SerializedName(SERIALIZED_NAME_TOTAL_OPEN_ORDER_LOSS_IN_U_S_D_T)
-    @jakarta.annotation.Nullable
-    private String totalOpenOrderLossInUSDT;
-
     public static final String SERIALIZED_NAME_TRADE_ENABLED = "tradeEnabled";
 
     @SerializedName(SERIALIZED_NAME_TRADE_ENABLED)
@@ -292,27 +285,6 @@ public class QueryCrossMarginAccountDetailsResponse {
         this.totalCollateralValueInUSDT = totalCollateralValueInUSDT;
     }
 
-    public QueryCrossMarginAccountDetailsResponse totalOpenOrderLossInUSDT(
-            @jakarta.annotation.Nullable String totalOpenOrderLossInUSDT) {
-        this.totalOpenOrderLossInUSDT = totalOpenOrderLossInUSDT;
-        return this;
-    }
-
-    /**
-     * total Open Order Loss In USDT.
-     *
-     * @return totalOpenOrderLossInUSDT
-     */
-    @jakarta.annotation.Nullable
-    public String getTotalOpenOrderLossInUSDT() {
-        return totalOpenOrderLossInUSDT;
-    }
-
-    public void setTotalOpenOrderLossInUSDT(
-            @jakarta.annotation.Nullable String totalOpenOrderLossInUSDT) {
-        this.totalOpenOrderLossInUSDT = totalOpenOrderLossInUSDT;
-    }
-
     public QueryCrossMarginAccountDetailsResponse tradeEnabled(
             @jakarta.annotation.Nullable Boolean tradeEnabled) {
         this.tradeEnabled = tradeEnabled;
@@ -457,9 +429,6 @@ public class QueryCrossMarginAccountDetailsResponse {
                         this.totalCollateralValueInUSDT,
                         queryCrossMarginAccountDetailsResponse.totalCollateralValueInUSDT)
                 && Objects.equals(
-                        this.totalOpenOrderLossInUSDT,
-                        queryCrossMarginAccountDetailsResponse.totalOpenOrderLossInUSDT)
-                && Objects.equals(
                         this.tradeEnabled, queryCrossMarginAccountDetailsResponse.tradeEnabled)
                 && Objects.equals(
                         this.transferInEnabled,
@@ -484,7 +453,6 @@ public class QueryCrossMarginAccountDetailsResponse {
                 totalLiabilityOfBtc,
                 totalNetAssetOfBtc,
                 totalCollateralValueInUSDT,
-                totalOpenOrderLossInUSDT,
                 tradeEnabled,
                 transferInEnabled,
                 transferOutEnabled,
@@ -511,9 +479,6 @@ public class QueryCrossMarginAccountDetailsResponse {
                 .append("\n");
         sb.append("		totalCollateralValueInUSDT: ")
                 .append(toIndentedString(totalCollateralValueInUSDT))
-                .append("\n");
-        sb.append("		totalOpenOrderLossInUSDT: ")
-                .append(toIndentedString(totalOpenOrderLossInUSDT))
                 .append("\n");
         sb.append("		tradeEnabled: ").append(toIndentedString(tradeEnabled)).append("\n");
         sb.append("		transferInEnabled: ").append(toIndentedString(transferInEnabled)).append("\n");
@@ -568,12 +533,6 @@ public class QueryCrossMarginAccountDetailsResponse {
         totalCollateralValueInUSDTValueAsString = totalCollateralValueInUSDTValue.toString();
         sb.append("totalCollateralValueInUSDT=")
                 .append(urlEncode(totalCollateralValueInUSDTValueAsString))
-                .append("");
-        Object totalOpenOrderLossInUSDTValue = getTotalOpenOrderLossInUSDT();
-        String totalOpenOrderLossInUSDTValueAsString = "";
-        totalOpenOrderLossInUSDTValueAsString = totalOpenOrderLossInUSDTValue.toString();
-        sb.append("totalOpenOrderLossInUSDT=")
-                .append(urlEncode(totalOpenOrderLossInUSDTValueAsString))
                 .append("");
         Object tradeEnabledValue = getTradeEnabled();
         String tradeEnabledValueAsString = "";
@@ -638,7 +597,6 @@ public class QueryCrossMarginAccountDetailsResponse {
         openapiFields.add("totalLiabilityOfBtc");
         openapiFields.add("totalNetAssetOfBtc");
         openapiFields.add("TotalCollateralValueInUSDT");
-        openapiFields.add("totalOpenOrderLossInUSDT");
         openapiFields.add("tradeEnabled");
         openapiFields.add("transferInEnabled");
         openapiFields.add("transferOutEnabled");
@@ -720,15 +678,6 @@ public class QueryCrossMarginAccountDetailsResponse {
                             "Expected the field `TotalCollateralValueInUSDT` to be a primitive type"
                                     + " in the JSON string but got `%s`",
                             jsonObj.get("TotalCollateralValueInUSDT").toString()));
-        }
-        if ((jsonObj.get("totalOpenOrderLossInUSDT") != null
-                        && !jsonObj.get("totalOpenOrderLossInUSDT").isJsonNull())
-                && !jsonObj.get("totalOpenOrderLossInUSDT").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `totalOpenOrderLossInUSDT` to be a primitive type"
-                                    + " in the JSON string but got `%s`",
-                            jsonObj.get("totalOpenOrderLossInUSDT").toString()));
         }
         if ((jsonObj.get("accountType") != null && !jsonObj.get("accountType").isJsonNull())
                 && !jsonObj.get("accountType").isJsonPrimitive()) {

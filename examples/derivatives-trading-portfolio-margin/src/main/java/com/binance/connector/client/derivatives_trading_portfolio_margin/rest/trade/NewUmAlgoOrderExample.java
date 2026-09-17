@@ -45,8 +45,15 @@ public class NewUmAlgoOrderExample {
      * lowest price after order placed &lt;&#x3D; &#x60;activatePrice&#x60;, and latest price
      * &gt;&#x3D; lowest price * (1 + &#x60;callbackRate&#x60;); SELL: highest price after order
      * placed &gt;&#x3D; &#x60;activatePrice&#x60;, and latest price &lt;&#x3D; highest price * (1 -
-     * &#x60;callbackRate&#x60;). - &#x60;selfTradePreventionMode&#x60; is only effective when
-     * &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
+     * &#x60;callbackRate&#x60;). - &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60; with
+     * &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;: follow the same rules for conditional
+     * orders; if triggered, close all current long position (if &#x60;SELL&#x60;) or current short
+     * position (if &#x60;BUY&#x60;); cannot be used with &#x60;quantity&#x60; parameter; cannot be
+     * used with &#x60;reduceOnly&#x60; parameter; in Hedge Mode, cannot be used with
+     * &#x60;BUY&#x60; orders in &#x60;LONG&#x60; position side, and cannot be used with
+     * &#x60;SELL&#x60; orders in &#x60;SHORT&#x60; position side. -
+     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
+     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.
      *
      * @throws ApiException if the Api call fails
      */
@@ -56,7 +63,6 @@ public class NewUmAlgoOrderExample {
         newUmAlgoOrderRequest.symbol("BNBUSDT");
         newUmAlgoOrderRequest.side(Side.BUY);
         newUmAlgoOrderRequest.type(OrderType.LIMIT);
-        newUmAlgoOrderRequest.quantity(0.01d);
         ApiResponse<NewUmAlgoOrderResponse> response =
                 getApi().newUmAlgoOrder(newUmAlgoOrderRequest);
         System.out.println(response.getData());

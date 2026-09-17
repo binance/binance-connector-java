@@ -485,7 +485,7 @@ public class SimpleEarnRestApi {
      * @param endTime (optional)
      * @param type &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR,
      *     &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default:
-     *     &#x60;ALL&#x60; (optional, default to STANDARD)
+     *     &#x60;ALL&#x60; (optional)
      * @param current Currently querying page. Starts from 1. (optional)
      * @param size Number of results per page. (optional)
      * @param recvWindow The value cannot be greater than 60000 (ms) (optional)

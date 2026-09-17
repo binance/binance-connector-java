@@ -526,8 +526,8 @@ public class DerivativesTradingCoinFuturesRestApi {
     /**
      * Compressed/Aggregate Trades List Get compressed, aggregate trades. Market trades that fill in
      * 100ms with the same price and the same taking side will have the quantity aggregated.
-     * Weight(IP): 20 Notes: - support querying futures trade histories that are not older than 24
-     * hours - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
+     * Weight(IP): 20 Notes: - only trade histories within the past 48 hours (counted from now) can
+     * be queried - If both &#x60;startTime&#x60; and &#x60;endTime&#x60; are sent, time between
      * &#x60;startTime&#x60; and &#x60;endTime&#x60; must be less than 1 hour. - If
      * &#x60;fromId&#x60;, &#x60;startTime&#x60;, and &#x60;endTime&#x60; are not sent, the most
      * recent aggregate trades will be returned. - Only market trades will be aggregated and
@@ -790,6 +790,8 @@ public class DerivativesTradingCoinFuturesRestApi {
      *
      * @param pair BTCUSD (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -808,9 +810,14 @@ public class DerivativesTradingCoinFuturesRestApi {
      *     Ratio Documentation</a>
      */
     public ApiResponse<LongShortRatioResponse> longShortRatio(
-            String pair, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
-        return marketDataApi.longShortRatio(pair, period, limit, startTime, endTime);
+        return marketDataApi.longShortRatio(pair, period, contractType, limit, startTime, endTime);
     }
 
     /**
@@ -909,8 +916,9 @@ public class DerivativesTradingCoinFuturesRestApi {
      * is available.
      *
      * @param pair (required)
-     * @param contractType (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -930,14 +938,14 @@ public class DerivativesTradingCoinFuturesRestApi {
      */
     public ApiResponse<OpenInterestStatisticsResponse> openInterestStatistics(
             String pair,
-            ContractType contractType,
             Period period,
+            ContractType contractType,
             Long limit,
             Long startTime,
             Long endTime)
             throws ApiException {
         return marketDataApi.openInterestStatistics(
-                pair, contractType, period, limit, startTime, endTime);
+                pair, period, contractType, limit, startTime, endTime);
     }
 
     /**
@@ -1197,8 +1205,10 @@ public class DerivativesTradingCoinFuturesRestApi {
      * Notes: - If startTime and endTime are not sent, the most recent data is returned. - Only the
      * data of the latest 30 days is available.
      *
-     * @param symbol Symbol (required)
+     * @param pair Pair (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -1217,10 +1227,15 @@ public class DerivativesTradingCoinFuturesRestApi {
      *     Trader Long/Short Account Ratio Documentation</a>
      */
     public ApiResponse<TopTraderLongShortRatioAccountsResponse> topTraderLongShortRatioAccounts(
-            String symbol, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         return marketDataApi.topTraderLongShortRatioAccounts(
-                symbol, period, limit, startTime, endTime);
+                pair, period, contractType, limit, startTime, endTime);
     }
 
     /**
@@ -1234,6 +1249,8 @@ public class DerivativesTradingCoinFuturesRestApi {
      *
      * @param pair (required)
      * @param period (required)
+     * @param contractType Contract type filter. If omitted, returns aggregated data across all
+     *     contract types. (optional)
      * @param limit Maximum number of records to return. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -1252,10 +1269,15 @@ public class DerivativesTradingCoinFuturesRestApi {
      *     Trader Long/Short Position Ratio Documentation</a>
      */
     public ApiResponse<TopTraderLongShortRatioPositionsResponse> topTraderLongShortRatioPositions(
-            String pair, Period period, Long limit, Long startTime, Long endTime)
+            String pair,
+            Period period,
+            ContractType contractType,
+            Long limit,
+            Long startTime,
+            Long endTime)
             throws ApiException {
         return marketDataApi.topTraderLongShortRatioPositions(
-                pair, period, limit, startTime, endTime);
+                pair, period, contractType, limit, startTime, endTime);
     }
 
     /**

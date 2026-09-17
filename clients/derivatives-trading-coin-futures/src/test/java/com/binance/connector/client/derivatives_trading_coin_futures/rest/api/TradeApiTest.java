@@ -729,8 +729,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSD_200925&side=BUY&reduceOnly=false&newOrderRespType=ACK&selfTradePreventionMode=EXPIRE_MAKER&type=LIMIT&priceProtect=false&workingType=CONTRACT_PRICE", signInputCaptor.getValue());
-        assertEquals("30fb9ff8f08572df035170697a7ca0bb8886fa17e6729d659b5cebe8bd825723", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BTCUSD_200925&side=BUY&type=LIMIT", signInputCaptor.getValue());
+        assertEquals("26a34bc9410d537eb9b49a6a28da79e7ea6b7affe7b25a6c899bcee0129b13ec", actualRequest.url().queryParameter("signature"));
         assertEquals("/dapi/v1/order", actualRequest.url().encodedPath());
     }
 

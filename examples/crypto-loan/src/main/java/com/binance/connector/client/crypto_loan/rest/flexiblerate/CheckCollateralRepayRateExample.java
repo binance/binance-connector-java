@@ -30,7 +30,7 @@ public class CheckCollateralRepayRateExample {
      * Check Collateral Flexible Repay Rate (USER_DATA)
      *
      * <p>Get the latest rate of collateral coin/loan coin when using collateral repay. Weight(IP):
-     * 6000 Security Type: USER_DATA
+     * 6000 Security Type: USER_DATA Notes: - Rate limit: 1 request per second per account.
      *
      * @throws ApiException if the Api call fails
      */

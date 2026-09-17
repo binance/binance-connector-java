@@ -29,7 +29,8 @@ public class GetFlexibleLoanOngoingOrdersExample {
     /**
      * Get Flexible Loan Ongoing Orders (USER_DATA)
      *
-     * <p>Get Flexible Loan Ongoing Orders Weight(IP): 300 Security Type: USER_DATA
+     * <p>Get Flexible Loan Ongoing Orders Weight(IP): 300 Security Type: USER_DATA Notes: - Rate
+     * limit: 10 requests per second per account.
      *
      * @throws ApiException if the Api call fails
      */

@@ -22,6 +22,7 @@
 |**selfTradePreventionMode** | **String** |  |  [optional] |
 |**workingType** | **String** |  |  [optional] |
 |**priceMatch** | **String** |  |  [optional] |
+|**closePosition** | **Boolean** |  |  [optional] |
 |**priceProtect** | **Boolean** |  |  [optional] |
 |**reduceOnly** | **Boolean** |  |  [optional] |
 |**activatePrice** | **String** |  |  [optional] |

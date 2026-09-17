@@ -44,7 +44,7 @@ public class DepositExample {
     public void depositExample() throws ApiException, IOException {
         DepositRequest depositRequest = new DepositRequest();
         depositRequest.currency("BRL");
-        depositRequest.apiPaymentMethod(ApiPaymentMethod.bank_transfer);
+        depositRequest.apiPaymentMethod(ApiPaymentMethod.pix);
         depositRequest.amount("1");
         Long recvWindow = 5000L;
         ApiResponse<DepositResponse> response = getApi().deposit(depositRequest, recvWindow);

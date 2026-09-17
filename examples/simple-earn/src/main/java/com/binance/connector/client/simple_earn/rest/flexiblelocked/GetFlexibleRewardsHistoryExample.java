@@ -45,7 +45,7 @@ public class GetFlexibleRewardsHistoryExample {
         String asset = "USDC";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
-        OrderType type = OrderType.FAST;
+        OrderType type = OrderType.BONUS;
         Long current = 1L;
         Long size = 10L;
         Long recvWindow = 5000L;

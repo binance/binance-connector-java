@@ -92,9 +92,10 @@ public class SpotAlgoApiTest {
     @Test
     public void cancelAlgoOrderSpotAlgoTest() throws ApiException, CryptoException, IOException {
         Long algoId = 14511L;
+        String algoClientId = "client-id";
         Long recvWindow = 5000L;
         ApiResponse<CancelAlgoOrderSpotAlgoResponse> response =
-                api.cancelAlgoOrderSpotAlgo(algoId, recvWindow);
+                api.cancelAlgoOrderSpotAlgo(algoId, algoClientId, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)
@@ -106,9 +107,9 @@ public class SpotAlgoApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("algoId=14511&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+        assertEquals("algoId=14511&clientAlgoId=client-id&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "7e97b50e23065ea20f9c765a8a2c529c739296123417a24943cf07ae2806dc37",
+                "0bb52f719d13bca81a74d445fea1e738763eaae18064318238524cd623a88ee9",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/algo/spot/order", actualRequest.url().encodedPath());
     }

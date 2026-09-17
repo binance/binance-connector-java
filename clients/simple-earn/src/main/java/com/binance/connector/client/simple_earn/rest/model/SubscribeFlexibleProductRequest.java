@@ -53,13 +53,13 @@ public class SubscribeFlexibleProductRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_SUBSCRIBE)
     @jakarta.annotation.Nullable
-    private Boolean autoSubscribe = true;
+    private Boolean autoSubscribe;
 
     public static final String SERIALIZED_NAME_SOURCE_ACCOUNT = "sourceAccount";
 
     @SerializedName(SERIALIZED_NAME_SOURCE_ACCOUNT)
     @jakarta.annotation.Nullable
-    private SourceAccount sourceAccount = SourceAccount.SPOT;
+    private SourceAccount sourceAccount;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 

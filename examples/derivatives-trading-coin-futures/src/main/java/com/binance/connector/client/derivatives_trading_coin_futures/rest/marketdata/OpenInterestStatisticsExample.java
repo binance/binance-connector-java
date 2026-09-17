@@ -38,14 +38,14 @@ public class OpenInterestStatisticsExample {
      */
     public void openInterestStatisticsExample() throws ApiException, IOException {
         String pair = "BTCUSD";
-        ContractType contractType = ContractType.ALL;
         Period period = Period.PERIOD_5m;
+        ContractType contractType = ContractType.PERPETUAL;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<OpenInterestStatisticsResponse> response =
                 getApi().openInterestStatistics(
-                                pair, contractType, period, limit, startTime, endTime);
+                                pair, period, contractType, limit, startTime, endTime);
         System.out.println(response.getData());
     }
 }

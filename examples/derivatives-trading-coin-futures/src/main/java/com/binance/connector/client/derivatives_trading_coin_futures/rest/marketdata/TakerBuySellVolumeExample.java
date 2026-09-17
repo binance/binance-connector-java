@@ -40,7 +40,7 @@ public class TakerBuySellVolumeExample {
      */
     public void takerBuySellVolumeExample() throws ApiException, IOException {
         String pair = "BTCUSD";
-        ContractType contractType = ContractType.ALL;
+        ContractType contractType = ContractType.PERPETUAL;
         Period period = Period.PERIOD_5m;
         Long limit = 30L;
         Long startTime = 1623319461670L;

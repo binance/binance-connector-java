@@ -6,6 +6,7 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.DerivativesTradingCoinFuturesRestApiUtil;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.api.DerivativesTradingCoinFuturesRestApi;
+import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.ContractType;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.Period;
 import com.binance.connector.client.derivatives_trading_coin_futures.rest.model.TopTraderLongShortRatioPositionsResponse;
 import java.io.IOException;
@@ -43,11 +44,13 @@ public class TopTraderLongShortRatioPositionsExample {
     public void topTraderLongShortRatioPositionsExample() throws ApiException, IOException {
         String pair = "BTCUSD";
         Period period = Period.PERIOD_5m;
+        ContractType contractType = ContractType.PERPETUAL;
         Long limit = 30L;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         ApiResponse<TopTraderLongShortRatioPositionsResponse> response =
-                getApi().topTraderLongShortRatioPositions(pair, period, limit, startTime, endTime);
+                getApi().topTraderLongShortRatioPositions(
+                                pair, period, contractType, limit, startTime, endTime);
         System.out.println(response.getData());
     }
 }

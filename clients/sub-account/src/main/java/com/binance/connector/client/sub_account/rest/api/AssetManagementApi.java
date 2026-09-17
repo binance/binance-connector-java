@@ -36,6 +36,7 @@ import com.binance.connector.client.sub_account.rest.model.MarginTransferForSubA
 import com.binance.connector.client.sub_account.rest.model.MarginTransferForSubAccountResponse;
 import com.binance.connector.client.sub_account.rest.model.MovePositionForSubAccountRequest;
 import com.binance.connector.client.sub_account.rest.model.MovePositionForSubAccountResponse;
+import com.binance.connector.client.sub_account.rest.model.ProductType;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountAssetsAssetManagementResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountAssetsResponse;
 import com.binance.connector.client.sub_account.rest.model.QuerySubAccountFuturesAssetTransferHistoryResponse;
@@ -74,7 +75,7 @@ public class AssetManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/7.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -740,7 +741,8 @@ public class AssetManagementApi {
      *
      * @param symbol (required)
      * @param page (required)
-     * @param rows (required)
+     * @param rows Max 100. (required)
+     * @param productType Default UM. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -758,7 +760,13 @@ public class AssetManagementApi {
      *     Move Position History for Sub-account (For Master Account) (USER_DATA) Documentation</a>
      */
     private okhttp3.Call getMovePositionHistoryForSubAccountCall(
-            String symbol, Long page, Long rows, Long startTime, Long endTime, Long recvWindow)
+            String symbol,
+            Long page,
+            Long rows,
+            ProductType productType,
+            Long startTime,
+            Long endTime,
+            Long recvWindow)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -786,6 +794,11 @@ public class AssetManagementApi {
 
         if (symbol != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (productType != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("productType", productType));
         }
 
         if (startTime != null) {
@@ -840,7 +853,13 @@ public class AssetManagementApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getMovePositionHistoryForSubAccountValidateBeforeCall(
-            String symbol, Long page, Long rows, Long startTime, Long endTime, Long recvWindow)
+            String symbol,
+            Long page,
+            Long rows,
+            ProductType productType,
+            Long startTime,
+            Long endTime,
+            Long recvWindow)
             throws ApiException {
         try {
             Validator validator =
@@ -851,7 +870,9 @@ public class AssetManagementApi {
                             .getValidator();
             ExecutableValidator executableValidator = validator.forExecutables();
 
-            Object[] parameterValues = {symbol, page, rows, startTime, endTime, recvWindow};
+            Object[] parameterValues = {
+                symbol, page, rows, productType, startTime, endTime, recvWindow
+            };
             Method method =
                     this.getClass()
                             .getMethod(
@@ -859,6 +880,7 @@ public class AssetManagementApi {
                                     String.class,
                                     Long.class,
                                     Long.class,
+                                    ProductType.class,
                                     Long.class,
                                     Long.class,
                                     Long.class);
@@ -867,7 +889,7 @@ public class AssetManagementApi {
 
             if (violations.size() == 0) {
                 return getMovePositionHistoryForSubAccountCall(
-                        symbol, page, rows, startTime, endTime, recvWindow);
+                        symbol, page, rows, productType, startTime, endTime, recvWindow);
             } else {
                 throw new ConstraintViolationException((Set) violations);
             }
@@ -884,14 +906,15 @@ public class AssetManagementApi {
      * Get Move Position History for Sub-account (For Master Account) (USER_DATA) Query move
      * position history Weight(IP): 1 Security Type: USER_DATA Notes: - If &#x60;startTime&#x60; and
      * &#x60;endTime&#x60; are both omitted, records from the last 90 days are returned by default
-     * (up to 1000 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted,
+     * (up to 100 records). - If &#x60;startTime&#x60; is sent and &#x60;endTime&#x60; is omitted,
      * records in &#x60;[max(startTime, now-90d), now]&#x60; are returned. - If
      * &#x60;startTime&#x60; is omitted and &#x60;endTime&#x60; is sent, records in &#x60;[max(now,
      * endTime-90d), endTime]&#x60; are returned.
      *
      * @param symbol (required)
      * @param page (required)
-     * @param rows (required)
+     * @param rows Max 100. (required)
+     * @param productType Default UM. (optional)
      * @param startTime (optional)
      * @param endTime (optional)
      * @param recvWindow (optional)
@@ -913,14 +936,15 @@ public class AssetManagementApi {
             getMovePositionHistoryForSubAccount(
                     @NotNull String symbol,
                     @NotNull Long page,
-                    @NotNull Long rows,
+                    @NotNull @Max(100L) Long rows,
+                    ProductType productType,
                     Long startTime,
                     Long endTime,
                     @Max(60000L) Long recvWindow)
                     throws ApiException {
         okhttp3.Call localVarCall =
                 getMovePositionHistoryForSubAccountValidateBeforeCall(
-                        symbol, page, rows, startTime, endTime, recvWindow);
+                        symbol, page, rows, productType, startTime, endTime, recvWindow);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<GetMovePositionHistoryForSubAccountResponse>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);

@@ -89,7 +89,7 @@ public class NewMarginOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_NEW_ORDER_RESP_TYPE)
     @jakarta.annotation.Nullable
-    private NewOrderRespType newOrderRespType = NewOrderRespType.ACK;
+    private NewOrderRespType newOrderRespType;
 
     public static final String SERIALIZED_NAME_ICEBERG_QTY = "icebergQty";
 
@@ -101,7 +101,7 @@ public class NewMarginOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_SIDE_EFFECT_TYPE)
     @jakarta.annotation.Nullable
-    private SideEffectType sideEffectType = SideEffectType.NO_SIDE_EFFECT;
+    private SideEffectType sideEffectType;
 
     public static final String SERIALIZED_NAME_TIME_IN_FORCE = "timeInForce";
 
@@ -120,7 +120,7 @@ public class NewMarginOrderRequest {
 
     @SerializedName(SERIALIZED_NAME_AUTO_REPAY_AT_CANCEL)
     @jakarta.annotation.Nullable
-    private Boolean autoRepayAtCancel = true;
+    private Boolean autoRepayAtCancel;
 
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
