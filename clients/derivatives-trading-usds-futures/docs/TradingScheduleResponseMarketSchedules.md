@@ -12,6 +12,7 @@
 |**KR_EQUITY** | [**TradingScheduleResponseMarketSchedulesKREQUITY**](TradingScheduleResponseMarketSchedulesKREQUITY.md) |  |  [optional] |
 |**HK_EQUITY** | [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  |  [optional] |
 |**CN_EQUITY** | [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  |  [optional] |
+|**FX** | [**TradingScheduleResponseMarketSchedulesFX**](TradingScheduleResponseMarketSchedulesFX.md) |  |  [optional] |
 
 
 

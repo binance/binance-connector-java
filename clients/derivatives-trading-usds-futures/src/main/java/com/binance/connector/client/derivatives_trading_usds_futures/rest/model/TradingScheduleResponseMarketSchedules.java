@@ -67,6 +67,12 @@ public class TradingScheduleResponseMarketSchedules {
     @jakarta.annotation.Nullable
     private TradingScheduleResponseMarketSchedulesHKEQUITY CN_EQUITY;
 
+    public static final String SERIALIZED_NAME_F_X = "FX";
+
+    @SerializedName(SERIALIZED_NAME_F_X)
+    @jakarta.annotation.Nullable
+    private TradingScheduleResponseMarketSchedulesFX FX;
+
     public TradingScheduleResponseMarketSchedules() {}
 
     public TradingScheduleResponseMarketSchedules EQUITY(
@@ -181,6 +187,27 @@ public class TradingScheduleResponseMarketSchedules {
         this.CN_EQUITY = CN_EQUITY;
     }
 
+    public TradingScheduleResponseMarketSchedules FX(
+            @jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesFX FX) {
+        this.FX = FX;
+        return this;
+    }
+
+    /**
+     * Get FX
+     *
+     * @return FX
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public TradingScheduleResponseMarketSchedulesFX getFX() {
+        return FX;
+    }
+
+    public void setFX(@jakarta.annotation.Nullable TradingScheduleResponseMarketSchedulesFX FX) {
+        this.FX = FX;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -195,12 +222,13 @@ public class TradingScheduleResponseMarketSchedules {
                 && Objects.equals(this.COMMODITY, tradingScheduleResponseMarketSchedules.COMMODITY)
                 && Objects.equals(this.KR_EQUITY, tradingScheduleResponseMarketSchedules.KR_EQUITY)
                 && Objects.equals(this.HK_EQUITY, tradingScheduleResponseMarketSchedules.HK_EQUITY)
-                && Objects.equals(this.CN_EQUITY, tradingScheduleResponseMarketSchedules.CN_EQUITY);
+                && Objects.equals(this.CN_EQUITY, tradingScheduleResponseMarketSchedules.CN_EQUITY)
+                && Objects.equals(this.FX, tradingScheduleResponseMarketSchedules.FX);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(EQUITY, COMMODITY, KR_EQUITY, HK_EQUITY, CN_EQUITY);
+        return Objects.hash(EQUITY, COMMODITY, KR_EQUITY, HK_EQUITY, CN_EQUITY, FX);
     }
 
     @Override
@@ -212,6 +240,7 @@ public class TradingScheduleResponseMarketSchedules {
         sb.append("		KR_EQUITY: ").append(toIndentedString(KR_EQUITY)).append("\n");
         sb.append("		HK_EQUITY: ").append(toIndentedString(HK_EQUITY)).append("\n");
         sb.append("		CN_EQUITY: ").append(toIndentedString(CN_EQUITY)).append("\n");
+        sb.append("		FX: ").append(toIndentedString(FX)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -239,6 +268,10 @@ public class TradingScheduleResponseMarketSchedules {
         String CN_EQUITYValueAsString = "";
         CN_EQUITYValueAsString = CN_EQUITYValue.toString();
         sb.append("CN_EQUITY=").append(urlEncode(CN_EQUITYValueAsString)).append("");
+        Object FXValue = getFX();
+        String FXValueAsString = "";
+        FXValueAsString = FXValue.toString();
+        sb.append("FX=").append(urlEncode(FXValueAsString)).append("");
         return sb.toString();
     }
 
@@ -272,6 +305,7 @@ public class TradingScheduleResponseMarketSchedules {
         openapiFields.add("KR_EQUITY");
         openapiFields.add("HK_EQUITY");
         openapiFields.add("CN_EQUITY");
+        openapiFields.add("FX");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -320,6 +354,10 @@ public class TradingScheduleResponseMarketSchedules {
         if (jsonObj.get("CN_EQUITY") != null && !jsonObj.get("CN_EQUITY").isJsonNull()) {
             TradingScheduleResponseMarketSchedulesHKEQUITY.validateJsonElement(
                     jsonObj.get("CN_EQUITY"));
+        }
+        // validate the optional field `FX`
+        if (jsonObj.get("FX") != null && !jsonObj.get("FX").isJsonNull()) {
+            TradingScheduleResponseMarketSchedulesFX.validateJsonElement(jsonObj.get("FX"));
         }
     }
 

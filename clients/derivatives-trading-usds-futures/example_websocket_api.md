@@ -22,7 +22,7 @@
 
 [order.cancel](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/trade#cancel-order) - cancelOrder - [CancelOrderExample.java:37](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/CancelOrderExample.java#L37)
 
-[order.modify](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/trade#modify-order) - modifyOrder - [ModifyOrderExample.java:49](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/ModifyOrderExample.java#L49)
+[order.modify](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/trade#modify-order) - modifyOrder - [ModifyOrderExample.java:58](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/ModifyOrderExample.java#L58)
 
 [algoOrder.place](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/trade#new-algo-order) - newAlgoOrder - [NewAlgoOrderExample.java:69](/examples/derivatives-trading-usds-futures/src/main/java/com/binance/connector/client/derivatives_trading_usds_futures/websocket/api/trade/NewAlgoOrderExample.java#L69)
 

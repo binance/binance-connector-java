@@ -102,7 +102,7 @@ public class StreamConnectionWrapper extends ConnectionWrapper
 
             // Response to subscribe
             JsonElement id = obj.get("id");
-            if (id != null) {
+            if (id != null && !id.isJsonNull()) {
                 JsonElement result = obj.get("result");
                 RequestWrapperDTO requestWrapperDTO = pendingRequest.get(id.getAsString());
                 Type responseType = requestWrapperDTO.getResponseType();

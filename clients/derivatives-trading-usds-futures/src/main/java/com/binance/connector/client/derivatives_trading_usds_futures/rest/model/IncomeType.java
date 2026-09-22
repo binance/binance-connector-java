@@ -66,7 +66,9 @@ public enum IncomeType {
 
     FEE_RETURN("FEE_RETURN"),
 
-    BFUSD_REWARD("BFUSD_REWARD");
+    BFUSD_REWARD("BFUSD_REWARD"),
+
+    SPECIAL_FUNDING_FEE("SPECIAL_FUNDING_FEE");
 
     private String value;
 
