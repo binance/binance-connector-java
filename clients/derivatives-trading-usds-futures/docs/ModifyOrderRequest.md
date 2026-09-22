@@ -16,6 +16,7 @@
 |**price** | **Double** | Price. |  |
 |**priceMatch** | **PriceMatch** |  |  [optional] |
 |**modifyId** | **Long** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. |  [optional] |
+|**reduceOnly** | **ReduceOnly** |  |  [optional] |
 |**recvWindow** | **Long** | Recv Window. |  [optional] |
 
 

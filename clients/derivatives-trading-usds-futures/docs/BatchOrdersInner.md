@@ -18,7 +18,7 @@
 |**newClientOrderId** | **String** |  |  [optional] |
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
 |**priceMatch** | [**PriceMatchEnum**](#PriceMatchEnum) | only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can&#39;t be passed together with price |  [optional] |
-|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) | EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire taker order when STP triggers/ EXPIRE_BOTH:expire both orders when STP triggers; default NONE |  [optional] |
+|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) | EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire taker order when STP triggers/ EXPIRE_BOTH: expire both orders when STP triggers; default NONE |  [optional] |
 |**goodTillDate** | **Long** | Auto-cancel time for &#x60;GTD&#x60; orders. |  [optional] |
 
 

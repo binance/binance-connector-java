@@ -49,5 +49,7 @@
 
 * `BFUSD_REWARD` (value: `"BFUSD_REWARD"`)
 
+* `SPECIAL_FUNDING_FEE` (value: `"SPECIAL_FUNDING_FEE"`)
+
 
 

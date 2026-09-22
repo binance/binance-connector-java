@@ -497,8 +497,8 @@ public class BatchOrdersInner {
     private PriceMatchEnum priceMatch;
 
     /**
-     * EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire taker order when STP
-     * triggers/ EXPIRE_BOTH:expire both orders when STP triggers; default NONE
+     * EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire taker order when STP
+     * triggers/ EXPIRE_BOTH: expire both orders when STP triggers; default NONE
      */
     @JsonAdapter(SelfTradePreventionModeEnum.Adapter.class)
     public enum SelfTradePreventionModeEnum {
@@ -793,8 +793,8 @@ public class BatchOrdersInner {
     }
 
     /**
-     * EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire taker order when STP
-     * triggers/ EXPIRE_BOTH:expire both orders when STP triggers; default NONE
+     * EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire taker order when STP
+     * triggers/ EXPIRE_BOTH: expire both orders when STP triggers; default NONE
      *
      * @return selfTradePreventionMode
      */

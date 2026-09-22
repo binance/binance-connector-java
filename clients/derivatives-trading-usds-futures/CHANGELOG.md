@@ -1,5 +1,31 @@
 # Changelog
 
+## 12.1.0 - 2026-09-21
+
+### Changed (5)
+
+#### REST API
+
+- Added parameter `reduceOnly`
+  - affected methods:
+    - `modifyOrder()` (`PUT /fapi/v1/order`)
+- Modified parameter `incomeType`:
+  - enum added: `SPECIAL_FUNDING_FEE`
+  - affected methods:
+    - `getIncomeHistory()` (`GET /fapi/v1/income`)
+- Modified response for `tradingSchedule()` (`GET /fapi/v1/tradingSchedule`):
+  - `marketSchedules`: property `FX` added
+
+- Modified response field `marketSchedules`:
+  - property `FX` added
+  - affected events:
+    - `tradingScheduleResponse`
+#### WebSocket API
+
+- Added parameter `reduceOnly`
+  - affected methods:
+    - `modifyOrder()` (`order.modify` method)
+
 ## 12.0.3 - 2026-08-27
 
 ### Changed (1)

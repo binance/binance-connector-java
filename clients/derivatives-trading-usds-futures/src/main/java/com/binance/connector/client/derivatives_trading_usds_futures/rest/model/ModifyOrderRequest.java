@@ -85,6 +85,12 @@ public class ModifyOrderRequest {
     @jakarta.annotation.Nullable
     private Long modifyId;
 
+    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
+
+    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
+    @jakarta.annotation.Nullable
+    private ReduceOnly reduceOnly;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -255,6 +261,26 @@ public class ModifyOrderRequest {
         this.modifyId = modifyId;
     }
 
+    public ModifyOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
+        return this;
+    }
+
+    /**
+     * Get reduceOnly
+     *
+     * @return reduceOnly
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public ReduceOnly getReduceOnly() {
+        return reduceOnly;
+    }
+
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
+    }
+
     public ModifyOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -292,6 +318,7 @@ public class ModifyOrderRequest {
                 && Objects.equals(this.price, modifyOrderRequest.price)
                 && Objects.equals(this.priceMatch, modifyOrderRequest.priceMatch)
                 && Objects.equals(this.modifyId, modifyOrderRequest.modifyId)
+                && Objects.equals(this.reduceOnly, modifyOrderRequest.reduceOnly)
                 && Objects.equals(this.recvWindow, modifyOrderRequest.recvWindow);
     }
 
@@ -306,6 +333,7 @@ public class ModifyOrderRequest {
                 price,
                 priceMatch,
                 modifyId,
+                reduceOnly,
                 recvWindow);
     }
 
@@ -321,6 +349,7 @@ public class ModifyOrderRequest {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
         sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
+        sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -363,6 +392,10 @@ public class ModifyOrderRequest {
         String modifyIdValueAsString = "";
         modifyIdValueAsString = modifyIdValue.toString();
         sb.append("modifyId=").append(urlEncode(modifyIdValueAsString)).append("");
+        Object reduceOnlyValue = getReduceOnly();
+        String reduceOnlyValueAsString = "";
+        reduceOnlyValueAsString = reduceOnlyValue.toString();
+        sb.append("reduceOnly=").append(urlEncode(reduceOnlyValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -403,6 +436,7 @@ public class ModifyOrderRequest {
         openapiFields.add("price");
         openapiFields.add("priceMatch");
         openapiFields.add("modifyId");
+        openapiFields.add("reduceOnly");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -462,6 +496,10 @@ public class ModifyOrderRequest {
         // validate the optional field `priceMatch`
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
             PriceMatch.validateJsonElement(jsonObj.get("priceMatch"));
+        }
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
     }
 
