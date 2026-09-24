@@ -38,6 +38,7 @@ Before using the connectors, ensure you have:
 - [binance-simple-earn](clients/simple-earn) - Simple Earn connector
 - [binance-spot](clients/spot) - Spot Trading connector
 - [binance-staking](clients/staking) - Staking connector
+- [binance-stocks](clients/stocks) - Stocks connector
 - [binance-sub-account](clients/sub-account) - Sub Account connector
 - [binance-vip-loan](clients/vip-loan) - VIP Loan connector
 - [binance-w3w-prediction](clients/w3w-prediction) - W3W Prediction
@@ -251,6 +252,8 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 **Spot**: [Rest API](clients/spot/example_rest.md) - [WebSocket API](clients/spot/example_websocket_api.md) - [WebSocket Streams](clients/spot/example_websocket_stream.md)
 
 **Staking**: [Rest API](clients/staking/example_rest.md)
+
+**Stocks**: [Rest API](clients/stocks/example_rest.md) - [WebSocket Streams](clients/stocks/example_websocket_stream.md)
 
 **Sub Account**: [Rest API](clients/sub-account/example_rest.md)
 
