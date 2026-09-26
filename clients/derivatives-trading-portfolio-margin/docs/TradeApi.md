@@ -7,7 +7,6 @@ All URIs are relative to *https://papi.binance.com*
 | [**cancelAllCmOpenConditionalOrders**](TradeApi.md#cancelAllCmOpenConditionalOrders) | **DELETE** /papi/v1/cm/conditional/allOpenOrders | Cancel All CM Open Conditional Orders (TRADE) |
 | [**cancelAllCmOpenOrders**](TradeApi.md#cancelAllCmOpenOrders) | **DELETE** /papi/v1/cm/allOpenOrders | Cancel All CM Open Orders (TRADE) |
 | [**cancelAllUmAlgoOpenOrders**](TradeApi.md#cancelAllUmAlgoOpenOrders) | **DELETE** /papi/v1/um/algo/allOpenOrders | Cancel All UM Algo Open Orders (TRADE) |
-| [**cancelAllUmOpenConditionalOrders**](TradeApi.md#cancelAllUmOpenConditionalOrders) | **DELETE** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders - Deprecated (TRADE) |
 | [**cancelAllUmOpenOrders**](TradeApi.md#cancelAllUmOpenOrders) | **DELETE** /papi/v1/um/allOpenOrders | Cancel All UM Open Orders (TRADE) |
 | [**cancelCmConditionalOrder**](TradeApi.md#cancelCmConditionalOrder) | **DELETE** /papi/v1/cm/conditional/order | Cancel CM Conditional Order (TRADE) |
 | [**cancelCmOrder**](TradeApi.md#cancelCmOrder) | **DELETE** /papi/v1/cm/order | Cancel CM Order (TRADE) |
@@ -15,7 +14,6 @@ All URIs are relative to *https://papi.binance.com*
 | [**cancelMarginAccountOcoOrders**](TradeApi.md#cancelMarginAccountOcoOrders) | **DELETE** /papi/v1/margin/orderList | Cancel Margin Account OCO Orders (TRADE) |
 | [**cancelMarginAccountOrder**](TradeApi.md#cancelMarginAccountOrder) | **DELETE** /papi/v1/margin/order | Cancel Margin Account Order (TRADE) |
 | [**cancelUmAlgoOrder**](TradeApi.md#cancelUmAlgoOrder) | **DELETE** /papi/v1/um/algo/order | Cancel UM Algo Order (TRADE) |
-| [**cancelUmConditionalOrder**](TradeApi.md#cancelUmConditionalOrder) | **DELETE** /papi/v1/um/conditional/order | Cancel UM Conditional Order - Deprecated (TRADE) |
 | [**cancelUmOrder**](TradeApi.md#cancelUmOrder) | **DELETE** /papi/v1/um/order | Cancel UM Order (TRADE) |
 | [**cmAccountTradeList**](TradeApi.md#cmAccountTradeList) | **GET** /papi/v1/cm/userTrades | CM Account Trade List (USER_DATA) |
 | [**cmPositionAdlQuantileEstimation**](TradeApi.md#cmPositionAdlQuantileEstimation) | **GET** /papi/v1/cm/adlQuantile | CM Position ADL Quantile Estimation (USER_DATA) |
@@ -32,17 +30,14 @@ All URIs are relative to *https://papi.binance.com*
 | [**newCmOrder**](TradeApi.md#newCmOrder) | **POST** /papi/v1/cm/order | New CM Order (TRADE) |
 | [**newMarginOrder**](TradeApi.md#newMarginOrder) | **POST** /papi/v1/margin/order | New Margin Order (TRADE) |
 | [**newUmAlgoOrder**](TradeApi.md#newUmAlgoOrder) | **POST** /papi/v1/um/algo/order | New UM Algo Order (TRADE) |
-| [**newUmConditionalOrder**](TradeApi.md#newUmConditionalOrder) | **POST** /papi/v1/um/conditional/order | New UM Conditional Order - Deprecated (TRADE) |
 | [**newUmOrder**](TradeApi.md#newUmOrder) | **POST** /papi/v1/um/order | New UM Order (TRADE) |
 | [**queryAllCmConditionalOrders**](TradeApi.md#queryAllCmConditionalOrders) | **GET** /papi/v1/cm/conditional/allOrders | Query All CM Conditional Orders (USER_DATA) |
 | [**queryAllCmOrders**](TradeApi.md#queryAllCmOrders) | **GET** /papi/v1/cm/allOrders | Query All CM Orders (USER_DATA) |
 | [**queryAllCurrentCmOpenConditionalOrders**](TradeApi.md#queryAllCurrentCmOpenConditionalOrders) | **GET** /papi/v1/cm/conditional/openOrders | Query All Current CM Open Conditional Orders (USER_DATA) |
 | [**queryAllCurrentCmOpenOrders**](TradeApi.md#queryAllCurrentCmOpenOrders) | **GET** /papi/v1/cm/openOrders | Query All Current CM Open Orders (USER_DATA) |
 | [**queryAllCurrentUmOpenAlgoOrders**](TradeApi.md#queryAllCurrentUmOpenAlgoOrders) | **GET** /papi/v1/um/algo/openAlgoOrders | Query All Current UM Open Algo Orders (USER_DATA) |
-| [**queryAllCurrentUmOpenConditionalOrders**](TradeApi.md#queryAllCurrentUmOpenConditionalOrders) | **GET** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders - Deprecated (USER_DATA) |
 | [**queryAllCurrentUmOpenOrders**](TradeApi.md#queryAllCurrentUmOpenOrders) | **GET** /papi/v1/um/openOrders | Query All Current UM Open Orders (USER_DATA) |
 | [**queryAllMarginAccountOrders**](TradeApi.md#queryAllMarginAccountOrders) | **GET** /papi/v1/margin/allOrders | Query All Margin Account Orders (USER_DATA) |
-| [**queryAllUmConditionalOrders**](TradeApi.md#queryAllUmConditionalOrders) | **GET** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders - Deprecated (USER_DATA) |
 | [**queryAllUmOrders**](TradeApi.md#queryAllUmOrders) | **GET** /papi/v1/um/allOrders | Query All UM Orders (USER_DATA) |
 | [**queryCmConditionalOrderHistory**](TradeApi.md#queryCmConditionalOrderHistory) | **GET** /papi/v1/cm/conditional/orderHistory | Query CM Conditional Order History (USER_DATA) |
 | [**queryCmModifyOrderHistory**](TradeApi.md#queryCmModifyOrderHistory) | **GET** /papi/v1/cm/orderAmendment | Query CM Modify Order History (TRADE) |
@@ -51,14 +46,12 @@ All URIs are relative to *https://papi.binance.com*
 | [**queryCurrentCmOpenOrder**](TradeApi.md#queryCurrentCmOpenOrder) | **GET** /papi/v1/cm/openOrder | Query Current CM Open Order (USER_DATA) |
 | [**queryCurrentMarginOpenOrder**](TradeApi.md#queryCurrentMarginOpenOrder) | **GET** /papi/v1/margin/openOrders | Query Current Margin Open Order (USER_DATA) |
 | [**queryCurrentUmOpenAlgoOrder**](TradeApi.md#queryCurrentUmOpenAlgoOrder) | **GET** /papi/v1/um/algo/algoOrder | Query Current UM Open Algo Order (USER_DATA) |
-| [**queryCurrentUmOpenConditionalOrder**](TradeApi.md#queryCurrentUmOpenConditionalOrder) | **GET** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order - Deprecated (USER_DATA) |
 | [**queryCurrentUmOpenOrder**](TradeApi.md#queryCurrentUmOpenOrder) | **GET** /papi/v1/um/openOrder | Query Current UM Open Order (USER_DATA) |
 | [**queryMarginAccountOrder**](TradeApi.md#queryMarginAccountOrder) | **GET** /papi/v1/margin/order | Query Margin Account Order (USER_DATA) |
 | [**queryMarginAccountsAllOco**](TradeApi.md#queryMarginAccountsAllOco) | **GET** /papi/v1/margin/allOrderList | Query Margin Account&#39;s all OCO (USER_DATA) |
 | [**queryMarginAccountsOco**](TradeApi.md#queryMarginAccountsOco) | **GET** /papi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA) |
 | [**queryMarginAccountsOpenOco**](TradeApi.md#queryMarginAccountsOpenOco) | **GET** /papi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA) |
 | [**queryUmAlgoOrderHistory**](TradeApi.md#queryUmAlgoOrderHistory) | **GET** /papi/v1/um/algo/allAlgoOrders | Query UM Algo Order History (USER_DATA) |
-| [**queryUmConditionalOrderHistory**](TradeApi.md#queryUmConditionalOrderHistory) | **GET** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History - Deprecated (USER_DATA) |
 | [**queryUmModifyOrderHistory**](TradeApi.md#queryUmModifyOrderHistory) | **GET** /papi/v1/um/orderAmendment | Query UM Modify Order History (TRADE) |
 | [**queryUmOrder**](TradeApi.md#queryUmOrder) | **GET** /papi/v1/um/order | Query UM Order (USER_DATA) |
 | [**queryUsersCmForceOrders**](TradeApi.md#queryUsersCmForceOrders) | **GET** /papi/v1/cm/forceOrders | Query User&#39;s CM Force Orders (USER_DATA) |
@@ -260,70 +253,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Cancel All UM Algo Open Orders |  -  |
-
-<a id="cancelAllUmOpenConditionalOrders"></a>
-# **cancelAllUmOpenConditionalOrders**
-> CancelAllUmOpenConditionalOrdersResponse cancelAllUmOpenConditionalOrders(symbol, recvWindow)
-
-Cancel All UM Open Conditional Orders - Deprecated (TRADE)
-
-Cancel All UM Open Conditional Orders  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;DELETE /papi/v1/um/algo/allOpenOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: TRADE
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "BTCUSDT"; // String | Symbol
-    Long recvWindow = 5000L; // Long | 
-    try {
-      CancelAllUmOpenConditionalOrdersResponse result = apiInstance.cancelAllUmOpenConditionalOrders(symbol, recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#cancelAllUmOpenConditionalOrders");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Symbol | |
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**CancelAllUmOpenConditionalOrdersResponse**](CancelAllUmOpenConditionalOrdersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Cancel All UM Open Conditional Orders |  -  |
 
 <a id="cancelAllUmOpenOrders"></a>
 # **cancelAllUmOpenOrders**
@@ -794,74 +723,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Cancel UM Algo Order |  -  |
-
-<a id="cancelUmConditionalOrder"></a>
-# **cancelUmConditionalOrder**
-> CancelUmConditionalOrderResponse cancelUmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
-
-Cancel UM Conditional Order - Deprecated (TRADE)
-
-Cancel UM Conditional Order  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;DELETE /papi/v1/um/algo/order&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: TRADE  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "BTCUSDT"; // String | Symbol
-    Long strategyId = 1L; // Long | 
-    String newClientStrategyId = "1"; // String | 
-    Long recvWindow = 5000L; // Long | 
-    try {
-      CancelUmConditionalOrderResponse result = apiInstance.cancelUmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#cancelUmConditionalOrder");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Symbol | |
-| **strategyId** | **Long**|  | [optional] |
-| **newClientStrategyId** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**CancelUmConditionalOrderResponse**](CancelUmConditionalOrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Cancel UM Conditional Order |  -  |
 
 <a id="cancelUmOrder"></a>
 # **cancelUmOrder**
@@ -1887,68 +1748,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | New UM Algo Order |  -  |
 
-<a id="newUmConditionalOrder"></a>
-# **newUmConditionalOrder**
-> NewUmConditionalOrderResponse newUmConditionalOrder(newUmConditionalOrderRequest)
-
-New UM Conditional Order - Deprecated (TRADE)
-
-Place new UM conditional order  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;POST /papi/v1/um/algo/order&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: TRADE  Notes: - Additional mandatory parameters based on type:   - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;).   - Condition orders will be triggered when:   - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;:   - BUY: \&quot;MARK_PRICE\&quot; &gt;&#x3D; &#x60;stopPrice&#x60;   - SELL: \&quot;MARK_PRICE\&quot; &#x3D; &#x60;stopPrice&#x60;   - &#x60;TRAILING_STOP_MARKET&#x60;:   - BUY: the lowest mark price after order placed &#x60;&#x60;&#x3D; the lowest mark price   - (1 + &#x60;callbackRate&#x60;)   - SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and the latest mark price &#x3D; &#x60;stopPrice&#x60;   - SELL: latest price (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60;   - &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;.   - In extreme market conditions, timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to &#x60;goodTillDate&#x60;
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    NewUmConditionalOrderRequest newUmConditionalOrderRequest = new NewUmConditionalOrderRequest(); // NewUmConditionalOrderRequest | 
-    try {
-      NewUmConditionalOrderResponse result = apiInstance.newUmConditionalOrder(newUmConditionalOrderRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#newUmConditionalOrder");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **newUmConditionalOrderRequest** | [**NewUmConditionalOrderRequest**](NewUmConditionalOrderRequest.md)|  | |
-
-### Return type
-
-[**NewUmConditionalOrderResponse**](NewUmConditionalOrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | New UM Conditional Order |  -  |
-
 <a id="newUmOrder"></a>
 # **newUmOrder**
 > NewUmOrderResponse newUmOrder(newUmOrderRequest)
@@ -2355,70 +2154,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Query All Current UM Open Algo Orders |  -  |
 
-<a id="queryAllCurrentUmOpenConditionalOrders"></a>
-# **queryAllCurrentUmOpenConditionalOrders**
-> QueryAllCurrentUmOpenConditionalOrdersResponse queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow)
-
-Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
-
-Get all open conditional orders on a symbol.  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/openAlgoOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - If &#x60;symbol&#x60; is not provided, conditional open orders for all symbols are returned.
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "BTCUSDT"; // String | 
-    Long recvWindow = 5000L; // Long | 
-    try {
-      QueryAllCurrentUmOpenConditionalOrdersResponse result = apiInstance.queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#queryAllCurrentUmOpenConditionalOrders");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**QueryAllCurrentUmOpenConditionalOrdersResponse**](QueryAllCurrentUmOpenConditionalOrdersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | All Current UM Open Conditional Orders |  -  |
-
 <a id="queryAllCurrentUmOpenOrders"></a>
 # **queryAllCurrentUmOpenOrders**
 > QueryAllCurrentUmOpenOrdersResponse queryAllCurrentUmOpenOrders(symbol, recvWindow)
@@ -2554,78 +2289,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | All Margin Account Orders |  -  |
-
-<a id="queryAllUmConditionalOrders"></a>
-# **queryAllUmConditionalOrders**
-> QueryAllUmConditionalOrdersResponse queryAllUmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow)
-
-Query All UM Conditional Orders - Deprecated (USER_DATA)
-
-Query All UM Conditional Orders  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/allAlgoOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight: - 1 for a single &#x60;symbol&#x60; - 40 when &#x60;symbol&#x60; is omitted  Security Type: USER_DATA  Notes: - These orders will not be found:   - order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days  * The query time period must be less than 7 days( default as the recent 7 days).
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "BTCUSDT"; // String | 
-    Long strategyId = 1L; // Long | 
-    Long startTime = 1623319461670L; // Long | Timestamp in ms to get funding from INCLUSIVE.
-    Long endTime = 1641782889000L; // Long | Timestamp in ms to get funding until INCLUSIVE.
-    Long limit = 500L; // Long | Number of results returned.
-    Long recvWindow = 5000L; // Long | 
-    try {
-      QueryAllUmConditionalOrdersResponse result = apiInstance.queryAllUmConditionalOrders(symbol, strategyId, startTime, endTime, limit, recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#queryAllUmConditionalOrders");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**|  | [optional] |
-| **strategyId** | **Long**|  | [optional] |
-| **startTime** | **Long**| Timestamp in ms to get funding from INCLUSIVE. | [optional] |
-| **endTime** | **Long**| Timestamp in ms to get funding until INCLUSIVE. | [optional] |
-| **limit** | **Long**| Number of results returned. | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**QueryAllUmConditionalOrdersResponse**](QueryAllUmConditionalOrdersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | All UM Conditional Orders |  -  |
 
 <a id="queryAllUmOrders"></a>
 # **queryAllUmOrders**
@@ -3175,74 +2838,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Query UM Algo Order |  -  |
 
-<a id="queryCurrentUmOpenConditionalOrder"></a>
-# **queryCurrentUmOpenConditionalOrder**
-> QueryCurrentUmOpenConditionalOrderResponse queryCurrentUmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow)
-
-Query Current UM Open Conditional Order - Deprecated (USER_DATA)
-
-Query Current UM Open Conditional Order  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/algoOrder&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - If the queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;, the error message \&quot;Order does not exist\&quot; will be returned.
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "BTCUSDT"; // String | Symbol
-    Long strategyId = 1L; // Long | 
-    String newClientStrategyId = "1"; // String | 
-    Long recvWindow = 5000L; // Long | 
-    try {
-      QueryCurrentUmOpenConditionalOrderResponse result = apiInstance.queryCurrentUmOpenConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#queryCurrentUmOpenConditionalOrder");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Symbol | |
-| **strategyId** | **Long**|  | [optional] |
-| **newClientStrategyId** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**QueryCurrentUmOpenConditionalOrderResponse**](QueryCurrentUmOpenConditionalOrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Current UM Open Conditional Order |  -  |
-
 <a id="queryCurrentUmOpenOrder"></a>
 # **queryCurrentUmOpenOrder**
 > QueryCurrentUmOpenOrderResponse queryCurrentUmOpenOrder(symbol, orderId, origClientOrderId, recvWindow)
@@ -3649,74 +3244,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Query UM Algo Order History |  -  |
 
-<a id="queryUmConditionalOrderHistory"></a>
-# **queryUmConditionalOrderHistory**
-> QueryUmConditionalOrderHistoryResponse queryUmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow)
-
-Query UM Conditional Order History - Deprecated (USER_DATA)
-
-Query UM Conditional Order History  &gt; **Deprecated:** This endpoint has returned HTTP 404 since 2026-04-28 and is no longer available. Use &#x60;GET /papi/v1/um/algo/allAlgoOrders&#x60; instead. Field changes: &#x60;strategyId&#x60; -&gt; &#x60;algoId&#x60;, &#x60;newClientStrategyId&#x60; -&gt; &#x60;clientAlgoId&#x60;, &#x60;strategyStatus&#x60; -&gt; &#x60;algoStatus&#x60;, &#x60;stopPrice&#x60; -&gt; &#x60;triggerPrice&#x60;, &#x60;activationPrice&#x60; -&gt; &#x60;activatePrice&#x60; (TRAILING_STOP_MARKET orders). &#x60;algoType&#x60; is a new fixed-value field (&#x60;CONDITIONAL&#x60;), not a rename of &#x60;strategyType&#x60; -- the order type now lives in &#x60;type&#x60; (request) / &#x60;orderType&#x60; (response).  Weight(IP): 1  Security Type: USER_DATA  Notes: - Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60; orders will not be found. - These orders will not be found:   - order status is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND**   - order has NO filled trade, **AND**   - created time + 7 days &lt; current time
-
-### Example
-```java
-// Import classes:
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiClient;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.ApiException;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.Configuration;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.models.*;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.api.TradeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://papi.binance.com");
-
-    TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "BTCUSDT"; // String | Symbol
-    Long strategyId = 1L; // Long | 
-    String newClientStrategyId = "1"; // String | 
-    Long recvWindow = 5000L; // Long | 
-    try {
-      QueryUmConditionalOrderHistoryResponse result = apiInstance.queryUmConditionalOrderHistory(symbol, strategyId, newClientStrategyId, recvWindow);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TradeApi#queryUmConditionalOrderHistory");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| Symbol | |
-| **strategyId** | **Long**|  | [optional] |
-| **newClientStrategyId** | **String**|  | [optional] |
-| **recvWindow** | **Long**|  | [optional] |
-
-### Return type
-
-[**QueryUmConditionalOrderHistoryResponse**](QueryUmConditionalOrderHistoryResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | UM Conditional Order History |  -  |
-
 <a id="queryUmModifyOrderHistory"></a>
 # **queryUmModifyOrderHistory**
 > QueryUmModifyOrderHistoryResponse queryUmModifyOrderHistory(symbol, orderId, origClientOrderId, startTime, endTime, limit, recvWindow)
@@ -3937,7 +3464,7 @@ No authorization required
 
 Query User&#39;s Margin Force Orders (USER_DATA)
 
-Query user&#39;s margin force orders  Weight(IP): 1  Security Type: USER_DATA
+Query user&#39;s margin force orders  &gt; **Note:** Portfolio Margin accounts liquidated through the [Risk-Based Liquidation Adjustment](https://www.binance.com/en/support/faq/detail/662268636eb44b71af55c6c6a597d481) flow will not have any order or trade records returned by this endpoint. Query the capital flow endpoint instead: [Query Cross Isolated Margin Capital Flow](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow).  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java

@@ -95,6 +95,12 @@ public class ModifyOrderRequest extends BaseDTO {
     @jakarta.annotation.Nullable
     private Long modifyId;
 
+    public static final String SERIALIZED_NAME_REDUCE_ONLY = "reduceOnly";
+
+    @SerializedName(SERIALIZED_NAME_REDUCE_ONLY)
+    @jakarta.annotation.Nullable
+    private ReduceOnly reduceOnly;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -284,6 +290,26 @@ public class ModifyOrderRequest extends BaseDTO {
         this.modifyId = modifyId;
     }
 
+    public ModifyOrderRequest reduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
+        return this;
+    }
+
+    /**
+     * Get reduceOnly
+     *
+     * @return reduceOnly
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+    public ReduceOnly getReduceOnly() {
+        return reduceOnly;
+    }
+
+    public void setReduceOnly(@jakarta.annotation.Nullable ReduceOnly reduceOnly) {
+        this.reduceOnly = reduceOnly;
+    }
+
     public ModifyOrderRequest recvWindow(@jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
         return this;
@@ -321,6 +347,7 @@ public class ModifyOrderRequest extends BaseDTO {
                 && Objects.equals(this.price, modifyOrderRequest.price)
                 && Objects.equals(this.priceMatch, modifyOrderRequest.priceMatch)
                 && Objects.equals(this.modifyId, modifyOrderRequest.modifyId)
+                && Objects.equals(this.reduceOnly, modifyOrderRequest.reduceOnly)
                 && Objects.equals(this.recvWindow, modifyOrderRequest.recvWindow);
     }
 
@@ -336,6 +363,7 @@ public class ModifyOrderRequest extends BaseDTO {
                 price,
                 priceMatch,
                 modifyId,
+                reduceOnly,
                 recvWindow);
     }
 
@@ -352,6 +380,7 @@ public class ModifyOrderRequest extends BaseDTO {
         sb.append("		price: ").append(toIndentedString(price)).append("\n");
         sb.append("		priceMatch: ").append(toIndentedString(priceMatch)).append("\n");
         sb.append("		modifyId: ").append(toIndentedString(modifyId)).append("\n");
+        sb.append("		reduceOnly: ").append(toIndentedString(reduceOnly)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -406,6 +435,11 @@ public class ModifyOrderRequest extends BaseDTO {
             String modifyIdValueAsString = modifyIdValue.toString();
             valMap.put("modifyId", modifyIdValueAsString);
         }
+        ReduceOnly reduceOnlyValue = getReduceOnly();
+        if (reduceOnlyValue != null) {
+            String reduceOnlyValueAsString = reduceOnlyValue.toString();
+            valMap.put("reduceOnly", reduceOnlyValueAsString);
+        }
         Long recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             String recvWindowValueAsString = recvWindowValue.toString();
@@ -458,6 +492,10 @@ public class ModifyOrderRequest extends BaseDTO {
         if (modifyIdValue != null) {
             valMap.put("modifyId", modifyIdValue);
         }
+        Object reduceOnlyValue = getReduceOnly();
+        if (reduceOnlyValue != null) {
+            valMap.put("reduceOnly", reduceOnlyValue);
+        }
         Object recvWindowValue = getRecvWindow();
         if (recvWindowValue != null) {
             valMap.put("recvWindow", recvWindowValue);
@@ -497,6 +535,7 @@ public class ModifyOrderRequest extends BaseDTO {
         openapiFields.add("price");
         openapiFields.add("priceMatch");
         openapiFields.add("modifyId");
+        openapiFields.add("reduceOnly");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)
@@ -576,6 +615,10 @@ public class ModifyOrderRequest extends BaseDTO {
         // validate the optional field `priceMatch`
         if (jsonObj.get("priceMatch") != null && !jsonObj.get("priceMatch").isJsonNull()) {
             PriceMatch.validateJsonElement(jsonObj.get("priceMatch"));
+        }
+        // validate the optional field `reduceOnly`
+        if (jsonObj.get("reduceOnly") != null && !jsonObj.get("reduceOnly").isJsonNull()) {
+            ReduceOnly.validateJsonElement(jsonObj.get("reduceOnly"));
         }
     }
 

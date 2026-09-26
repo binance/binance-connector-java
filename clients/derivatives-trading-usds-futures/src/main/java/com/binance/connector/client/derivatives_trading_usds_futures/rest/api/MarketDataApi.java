@@ -77,7 +77,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-usds-futures/12.0.3 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-usds-futures/12.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -5230,13 +5230,14 @@ public class MarketDataApi {
      * Trading Schedule Trading session schedules for the underlying assets of TradFi Perps are
      * provided for a one-week period forward and one-week period backward starting from the day
      * prior to the query time, covering the U.S. equity market, Korean equity market, Hong Kong
-     * equity market, China equity market, and the commodity market. Session types per market: -
-     * U.S. equity market: \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
+     * equity market, China equity market, the commodity market, and the FX market. Session types
+     * per market: - U.S. equity market: \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
      * \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, \&quot;NO_TRADING\&quot;. - Commodity
      * market: \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - Korean equity market:
      * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - Hong Kong equity market:
      * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - China equity market:
-     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. Weight(IP): 5
+     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - FX market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. Weight(IP): 5
      *
      * @return ApiResponse&lt;TradingScheduleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

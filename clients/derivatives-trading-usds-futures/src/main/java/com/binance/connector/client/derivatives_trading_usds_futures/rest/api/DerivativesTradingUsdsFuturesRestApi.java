@@ -1726,13 +1726,14 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * Trading Schedule Trading session schedules for the underlying assets of TradFi Perps are
      * provided for a one-week period forward and one-week period backward starting from the day
      * prior to the query time, covering the U.S. equity market, Korean equity market, Hong Kong
-     * equity market, China equity market, and the commodity market. Session types per market: -
-     * U.S. equity market: \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
+     * equity market, China equity market, the commodity market, and the FX market. Session types
+     * per market: - U.S. equity market: \&quot;PRE_MARKET\&quot;, \&quot;REGULAR\&quot;,
      * \&quot;AFTER_MARKET\&quot;, \&quot;OVERNIGHT\&quot;, \&quot;NO_TRADING\&quot;. - Commodity
      * market: \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - Korean equity market:
      * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - Hong Kong equity market:
      * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - China equity market:
-     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. Weight(IP): 5
+     * \&quot;REGULAR\&quot;, \&quot;NO_TRADING\&quot;. - FX market: \&quot;REGULAR\&quot;,
+     * \&quot;NO_TRADING\&quot;. Weight(IP): 5
      *
      * @return ApiResponse&lt;TradingScheduleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2347,7 +2348,16 @@ public class DerivativesTradingUsdsFuturesRestApi {
      * following situations: - when the order is in partially filled status and the new
      * &#x60;quantity&#x60; &lt;&#x3D; &#x60;executedQty&#x60; - When the order is &#x60;GTX&#x60;
      * and the new price will cause it to be executed immediately - One order can only be modfied
-     * for less than 10000 times
+     * for less than 10000 times - &#x60;reduceOnly&#x60; behavior: - &#x60;false&#x60; or omitted:
+     * behave as today — &#x60;min_notional&#x60; is enforced on the modified order. -
+     * &#x60;true&#x60; and the original order&#39;s &#x60;reduceOnly&#x60; attribute is also
+     * &#x60;true&#x60; (consistent): the &#x60;min_notional&#x60; check is skipped on the modified
+     * order, matching placement semantics. - &#x60;true&#x60; but the original order&#39;s
+     * &#x60;reduceOnly&#x60; attribute is &#x60;false&#x60; (inconsistent): the modify request is
+     * rejected with error code &#x60;-5047&#x60;, \&quot;The original order is not a reduce-only
+     * order\&quot;. - &#x60;reduceOnly&#x60; is used purely for validation — passing
+     * &#x60;true&#x60; does not change the original order&#39;s &#x60;reduceOnly&#x60; attribute;
+     * that flag remains whatever it was set to at placement time.
      *
      * @param modifyOrderRequest (required)
      * @return ApiResponse&lt;ModifyOrderResponse&gt;

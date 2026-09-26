@@ -28,7 +28,6 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllCmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllCmOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllUmAlgoOpenOrdersResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllUmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelAllUmOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelCmConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelCmOrderResponse;
@@ -36,7 +35,6 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountOcoOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelMarginAccountOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmAlgoOrderResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CancelUmOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CmAccountTradeListResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.CmPositionAdlQuantileEstimationResponse;
@@ -65,8 +63,6 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewMarginOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmAlgoOrderRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmAlgoOrderResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmConditionalOrderRequest;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmOrderRequest;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.NewUmOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.OrderType;
@@ -75,10 +71,8 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentCmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentCmOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenAlgoOrdersResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllCurrentUmOpenOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllMarginAccountOrdersResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllUmConditionalOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryAllUmOrdersResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCmConditionalOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCmModifyOrderHistoryResponse;
@@ -87,14 +81,12 @@ import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.mo
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentCmOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentMarginOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentUmOpenAlgoOrderResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentUmOpenConditionalOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryCurrentUmOpenOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsAllOcoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsOcoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryMarginAccountsOpenOcoResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmAlgoOrderHistoryResponse;
-import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmConditionalOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmModifyOrderHistoryResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUmOrderResponse;
 import com.binance.connector.client.derivatives_trading_portfolio_margin.rest.model.QueryUsersCmForceOrdersResponse;
@@ -251,39 +243,6 @@ public class TradeApiTest {
                 "1c2ec70499498e5c5d2f4e98a7e24c74f2801642a8c3743d289dbfc1ca00c7a8",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/um/algo/allOpenOrders", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Cancel All UM Open Conditional Orders (TRADE)
-     *
-     * <p>Cancel All UM Open Conditional Orders Weight(IP): 1 Security Type: TRADE
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void cancelAllUmOpenConditionalOrdersTest()
-            throws ApiException, CryptoException, IOException {
-        String symbol = "BTCUSDT";
-        Long recvWindow = 5000L;
-        ApiResponse<CancelAllUmOpenConditionalOrdersResponse> response =
-                api.cancelAllUmOpenConditionalOrders(symbol, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/papi/v1/um/conditional/allOpenOrders", actualRequest.url().encodedPath());
     }
 
     /**
@@ -522,40 +481,6 @@ public class TradeApiTest {
         assertEquals(
                 "87096ab0f7ef63c753df68f8402162e99b54653f0b45ee1736f9b9f8b1ff7160", actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/um/algo/order", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Cancel UM Conditional Order (TRADE)
-     *
-     * <p>Cancel UM Conditional Order Weight(IP): 1 Security Type: TRADE Notes: - Either
-     * &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void cancelUmConditionalOrderTest() throws ApiException, CryptoException, IOException {
-        String symbol = "BTCUSDT";
-        Long strategyId = 1L;
-        String newClientStrategyId = "1";
-        Long recvWindow = 5000L;
-        ApiResponse<CancelUmConditionalOrderResponse> response =
-                api.cancelUmConditionalOrder(symbol, strategyId, newClientStrategyId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("symbol=BTCUSDT&strategyId=1&newClientStrategyId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "76ca77501cf0f97cea375b78a61226c092666a1c24806a1fabaa4fba6d9db3f9",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/papi/v1/um/conditional/order", actualRequest.url().encodedPath());
     }
 
     /**
@@ -1156,54 +1081,6 @@ public class TradeApiTest {
     }
 
     /**
-     * New UM Conditional Order (TRADE)
-     *
-     * <p>Place new UM conditional order Weight(IP): 1 Security Type: TRADE Notes: - Additional
-     * mandatory parameters based on type: - Order with type &#x60;STOP/TAKE_PROFIT&#x60;, parameter
-     * &#x60;timeInForce&#x60; can be sent ( default &#x60;GTC&#x60;). - Condition orders will be
-     * triggered when: - &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;: - BUY: \&quot;MARK_PRICE\&quot;
-     * &gt;&#x3D; &#x60;stopPrice&#x60; - SELL: \&quot;MARK_PRICE\&quot; &#x3D;
-     * &#x60;stopPrice&#x60; - &#x60;TRAILING_STOP_MARKET&#x60;: - BUY: the lowest mark price after
-     * order placed &#x60;&#x60;&#x3D; the lowest mark price - (1 + &#x60;callbackRate&#x60;) -
-     * SELL: the highest mark price after order placed &gt;&#x3D; &#x60;activationPrice&#x60;, and
-     * the latest mark price &#x3D; &#x60;stopPrice&#x60; - SELL: latest price
-     * (\&quot;MARK_PRICE\&quot; or \&quot;CONTRACT_PRICE\&quot;) &#x3D; &#x60;stopPrice&#x60; -
-     * &#x60;selfTradePreventionMode&#x60; is only effective when &#x60;timeInForce&#x60; set to
-     * &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;GTD&#x60;. - In extreme market conditions,
-     * timeInForce &#x60;GTD&#x60; order auto cancel time might be delayed comparing to
-     * &#x60;goodTillDate&#x60;
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void newUmConditionalOrderTest() throws ApiException, CryptoException, IOException {
-        NewUmConditionalOrderRequest newUmConditionalOrderRequest =
-                new NewUmConditionalOrderRequest();
-        newUmConditionalOrderRequest.symbol("BTCUSDT");
-        newUmConditionalOrderRequest.side(Side.BUY);
-        newUmConditionalOrderRequest.strategyType(StrategyType.STOP);
-
-        ApiResponse<NewUmConditionalOrderResponse> response =
-                api.newUmConditionalOrder(newUmConditionalOrderRequest);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&strategyType=STOP", signInputCaptor.getValue());
-        assertEquals(
-                "714c4bda09768d457c8539f310805ed00dcba5bf63ab22d86f627101211c49cc",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/papi/v1/um/conditional/order", actualRequest.url().encodedPath());
-    }
-
-    /**
      * New UM Order (TRADE)
      *
      * <p>Place new UM order Weight(IP): 1 Security Type: TRADE Notes: - Additional mandatory
@@ -1432,43 +1309,6 @@ public class TradeApiTest {
     }
 
     /**
-     * Query All Current UM Open Conditional Orders (USER_DATA)
-     *
-     * <p>Get all open conditional orders on a symbol. Weight: - 1 for a single &#x60;symbol&#x60; -
-     * 40 when &#x60;symbol&#x60; is omitted Security Type: USER_DATA Notes: - If &#x60;symbol&#x60;
-     * is not provided, conditional open orders for all symbols are returned.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void queryAllCurrentUmOpenConditionalOrdersTest()
-            throws ApiException, CryptoException, IOException {
-        String symbol = "BTCUSDT";
-        Long recvWindow = 5000L;
-        ApiResponse<QueryAllCurrentUmOpenConditionalOrdersResponse> response =
-                api.queryAllCurrentUmOpenConditionalOrders(symbol, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "symbol=BTCUSDT&recvWindow=5000&timestamp=1736393892000",
-                signInputCaptor.getValue());
-        assertEquals(
-                "5e7e1313cde51a8386d885dd02bf6a7f4f4cd7f28dce6810d75c97af7836b3bb",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/papi/v1/um/conditional/openOrders", actualRequest.url().encodedPath());
-    }
-
-    /**
      * Query All Current UM Open Orders (USER_DATA)
      *
      * <p>Get all open orders on a symbol. Weight: - 1 for a single &#x60;symbol&#x60; - 40 when
@@ -1540,47 +1380,6 @@ public class TradeApiTest {
                 "84ad92e45b09f2d031ab49830acf8f05abccb73a6168944210a78c5aacb0b499",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/margin/allOrders", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Query All UM Conditional Orders (USER_DATA)
-     *
-     * <p>Query All UM Conditional Orders Weight: - 1 for a single &#x60;symbol&#x60; - 40 when
-     * &#x60;symbol&#x60; is omitted Security Type: USER_DATA Notes: - These orders will not be
-     * found: - order strategyStatus is &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** - order
-     * has NO filled trade, **AND** - created time + 7 days * The query time period must be less
-     * than 7 days( default as the recent 7 days).
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void queryAllUmConditionalOrdersTest()
-            throws ApiException, CryptoException, IOException {
-        String symbol = "BTCUSDT";
-        Long strategyId = 1L;
-        Long startTime = 1623319461670L;
-        Long endTime = 1641782889000L;
-        Long limit = 500L;
-        Long recvWindow = 5000L;
-        ApiResponse<QueryAllUmConditionalOrdersResponse> response =
-                api.queryAllUmConditionalOrders(
-                        symbol, strategyId, startTime, endTime, limit, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("symbol=BTCUSDT&strategyId=1&startTime=1623319461670&endTime=1641782889000&limit=500&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "973a880e85b98ec033870362ec94607a7a13e461df6b44f39071d92074c6feb5",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/papi/v1/um/conditional/allOrders", actualRequest.url().encodedPath());
     }
 
     /**
@@ -1880,46 +1679,6 @@ public class TradeApiTest {
     }
 
     /**
-     * Query Current UM Open Conditional Order (USER_DATA)
-     *
-     * <p>Query Current UM Open Conditional Order Weight(IP): 1 Security Type: USER_DATA Notes: -
-     * Either &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - If the
-     * queried order has been &#x60;CANCELED&#x60;, &#x60;TRIGGERED&#x60; or &#x60;EXPIRED&#x60;,
-     * the error message \&quot;Order does not exist\&quot; will be returned.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void queryCurrentUmOpenConditionalOrderTest()
-            throws ApiException, CryptoException, IOException {
-        String symbol = "BTCUSDT";
-        Long strategyId = 1L;
-        String newClientStrategyId = "1";
-        Long recvWindow = 5000L;
-        ApiResponse<QueryCurrentUmOpenConditionalOrderResponse> response =
-                api.queryCurrentUmOpenConditionalOrder(
-                        symbol, strategyId, newClientStrategyId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals(
-                "symbol=BTCUSDT&strategyId=1&newClientStrategyId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "76ca77501cf0f97cea375b78a61226c092666a1c24806a1fabaa4fba6d9db3f9",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals(
-                "/papi/v1/um/conditional/openOrder", actualRequest.url().encodedPath());
-    }
-
-    /**
      * Query Current UM Open Order (USER_DATA)
      *
      * <p>Query current UM open order Weight(IP): 1 Security Type: USER_DATA Notes: - Either
@@ -2124,45 +1883,6 @@ public class TradeApiTest {
                 "6118bef155f88558dbe662a3efd9ac33c18172bb18658c71eb31841f5e080217",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/papi/v1/um/algo/allAlgoOrders", actualRequest.url().encodedPath());
-    }
-
-    /**
-     * Query UM Conditional Order History (USER_DATA)
-     *
-     * <p>Query UM Conditional Order History Weight(IP): 1 Security Type: USER_DATA Notes: - Either
-     * &#x60;strategyId&#x60; or &#x60;newClientStrategyId&#x60; must be sent. - &#x60;NEW&#x60;
-     * orders will not be found. - These orders will not be found: - order status is
-     * &#x60;CANCELED&#x60; or &#x60;EXPIRED&#x60;, **AND** - order has NO filled trade, **AND** -
-     * created time + 7 days &lt; current time
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void queryUmConditionalOrderHistoryTest()
-            throws ApiException, CryptoException, IOException {
-        String symbol = "BTCUSDT";
-        Long strategyId = 1L;
-        String newClientStrategyId = "1";
-        Long recvWindow = 5000L;
-        ApiResponse<QueryUmConditionalOrderHistoryResponse> response =
-                api.queryUmConditionalOrderHistory(
-                        symbol, strategyId, newClientStrategyId, recvWindow);
-
-        ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
-        Mockito.verify(apiClientSpy)
-                .execute(callArgumentCaptor.capture(), Mockito.any(java.lang.reflect.Type.class));
-
-        ArgumentCaptor<String> signInputCaptor = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(signatureGeneratorSpy).signAsString(signInputCaptor.capture());
-
-        Call captorValue = callArgumentCaptor.getValue();
-        Request actualRequest = captorValue.request();
-
-        assertEquals("symbol=BTCUSDT&strategyId=1&newClientStrategyId=1&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
-        assertEquals(
-                "76ca77501cf0f97cea375b78a61226c092666a1c24806a1fabaa4fba6d9db3f9",
-                actualRequest.url().queryParameter("signature"));
-        assertEquals("/papi/v1/um/conditional/orderHistory", actualRequest.url().encodedPath());
     }
 
     /**
