@@ -32,7 +32,9 @@ public class OrderAmendKeepPriorityExample {
      * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
      * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read Order
      * Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count: 0 Security Type:
-     * TRADE Notes: **Data Source:** Matching Engine
+     * TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The payload above
+     * does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      *
      * @throws ApiException if the Api call fails
      */
@@ -40,7 +42,7 @@ public class OrderAmendKeepPriorityExample {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
                 new OrderAmendKeepPriorityRequest();
         orderAmendKeepPriorityRequest.symbol("BNBUSDT");
-        orderAmendKeepPriorityRequest.newQty(1d);
+        orderAmendKeepPriorityRequest.newQty(5d);
         ApiResponse<OrderAmendKeepPriorityResponse> response =
                 getApi().orderAmendKeepPriority(orderAmendKeepPriorityRequest);
         System.out.println(response.getData());

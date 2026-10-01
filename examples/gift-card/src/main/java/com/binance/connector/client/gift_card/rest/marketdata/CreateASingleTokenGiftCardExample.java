@@ -31,8 +31,8 @@ public class CreateASingleTokenGiftCardExample {
      *
      * <p>This API is for creating a Binance Gift Card. To get started with, please make sure: * You
      * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
-     * and fee amount) in your Binance funding wallet * You need &#x60;Enable Withdrawals&#x60; for
-     * the API Key which requests this endpoint. Weight(IP): 1 Security Type: USER_DATA
+     * and fee amount) in your Binance Spot wallet * You need &#x60;Enable Withdrawals&#x60; for the
+     * API Key which requests this endpoint. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */

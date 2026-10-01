@@ -29,7 +29,7 @@ public class TimeExample {
      * Check server time
      *
      * <p>Test connectivity to the Rest API and get the current server time. Weight(IP): 1 Security
-     * Type: NONE
+     * Type: NONE Notes: **Data Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */

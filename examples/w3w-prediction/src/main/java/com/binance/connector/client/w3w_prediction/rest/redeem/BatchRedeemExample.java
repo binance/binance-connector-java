@@ -32,7 +32,7 @@ public class BatchRedeemExample {
      * Batch Redeem (PREDICTION_TRADE)
      *
      * <p>Redeem one or more settled prediction tokens on-chain to claim winnings. Requires SAS
-     * authorization. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * authorization. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

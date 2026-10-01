@@ -89,7 +89,7 @@ No authorization required
 
 Historical Block Trades
 
-Get block trades.  Weight(IP): 25  Security Type: NONE  Notes: - Data Source: Database
+Get block trades.  Weight(IP): 25  Security Type: NONE  Notes: **Data Source:** Database
 
 ### Example
 ```java
@@ -151,7 +151,7 @@ No authorization required
 
 Order book
 
-Get current order book.  Note that this request returns limited market depth.  If you need to continuously monitor order book updates, please consider using WebSocket Streams:   * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60;   * &#x60;&lt;symbol&gt;@depth&#x60;  You can use &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to [maintain a local order book](/products/spot/web-socket-streams#how-to-manage-a-local-order-book-correctly).  Weight: Adjusted based on the limit:  |Limit|Request Weight ------|------- 1-100|  5 101-500| 25 501-1000| 50 1001-5000| 250  Security Type: NONE  Notes: **Data Source:** Memory
+Get current order book.  Note that this request returns limited market depth.  If you need to continuously monitor order book updates, please consider using WebSocket Streams:   * &#x60;&lt;symbol&gt;@depth&lt;levels&gt;&#x60;   * &#x60;&lt;symbol&gt;@depth&#x60;  You can use &#x60;depth&#x60; request together with &#x60;&lt;symbol&gt;@depth&#x60; streams to maintain a local order book.  Weight: Adjusted based on the limit:  |Limit|Request Weight ------|------- 1-100|  5 101-500| 25 501-1000| 50 1001-5000| 250  Security Type: NONE  Notes: **Data Source:** Memory
 
 ### Example
 ```java
@@ -213,7 +213,7 @@ No authorization required
 
 Klines
 
-Get klines (candlestick bars).  Klines are uniquely identified by their open &amp; close time.  If you need access to real-time kline updates, please consider using WebSocket Streams:   * &#x60;&lt;symbol&gt;@kline_&lt;interval&gt;&#x60;  If you need historical kline data, please consider using [data.binance.vision](https://github.com/binance/binance-public-data/#klines).  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Database  Supported kline intervals (case-sensitive):  Interval  | &#x60;interval&#x60; value --------- | ---------------- seconds   | &#x60;1s&#x60; minutes   | &#x60;1m&#x60;, &#x60;3m&#x60;, &#x60;5m&#x60;, &#x60;15m&#x60;, &#x60;30m&#x60; hours     | &#x60;1h&#x60;, &#x60;2h&#x60;, &#x60;4h&#x60;, &#x60;6h&#x60;, &#x60;8h&#x60;, &#x60;12h&#x60; days      | &#x60;1d&#x60;, &#x60;3d&#x60; weeks     | &#x60;1w&#x60; months    | &#x60;1M&#x60;  **Notes:**  * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the most recent klines are returned. * Supported values for &#x60;timeZone&#x60;:   * Hours and minutes (e.g. &#x60;-1:00&#x60;, &#x60;05:45&#x60;)   * Only hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;)   * Accepted range is strictly [-12:00 to +14:00] inclusive * If &#x60;timeZone&#x60; provided, kline intervals are interpreted in that timezone instead of UTC. * Note that &#x60;startTime&#x60; and &#x60;endTime&#x60; are always interpreted in UTC, regardless of &#x60;timeZone&#x60;.
+Get klines (candlestick bars).  Klines are uniquely identified by their open &amp; close time.  If you need access to real-time kline updates, please consider using WebSocket Streams:   * &#x60;&lt;symbol&gt;@kline_&lt;interval&gt;&#x60;  If you need historical kline data, please consider using data.binance.vision.  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Database  Supported kline intervals (case-sensitive):  Interval  | &#x60;interval&#x60; value --------- | ---------------- seconds   | &#x60;1s&#x60; minutes   | &#x60;1m&#x60;, &#x60;3m&#x60;, &#x60;5m&#x60;, &#x60;15m&#x60;, &#x60;30m&#x60; hours     | &#x60;1h&#x60;, &#x60;2h&#x60;, &#x60;4h&#x60;, &#x60;6h&#x60;, &#x60;8h&#x60;, &#x60;12h&#x60; days      | &#x60;1d&#x60;, &#x60;3d&#x60; weeks     | &#x60;1w&#x60; months    | &#x60;1M&#x60;  **Notes:**  * If &#x60;startTime&#x60; and &#x60;endTime&#x60; are not sent, the most recent klines are returned. * Supported values for &#x60;timeZone&#x60;:   * Hours and minutes (e.g. &#x60;-1:00&#x60;, &#x60;05:45&#x60;)   * Only hours (e.g. &#x60;0&#x60;, &#x60;8&#x60;, &#x60;4&#x60;)   * Accepted range is strictly [-12:00 to +14:00] inclusive * If &#x60;timeZone&#x60; provided, kline intervals are interpreted in that timezone instead of UTC. * Note that &#x60;startTime&#x60; and &#x60;endTime&#x60; are always interpreted in UTC, regardless of &#x60;timeZone&#x60;.
 
 ### Example
 ```java
@@ -275,7 +275,7 @@ No authorization required
 
 Query Reference Price
 
-Query Reference Price  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Memory
+Query Reference Price  Weight(IP): 2  Security Type: NONE  Notes: **Data Source:** Memory  If the symbol has never had a reference price set, the request is rejected with:  &#x60;&#x60;&#x60;json {     \&quot;code\&quot;: -2043,     \&quot;msg\&quot;: \&quot;This symbol doesn&#39;t have a reference price.\&quot; } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -709,7 +709,7 @@ No authorization required
 
 Aggregate trades
 
-Get aggregate trades.  An *aggregate trade* (aggtrade) represents one or more individual trades.  Trades that fill at the same time, from the same taker order, with the same price –  those trades are collected into an aggregate trade with total quantity of the individual trades.  If you need access to real-time trading activity, please consider using WebSocket Streams:  * &#x60;&lt;symbol&gt;@aggTrade&#x60;  If you need historical aggregate trade data, please consider using [data.binance.vision](https://github.com/binance/binance-public-data/#aggtrades).  Weight(IP): 4  Security Type: NONE  Notes: **Data Source:** Database  - If &#x60;fromId&#x60; is specified, return aggtrades with aggregate trade ID &gt;&#x3D; &#x60;fromId&#x60;. Use &#x60;fromId&#x60; and &#x60;limit&#x60; to page through all aggtrades. - If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, aggtrades are filtered by execution time (&#x60;T&#x60;). &#x60;fromId&#x60; cannot be used together with &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If no condition is specified, the most recent aggregate trades are returned.
+Get aggregate trades.  An *aggregate trade* (aggtrade) represents one or more individual trades.  Trades that fill at the same time, from the same taker order, with the same price –  those trades are collected into an aggregate trade with total quantity of the individual trades.  If you need access to real-time trading activity, please consider using WebSocket Streams:  * &#x60;&lt;symbol&gt;@aggTrade&#x60;  If you need historical aggregate trade data, please consider using data.binance.vision.  Weight(IP): 4  Security Type: NONE  Notes: **Data Source:** Database  - If &#x60;fromId&#x60; is specified, return aggtrades with aggregate trade ID &gt;&#x3D; &#x60;fromId&#x60;. Use &#x60;fromId&#x60; and &#x60;limit&#x60; to page through all aggtrades. - If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, aggtrades are filtered by execution time (&#x60;T&#x60;). &#x60;fromId&#x60; cannot be used together with &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If no condition is specified, the most recent aggregate trades are returned.
 
 ### Example
 ```java

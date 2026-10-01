@@ -20,7 +20,7 @@
 |**openTime** | **Long** | Open time for ticker window |  [optional] |
 |**closeTime** | **Long** | Close time for ticker window |  [optional] |
 |**firstId** | **Long** | Trade IDs |  [optional] |
-|**lastId** | **Long** |  |  [optional] |
+|**lastId** | **Long** | Last trade ID |  [optional] |
 |**count** | **Long** | Number of trades in the interval |  [optional] |
 
 

@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Supported values: [Order Side](/products/spot/enums#side) */
+/** Supported values: Order Side */
 @JsonAdapter(WorkingSide.Adapter.class)
 public enum WorkingSide {
     BUY("BUY"),

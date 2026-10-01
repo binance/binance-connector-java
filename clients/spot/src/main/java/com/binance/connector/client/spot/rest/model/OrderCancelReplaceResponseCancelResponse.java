@@ -252,7 +252,7 @@ public class OrderCancelReplaceResponseCancelResponse {
     }
 
     /**
-     * Get origClientOrderId
+     * cancelOrigClientOrderId from request
      *
      * @return origClientOrderId
      */
@@ -312,7 +312,7 @@ public class OrderCancelReplaceResponseCancelResponse {
     }
 
     /**
-     * Get clientOrderId
+     * cancelNewClientOrderId from request
      *
      * @return clientOrderId
      */

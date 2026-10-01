@@ -300,7 +300,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Get origClientOrderId
+     * clientOrderId that was canceled
      *
      * @return origClientOrderId
      */
@@ -338,7 +338,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Get orderListId
+     * set only for legs of an order list
      *
      * @return orderListId
      */
@@ -358,7 +358,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Get clientOrderId
+     * newClientOrderId from request
      *
      * @return clientOrderId
      */
@@ -569,7 +569,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
+     * present only if stopPrice set for the order
      *
      * @return stopPrice
      */
@@ -589,7 +589,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Delta price change required before order activation.
+     * present only if trailingDelta set for the order
      *
      * @return trailingDelta
      */
@@ -608,7 +608,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Appears only if the parameter icebergQty was sent in the request.
+     * present only if icebergQty set for the order
      *
      * @return icebergQty
      */
@@ -627,7 +627,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Appears only if the strategyId parameter was provided upon order placement.
+     * present only if strategyId set for the order
      *
      * @return strategyId
      */
@@ -646,7 +646,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Appears only if the strategyType parameter was provided upon order placement.
+     * present only if strategyType set for the order
      *
      * @return strategyType
      */
@@ -1028,7 +1028,7 @@ public class OrderCancelResponseResult extends BaseDTO {
     }
 
     /**
-     * Get orderReports
+     * order list order&#39;s status format is the same as for individual orders.
      *
      * @return orderReports
      */

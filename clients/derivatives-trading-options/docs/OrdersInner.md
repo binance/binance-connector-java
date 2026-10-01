@@ -18,7 +18,7 @@
 |**newOrderRespType** | [**NewOrderRespTypeEnum**](#NewOrderRespTypeEnum) |  |  [optional] |
 |**clientOrderId** | **String** | User-defined order ID cannot be repeated in pending orders |  [optional] |
 |**isMmp** | **Boolean** | is market maker protection order |  [optional] |
-|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) | EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire maker order when STP triggers/ EXPIRE_BOTH:expire both orders when STP triggers; Default EXPIRE_MAKER |  [optional] |
+|**selfTradePreventionMode** | [**SelfTradePreventionModeEnum**](#SelfTradePreventionModeEnum) | EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire maker order when STP triggers/ EXPIRE_BOTH: expire both orders when STP triggers; Default EXPIRE_MAKER |  [optional] |
 
 
 

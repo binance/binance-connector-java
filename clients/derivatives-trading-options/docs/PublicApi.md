@@ -265,7 +265,7 @@ No authorization required
 
 Trade Streams
 
-The Trade Streams push raw trade information for specific symbol or underlying asset. E.g.[btcusdt@optionTrade](wss://fstream.binance.com/public/stream?streams&#x3D;btcusdt@optionTrade)  Update Speed: 50ms
+The Trade Streams push raw trade information for specific symbol or underlying asset. E.g.btcusdt@optionTrade  Update Speed: 50ms
 
 ### Example
 ```java

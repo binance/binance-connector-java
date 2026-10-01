@@ -2,16 +2,17 @@
 
 # OrderCancelReplaceResponseResultCancelResponse
 
+Format is identical to \"order.cancel\" format. Some fields are optional and are included only for orders that set them.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**origClientOrderId** | **String** |  |  [optional] |
+|**origClientOrderId** | **String** | cancelOrigClientOrderId from request |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
 |**orderListId** | **Long** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
+|**clientOrderId** | **String** | cancelNewClientOrderId from request |  [optional] |
 |**transactTime** | **Long** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |

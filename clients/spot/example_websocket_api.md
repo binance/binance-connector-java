@@ -12,7 +12,7 @@
 
 [myAllocations](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-allocations) - myAllocations - [MyAllocationsExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyAllocationsExample.java#L47)
 
-[myFilters](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-filters) - myFilters - [MyFiltersExample.java:39](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyFiltersExample.java#L39)
+[myFilters](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-filters) - myFilters - [MyFiltersExample.java:38](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyFiltersExample.java#L38)
 
 [myPreventedMatches](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-prevented-matches) - myPreventedMatches - [MyPreventedMatchesExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/MyPreventedMatchesExample.java#L43)
 
@@ -20,13 +20,13 @@
 
 [openOrderLists.status](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-order-lists-status) - openOrderListsStatus - [OpenOrderListsStatusExample.java:40](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OpenOrderListsStatusExample.java#L40)
 
-[openOrders.status](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-orders-status) - openOrdersStatus - [OpenOrdersStatusExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OpenOrdersStatusExample.java#L41)
+[openOrders.status](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-orders-status) - openOrdersStatus - [OpenOrdersStatusExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OpenOrdersStatusExample.java#L43)
 
 [order.amendments](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-amendments) - orderAmendments - [OrderAmendmentsExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OrderAmendmentsExample.java#L37)
 
 [orderList.status](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-list-status) - orderListStatus - [OrderListStatusExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OrderListStatusExample.java#L41)
 
-[order.status](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-status) - orderStatus - [OrderStatusExample.java:42](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OrderStatusExample.java#L42)
+[order.status](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-status) - orderStatus - [OrderStatusExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/account/OrderStatusExample.java#L43)
 
 ## Auth
 
@@ -52,11 +52,11 @@
 
 [blockTrades.historical](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#block-trades-historical) - blockTradesHistorical - [BlockTradesHistoricalExample.java:36](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/BlockTradesHistoricalExample.java#L36)
 
-[depth](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#depth) - depth - [DepthExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/DepthExample.java#L43)
+[depth](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#depth) - depth - [DepthExample.java:42](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/DepthExample.java#L42)
 
 [klines](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#klines) - klines - [KlinesExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/KlinesExample.java#L52)
 
-[referencePrice](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price) - referencePrice - [ReferencePriceExample.java:36](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/ReferencePriceExample.java#L36)
+[referencePrice](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price) - referencePrice - [ReferencePriceExample.java:39](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/ReferencePriceExample.java#L39)
 
 [referencePrice.calculation](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price-calculation) - referencePriceCalculation - [ReferencePriceCalculationExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/ReferencePriceCalculationExample.java#L37)
 
@@ -70,7 +70,7 @@
 
 [ticker.tradingDay](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-trading-day) - tickerTradingDay - [TickerTradingDayExample.java:40](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TickerTradingDayExample.java#L40)
 
-[trades.aggregate](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-aggregate) - tradesAggregate - [TradesAggregateExample.java:49](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TradesAggregateExample.java#L49)
+[trades.aggregate](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-aggregate) - tradesAggregate - [TradesAggregateExample.java:47](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TradesAggregateExample.java#L47)
 
 [trades.historical](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-historical) - tradesHistorical - [TradesHistoricalExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/market/TradesHistoricalExample.java#L37)
 
@@ -80,11 +80,11 @@
 
 ## Trade
 
-[openOrders.cancelAll](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#open-orders-cancel-all) - openOrdersCancelAll - [OpenOrdersCancelAllExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OpenOrdersCancelAllExample.java#L37)
+[openOrders.cancelAll](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#open-orders-cancel-all) - openOrdersCancelAll - [OpenOrdersCancelAllExample.java:39](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OpenOrdersCancelAllExample.java#L39)
 
-[order.amend.keepPriority](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-amend-keep-priority) - orderAmendKeepPriority - [OrderAmendKeepPriorityExample.java:40](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderAmendKeepPriorityExample.java#L40)
+[order.amend.keepPriority](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-amend-keep-priority) - orderAmendKeepPriority - [OrderAmendKeepPriorityExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderAmendKeepPriorityExample.java#L41)
 
-[order.cancel](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-cancel) - orderCancel - [OrderCancelExample.java:45](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderCancelExample.java#L45)
+[order.cancel](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-cancel) - orderCancel - [OrderCancelExample.java:53](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderCancelExample.java#L53)
 
 [order.cancelReplace](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-cancel-replace) - orderCancelReplace - [OrderCancelReplaceExample.java:166](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderCancelReplaceExample.java#L166)
 
@@ -94,19 +94,19 @@
 
 [orderList.place.oco](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-oco) - orderListPlaceOco - [OrderListPlaceOcoExample.java:52](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOcoExample.java#L52)
 
-[orderList.place.opo](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-opo) - orderListPlaceOpo - [OrderListPlaceOpoExample.java:42](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOpoExample.java#L42)
+[orderList.place.opo](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-opo) - orderListPlaceOpo - [OrderListPlaceOpoExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOpoExample.java#L43)
 
-[orderList.place.opoco](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-opoco) - orderListPlaceOpoco - [OrderListPlaceOpocoExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOpocoExample.java#L41)
+[orderList.place.opoco](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-opoco) - orderListPlaceOpoco - [OrderListPlaceOpocoExample.java:42](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOpocoExample.java#L42)
 
-[orderList.place.oto](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-oto) - orderListPlaceOto - [OrderListPlaceOtoExample.java:63](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOtoExample.java#L63)
+[orderList.place.oto](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-oto) - orderListPlaceOto - [OrderListPlaceOtoExample.java:65](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOtoExample.java#L65)
 
 [orderList.place.otoco](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-list-place-otoco) - orderListPlaceOtoco - [OrderListPlaceOtocoExample.java:67](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderListPlaceOtocoExample.java#L67)
 
-[order.place](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-place) - orderPlace - [OrderPlaceExample.java:144](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderPlaceExample.java#L144)
+[order.place](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-place) - orderPlace - [OrderPlaceExample.java:141](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderPlaceExample.java#L141)
 
 [order.test](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#order-test) - orderTest - [OrderTestExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/OrderTestExample.java#L41)
 
-[sor.order.place](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#sor-order-place) - sorOrderPlace - [SorOrderPlaceExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/SorOrderPlaceExample.java#L43)
+[sor.order.place](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#sor-order-place) - sorOrderPlace - [SorOrderPlaceExample.java:42](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/SorOrderPlaceExample.java#L42)
 
 [sor.order.test](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/trade#sor-order-test) - sorOrderTest - [SorOrderTestExample.java:41](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/trade/SorOrderTestExample.java#L41)
 
@@ -114,7 +114,7 @@
 
 [session.subscriptions](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#session-subscriptions) - sessionSubscriptions - [SessionSubscriptionsExample.java:36](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/SessionSubscriptionsExample.java#L36)
 
-[userDataStream.subscribe](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe) - userDataStreamSubscribe - [UserDataStreamSubscribeExample.java:46](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamSubscribeExample.java#L46)
+[userDataStream.subscribe](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe) - userDataStreamSubscribe - [UserDataStreamSubscribeExample.java:43](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamSubscribeExample.java#L43)
 
 [userDataStream.subscribe.signature](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe-signature) - userDataStreamSubscribeSignature - [UserDataStreamSubscribeSignatureExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/api/userdatastream/UserDataStreamSubscribeSignatureExample.java#L37)
 

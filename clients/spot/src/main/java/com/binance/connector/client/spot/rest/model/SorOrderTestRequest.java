@@ -41,7 +41,7 @@ public class SorOrderTestRequest {
 
     @SerializedName(SERIALIZED_NAME_COMPUTE_COMMISSION_RATES)
     @jakarta.annotation.Nullable
-    private Boolean computeCommissionRates = false;
+    private Boolean computeCommissionRates;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 

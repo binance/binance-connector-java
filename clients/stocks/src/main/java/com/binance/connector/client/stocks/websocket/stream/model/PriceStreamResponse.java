@@ -47,7 +47,7 @@ public class PriceStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_RATES = "rates";
 
@@ -57,23 +57,23 @@ public class PriceStreamResponse extends BaseDTO {
 
     public PriceStreamResponse() {}
 
-    public PriceStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public PriceStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;price\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public PriceStreamResponse rates(
@@ -115,20 +115,20 @@ public class PriceStreamResponse extends BaseDTO {
             return false;
         }
         PriceStreamResponse priceStreamResponse = (PriceStreamResponse) o;
-        return Objects.equals(this.ELowerCase, priceStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, priceStreamResponse.eLowerCase)
                 && Objects.equals(this.rates, priceStreamResponse.rates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ELowerCase, rates);
+        return Objects.hash(eLowerCase, rates);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class PriceStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		rates: ").append(toIndentedString(rates)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -138,10 +138,10 @@ public class PriceStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         List<@Valid PriceStreamResponseRatesInner> ratesValue = getRates();
         if (ratesValue != null) {
@@ -159,9 +159,9 @@ public class PriceStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object ratesValue = getRates();
         if (ratesValue != null) {

@@ -30,10 +30,8 @@ public class FuturesTradingQuantitativeRulesIndicatorsExample {
      * Futures Trading Quantitative Rules Indicators (USER_DATA)
      *
      * <p>Futures trading quantitative rules indicators, for more information on this, please refer
-     * to the [Futures Trading Quantitative
-     * Rules](https://www.binance.com/en/support/faq/4f462ebe6ff445d4a170be7d9e897272) Weight: -
-     * **1** for a single symbol - **10** when the symbol parameter is omitted Security Type:
-     * USER_DATA
+     * to the Futures Trading Quantitative Rules Weight: - **1** for a single symbol - **10** when
+     * the symbol parameter is omitted Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */

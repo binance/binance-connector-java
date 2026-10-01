@@ -30,7 +30,7 @@ public class GetPositionByTokenExample {
      * Get Position by Token (PREDICTION_TRADE)
      *
      * <p>Get the authenticated user&#39;s position detail for a specific prediction token.
-     * Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

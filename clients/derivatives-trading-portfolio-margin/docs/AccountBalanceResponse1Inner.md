@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**asset** | **String** | asset name |  [optional] |
 |**totalWalletBalance** | **String** | Total Wallet Balance. |  [optional] |
-|**crossMarginAsset** | **String** | Cross Margin Asset. |  [optional] |
+|**crossMarginAsset** | **String** | Cross Margin Asset. Equal to crossMarginFree + crossMarginLocked. |  [optional] |
 |**crossMarginBorrowed** | **String** | Cross Margin Borrowed. |  [optional] |
 |**crossMarginFree** | **String** | Cross Margin Free. |  [optional] |
 |**crossMarginInterest** | **String** | Cross Margin Interest. |  [optional] |

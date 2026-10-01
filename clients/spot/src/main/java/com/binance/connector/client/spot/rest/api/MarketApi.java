@@ -62,7 +62,7 @@ public class MarketApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -817,7 +817,7 @@ public class MarketApi {
 
     /**
      * Historical Block Trades (MARKET_DATA) Get block trades. Weight(IP): 25 Security Type:
-     * MARKET_DATA Notes: - Data Source: Database
+     * MARKET_DATA Notes: **Data Source:** Database
      *
      * @param symbol (required)
      * @param fromId Block trade ID to fetch from (required)
@@ -1303,7 +1303,10 @@ public class MarketApi {
 
     /**
      * Query Reference Price Query the reference price for a symbol. Weight(IP): 2 Security Type:
-     * NONE Notes: **Data Source:** Memory
+     * NONE Notes: **Data Source:** Memory If the symbol has never had a reference price set, the
+     * request is rejected with: &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2043,
+     * \&quot;msg\&quot;: \&quot;This symbol doesn&#39;t have a reference price.\&quot; }
+     * &#x60;&#x60;&#x60;
      *
      * @param symbol (required)
      * @return ApiResponse&lt;ReferencePriceResponse&gt;

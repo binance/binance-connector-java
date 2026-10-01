@@ -134,7 +134,7 @@ public class ExchangeInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get rateLimits
+     * Global rate limits. See \&quot;Rate limits\&quot; section.
      *
      * @return rateLimits
      */
@@ -163,7 +163,8 @@ public class ExchangeInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get exchangeFilters
+     * Exchange filters are explained on the \&quot;Filters\&quot; page: All exchange filters are
+     * optional.
      *
      * @return exchangeFilters
      */
@@ -223,7 +224,7 @@ public class ExchangeInfoResponse extends BaseDTO {
     }
 
     /**
-     * Get sors
+     * Optional field. Present only when SOR is available.
      *
      * @return sors
      */

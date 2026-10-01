@@ -25,7 +25,8 @@ public class QuoteStreamExample {
      * Quote Stream
      *
      * <p>Per-symbol real-time best-bid / best-ask. Each symbol has its own stream. Per-symbol
-     * throttle: at most one push per symbol every 200 ms.
+     * throttle: at most one push per symbol every 200 ms. Also reachable via the
+     * SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @throws ApiException if the Api call fails
      */

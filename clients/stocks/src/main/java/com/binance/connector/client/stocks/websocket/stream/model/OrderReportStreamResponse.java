@@ -47,7 +47,7 @@ public class OrderReportStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -59,13 +59,13 @@ public class OrderReportStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_X_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String XLowerCase;
+    private String xLowerCase;
 
     public static final String SERIALIZED_NAME_I_LOWER_CASE = "i";
 
     @SerializedName(SERIALIZED_NAME_I_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ILowerCase;
+    private String iLowerCase;
 
     public static final String SERIALIZED_NAME_AI = "ai";
 
@@ -77,13 +77,13 @@ public class OrderReportStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_B_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String BLowerCase;
+    private String bLowerCase;
 
     public static final String SERIALIZED_NAME_Q_LOWER_CASE = "q";
 
     @SerializedName(SERIALIZED_NAME_Q_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String QLowerCase;
+    private String qLowerCase;
 
     public static final String SERIALIZED_NAME_S = "S";
 
@@ -95,13 +95,13 @@ public class OrderReportStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_O_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String OLowerCase;
+    private String oLowerCase;
 
     public static final String SERIALIZED_NAME_P_LOWER_CASE = "p";
 
     @SerializedName(SERIALIZED_NAME_P_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private BigDecimal PLowerCase;
+    private BigDecimal pLowerCase;
 
     public static final String SERIALIZED_NAME_Q = "Q";
 
@@ -143,13 +143,13 @@ public class OrderReportStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_N_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String NLowerCase;
+    private String nLowerCase;
 
     public static final String SERIALIZED_NAME_S_LOWER_CASE = "s";
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String SLowerCase;
+    private String sLowerCase;
 
     public static final String SERIALIZED_NAME_T = "T";
 
@@ -165,23 +165,23 @@ public class OrderReportStreamResponse extends BaseDTO {
 
     public OrderReportStreamResponse() {}
 
-    public OrderReportStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public OrderReportStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;orderReport\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public OrderReportStreamResponse E(@jakarta.annotation.Nullable Long E) {
@@ -203,8 +203,8 @@ public class OrderReportStreamResponse extends BaseDTO {
         this.E = E;
     }
 
-    public OrderReportStreamResponse XLowerCase(@jakarta.annotation.Nullable String XLowerCase) {
-        this.XLowerCase = XLowerCase;
+    public OrderReportStreamResponse xLowerCase(@jakarta.annotation.Nullable String xLowerCase) {
+        this.xLowerCase = xLowerCase;
         return this;
     }
 
@@ -212,34 +212,34 @@ public class OrderReportStreamResponse extends BaseDTO {
      * Execution type: &#x60;\&quot;ORDER_UPDATE\&quot;&#x60; (still open) or
      * &#x60;\&quot;ORDER_TERMINAL\&quot;&#x60; (reached terminal state).
      *
-     * @return XLowerCase
+     * @return xLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getXLowerCase() {
-        return XLowerCase;
+    public String getxLowerCase() {
+        return xLowerCase;
     }
 
-    public void setXLowerCase(@jakarta.annotation.Nullable String XLowerCase) {
-        this.XLowerCase = XLowerCase;
+    public void setxLowerCase(@jakarta.annotation.Nullable String xLowerCase) {
+        this.xLowerCase = xLowerCase;
     }
 
-    public OrderReportStreamResponse ILowerCase(@jakarta.annotation.Nullable String ILowerCase) {
-        this.ILowerCase = ILowerCase;
+    public OrderReportStreamResponse iLowerCase(@jakarta.annotation.Nullable String iLowerCase) {
+        this.iLowerCase = iLowerCase;
         return this;
     }
 
     /**
      * Order ID (UUID).
      *
-     * @return ILowerCase
+     * @return iLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getILowerCase() {
-        return ILowerCase;
+    public String getiLowerCase() {
+        return iLowerCase;
     }
 
-    public void setILowerCase(@jakarta.annotation.Nullable String ILowerCase) {
-        this.ILowerCase = ILowerCase;
+    public void setiLowerCase(@jakarta.annotation.Nullable String iLowerCase) {
+        this.iLowerCase = iLowerCase;
     }
 
     public OrderReportStreamResponse ai(@jakarta.annotation.Nullable String ai) {
@@ -261,8 +261,8 @@ public class OrderReportStreamResponse extends BaseDTO {
         this.ai = ai;
     }
 
-    public OrderReportStreamResponse BLowerCase(@jakarta.annotation.Nullable String BLowerCase) {
-        this.BLowerCase = BLowerCase;
+    public OrderReportStreamResponse bLowerCase(@jakarta.annotation.Nullable String bLowerCase) {
+        this.bLowerCase = bLowerCase;
         return this;
     }
 
@@ -271,34 +271,34 @@ public class OrderReportStreamResponse extends BaseDTO {
      * &#x60;\&quot;EQ_AAPL\&quot;&#x60;), not the bare ticker used in REST responses / order input.
      * Strip the &#x60;EQ_&#x60; prefix to match a symbol used elsewhere.
      *
-     * @return BLowerCase
+     * @return bLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getBLowerCase() {
-        return BLowerCase;
+    public String getbLowerCase() {
+        return bLowerCase;
     }
 
-    public void setBLowerCase(@jakarta.annotation.Nullable String BLowerCase) {
-        this.BLowerCase = BLowerCase;
+    public void setbLowerCase(@jakarta.annotation.Nullable String bLowerCase) {
+        this.bLowerCase = bLowerCase;
     }
 
-    public OrderReportStreamResponse QLowerCase(@jakarta.annotation.Nullable String QLowerCase) {
-        this.QLowerCase = QLowerCase;
+    public OrderReportStreamResponse qLowerCase(@jakarta.annotation.Nullable String qLowerCase) {
+        this.qLowerCase = qLowerCase;
         return this;
     }
 
     /**
      * Quote currency, e.g. &#x60;\&quot;USD\&quot;&#x60;.
      *
-     * @return QLowerCase
+     * @return qLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getQLowerCase() {
-        return QLowerCase;
+    public String getqLowerCase() {
+        return qLowerCase;
     }
 
-    public void setQLowerCase(@jakarta.annotation.Nullable String QLowerCase) {
-        this.QLowerCase = QLowerCase;
+    public void setqLowerCase(@jakarta.annotation.Nullable String qLowerCase) {
+        this.qLowerCase = qLowerCase;
     }
 
     public OrderReportStreamResponse S(@jakarta.annotation.Nullable String S) {
@@ -321,8 +321,8 @@ public class OrderReportStreamResponse extends BaseDTO {
         this.S = S;
     }
 
-    public OrderReportStreamResponse OLowerCase(@jakarta.annotation.Nullable String OLowerCase) {
-        this.OLowerCase = OLowerCase;
+    public OrderReportStreamResponse oLowerCase(@jakarta.annotation.Nullable String oLowerCase) {
+        this.oLowerCase = oLowerCase;
         return this;
     }
 
@@ -331,36 +331,36 @@ public class OrderReportStreamResponse extends BaseDTO {
      * &#x60;\&quot;stop\&quot;&#x60; / &#x60;\&quot;stop_limit\&quot;&#x60; /
      * &#x60;\&quot;trailing_stop\&quot;&#x60;. Note: lowercase.
      *
-     * @return OLowerCase
+     * @return oLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getOLowerCase() {
-        return OLowerCase;
+    public String getoLowerCase() {
+        return oLowerCase;
     }
 
-    public void setOLowerCase(@jakarta.annotation.Nullable String OLowerCase) {
-        this.OLowerCase = OLowerCase;
+    public void setoLowerCase(@jakarta.annotation.Nullable String oLowerCase) {
+        this.oLowerCase = oLowerCase;
     }
 
-    public OrderReportStreamResponse PLowerCase(
-            @jakarta.annotation.Nullable BigDecimal PLowerCase) {
-        this.PLowerCase = PLowerCase;
+    public OrderReportStreamResponse pLowerCase(
+            @jakarta.annotation.Nullable BigDecimal pLowerCase) {
+        this.pLowerCase = pLowerCase;
         return this;
     }
 
     /**
      * Limit price; null for market orders.
      *
-     * @return PLowerCase
+     * @return pLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public BigDecimal getPLowerCase() {
-        return PLowerCase;
+    public BigDecimal getpLowerCase() {
+        return pLowerCase;
     }
 
-    public void setPLowerCase(@jakarta.annotation.Nullable BigDecimal PLowerCase) {
-        this.PLowerCase = PLowerCase;
+    public void setpLowerCase(@jakarta.annotation.Nullable BigDecimal pLowerCase) {
+        this.pLowerCase = pLowerCase;
     }
 
     public OrderReportStreamResponse Q(@jakarta.annotation.Nullable BigDecimal Q) {
@@ -485,8 +485,8 @@ public class OrderReportStreamResponse extends BaseDTO {
         this.Z = Z;
     }
 
-    public OrderReportStreamResponse NLowerCase(@jakarta.annotation.Nullable String NLowerCase) {
-        this.NLowerCase = NLowerCase;
+    public OrderReportStreamResponse nLowerCase(@jakarta.annotation.Nullable String nLowerCase) {
+        this.nLowerCase = nLowerCase;
         return this;
     }
 
@@ -494,19 +494,19 @@ public class OrderReportStreamResponse extends BaseDTO {
      * Trading session label, e.g. &#x60;\&quot;Regular\&quot;&#x60;, &#x60;\&quot;24 Hours
      * Trading\&quot;&#x60;.
      *
-     * @return NLowerCase
+     * @return nLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getNLowerCase() {
-        return NLowerCase;
+    public String getnLowerCase() {
+        return nLowerCase;
     }
 
-    public void setNLowerCase(@jakarta.annotation.Nullable String NLowerCase) {
-        this.NLowerCase = NLowerCase;
+    public void setnLowerCase(@jakarta.annotation.Nullable String nLowerCase) {
+        this.nLowerCase = nLowerCase;
     }
 
-    public OrderReportStreamResponse SLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public OrderReportStreamResponse sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
         return this;
     }
 
@@ -515,15 +515,15 @@ public class OrderReportStreamResponse extends BaseDTO {
      * &#x60;\&quot;partially_filled\&quot;&#x60;, &#x60;\&quot;filled\&quot;&#x60;,
      * &#x60;\&quot;canceled\&quot;&#x60;. Note: lowercase, unlike REST responses.
      *
-     * @return SLowerCase
+     * @return sLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getSLowerCase() {
-        return SLowerCase;
+    public String getsLowerCase() {
+        return sLowerCase;
     }
 
-    public void setSLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public void setsLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
     }
 
     public OrderReportStreamResponse T(@jakarta.annotation.Nullable Long T) {
@@ -573,24 +573,24 @@ public class OrderReportStreamResponse extends BaseDTO {
             return false;
         }
         OrderReportStreamResponse orderReportStreamResponse = (OrderReportStreamResponse) o;
-        return Objects.equals(this.ELowerCase, orderReportStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, orderReportStreamResponse.eLowerCase)
                 && Objects.equals(this.E, orderReportStreamResponse.E)
-                && Objects.equals(this.XLowerCase, orderReportStreamResponse.XLowerCase)
-                && Objects.equals(this.ILowerCase, orderReportStreamResponse.ILowerCase)
+                && Objects.equals(this.xLowerCase, orderReportStreamResponse.xLowerCase)
+                && Objects.equals(this.iLowerCase, orderReportStreamResponse.iLowerCase)
                 && Objects.equals(this.ai, orderReportStreamResponse.ai)
-                && Objects.equals(this.BLowerCase, orderReportStreamResponse.BLowerCase)
-                && Objects.equals(this.QLowerCase, orderReportStreamResponse.QLowerCase)
+                && Objects.equals(this.bLowerCase, orderReportStreamResponse.bLowerCase)
+                && Objects.equals(this.qLowerCase, orderReportStreamResponse.qLowerCase)
                 && Objects.equals(this.S, orderReportStreamResponse.S)
-                && Objects.equals(this.OLowerCase, orderReportStreamResponse.OLowerCase)
-                && Objects.equals(this.PLowerCase, orderReportStreamResponse.PLowerCase)
+                && Objects.equals(this.oLowerCase, orderReportStreamResponse.oLowerCase)
+                && Objects.equals(this.pLowerCase, orderReportStreamResponse.pLowerCase)
                 && Objects.equals(this.Q, orderReportStreamResponse.Q)
                 && Objects.equals(this.N, orderReportStreamResponse.N)
                 && Objects.equals(this.fq, orderReportStreamResponse.fq)
                 && Objects.equals(this.FN, orderReportStreamResponse.FN)
                 && Objects.equals(this.tc, orderReportStreamResponse.tc)
                 && Objects.equals(this.Z, orderReportStreamResponse.Z)
-                && Objects.equals(this.NLowerCase, orderReportStreamResponse.NLowerCase)
-                && Objects.equals(this.SLowerCase, orderReportStreamResponse.SLowerCase)
+                && Objects.equals(this.nLowerCase, orderReportStreamResponse.nLowerCase)
+                && Objects.equals(this.sLowerCase, orderReportStreamResponse.sLowerCase)
                 && Objects.equals(this.T, orderReportStreamResponse.T)
                 && Objects.equals(this.U, orderReportStreamResponse.U);
     }
@@ -607,24 +607,24 @@ public class OrderReportStreamResponse extends BaseDTO {
     @Override
     public int hashCode() {
         return Objects.hash(
-                ELowerCase,
+                eLowerCase,
                 E,
-                XLowerCase,
-                ILowerCase,
+                xLowerCase,
+                iLowerCase,
                 ai,
-                BLowerCase,
-                QLowerCase,
+                bLowerCase,
+                qLowerCase,
                 S,
-                OLowerCase,
-                PLowerCase,
+                oLowerCase,
+                pLowerCase,
                 Q,
                 N,
                 fq,
                 FN,
                 tc,
                 Z,
-                NLowerCase,
-                SLowerCase,
+                nLowerCase,
+                sLowerCase,
                 T,
                 U);
     }
@@ -640,24 +640,24 @@ public class OrderReportStreamResponse extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderReportStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
-        sb.append("		XLowerCase: ").append(toIndentedString(XLowerCase)).append("\n");
-        sb.append("		ILowerCase: ").append(toIndentedString(ILowerCase)).append("\n");
+        sb.append("		xLowerCase: ").append(toIndentedString(xLowerCase)).append("\n");
+        sb.append("		iLowerCase: ").append(toIndentedString(iLowerCase)).append("\n");
         sb.append("		ai: ").append(toIndentedString(ai)).append("\n");
-        sb.append("		BLowerCase: ").append(toIndentedString(BLowerCase)).append("\n");
-        sb.append("		QLowerCase: ").append(toIndentedString(QLowerCase)).append("\n");
+        sb.append("		bLowerCase: ").append(toIndentedString(bLowerCase)).append("\n");
+        sb.append("		qLowerCase: ").append(toIndentedString(qLowerCase)).append("\n");
         sb.append("		S: ").append(toIndentedString(S)).append("\n");
-        sb.append("		OLowerCase: ").append(toIndentedString(OLowerCase)).append("\n");
-        sb.append("		PLowerCase: ").append(toIndentedString(PLowerCase)).append("\n");
+        sb.append("		oLowerCase: ").append(toIndentedString(oLowerCase)).append("\n");
+        sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
         sb.append("		Q: ").append(toIndentedString(Q)).append("\n");
         sb.append("		N: ").append(toIndentedString(N)).append("\n");
         sb.append("		fq: ").append(toIndentedString(fq)).append("\n");
         sb.append("		FN: ").append(toIndentedString(FN)).append("\n");
         sb.append("		tc: ").append(toIndentedString(tc)).append("\n");
         sb.append("		Z: ").append(toIndentedString(Z)).append("\n");
-        sb.append("		NLowerCase: ").append(toIndentedString(NLowerCase)).append("\n");
-        sb.append("		SLowerCase: ").append(toIndentedString(SLowerCase)).append("\n");
+        sb.append("		nLowerCase: ").append(toIndentedString(nLowerCase)).append("\n");
+        sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		T: ").append(toIndentedString(T)).append("\n");
         sb.append("		U: ").append(toIndentedString(U)).append("\n");
         sb.append("}");
@@ -668,55 +668,55 @@ public class OrderReportStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         Long EValue = getE();
         if (EValue != null) {
             String EValueAsString = EValue.toString();
             valMap.put("E", EValueAsString);
         }
-        String XLowerCaseValue = getXLowerCase();
-        if (XLowerCaseValue != null) {
-            String XLowerCaseValueAsString = XLowerCaseValue.toString();
-            valMap.put("XLowerCase", XLowerCaseValueAsString);
+        String xLowerCaseValue = getxLowerCase();
+        if (xLowerCaseValue != null) {
+            String xLowerCaseValueAsString = xLowerCaseValue.toString();
+            valMap.put("xLowerCase", xLowerCaseValueAsString);
         }
-        String ILowerCaseValue = getILowerCase();
-        if (ILowerCaseValue != null) {
-            String ILowerCaseValueAsString = ILowerCaseValue.toString();
-            valMap.put("ILowerCase", ILowerCaseValueAsString);
+        String iLowerCaseValue = getiLowerCase();
+        if (iLowerCaseValue != null) {
+            String iLowerCaseValueAsString = iLowerCaseValue.toString();
+            valMap.put("iLowerCase", iLowerCaseValueAsString);
         }
         String aiValue = getAi();
         if (aiValue != null) {
             String aiValueAsString = aiValue.toString();
             valMap.put("ai", aiValueAsString);
         }
-        String BLowerCaseValue = getBLowerCase();
-        if (BLowerCaseValue != null) {
-            String BLowerCaseValueAsString = BLowerCaseValue.toString();
-            valMap.put("BLowerCase", BLowerCaseValueAsString);
+        String bLowerCaseValue = getbLowerCase();
+        if (bLowerCaseValue != null) {
+            String bLowerCaseValueAsString = bLowerCaseValue.toString();
+            valMap.put("bLowerCase", bLowerCaseValueAsString);
         }
-        String QLowerCaseValue = getQLowerCase();
-        if (QLowerCaseValue != null) {
-            String QLowerCaseValueAsString = QLowerCaseValue.toString();
-            valMap.put("QLowerCase", QLowerCaseValueAsString);
+        String qLowerCaseValue = getqLowerCase();
+        if (qLowerCaseValue != null) {
+            String qLowerCaseValueAsString = qLowerCaseValue.toString();
+            valMap.put("qLowerCase", qLowerCaseValueAsString);
         }
         String SValue = getS();
         if (SValue != null) {
             String SValueAsString = SValue.toString();
             valMap.put("S", SValueAsString);
         }
-        String OLowerCaseValue = getOLowerCase();
-        if (OLowerCaseValue != null) {
-            String OLowerCaseValueAsString = OLowerCaseValue.toString();
-            valMap.put("OLowerCase", OLowerCaseValueAsString);
+        String oLowerCaseValue = getoLowerCase();
+        if (oLowerCaseValue != null) {
+            String oLowerCaseValueAsString = oLowerCaseValue.toString();
+            valMap.put("oLowerCase", oLowerCaseValueAsString);
         }
-        BigDecimal PLowerCaseValue = getPLowerCase();
-        if (PLowerCaseValue != null) {
-            String PLowerCaseValueAsString = PLowerCaseValue.toString();
-            valMap.put("PLowerCase", PLowerCaseValueAsString);
+        BigDecimal pLowerCaseValue = getpLowerCase();
+        if (pLowerCaseValue != null) {
+            String pLowerCaseValueAsString = pLowerCaseValue.toString();
+            valMap.put("pLowerCase", pLowerCaseValueAsString);
         }
         BigDecimal QValue = getQ();
         if (QValue != null) {
@@ -748,15 +748,15 @@ public class OrderReportStreamResponse extends BaseDTO {
             String ZValueAsString = ZValue.toString();
             valMap.put("Z", ZValueAsString);
         }
-        String NLowerCaseValue = getNLowerCase();
-        if (NLowerCaseValue != null) {
-            String NLowerCaseValueAsString = NLowerCaseValue.toString();
-            valMap.put("NLowerCase", NLowerCaseValueAsString);
+        String nLowerCaseValue = getnLowerCase();
+        if (nLowerCaseValue != null) {
+            String nLowerCaseValueAsString = nLowerCaseValue.toString();
+            valMap.put("nLowerCase", nLowerCaseValueAsString);
         }
-        String SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            String SLowerCaseValueAsString = SLowerCaseValue.toString();
-            valMap.put("SLowerCase", SLowerCaseValueAsString);
+        String sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            String sLowerCaseValueAsString = sLowerCaseValue.toString();
+            valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
         Long TValue = getT();
         if (TValue != null) {
@@ -779,45 +779,45 @@ public class OrderReportStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object EValue = getE();
         if (EValue != null) {
             valMap.put("E", EValue);
         }
-        Object XLowerCaseValue = getXLowerCase();
-        if (XLowerCaseValue != null) {
-            valMap.put("XLowerCase", XLowerCaseValue);
+        Object xLowerCaseValue = getxLowerCase();
+        if (xLowerCaseValue != null) {
+            valMap.put("xLowerCase", xLowerCaseValue);
         }
-        Object ILowerCaseValue = getILowerCase();
-        if (ILowerCaseValue != null) {
-            valMap.put("ILowerCase", ILowerCaseValue);
+        Object iLowerCaseValue = getiLowerCase();
+        if (iLowerCaseValue != null) {
+            valMap.put("iLowerCase", iLowerCaseValue);
         }
         Object aiValue = getAi();
         if (aiValue != null) {
             valMap.put("ai", aiValue);
         }
-        Object BLowerCaseValue = getBLowerCase();
-        if (BLowerCaseValue != null) {
-            valMap.put("BLowerCase", BLowerCaseValue);
+        Object bLowerCaseValue = getbLowerCase();
+        if (bLowerCaseValue != null) {
+            valMap.put("bLowerCase", bLowerCaseValue);
         }
-        Object QLowerCaseValue = getQLowerCase();
-        if (QLowerCaseValue != null) {
-            valMap.put("QLowerCase", QLowerCaseValue);
+        Object qLowerCaseValue = getqLowerCase();
+        if (qLowerCaseValue != null) {
+            valMap.put("qLowerCase", qLowerCaseValue);
         }
         Object SValue = getS();
         if (SValue != null) {
             valMap.put("S", SValue);
         }
-        Object OLowerCaseValue = getOLowerCase();
-        if (OLowerCaseValue != null) {
-            valMap.put("OLowerCase", OLowerCaseValue);
+        Object oLowerCaseValue = getoLowerCase();
+        if (oLowerCaseValue != null) {
+            valMap.put("oLowerCase", oLowerCaseValue);
         }
-        Object PLowerCaseValue = getPLowerCase();
-        if (PLowerCaseValue != null) {
-            valMap.put("PLowerCase", PLowerCaseValue);
+        Object pLowerCaseValue = getpLowerCase();
+        if (pLowerCaseValue != null) {
+            valMap.put("pLowerCase", pLowerCaseValue);
         }
         Object QValue = getQ();
         if (QValue != null) {
@@ -843,13 +843,13 @@ public class OrderReportStreamResponse extends BaseDTO {
         if (ZValue != null) {
             valMap.put("Z", ZValue);
         }
-        Object NLowerCaseValue = getNLowerCase();
-        if (NLowerCaseValue != null) {
-            valMap.put("NLowerCase", NLowerCaseValue);
+        Object nLowerCaseValue = getnLowerCase();
+        if (nLowerCaseValue != null) {
+            valMap.put("nLowerCase", nLowerCaseValue);
         }
-        Object SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            valMap.put("SLowerCase", SLowerCaseValue);
+        Object sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            valMap.put("sLowerCase", sLowerCaseValue);
         }
         Object TValue = getT();
         if (TValue != null) {

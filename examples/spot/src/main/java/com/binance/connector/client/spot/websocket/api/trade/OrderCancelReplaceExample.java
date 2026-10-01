@@ -38,16 +38,14 @@ public class OrderCancelReplaceExample {
      * * A new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;),
      * will still increase the unfilled order count by 1. * You can only cancel an individual order
      * from an orderList using this method, but the result is the same as canceling the entire
-     * orderList.not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still
-     * increase the unfilled order count by 1. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
-     * TRADE Notes: **Data Source:** Matching Engine Similar to the
-     * [&#x60;order.place&#x60;](#order-place) request, additional mandatory parameters (*) are
-     * determined by the new order &#x60;type&#x60;. Available &#x60;cancelReplaceMode&#x60;
-     * options: * &#x60;STOP_ON_FAILURE&#x60; – if cancellation request fails, new order placement
-     * will not be attempted. * &#x60;ALLOW_FAILURE&#x60; – new order placement will be attempted
-     * even if the cancel request fails. &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th
-     * colspan&#x3D;3 align&#x3D;left&gt;Request&lt;/th&gt; &lt;th colspan&#x3D;3
-     * align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+     * orderList. Weight(IP): 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Similar to the &#x60;order.place&#x60; request, additional mandatory
+     * parameters (*) are determined by the new order &#x60;type&#x60;. Available
+     * &#x60;cancelReplaceMode&#x60; options: * &#x60;STOP_ON_FAILURE&#x60; – if cancellation
+     * request fails, new order placement will not be attempted. * &#x60;ALLOW_FAILURE&#x60; – new
+     * order placement will be attempted even if the cancel request fails. &lt;table&gt;
+     * &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3 align&#x3D;left&gt;Request&lt;/th&gt; &lt;th
+     * colspan&#x3D;3 align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
      * &lt;th&gt;&lt;code&gt;cancelReplaceMode&lt;/code&gt;&lt;/th&gt;
      * &lt;th&gt;&lt;code&gt;orderRateLimitExceededMode&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Unfilled
      * Order Count&lt;/th&gt; &lt;th&gt;&lt;code&gt;cancelResult&lt;/code&gt;&lt;/th&gt;
@@ -157,11 +155,13 @@ public class OrderCancelReplaceExample {
      * &#x60;STOP_ON_FAILURE&#x60; mode, if the new order placement fails, the old order is still
      * canceled. * Filters and order count limits are evaluated before cancellation and order
      * placement occurs. * If new order placement is not attempted, your order count is still
-     * incremented. * Like [&#x60;order.cancel&#x60;](#order-cancel), if you cancel an individual
-     * order from an order list, the entire order list is canceled. * The performance for canceling
-     * an order (single cancel or as part of a cancel-replace) is always better when only
-     * &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
-     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
+     * incremented. * Like &#x60;order.cancel&#x60;, if you cancel an individual order from an order
+     * list, the entire order list is canceled. * The performance for canceling an order (single
+     * cancel or as part of a cancel-replace) is always better when only &#x60;orderId&#x60; is
+     * sent. Sending &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; +
+     * &#x60;origClientOrderId&#x60; will be slower. Response Notes: **Note:** The payload above
+     * does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      */
     public void orderCancelReplaceExampleAsync() {
         OrderCancelReplaceRequest orderCancelReplaceRequest = new OrderCancelReplaceRequest();
@@ -188,16 +188,14 @@ public class OrderCancelReplaceExample {
      * * A new order that was not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;),
      * will still increase the unfilled order count by 1. * You can only cancel an individual order
      * from an orderList using this method, but the result is the same as canceling the entire
-     * orderList.not attempted (i.e. when &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still
-     * increase the unfilled order count by 1. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
-     * TRADE Notes: **Data Source:** Matching Engine Similar to the
-     * [&#x60;order.place&#x60;](#order-place) request, additional mandatory parameters (*) are
-     * determined by the new order &#x60;type&#x60;. Available &#x60;cancelReplaceMode&#x60;
-     * options: * &#x60;STOP_ON_FAILURE&#x60; – if cancellation request fails, new order placement
-     * will not be attempted. * &#x60;ALLOW_FAILURE&#x60; – new order placement will be attempted
-     * even if the cancel request fails. &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th
-     * colspan&#x3D;3 align&#x3D;left&gt;Request&lt;/th&gt; &lt;th colspan&#x3D;3
-     * align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+     * orderList. Weight(IP): 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Similar to the &#x60;order.place&#x60; request, additional mandatory
+     * parameters (*) are determined by the new order &#x60;type&#x60;. Available
+     * &#x60;cancelReplaceMode&#x60; options: * &#x60;STOP_ON_FAILURE&#x60; – if cancellation
+     * request fails, new order placement will not be attempted. * &#x60;ALLOW_FAILURE&#x60; – new
+     * order placement will be attempted even if the cancel request fails. &lt;table&gt;
+     * &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3 align&#x3D;left&gt;Request&lt;/th&gt; &lt;th
+     * colspan&#x3D;3 align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
      * &lt;th&gt;&lt;code&gt;cancelReplaceMode&lt;/code&gt;&lt;/th&gt;
      * &lt;th&gt;&lt;code&gt;orderRateLimitExceededMode&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Unfilled
      * Order Count&lt;/th&gt; &lt;th&gt;&lt;code&gt;cancelResult&lt;/code&gt;&lt;/th&gt;
@@ -307,11 +305,13 @@ public class OrderCancelReplaceExample {
      * &#x60;STOP_ON_FAILURE&#x60; mode, if the new order placement fails, the old order is still
      * canceled. * Filters and order count limits are evaluated before cancellation and order
      * placement occurs. * If new order placement is not attempted, your order count is still
-     * incremented. * Like [&#x60;order.cancel&#x60;](#order-cancel), if you cancel an individual
-     * order from an order list, the entire order list is canceled. * The performance for canceling
-     * an order (single cancel or as part of a cancel-replace) is always better when only
-     * &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
-     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
+     * incremented. * Like &#x60;order.cancel&#x60;, if you cancel an individual order from an order
+     * list, the entire order list is canceled. * The performance for canceling an order (single
+     * cancel or as part of a cancel-replace) is always better when only &#x60;orderId&#x60; is
+     * sent. Sending &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; +
+     * &#x60;origClientOrderId&#x60; will be slower. Response Notes: **Note:** The payload above
+     * does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      */
     public void orderCancelReplaceExampleSync() {
         OrderCancelReplaceRequest orderCancelReplaceRequest = new OrderCancelReplaceRequest();

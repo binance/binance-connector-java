@@ -427,7 +427,7 @@ No authorization required
 
 Place Equity Order (TRADE)
 
-Place a new equity order. Supports all combinations of &#x60;LIMIT&#x60; / &#x60;MARKET&#x60; × &#x60;BUY&#x60; / &#x60;SELL&#x60;. For &#x60;LIMIT BUY&#x60; orders the commission fee is automatically computed and reserved by the server at placement time — callers submit &#x60;price&#x60; and &#x60;quantity&#x60; only, no &#x60;fee&#x60; field is required.  **Field combination matrix**  | Side | OrderType | Required | Forbidden | | ---- | --------- | -------- | --------- | | BUY | LIMIT | &#x60;price&#x60;, &#x60;quantity&#x60;, &#x60;tradingSession&#x60; | &#x60;notional&#x60; | | BUY | MARKET | &#x60;notional&#x60; | &#x60;price&#x60;, &#x60;quantity&#x60;, &#x60;tradingSession&#x60; | | SELL | LIMIT | &#x60;price&#x60;, &#x60;quantity&#x60;, &#x60;tradingSession&#x60; | &#x60;notional&#x60; | | SELL | MARKET | &#x60;quantity&#x60; | &#x60;price&#x60;, &#x60;notional&#x60;, &#x60;tradingSession&#x60; |  **Fractional shares**: when &#x60;quantity&#x60; has a decimal component, or an order is placed by &#x60;notional&#x60;, it is treated as a fractional-share order. A fractional-share &#x60;GTC&#x60; order must be paired with &#x60;tradingSession &#x3D; EXTENDED&#x60; or &#x60;24H&#x60;.  Rate limit: 200 requests / min (UID).  Weight: 1  Security Type: TRADE
+Place a new equity order. Supports all combinations of &#x60;LIMIT&#x60; / &#x60;MARKET&#x60; × &#x60;BUY&#x60; / &#x60;SELL&#x60;. For &#x60;LIMIT BUY&#x60; orders the commission fee is automatically computed and reserved by the server at placement time — callers submit &#x60;price&#x60; and &#x60;quantity&#x60; only, no &#x60;fee&#x60; field is required.   **Field combination matrix**   | Side | OrderType | Required | Forbidden | | ---- | --------- | -------- | --------- | | BUY | LIMIT | &#x60;price&#x60;, &#x60;quantity&#x60;, &#x60;tradingSession&#x60; | &#x60;notional&#x60; | | BUY | MARKET | &#x60;notional&#x60; | &#x60;price&#x60;, &#x60;quantity&#x60;, &#x60;tradingSession&#x60; | | SELL | LIMIT | &#x60;price&#x60;, &#x60;quantity&#x60;, &#x60;tradingSession&#x60; | &#x60;notional&#x60; | | SELL | MARKET | &#x60;quantity&#x60; | &#x60;price&#x60;, &#x60;notional&#x60;, &#x60;tradingSession&#x60; |   **Fractional shares**: when &#x60;quantity&#x60; has a decimal component, or an order is placed by &#x60;notional&#x60;, it is treated as a fractional-share order. A fractional-share &#x60;GTC&#x60; order must be paired with &#x60;tradingSession &#x3D; EXTENDED&#x60; or &#x60;24H&#x60;.   Rate limit: 200 requests / min (UID).  Weight: 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -444,7 +444,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     TradeApi apiInstance = new TradeApi(defaultClient);
-    String symbol = "AAPL"; // String | US stock ticker, e.g. `AAPL`, `TSLA`. Must be a symbol with tokenization enabled — check via `/market/tokenized-assets`.
+    String symbol = "AAPL"; // String | US stock ticker, e.g. `AAPL`, `TSLA`. Must be a tradable US-equity symbol — verify via `/sapi/v1/equity/market/exchangeInfo`. Tokenization enablement (verifiable via `/sapi/v1/equity/market/tokenized-assets`) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The `tokenize` parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise.
     Side side = Side.fromValue("BUY"); // Side | `BUY` / `SELL`.
     OrderType orderType = OrderType.fromValue("MARKET"); // OrderType | `MARKET` / `LIMIT`.
     String quoteAsset = "USDC"; // String | Quote asset. Defaults to `USDC`; must be within the server's allowed set.
@@ -455,7 +455,7 @@ public class Example {
     TradingSession tradingSession = TradingSession.fromValue("RTH"); // TradingSession | `RTH` / `EXTENDED` / `24H`. **Required** for `LIMIT`; **forbidden** for `MARKET`.
     WalletType walletType = WalletType.fromValue("CARD"); // WalletType | Payment wallet for `BUY` orders: `CARD` (default) / `MAIN`. `SELL` orders always settle to `CARD`.
     String clientOrderId = "web_2c9c92b74f1e4a7c8f3b9e1a2d3c4b5a"; // String | Client-supplied order id. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted.
-    Boolean tokenize = true; // Boolean | Whether to tokenize the purchased stock asset upon settlement. Default `true`. Set to `false` to receive the underlying equity directly instead of a tokenized asset.
+    Boolean tokenize = true; // Boolean | Whether to tokenize the purchased stock asset upon settlement. Default `true`. Only takes effect when the symbol is tokenization-enabled (check via `/market/tokenized-assets`); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades.
     Long recvWindow = 5000L; // Long | The value cannot be greater than `60000`.
     try {
       PlaceEquityOrderResponse result = apiInstance.placeEquityOrder(symbol, side, orderType, quoteAsset, price, quantity, notional, timeInForce, tradingSession, walletType, clientOrderId, tokenize, recvWindow);
@@ -475,7 +475,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **symbol** | **String**| US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a symbol with tokenization enabled — check via &#x60;/market/tokenized-assets&#x60;. | |
+| **symbol** | **String**| US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a tradable US-equity symbol — verify via &#x60;/sapi/v1/equity/market/exchangeInfo&#x60;. Tokenization enablement (verifiable via &#x60;/sapi/v1/equity/market/tokenized-assets&#x60;) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The &#x60;tokenize&#x60; parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise. | |
 | **side** | [**Side**](.md)| &#x60;BUY&#x60; / &#x60;SELL&#x60;. | [enum: BUY, SELL] |
 | **orderType** | [**OrderType**](.md)| &#x60;MARKET&#x60; / &#x60;LIMIT&#x60;. | [enum: MARKET, LIMIT] |
 | **quoteAsset** | **String**| Quote asset. Defaults to &#x60;USDC&#x60;; must be within the server&#39;s allowed set. | [optional] |
@@ -486,7 +486,7 @@ public class Example {
 | **tradingSession** | [**TradingSession**](.md)| &#x60;RTH&#x60; / &#x60;EXTENDED&#x60; / &#x60;24H&#x60;. **Required** for &#x60;LIMIT&#x60;; **forbidden** for &#x60;MARKET&#x60;. | [optional] [enum: RTH, EXTENDED, 24H] |
 | **walletType** | [**WalletType**](.md)| Payment wallet for &#x60;BUY&#x60; orders: &#x60;CARD&#x60; (default) / &#x60;MAIN&#x60;. &#x60;SELL&#x60; orders always settle to &#x60;CARD&#x60;. | [optional] [enum: CARD, MAIN] |
 | **clientOrderId** | **String**| Client-supplied order id. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted. | [optional] |
-| **tokenize** | **Boolean**| Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Set to &#x60;false&#x60; to receive the underlying equity directly instead of a tokenized asset. | [optional] |
+| **tokenize** | **Boolean**| Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Only takes effect when the symbol is tokenization-enabled (check via &#x60;/market/tokenized-assets&#x60;); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades. | [optional] |
 | **recvWindow** | **Long**| The value cannot be greater than &#x60;60000&#x60;. | [optional] |
 
 ### Return type

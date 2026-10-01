@@ -34,7 +34,9 @@ public class AllOrdersExample {
      * some historical orders &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is
      * not available at this time. - If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; provided,
      * &#x60;orderId&#x60; is not required. - The time between &#x60;startTime&#x60; and
-     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
+     * &#x60;endTime&#x60; can&#39;t be longer than 24 hours. Response Notes: **Note:** The payload
+     * above does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      *
      * @throws ApiException if the Api call fails
      */

@@ -164,8 +164,9 @@ public class TimeWeightedAveragePriceFutureAlgoRequest {
 
     /**
      * Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base
-     * asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of
-     * 1,000,000 USDT
+     * asset)&#x60;) must be more than the equivalent of 1,000 USDT, and the maximum notional varies
+     * by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT
+     * perpetual, and up to 5,000,000 USDT for other symbols
      *
      * @return quantity
      */

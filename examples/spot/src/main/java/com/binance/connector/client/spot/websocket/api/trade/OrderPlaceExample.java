@@ -35,8 +35,7 @@ public class OrderPlaceExample {
      *
      * <p>Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
      * the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
-     * TRADE Notes: **Data Source:** Matching Engine &lt;a
-     * id&#x3D;\&quot;order-type\&quot;&gt;Certain parameters (*)&lt;/a&gt; become mandatory based
+     * TRADE Notes: **Data Source:** Matching Engine Certain parameters (*) become mandatory based
      * on the order &#x60;type&#x60;: &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Order
      * &lt;code&gt;type&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Mandatory parameters&lt;/th&gt;
      * &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt;
@@ -111,35 +110,33 @@ public class OrderPlaceExample {
      * direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
      * &lt;td&gt;&lt;code&gt;TAKE_PROFIT_LIMIT&lt;/code&gt;&lt;/td&gt; &lt;td&gt; &lt;p&gt; Like
      * &lt;code&gt;STOP_LOSS_LIMIT&lt;/code&gt; but activates when market price moves in the
-     * favorable direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;a
-     * id&#x3D;\&quot;pegged-orders-info\&quot;&gt;&lt;/a&gt; Notes on using parameters for Pegged
-     * Orders: * These parameters are allowed for &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
-     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; orders. * If
-     * &#x60;pegPriceType&#x60; is specified, &#x60;price&#x60; becomes optional. Otherwise, it is
-     * still mandatory. * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that is
-     * the best price on the same side of the order book as your order. *
+     * favorable direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; Notes
+     * on using parameters for Pegged Orders: * These parameters are allowed for &#x60;LIMIT&#x60;,
+     * &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; orders. *
+     * If &#x60;pegPriceType&#x60; is specified, &#x60;price&#x60; becomes optional. Otherwise, it
+     * is still mandatory. * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that
+     * is the best price on the same side of the order book as your order. *
      * &#x60;pegPriceType&#x3D;MARKET_PEG&#x60; means the market peg, that is the best price on the
      * opposite side of the order book from your order. * Use &#x60;pegOffsetType&#x60; and
      * &#x60;pegOffsetValue&#x60; to request a price level other than the best one. These parameters
-     * must be specified together. &lt;a id&#x3D;\&quot;timeInForce\&quot;&gt;&lt;/a&gt; Available
-     * &#x60;timeInForce&#x60; options, setting how long the order should be active before
-     * expiration: TIF | Description ----- | -------------- &#x60;GTC&#x60; | **Good &#39;til
-     * Canceled** – the order will remain on the book until you cancel it, or the order is
-     * completely filled. &#x60;IOC&#x60; | **Immediate or Cancel** – the order will be filled for
-     * as much as possible, the unfilled quantity immediately expires. &#x60;FOK&#x60; | **Fill or
-     * Kill** – the order will expire unless it cannot be immediately filled for the entire
-     * quantity. Notes: * &#x60;newClientOrderId&#x60; specifies &#x60;clientOrderId&#x60; value for
-     * the order. A new order with the same &#x60;clientOrderId&#x60; is accepted only when the
-     * previous one is filled or expired. * Any &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; order
-     * can be made into an iceberg order by specifying the &#x60;icebergQty&#x60;. An order with an
-     * &#x60;icebergQty&#x60; must have &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * Trigger
-     * order price rules for &#x60;STOP_LOSS&#x60;/&#x60;TAKE_PROFIT&#x60; orders: *
-     * &#x60;stopPrice&#x60; must be above market price: &#x60;STOP_LOSS BUY&#x60;,
-     * &#x60;TAKE_PROFIT SELL&#x60; * &#x60;stopPrice&#x60; must be below market price:
-     * &#x60;STOP_LOSS SELL&#x60;, &#x60;TAKE_PROFIT BUY&#x60; * &#x60;MARKET&#x60; orders using
-     * &#x60;quoteOrderQty&#x60; follow [&#x60;LOT_SIZE&#x60;](/products/spot/filters#lot_size)
-     * filter rules. The order will execute a quantity that has notional value as close as possible
-     * to requested &#x60;quoteOrderQty&#x60;.
+     * must be specified together. Available &#x60;timeInForce&#x60; options, setting how long the
+     * order should be active before expiration: TIF | Description ----- | --------------
+     * &#x60;GTC&#x60; | **Good &#39;til Canceled** – the order will remain on the book until you
+     * cancel it, or the order is completely filled. &#x60;IOC&#x60; | **Immediate or Cancel** – the
+     * order will be filled for as much as possible, the unfilled quantity immediately expires.
+     * &#x60;FOK&#x60; | **Fill or Kill** – the order will expire unless it cannot be immediately
+     * filled for the entire quantity. Notes: * &#x60;newClientOrderId&#x60; specifies
+     * &#x60;clientOrderId&#x60; value for the order. A new order with the same
+     * &#x60;clientOrderId&#x60; is accepted only when the previous one is filled or expired. * Any
+     * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; order can be made into an iceberg order by
+     * specifying the &#x60;icebergQty&#x60;. An order with an &#x60;icebergQty&#x60; must have
+     * &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * Trigger order price rules for
+     * &#x60;STOP_LOSS&#x60;/&#x60;TAKE_PROFIT&#x60; orders: * &#x60;stopPrice&#x60; must be above
+     * market price: &#x60;STOP_LOSS BUY&#x60;, &#x60;TAKE_PROFIT SELL&#x60; * &#x60;stopPrice&#x60;
+     * must be below market price: &#x60;STOP_LOSS SELL&#x60;, &#x60;TAKE_PROFIT BUY&#x60; *
+     * &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; follow &#x60;LOT_SIZE&#x60; filter
+     * rules. The order will execute a quantity that has notional value as close as possible to
+     * requested &#x60;quoteOrderQty&#x60;.
      */
     public void orderPlaceExampleAsync() {
         OrderPlaceRequest orderPlaceRequest = new OrderPlaceRequest();
@@ -162,8 +159,7 @@ public class OrderPlaceExample {
      *
      * <p>Send in a new order. This adds 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and
      * the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
-     * TRADE Notes: **Data Source:** Matching Engine &lt;a
-     * id&#x3D;\&quot;order-type\&quot;&gt;Certain parameters (*)&lt;/a&gt; become mandatory based
+     * TRADE Notes: **Data Source:** Matching Engine Certain parameters (*) become mandatory based
      * on the order &#x60;type&#x60;: &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Order
      * &lt;code&gt;type&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Mandatory parameters&lt;/th&gt;
      * &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt;
@@ -238,35 +234,33 @@ public class OrderPlaceExample {
      * direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
      * &lt;td&gt;&lt;code&gt;TAKE_PROFIT_LIMIT&lt;/code&gt;&lt;/td&gt; &lt;td&gt; &lt;p&gt; Like
      * &lt;code&gt;STOP_LOSS_LIMIT&lt;/code&gt; but activates when market price moves in the
-     * favorable direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;a
-     * id&#x3D;\&quot;pegged-orders-info\&quot;&gt;&lt;/a&gt; Notes on using parameters for Pegged
-     * Orders: * These parameters are allowed for &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
-     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; orders. * If
-     * &#x60;pegPriceType&#x60; is specified, &#x60;price&#x60; becomes optional. Otherwise, it is
-     * still mandatory. * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that is
-     * the best price on the same side of the order book as your order. *
+     * favorable direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; Notes
+     * on using parameters for Pegged Orders: * These parameters are allowed for &#x60;LIMIT&#x60;,
+     * &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; orders. *
+     * If &#x60;pegPriceType&#x60; is specified, &#x60;price&#x60; becomes optional. Otherwise, it
+     * is still mandatory. * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that
+     * is the best price on the same side of the order book as your order. *
      * &#x60;pegPriceType&#x3D;MARKET_PEG&#x60; means the market peg, that is the best price on the
      * opposite side of the order book from your order. * Use &#x60;pegOffsetType&#x60; and
      * &#x60;pegOffsetValue&#x60; to request a price level other than the best one. These parameters
-     * must be specified together. &lt;a id&#x3D;\&quot;timeInForce\&quot;&gt;&lt;/a&gt; Available
-     * &#x60;timeInForce&#x60; options, setting how long the order should be active before
-     * expiration: TIF | Description ----- | -------------- &#x60;GTC&#x60; | **Good &#39;til
-     * Canceled** – the order will remain on the book until you cancel it, or the order is
-     * completely filled. &#x60;IOC&#x60; | **Immediate or Cancel** – the order will be filled for
-     * as much as possible, the unfilled quantity immediately expires. &#x60;FOK&#x60; | **Fill or
-     * Kill** – the order will expire unless it cannot be immediately filled for the entire
-     * quantity. Notes: * &#x60;newClientOrderId&#x60; specifies &#x60;clientOrderId&#x60; value for
-     * the order. A new order with the same &#x60;clientOrderId&#x60; is accepted only when the
-     * previous one is filled or expired. * Any &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; order
-     * can be made into an iceberg order by specifying the &#x60;icebergQty&#x60;. An order with an
-     * &#x60;icebergQty&#x60; must have &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * Trigger
-     * order price rules for &#x60;STOP_LOSS&#x60;/&#x60;TAKE_PROFIT&#x60; orders: *
-     * &#x60;stopPrice&#x60; must be above market price: &#x60;STOP_LOSS BUY&#x60;,
-     * &#x60;TAKE_PROFIT SELL&#x60; * &#x60;stopPrice&#x60; must be below market price:
-     * &#x60;STOP_LOSS SELL&#x60;, &#x60;TAKE_PROFIT BUY&#x60; * &#x60;MARKET&#x60; orders using
-     * &#x60;quoteOrderQty&#x60; follow [&#x60;LOT_SIZE&#x60;](/products/spot/filters#lot_size)
-     * filter rules. The order will execute a quantity that has notional value as close as possible
-     * to requested &#x60;quoteOrderQty&#x60;.
+     * must be specified together. Available &#x60;timeInForce&#x60; options, setting how long the
+     * order should be active before expiration: TIF | Description ----- | --------------
+     * &#x60;GTC&#x60; | **Good &#39;til Canceled** – the order will remain on the book until you
+     * cancel it, or the order is completely filled. &#x60;IOC&#x60; | **Immediate or Cancel** – the
+     * order will be filled for as much as possible, the unfilled quantity immediately expires.
+     * &#x60;FOK&#x60; | **Fill or Kill** – the order will expire unless it cannot be immediately
+     * filled for the entire quantity. Notes: * &#x60;newClientOrderId&#x60; specifies
+     * &#x60;clientOrderId&#x60; value for the order. A new order with the same
+     * &#x60;clientOrderId&#x60; is accepted only when the previous one is filled or expired. * Any
+     * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; order can be made into an iceberg order by
+     * specifying the &#x60;icebergQty&#x60;. An order with an &#x60;icebergQty&#x60; must have
+     * &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * Trigger order price rules for
+     * &#x60;STOP_LOSS&#x60;/&#x60;TAKE_PROFIT&#x60; orders: * &#x60;stopPrice&#x60; must be above
+     * market price: &#x60;STOP_LOSS BUY&#x60;, &#x60;TAKE_PROFIT SELL&#x60; * &#x60;stopPrice&#x60;
+     * must be below market price: &#x60;STOP_LOSS SELL&#x60;, &#x60;TAKE_PROFIT BUY&#x60; *
+     * &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; follow &#x60;LOT_SIZE&#x60; filter
+     * rules. The order will execute a quantity that has notional value as close as possible to
+     * requested &#x60;quoteOrderQty&#x60;.
      */
     public void orderPlaceExampleSync() {
         OrderPlaceRequest orderPlaceRequest = new OrderPlaceRequest();

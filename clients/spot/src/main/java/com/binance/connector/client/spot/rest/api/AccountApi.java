@@ -56,7 +56,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -572,7 +572,9 @@ public class AccountApi {
      * returned. - For some historical orders &#x60;cummulativeQuoteQty&#x60; will be &lt; 0,
      * meaning the data is not available at this time. - If &#x60;startTime&#x60; and/or
      * &#x60;endTime&#x60; provided, &#x60;orderId&#x60; is not required. - The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours. Response
+     * Notes: **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -877,7 +879,9 @@ public class AccountApi {
      * Current open orders (USER_DATA) Get all open orders on a symbol. **Careful** when accessing
      * this with no symbol. Weight: 6 for a single symbol; 80 when the symbol parameter is omitted
      * Security Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database - If the symbol
-     * is not sent, orders for all symbols will be returned in an array.
+     * is not sent, orders for all symbols will be returned in an array. Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses.
      *
      * @param symbol (optional)
      * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
@@ -1048,7 +1052,8 @@ public class AccountApi {
      * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
      * conditions are not met the request will be rejected. - For some historical orders
      * &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is not available at this
-     * time.
+     * time. Response Notes: **Note:** The payload above does not show all fields that can appear.
+     * Please refer to Conditional fields in Order Responses.
      *
      * @param symbol (required)
      * @param orderId (optional)

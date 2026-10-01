@@ -22,8 +22,8 @@ import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
 /**
- * Supported values: [Order Types](/products/spot/enums#ordertypes). Note that &#x60;MARKET&#x60;
- * orders using &#x60;quoteOrderQty&#x60; are not supported.
+ * Supported values: Order Types. Note that &#x60;MARKET&#x60; orders using
+ * &#x60;quoteOrderQty&#x60; are not supported.
  */
 @JsonAdapter(PendingType.Adapter.class)
 public enum PendingType {

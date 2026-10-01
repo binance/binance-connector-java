@@ -53,7 +53,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.1 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -222,7 +222,7 @@ public class TradeApi {
      * normalize URLs): - **Python:** use &#x60;http.client&#x60; (stdlib) and hand-build the body
      * string. - **Java:** use &#x60;HttpURLConnection&#x60; and write the raw body bytes directly.
      * - **Go:** use &#x60;strings.NewReader&#x60; with a hand-built body instead of
-     * &#x60;url.Values.Encode()&#x60;. Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: - Use
+     * &#x60;url.Values.Encode()&#x60;. Weight(IP): 1 Security Type: PREDICTION_TRADE Notes: - Use
      * dot notation for nested list fields: &#x60;cancelInfoList[0].orderId&#x60;,
      * &#x60;cancelInfoList[1].orderId&#x60;, etc. - &#x60;vendor&#x60; does not need to be
      * supplied. The server automatically sets the correct vendor (&#x60;predict_fun&#x60;) for
@@ -400,7 +400,7 @@ public class TradeApi {
 
     /**
      * Get Quote (PREDICTION_TRADE) Get a price quote for a prediction order. The returned
-     * &#x60;quoteId&#x60; must be used in the subsequent Place Order request. Weight(IP): 200
+     * &#x60;quoteId&#x60; must be used in the subsequent Place Order request. Weight(IP): 1
      * Security Type: PREDICTION_TRADE Response Notes: - &#x60;feeAmount&#x60; is a string because
      * it is denominated in wei (18 decimals) and may exceed JavaScript&#39;s safe integer range.
      * &#x60;feeDiscountBps&#x60; is also a string to allow fractional basis-point values in the
@@ -578,8 +578,8 @@ public class TradeApi {
 
     /**
      * Place Order (PREDICTION_TRADE) Place a prediction order using a previously obtained quote.
-     * Requires SAS authorization. Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: -
-     * Validation rules: | orderType | timeInForce | priceLimit | | --------- | ------------- |
+     * Requires SAS authorization. Weight(IP): 1 Security Type: PREDICTION_TRADE Notes: - Validation
+     * rules: | orderType | timeInForce | priceLimit | | --------- | ------------- |
      * --------------------- | | &#x60;MARKET&#x60; | Must be &#x60;FOK&#x60; | Not required | |
      * &#x60;LIMIT&#x60; | Must be &#x60;GTC&#x60; | Required, must be &gt; 0 |
      *
@@ -774,7 +774,7 @@ public class TradeApi {
 
     /**
      * Query Active Orders (PREDICTION_TRADE) Get active (open) prediction orders for the
-     * authenticated user. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * authenticated user. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tradeSide Filter by trade side. Enum: &#x60;BUY&#x60;, &#x60;SELL&#x60; (optional)
@@ -1016,8 +1016,7 @@ public class TradeApi {
 
     /**
      * Query Order History (PREDICTION_TRADE) Get historical prediction orders (all statuses) for
-     * the authenticated user, with optional filters. Weight(IP): 200 Security Type:
-     * PREDICTION_TRADE
+     * the authenticated user, with optional filters. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)

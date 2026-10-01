@@ -192,7 +192,7 @@
 
 [GET /papi/v1/cm/forceOrders](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-cm-force-orders) - queryUsersCmForceOrders - [QueryUsersCmForceOrdersExample.java:40](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersCmForceOrdersExample.java#L40)
 
-[GET /papi/v1/margin/forceOrders](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-margin-force-orders) - queryUsersMarginForceOrders - [QueryUsersMarginForceOrdersExample.java:42](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersMarginForceOrdersExample.java#L42)
+[GET /papi/v1/margin/forceOrders](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-margin-force-orders) - queryUsersMarginForceOrders - [QueryUsersMarginForceOrdersExample.java:39](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersMarginForceOrdersExample.java#L39)
 
 [GET /papi/v1/um/forceOrders](https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-um-force-orders) - queryUsersUmForceOrders - [QueryUsersUmForceOrdersExample.java:40](/examples/derivatives-trading-portfolio-margin/src/main/java/com/binance/connector/client/derivatives_trading_portfolio_margin/rest/trade/QueryUsersUmForceOrdersExample.java#L40)
 

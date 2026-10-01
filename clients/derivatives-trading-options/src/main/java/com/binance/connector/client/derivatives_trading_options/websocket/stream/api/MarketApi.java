@@ -47,7 +47,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class MarketApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -320,8 +320,7 @@ public class MarketApi {
 
     /**
      * Open Interest Option open interest for specific underlying asset on specific expiration date.
-     * E.g.[ethusdt@openInterest@221125](wss://fstream.binance.com/market/stream?streams&#x3D;ethusdt@openInterest@221125)
-     * Update Speed: 60s
+     * E.g.ethusdt@openInterest@221125 Update Speed: 60s
      *
      * @param openInterestRequest (required)
      * @return OpenInterestResponse
@@ -409,8 +408,7 @@ public class MarketApi {
 
     /**
      * Option Mark Price The mark price for all option symbols on specific underlying asset.
-     * E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)
-     * Update Speed: 1000ms
+     * E.g.btcusdt@optionMarkPrice Update Speed: 1000ms
      *
      * @param optionMarkPriceRequest (required)
      * @return OptionMarkPriceResponse

@@ -113,7 +113,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin/8.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -9142,12 +9142,10 @@ public class TradeApi {
 
     /**
      * Query User&#39;s Margin Force Orders (USER_DATA) Query user&#39;s margin force orders &gt;
-     * **Note:** Portfolio Margin accounts liquidated through the [Risk-Based Liquidation
-     * Adjustment](https://www.binance.com/en/support/faq/detail/662268636eb44b71af55c6c6a597d481)
+     * **Note:** Portfolio Margin accounts liquidated through the Risk-Based Liquidation Adjustment
      * flow will not have any order or trade records returned by this endpoint. Query the capital
-     * flow endpoint instead: [Query Cross Isolated Margin Capital
-     * Flow](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow).
-     * Weight(IP): 1 Security Type: USER_DATA
+     * flow endpoint instead: Query Cross Isolated Margin Capital Flow. Weight(IP): 1 Security Type:
+     * USER_DATA
      *
      * @param startTime Timestamp in ms to get funding from INCLUSIVE. (optional)
      * @param endTime Timestamp in ms to get funding until INCLUSIVE. (optional)

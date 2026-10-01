@@ -1,6 +1,6 @@
 ## Account
 
-[POST /sapi/v1/margin/max-leverage](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#adjust-cross-margin-max-leverage) - adjustCrossMarginMaxLeverage - [AdjustCrossMarginMaxLeverageExample.java:42](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/AdjustCrossMarginMaxLeverageExample.java#L42)
+[POST /sapi/v1/margin/max-leverage](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#adjust-cross-margin-max-leverage) - adjustCrossMarginMaxLeverage - [AdjustCrossMarginMaxLeverageExample.java:41](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/AdjustCrossMarginMaxLeverageExample.java#L41)
 
 [DELETE /sapi/v1/margin/isolated/account](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#disable-isolated-margin-account) - disableIsolatedMarginAccount - [DisableIsolatedMarginAccountExample.java:37](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/DisableIsolatedMarginAccountExample.java#L37)
 
@@ -10,7 +10,7 @@
 
 [GET /sapi/v1/margin/tradeCoeff](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-summary-of-margin-account) - getSummaryOfMarginAccount - [GetSummaryOfMarginAccountExample.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/GetSummaryOfMarginAccountExample.java#L36)
 
-[GET /sapi/v1/margin/capital-flow](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow) - queryCrossIsolatedMarginCapitalFlow - [QueryCrossIsolatedMarginCapitalFlowExample.java:41](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/QueryCrossIsolatedMarginCapitalFlowExample.java#L41)
+[GET /sapi/v1/margin/capital-flow](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow) - queryCrossIsolatedMarginCapitalFlow - [QueryCrossIsolatedMarginCapitalFlowExample.java:46](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/QueryCrossIsolatedMarginCapitalFlowExample.java#L46)
 
 [GET /sapi/v1/margin/account](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-account-details) - queryCrossMarginAccountDetails - [QueryCrossMarginAccountDetailsExample.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/account/QueryCrossMarginAccountDetailsExample.java#L36)
 
@@ -66,13 +66,13 @@
 
 ## Trade
 
-[POST /sapi/v1/margin/apiKey](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#create-special-key) - createSpecialKey - [CreateSpecialKeyExample.java:67](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/CreateSpecialKeyExample.java#L67)
+[POST /sapi/v1/margin/apiKey](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#create-special-key) - createSpecialKey - [CreateSpecialKeyExample.java:62](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/CreateSpecialKeyExample.java#L62)
 
 [DELETE /sapi/v1/margin/apiKey](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#delete-special-key) - deleteSpecialKey - [DeleteSpecialKeyExample.java:43](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/DeleteSpecialKeyExample.java#L43)
 
 [PUT /sapi/v1/margin/apiKey/ip](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#edit-ip-for-special-key) - editIpForSpecialKey - [EditIpForSpecialKeyExample.java:37](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/EditIpForSpecialKeyExample.java#L37)
 
-[POST /sapi/v1/margin/exit-special-key-mode](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#exit-special-key-mode) - exitSpecialKeyMode - [ExitSpecialKeyModeExample.java:52](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/ExitSpecialKeyModeExample.java#L52)
+[POST /sapi/v1/margin/exit-special-key-mode](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#exit-special-key-mode) - exitSpecialKeyMode - [ExitSpecialKeyModeExample.java:50](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/ExitSpecialKeyModeExample.java#L50)
 
 [GET /sapi/v1/margin/forceLiquidationRec](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-force-liquidation-record) - getForceLiquidationRecord - [GetForceLiquidationRecordExample.java:37](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/GetForceLiquidationRecordExample.java#L37)
 
@@ -94,7 +94,7 @@
 
 [POST /sapi/v1/margin/order/oto](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oto) - marginAccountNewOto - [MarginAccountNewOtoExample.java:67](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/MarginAccountNewOtoExample.java#L67)
 
-[POST /sapi/v1/margin/order/otoco](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-otoco) - marginAccountNewOtoco - [MarginAccountNewOtocoExample.java:72](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/MarginAccountNewOtocoExample.java#L72)
+[POST /sapi/v1/margin/order/otoco](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-otoco) - marginAccountNewOtoco - [MarginAccountNewOtocoExample.java:70](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/MarginAccountNewOtocoExample.java#L70)
 
 [POST /sapi/v1/margin/manual-liquidation](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-manual-liquidation) - marginManualLiquidation - [MarginManualLiquidationExample.java:40](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/MarginManualLiquidationExample.java#L40)
 

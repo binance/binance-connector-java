@@ -45,7 +45,7 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String SLowerCase;
+    private String sLowerCase;
 
     public static final String SERIALIZED_NAME_AC = "ac";
 
@@ -57,13 +57,13 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_P_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String PLowerCase;
+    private String pLowerCase;
 
     public static final String SERIALIZED_NAME_T_LOWER_CASE = "t";
 
     @SerializedName(SERIALIZED_NAME_T_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private Long TLowerCase;
+    private Long tLowerCase;
 
     public static final String SERIALIZED_NAME_PC = "pc";
 
@@ -85,24 +85,24 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
 
     public PriceStreamResponseRatesInner() {}
 
-    public PriceStreamResponseRatesInner SLowerCase(
-            @jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public PriceStreamResponseRatesInner sLowerCase(
+            @jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
         return this;
     }
 
     /**
      * Symbol (UPPERCASE ticker), e.g. &#x60;\&quot;AAPL\&quot;&#x60;.
      *
-     * @return SLowerCase
+     * @return sLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getSLowerCase() {
-        return SLowerCase;
+    public String getsLowerCase() {
+        return sLowerCase;
     }
 
-    public void setSLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public void setsLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
     }
 
     public PriceStreamResponseRatesInner ac(@jakarta.annotation.Nullable String ac) {
@@ -125,43 +125,43 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
         this.ac = ac;
     }
 
-    public PriceStreamResponseRatesInner PLowerCase(
-            @jakarta.annotation.Nullable String PLowerCase) {
-        this.PLowerCase = PLowerCase;
+    public PriceStreamResponseRatesInner pLowerCase(
+            @jakarta.annotation.Nullable String pLowerCase) {
+        this.pLowerCase = pLowerCase;
         return this;
     }
 
     /**
      * Latest price, trailing-zero stripped.
      *
-     * @return PLowerCase
+     * @return pLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getPLowerCase() {
-        return PLowerCase;
+    public String getpLowerCase() {
+        return pLowerCase;
     }
 
-    public void setPLowerCase(@jakarta.annotation.Nullable String PLowerCase) {
-        this.PLowerCase = PLowerCase;
+    public void setpLowerCase(@jakarta.annotation.Nullable String pLowerCase) {
+        this.pLowerCase = pLowerCase;
     }
 
-    public PriceStreamResponseRatesInner TLowerCase(@jakarta.annotation.Nullable Long TLowerCase) {
-        this.TLowerCase = TLowerCase;
+    public PriceStreamResponseRatesInner tLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
+        this.tLowerCase = tLowerCase;
         return this;
     }
 
     /**
      * Price time (epoch milliseconds UTC); may be null.
      *
-     * @return TLowerCase
+     * @return tLowerCase
      */
     @jakarta.annotation.Nullable
-    public Long getTLowerCase() {
-        return TLowerCase;
+    public Long gettLowerCase() {
+        return tLowerCase;
     }
 
-    public void setTLowerCase(@jakarta.annotation.Nullable Long TLowerCase) {
-        this.TLowerCase = TLowerCase;
+    public void settLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
+        this.tLowerCase = tLowerCase;
     }
 
     public PriceStreamResponseRatesInner pc(@jakarta.annotation.Nullable String pc) {
@@ -232,10 +232,10 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
         }
         PriceStreamResponseRatesInner priceStreamResponseRatesInner =
                 (PriceStreamResponseRatesInner) o;
-        return Objects.equals(this.SLowerCase, priceStreamResponseRatesInner.SLowerCase)
+        return Objects.equals(this.sLowerCase, priceStreamResponseRatesInner.sLowerCase)
                 && Objects.equals(this.ac, priceStreamResponseRatesInner.ac)
-                && Objects.equals(this.PLowerCase, priceStreamResponseRatesInner.PLowerCase)
-                && Objects.equals(this.TLowerCase, priceStreamResponseRatesInner.TLowerCase)
+                && Objects.equals(this.pLowerCase, priceStreamResponseRatesInner.pLowerCase)
+                && Objects.equals(this.tLowerCase, priceStreamResponseRatesInner.tLowerCase)
                 && Objects.equals(this.pc, priceStreamResponseRatesInner.pc)
                 && Objects.equals(this.tc, priceStreamResponseRatesInner.tc)
                 && Objects.equals(this.mp, priceStreamResponseRatesInner.mp);
@@ -252,7 +252,7 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(SLowerCase, ac, PLowerCase, TLowerCase, pc, tc, mp);
+        return Objects.hash(sLowerCase, ac, pLowerCase, tLowerCase, pc, tc, mp);
     }
 
     private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -266,10 +266,10 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class PriceStreamResponseRatesInner {\n");
-        sb.append("		SLowerCase: ").append(toIndentedString(SLowerCase)).append("\n");
+        sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		ac: ").append(toIndentedString(ac)).append("\n");
-        sb.append("		PLowerCase: ").append(toIndentedString(PLowerCase)).append("\n");
-        sb.append("		TLowerCase: ").append(toIndentedString(TLowerCase)).append("\n");
+        sb.append("		pLowerCase: ").append(toIndentedString(pLowerCase)).append("\n");
+        sb.append("		tLowerCase: ").append(toIndentedString(tLowerCase)).append("\n");
         sb.append("		pc: ").append(toIndentedString(pc)).append("\n");
         sb.append("		tc: ").append(toIndentedString(tc)).append("\n");
         sb.append("		mp: ").append(toIndentedString(mp)).append("\n");
@@ -281,25 +281,25 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            String SLowerCaseValueAsString = SLowerCaseValue.toString();
-            valMap.put("SLowerCase", SLowerCaseValueAsString);
+        String sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            String sLowerCaseValueAsString = sLowerCaseValue.toString();
+            valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
         String acValue = getAc();
         if (acValue != null) {
             String acValueAsString = acValue.toString();
             valMap.put("ac", acValueAsString);
         }
-        String PLowerCaseValue = getPLowerCase();
-        if (PLowerCaseValue != null) {
-            String PLowerCaseValueAsString = PLowerCaseValue.toString();
-            valMap.put("PLowerCase", PLowerCaseValueAsString);
+        String pLowerCaseValue = getpLowerCase();
+        if (pLowerCaseValue != null) {
+            String pLowerCaseValueAsString = pLowerCaseValue.toString();
+            valMap.put("pLowerCase", pLowerCaseValueAsString);
         }
-        Long TLowerCaseValue = getTLowerCase();
-        if (TLowerCaseValue != null) {
-            String TLowerCaseValueAsString = TLowerCaseValue.toString();
-            valMap.put("TLowerCase", TLowerCaseValueAsString);
+        Long tLowerCaseValue = gettLowerCase();
+        if (tLowerCaseValue != null) {
+            String tLowerCaseValueAsString = tLowerCaseValue.toString();
+            valMap.put("tLowerCase", tLowerCaseValueAsString);
         }
         String pcValue = getPc();
         if (pcValue != null) {
@@ -327,21 +327,21 @@ public class PriceStreamResponseRatesInner extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            valMap.put("SLowerCase", SLowerCaseValue);
+        Object sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            valMap.put("sLowerCase", sLowerCaseValue);
         }
         Object acValue = getAc();
         if (acValue != null) {
             valMap.put("ac", acValue);
         }
-        Object PLowerCaseValue = getPLowerCase();
-        if (PLowerCaseValue != null) {
-            valMap.put("PLowerCase", PLowerCaseValue);
+        Object pLowerCaseValue = getpLowerCase();
+        if (pLowerCaseValue != null) {
+            valMap.put("pLowerCase", pLowerCaseValue);
         }
-        Object TLowerCaseValue = getTLowerCase();
-        if (TLowerCaseValue != null) {
-            valMap.put("TLowerCase", TLowerCaseValue);
+        Object tLowerCaseValue = gettLowerCase();
+        if (tLowerCaseValue != null) {
+            valMap.put("tLowerCase", tLowerCaseValue);
         }
         Object pcValue = getPc();
         if (pcValue != null) {

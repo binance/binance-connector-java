@@ -18,7 +18,7 @@ All URIs are relative to *https://api.binance.com*
 
 Apply MM Deposit (PREDICTION_TRADE)
 
-Move funds from the user&#39;s bound CeDeFi MPC wallet to their CEX account (SPOT/FUNDING) via a contract escrow + credit flow. The maker wallet is resolved server-side by &#x60;userId&#x60;; the caller does not pass wallet or signature.  Weight(IP): 200  Security Type: PREDICTION_TRADE  Notes: - Restricted to authorized market makers. Requests from unauthorized accounts are rejected — contact BD to request access. - \&quot;Note on &#x60;fromToken&#x60; / &#x60;toToken&#x60;: typically the same symbol (e.g. both &#x60;USDT&#x60;). When they differ, the backend may attempt a swap, but cross-symbol conversion is not guaranteed for all pairs — prefer using the same symbol.\&quot;
+Move funds from the user&#39;s bound CeDeFi MPC wallet to their CEX account (SPOT/FUNDING) via a contract escrow + credit flow. The maker wallet is resolved server-side by &#x60;userId&#x60;; the caller does not pass wallet or signature.  Weight(IP): 1  Security Type: PREDICTION_TRADE  Notes: - Restricted to authorized market makers. Requests from unauthorized accounts are rejected — contact BD to request access. - \&quot;Note on &#x60;fromToken&#x60; / &#x60;toToken&#x60;: typically the same symbol (e.g. both &#x60;USDT&#x60;). When they differ, the backend may attempt a swap, but cross-symbol conversion is not guaranteed for all pairs — prefer using the same symbol.\&quot;
 
 ### Example
 ```java
@@ -80,7 +80,7 @@ No authorization required
 
 Apply MM Withdraw (PREDICTION_TRADE)
 
-Withdraw funds from the user&#39;s CEX account (SPOT/FUNDING) to their bound CeDeFi MPC wallet address. Unlike &#x60;v1/capital/withdraw/apply&#x60;, the caller does NOT pass &#x60;address&#x60;; the backend resolves the user&#39;s bound CeDeFi MPC wallet address by &#x60;userId&#x60; and reuses the existing capital withdraw flow with that address as the target.  Weight(IP): 200  Security Type: PREDICTION_TRADE  Notes: - Restricted to authorized market makers. Requests from unauthorized accounts are rejected — contact BD to request access. - walletType Validation:    | Value           | Behavior                       |   | --------------- | ------------------------------- |   | &#x60;null&#x60;          | Allowed — defaults to SPOT      |   | &#x60;0&#x60;             | Allowed — source &#x3D; SPOT         |   | &#x60;1&#x60;             | Allowed — source &#x3D; FUNDING      |   | Other (e.g. &#x60;99&#x60;) | Rejected — returns validation error | - \&quot;Note on field naming: this endpoint uses &#x60;walletType&#x60; (INT &#x60;0&#x60;/&#x60;1&#x60;) for the source CEX account, while Apply MM Deposit uses &#x60;accountType&#x60; (STRING &#x60;SPOT&#x60;/&#x60;FUNDING&#x60;) for the target. The difference is intentional: withdraw reuses the existing &#x60;v1/capital/withdraw/apply&#x60; flow, which inherits that flow&#39;s integer &#x60;walletType&#x60; field.\&quot;
+Withdraw funds from the user&#39;s CEX account (SPOT/FUNDING) to their bound CeDeFi MPC wallet address. Unlike &#x60;v1/capital/withdraw/apply&#x60;, the caller does NOT pass &#x60;address&#x60;; the backend resolves the user&#39;s bound CeDeFi MPC wallet address by &#x60;userId&#x60; and reuses the existing capital withdraw flow with that address as the target.  Weight(IP): 1  Security Type: PREDICTION_TRADE  Notes: - Restricted to authorized market makers. Requests from unauthorized accounts are rejected — contact BD to request access. - walletType Validation:    | Value           | Behavior                       |   | --------------- | ------------------------------- |   | &#x60;null&#x60;          | Allowed — defaults to SPOT      |   | &#x60;0&#x60;             | Allowed — source &#x3D; SPOT         |   | &#x60;1&#x60;             | Allowed — source &#x3D; FUNDING      |   | Other (e.g. &#x60;99&#x60;) | Rejected — returns validation error | - \&quot;Note on field naming: this endpoint uses &#x60;walletType&#x60; (INT &#x60;0&#x60;/&#x60;1&#x60;) for the source CEX account, while Apply MM Deposit uses &#x60;accountType&#x60; (STRING &#x60;SPOT&#x60;/&#x60;FUNDING&#x60;) for the target. The difference is intentional: withdraw reuses the existing &#x60;v1/capital/withdraw/apply&#x60; flow, which inherits that flow&#39;s integer &#x60;walletType&#x60; field.\&quot;
 
 ### Example
 ```java
@@ -142,7 +142,7 @@ No authorization required
 
 Create Inbound Transfer (PREDICTION_TRADE)
 
-Transfer funds from the prediction wallet back to the user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization.  ⚠️ **SAS Authorization Required:** This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is not enabled for the wallet, the request will be rejected with &#x60;-31003 SAS authorization required&#x60;. Enable SAS for your wallet before calling this endpoint.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Transfer funds from the prediction wallet back to the user&#39;s CEX account (SPOT or FUNDING). Requires SAS authorization.  ⚠️ **SAS Authorization Required:** This endpoint enforces SAS (Self-Authorization Service) authorization. If SAS is not enabled for the wallet, the request will be rejected with &#x60;-31003 SAS authorization required&#x60;. Enable SAS for your wallet before calling this endpoint.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -204,7 +204,7 @@ No authorization required
 
 Create Outbound Transfer (PREDICTION_TRADE)
 
-Transfer funds from the user&#39;s CEX account (SPOT or FUNDING) into the prediction wallet. Requires SAS authorization.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Transfer funds from the user&#39;s CEX account (SPOT or FUNDING) into the prediction wallet. Requires SAS authorization.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -266,7 +266,7 @@ No authorization required
 
 Query Transfer List (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s prediction wallet transfer history within a date range.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get the authenticated user&#39;s prediction wallet transfer history within a date range.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -342,7 +342,7 @@ No authorization required
 
 Query Transfer Status (PREDICTION_TRADE)
 
-Query the current status of a prediction wallet transfer by transfer ID.  **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;. **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Query the current status of a prediction wallet transfer by transfer ID.  **&#x60;status&#x60; values:** Terminal states are &#x60;COMPLETED&#x60; and &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60; and &#x60;PENDING&#x60;. **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal state.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java

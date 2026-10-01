@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Please see [Enums](/products/spot/enums#timeinforce) for supported values. */
+/** Please see Enums for supported values. */
 @JsonAdapter(TimeInForce.Adapter.class)
 public enum TimeInForce {
     GTC("GTC"),

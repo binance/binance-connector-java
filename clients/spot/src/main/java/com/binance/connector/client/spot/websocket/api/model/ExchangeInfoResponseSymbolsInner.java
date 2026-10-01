@@ -652,7 +652,8 @@ public class ExchangeInfoResponseSymbolsInner extends BaseDTO {
     }
 
     /**
-     * Get filters
+     * Symbol filters are explained on the \&quot;Filters\&quot; page: All symbol filters are
+     * optional.
      *
      * @return filters
      */

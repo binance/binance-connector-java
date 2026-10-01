@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
-|**orderListId** | **Long** |  |  [optional] |
+|**orderListId** | **Long** | always -1 for singular orders |  [optional] |
 |**clientOrderId** | **String** |  |  [optional] |
 |**transactTime** | **Long** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
@@ -38,7 +38,7 @@
 |**pegOffsetValue** | **Long** | Price peg offset value. Only for pegged orders, if requested. |  [optional] |
 |**peggedPrice** | **String** | Current price order is pegged at. Only for pegged orders, once determined. |  [optional] |
 |**expiryReason** | **String** | Cause of the order&#39;s expiration. Appears when an order has expired. |  [optional] |
-|**fills** | [**List&lt;OrderPlaceResponseResultFillsInner&gt;**](OrderPlaceResponseResultFillsInner.md) |  |  [optional] |
+|**fills** | [**List&lt;OrderPlaceResponseResultFillsInner&gt;**](OrderPlaceResponseResultFillsInner.md) | FULL response is identical to RESULT response, with the same optional fields based on the order type and parameters. FULL response additionally includes the list of trades which immediately filled the order. |  [optional] |
 
 
 

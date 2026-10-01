@@ -51,7 +51,7 @@ public class BorrowRepayApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/7.0.3 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.4 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1180,8 +1180,7 @@ public class BorrowRepayApi {
     /**
      * Query Max Borrow (USER_DATA) Query Max Borrow Weight(IP): 50 Security Type: USER_DATA Notes:
      * - If isolatedSymbol is not sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60;
-     * is also available from
-     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
+     * is also available from https://www.binance.com/en/margin-fee
      *
      * @param asset (required)
      * @param isolatedSymbol (optional)

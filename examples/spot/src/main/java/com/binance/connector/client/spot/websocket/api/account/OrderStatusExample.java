@@ -37,7 +37,8 @@ public class OrderStatusExample {
      * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
      * conditions are not met the request will be rejected. * For some historical orders the
      * &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning the data is not
-     * available at this time.
+     * available at this time. Response Notes: **Note:** The payload above does not show all fields
+     * that can appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderStatusExampleAsync() {
         OrderStatusRequest orderStatusRequest = new OrderStatusRequest();
@@ -62,7 +63,8 @@ public class OrderStatusExample {
      * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
      * conditions are not met the request will be rejected. * For some historical orders the
      * &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning the data is not
-     * available at this time.
+     * available at this time. Response Notes: **Note:** The payload above does not show all fields
+     * that can appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderStatusExampleSync() {
         OrderStatusRequest orderStatusRequest = new OrderStatusRequest();

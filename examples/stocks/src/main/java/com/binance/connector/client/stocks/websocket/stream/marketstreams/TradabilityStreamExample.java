@@ -25,7 +25,8 @@ public class TradabilityStreamExample {
      * Tradability Stream
      *
      * <p>Per-symbol push whenever the tradable direction of a symbol changes. Pushed only when the
-     * value actually changes (new value ≠ old value).
+     * value actually changes (new value ≠ old value). Also reachable via the SUBSCRIBE/UNSUBSCRIBE
+     * RPC — see Subscribing via RPC.
      *
      * @throws ApiException if the Api call fails
      */

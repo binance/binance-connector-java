@@ -26,7 +26,8 @@ public class PingExample {
     /**
      * Test connectivity
      *
-     * <p>Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE
+     * <p>Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE Notes: **Data
+     * Source:** Memory
      *
      * @throws ApiException if the Api call fails
      */

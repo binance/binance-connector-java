@@ -45,7 +45,7 @@ public class WalletApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.1 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -244,7 +244,7 @@ public class WalletApi {
     /**
      * Get Portfolio (PREDICTION_TRADE) Get the authenticated user&#39;s prediction portfolio
      * overview including active positions count, aggregated PnL, and full position list.
-     * Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param tokenId Filter by prediction token ID (optional)
@@ -390,8 +390,7 @@ public class WalletApi {
 
     /**
      * Get Quota Status (PREDICTION_TRADE) Query the current user&#39;s daily trading quota limit
-     * and remaining allowance for prediction markets. Weight(IP): 200 Security Type:
-     * PREDICTION_TRADE
+     * and remaining allowance for prediction markets. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;GetQuotaStatusResponse&gt;
@@ -525,7 +524,7 @@ public class WalletApi {
 
     /**
      * List Prediction Wallets (PREDICTION_TRADE) Get all prediction wallets registered for the
-     * authenticated user. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * authenticated user. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;ListPredictionWalletsResponse&gt;
@@ -659,8 +658,7 @@ public class WalletApi {
 
     /**
      * Query Payment Option Balances (PREDICTION_TRADE) Get available balances for each payment
-     * option that can be used for prediction trading. Weight(IP): 200 Security Type:
-     * PREDICTION_TRADE
+     * option that can be used for prediction trading. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param recvWindow Request validity window in milliseconds (optional)
      * @return ApiResponse&lt;QueryPaymentOptionBalancesResponse&gt;

@@ -34,7 +34,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** OrderTestResponseResultStandardCommissionForOrder */
+/** Standard commission rates on trades from the order. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")

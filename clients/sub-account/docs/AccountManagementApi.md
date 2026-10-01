@@ -288,7 +288,7 @@ public class Example {
 
     AccountManagementApi apiInstance = new AccountManagementApi(defaultClient);
     String email = "123@test.com"; // String | 
-    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long futuresType = 1L; // Long | 1: USDT-margined Futures，2: Coin-margined Futures
     Long recvWindow = 5000L; // Long | 
     try {
       GetFuturesPositionRiskOfSubAccountV2Response result = apiInstance.getFuturesPositionRiskOfSubAccountV2(email, futuresType, recvWindow);
@@ -309,7 +309,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**|  | |
-| **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
+| **futuresType** | **Long**| 1: USDT-margined Futures，2: Coin-margined Futures | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

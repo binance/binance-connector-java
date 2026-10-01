@@ -42,7 +42,7 @@ public class BatchCancelOrdersExample {
      * normalize URLs): - **Python:** use &#x60;http.client&#x60; (stdlib) and hand-build the body
      * string. - **Java:** use &#x60;HttpURLConnection&#x60; and write the raw body bytes directly.
      * - **Go:** use &#x60;strings.NewReader&#x60; with a hand-built body instead of
-     * &#x60;url.Values.Encode()&#x60;. Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: - Use
+     * &#x60;url.Values.Encode()&#x60;. Weight(IP): 1 Security Type: PREDICTION_TRADE Notes: - Use
      * dot notation for nested list fields: &#x60;cancelInfoList[0].orderId&#x60;,
      * &#x60;cancelInfoList[1].orderId&#x60;, etc. - &#x60;vendor&#x60; does not need to be
      * supplied. The server automatically sets the correct vendor (&#x60;predict_fun&#x60;) for

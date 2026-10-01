@@ -1288,7 +1288,8 @@ public class DerivativesTradingCoinFuturesRestApi {
      * sent,tickers for all symbols of the pair will be returned - The parameter &#x60;fromId&#x60;
      * cannot be sent with &#x60;startTime&#x60; or &#x60;endTime&#x60; - If startTime and endTime
      * are both not sent, then the last 7 days&#39; data will be returned. - The time between
-     * startTime and endTime cannot be longer than 7 days.
+     * startTime and endTime cannot be longer than 7 days. - Only support querying trade in the past
+     * 3 months
      *
      * @param symbol Symbol (optional)
      * @param pair pair (optional)

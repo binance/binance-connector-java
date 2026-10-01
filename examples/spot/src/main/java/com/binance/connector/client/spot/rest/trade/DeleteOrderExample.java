@@ -34,10 +34,17 @@ public class DeleteOrderExample {
      * If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the
      * &#x60;orderId&#x60; is searched first, then the &#x60;origClientOrderId&#x60; from that
      * result is checked against that order. If both conditions are not met the request will be
-     * rejected. - The performance for canceling an order (single cancel or as part of a
-     * cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
-     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
-     * will be slower.
+     * rejected. Response Notes: **Notes:** - The payload above does not show all fields that can
+     * appear in the order response. Please refer to Conditional fields in Order Responses. - The
+     * performance for canceling an order (single cancel or as part of a cancel-replace) is always
+     * better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower. **Regarding
+     * &#x60;cancelRestrictions&#x60;** * If the &#x60;cancelRestrictions&#x60; value is not any of
+     * the supported values, the error will be: &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -1145,
+     * \&quot;msg\&quot;: \&quot;Invalid cancelRestrictions\&quot; } &#x60;&#x60;&#x60; * If the
+     * order did not pass the conditions for &#x60;cancelRestrictions&#x60;, the error will be:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2011, \&quot;msg\&quot;: \&quot;Order was not
+     * canceled due to cancel restrictions.\&quot; } &#x60;&#x60;&#x60;
      *
      * @throws ApiException if the Api call fails
      */

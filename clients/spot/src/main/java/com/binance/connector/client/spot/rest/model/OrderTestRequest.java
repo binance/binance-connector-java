@@ -167,8 +167,7 @@ public class OrderTestRequest {
     }
 
     /**
-     * Default: &#x60;false&#x60; &lt;br&gt; See [Commissions
-     * FAQ](/products/spot/faqs/commission_faq#test-order-diferences) to learn more.
+     * Default: &#x60;false&#x60; &lt;br&gt; See Commissions FAQ to learn more.
      *
      * @return computeCommissionRates
      */
@@ -410,7 +409,7 @@ public class OrderTestRequest {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return trailingDelta
      */
@@ -514,7 +513,7 @@ public class OrderTestRequest {
     }
 
     /**
-     * Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders)
+     * Price level for pegging (max: 100). See Pegged Orders
      *
      * @return pegOffsetValue
      */

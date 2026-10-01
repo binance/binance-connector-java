@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.2 - 2026-10-01
+
+- Update parent pom to 1.1.4
+
 ## 11.0.0 - 2026-07-29
 
 ### Changed (76)

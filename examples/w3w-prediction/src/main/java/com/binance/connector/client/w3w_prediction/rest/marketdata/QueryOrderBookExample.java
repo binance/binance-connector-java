@@ -30,7 +30,7 @@ public class QueryOrderBookExample {
      * Query Order Book
      *
      * <p>Get the current order book (bids and asks) for a specific prediction market outcome token.
-     * Weight(IP): 200
+     * Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */

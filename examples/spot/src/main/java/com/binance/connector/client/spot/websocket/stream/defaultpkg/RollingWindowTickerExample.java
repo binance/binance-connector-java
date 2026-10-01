@@ -28,7 +28,7 @@ public class RollingWindowTickerExample {
      * **Note:** This stream is different from the &#x60;&lt;symbol&gt;@ticker&#x60; stream. The
      * open time &#x60;\&quot;O\&quot;&#x60; always starts on a minute, while the closing time
      * &#x60;\&quot;C\&quot;&#x60; is the current time of the update. As such, the effective window
-     * might be up to 59999ms wider than &#x60;&lt;window_size&gt;&#x60;. Update Speed: 1000ms
+     * might be up to 59999ms wider than &#x60;&lt;windowSize&gt;&#x60;. Update Speed: 1000ms
      *
      * @throws ApiException if the Api call fails
      */

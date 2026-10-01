@@ -53,7 +53,7 @@ public class TransferApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.1 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -219,7 +219,7 @@ public class TransferApi {
      * Apply MM Deposit (PREDICTION_TRADE) Move funds from the user&#39;s bound CeDeFi MPC wallet to
      * their CEX account (SPOT/FUNDING) via a contract escrow + credit flow. The maker wallet is
      * resolved server-side by &#x60;userId&#x60;; the caller does not pass wallet or signature.
-     * Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: - Restricted to authorized market
+     * Weight(IP): 1 Security Type: PREDICTION_TRADE Notes: - Restricted to authorized market
      * makers. Requests from unauthorized accounts are rejected — contact BD to request access. -
      * \&quot;Note on &#x60;fromToken&#x60; / &#x60;toToken&#x60;: typically the same symbol (e.g.
      * both &#x60;USDT&#x60;). When they differ, the backend may attempt a swap, but cross-symbol
@@ -382,7 +382,7 @@ public class TransferApi {
      * (SPOT/FUNDING) to their bound CeDeFi MPC wallet address. Unlike
      * &#x60;v1/capital/withdraw/apply&#x60;, the caller does NOT pass &#x60;address&#x60;; the
      * backend resolves the user&#39;s bound CeDeFi MPC wallet address by &#x60;userId&#x60; and
-     * reuses the existing capital withdraw flow with that address as the target. Weight(IP): 200
+     * reuses the existing capital withdraw flow with that address as the target. Weight(IP): 1
      * Security Type: PREDICTION_TRADE Notes: - Restricted to authorized market makers. Requests
      * from unauthorized accounts are rejected — contact BD to request access. - walletType
      * Validation: | Value | Behavior | | --------------- | ------------------------------- | |
@@ -560,7 +560,7 @@ public class TransferApi {
      * Authorization Required:** This endpoint enforces SAS (Self-Authorization Service)
      * authorization. If SAS is not enabled for the wallet, the request will be rejected with
      * &#x60;-31003 SAS authorization required&#x60;. Enable SAS for your wallet before calling this
-     * endpoint. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * endpoint. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param createInboundTransferRequest (required)
      * @return ApiResponse&lt;CreateInboundTransferResponse&gt;
@@ -730,7 +730,7 @@ public class TransferApi {
 
     /**
      * Create Outbound Transfer (PREDICTION_TRADE) Transfer funds from the user&#39;s CEX account
-     * (SPOT or FUNDING) into the prediction wallet. Requires SAS authorization. Weight(IP): 200
+     * (SPOT or FUNDING) into the prediction wallet. Requires SAS authorization. Weight(IP): 1
      * Security Type: PREDICTION_TRADE
      *
      * @param createOutboundTransferRequest (required)
@@ -945,7 +945,7 @@ public class TransferApi {
 
     /**
      * Query Transfer List (PREDICTION_TRADE) Get the authenticated user&#39;s prediction wallet
-     * transfer history within a date range. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * transfer history within a date range. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param startDate Start date. Format: &#x60;yyyy-MM-dd&#x60;. Must be ≤ &#x60;endDate&#x60;
@@ -1116,7 +1116,7 @@ public class TransferApi {
      * transfer by transfer ID. **&#x60;status&#x60; values:** Terminal states are
      * &#x60;COMPLETED&#x60; and &#x60;FAILED&#x60;. Intermediate states are &#x60;PROCESSING&#x60;
      * and &#x60;PENDING&#x60;. **Do not** poll for &#x60;SUCCESS&#x60; — it is not a valid terminal
-     * state. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * state. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param transferId Transfer ID returned from outbound/inbound transfer (required)
      * @param recvWindow Request validity window in milliseconds (optional)

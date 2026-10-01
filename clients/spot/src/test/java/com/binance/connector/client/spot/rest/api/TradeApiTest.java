@@ -867,8 +867,8 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000computeCommissionRates=false&symbol=BNBUSDT&side=BUY&quantity=1&type=MARKET", signInputCaptor.getValue());
-        assertEquals("af317a0ac951f12999280aa1c3362b23b02460ff5fe5527e86b375a88cc98554", actualRequest.url().queryParameter("signature"));
+        assertEquals("timestamp=1736393892000symbol=BNBUSDT&side=BUY&quantity=1&type=MARKET", signInputCaptor.getValue());
+        assertEquals("84bb7809eacf584b9d7dccae40864b17ca8fcf3de423b05e0a171b8a0c67ed62", actualRequest.url().queryParameter("signature"));
         assertEquals("/api/v3/sor/order/test", actualRequest.url().encodedPath());
     }
 }

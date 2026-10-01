@@ -29,7 +29,7 @@ public class UserDataStreamUnsubscribeExample {
     }
 
     /**
-     * WebSocket Unsubscribe from User Data Stream
+     * Unsubscribe from User Data Stream
      *
      * <p>Stop listening to the User Data Stream in the current WebSocket connection. Note that
      * &#x60;session.logout&#x60; will only close the subscription created with
@@ -52,7 +52,7 @@ public class UserDataStreamUnsubscribeExample {
     }
 
     /**
-     * WebSocket Unsubscribe from User Data Stream
+     * Unsubscribe from User Data Stream
      *
      * <p>Stop listening to the User Data Stream in the current WebSocket connection. Note that
      * &#x60;session.logout&#x60; will only close the subscription created with

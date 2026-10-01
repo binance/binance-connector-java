@@ -40,7 +40,15 @@ public class OrderCancelExample {
      * you cancel an order that is a part of an order list, the entire order list is canceled. * The
      * performance for canceling an order (single cancel or as part of a cancel-replace) is always
      * better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
-     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower. Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses. **Regarding &#x60;cancelRestrictions&#x60;** * If the
+     * &#x60;cancelRestrictions&#x60; value is not any of the supported values, the error will be:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -1145, \&quot;msg\&quot;: \&quot;Invalid
+     * cancelRestrictions\&quot; } &#x60;&#x60;&#x60; * If the order did not pass the conditions for
+     * &#x60;cancelRestrictions&#x60;, the error will be: &#x60;&#x60;&#x60;json {
+     * \&quot;code\&quot;: -2011, \&quot;msg\&quot;: \&quot;Order was not canceled due to cancel
+     * restrictions.\&quot; } &#x60;&#x60;&#x60;
      */
     public void orderCancelExampleAsync() {
         OrderCancelRequest orderCancelRequest = new OrderCancelRequest();
@@ -68,7 +76,15 @@ public class OrderCancelExample {
      * you cancel an order that is a part of an order list, the entire order list is canceled. * The
      * performance for canceling an order (single cancel or as part of a cancel-replace) is always
      * better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
-     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower. Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses. **Regarding &#x60;cancelRestrictions&#x60;** * If the
+     * &#x60;cancelRestrictions&#x60; value is not any of the supported values, the error will be:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -1145, \&quot;msg\&quot;: \&quot;Invalid
+     * cancelRestrictions\&quot; } &#x60;&#x60;&#x60; * If the order did not pass the conditions for
+     * &#x60;cancelRestrictions&#x60;, the error will be: &#x60;&#x60;&#x60;json {
+     * \&quot;code\&quot;: -2011, \&quot;msg\&quot;: \&quot;Order was not canceled due to cancel
+     * restrictions.\&quot; } &#x60;&#x60;&#x60;
      */
     public void orderCancelExampleSync() {
         OrderCancelRequest orderCancelRequest = new OrderCancelRequest();

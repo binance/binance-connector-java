@@ -14,7 +14,7 @@ All URIs are relative to *http://localhost*
 | [**kline**](DefaultApi.md#kline) | **POST** /&lt;symbol&gt;@kline_&lt;interval&gt; | Kline/Candlestick Streams for UTC |
 | [**klineOffset**](DefaultApi.md#klineOffset) | **POST** /&lt;symbol&gt;@kline_&lt;interval&gt;@+08:00 | Kline/Candlestick Streams with timezone offset |
 | [**miniTicker**](DefaultApi.md#miniTicker) | **POST** /&lt;symbol&gt;@miniTicker | Individual Symbol Mini Ticker Stream |
-| [**partialBookDepth**](DefaultApi.md#partialBookDepth) | **POST** /&lt;symbol&gt;@depth&lt;levels&gt;@&lt;updateSpeed&gt; | WebSocket Partial Book Depth Streams |
+| [**partialBookDepth**](DefaultApi.md#partialBookDepth) | **POST** /&lt;symbol&gt;@depth&lt;levels&gt;@&lt;updateSpeed&gt; | Partial Book Depth Streams |
 | [**referencePrice**](DefaultApi.md#referencePrice) | **POST** /&lt;symbol&gt;@referencePrice | Reference Price Streams |
 | [**rollingWindowTicker**](DefaultApi.md#rollingWindowTicker) | **POST** /&lt;symbol&gt;@ticker_&lt;windowSize&gt; | Individual Symbol Rolling Window Statistics Streams |
 | [**ticker**](DefaultApi.md#ticker) | **POST** /&lt;symbol&gt;@ticker | Individual Symbol Ticker Streams |
@@ -523,7 +523,7 @@ No authorization required
 
 Kline/Candlestick Streams with timezone offset
 
-The Kline/Candlestick Stream push updates to the current klines/candlestick every second in &#x60;UTC+8&#x60; timezone  **Kline/Candlestick chart intervals:**  Supported intervals: See Kline/Candlestick chart intervals  **UTC+8 timezone offset:**   - Kline intervals open and close in the UTC+8 timezone. For example the 1d klines will open at the beginning of the UTC+8 day, and close at the end of the UTC+8 day.   - Note that E (event time), t (start time) and T (close time) in the payload are Unix timestamps, which are always interpreted in UTC.  Update Speed: 1000ms for &#x60;1s&#x60;, 2000ms for the other intervals
+The Kline/Candlestick Stream push updates to the current klines/candlestick every second in &#x60;UTC+8&#x60; timezone  **Kline/Candlestick chart intervals:**  Supported intervals: See Kline/Candlestick chart intervals  **UTC+8 timezone offset:**  - Kline intervals open and close in the &#x60;UTC+8&#x60; timezone. For example the &#x60;1d&#x60; klines will open at the beginning of the &#x60;UTC+8&#x60; day, and close at the end of the &#x60;UTC+8&#x60; day. - Note that &#x60;E&#x60; (event time), &#x60;t&#x60; (start time) and &#x60;T&#x60; (close time) in the payload are Unix timestamps, which are always interpreted in UTC.  Update Speed: 1000ms for &#x60;1s&#x60;, 2000ms for the other intervals
 
 ### Example
 ```java
@@ -645,9 +645,9 @@ No authorization required
 # **partialBookDepth**
 > PartialBookDepthResponse partialBookDepth(partialBookDepthRequest)
 
-WebSocket Partial Book Depth Streams
+Partial Book Depth Streams
 
-Top **\\&lt;levels\\&gt;** bids and asks, pushed every second.  Update Speed: 1000ms or 100ms
+Top **\\&lt;levels\\&gt;** bids and asks, pushed every second. Valid **\\&lt;levels\\&gt;** are 5, 10, or 20.  Update Speed: 1000ms or 100ms
 
 ### Example
 ```java
@@ -771,7 +771,7 @@ No authorization required
 
 Individual Symbol Rolling Window Statistics Streams
 
-Rolling window ticker statistics for a single symbol, computed over multiple windows.  **Note:** This stream is different from the &#x60;&lt;symbol&gt;@ticker&#x60; stream. The open time &#x60;\&quot;O\&quot;&#x60; always starts on a minute, while the closing time &#x60;\&quot;C\&quot;&#x60; is the current time  of the update. As such, the effective window might be up to 59999ms wider than &#x60;&lt;window_size&gt;&#x60;.  Update Speed: 1000ms
+Rolling window ticker statistics for a single symbol, computed over multiple windows.  **Note:** This stream is different from the &#x60;&lt;symbol&gt;@ticker&#x60; stream. The open time &#x60;\&quot;O\&quot;&#x60; always starts on a minute, while the closing time &#x60;\&quot;C\&quot;&#x60; is the current time of the update. As such, the effective window might be up to 59999ms wider than &#x60;&lt;windowSize&gt;&#x60;.  Update Speed: 1000ms
 
 ### Example
 ```java

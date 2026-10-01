@@ -34,7 +34,7 @@ public class ApplyMmWithdrawExample {
      * wallet address. Unlike &#x60;v1/capital/withdraw/apply&#x60;, the caller does NOT pass
      * &#x60;address&#x60;; the backend resolves the user&#39;s bound CeDeFi MPC wallet address by
      * &#x60;userId&#x60; and reuses the existing capital withdraw flow with that address as the
-     * target. Weight(IP): 200 Security Type: PREDICTION_TRADE Notes: - Restricted to authorized
+     * target. Weight(IP): 1 Security Type: PREDICTION_TRADE Notes: - Restricted to authorized
      * market makers. Requests from unauthorized accounts are rejected — contact BD to request
      * access. - walletType Validation: | Value | Behavior | | --------------- |
      * ------------------------------- | | &#x60;null&#x60; | Allowed — defaults to SPOT | |

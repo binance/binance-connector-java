@@ -65,7 +65,7 @@ public class AccountRateLimitsOrdersResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private List<@Valid AccountRateLimitsOrdersResponseRateLimitsInner> rateLimits;
 
     public AccountRateLimitsOrdersResponse() {}
 
@@ -142,13 +142,13 @@ public class AccountRateLimitsOrdersResponse extends BaseDTO {
 
     public AccountRateLimitsOrdersResponse rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountRateLimitsOrdersResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public AccountRateLimitsOrdersResponse addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
+            AccountRateLimitsOrdersResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -163,13 +163,13 @@ public class AccountRateLimitsOrdersResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid AccountRateLimitsOrdersResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+                    List<@Valid AccountRateLimitsOrdersResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -225,7 +225,8 @@ public class AccountRateLimitsOrdersResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid AccountRateLimitsOrdersResponseRateLimitsInner> rateLimitsValue =
+                getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -365,7 +366,7 @@ public class AccountRateLimitsOrdersResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                    AccountRateLimitsOrdersResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

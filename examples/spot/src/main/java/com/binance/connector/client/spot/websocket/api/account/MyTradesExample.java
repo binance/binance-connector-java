@@ -32,9 +32,9 @@ public class MyTradesExample {
      * Account trade history (USER_DATA)
      *
      * <p>Query information about all your trades, filtered by time range. Weight: Condition|
-     * Weight| ---| --- |Without orderId|20| |With orderId|5| Security Type: USER_DATA Notes: Data
-     * Source: Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60; is specified, return trades
-     * with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If &#x60;startTime&#x60; and/or
+     * Weight| ---| --- |Without orderId|20| |With orderId|5| Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60; is specified, return
+     * trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If &#x60;startTime&#x60; and/or
      * &#x60;endTime&#x60; are specified, trades are filtered by execution time (&#x60;time&#x60;).
      * - &#x60;fromId&#x60; cannot be used together with &#x60;startTime&#x60; and
      * &#x60;endTime&#x60;. - If &#x60;orderId&#x60; is specified, only trades related to that order
@@ -61,9 +61,9 @@ public class MyTradesExample {
      * Account trade history (USER_DATA)
      *
      * <p>Query information about all your trades, filtered by time range. Weight: Condition|
-     * Weight| ---| --- |Without orderId|20| |With orderId|5| Security Type: USER_DATA Notes: Data
-     * Source: Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60; is specified, return trades
-     * with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If &#x60;startTime&#x60; and/or
+     * Weight| ---| --- |Without orderId|20| |With orderId|5| Security Type: USER_DATA Notes: **Data
+     * Source:** Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60; is specified, return
+     * trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If &#x60;startTime&#x60; and/or
      * &#x60;endTime&#x60; are specified, trades are filtered by execution time (&#x60;time&#x60;).
      * - &#x60;fromId&#x60; cannot be used together with &#x60;startTime&#x60; and
      * &#x60;endTime&#x60;. - If &#x60;orderId&#x60; is specified, only trades related to that order

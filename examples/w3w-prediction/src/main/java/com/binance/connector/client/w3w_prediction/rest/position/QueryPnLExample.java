@@ -31,7 +31,7 @@ public class QueryPnLExample {
      *
      * <p>Query profit and loss records for the authenticated user&#39;s prediction positions. When
      * &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise
-     * returns a list in &#x60;pnlList&#x60;. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * returns a list in &#x60;pnlList&#x60;. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

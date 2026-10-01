@@ -26,6 +26,7 @@ import com.google.gson.stream.JsonWriter;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -33,6 +34,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /** ExecutionReport */
 @jakarta.annotation.Generated(
@@ -1482,6 +1484,15 @@ public class ExecutionReport extends BaseDTO {
                 && Objects.equals(this.eR, executionReport.eR);
     }
 
+    private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+        return a == b
+                || (a != null
+                        && b != null
+                        && a.isPresent()
+                        && b.isPresent()
+                        && Objects.deepEquals(a.get(), b.get()));
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(
@@ -1540,6 +1551,13 @@ public class ExecutionReport extends BaseDTO {
                 gOV,
                 gp,
                 eR);
+    }
+
+    private static <T> int hashCodeNullable(JsonNullable<T> a) {
+        if (a == null) {
+            return 1;
+        }
+        return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
     }
 
     @Override

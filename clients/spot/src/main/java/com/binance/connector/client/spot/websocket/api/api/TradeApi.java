@@ -71,7 +71,8 @@ public class TradeApi {
     /**
      * Cancel open orders (TRADE) Cancel all open orders on a symbol. This includes orders that are
      * part of an order list. Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching
-     * Engine
+     * Engine Response Notes: **Note:** The payload above does not show all fields that can appear.
+     * Please refer to Conditional fields in Order Responses.
      *
      * @param openOrdersCancelAllRequest (required)
      * @return OpenOrdersCancelAllResponse
@@ -135,9 +136,10 @@ public class TradeApi {
     /**
      * Order Amend Keep Priority (TRADE) Reduce the quantity of an existing open order. This adds 0
      * orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Read [Order Amend Keep Priority FAQ](/products/spot/faqs/order_amend_keep_priority)
-     * to learn more. Weight(IP): 4 Unfilled Order Count: 0 Security Type: TRADE Notes: **Data
-     * Source:** Matching Engine
+     * filter. Read Order Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count:
+     * 0 Security Type: TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The
+     * payload above does not show all fields that can appear. Please refer to Conditional fields in
+     * Order Responses.
      *
      * @param orderAmendKeepPriorityRequest (required)
      * @return OrderAmendKeepPriorityResponse
@@ -208,7 +210,15 @@ public class TradeApi {
      * If you cancel an order that is a part of an order list, the entire order list is canceled. *
      * The performance for canceling an order (single cancel or as part of a cancel-replace) is
      * always better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or
-     * both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
+     * both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower. Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses. **Regarding &#x60;cancelRestrictions&#x60;** * If the
+     * &#x60;cancelRestrictions&#x60; value is not any of the supported values, the error will be:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -1145, \&quot;msg\&quot;: \&quot;Invalid
+     * cancelRestrictions\&quot; } &#x60;&#x60;&#x60; * If the order did not pass the conditions for
+     * &#x60;cancelRestrictions&#x60;, the error will be: &#x60;&#x60;&#x60;json {
+     * \&quot;code\&quot;: -2011, \&quot;msg\&quot;: \&quot;Order was not canceled due to cancel
+     * restrictions.\&quot; } &#x60;&#x60;&#x60;
      *
      * @param orderCancelRequest (required)
      * @return OrderCancelResponse
@@ -273,16 +283,15 @@ public class TradeApi {
      * instead of the canceled one. * A new order that was not attempted (i.e. when
      * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
      * 1. * You can only cancel an individual order from an orderList using this method, but the
-     * result is the same as canceling the entire orderList.not attempted (i.e. when
-     * &#x60;newOrderResult: NOT_ATTEMPTED&#x60;), will still increase the unfilled order count by
-     * 1. Weight(IP): 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:**
-     * Matching Engine Similar to the [&#x60;order.place&#x60;](#order-place) request, additional
-     * mandatory parameters (*) are determined by the new order &#x60;type&#x60;. Available
-     * &#x60;cancelReplaceMode&#x60; options: * &#x60;STOP_ON_FAILURE&#x60; – if cancellation
-     * request fails, new order placement will not be attempted. * &#x60;ALLOW_FAILURE&#x60; – new
-     * order placement will be attempted even if the cancel request fails. &lt;table&gt;
-     * &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3 align&#x3D;left&gt;Request&lt;/th&gt; &lt;th
-     * colspan&#x3D;3 align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+     * result is the same as canceling the entire orderList. Weight(IP): 1 Unfilled Order Count: 1
+     * Security Type: TRADE Notes: **Data Source:** Matching Engine Similar to the
+     * &#x60;order.place&#x60; request, additional mandatory parameters (*) are determined by the
+     * new order &#x60;type&#x60;. Available &#x60;cancelReplaceMode&#x60; options: *
+     * &#x60;STOP_ON_FAILURE&#x60; – if cancellation request fails, new order placement will not be
+     * attempted. * &#x60;ALLOW_FAILURE&#x60; – new order placement will be attempted even if the
+     * cancel request fails. &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th colspan&#x3D;3
+     * align&#x3D;left&gt;Request&lt;/th&gt; &lt;th colspan&#x3D;3
+     * align&#x3D;left&gt;Response&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
      * &lt;th&gt;&lt;code&gt;cancelReplaceMode&lt;/code&gt;&lt;/th&gt;
      * &lt;th&gt;&lt;code&gt;orderRateLimitExceededMode&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Unfilled
      * Order Count&lt;/th&gt; &lt;th&gt;&lt;code&gt;cancelResult&lt;/code&gt;&lt;/th&gt;
@@ -392,11 +401,13 @@ public class TradeApi {
      * &#x60;STOP_ON_FAILURE&#x60; mode, if the new order placement fails, the old order is still
      * canceled. * Filters and order count limits are evaluated before cancellation and order
      * placement occurs. * If new order placement is not attempted, your order count is still
-     * incremented. * Like [&#x60;order.cancel&#x60;](#order-cancel), if you cancel an individual
-     * order from an order list, the entire order list is canceled. * The performance for canceling
-     * an order (single cancel or as part of a cancel-replace) is always better when only
-     * &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
-     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
+     * incremented. * Like &#x60;order.cancel&#x60;, if you cancel an individual order from an order
+     * list, the entire order list is canceled. * The performance for canceling an order (single
+     * cancel or as part of a cancel-replace) is always better when only &#x60;orderId&#x60; is
+     * sent. Sending &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; +
+     * &#x60;origClientOrderId&#x60; will be slower. Response Notes: **Note:** The payload above
+     * does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      *
      * @param orderCancelReplaceRequest (required)
      * @return OrderCancelReplaceResponse
@@ -463,8 +474,7 @@ public class TradeApi {
      * &#x60;listClientOrderId&#x60; parameters are provided, the &#x60;orderListId&#x60; is
      * searched first, then the &#x60;listClientOrderId&#x60; from that result is checked against
      * that order. If both conditions are not met the request will be rejected. * Canceling an
-     * individual order with [&#x60;order.cancel&#x60;](#order-cancel) will cancel the entire order
-     * list as well.
+     * individual order with &#x60;order.cancel&#x60; will cancel the entire order list as well.
      *
      * @param orderListCancelRequest (required)
      * @return OrderListCancelResponse
@@ -682,9 +692,10 @@ public class TradeApi {
     }
 
     /**
-     * OPO (TRADE) Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
-     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
-     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * OPO (TRADE) Place an OPO. * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter and
+     * MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes:
+     * **Data Source:** Matching Engine Response Notes: **Note:** The payload above does not show
+     * all fields that can appear. Please refer to Conditional fields in Order Responses.
      *
      * @param orderListPlaceOpoRequest (required)
      * @return OrderListPlaceOpoResponse
@@ -746,8 +757,9 @@ public class TradeApi {
     }
 
     /**
-     * OPOCO (TRADE) Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count:
-     * 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * OPOCO (TRADE) Place an OPOCO. Weight(IP): 1 Unfilled Order Count: 3 Security Type: TRADE
+     * Notes: **Data Source:** Matching Engine Response Notes: **Note:** The payload above does not
+     * show all fields that can appear. Please refer to Conditional fields in Order Responses.
      *
      * @param orderListPlaceOpocoRequest (required)
      * @return OrderListPlaceOpocoResponse
@@ -832,7 +844,9 @@ public class TradeApi {
      * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
      * |&#x60;pendingType&#x60; &#x3D;&#x60;STOP_LOSS_LIMIT&#x60; or
      * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
-     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;| Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses.
      *
      * @param orderListPlaceOtoRequest (required)
      * @return OrderListPlaceOtoResponse
@@ -898,11 +912,10 @@ public class TradeApi {
      * (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders. * The first
      * order is called the **working order** and must be &#x60;LIMIT&#x60; or
      * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The
-     * behavior of the working order is the same as the [OTO](#order-list-place-oto). * OTOCO has 2
-     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
-     * only placed on the order book when the working order gets **fully filled**. * The rules of
-     * the pending above and pending below follow the same rules as the [Order list
-     * OCO](#order-list-place-oco). * OTOCOs add **3 orders** to the
+     * behavior of the working order is the same as the OTO. * OTOCO has 2 pending orders (pending
+     * above and pending below), forming an OCO pair. The pending orders are only placed on the
+     * order book when the working order gets **fully filled**. * The rules of the pending above and
+     * pending below follow the same rules as the Order list OCO. * OTOCOs add **3 orders** to the
      * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
      * 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
      * **Mandatory parameters based on &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or
@@ -922,7 +935,8 @@ public class TradeApi {
      * &#x60;pendingBelowTrailingDelta&#x60;|
      * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingBelowPrice&#x60;,
      * &#x60;pendingBelowStopPrice&#x60; and/or &#x60;pendingBelowTrailingDelta&#x60;,
-     * &#x60;pendingBelowTimeInForce&#x60;|
+     * &#x60;pendingBelowTimeInForce&#x60;| Response Notes: **Note:** The payload above does not
+     * show all fields that can appear. Please refer to Conditional fields in Order Responses.
      *
      * @param orderListPlaceOtocoRequest (required)
      * @return OrderListPlaceOtocoResponse
@@ -986,11 +1000,10 @@ public class TradeApi {
     /**
      * Place new order (TRADE) Send in a new order. This adds 1 order to the
      * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
-     * 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine &lt;a
-     * id&#x3D;\&quot;order-type\&quot;&gt;Certain parameters (*)&lt;/a&gt; become mandatory based
-     * on the order &#x60;type&#x60;: &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Order
-     * &lt;code&gt;type&lt;/code&gt;&lt;/th&gt; &lt;th&gt;Mandatory parameters&lt;/th&gt;
-     * &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt;
+     * 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * Certain parameters (*) become mandatory based on the order &#x60;type&#x60;: &lt;table&gt;
+     * &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Order &lt;code&gt;type&lt;/code&gt;&lt;/th&gt;
+     * &lt;th&gt;Mandatory parameters&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt;
      * &lt;td&gt;&lt;code&gt;LIMIT&lt;/code&gt;&lt;/td&gt; &lt;td&gt; &lt;ul&gt;
      * &lt;li&gt;&lt;code&gt;timeInForce&lt;/code&gt;&lt;/li&gt;
      * &lt;li&gt;&lt;code&gt;price&lt;/code&gt;&lt;/li&gt;
@@ -1062,35 +1075,33 @@ public class TradeApi {
      * direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
      * &lt;td&gt;&lt;code&gt;TAKE_PROFIT_LIMIT&lt;/code&gt;&lt;/td&gt; &lt;td&gt; &lt;p&gt; Like
      * &lt;code&gt;STOP_LOSS_LIMIT&lt;/code&gt; but activates when market price moves in the
-     * favorable direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;a
-     * id&#x3D;\&quot;pegged-orders-info\&quot;&gt;&lt;/a&gt; Notes on using parameters for Pegged
-     * Orders: * These parameters are allowed for &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;,
-     * &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; orders. * If
-     * &#x60;pegPriceType&#x60; is specified, &#x60;price&#x60; becomes optional. Otherwise, it is
-     * still mandatory. * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that is
-     * the best price on the same side of the order book as your order. *
+     * favorable direction. &lt;/p&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; Notes
+     * on using parameters for Pegged Orders: * These parameters are allowed for &#x60;LIMIT&#x60;,
+     * &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; orders. *
+     * If &#x60;pegPriceType&#x60; is specified, &#x60;price&#x60; becomes optional. Otherwise, it
+     * is still mandatory. * &#x60;pegPriceType&#x3D;PRIMARY_PEG&#x60; means the primary peg, that
+     * is the best price on the same side of the order book as your order. *
      * &#x60;pegPriceType&#x3D;MARKET_PEG&#x60; means the market peg, that is the best price on the
      * opposite side of the order book from your order. * Use &#x60;pegOffsetType&#x60; and
      * &#x60;pegOffsetValue&#x60; to request a price level other than the best one. These parameters
-     * must be specified together. &lt;a id&#x3D;\&quot;timeInForce\&quot;&gt;&lt;/a&gt; Available
-     * &#x60;timeInForce&#x60; options, setting how long the order should be active before
-     * expiration: TIF | Description ----- | -------------- &#x60;GTC&#x60; | **Good &#39;til
-     * Canceled** – the order will remain on the book until you cancel it, or the order is
-     * completely filled. &#x60;IOC&#x60; | **Immediate or Cancel** – the order will be filled for
-     * as much as possible, the unfilled quantity immediately expires. &#x60;FOK&#x60; | **Fill or
-     * Kill** – the order will expire unless it cannot be immediately filled for the entire
-     * quantity. Notes: * &#x60;newClientOrderId&#x60; specifies &#x60;clientOrderId&#x60; value for
-     * the order. A new order with the same &#x60;clientOrderId&#x60; is accepted only when the
-     * previous one is filled or expired. * Any &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; order
-     * can be made into an iceberg order by specifying the &#x60;icebergQty&#x60;. An order with an
-     * &#x60;icebergQty&#x60; must have &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * Trigger
-     * order price rules for &#x60;STOP_LOSS&#x60;/&#x60;TAKE_PROFIT&#x60; orders: *
-     * &#x60;stopPrice&#x60; must be above market price: &#x60;STOP_LOSS BUY&#x60;,
-     * &#x60;TAKE_PROFIT SELL&#x60; * &#x60;stopPrice&#x60; must be below market price:
-     * &#x60;STOP_LOSS SELL&#x60;, &#x60;TAKE_PROFIT BUY&#x60; * &#x60;MARKET&#x60; orders using
-     * &#x60;quoteOrderQty&#x60; follow [&#x60;LOT_SIZE&#x60;](/products/spot/filters#lot_size)
-     * filter rules. The order will execute a quantity that has notional value as close as possible
-     * to requested &#x60;quoteOrderQty&#x60;.
+     * must be specified together. Available &#x60;timeInForce&#x60; options, setting how long the
+     * order should be active before expiration: TIF | Description ----- | --------------
+     * &#x60;GTC&#x60; | **Good &#39;til Canceled** – the order will remain on the book until you
+     * cancel it, or the order is completely filled. &#x60;IOC&#x60; | **Immediate or Cancel** – the
+     * order will be filled for as much as possible, the unfilled quantity immediately expires.
+     * &#x60;FOK&#x60; | **Fill or Kill** – the order will expire unless it cannot be immediately
+     * filled for the entire quantity. Notes: * &#x60;newClientOrderId&#x60; specifies
+     * &#x60;clientOrderId&#x60; value for the order. A new order with the same
+     * &#x60;clientOrderId&#x60; is accepted only when the previous one is filled or expired. * Any
+     * &#x60;LIMIT&#x60; or &#x60;LIMIT_MAKER&#x60; order can be made into an iceberg order by
+     * specifying the &#x60;icebergQty&#x60;. An order with an &#x60;icebergQty&#x60; must have
+     * &#x60;timeInForce&#x60; set to &#x60;GTC&#x60;. * Trigger order price rules for
+     * &#x60;STOP_LOSS&#x60;/&#x60;TAKE_PROFIT&#x60; orders: * &#x60;stopPrice&#x60; must be above
+     * market price: &#x60;STOP_LOSS BUY&#x60;, &#x60;TAKE_PROFIT SELL&#x60; * &#x60;stopPrice&#x60;
+     * must be below market price: &#x60;STOP_LOSS SELL&#x60;, &#x60;TAKE_PROFIT BUY&#x60; *
+     * &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; follow &#x60;LOT_SIZE&#x60; filter
+     * rules. The order will execute a quantity that has notional value as close as possible to
+     * requested &#x60;quoteOrderQty&#x60;.
      *
      * @param orderPlaceRequest (required)
      * @return OrderPlaceResponse
@@ -1217,10 +1228,10 @@ public class TradeApi {
     /**
      * Place new order using SOR (TRADE) Places an order using smart order routing (SOR). This adds
      * 1 order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Read [SOR FAQ](/products/spot/faqs/sor_faq) to learn more. Weight(IP): 1 Unfilled
-     * Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine **Note:**
-     * &#x60;sor.order.place&#x60; only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60; orders.
-     * &#x60;quoteOrderQty&#x60; is not supported.
+     * filter. Read SOR FAQ to learn more. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
+     * TRADE Notes: **Data Source:** Matching Engine **Note:** &#x60;sor.order.place&#x60; only
+     * supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60; orders. &#x60;quoteOrderQty&#x60; is not
+     * supported.
      *
      * @param sorOrderPlaceRequest (required)
      * @return SorOrderPlaceResponse

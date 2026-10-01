@@ -181,7 +181,8 @@ public class GetCountryListResponseCountriesInner {
     }
 
     /**
-     * Whether this country has region-level restrictions.
+     * Whether this country has region-level restrictions. Always &#x60;false&#x60; for the BR
+     * entity, which does not collect region/city.
      *
      * @return hasRegionRestrictions
      */

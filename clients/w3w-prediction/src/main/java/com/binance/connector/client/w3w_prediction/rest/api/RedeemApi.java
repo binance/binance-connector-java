@@ -46,7 +46,7 @@ public class RedeemApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.1 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -206,7 +206,7 @@ public class RedeemApi {
 
     /**
      * Batch Redeem (PREDICTION_TRADE) Redeem one or more settled prediction tokens on-chain to
-     * claim winnings. Requires SAS authorization. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * claim winnings. Requires SAS authorization. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @param batchRedeemRequest (required)
      * @return ApiResponse&lt;BatchRedeemResponse&gt;
@@ -354,7 +354,7 @@ public class RedeemApi {
 
     /**
      * Get Redeem Status (PREDICTION_TRADE) Query the on-chain transaction status of a previously
-     * submitted redeem request. Weight(IP): 200 Security Type: PREDICTION_TRADE Response Notes: -
+     * submitted redeem request. Weight(IP): 1 Security Type: PREDICTION_TRADE Response Notes: -
      * Status values: | Value | Description | | ----------- |
      * -------------------------------------------- | | &#x60;PENDING&#x60; | Transaction submitted,
      * awaiting confirmation | | &#x60;CONFIRMED&#x60; | Transaction confirmed on-chain | |

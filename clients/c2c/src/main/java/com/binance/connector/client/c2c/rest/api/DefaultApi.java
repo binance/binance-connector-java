@@ -43,7 +43,7 @@ public class DefaultApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-c2c/4.0.0 (Java/%s; %s; %s)",
+                    "binance-c2c/4.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

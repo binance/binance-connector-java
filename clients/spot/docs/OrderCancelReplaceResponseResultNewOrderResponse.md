@@ -2,6 +2,7 @@
 
 # OrderCancelReplaceResponseResultNewOrderResponse
 
+Format is identical to \"order.place\" format, affected by \"newOrderRespType\". Some fields are optional and are included only for orders that set them.
 
 ## Properties
 

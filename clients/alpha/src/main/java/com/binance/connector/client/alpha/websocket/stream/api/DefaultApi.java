@@ -63,7 +63,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class DefaultApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-alpha/2.0.0 (Java/%s; %s; %s)",
+                    "binance-alpha/2.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;

@@ -172,7 +172,7 @@ public class Example {
     String tranId = "1"; // String | Comma(,) separated list of wallet tran Ids.
     String network = "network_example"; // String | 
     String coin = "BTC"; // String | 
-    Long travelRuleStatus = 0L; // Long | 0:Completed,1:Pending,2:Failed
+    Long travelRuleStatus = 0L; // Long | 0: Completed,1: Pending,2: Failed
     Boolean pendingQuestionnaire = true; // Boolean | true: Only return records that pending deposit questionnaire. false/not provided: return all records.
     Long startTime = 1623319461670L; // Long | Default: 90 days from current timestamp
     Long endTime = 1641782889000L; // Long | Default: present timestamp
@@ -201,7 +201,7 @@ public class Example {
 | **tranId** | **String**| Comma(,) separated list of wallet tran Ids. | [optional] |
 | **network** | **String**|  | [optional] |
 | **coin** | **String**|  | [optional] |
-| **travelRuleStatus** | **Long**| 0:Completed,1:Pending,2:Failed | [optional] |
+| **travelRuleStatus** | **Long**| 0: Completed,1: Pending,2: Failed | [optional] |
 | **pendingQuestionnaire** | **Boolean**| true: Only return records that pending deposit questionnaire. false/not provided: return all records. | [optional] |
 | **startTime** | **Long**| Default: 90 days from current timestamp | [optional] |
 | **endTime** | **Long**| Default: present timestamp | [optional] |
@@ -372,7 +372,7 @@ No authorization required
 
 Get Country List (USER_DATA)
 
-Query the active country list for travel rule questionnaires. Currently, only supports AU entity.  Weight(IP): 1  Security Type: USER_DATA
+Query the active country list for travel rule questionnaires. Currently supports AU and BR entities.  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -768,7 +768,7 @@ public class Example {
     String withdrawOrderId = "1"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
     String network = "network_example"; // String | 
     String coin = "BTC"; // String | 
-    Long travelRuleStatus = 0L; // Long | 0:Completed,1:Pending,2:Failed
+    Long travelRuleStatus = 0L; // Long | 0: Completed,1: Pending,2: Failed
     Long offset = 0L; // Long | 
     Long limit = 1000L; // Long | 
     Long startTime = 1623319461670L; // Long | Default: 90 days from current timestamp
@@ -797,7 +797,7 @@ public class Example {
 | **withdrawOrderId** | **String**| client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | [optional] |
 | **network** | **String**|  | [optional] |
 | **coin** | **String**|  | [optional] |
-| **travelRuleStatus** | **Long**| 0:Completed,1:Pending,2:Failed | [optional] |
+| **travelRuleStatus** | **Long**| 0: Completed,1: Pending,2: Failed | [optional] |
 | **offset** | **Long**|  | [optional] |
 | **limit** | **Long**|  | [optional] |
 | **startTime** | **Long**| Default: 90 days from current timestamp | [optional] |
@@ -850,7 +850,7 @@ public class Example {
     String withdrawOrderId = "1"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
     String network = "network_example"; // String | 
     String coin = "coin_example"; // String | 
-    Long travelRuleStatus = 0L; // Long | 0:Completed,1:Pending,2:Failed
+    Long travelRuleStatus = 0L; // Long | 0: Completed,1: Pending,2: Failed
     Long offset = 0L; // Long | 
     Long limit = 1000L; // Long | 
     Long startTime = 1623319461670L; // Long | Default: 90 days from current timestamp
@@ -879,7 +879,7 @@ public class Example {
 | **withdrawOrderId** | **String**| client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | [optional] |
 | **network** | **String**|  | [optional] |
 | **coin** | **String**|  | [optional] |
-| **travelRuleStatus** | **Long**| 0:Completed,1:Pending,2:Failed | [optional] |
+| **travelRuleStatus** | **Long**| 0: Completed,1: Pending,2: Failed | [optional] |
 | **offset** | **Long**|  | [optional] |
 | **limit** | **Long**|  | [optional] |
 | **startTime** | **Long**| Default: 90 days from current timestamp | [optional] |

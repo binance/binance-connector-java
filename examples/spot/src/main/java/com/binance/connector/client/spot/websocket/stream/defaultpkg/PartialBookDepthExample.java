@@ -22,10 +22,10 @@ public class PartialBookDepthExample {
     }
 
     /**
-     * WebSocket Partial Book Depth Streams
+     * Partial Book Depth Streams
      *
-     * <p>Top **\\&lt;levels\\&gt;** bids and asks, pushed every second. Update Speed: 1000ms or
-     * 100ms
+     * <p>Top **\\&lt;levels\\&gt;** bids and asks, pushed every second. Valid
+     * **\\&lt;levels\\&gt;** are 5, 10, or 20. Update Speed: 1000ms or 100ms
      *
      * @throws ApiException if the Api call fails
      */

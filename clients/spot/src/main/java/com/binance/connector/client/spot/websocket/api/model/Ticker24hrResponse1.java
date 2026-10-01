@@ -65,7 +65,7 @@ public class Ticker24hrResponse1 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private List<@Valid Ticker24hrResponse1RateLimitsInner> rateLimits;
 
     public Ticker24hrResponse1() {}
 
@@ -130,13 +130,13 @@ public class Ticker24hrResponse1 extends BaseDTO {
 
     public Ticker24hrResponse1 rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+                    List<@Valid Ticker24hrResponse1RateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public Ticker24hrResponse1 addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
+            Ticker24hrResponse1RateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -151,13 +151,13 @@ public class Ticker24hrResponse1 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid Ticker24hrResponse1RateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+                    List<@Valid Ticker24hrResponse1RateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -212,7 +212,7 @@ public class Ticker24hrResponse1 extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid Ticker24hrResponse1RateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -335,7 +335,7 @@ public class Ticker24hrResponse1 extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                    Ticker24hrResponse1RateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

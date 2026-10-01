@@ -179,7 +179,7 @@ public class Example {
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
     String email = "123@test.com"; // String | 
-    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long futuresType = 1L; // Long | 1: USDT-margined Futures，2: Coin-margined Futures
     Long recvWindow = 5000L; // Long | 
     try {
       GetDetailOnSubAccountsFuturesAccountV2Response result = apiInstance.getDetailOnSubAccountsFuturesAccountV2(email, futuresType, recvWindow);
@@ -200,7 +200,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**|  | |
-| **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
+| **futuresType** | **Long**| 1: USDT-margined Futures，2: Coin-margined Futures | |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -598,7 +598,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
-    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long futuresType = 1L; // Long | 1: USDT-margined Futures，2: Coin-margined Futures
     Long page = 1L; // Long | 
     Long limit = 10L; // Long | 
     Long recvWindow = 5000L; // Long | 
@@ -620,7 +620,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
+| **futuresType** | **Long**| 1: USDT-margined Futures，2: Coin-margined Futures | |
 | **page** | **Long**|  | [optional] |
 | **limit** | **Long**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -981,7 +981,7 @@ public class Example {
 
     AssetManagementApi apiInstance = new AssetManagementApi(defaultClient);
     String email = "123@test.com"; // String | 
-    Long futuresType = 1L; // Long | 1:USDT-margined Futures，2: Coin-margined Futures
+    Long futuresType = 1L; // Long | 1: USDT-margined Futures，2: Coin-margined Futures
     Long startTime = 1623319461670L; // Long | Cannot be earlier than 1 month ago
     Long endTime = 1641782889000L; // Long | 
     Long page = 1L; // Long | 
@@ -1006,7 +1006,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**|  | |
-| **futuresType** | **Long**| 1:USDT-margined Futures，2: Coin-margined Futures | |
+| **futuresType** | **Long**| 1: USDT-margined Futures，2: Coin-margined Futures | |
 | **startTime** | **Long**| Cannot be earlier than 1 month ago | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **page** | **Long**|  | [optional] |

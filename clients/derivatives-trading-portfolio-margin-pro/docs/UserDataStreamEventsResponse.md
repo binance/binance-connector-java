@@ -15,7 +15,7 @@
 |**mm** | **String** | Total maintenance margin in USD |  [optional] |
 |**avb** | **String** | Total available balance in USD |  [optional] |
 |**vmw** | **String** | Virtual maxWithdraw amount in USD |  [optional] |
-|**sLowerCase** | **String** | Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION |  [optional] |
+|**sLowerCase** | **String** | Risk level: NORMAL, MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION |  [optional] |
 |**mLowerCase** | **String** | Total maintenance margin in USD value |  [optional] |
 
 

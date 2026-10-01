@@ -38,7 +38,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** TickerResponse2 */
+/** If more than one symbol is requested, response returns an array: */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
@@ -65,7 +65,7 @@ public class TickerResponse2 extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private List<@Valid TickerResponse2RateLimitsInner> rateLimits;
 
     public TickerResponse2() {}
 
@@ -138,14 +138,12 @@ public class TickerResponse2 extends BaseDTO {
     }
 
     public TickerResponse2 rateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+            @jakarta.annotation.Nullable List<@Valid TickerResponse2RateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
-    public TickerResponse2 addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
+    public TickerResponse2 addRateLimitsItem(TickerResponse2RateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -160,13 +158,12 @@ public class TickerResponse2 extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid TickerResponse2RateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+            @jakarta.annotation.Nullable List<@Valid TickerResponse2RateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -221,7 +218,7 @@ public class TickerResponse2 extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid TickerResponse2RateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -359,8 +356,7 @@ public class TickerResponse2 extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
-                            jsonArrayrateLimits.get(i));
+                    TickerResponse2RateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
                 }
                 ;
             }

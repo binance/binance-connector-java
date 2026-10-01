@@ -153,7 +153,9 @@ public class SpotRestApi {
      * returned. - For some historical orders &#x60;cummulativeQuoteQty&#x60; will be &lt; 0,
      * meaning the data is not available at this time. - If &#x60;startTime&#x60; and/or
      * &#x60;endTime&#x60; provided, &#x60;orderId&#x60; is not required. - The time between
-     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours.
+     * &#x60;startTime&#x60; and &#x60;endTime&#x60; can&#39;t be longer than 24 hours. Response
+     * Notes: **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -219,7 +221,9 @@ public class SpotRestApi {
      * Current open orders (USER_DATA) Get all open orders on a symbol. **Careful** when accessing
      * this with no symbol. Weight: 6 for a single symbol; 80 when the symbol parameter is omitted
      * Security Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database - If the symbol
-     * is not sent, orders for all symbols will be returned in an array.
+     * is not sent, orders for all symbols will be returned in an array. Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses.
      *
      * @param symbol (optional)
      * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
@@ -251,7 +255,8 @@ public class SpotRestApi {
      * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
      * conditions are not met the request will be rejected. - For some historical orders
      * &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is not available at this
-     * time.
+     * time. Response Notes: **Note:** The payload above does not show all fields that can appear.
+     * Please refer to Conditional fields in Order Responses.
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -645,7 +650,8 @@ public class SpotRestApi {
     }
 
     /**
-     * Test connectivity Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE
+     * Test connectivity Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE Notes:
+     * **Data Source:** Memory
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -667,7 +673,7 @@ public class SpotRestApi {
 
     /**
      * Check server time Test connectivity to the Rest API and get the current server time.
-     * Weight(IP): 1 Security Type: NONE
+     * Weight(IP): 1 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @return ApiResponse&lt;TimeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -796,7 +802,7 @@ public class SpotRestApi {
 
     /**
      * Historical Block Trades (MARKET_DATA) Get block trades. Weight(IP): 25 Security Type:
-     * MARKET_DATA Notes: - Data Source: Database
+     * MARKET_DATA Notes: **Data Source:** Database
      *
      * @param symbol (required)
      * @param fromId Block trade ID to fetch from (required)
@@ -895,7 +901,10 @@ public class SpotRestApi {
 
     /**
      * Query Reference Price Query the reference price for a symbol. Weight(IP): 2 Security Type:
-     * NONE Notes: **Data Source:** Memory
+     * NONE Notes: **Data Source:** Memory If the symbol has never had a reference price set, the
+     * request is rejected with: &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2043,
+     * \&quot;msg\&quot;: \&quot;This symbol doesn&#39;t have a reference price.\&quot; }
+     * &#x60;&#x60;&#x60;
      *
      * @param symbol (required)
      * @return ApiResponse&lt;ReferencePriceResponse&gt;
@@ -1217,10 +1226,17 @@ public class SpotRestApi {
      * be sent. - If both &#x60;orderId&#x60; and &#x60;origClientOrderId&#x60; are provided, the
      * &#x60;orderId&#x60; is searched first, then the &#x60;origClientOrderId&#x60; from that
      * result is checked against that order. If both conditions are not met the request will be
-     * rejected. - The performance for canceling an order (single cancel or as part of a
-     * cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
-     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
-     * will be slower.
+     * rejected. Response Notes: **Notes:** - The payload above does not show all fields that can
+     * appear in the order response. Please refer to Conditional fields in Order Responses. - The
+     * performance for canceling an order (single cancel or as part of a cancel-replace) is always
+     * better when only &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower. **Regarding
+     * &#x60;cancelRestrictions&#x60;** * If the &#x60;cancelRestrictions&#x60; value is not any of
+     * the supported values, the error will be: &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -1145,
+     * \&quot;msg\&quot;: \&quot;Invalid cancelRestrictions\&quot; } &#x60;&#x60;&#x60; * If the
+     * order did not pass the conditions for &#x60;cancelRestrictions&#x60;, the error will be:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2011, \&quot;msg\&quot;: \&quot;Order was not
+     * canceled due to cancel restrictions.\&quot; } &#x60;&#x60;&#x60;
      *
      * @param symbol (required)
      * @param orderId (optional)
@@ -1230,7 +1246,8 @@ public class SpotRestApi {
      * @param cancelRestrictions Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will
      *     succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt;
      *     &#x60;ONLY_PARTIALLY_FILLED&#x60; - Cancel will succeed if order status is
-     *     &#x60;PARTIALLY_FILLED&#x60;. (optional)
+     *     &#x60;PARTIALLY_FILLED&#x60;. For more information please refer to Regarding
+     *     &#x60;cancelRestrictions&#x60;. (optional)
      * @param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that
      *     microseconds may be specified. (optional)
      * @return ApiResponse&lt;DeleteOrderResponse&gt;
@@ -1380,7 +1397,9 @@ public class SpotRestApi {
      * Order Amend Keep Priority (TRADE) Reduce the quantity of an existing open order. This adds 0
      * orders to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
      * filter. Read Order Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count:
-     * 0 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * 0 Security Type: TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The
+     * payload above does not show all fields that can appear. Please refer to Conditional fields in
+     * Order Responses.
      *
      * @param orderAmendKeepPriorityRequest (required)
      * @return ApiResponse&lt;OrderAmendKeepPriorityResponse&gt;
@@ -1510,10 +1529,11 @@ public class SpotRestApi {
      * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
      * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
      * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt;
-     * &lt;/table&gt; **Notes:** - The performance for canceling an order (single cancel or as part
-     * of a cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
-     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
-     * will be slower.
+     * &lt;/table&gt; Response Notes: **Notes:** - The payload above does not show all fields that
+     * can appear. Please refer to Conditional fields in Order Responses. - The performance for
+     * canceling an order (single cancel or as part of a cancel-replace) is always better when only
+     * &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
      *
      * @param orderCancelReplaceRequest (required)
      * @return ApiResponse&lt;OrderCancelReplaceResponse&gt;
@@ -1523,7 +1543,7 @@ public class SpotRestApi {
      *     <table border="1">
      * <caption>Response Details</caption>
      * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Both cancel and new order succeed </td><td>  -  </td></tr>
+     * <tr><td> 200 </td><td> Cancel an existing order and send a new order </td><td>  -  </td></tr>
      * </table>
      *
      * @see <a
@@ -1574,10 +1594,11 @@ public class SpotRestApi {
     }
 
     /**
-     * New Order List - OPO (TRADE) Place an [OPO](/products/spot/faqs/opo). - OPOs add 2 orders to
-     * the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60;
-     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
-     * Matching Engine
+     * New Order List - OPO (TRADE) Place an OPO. - OPOs add 2 orders to the
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60; filter.
+     * Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:** Matching
+     * Engine Response Notes: **Note:** The payload above does not show all fields that can appear.
+     * Please refer to Conditional fields in Order Responses.
      *
      * @param orderListOpoRequest (required)
      * @return ApiResponse&lt;OrderListOpoResponse&gt;
@@ -1600,8 +1621,10 @@ public class SpotRestApi {
     }
 
     /**
-     * New Order List - OPOCO (TRADE) Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1
-     * Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * New Order List - OPOCO (TRADE) Place an OPOCO. Weight(IP): 1 Unfilled Order Count: 3 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The payload
+     * above does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      *
      * @param orderListOpocoRequest (required)
      * @return ApiResponse&lt;OrderListOpocoResponse&gt;
@@ -1647,7 +1670,9 @@ public class SpotRestApi {
      * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
      * |&#x60;pendingType&#x60; &#x3D; &#x60;STOP_LOSS_LIMIT&#x60; or
      * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
-     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;| Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses.
      *
      * @param orderListOtoRequest (required)
      * @return ApiResponse&lt;OrderListOtoResponse&gt;
@@ -1674,21 +1699,21 @@ public class SpotRestApi {
      * (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders. - The first
      * order is called the **working order** and must be &#x60;LIMIT&#x60; or
      * &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. - The
-     * behavior of the working order is the same as the [OTO](#order-list-oto). - OTOCO has 2
-     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
-     * only placed on the order book when the working order gets **fully filled**. - The rules of
-     * the pending above and pending below follow the same rules as the [Order list
-     * OCO](#order-list-oco). - OTOCOs add **3 orders** to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;
-     * filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP): 1 Unfilled Order Count: 3 Security
-     * Type: TRADE Notes: **Data Source:** Matching Engine **Mandatory parameters based on
-     * &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;**
-     * Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
-     * &#x60;workingType&#x60;, some optional parameters will become mandatory. |Type |Additional
-     * mandatory parameters|Additional information| |---- |---- |------ |&#x60;workingType&#x60;
-     * &#x3D; &#x60;LIMIT&#x60; |&#x60;workingTimeInForce&#x60; |
-     * |&#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; |&#x60;pendingAbovePrice&#x60; |
-     * |&#x60;pendingAboveType&#x60; &#x3D; &#x60;STOP_LOSS/TAKE_PROFIT&#x60;
-     * |&#x60;pendingAboveStopPrice&#x60; and/or &#x60;pendingAboveTrailingDelta&#x60;|
+     * behavior of the working order is the same as the OTO. - OTOCO has 2 pending orders (pending
+     * above and pending below), forming an OCO pair. The pending orders are only placed on the
+     * order book when the working order gets **fully filled**. - The rules of the pending above and
+     * pending below follow the same rules as the Order list OCO. - OTOCOs add **3 orders** to the
+     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
+     * 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * **Mandatory parameters based on &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or
+     * &#x60;workingType&#x60;** Depending on the
+     * &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;, some
+     * optional parameters will become mandatory. |Type |Additional mandatory parameters|Additional
+     * information| |---- |---- |------ |&#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60;
+     * |&#x60;workingTimeInForce&#x60; | |&#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60;
+     * |&#x60;pendingAbovePrice&#x60; | |&#x60;pendingAboveType&#x60; &#x3D;
+     * &#x60;STOP_LOSS/TAKE_PROFIT&#x60; |&#x60;pendingAboveStopPrice&#x60; and/or
+     * &#x60;pendingAboveTrailingDelta&#x60;|
      * |&#x60;pendingAboveType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
      * |&#x60;pendingAbovePrice&#x60;, &#x60;pendingAboveStopPrice&#x60; and/or
      * &#x60;pendingAboveTrailingDelta&#x60;, &#x60;pendingAboveTimeInForce&#x60;|
@@ -1697,7 +1722,9 @@ public class SpotRestApi {
      * and/or &#x60;pendingBelowTrailingDelta&#x60;|
      * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;
      * |&#x60;pendingBelowPrice&#x60;, &#x60;pendingBelowStopPrice&#x60; and/or
-     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60;|
+     * &#x60;pendingBelowTrailingDelta&#x60;, &#x60;pendingBelowTimeInForce&#x60;| Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      *
      * @param orderListOtocoRequest (required)
      * @return ApiResponse&lt;OrderListOtocoResponse&gt;
@@ -1778,10 +1805,10 @@ public class SpotRestApi {
     /**
      * New order using SOR (TRADE) Places an order using smart order routing (SOR). This adds 1
      * order to the &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60;
-     * filter. Read [SOR FAQ](/products/spot/faqs/sor_faq) to learn more. Weight(IP): 1 Unfilled
-     * Order Count: 1 Security Type: TRADE Notes: **Data Source:** Matching Engine **Note:**
-     * &#x60;POST /api/v3/sor/order&#x60; only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60;
-     * orders. &#x60;quoteOrderQty&#x60; is not supported.
+     * filter. Read SOR FAQ to learn more. Weight(IP): 1 Unfilled Order Count: 1 Security Type:
+     * TRADE Notes: **Data Source:** Matching Engine **Note:** &#x60;POST /api/v3/sor/order&#x60;
+     * only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60; orders. &#x60;quoteOrderQty&#x60; is
+     * not supported.
      *
      * @param sorOrderRequest (required)
      * @return ApiResponse&lt;SorOrderResponse&gt;

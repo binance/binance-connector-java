@@ -55,7 +55,7 @@ public class CapitalApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-wallet/6.2.0 (Java/%s; %s; %s)",
+                    "binance-wallet/6.2.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1396,7 +1396,7 @@ public class CapitalApi {
      * @param coin (optional)
      * @param withdrawOrderId client side id for withdrawal, if provided in POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
-     * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+     * @param status 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
      * @param limit (optional)
@@ -1598,7 +1598,7 @@ public class CapitalApi {
      * @param coin (optional)
      * @param withdrawOrderId client side id for withdrawal, if provided in POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
-     * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+     * @param status 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
      * @param limit (optional)

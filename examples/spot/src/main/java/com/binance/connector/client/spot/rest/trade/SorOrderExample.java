@@ -32,11 +32,10 @@ public class SorOrderExample {
      * New order using SOR (TRADE)
      *
      * <p>Places an order using smart order routing (SOR). This adds 1 order to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [SOR
-     * FAQ](/products/spot/faqs/sor_faq) to learn more. Weight(IP): 1 Unfilled Order Count: 1
-     * Security Type: TRADE Notes: **Data Source:** Matching Engine **Note:** &#x60;POST
-     * /api/v3/sor/order&#x60; only supports &#x60;LIMIT&#x60; and &#x60;MARKET&#x60; orders.
-     * &#x60;quoteOrderQty&#x60; is not supported.
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read SOR
+     * FAQ to learn more. Weight(IP): 1 Unfilled Order Count: 1 Security Type: TRADE Notes: **Data
+     * Source:** Matching Engine **Note:** &#x60;POST /api/v3/sor/order&#x60; only supports
+     * &#x60;LIMIT&#x60; and &#x60;MARKET&#x60; orders. &#x60;quoteOrderQty&#x60; is not supported.
      *
      * @throws ApiException if the Api call fails
      */

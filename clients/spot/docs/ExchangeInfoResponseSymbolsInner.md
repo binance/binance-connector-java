@@ -28,7 +28,7 @@
 |**pegInstructionsAllowed** | **Boolean** |  |  [optional] |
 |**isSpotTradingAllowed** | **Boolean** |  |  [optional] |
 |**isMarginTradingAllowed** | **Boolean** |  |  [optional] |
-|**filters** | [**List&lt;SymbolFilters&gt;**](SymbolFilters.md) |  |  [optional] |
+|**filters** | [**List&lt;SymbolFilters&gt;**](SymbolFilters.md) | Symbol filters are explained on the \&quot;Filters\&quot; page: All symbol filters are optional. |  [optional] |
 |**permissions** | **List&lt;String&gt;** |  |  [optional] |
 |**permissionSets** | **List&lt;List&lt;String&gt;&gt;** |  |  [optional] |
 |**defaultSelfTradePreventionMode** | **String** |  |  [optional] |

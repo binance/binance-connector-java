@@ -58,7 +58,9 @@ public class OrderListPlaceOtoExample {
      * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
      * |&#x60;pendingType&#x60; &#x3D;&#x60;STOP_LOSS_LIMIT&#x60; or
      * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
-     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;| Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses.
      */
     public void orderListPlaceOtoExampleAsync() {
         OrderListPlaceOtoRequest orderListPlaceOtoRequest = new OrderListPlaceOtoRequest();
@@ -108,7 +110,9 @@ public class OrderListPlaceOtoExample {
      * |&#x60;pendingStopPrice&#x60; and/or &#x60;pendingTrailingDelta&#x60;|
      * |&#x60;pendingType&#x60; &#x3D;&#x60;STOP_LOSS_LIMIT&#x60; or
      * &#x60;TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingPrice&#x60;, &#x60;pendingStopPrice&#x60; and/or
-     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;|
+     * &#x60;pendingTrailingDelta&#x60;, &#x60;pendingTimeInForce&#x60;| Response Notes: **Note:**
+     * The payload above does not show all fields that can appear. Please refer to Conditional
+     * fields in Order Responses.
      */
     public void orderListPlaceOtoExampleSync() {
         OrderListPlaceOtoRequest orderListPlaceOtoRequest = new OrderListPlaceOtoRequest();

@@ -32,7 +32,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.hibernate.validator.constraints.*;
 
-/** OrderCancelReplaceResponse */
+/**
+ * Both the cancel and the new order placement succeeded, and the account has not exceeded its
+ * unfilled order count:
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")

@@ -45,7 +45,7 @@ public class QuoteStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -57,7 +57,7 @@ public class QuoteStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String SLowerCase;
+    private String sLowerCase;
 
     public static final String SERIALIZED_NAME_BP = "bp";
 
@@ -91,23 +91,23 @@ public class QuoteStreamResponse extends BaseDTO {
 
     public QuoteStreamResponse() {}
 
-    public QuoteStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public QuoteStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;quote\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public QuoteStreamResponse E(@jakarta.annotation.Nullable Long E) {
@@ -129,23 +129,23 @@ public class QuoteStreamResponse extends BaseDTO {
         this.E = E;
     }
 
-    public QuoteStreamResponse SLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public QuoteStreamResponse sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
         return this;
     }
 
     /**
      * Symbol (UPPERCASE ticker), e.g. &#x60;\&quot;AAPL\&quot;&#x60;.
      *
-     * @return SLowerCase
+     * @return sLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getSLowerCase() {
-        return SLowerCase;
+    public String getsLowerCase() {
+        return sLowerCase;
     }
 
-    public void setSLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public void setsLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
     }
 
     public QuoteStreamResponse bp(@jakarta.annotation.Nullable String bp) {
@@ -252,9 +252,9 @@ public class QuoteStreamResponse extends BaseDTO {
             return false;
         }
         QuoteStreamResponse quoteStreamResponse = (QuoteStreamResponse) o;
-        return Objects.equals(this.ELowerCase, quoteStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, quoteStreamResponse.eLowerCase)
                 && Objects.equals(this.E, quoteStreamResponse.E)
-                && Objects.equals(this.SLowerCase, quoteStreamResponse.SLowerCase)
+                && Objects.equals(this.sLowerCase, quoteStreamResponse.sLowerCase)
                 && Objects.equals(this.bp, quoteStreamResponse.bp)
                 && Objects.equals(this.ap, quoteStreamResponse.ap)
                 && Objects.equals(this.bs, quoteStreamResponse.bs)
@@ -273,7 +273,7 @@ public class QuoteStreamResponse extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ELowerCase, E, SLowerCase, bp, ap, bs, as, T);
+        return Objects.hash(eLowerCase, E, sLowerCase, bp, ap, bs, as, T);
     }
 
     private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -287,9 +287,9 @@ public class QuoteStreamResponse extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class QuoteStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
-        sb.append("		SLowerCase: ").append(toIndentedString(SLowerCase)).append("\n");
+        sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
         sb.append("		bp: ").append(toIndentedString(bp)).append("\n");
         sb.append("		ap: ").append(toIndentedString(ap)).append("\n");
         sb.append("		bs: ").append(toIndentedString(bs)).append("\n");
@@ -303,20 +303,20 @@ public class QuoteStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         Long EValue = getE();
         if (EValue != null) {
             String EValueAsString = EValue.toString();
             valMap.put("E", EValueAsString);
         }
-        String SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            String SLowerCaseValueAsString = SLowerCaseValue.toString();
-            valMap.put("SLowerCase", SLowerCaseValueAsString);
+        String sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            String sLowerCaseValueAsString = sLowerCaseValue.toString();
+            valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
         String bpValue = getBp();
         if (bpValue != null) {
@@ -354,17 +354,17 @@ public class QuoteStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object EValue = getE();
         if (EValue != null) {
             valMap.put("E", EValue);
         }
-        Object SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            valMap.put("SLowerCase", SLowerCaseValue);
+        Object sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            valMap.put("sLowerCase", sLowerCaseValue);
         }
         Object bpValue = getBp();
         if (bpValue != null) {

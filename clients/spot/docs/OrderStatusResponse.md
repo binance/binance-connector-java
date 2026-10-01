@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**OrderStatusResponseResult**](OrderStatusResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;OrderAmendmentsResponseRateLimitsInner&gt;**](OrderAmendmentsResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

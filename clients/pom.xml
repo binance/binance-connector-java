@@ -5,7 +5,7 @@
     <artifactId>binance-connector-java-clients</artifactId>
     <packaging>pom</packaging>
     <name>binance-connector-java-clients</name>
-    <version>1.1.3</version>
+    <version>1.1.4</version>
     <url>https://github.com/binance/binance-connector-java</url>
     <description>Java connector to Binance APIs</description>
 
@@ -33,7 +33,6 @@
         <module>gift-card</module>
         <module>margin-trading</module>
         <module>mining</module>
-        <module>nft</module>
         <module>pay</module>
         <module>rebate</module>
         <module>simple-earn</module>
@@ -404,7 +403,7 @@
         <gson-version>2.12.1</gson-version>
         <commons-lang3-version>3.18.0</commons-lang3-version>
         <jackson-databind-nullable-version>0.2.6</jackson-databind-nullable-version>
-        <jackson-databind-version>2.22.1</jackson-databind-version>
+        <jackson-databind-version>2.22.3</jackson-databind-version>
         <jakarta-annotation-version>3.0.0</jakarta-annotation-version>
         <beanvalidation-version>3.1.1</beanvalidation-version>
         <junit-version>5.10.3</junit-version>

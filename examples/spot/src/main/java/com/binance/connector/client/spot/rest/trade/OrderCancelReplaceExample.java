@@ -138,10 +138,11 @@ public class OrderCancelReplaceExample {
      * &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;✅ &lt;code&gt;SUCCESS&lt;/code&gt;&lt;/td&gt; &lt;td&gt;❌
      * &lt;code&gt;FAILURE&lt;/code&gt;&lt;/td&gt; &lt;td
      * align&#x3D;right&gt;&lt;code&gt;409&lt;/code&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt;
-     * &lt;/table&gt; **Notes:** - The performance for canceling an order (single cancel or as part
-     * of a cancel-replace) is always better when only &#x60;orderId&#x60; is sent. Sending
-     * &#x60;origClientOrderId&#x60; or both &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60;
-     * will be slower.
+     * &lt;/table&gt; Response Notes: **Notes:** - The payload above does not show all fields that
+     * can appear. Please refer to Conditional fields in Order Responses. - The performance for
+     * canceling an order (single cancel or as part of a cancel-replace) is always better when only
+     * &#x60;orderId&#x60; is sent. Sending &#x60;origClientOrderId&#x60; or both
+     * &#x60;orderId&#x60; + &#x60;origClientOrderId&#x60; will be slower.
      *
      * @throws ApiException if the Api call fails
      */

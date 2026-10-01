@@ -40,16 +40,14 @@ public class MarginAccountNewOtocoExample {
      * on the order book. - The behavior of the working order is the same as the OTO. - OTOCO has 2
      * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
      * only placed on the order book when the working order gets **fully filled**. - The rules of
-     * the pending above and pending below follow the same rules as the [Order List
-     * OCO](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco).
-     * - OTOCOs add **3 orders** against the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
-     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
-     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
-     * under high frequent new order/cancel order execution - Depending on the
-     * &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;, some
-     * optional parameters will become mandatory: | Type | Additional mandatory parameters |
-     * Additional information | | ------------------------------------ |
+     * the pending above and pending below follow the same rules as the Order List OCO. - OTOCOs add
+     * **3 orders** against the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter,
+     * and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 6(UID) or 1500(UID) when sideEffectType is
+     * MARGIN_BUY or AUTO_BORROW_REPAY Security Type: TRADE Notes: - autoRepayAtCancel is suggested
+     * to set as “FALSE” to keep liability unrepaid under high frequent new order/cancel order
+     * execution - Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory: | Type | Additional
+     * mandatory parameters | Additional information | | ------------------------------------ |
      * ------------------------------------------------------------ | ---------------------- | |
      * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
      * &#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; | &#x60;pendingAbovePrice&#x60; |

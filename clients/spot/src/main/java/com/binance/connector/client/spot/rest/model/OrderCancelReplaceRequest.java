@@ -518,7 +518,7 @@ public class OrderCancelReplaceRequest {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return trailingDelta
      */

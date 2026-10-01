@@ -31,7 +31,8 @@ public class GetOpenOrdersExample {
      * <p>Get all open orders on a symbol. **Careful** when accessing this with no symbol. Weight: 6
      * for a single symbol; 80 when the symbol parameter is omitted Security Type: USER_DATA Notes:
      * **Data Source:** Memory &#x3D;&gt; Database - If the symbol is not sent, orders for all
-     * symbols will be returned in an array.
+     * symbols will be returned in an array. Response Notes: **Note:** The payload above does not
+     * show all fields that can appear. Please refer to Conditional fields in Order Responses.
      *
      * @throws ApiException if the Api call fails
      */

@@ -30,7 +30,7 @@ public class QuerySettledPositionHistoryExample {
      * Query Settled Position History (PREDICTION_TRADE)
      *
      * <p>Get the authenticated user&#39;s settled (resolved) prediction position history with
-     * optional filters. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * optional filters. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

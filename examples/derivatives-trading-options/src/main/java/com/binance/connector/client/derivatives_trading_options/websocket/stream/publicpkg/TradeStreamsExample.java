@@ -25,8 +25,7 @@ public class TradeStreamsExample {
      * Trade Streams
      *
      * <p>The Trade Streams push raw trade information for specific symbol or underlying asset.
-     * E.g.[btcusdt@optionTrade](wss://fstream.binance.com/public/stream?streams&#x3D;btcusdt@optionTrade)
-     * Update Speed: 50ms
+     * E.g.btcusdt@optionTrade Update Speed: 50ms
      *
      * @throws ApiException if the Api call fails
      */

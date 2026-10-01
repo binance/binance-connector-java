@@ -33,7 +33,7 @@ public class ApplyMmDepositExample {
      *
      * <p>Move funds from the user&#39;s bound CeDeFi MPC wallet to their CEX account (SPOT/FUNDING)
      * via a contract escrow + credit flow. The maker wallet is resolved server-side by
-     * &#x60;userId&#x60;; the caller does not pass wallet or signature. Weight(IP): 200 Security
+     * &#x60;userId&#x60;; the caller does not pass wallet or signature. Weight(IP): 1 Security
      * Type: PREDICTION_TRADE Notes: - Restricted to authorized market makers. Requests from
      * unauthorized accounts are rejected — contact BD to request access. - \&quot;Note on
      * &#x60;fromToken&#x60; / &#x60;toToken&#x60;: typically the same symbol (e.g. both

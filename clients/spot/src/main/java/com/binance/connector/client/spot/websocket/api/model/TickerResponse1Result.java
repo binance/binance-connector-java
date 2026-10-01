@@ -386,7 +386,7 @@ public class TickerResponse1Result extends BaseDTO {
     }
 
     /**
-     * Get lastId
+     * Last trade ID
      *
      * @return lastId
      */

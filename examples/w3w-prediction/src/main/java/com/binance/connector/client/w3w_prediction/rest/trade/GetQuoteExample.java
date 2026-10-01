@@ -33,7 +33,7 @@ public class GetQuoteExample {
      * Get Quote (PREDICTION_TRADE)
      *
      * <p>Get a price quote for a prediction order. The returned &#x60;quoteId&#x60; must be used in
-     * the subsequent Place Order request. Weight(IP): 200 Security Type: PREDICTION_TRADE Response
+     * the subsequent Place Order request. Weight(IP): 1 Security Type: PREDICTION_TRADE Response
      * Notes: - &#x60;feeAmount&#x60; is a string because it is denominated in wei (18 decimals) and
      * may exceed JavaScript&#39;s safe integer range. &#x60;feeDiscountBps&#x60; is also a string
      * to allow fractional basis-point values in the future. &#x60;feeRateBps&#x60; and

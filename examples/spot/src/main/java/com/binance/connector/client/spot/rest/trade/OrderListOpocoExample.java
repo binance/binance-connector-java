@@ -33,8 +33,9 @@ public class OrderListOpocoExample {
     /**
      * New Order List - OPOCO (TRADE)
      *
-     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
-     * Type: TRADE Notes: **Data Source:** Matching Engine
+     * <p>Place an OPOCO. Weight(IP): 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data
+     * Source:** Matching Engine Response Notes: **Note:** The payload above does not show all
+     * fields that can appear. Please refer to Conditional fields in Order Responses.
      *
      * @throws ApiException if the Api call fails
      */

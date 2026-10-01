@@ -45,7 +45,7 @@ public class TradabilityStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -69,27 +69,27 @@ public class TradabilityStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_T_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private Long TLowerCase;
+    private Long tLowerCase;
 
     public TradabilityStreamResponse() {}
 
-    public TradabilityStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public TradabilityStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;tradability\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public TradabilityStreamResponse symbol(@jakarta.annotation.Nullable String symbol) {
@@ -151,23 +151,23 @@ public class TradabilityStreamResponse extends BaseDTO {
         this.tradability = tradability;
     }
 
-    public TradabilityStreamResponse TLowerCase(@jakarta.annotation.Nullable Long TLowerCase) {
-        this.TLowerCase = TLowerCase;
+    public TradabilityStreamResponse tLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
+        this.tLowerCase = tLowerCase;
         return this;
     }
 
     /**
      * Push time (epoch milliseconds UTC).
      *
-     * @return TLowerCase
+     * @return tLowerCase
      */
     @jakarta.annotation.Nullable
-    public Long getTLowerCase() {
-        return TLowerCase;
+    public Long gettLowerCase() {
+        return tLowerCase;
     }
 
-    public void setTLowerCase(@jakarta.annotation.Nullable Long TLowerCase) {
-        this.TLowerCase = TLowerCase;
+    public void settLowerCase(@jakarta.annotation.Nullable Long tLowerCase) {
+        this.tLowerCase = tLowerCase;
     }
 
     @Override
@@ -179,11 +179,11 @@ public class TradabilityStreamResponse extends BaseDTO {
             return false;
         }
         TradabilityStreamResponse tradabilityStreamResponse = (TradabilityStreamResponse) o;
-        return Objects.equals(this.ELowerCase, tradabilityStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, tradabilityStreamResponse.eLowerCase)
                 && Objects.equals(this.symbol, tradabilityStreamResponse.symbol)
                 && Objects.equals(this.assetCode, tradabilityStreamResponse.assetCode)
                 && Objects.equals(this.tradability, tradabilityStreamResponse.tradability)
-                && Objects.equals(this.TLowerCase, tradabilityStreamResponse.TLowerCase);
+                && Objects.equals(this.tLowerCase, tradabilityStreamResponse.tLowerCase);
     }
 
     private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -197,7 +197,7 @@ public class TradabilityStreamResponse extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ELowerCase, symbol, assetCode, tradability, TLowerCase);
+        return Objects.hash(eLowerCase, symbol, assetCode, tradability, tLowerCase);
     }
 
     private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -211,11 +211,11 @@ public class TradabilityStreamResponse extends BaseDTO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class TradabilityStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		assetCode: ").append(toIndentedString(assetCode)).append("\n");
         sb.append("		tradability: ").append(toIndentedString(tradability)).append("\n");
-        sb.append("		TLowerCase: ").append(toIndentedString(TLowerCase)).append("\n");
+        sb.append("		tLowerCase: ").append(toIndentedString(tLowerCase)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -224,10 +224,10 @@ public class TradabilityStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
@@ -244,10 +244,10 @@ public class TradabilityStreamResponse extends BaseDTO {
             String tradabilityValueAsString = tradabilityValue.toString();
             valMap.put("tradability", tradabilityValueAsString);
         }
-        Long TLowerCaseValue = getTLowerCase();
-        if (TLowerCaseValue != null) {
-            String TLowerCaseValueAsString = TLowerCaseValue.toString();
-            valMap.put("TLowerCase", TLowerCaseValueAsString);
+        Long tLowerCaseValue = gettLowerCase();
+        if (tLowerCaseValue != null) {
+            String tLowerCaseValueAsString = tLowerCaseValue.toString();
+            valMap.put("tLowerCase", tLowerCaseValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -260,9 +260,9 @@ public class TradabilityStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
@@ -276,9 +276,9 @@ public class TradabilityStreamResponse extends BaseDTO {
         if (tradabilityValue != null) {
             valMap.put("tradability", tradabilityValue);
         }
-        Object TLowerCaseValue = getTLowerCase();
-        if (TLowerCaseValue != null) {
-            valMap.put("TLowerCase", TLowerCaseValue);
+        Object tLowerCaseValue = gettLowerCase();
+        if (tLowerCaseValue != null) {
+            valMap.put("tLowerCase", tLowerCaseValue);
         }
 
         valMap.put("timestamp", getTimestamp());

@@ -32,16 +32,17 @@ public class OrderAmendKeepPriorityExample {
      * Order Amend Keep Priority (TRADE)
      *
      * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [Order
-     * Amend Keep Priority FAQ](/products/spot/faqs/order_amend_keep_priority) to learn more.
-     * Weight(IP): 4 Unfilled Order Count: 0 Security Type: TRADE Notes: **Data Source:** Matching
-     * Engine
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read Order
+     * Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count: 0 Security Type:
+     * TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The payload above
+     * does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      */
     public void orderAmendKeepPriorityExampleAsync() {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
                 new OrderAmendKeepPriorityRequest();
         orderAmendKeepPriorityRequest.symbol("BNBUSDT");
-        orderAmendKeepPriorityRequest.newQty(1d);
+        orderAmendKeepPriorityRequest.newQty(5d);
         CompletableFuture<OrderAmendKeepPriorityResponse> future =
                 getApi().orderAmendKeepPriority(orderAmendKeepPriorityRequest);
         future.handle(
@@ -58,16 +59,17 @@ public class OrderAmendKeepPriorityExample {
      * Order Amend Keep Priority (TRADE)
      *
      * <p>Reduce the quantity of an existing open order. This adds 0 orders to the
-     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read [Order
-     * Amend Keep Priority FAQ](/products/spot/faqs/order_amend_keep_priority) to learn more.
-     * Weight(IP): 4 Unfilled Order Count: 0 Security Type: TRADE Notes: **Data Source:** Matching
-     * Engine
+     * &#x60;EXCHANGE_MAX_ORDERS&#x60; filter and the &#x60;MAX_NUM_ORDERS&#x60; filter. Read Order
+     * Amend Keep Priority FAQ to learn more. Weight(IP): 4 Unfilled Order Count: 0 Security Type:
+     * TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The payload above
+     * does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      */
     public void orderAmendKeepPriorityExampleSync() {
         OrderAmendKeepPriorityRequest orderAmendKeepPriorityRequest =
                 new OrderAmendKeepPriorityRequest();
         orderAmendKeepPriorityRequest.symbol("BNBUSDT");
-        orderAmendKeepPriorityRequest.newQty(1d);
+        orderAmendKeepPriorityRequest.newQty(5d);
         CompletableFuture<OrderAmendKeepPriorityResponse> future =
                 getApi().orderAmendKeepPriority(orderAmendKeepPriorityRequest);
         OrderAmendKeepPriorityResponse response = future.join();

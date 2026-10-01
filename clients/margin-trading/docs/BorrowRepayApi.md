@@ -366,7 +366,7 @@ No authorization required
 
 Query Max Borrow (USER_DATA)
 
-Query Max Borrow  Weight(IP): 50  Security Type: USER_DATA  Notes: - If isolatedSymbol is not sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60; is also available from [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
+Query Max Borrow  Weight(IP): 50  Security Type: USER_DATA  Notes: - If isolatedSymbol is not sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60; is also available from https://www.binance.com/en/margin-fee
 
 ### Example
 ```java

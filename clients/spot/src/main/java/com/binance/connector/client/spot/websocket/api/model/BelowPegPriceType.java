@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** See [Pegged Orders](/products/spot/faqs/pegged_orders) */
+/** See Pegged Orders */
 @JsonAdapter(BelowPegPriceType.Adapter.class)
 public enum BelowPegPriceType {
     PRIMARY_PEG("PRIMARY_PEG"),

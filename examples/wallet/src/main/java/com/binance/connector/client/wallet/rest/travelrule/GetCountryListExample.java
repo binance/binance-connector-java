@@ -28,8 +28,8 @@ public class GetCountryListExample {
     /**
      * Get Country List (USER_DATA)
      *
-     * <p>Query the active country list for travel rule questionnaires. Currently, only supports AU
-     * entity. Weight(IP): 1 Security Type: USER_DATA
+     * <p>Query the active country list for travel rule questionnaires. Currently supports AU and BR
+     * entities. Weight(IP): 1 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */

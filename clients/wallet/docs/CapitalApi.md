@@ -552,7 +552,7 @@ public class Example {
     CapitalApi apiInstance = new CapitalApi(defaultClient);
     String coin = "BTC"; // String | 
     String withdrawOrderId = "1"; // String | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
-    Long status = 0L; // Long | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+    Long status = 0L; // Long | 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed)
     Long offset = 0L; // Long | Default: 0
     Long limit = 1000L; // Long | 
     String idList = "idList_example"; // String | id list returned in the response of POST `/sapi/v1/capital/withdraw/apply`, separated by `,`
@@ -579,7 +579,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **coin** | **String**|  | [optional] |
 | **withdrawOrderId** | **String**| client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | [optional] |
-| **status** | **Long**| 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) | [optional] |
+| **status** | **Long**| 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed) | [optional] |
 | **offset** | **Long**| Default: 0 | [optional] |
 | **limit** | **Long**|  | [optional] |
 | **idList** | **String**| id list returned in the response of POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; | [optional] |

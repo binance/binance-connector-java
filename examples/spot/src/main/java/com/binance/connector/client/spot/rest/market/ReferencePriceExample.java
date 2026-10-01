@@ -29,7 +29,9 @@ public class ReferencePriceExample {
      * Query Reference Price
      *
      * <p>Query the reference price for a symbol. Weight(IP): 2 Security Type: NONE Notes: **Data
-     * Source:** Memory
+     * Source:** Memory If the symbol has never had a reference price set, the request is rejected
+     * with: &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2043, \&quot;msg\&quot;: \&quot;This
+     * symbol doesn&#39;t have a reference price.\&quot; } &#x60;&#x60;&#x60;
      *
      * @throws ApiException if the Api call fails
      */

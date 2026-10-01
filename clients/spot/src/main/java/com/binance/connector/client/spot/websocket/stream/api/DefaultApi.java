@@ -67,7 +67,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class DefaultApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -772,11 +772,12 @@ public class DefaultApi {
      * Kline/Candlestick Streams with timezone offset The Kline/Candlestick Stream push updates to
      * the current klines/candlestick every second in &#x60;UTC+8&#x60; timezone **Kline/Candlestick
      * chart intervals:** Supported intervals: See Kline/Candlestick chart intervals **UTC+8
-     * timezone offset:** - Kline intervals open and close in the UTC+8 timezone. For example the 1d
-     * klines will open at the beginning of the UTC+8 day, and close at the end of the UTC+8 day. -
-     * Note that E (event time), t (start time) and T (close time) in the payload are Unix
-     * timestamps, which are always interpreted in UTC. Update Speed: 1000ms for &#x60;1s&#x60;,
-     * 2000ms for the other intervals
+     * timezone offset:** - Kline intervals open and close in the &#x60;UTC+8&#x60; timezone. For
+     * example the &#x60;1d&#x60; klines will open at the beginning of the &#x60;UTC+8&#x60; day,
+     * and close at the end of the &#x60;UTC+8&#x60; day. - Note that &#x60;E&#x60; (event time),
+     * &#x60;t&#x60; (start time) and &#x60;T&#x60; (close time) in the payload are Unix timestamps,
+     * which are always interpreted in UTC. Update Speed: 1000ms for &#x60;1s&#x60;, 2000ms for the
+     * other intervals
      *
      * @param klineOffsetRequest (required)
      * @return KlineOffsetResponse
@@ -947,8 +948,8 @@ public class DefaultApi {
     }
 
     /**
-     * WebSocket Partial Book Depth Streams Top **\\&lt;levels\\&gt;** bids and asks, pushed every
-     * second. Update Speed: 1000ms or 100ms
+     * Partial Book Depth Streams Top **\\&lt;levels\\&gt;** bids and asks, pushed every second.
+     * Valid **\\&lt;levels\\&gt;** are 5, 10, or 20. Update Speed: 1000ms or 100ms
      *
      * @param partialBookDepthRequest (required)
      * @return PartialBookDepthResponse
@@ -962,8 +963,8 @@ public class DefaultApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#partial-book-depth">WebSocket
-     *     Partial Book Depth Streams Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#partial-book-depth">Partial
+     *     Book Depth Streams Documentation</a>
      */
     public StreamBlockingQueueWrapper<PartialBookDepthResponse> partialBookDepth(
             PartialBookDepthRequest partialBookDepthRequest) throws ApiException {
@@ -1128,7 +1129,7 @@ public class DefaultApi {
      * &#x60;&lt;symbol&gt;@ticker&#x60; stream. The open time &#x60;\&quot;O\&quot;&#x60; always
      * starts on a minute, while the closing time &#x60;\&quot;C\&quot;&#x60; is the current time of
      * the update. As such, the effective window might be up to 59999ms wider than
-     * &#x60;&lt;window_size&gt;&#x60;. Update Speed: 1000ms
+     * &#x60;&lt;windowSize&gt;&#x60;. Update Speed: 1000ms
      *
      * @param rollingWindowTickerRequest (required)
      * @return RollingWindowTickerResponse

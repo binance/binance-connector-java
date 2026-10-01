@@ -24,7 +24,8 @@ public class PriceStreamExample {
      * Price Stream
      *
      * <p>Push-all price snapshot, polled every 3 seconds. One message carries the latest price for
-     * every active US-equity symbol.
+     * every active US-equity symbol. Also reachable via the SUBSCRIBE/UNSUBSCRIBE RPC — see
+     * Subscribing via RPC.
      *
      * @throws ApiException if the Api call fails
      */

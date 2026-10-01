@@ -43,7 +43,7 @@ public class CalendarStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_FROM = "from";
 
@@ -65,23 +65,23 @@ public class CalendarStreamResponse extends BaseDTO {
 
     public CalendarStreamResponse() {}
 
-    public CalendarStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public CalendarStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;calendar\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public CalendarStreamResponse from(@jakarta.annotation.Nullable String from) {
@@ -150,7 +150,7 @@ public class CalendarStreamResponse extends BaseDTO {
             return false;
         }
         CalendarStreamResponse calendarStreamResponse = (CalendarStreamResponse) o;
-        return Objects.equals(this.ELowerCase, calendarStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, calendarStreamResponse.eLowerCase)
                 && Objects.equals(this.from, calendarStreamResponse.from)
                 && Objects.equals(this.to, calendarStreamResponse.to)
                 && Objects.equals(this.ts, calendarStreamResponse.ts);
@@ -158,14 +158,14 @@ public class CalendarStreamResponse extends BaseDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ELowerCase, from, to, ts);
+        return Objects.hash(eLowerCase, from, to, ts);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CalendarStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		from: ").append(toIndentedString(from)).append("\n");
         sb.append("		to: ").append(toIndentedString(to)).append("\n");
         sb.append("		ts: ").append(toIndentedString(ts)).append("\n");
@@ -177,10 +177,10 @@ public class CalendarStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         String fromValue = getFrom();
         if (fromValue != null) {
@@ -208,9 +208,9 @@ public class CalendarStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object fromValue = getFrom();
         if (fromValue != null) {

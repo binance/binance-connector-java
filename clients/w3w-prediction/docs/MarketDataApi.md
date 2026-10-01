@@ -18,7 +18,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get Market Detail
 
-Get full details for a specific prediction market topic, including variant data and timeline.  Weight(IP): 200
+Get full details for a specific prediction market topic, including variant data and timeline.  Weight(IP): 1
 
 ### Example
 ```java
@@ -80,7 +80,7 @@ No authorization required
 
 List Prediction Categories
 
-Get all available prediction market categories (L1 and L2).  Weight(IP): 200
+Get all available prediction market categories (L1 and L2).  Weight(IP): 1
 
 ### Example
 ```java
@@ -138,7 +138,7 @@ No authorization required
 
 List Prediction Markets
 
-Get a paginated list of prediction market topics, with optional category and sort filters.  Weight(IP): 200
+Get a paginated list of prediction market topics, with optional category and sort filters.  Weight(IP): 1
 
 ### Example
 ```java
@@ -210,7 +210,7 @@ No authorization required
 
 Market Search
 
-Semantic search for prediction market topics by keyword.  Weight(IP): 200
+Semantic search for prediction market topics by keyword.  Weight(IP): 1
 
 ### Example
 ```java
@@ -274,7 +274,7 @@ No authorization required
 
 Query Last Trade Price
 
-Get the most recent trade price for a prediction market.  Weight(IP): 200
+Get the most recent trade price for a prediction market.  Weight(IP): 1
 
 ### Example
 ```java
@@ -336,7 +336,7 @@ No authorization required
 
 Query Order Book
 
-Get the current order book (bids and asks) for a specific prediction market outcome token.  Weight(IP): 200
+Get the current order book (bids and asks) for a specific prediction market outcome token.  Weight(IP): 1
 
 ### Example
 ```java

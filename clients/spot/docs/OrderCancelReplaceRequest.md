@@ -22,7 +22,7 @@
 |**newClientOrderId** | **String** | Used to identify the new order. |  [optional] |
 |**newOrderRespType** | **NewOrderRespType** |  |  [optional] |
 |**stopPrice** | **Double** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. |  [optional] |
-|**trailingDelta** | **Double** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) |  [optional] |
+|**trailingDelta** | **Double** | See Trailing Stop order FAQ |  [optional] |
 |**icebergQty** | **Double** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. |  [optional] |
 |**strategyId** | **Long** |  |  [optional] |
 |**strategyType** | **Integer** | The value cannot be less than &#x60;1000000&#x60;. |  [optional] |

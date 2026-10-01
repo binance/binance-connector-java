@@ -203,7 +203,7 @@ No authorization required
 
 Open Interest
 
-Option open interest for specific underlying asset on specific expiration date. E.g.[ethusdt@openInterest@221125](wss://fstream.binance.com/market/stream?streams&#x3D;ethusdt@openInterest@221125)  Update Speed: 60s
+Option open interest for specific underlying asset on specific expiration date. E.g.ethusdt@openInterest@221125  Update Speed: 60s
 
 ### Example
 ```java
@@ -265,7 +265,7 @@ No authorization required
 
 Option Mark Price
 
-The mark price for all option symbols on specific underlying asset. E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)  Update Speed: 1000ms
+The mark price for all option symbols on specific underlying asset. E.g.btcusdt@optionMarkPrice  Update Speed: 1000ms
 
 ### Example
 ```java

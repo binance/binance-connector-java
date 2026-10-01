@@ -35,9 +35,9 @@ public class GiftCardRestApi {
      * This gift card can keep the value fixed at 100 USDT before redemption, and will be redeemable
      * to BTC equivalent to 100 USDT upon redemption. * Once successfully created, the amount of
      * baseToken (e.g. USDT) in the fixed-value gift card along with the fee would be deducted from
-     * your funding wallet. * To get started with, please make sure: * You have a Binance account *
-     * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your
-     * Binance funding wallet * You need Enable Withdrawals for the API Key which requests this
+     * your Spot wallet. * To get started with, please make sure: * You have a Binance account * You
+     * have passed KYB * You have a sufﬁcient balance(Gift Card amount and fee amount) in your
+     * Binance Spot wallet * You need Enable Withdrawals for the API Key which requests this
      * endpoint. Weight(IP): 1 Security Type: TRADE
      *
      * @param createADualTokenGiftCardRequest (required)
@@ -63,9 +63,9 @@ public class GiftCardRestApi {
     /**
      * Create a single-token gift card (USER_DATA) This API is for creating a Binance Gift Card. To
      * get started with, please make sure: * You have a Binance account * You have passed KYB * You
-     * have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet *
-     * You need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint.
-     * Weight(IP): 1 Security Type: USER_DATA
+     * have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance Spot wallet * You
+     * need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint. Weight(IP):
+     * 1 Security Type: USER_DATA
      *
      * @param createASingleTokenGiftCardRequest (required)
      * @return ApiResponse&lt;CreateASingleTokenGiftCardResponse&gt;
@@ -141,7 +141,7 @@ public class GiftCardRestApi {
 
     /**
      * Redeem a Binance Gift Card (USER_DATA) This API is for redeeming a Binance Gift Card. Once
-     * redeemed, the coins will be deposited in your funding wallet. Weight(IP): 1 Security Type:
+     * redeemed, the coins will be deposited in your Spot wallet. Weight(IP): 1 Security Type:
      * USER_DATA Notes: - Parameter &#x60;code&#x60; can be sent in two formats:
      * &#x60;Plaintext&#x60; and &#x60;Encrypted&#x60;. - Sending &#x60;code&#x60; in encrypted
      * format is more secure than plaintext. - To send encrypted &#x60;code&#x60;: - Fetch RSA

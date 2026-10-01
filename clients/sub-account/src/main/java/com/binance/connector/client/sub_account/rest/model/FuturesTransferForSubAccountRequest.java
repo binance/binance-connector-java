@@ -138,7 +138,7 @@ public class FuturesTransferForSubAccountRequest {
     /**
      * 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2:
      * transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer
-     * from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from
+     * from subaccount&#39;s spot account to its COIN-margined futures account 4: transfer from
      * subaccount&#39;s COIN-margined futures account to its spot account
      *
      * @return type

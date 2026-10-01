@@ -311,8 +311,8 @@ public class OrdersInner {
     private Boolean isMmp;
 
     /**
-     * EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire maker order when STP
-     * triggers/ EXPIRE_BOTH:expire both orders when STP triggers; Default EXPIRE_MAKER
+     * EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire maker order when STP
+     * triggers/ EXPIRE_BOTH: expire both orders when STP triggers; Default EXPIRE_MAKER
      */
     @JsonAdapter(SelfTradePreventionModeEnum.Adapter.class)
     public enum SelfTradePreventionModeEnum {
@@ -601,8 +601,8 @@ public class OrdersInner {
     }
 
     /**
-     * EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire maker order when STP
-     * triggers/ EXPIRE_BOTH:expire both orders when STP triggers; Default EXPIRE_MAKER
+     * EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire maker order when STP
+     * triggers/ EXPIRE_BOTH: expire both orders when STP triggers; Default EXPIRE_MAKER
      *
      * @return selfTradePreventionMode
      */

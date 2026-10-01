@@ -466,10 +466,9 @@ public class AccountApi {
     }
 
     /**
-     * Query Relevant Filters (USER_DATA) Retrieves the list of [filters](/products/spot/filters)
-     * relevant to an account on a given symbol. This is the only method that shows if an account
-     * has [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it.
-     * Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
+     * Query Relevant Filters (USER_DATA) Retrieves the list of filters relevant to an account on a
+     * given symbol. This is the only method that shows if an account has &#x60;MAX_ASSET&#x60;
+     * filters applied to it. Weight(IP): 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      *
      * @param myFiltersRequest (required)
      * @return MyFiltersResponse
@@ -601,9 +600,9 @@ public class AccountApi {
     /**
      * Account trade history (USER_DATA) Query information about all your trades, filtered by time
      * range. Weight: Condition| Weight| ---| --- |Without orderId|20| |With orderId|5| Security
-     * Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database Notes: - If &#x60;fromId&#x60;
-     * is specified, return trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. - If
-     * &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, trades are filtered by
+     * Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database Notes: - If
+     * &#x60;fromId&#x60; is specified, return trades with trade ID &gt;&#x3D; &#x60;fromId&#x60;. -
+     * If &#x60;startTime&#x60; and/or &#x60;endTime&#x60; are specified, trades are filtered by
      * execution time (&#x60;time&#x60;). - &#x60;fromId&#x60; cannot be used together with
      * &#x60;startTime&#x60; and &#x60;endTime&#x60;. - If &#x60;orderId&#x60; is specified, only
      * trades related to that order are returned. - &#x60;startTime&#x60; and &#x60;endTime&#x60;
@@ -740,7 +739,9 @@ public class AccountApi {
      * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
      * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
      * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
-     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
+     * | Security Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      *
      * @param openOrdersStatusRequest (optional)
      * @return OpenOrdersStatusResponse
@@ -936,7 +937,8 @@ public class AccountApi {
      * is searched first, then the &#x60;origClientOrderId&#x60; from that result is checked against
      * that order. If both conditions are not met the request will be rejected. * For some
      * historical orders the &#x60;cummulativeQuoteQty&#x60; response field may be negative, meaning
-     * the data is not available at this time.
+     * the data is not available at this time. Response Notes: **Note:** The payload above does not
+     * show all fields that can appear. Please refer to Conditional fields in Order Responses.
      *
      * @param orderStatusRequest (required)
      * @return OrderStatusResponse

@@ -53,7 +53,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-stocks/1.0.0 (Java/%s; %s; %s)",
+                    "binance-stocks/1.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1130,8 +1130,13 @@ public class TradeApi {
     /**
      * Build call for placeEquityOrder
      *
-     * @param symbol US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a symbol with
-     *     tokenization enabled — check via &#x60;/market/tokenized-assets&#x60;. (required)
+     * @param symbol US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a tradable
+     *     US-equity symbol — verify via &#x60;/sapi/v1/equity/market/exchangeInfo&#x60;.
+     *     Tokenization enablement (verifiable via
+     *     &#x60;/sapi/v1/equity/market/tokenized-assets&#x60;) is *not* required; non-tokenized
+     *     symbols are accepted and settle as traditional underlying-equity trades. The
+     *     &#x60;tokenize&#x60; parameter only takes effect on tokenization-enabled symbols and is
+     *     silently ignored otherwise. (required)
      * @param side &#x60;BUY&#x60; / &#x60;SELL&#x60;. (required)
      * @param orderType &#x60;MARKET&#x60; / &#x60;LIMIT&#x60;. (required)
      * @param quoteAsset Quote asset. Defaults to &#x60;USDC&#x60;; must be within the server&#39;s
@@ -1152,8 +1157,9 @@ public class TradeApi {
      * @param clientOrderId Client-supplied order id. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;.
      *     Auto-generated when omitted. (optional)
      * @param tokenize Whether to tokenize the purchased stock asset upon settlement. Default
-     *     &#x60;true&#x60;. Set to &#x60;false&#x60; to receive the underlying equity directly
-     *     instead of a tokenized asset. (optional)
+     *     &#x60;true&#x60;. Only takes effect when the symbol is tokenization-enabled (check via
+     *     &#x60;/market/tokenized-assets&#x60;); silently ignored for non-tokenized symbols, which
+     *     always settle as traditional underlying-equity trades. (optional)
      * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1396,8 +1402,13 @@ public class TradeApi {
      * paired with &#x60;tradingSession &#x3D; EXTENDED&#x60; or &#x60;24H&#x60;. Rate limit: 200
      * requests / min (UID). Weight: 1 Security Type: TRADE
      *
-     * @param symbol US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a symbol with
-     *     tokenization enabled — check via &#x60;/market/tokenized-assets&#x60;. (required)
+     * @param symbol US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a tradable
+     *     US-equity symbol — verify via &#x60;/sapi/v1/equity/market/exchangeInfo&#x60;.
+     *     Tokenization enablement (verifiable via
+     *     &#x60;/sapi/v1/equity/market/tokenized-assets&#x60;) is *not* required; non-tokenized
+     *     symbols are accepted and settle as traditional underlying-equity trades. The
+     *     &#x60;tokenize&#x60; parameter only takes effect on tokenization-enabled symbols and is
+     *     silently ignored otherwise. (required)
      * @param side &#x60;BUY&#x60; / &#x60;SELL&#x60;. (required)
      * @param orderType &#x60;MARKET&#x60; / &#x60;LIMIT&#x60;. (required)
      * @param quoteAsset Quote asset. Defaults to &#x60;USDC&#x60;; must be within the server&#39;s
@@ -1418,8 +1429,9 @@ public class TradeApi {
      * @param clientOrderId Client-supplied order id. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;.
      *     Auto-generated when omitted. (optional)
      * @param tokenize Whether to tokenize the purchased stock asset upon settlement. Default
-     *     &#x60;true&#x60;. Set to &#x60;false&#x60; to receive the underlying equity directly
-     *     instead of a tokenized asset. (optional)
+     *     &#x60;true&#x60;. Only takes effect when the symbol is tokenization-enabled (check via
+     *     &#x60;/market/tokenized-assets&#x60;); silently ignored for non-tokenized symbols, which
+     *     always settle as traditional underlying-equity trades. (optional)
      * @param recvWindow The value cannot be greater than &#x60;60000&#x60;. (optional)
      * @return ApiResponse&lt;PlaceEquityOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

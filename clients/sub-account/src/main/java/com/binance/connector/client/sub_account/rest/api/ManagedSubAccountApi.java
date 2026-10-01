@@ -58,7 +58,7 @@ public class ManagedSubAccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/8.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1447,9 +1447,7 @@ public class ManagedSubAccountApi {
      * managed sub account transfer log. This endpoint is available for investor of Managed
      * Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in
      * asset allocation and account application, while delegating trades to a professional trading
-     * team. Please refer to
-     * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight(IP): 1 Security Type: USER_DATA
+     * team. Please refer to link Weight(IP): 1 Security Type: USER_DATA
      *
      * @param email (required)
      * @param startTime Start Time (required)
@@ -1680,9 +1678,7 @@ public class ManagedSubAccountApi {
      * api to query managed sub account transfer log. This endpoint is available for trading team of
      * Managed Sub-Account. A Managed Sub-Account is an account type for investors who value
      * flexibility in asset allocation and account application, while delegating trades to a
-     * professional trading team. Please refer to
-     * [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)
-     * Weight(UID): 60 Security Type: USER_DATA
+     * professional trading team. Please refer to link Weight(UID): 60 Security Type: USER_DATA
      *
      * @param email (required)
      * @param startTime Start Time (required)

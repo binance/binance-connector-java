@@ -29,7 +29,7 @@ public class QueryLastTradePriceExample {
     /**
      * Query Last Trade Price
      *
-     * <p>Get the most recent trade price for a prediction market. Weight(IP): 200
+     * <p>Get the most recent trade price for a prediction market. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */

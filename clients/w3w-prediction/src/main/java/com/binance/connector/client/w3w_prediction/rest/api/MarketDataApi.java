@@ -49,7 +49,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.1 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -195,7 +195,7 @@ public class MarketDataApi {
 
     /**
      * Get Market Detail Get full details for a specific prediction market topic, including variant
-     * data and timeline. Weight(IP): 200
+     * data and timeline. Weight(IP): 1
      *
      * @param marketTopicId Market topic ID. Must be &gt; 0 (required)
      * @return ApiResponse&lt;GetMarketDetailResponse&gt;
@@ -323,7 +323,7 @@ public class MarketDataApi {
 
     /**
      * List Prediction Categories Get all available prediction market categories (L1 and L2).
-     * Weight(IP): 200
+     * Weight(IP): 1
      *
      * @return ApiResponse&lt;ListPredictionCategoriesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -505,7 +505,7 @@ public class MarketDataApi {
 
     /**
      * List Prediction Markets Get a paginated list of prediction market topics, with optional
-     * category and sort filters. Weight(IP): 200
+     * category and sort filters. Weight(IP): 1
      *
      * @param l1Category Level-1 category filter (optional)
      * @param l2Category Level-2 category filter (optional)
@@ -657,7 +657,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Market Search Semantic search for prediction market topics by keyword. Weight(IP): 200
+     * Market Search Semantic search for prediction market topics by keyword. Weight(IP): 1
      *
      * @param query Search keyword. Not blank (required)
      * @param topK Max number of results to return. Default &#x60;20&#x60;, range 1–50 (optional)
@@ -790,8 +790,7 @@ public class MarketDataApi {
     }
 
     /**
-     * Query Last Trade Price Get the most recent trade price for a prediction market. Weight(IP):
-     * 200
+     * Query Last Trade Price Get the most recent trade price for a prediction market. Weight(IP): 1
      *
      * @param marketId Market ID. Must be &gt; 0 (required)
      * @return ApiResponse&lt;QueryLastTradePriceResponse&gt;
@@ -938,7 +937,7 @@ public class MarketDataApi {
 
     /**
      * Query Order Book Get the current order book (bids and asks) for a specific prediction market
-     * outcome token. Weight(IP): 200
+     * outcome token. Weight(IP): 1
      *
      * @param vendor Vendor identifier (e.g. &#x60;predict_fun&#x60;) (required)
      * @param marketId Market ID. Must be &gt; 0 (required)

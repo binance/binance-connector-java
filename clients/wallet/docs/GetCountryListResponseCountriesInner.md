@@ -12,7 +12,7 @@
 |**blockType** | **String** | &#x60;supported&#x60;, &#x60;limited&#x60;, or &#x60;blocked&#x60;. |  [optional] |
 |**depositAllowed** | **Boolean** | Whether deposit is allowed for this country. |  [optional] |
 |**withdrawalAllowed** | **Boolean** | Whether withdrawal is allowed for this country. |  [optional] |
-|**hasRegionRestrictions** | **Boolean** | Whether this country has region-level restrictions. |  [optional] |
+|**hasRegionRestrictions** | **Boolean** | Whether this country has region-level restrictions. Always &#x60;false&#x60; for the BR entity, which does not collect region/city. |  [optional] |
 
 
 
