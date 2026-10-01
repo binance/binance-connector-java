@@ -36,7 +36,9 @@ public class OpenOrdersStatusExample {
      * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
      * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
      * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
-     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
+     * | Security Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      */
     public void openOrdersStatusExampleAsync() {
         OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest();
@@ -60,7 +62,9 @@ public class OpenOrdersStatusExample {
      * &#x60;userDataStream.subscribe&#x60; if on an authenticated session *
      * &#x60;userDataStream.subscribe.signature&#x60; if subscribing through signature subscription
      * Weight: | Parameter | Weight | | --------- | ------ | | &#x60;symbol&#x60; | 6 | | none | 80
-     * | Security Type: USER_DATA Notes: Data Source: Memory &#x3D;&gt; Database
+     * | Security Type: USER_DATA Notes: **Data Source:** Memory &#x3D;&gt; Database Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      */
     public void openOrdersStatusExampleSync() {
         OpenOrdersStatusRequest openOrdersStatusRequest = new OpenOrdersStatusRequest();

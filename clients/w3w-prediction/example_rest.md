@@ -76,7 +76,7 @@
 
 ## Wallet
 
-[GET /sapi/v1/w3w/wallet/prediction/pnl/portfolio](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio) - getPortfolio - [GetPortfolioExample.java:38](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/wallet/GetPortfolioExample.java#L38)
+[GET /sapi/v1/w3w/wallet/prediction/pnl/portfolio](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio) - getPortfolio - [GetPortfolioExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/wallet/GetPortfolioExample.java#L37)
 
 [GET /sapi/v1/w3w/wallet/prediction/quota/limit/status](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status) - getQuotaStatus - [GetQuotaStatusExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/wallet/GetQuotaStatusExample.java#L37)
 

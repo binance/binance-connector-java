@@ -30,7 +30,7 @@ public class RedeemABinanceGiftCardExample {
      * Redeem a Binance Gift Card (USER_DATA)
      *
      * <p>This API is for redeeming a Binance Gift Card. Once redeemed, the coins will be deposited
-     * in your funding wallet. Weight(IP): 1 Security Type: USER_DATA Notes: - Parameter
+     * in your Spot wallet. Weight(IP): 1 Security Type: USER_DATA Notes: - Parameter
      * &#x60;code&#x60; can be sent in two formats: &#x60;Plaintext&#x60; and &#x60;Encrypted&#x60;.
      * - Sending &#x60;code&#x60; in encrypted format is more secure than plaintext. - To send
      * encrypted &#x60;code&#x60;: - Fetch RSA public key from &#x60;GET

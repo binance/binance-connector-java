@@ -22,8 +22,7 @@ import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
 /**
- * The allowed enums is dependent on what is configured on the symbol. Supported values: [STP
- * Modes](/products/spot/enums#stpmodes)
+ * The allowed enums is dependent on what is configured on the symbol. Supported values: STP Modes
  */
 @JsonAdapter(SelfTradePreventionMode.Adapter.class)
 public enum SelfTradePreventionMode {

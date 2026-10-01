@@ -124,7 +124,7 @@ public class SubAccountFuturesAssetTransferRequest {
     }
 
     /**
-     * 1:USDT-margined Futures，2: Coin-margined Futures
+     * 1: USDT-margined Futures，2: Coin-margined Futures
      *
      * @return futuresType
      */

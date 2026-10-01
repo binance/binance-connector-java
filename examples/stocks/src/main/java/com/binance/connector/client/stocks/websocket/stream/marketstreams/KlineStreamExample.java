@@ -25,7 +25,8 @@ public class KlineStreamExample {
      * Kline Stream
      *
      * <p>Per-symbol candlestick updates. One stream per (symbol, interval) combination. Supported
-     * intervals: 5m, 1h, 1d, 1w, 1M.
+     * intervals: 5m, 1h, 1d, 1w, 1M. Also reachable via the SUBSCRIBE/UNSUBSCRIBE RPC — see
+     * Subscribing via RPC.
      *
      * @throws ApiException if the Api call fails
      */

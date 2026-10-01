@@ -44,7 +44,7 @@ public class KlineStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_E = "E";
 
@@ -56,33 +56,33 @@ public class KlineStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_S_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String SLowerCase;
+    private String sLowerCase;
 
     public static final String SERIALIZED_NAME_K_LOWER_CASE = "k";
 
     @SerializedName(SERIALIZED_NAME_K_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private KlineStreamResponseK KLowerCase;
+    private KlineStreamResponseK kLowerCase;
 
     public KlineStreamResponse() {}
 
-    public KlineStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public KlineStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;kline\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public KlineStreamResponse E(@jakarta.annotation.Nullable Long E) {
@@ -104,44 +104,44 @@ public class KlineStreamResponse extends BaseDTO {
         this.E = E;
     }
 
-    public KlineStreamResponse SLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public KlineStreamResponse sLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
         return this;
     }
 
     /**
      * Symbol (UPPERCASE ticker).
      *
-     * @return SLowerCase
+     * @return sLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getSLowerCase() {
-        return SLowerCase;
+    public String getsLowerCase() {
+        return sLowerCase;
     }
 
-    public void setSLowerCase(@jakarta.annotation.Nullable String SLowerCase) {
-        this.SLowerCase = SLowerCase;
+    public void setsLowerCase(@jakarta.annotation.Nullable String sLowerCase) {
+        this.sLowerCase = sLowerCase;
     }
 
-    public KlineStreamResponse KLowerCase(
-            @jakarta.annotation.Nullable KlineStreamResponseK KLowerCase) {
-        this.KLowerCase = KLowerCase;
+    public KlineStreamResponse kLowerCase(
+            @jakarta.annotation.Nullable KlineStreamResponseK kLowerCase) {
+        this.kLowerCase = kLowerCase;
         return this;
     }
 
     /**
-     * Get KLowerCase
+     * Get kLowerCase
      *
-     * @return KLowerCase
+     * @return kLowerCase
      */
     @jakarta.annotation.Nullable
     @Valid
-    public KlineStreamResponseK getKLowerCase() {
-        return KLowerCase;
+    public KlineStreamResponseK getkLowerCase() {
+        return kLowerCase;
     }
 
-    public void setKLowerCase(@jakarta.annotation.Nullable KlineStreamResponseK KLowerCase) {
-        this.KLowerCase = KLowerCase;
+    public void setkLowerCase(@jakarta.annotation.Nullable KlineStreamResponseK kLowerCase) {
+        this.kLowerCase = kLowerCase;
     }
 
     @Override
@@ -153,25 +153,25 @@ public class KlineStreamResponse extends BaseDTO {
             return false;
         }
         KlineStreamResponse klineStreamResponse = (KlineStreamResponse) o;
-        return Objects.equals(this.ELowerCase, klineStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, klineStreamResponse.eLowerCase)
                 && Objects.equals(this.E, klineStreamResponse.E)
-                && Objects.equals(this.SLowerCase, klineStreamResponse.SLowerCase)
-                && Objects.equals(this.KLowerCase, klineStreamResponse.KLowerCase);
+                && Objects.equals(this.sLowerCase, klineStreamResponse.sLowerCase)
+                && Objects.equals(this.kLowerCase, klineStreamResponse.kLowerCase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ELowerCase, E, SLowerCase, KLowerCase);
+        return Objects.hash(eLowerCase, E, sLowerCase, kLowerCase);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class KlineStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		E: ").append(toIndentedString(E)).append("\n");
-        sb.append("		SLowerCase: ").append(toIndentedString(SLowerCase)).append("\n");
-        sb.append("		KLowerCase: ").append(toIndentedString(KLowerCase)).append("\n");
+        sb.append("		sLowerCase: ").append(toIndentedString(sLowerCase)).append("\n");
+        sb.append("		kLowerCase: ").append(toIndentedString(kLowerCase)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -180,25 +180,25 @@ public class KlineStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         Long EValue = getE();
         if (EValue != null) {
             String EValueAsString = EValue.toString();
             valMap.put("E", EValueAsString);
         }
-        String SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            String SLowerCaseValueAsString = SLowerCaseValue.toString();
-            valMap.put("SLowerCase", SLowerCaseValueAsString);
+        String sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            String sLowerCaseValueAsString = sLowerCaseValue.toString();
+            valMap.put("sLowerCase", sLowerCaseValueAsString);
         }
-        KlineStreamResponseK KLowerCaseValue = getKLowerCase();
-        if (KLowerCaseValue != null) {
-            String KLowerCaseValueAsString = JSON.getGson().toJson(KLowerCaseValue);
-            valMap.put("KLowerCase", KLowerCaseValueAsString);
+        KlineStreamResponseK kLowerCaseValue = getkLowerCase();
+        if (kLowerCaseValue != null) {
+            String kLowerCaseValueAsString = JSON.getGson().toJson(kLowerCaseValue);
+            valMap.put("kLowerCase", kLowerCaseValueAsString);
         }
 
         valMap.put("timestamp", getTimestamp());
@@ -211,21 +211,21 @@ public class KlineStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object EValue = getE();
         if (EValue != null) {
             valMap.put("E", EValue);
         }
-        Object SLowerCaseValue = getSLowerCase();
-        if (SLowerCaseValue != null) {
-            valMap.put("SLowerCase", SLowerCaseValue);
+        Object sLowerCaseValue = getsLowerCase();
+        if (sLowerCaseValue != null) {
+            valMap.put("sLowerCase", sLowerCaseValue);
         }
-        Object KLowerCaseValue = getKLowerCase();
-        if (KLowerCaseValue != null) {
-            valMap.put("KLowerCase", KLowerCaseValue);
+        Object kLowerCaseValue = getkLowerCase();
+        if (kLowerCaseValue != null) {
+            valMap.put("kLowerCase", kLowerCaseValue);
         }
 
         valMap.put("timestamp", getTimestamp());

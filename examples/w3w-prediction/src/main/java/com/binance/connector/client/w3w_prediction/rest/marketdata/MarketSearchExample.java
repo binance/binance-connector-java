@@ -29,7 +29,7 @@ public class MarketSearchExample {
     /**
      * Market Search
      *
-     * <p>Semantic search for prediction market topics by keyword. Weight(IP): 200
+     * <p>Semantic search for prediction market topics by keyword. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */

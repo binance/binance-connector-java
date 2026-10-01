@@ -28,7 +28,8 @@ public class HistoricalBlockTradesExample {
     /**
      * Historical Block Trades (MARKET_DATA)
      *
-     * <p>Get block trades. Weight(IP): 25 Security Type: MARKET_DATA Notes: - Data Source: Database
+     * <p>Get block trades. Weight(IP): 25 Security Type: MARKET_DATA Notes: **Data Source:**
+     * Database
      *
      * @throws ApiException if the Api call fails
      */

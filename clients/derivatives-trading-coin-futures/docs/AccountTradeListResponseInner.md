@@ -16,8 +16,8 @@
 |**qty** | **String** | Quantity. |  [optional] |
 |**realizedPnl** | **String** | Realized PnL. |  [optional] |
 |**marginAsset** | **String** | Margin asset. |  [optional] |
-|**baseQty** | **String** | Base asset quantity. |  [optional] |
-|**quoteQty** | **String** | Quote asset quantity. |  [optional] |
+|**baseQty** | **String** | Base asset quantity. Populated for COIN-M symbols; returns \&quot;0\&quot; for USDⓈ-M symbols. |  [optional] |
+|**quoteQty** | **String** | Quote asset quantity. Populated for USDⓈ-M symbols; returns \&quot;0\&quot; for COIN-M symbols. |  [optional] |
 |**commission** | **String** | Transaction Fee (in Crypto) |  [optional] |
 |**commissionAsset** | **String** | Commission asset. |  [optional] |
 |**time** | **Long** | Time |  [optional] |

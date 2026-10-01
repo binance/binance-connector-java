@@ -35,8 +35,9 @@ public class OrderListPlaceOpocoExample {
     /**
      * OPOCO (TRADE)
      *
-     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
-     * Type: TRADE Notes: **Data Source:** Matching Engine
+     * <p>Place an OPOCO. Weight(IP): 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data
+     * Source:** Matching Engine Response Notes: **Note:** The payload above does not show all
+     * fields that can appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderListPlaceOpocoExampleAsync() {
         OrderListPlaceOpocoRequest orderListPlaceOpocoRequest = new OrderListPlaceOpocoRequest();
@@ -62,8 +63,9 @@ public class OrderListPlaceOpocoExample {
     /**
      * OPOCO (TRADE)
      *
-     * <p>Place an [OPOCO](/products/spot/faqs/opo). Weight(IP): 1 Unfilled Order Count: 3 Security
-     * Type: TRADE Notes: **Data Source:** Matching Engine
+     * <p>Place an OPOCO. Weight(IP): 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data
+     * Source:** Matching Engine Response Notes: **Note:** The payload above does not show all
+     * fields that can appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderListPlaceOpocoExampleSync() {
         OrderListPlaceOpocoRequest orderListPlaceOpocoRequest = new OrderListPlaceOpocoRequest();

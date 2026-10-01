@@ -65,7 +65,7 @@ public class PingResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private List<@Valid PingResponseRateLimitsInner> rateLimits;
 
     public PingResponse() {}
 
@@ -127,13 +127,12 @@ public class PingResponse extends BaseDTO {
     }
 
     public PingResponse rateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+            @jakarta.annotation.Nullable List<@Valid PingResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
-    public PingResponse addRateLimitsItem(AccountCommissionResponseRateLimitsInner rateLimitsItem) {
+    public PingResponse addRateLimitsItem(PingResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -148,13 +147,12 @@ public class PingResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid PingResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+            @jakarta.annotation.Nullable List<@Valid PingResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -209,7 +207,7 @@ public class PingResponse extends BaseDTO {
             String resultValueAsString = resultValue.toString();
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid PingResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -328,8 +326,7 @@ public class PingResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
-                            jsonArrayrateLimits.get(i));
+                    PingResponseRateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
                 }
                 ;
             }

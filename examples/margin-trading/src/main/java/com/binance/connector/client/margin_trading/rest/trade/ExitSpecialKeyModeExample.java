@@ -38,14 +38,12 @@ public class ExitSpecialKeyModeExample {
      * 2. All pre-execution margin checks (including Open-order-loss calculation) will revert to
      * standard mode. 3. A cooldown period (default: 24 hours) will be enforced, during which the
      * account will not be permitted to create new Margin Special API Keys. For more information,
-     * please refer to
-     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
-     * **Preconditions:** The following conditions must be met; otherwise the request will be
-     * rejected: - Account type must be **Cross Margin Classic**. - Account must currently be in
-     * **Special Key Mode**. If not, the request silently succeeds. - Account must **not be in
-     * liquidation**. - Account must **have no liability**. You need to enable \&quot;Permits Enable
-     * Spot &amp; Margin Trading\&quot; option for the API Key which requests this endpoint.
-     * Weight(UID): 10 Security Type: TRADE
+     * please refer to FAQ. **Preconditions:** The following conditions must be met; otherwise the
+     * request will be rejected: - Account type must be **Cross Margin Classic**. - Account must
+     * currently be in **Special Key Mode**. If not, the request silently succeeds. - Account must
+     * **not be in liquidation**. - Account must **have no liability**. You need to enable
+     * \&quot;Permits Enable Spot &amp; Margin Trading\&quot; option for the API Key which requests
+     * this endpoint. Weight(UID): 10 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */

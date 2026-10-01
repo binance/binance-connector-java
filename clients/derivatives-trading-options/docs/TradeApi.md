@@ -26,7 +26,7 @@ All URIs are relative to *https://eapi.binance.com*
 
 Account Trade List (USER_DATA)
 
-Get trades for a specific account and symbol.  Weight(IP): 5  Security Type: USER_DATA
+Get trades for a specific account and symbol. Only supports querying trades in the past 3 months; a &#x60;startTime&#x60;/&#x60;endTime&#x60; outside that window returns &#x60;-6073 SEARCH_WINDOW_RESTRICTED&#x60;.  Weight(IP): 5  Security Type: USER_DATA
 
 ### Example
 ```java

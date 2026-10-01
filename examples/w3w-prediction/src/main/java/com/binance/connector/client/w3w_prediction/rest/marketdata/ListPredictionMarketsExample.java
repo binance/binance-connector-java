@@ -32,7 +32,7 @@ public class ListPredictionMarketsExample {
      * List Prediction Markets
      *
      * <p>Get a paginated list of prediction market topics, with optional category and sort filters.
-     * Weight(IP): 200
+     * Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */

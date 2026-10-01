@@ -33,10 +33,11 @@ public class OrderListOpoExample {
     /**
      * New Order List - OPO (TRADE)
      *
-     * <p>Place an [OPO](/products/spot/faqs/opo). - OPOs add 2 orders to the
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60;&#x60; filter.
-     * Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:** Matching
-     * Engine
+     * <p>Place an OPO. - OPOs add 2 orders to the &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60;&#x60; filter
+     * and &#x60;MAX_NUM_ORDERS&#x60;&#x60; filter. Weight(IP): 1 Unfilled Order Count: 2 Security
+     * Type: TRADE Notes: **Data Source:** Matching Engine Response Notes: **Note:** The payload
+     * above does not show all fields that can appear. Please refer to Conditional fields in Order
+     * Responses.
      *
      * @throws ApiException if the Api call fails
      */

@@ -39,6 +39,12 @@ import org.hibernate.validator.constraints.*;
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
 public class OrderReportStreamRequest extends BaseDTO {
+    public static final String SERIALIZED_NAME_ID = "id";
+
+    @SerializedName(SERIALIZED_NAME_ID)
+    @jakarta.annotation.Nullable
+    private String id;
+
     public static final String SERIALIZED_NAME_LISTEN_KEY = "listenKey";
 
     @SerializedName(SERIALIZED_NAME_LISTEN_KEY)
@@ -46,6 +52,25 @@ public class OrderReportStreamRequest extends BaseDTO {
     private String listenKey;
 
     public OrderReportStreamRequest() {}
+
+    public OrderReportStreamRequest id(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Unique WebSocket request ID.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@jakarta.annotation.Nullable String id) {
+        this.id = id;
+    }
 
     public OrderReportStreamRequest listenKey(@jakarta.annotation.Nullable String listenKey) {
         this.listenKey = listenKey;
@@ -75,18 +100,20 @@ public class OrderReportStreamRequest extends BaseDTO {
             return false;
         }
         OrderReportStreamRequest orderReportStreamRequest = (OrderReportStreamRequest) o;
-        return Objects.equals(this.listenKey, orderReportStreamRequest.listenKey);
+        return Objects.equals(this.id, orderReportStreamRequest.id)
+                && Objects.equals(this.listenKey, orderReportStreamRequest.listenKey);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(listenKey);
+        return Objects.hash(id, listenKey);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class OrderReportStreamRequest {\n");
+        sb.append("		id: ").append(toIndentedString(id)).append("\n");
         sb.append("		listenKey: ").append(toIndentedString(listenKey)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -96,6 +123,11 @@ public class OrderReportStreamRequest extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
+        String idValue = getId();
+        if (idValue != null) {
+            String idValueAsString = idValue.toString();
+            valMap.put("id", idValueAsString);
+        }
         String listenKeyValue = getListenKey();
         if (listenKeyValue != null) {
             String listenKeyValueAsString = listenKeyValue.toString();
@@ -112,6 +144,10 @@ public class OrderReportStreamRequest extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
+        Object idValue = getId();
+        if (idValue != null) {
+            valMap.put("id", idValue);
+        }
         Object listenKeyValue = getListenKey();
         if (listenKeyValue != null) {
             valMap.put("listenKey", listenKeyValue);
@@ -142,6 +178,7 @@ public class OrderReportStreamRequest extends BaseDTO {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
+        openapiFields.add("id");
         openapiFields.add("listenKey");
 
         // a set of required properties/fields (JSON key names)
@@ -178,6 +215,14 @@ public class OrderReportStreamRequest extends BaseDTO {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
         if ((jsonObj.get("listenKey") != null && !jsonObj.get("listenKey").isJsonNull())
                 && !jsonObj.get("listenKey").isJsonPrimitive()) {
             throw new IllegalArgumentException(

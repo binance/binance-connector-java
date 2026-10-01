@@ -17,7 +17,7 @@
 |**aboveIcebergQty** | **Long** | Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;. |  [optional] |
 |**abovePrice** | **Double** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. |  [optional] |
 |**aboveStopPrice** | **Double** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;aboveStopPrice&#x60; or &#x60;aboveTrailingDelta&#x60; or both, must be specified. |  [optional] |
-|**aboveTrailingDelta** | **Long** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) |  [optional] |
+|**aboveTrailingDelta** | **Long** | See Trailing Stop order FAQ |  [optional] |
 |**aboveTimeInForce** | **AboveTimeInForce** |  |  [optional] |
 |**aboveStrategyId** | **Long** | Arbitrary numeric value identifying the above order within an order strategy. |  [optional] |
 |**aboveStrategyType** | **Integer** | Arbitrary numeric value identifying the above order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. |  [optional] |
@@ -29,7 +29,7 @@
 |**belowIcebergQty** | **Long** | Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;. |  [optional] |
 |**belowPrice** | **Double** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. |  [optional] |
 |**belowStopPrice** | **Double** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified. |  [optional] |
-|**belowTrailingDelta** | **Long** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) |  [optional] |
+|**belowTrailingDelta** | **Long** | See Trailing Stop order FAQ |  [optional] |
 |**belowTimeInForce** | **BelowTimeInForce** |  |  [optional] |
 |**belowStrategyId** | **Long** | Arbitrary numeric value identifying the below order within an order strategy. |  [optional] |
 |**belowStrategyType** | **Integer** | Arbitrary numeric value identifying the below order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. |  [optional] |

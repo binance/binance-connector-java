@@ -24,7 +24,8 @@ public class CalendarStreamExample {
      * Calendar Stream
      *
      * <p>Single-stream broadcast of market-phase transitions. One message per transition; no
-     * periodic heartbeat payload. Server polls every 5 seconds.
+     * periodic heartbeat payload. Server polls every 5 seconds. Also reachable via the
+     * SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @throws ApiException if the Api call fails
      */

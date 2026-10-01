@@ -53,7 +53,7 @@ public class AccountManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/8.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -682,7 +682,7 @@ public class AccountManagementApi {
      * Build call for getFuturesPositionRiskOfSubAccountV2
      *
      * @param email (required)
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -809,7 +809,7 @@ public class AccountManagementApi {
      * Position-Risk of Sub-account V2 Weight(IP): 1 Security Type: USER_DATA
      *
      * @param email (required)
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetFuturesPositionRiskOfSubAccountV2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

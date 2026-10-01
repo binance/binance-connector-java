@@ -121,7 +121,7 @@ public class Risklevelchange extends BaseDTO {
     }
 
     /**
-     * Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION
+     * Risk level: NORMAL, MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION
      *
      * @return sLowerCase
      */

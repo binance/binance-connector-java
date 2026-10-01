@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**fromEmail** | **String** | Sender email |  |
 |**toEmail** | **String** | Recipient email |  |
-|**futuresType** | **Long** | 1:USDT-margined Futures，2: Coin-margined Futures |  |
+|**futuresType** | **Long** | 1: USDT-margined Futures，2: Coin-margined Futures |  |
 |**asset** | **String** |  |  |
 |**amount** | **Double** |  |  |
 |**recvWindow** | **Long** |  |  [optional] |

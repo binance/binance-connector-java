@@ -18,7 +18,7 @@ All URIs are relative to *https://api.binance.com*
 
 Create a dual-token gift card (fixed value, discount feature) (TRADE)
 
-* This API is for creating a dual-token ( stablecoin-denominated) Binance Gift Card. You may create a gift card using USDT as baseToken, that is redeemable to another designated token (faceToken). For example, you can create a fixed-value BTC gift card and pay with 100 USDT plus minting fee. This gift card can keep the value fixed at 100 USDT before redemption, and will be redeemable to BTC equivalent to 100 USDT upon redemption.  * Once successfully created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee would be deducted from your funding wallet.   * To get started with, please make sure:   * You have a Binance account   * You have passed KYB   * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet   * You need Enable Withdrawals for the API Key which requests this endpoint.  Weight(IP): 1  Security Type: TRADE
+* This API is for creating a dual-token ( stablecoin-denominated) Binance Gift Card. You may create a gift card using USDT as baseToken, that is redeemable to another designated token (faceToken). For example, you can create a fixed-value BTC gift card and pay with 100 USDT plus minting fee. This gift card can keep the value fixed at 100 USDT before redemption, and will be redeemable to BTC equivalent to 100 USDT upon redemption.  * Once successfully created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee would be deducted from your Spot wallet.   * To get started with, please make sure:   * You have a Binance account   * You have passed KYB   * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance Spot wallet   * You need Enable Withdrawals for the API Key which requests this endpoint.  Weight(IP): 1  Security Type: TRADE
 
 ### Example
 ```java
@@ -80,7 +80,7 @@ No authorization required
 
 Create a single-token gift card (USER_DATA)
 
-This API is for creating a Binance Gift Card.  To get started with, please make sure:   * You have a Binance account   * You have passed KYB   * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance funding wallet   * You need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint.  Weight(IP): 1  Security Type: USER_DATA
+This API is for creating a Binance Gift Card.  To get started with, please make sure:   * You have a Binance account   * You have passed KYB   * You have a sufﬁcient balance(Gift Card amount and fee amount) in your Binance Spot wallet   * You need &#x60;Enable Withdrawals&#x60; for the API Key which requests this endpoint.  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -268,7 +268,7 @@ No authorization required
 
 Redeem a Binance Gift Card (USER_DATA)
 
-This API is for redeeming a Binance Gift Card. Once redeemed, the coins will be deposited in your funding wallet.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Parameter &#x60;code&#x60; can be sent in two formats: &#x60;Plaintext&#x60; and &#x60;Encrypted&#x60;. - Sending &#x60;code&#x60; in encrypted format is more secure than plaintext. - To send encrypted &#x60;code&#x60;:   - Fetch RSA public key from &#x60;GET /sapi/v1/giftcard/cryptography/rsa-public-key&#x60;.   - Encrypt card code using &#x60;RSA/ECB/OAEPWithSHA-256AndMGF1Padding&#x60;. - If you enter the wrong redemption code 5 times within 24 hours, you will no longer be able to redeem any Binance Gift Cards that day.
+This API is for redeeming a Binance Gift Card. Once redeemed, the coins will be deposited in your Spot wallet.  Weight(IP): 1  Security Type: USER_DATA  Notes: - Parameter &#x60;code&#x60; can be sent in two formats: &#x60;Plaintext&#x60; and &#x60;Encrypted&#x60;. - Sending &#x60;code&#x60; in encrypted format is more secure than plaintext. - To send encrypted &#x60;code&#x60;:   - Fetch RSA public key from &#x60;GET /sapi/v1/giftcard/cryptography/rsa-public-key&#x60;.   - Encrypt card code using &#x60;RSA/ECB/OAEPWithSHA-256AndMGF1Padding&#x60;. - If you enter the wrong redemption code 5 times within 24 hours, you will no longer be able to redeem any Binance Gift Cards that day.
 
 ### Example
 ```java

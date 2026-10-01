@@ -75,7 +75,7 @@ public class AssetManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/8.0.0 (Java/%s; %s; %s)",
+                    "binance-sub-account/8.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -430,7 +430,7 @@ public class AssetManagementApi {
      * Build call for getDetailOnSubAccountsFuturesAccountV2
      *
      * @param email (required)
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -557,7 +557,7 @@ public class AssetManagementApi {
      * Detail on Sub-account&#39;s Futures Account Weight(IP): 1 Security Type: USER_DATA
      *
      * @param email (required)
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetDetailOnSubAccountsFuturesAccountV2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1563,7 +1563,7 @@ public class AssetManagementApi {
     /**
      * Build call for getSummaryOfSubAccountsFuturesAccountV2
      *
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param page (optional)
      * @param limit (optional)
      * @param recvWindow (optional)
@@ -1697,7 +1697,7 @@ public class AssetManagementApi {
      * Get Summary of Sub-account&#39;s Futures Account V2 (For Master Account) (USER_DATA) Get
      * Summary of Sub-account&#39;s Futures Account Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param page (optional)
      * @param limit (optional)
      * @param recvWindow (optional)
@@ -2498,7 +2498,7 @@ public class AssetManagementApi {
      * Build call for querySubAccountFuturesAssetTransferHistory
      *
      * @param email (required)
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param startTime Cannot be earlier than 1 month ago (optional)
      * @param endTime (optional)
      * @param page (optional)
@@ -2666,7 +2666,7 @@ public class AssetManagementApi {
      * Sub-account Futures Asset Transfer History Weight(IP): 1 Security Type: USER_DATA
      *
      * @param email (required)
-     * @param futuresType 1:USDT-margined Futures，2: Coin-margined Futures (required)
+     * @param futuresType 1: USDT-margined Futures，2: Coin-margined Futures (required)
      * @param startTime Cannot be earlier than 1 month ago (optional)
      * @param endTime (optional)
      * @param page (optional)

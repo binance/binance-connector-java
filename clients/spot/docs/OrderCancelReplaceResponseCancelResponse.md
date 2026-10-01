@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**origClientOrderId** | **String** |  |  [optional] |
+|**origClientOrderId** | **String** | cancelOrigClientOrderId from request |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
 |**orderListId** | **Long** | Unless it&#39;s part of an order list, value will be -1 |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
+|**clientOrderId** | **String** | cancelNewClientOrderId from request |  [optional] |
 |**transactTime** | **Long** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |

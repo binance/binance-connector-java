@@ -6,9 +6,9 @@
 
 [!optionSymbol](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#new-symbol-info) - newSymbolInfo - [NewSymbolInfoExample.java:31](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/market/NewSymbolInfoExample.java#L31)
 
-[<underlying>@openInterest@<expirationDate>](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#open-interest) - openInterest - [OpenInterestExample.java:33](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/market/OpenInterestExample.java#L33)
+[<underlying>@openInterest@<expirationDate>](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#open-interest) - openInterest - [OpenInterestExample.java:32](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/market/OpenInterestExample.java#L32)
 
-[<underlying>@optionMarkPrice](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#option-mark-price) - optionMarkPrice - [OptionMarkPriceExample.java:33](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/market/OptionMarkPriceExample.java#L33)
+[<underlying>@optionMarkPrice](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#option-mark-price) - optionMarkPrice - [OptionMarkPriceExample.java:32](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/market/OptionMarkPriceExample.java#L32)
 
 ## Public
 
@@ -20,5 +20,5 @@
 
 [<symbol>@depth<level>@<updateSpeed>](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#partial-book-depth-streams) - partialBookDepthStreams - [PartialBookDepthStreamsExample.java:32](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/publicpkg/PartialBookDepthStreamsExample.java#L32)
 
-[<symbol>@optionTrade](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#trade-streams) - tradeStreams - [TradeStreamsExample.java:33](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/publicpkg/TradeStreamsExample.java#L33)
+[<symbol>@optionTrade](https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#trade-streams) - tradeStreams - [TradeStreamsExample.java:32](/examples/derivatives-trading-options/src/main/java/com/binance/connector/client/derivatives_trading_options/websocket/stream/publicpkg/TradeStreamsExample.java#L32)
 

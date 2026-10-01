@@ -342,7 +342,8 @@ public class OrderListOtocoRequest {
      * Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order
      * list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is
      * filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the
-     * &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;.
+     * &#x60;workingClientOrderId&#x60;, &#x60;pendingAboveClientOrderId&#x60;, and the
+     * &#x60;pendingBelowClientOrderId&#x60;.
      *
      * @return listClientOrderId
      */
@@ -794,7 +795,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return pendingAboveTrailingDelta
      */
@@ -1060,7 +1061,7 @@ public class OrderListOtocoRequest {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return pendingBelowTrailingDelta
      */

@@ -105,7 +105,10 @@ public class PlaceOrderRequest {
     }
 
     /**
-     * User&#39;s prediction wallet address
+     * User&#39;s prediction wallet address. Must be a valid address owned by the calling UID — a
+     * well-formed address not owned by the UID and a malformed (non-address) value both return the
+     * same generic &#x60;-3026&#x60;. An empty string instead returns &#x60;-1102&#x60; naming the
+     * field.
      *
      * @return walletAddress
      */
@@ -250,7 +253,9 @@ public class PlaceOrderRequest {
     }
 
     /**
-     * Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0
+     * Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;, must be &gt; 0. Omitting it when
+     * &#x60;orderType&#x3D;LIMIT&#x60; returns a generic &#x60;-3026&#x60; (no field name in the
+     * message).
      *
      * @return priceLimit
      */

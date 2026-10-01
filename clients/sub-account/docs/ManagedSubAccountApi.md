@@ -487,7 +487,7 @@ No authorization required
 
 Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
 
-Query Managed Sub Account Transfer Log For Investor Master Account  Investor can use this api to query managed sub account transfer log. This endpoint is available for investor of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team.  Please refer to [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)  Weight(IP): 1  Security Type: USER_DATA
+Query Managed Sub Account Transfer Log For Investor Master Account  Investor can use this api to query managed sub account transfer log. This endpoint is available for investor of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team.  Please refer to link  Weight(IP): 1  Security Type: USER_DATA
 
 ### Example
 ```java
@@ -561,7 +561,7 @@ No authorization required
 
 Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
 
-Query Managed Sub Account Transfer Log For Trading Team Master Account  Trading team can use this api to query managed sub account transfer log. This endpoint is available for trading team of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team.  Please refer to [link](https://www.binance.com/en/support/faq/how-to-get-started-with-managed-sub-account-functions-and-frequently-asked-questions-0594748722704383a7c369046e489459)  Weight(UID): 60  Security Type: USER_DATA
+Query Managed Sub Account Transfer Log For Trading Team Master Account  Trading team can use this api to query managed sub account transfer log. This endpoint is available for trading team of Managed Sub-Account. A Managed Sub-Account is an account type for investors who value flexibility in asset allocation and account application, while delegating trades to a professional trading team.  Please refer to link  Weight(UID): 60  Security Type: USER_DATA
 
 ### Example
 ```java

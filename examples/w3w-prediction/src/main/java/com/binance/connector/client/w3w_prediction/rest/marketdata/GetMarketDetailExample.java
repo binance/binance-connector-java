@@ -30,7 +30,7 @@ public class GetMarketDetailExample {
      * Get Market Detail
      *
      * <p>Get full details for a specific prediction market topic, including variant data and
-     * timeline. Weight(IP): 200
+     * timeline. Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */

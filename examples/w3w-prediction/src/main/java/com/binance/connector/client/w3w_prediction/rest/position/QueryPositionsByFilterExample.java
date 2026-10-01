@@ -30,7 +30,7 @@ public class QueryPositionsByFilterExample {
      * Query Positions by Filter (PREDICTION_TRADE)
      *
      * <p>Get prediction positions filtered by wallet address and/or market topic ID. Both
-     * parameters are optional. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * parameters are optional. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

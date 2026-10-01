@@ -282,7 +282,7 @@ public class OrderPlaceResponseResult extends BaseDTO {
     }
 
     /**
-     * Get orderListId
+     * always -1 for singular orders
      *
      * @return orderListId
      */
@@ -851,7 +851,9 @@ public class OrderPlaceResponseResult extends BaseDTO {
     }
 
     /**
-     * Get fills
+     * FULL response is identical to RESULT response, with the same optional fields based on the
+     * order type and parameters. FULL response additionally includes the list of trades which
+     * immediately filled the order.
      *
      * @return fills
      */

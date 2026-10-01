@@ -17,7 +17,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get Position by Token (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s position detail for a specific prediction token.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get the authenticated user&#39;s position detail for a specific prediction token.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -83,7 +83,7 @@ No authorization required
 
 Query PnL (PREDICTION_TRADE)
 
-Query profit and loss records for the authenticated user&#39;s prediction positions. When &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise returns a list in &#x60;pnlList&#x60;.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Query profit and loss records for the authenticated user&#39;s prediction positions. When &#x60;tokenId&#x60; is provided, returns a single record in &#x60;pnl&#x60;; otherwise returns a list in &#x60;pnlList&#x60;.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -155,7 +155,7 @@ No authorization required
 
 Query Positions (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s prediction token positions with portfolio summary and tab-based filtering.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get the authenticated user&#39;s prediction token positions with portfolio summary and tab-based filtering.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -225,7 +225,7 @@ No authorization required
 
 Query Positions by Filter (PREDICTION_TRADE)
 
-Get prediction positions filtered by wallet address and/or market topic ID. Both parameters are optional.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get prediction positions filtered by wallet address and/or market topic ID. Both parameters are optional.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -291,7 +291,7 @@ No authorization required
 
 Query Settled Position History (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s settled (resolved) prediction position history with optional filters.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get the authenticated user&#39;s settled (resolved) prediction position history with optional filters.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java

@@ -73,7 +73,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-portfolio-margin-pro/8.0.1 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-portfolio-margin-pro/8.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -2726,7 +2726,7 @@ public class AccountApi {
     /**
      * Set Margin Call Level (USER_DATA) Set the margin call level for a Portfolio Margin account.
      * When the account&#39;s uniMMR drops to the specified level, a notification will be sent via
-     * email and SMS. Weight(IP): 1500 Security Type: USER_DATA
+     * email and push/inbox. Weight(IP): 1500 Security Type: USER_DATA
      *
      * @param setMarginCallLevelRequest (required)
      * @return ApiResponse&lt;SetMarginCallLevelResponse&gt;

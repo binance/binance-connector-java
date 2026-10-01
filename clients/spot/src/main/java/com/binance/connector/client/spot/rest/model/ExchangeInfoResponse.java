@@ -165,7 +165,8 @@ public class ExchangeInfoResponse {
     }
 
     /**
-     * Get exchangeFilters
+     * Exchange filters are explained on the \&quot;Filters\&quot; page: All exchange filters are
+     * optional.
      *
      * @return exchangeFilters
      */
@@ -226,7 +227,7 @@ public class ExchangeInfoResponse {
     }
 
     /**
-     * Optional. Present only when SOR is available.
+     * Optional field. Present only when SOR is available.
      *
      * @return sors
      */

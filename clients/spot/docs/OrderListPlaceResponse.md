@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**OrderListPlaceResponseResult**](OrderListPlaceResponseResult.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;PingResponseRateLimitsInner&gt;**](PingResponseRateLimitsInner.md) |  |  [optional] |
 
 
 

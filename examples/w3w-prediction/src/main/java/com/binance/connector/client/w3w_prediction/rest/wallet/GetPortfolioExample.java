@@ -30,8 +30,7 @@ public class GetPortfolioExample {
      * Get Portfolio (PREDICTION_TRADE)
      *
      * <p>Get the authenticated user&#39;s prediction portfolio overview including active positions
-     * count, aggregated PnL, and full position list. Weight(IP): 200 Security Type:
-     * PREDICTION_TRADE
+     * count, aggregated PnL, and full position list. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

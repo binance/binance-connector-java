@@ -65,7 +65,7 @@ public class TradesHistoricalResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
     @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
+    private List<@Valid TradesHistoricalResponseRateLimitsInner> rateLimits;
 
     public TradesHistoricalResponse() {}
 
@@ -139,13 +139,13 @@ public class TradesHistoricalResponse extends BaseDTO {
 
     public TradesHistoricalResponse rateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+                    List<@Valid TradesHistoricalResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
         return this;
     }
 
     public TradesHistoricalResponse addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
+            TradesHistoricalResponseRateLimitsInner rateLimitsItem) {
         if (this.rateLimits == null) {
             this.rateLimits = new ArrayList<>();
         }
@@ -160,13 +160,13 @@ public class TradesHistoricalResponse extends BaseDTO {
      */
     @jakarta.annotation.Nullable
     @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
+    public List<@Valid TradesHistoricalResponseRateLimitsInner> getRateLimits() {
         return rateLimits;
     }
 
     public void setRateLimits(
             @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
+                    List<@Valid TradesHistoricalResponseRateLimitsInner> rateLimits) {
         this.rateLimits = rateLimits;
     }
 
@@ -221,7 +221,7 @@ public class TradesHistoricalResponse extends BaseDTO {
             String resultValueAsString = JSON.getGson().toJson(resultValue);
             valMap.put("result", resultValueAsString);
         }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
+        List<@Valid TradesHistoricalResponseRateLimitsInner> rateLimitsValue = getRateLimits();
         if (rateLimitsValue != null) {
             String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
             valMap.put("rateLimits", rateLimitsValueAsString);
@@ -359,7 +359,7 @@ public class TradesHistoricalResponse extends BaseDTO {
 
                 // validate the optional field `rateLimits` (array)
                 for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
+                    TradesHistoricalResponseRateLimitsInner.validateJsonElement(
                             jsonArrayrateLimits.get(i));
                 }
                 ;

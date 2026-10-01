@@ -34,7 +34,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** OrderTestResponseResultDiscount */
+/** Discount on standard commissions when paying in BNB. */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
@@ -131,7 +131,7 @@ public class OrderTestResponseResultDiscount extends BaseDTO {
     }
 
     /**
-     * Get discount
+     * Standard commission is reduced by this rate when paying commission in BNB.
      *
      * @return discount
      */

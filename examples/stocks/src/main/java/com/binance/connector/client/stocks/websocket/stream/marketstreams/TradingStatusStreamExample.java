@@ -25,7 +25,8 @@ public class TradingStatusStreamExample {
      * Trading Status Stream
      *
      * <p>Per-symbol trading-status transitions (halts, resumes, SSR, LULD pauses, etc.). Events
-     * that do not match a known status/reason rule are not pushed.
+     * that do not match a known status/reason rule are not pushed. Also reachable via the
+     * SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @throws ApiException if the Api call fails
      */

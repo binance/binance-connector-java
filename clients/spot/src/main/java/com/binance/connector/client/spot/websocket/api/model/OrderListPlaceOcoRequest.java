@@ -453,7 +453,7 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return aboveTrailingDelta
      */
@@ -707,7 +707,7 @@ public class OrderListPlaceOcoRequest extends BaseDTO {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return belowTrailingDelta
      */

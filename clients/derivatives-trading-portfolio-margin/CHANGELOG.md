@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.1 - 2026-10-01
+
+- Update parent pom to 1.1.4
+
 ## 8.0.0 - 2026-09-25
 
 ### Changed (7)

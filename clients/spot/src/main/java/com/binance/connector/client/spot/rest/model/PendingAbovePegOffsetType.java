@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** See [Pegged Orders](/products/spot/faqs/pegged_orders) */
+/** See Pegged Orders */
 @JsonAdapter(PendingAbovePegOffsetType.Adapter.class)
 public enum PendingAbovePegOffsetType {
     PRICE_LEVEL("PRICE_LEVEL");

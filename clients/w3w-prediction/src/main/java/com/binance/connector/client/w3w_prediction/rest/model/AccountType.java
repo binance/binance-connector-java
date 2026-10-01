@@ -21,7 +21,11 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60; */
+/**
+ * Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;. This only determines the
+ * settlement/reference account — it does not control which balance is debited. See
+ * &#x60;fundingSource&#x60; below for that.
+ */
 @JsonAdapter(AccountType.Adapter.class)
 public enum AccountType {
     SPOT("SPOT"),

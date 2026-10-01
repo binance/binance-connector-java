@@ -95,17 +95,13 @@ public class UserDataStreamApi {
     private void sessionSubscriptionsValidateBeforeCall() throws ApiException {}
 
     /**
-     * Subscribe to User Data Stream Subscribe to the User Data Stream in the current WebSocket
-     * connection. **Notes:** - This method requires an authenticated WebSocket connection using
-     * Ed25519 keys. Please refer to
-     * [&#x60;session.logon&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon).
-     * - To check the subscription status, use
-     * [&#x60;session.status&#x60;](/catalog/core-trading-spot-trading/api/ws-api/auth#session-status),
-     * see the &#x60;userDataStream&#x60; flag indicating you have have an active subscription. -
-     * User Data Stream events are available in both JSON and [SBE](/products/spot/faqs/sbe_faq)
-     * sessions. - Please refer to [User Data Streams](/products/spot/user-data-stream) for the
-     * event format details. - For SBE, only SBE schema 2:1 or later is supported. Weight(IP): 2
-     * Security Type: NONE
+     * Subscribe to User Data Stream (USER_STREAM) Subscribe to the User Data Stream in the current
+     * WebSocket connection. **Notes:** - This method requires an authenticated WebSocket connection
+     * using Ed25519 keys. Please refer to &#x60;session.logon&#x60;. - To check the subscription
+     * status, use &#x60;session.status&#x60;, see the &#x60;userDataStream&#x60; flag indicating
+     * you have an active subscription. - User Data Stream events are available in both JSON and SBE
+     * sessions. - Please refer to User Data Streams for the event format details. - For SBE, only
+     * SBE schema 2:1 or later is supported. Weight(IP): 2 Security Type: USER_STREAM
      *
      * @return UserDataStreamSubscribeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -119,7 +115,7 @@ public class UserDataStreamApi {
      *
      * @see <a
      *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe">Subscribe
-     *     to User Data Stream Documentation</a>
+     *     to User Data Stream (USER_STREAM) Documentation</a>
      */
     public StreamResponse<UserDataStreamSubscribeResponse, UserDataStreamEventsResponse>
             userDataStreamSubscribe() throws ApiException {
@@ -198,10 +194,10 @@ public class UserDataStreamApi {
     private void userDataStreamSubscribeSignatureValidateBeforeCall() throws ApiException {}
 
     /**
-     * WebSocket Unsubscribe from User Data Stream Stop listening to the User Data Stream in the
-     * current WebSocket connection. Note that &#x60;session.logout&#x60; will only close the
-     * subscription created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened
-     * with &#x60;userDataStream.subscribe.signature&#x60;. Weight(IP): 2
+     * Unsubscribe from User Data Stream Stop listening to the User Data Stream in the current
+     * WebSocket connection. Note that &#x60;session.logout&#x60; will only close the subscription
+     * created with &#x60;userDataStream.subscribe&#x60; but not subscriptions opened with
+     * &#x60;userDataStream.subscribe.signature&#x60;. Weight(IP): 2
      *
      * @param userDataStreamUnsubscribeRequest (optional)
      * @return UserDataStreamUnsubscribeResponse
@@ -215,8 +211,8 @@ public class UserDataStreamApi {
      * </table>
      *
      * @see <a
-     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-unsubscribe">WebSocket
-     *     Unsubscribe from User Data Stream Documentation</a>
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-unsubscribe">Unsubscribe
+     *     from User Data Stream Documentation</a>
      */
     public CompletableFuture<UserDataStreamUnsubscribeResponse> userDataStreamUnsubscribe(
             UserDataStreamUnsubscribeRequest userDataStreamUnsubscribeRequest) throws ApiException {

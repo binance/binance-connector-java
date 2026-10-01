@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**result** | [**Ticker24hrResponse1Result**](Ticker24hrResponse1Result.md) |  |  [optional] |
-|**rateLimits** | [**List&lt;AccountCommissionResponseRateLimitsInner&gt;**](AccountCommissionResponseRateLimitsInner.md) |  |  [optional] |
+|**rateLimits** | [**List&lt;Ticker24hrResponse1RateLimitsInner&gt;**](Ticker24hrResponse1RateLimitsInner.md) |  |  [optional] |
 
 
 

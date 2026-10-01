@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**symbol** | **String** |  |  [optional] |
-|**origClientOrderId** | **String** |  |  [optional] |
+|**origClientOrderId** | **String** | clientOrderId that was canceled |  [optional] |
 |**orderId** | **Long** |  |  [optional] |
-|**orderListId** | **Long** |  |  [optional] |
-|**clientOrderId** | **String** |  |  [optional] |
+|**orderListId** | **Long** | set only for legs of an order list |  [optional] |
+|**clientOrderId** | **String** | newClientOrderId from request |  [optional] |
 |**transactTime** | **Long** |  |  [optional] |
 |**price** | **String** |  |  [optional] |
 |**origQty** | **String** |  |  [optional] |
@@ -22,11 +22,11 @@
 |**timeInForce** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**side** | **String** |  |  [optional] |
-|**stopPrice** | **String** | Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders. |  [optional] |
-|**trailingDelta** | **Long** | Delta price change required before order activation. |  [optional] |
-|**icebergQty** | **String** | Appears only if the parameter icebergQty was sent in the request. |  [optional] |
-|**strategyId** | **Long** | Appears only if the strategyId parameter was provided upon order placement. |  [optional] |
-|**strategyType** | **Long** | Appears only if the strategyType parameter was provided upon order placement. |  [optional] |
+|**stopPrice** | **String** | present only if stopPrice set for the order |  [optional] |
+|**trailingDelta** | **Long** | present only if trailingDelta set for the order |  [optional] |
+|**icebergQty** | **String** | present only if icebergQty set for the order |  [optional] |
+|**strategyId** | **Long** | present only if strategyId set for the order |  [optional] |
+|**strategyType** | **Long** | present only if strategyType set for the order |  [optional] |
 |**selfTradePreventionMode** | **String** |  |  [optional] |
 |**preventedMatchId** | **Long** | Appears only if the order expired due to STP. |  [optional] |
 |**preventedQuantity** | **String** | Order quantity that expired due to STP. |  [optional] |
@@ -44,7 +44,7 @@
 |**listClientOrderId** | **String** |  |  [optional] |
 |**transactionTime** | **Long** |  |  [optional] |
 |**orders** | [**List&lt;OpenOrdersCancelAllResponseResultInnerOrdersInner&gt;**](OpenOrdersCancelAllResponseResultInnerOrdersInner.md) |  |  [optional] |
-|**orderReports** | [**List&lt;OpenOrdersCancelAllResponseResultInnerOrderReportsInner&gt;**](OpenOrdersCancelAllResponseResultInnerOrderReportsInner.md) |  |  [optional] |
+|**orderReports** | [**List&lt;OpenOrdersCancelAllResponseResultInnerOrderReportsInner&gt;**](OpenOrdersCancelAllResponseResultInnerOrderReportsInner.md) | order list order&#39;s status format is the same as for individual orders. |  [optional] |
 
 
 

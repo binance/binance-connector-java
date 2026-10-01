@@ -32,7 +32,9 @@ public class OpenOrdersCancelAllExample {
      * Cancel open orders (TRADE)
      *
      * <p>Cancel all open orders on a symbol. This includes orders that are part of an order list.
-     * Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      */
     public void openOrdersCancelAllExampleAsync() {
         OpenOrdersCancelAllRequest openOrdersCancelAllRequest = new OpenOrdersCancelAllRequest();
@@ -53,7 +55,9 @@ public class OpenOrdersCancelAllExample {
      * Cancel open orders (TRADE)
      *
      * <p>Cancel all open orders on a symbol. This includes orders that are part of an order list.
-     * Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * Weight(IP): 1 Security Type: TRADE Notes: **Data Source:** Matching Engine Response Notes:
+     * **Note:** The payload above does not show all fields that can appear. Please refer to
+     * Conditional fields in Order Responses.
      */
     public void openOrdersCancelAllExampleSync() {
         OpenOrdersCancelAllRequest openOrdersCancelAllRequest = new OpenOrdersCancelAllRequest();

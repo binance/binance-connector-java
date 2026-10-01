@@ -310,7 +310,7 @@ public class ExchangeInfoResponseSymbolsInner {
     }
 
     /**
-     * Get quotePrecision
+     * will be removed in future api versions (v4+)
      *
      * @return quotePrecision
      */
@@ -652,7 +652,8 @@ public class ExchangeInfoResponseSymbolsInner {
     }
 
     /**
-     * Get filters
+     * Symbol filters are explained on the \&quot;Filters\&quot; page: All symbol filters are
+     * optional.
      *
      * @return filters
      */

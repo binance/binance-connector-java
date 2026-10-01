@@ -48,7 +48,7 @@ public class GeneralApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-spot/11.0.1 (Java/%s; %s; %s)",
+                    "binance-spot/11.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = true;
 
@@ -576,7 +576,8 @@ public class GeneralApi {
     }
 
     /**
-     * Test connectivity Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE
+     * Test connectivity Test connectivity to the Rest API. Weight(IP): 1 Security Type: NONE Notes:
+     * **Data Source:** Memory
      *
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -699,7 +700,7 @@ public class GeneralApi {
 
     /**
      * Check server time Test connectivity to the Rest API and get the current server time.
-     * Weight(IP): 1 Security Type: NONE
+     * Weight(IP): 1 Security Type: NONE Notes: **Data Source:** Memory
      *
      * @return ApiResponse&lt;TimeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

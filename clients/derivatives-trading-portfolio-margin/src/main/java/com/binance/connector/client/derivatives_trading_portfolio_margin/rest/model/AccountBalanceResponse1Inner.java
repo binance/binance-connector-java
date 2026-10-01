@@ -162,7 +162,7 @@ public class AccountBalanceResponse1Inner {
     }
 
     /**
-     * Cross Margin Asset.
+     * Cross Margin Asset. Equal to crossMarginFree + crossMarginLocked.
      *
      * @return crossMarginAsset
      */

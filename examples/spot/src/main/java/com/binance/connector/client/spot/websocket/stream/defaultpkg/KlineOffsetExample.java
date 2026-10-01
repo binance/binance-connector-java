@@ -27,10 +27,11 @@ public class KlineOffsetExample {
      * <p>The Kline/Candlestick Stream push updates to the current klines/candlestick every second
      * in &#x60;UTC+8&#x60; timezone **Kline/Candlestick chart intervals:** Supported intervals: See
      * Kline/Candlestick chart intervals **UTC+8 timezone offset:** - Kline intervals open and close
-     * in the UTC+8 timezone. For example the 1d klines will open at the beginning of the UTC+8 day,
-     * and close at the end of the UTC+8 day. - Note that E (event time), t (start time) and T
-     * (close time) in the payload are Unix timestamps, which are always interpreted in UTC. Update
-     * Speed: 1000ms for &#x60;1s&#x60;, 2000ms for the other intervals
+     * in the &#x60;UTC+8&#x60; timezone. For example the &#x60;1d&#x60; klines will open at the
+     * beginning of the &#x60;UTC+8&#x60; day, and close at the end of the &#x60;UTC+8&#x60; day. -
+     * Note that &#x60;E&#x60; (event time), &#x60;t&#x60; (start time) and &#x60;T&#x60; (close
+     * time) in the payload are Unix timestamps, which are always interpreted in UTC. Update Speed:
+     * 1000ms for &#x60;1s&#x60;, 2000ms for the other intervals
      *
      * @throws ApiException if the Api call fails
      */

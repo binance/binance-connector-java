@@ -25,8 +25,7 @@ public class OptionMarkPriceExample {
      * Option Mark Price
      *
      * <p>The mark price for all option symbols on specific underlying asset.
-     * E.g.[btcusdt@optionMarkPrice](wss://fstream.binance.com/market/stream?streams&#x3D;btcusdt@optionMarkPrice)
-     * Update Speed: 1000ms
+     * E.g.btcusdt@optionMarkPrice Update Speed: 1000ms
      *
      * @throws ApiException if the Api call fails
      */

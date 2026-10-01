@@ -47,7 +47,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class MarketStreamsApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-stocks/1.0.0 (Java/%s; %s; %s)",
+                    "binance-stocks/1.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -75,7 +75,8 @@ public class MarketStreamsApi {
 
     /**
      * Calendar Stream Single-stream broadcast of market-phase transitions. One message per
-     * transition; no periodic heartbeat payload. Server polls every 5 seconds.
+     * transition; no periodic heartbeat payload. Server polls every 5 seconds. Also reachable via
+     * the SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @return CalendarStreamResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -123,7 +124,8 @@ public class MarketStreamsApi {
 
     /**
      * Kline Stream Per-symbol candlestick updates. One stream per (symbol, interval) combination.
-     * Supported intervals: 5m, 1h, 1d, 1w, 1M.
+     * Supported intervals: 5m, 1h, 1d, 1w, 1M. Also reachable via the SUBSCRIBE/UNSUBSCRIBE RPC —
+     * see Subscribing via RPC.
      *
      * @param klineStreamRequest (required)
      * @return KlineStreamResponse
@@ -156,6 +158,11 @@ public class MarketStreamsApi {
         String methodName =
                 "/<symbol>@kline_<interval>"
                         .substring(1)
+                        .replace(
+                                "<id>",
+                                klineStreamRequest.getId() != null
+                                        ? klineStreamRequest.getId().toString()
+                                        : "")
                         .replace(
                                 "<symbol>",
                                 klineStreamRequest.getSymbol() != null
@@ -206,7 +213,8 @@ public class MarketStreamsApi {
 
     /**
      * Price Stream Push-all price snapshot, polled every 3 seconds. One message carries the latest
-     * price for every active US-equity symbol.
+     * price for every active US-equity symbol. Also reachable via the SUBSCRIBE/UNSUBSCRIBE RPC —
+     * see Subscribing via RPC.
      *
      * @return PriceStreamResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -254,7 +262,8 @@ public class MarketStreamsApi {
 
     /**
      * Quote Stream Per-symbol real-time best-bid / best-ask. Each symbol has its own stream.
-     * Per-symbol throttle: at most one push per symbol every 200 ms.
+     * Per-symbol throttle: at most one push per symbol every 200 ms. Also reachable via the
+     * SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @param quoteStreamRequest (required)
      * @return QuoteStreamResponse
@@ -287,6 +296,11 @@ public class MarketStreamsApi {
         String methodName =
                 "/<symbol>@quote"
                         .substring(1)
+                        .replace(
+                                "<id>",
+                                quoteStreamRequest.getId() != null
+                                        ? quoteStreamRequest.getId().toString()
+                                        : "")
                         .replace(
                                 "<symbol>",
                                 quoteStreamRequest.getSymbol() != null
@@ -332,7 +346,8 @@ public class MarketStreamsApi {
 
     /**
      * Tradability Stream Per-symbol push whenever the tradable direction of a symbol changes.
-     * Pushed only when the value actually changes (new value ≠ old value).
+     * Pushed only when the value actually changes (new value ≠ old value). Also reachable via the
+     * SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @param tradabilityStreamRequest (required)
      * @return TradabilityStreamResponse
@@ -366,6 +381,11 @@ public class MarketStreamsApi {
         String methodName =
                 "/<symbol>@tradability"
                         .substring(1)
+                        .replace(
+                                "<id>",
+                                tradabilityStreamRequest.getId() != null
+                                        ? tradabilityStreamRequest.getId().toString()
+                                        : "")
                         .replace(
                                 "<symbol>",
                                 tradabilityStreamRequest.getSymbol() != null
@@ -411,7 +431,8 @@ public class MarketStreamsApi {
 
     /**
      * Trading Status Stream Per-symbol trading-status transitions (halts, resumes, SSR, LULD
-     * pauses, etc.). Events that do not match a known status/reason rule are not pushed.
+     * pauses, etc.). Events that do not match a known status/reason rule are not pushed. Also
+     * reachable via the SUBSCRIBE/UNSUBSCRIBE RPC — see Subscribing via RPC.
      *
      * @param tradingStatusStreamRequest (required)
      * @return TradingStatusStreamResponse
@@ -445,6 +466,11 @@ public class MarketStreamsApi {
         String methodName =
                 "/<symbol>@tradingStatus"
                         .substring(1)
+                        .replace(
+                                "<id>",
+                                tradingStatusStreamRequest.getId() != null
+                                        ? tradingStatusStreamRequest.getId().toString()
+                                        : "")
                         .replace(
                                 "<symbol>",
                                 tradingStatusStreamRequest.getSymbol() != null

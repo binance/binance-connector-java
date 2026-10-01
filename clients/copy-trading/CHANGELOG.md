@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 - 2026-10-01
+
+- Update parent pom to 1.1.4
+
 ## 2.0.0 - 2026-07-29
 
 - Update descriptions and examples.

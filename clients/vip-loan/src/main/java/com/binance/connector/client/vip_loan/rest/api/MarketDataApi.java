@@ -46,7 +46,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-vip-loan/4.0.1 (Java/%s; %s; %s)",
+                    "binance-vip-loan/4.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

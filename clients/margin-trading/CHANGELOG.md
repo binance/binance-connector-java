@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.4 - 2026-10-01
+
+- Update parent pom to 1.1.4
+
 ## 7.0.3 - 2026-08-31
 
 ### Changed (2)

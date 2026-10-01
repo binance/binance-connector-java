@@ -47,7 +47,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class PublicApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-derivatives-trading-options/9.0.0 (Java/%s; %s; %s)",
+                    "binance-derivatives-trading-options/9.0.2 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -442,9 +442,7 @@ public class PublicApi {
 
     /**
      * Trade Streams The Trade Streams push raw trade information for specific symbol or underlying
-     * asset.
-     * E.g.[btcusdt@optionTrade](wss://fstream.binance.com/public/stream?streams&#x3D;btcusdt@optionTrade)
-     * Update Speed: 50ms
+     * asset. E.g.btcusdt@optionTrade Update Speed: 50ms
      *
      * @param tradeStreamsRequest (required)
      * @return TradeStreamsResponse

@@ -31,8 +31,8 @@ public class SetMarginCallLevelExample {
      * Set Margin Call Level (USER_DATA)
      *
      * <p>Set the margin call level for a Portfolio Margin account. When the account&#39;s uniMMR
-     * drops to the specified level, a notification will be sent via email and SMS. Weight(IP): 1500
-     * Security Type: USER_DATA
+     * drops to the specified level, a notification will be sent via email and push/inbox.
+     * Weight(IP): 1500 Security Type: USER_DATA
      *
      * @throws ApiException if the Api call fails
      */

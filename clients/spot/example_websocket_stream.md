@@ -16,7 +16,7 @@
 
 [<symbol>@kline_<interval>](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#kline) - kline - [KlineExample.java:33](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/KlineExample.java#L33)
 
-[<symbol>@kline_<interval>@+08:00](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#kline-offset) - klineOffset - [KlineOffsetExample.java:37](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/KlineOffsetExample.java#L37)
+[<symbol>@kline_<interval>@+08:00](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#kline-offset) - klineOffset - [KlineOffsetExample.java:38](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/KlineOffsetExample.java#L38)
 
 [<symbol>@miniTicker](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#mini-ticker) - miniTicker - [MiniTickerExample.java:32](/examples/spot/src/main/java/com/binance/connector/client/spot/websocket/stream/defaultpkg/MiniTickerExample.java#L32)
 

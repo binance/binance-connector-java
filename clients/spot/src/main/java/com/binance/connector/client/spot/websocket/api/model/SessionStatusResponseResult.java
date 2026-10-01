@@ -83,7 +83,7 @@ public class SessionStatusResponseResult extends BaseDTO {
     }
 
     /**
-     * Get apiKey
+     * &#x60;null&#x60; if the connection is not authenticated.
      *
      * @return apiKey
      */
@@ -103,7 +103,7 @@ public class SessionStatusResponseResult extends BaseDTO {
     }
 
     /**
-     * Get authorizedSince
+     * &#x60;null&#x60; if the connection is not authenticated.
      *
      * @return authorizedSince
      */

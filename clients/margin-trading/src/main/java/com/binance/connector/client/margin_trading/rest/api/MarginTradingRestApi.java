@@ -108,8 +108,7 @@ public class MarginTradingRestApi {
      * 3000, 1 times/min per IP Security Type: USER_DATA Notes: - The margin level need higher than
      * the initial risk ratio of adjusted leverage, the initial risk ratio of 3x is 1.5 , the
      * initial risk ratio of 5x is 1.25; The detail conditions on how to switch between Cross Margin
-     * Classic and Cross Margin Pro can refer to [the
-     * FAQ](https://www.binance.com/en/support/faq/how-to-activate-the-cross-margin-pro-mode-on-binance-e27786da05e743a694b8c625b3bc475d).
+     * Classic and Cross Margin Pro can refer to the FAQ.
      *
      * @param adjustCrossMarginMaxLeverageRequest (required)
      * @return ApiResponse&lt;AdjustCrossMarginMaxLeverageResponse&gt;
@@ -234,9 +233,15 @@ public class MarginTradingRestApi {
     /**
      * Query Cross Isolated Margin Capital Flow (USER_DATA) Query Cross Isolated Margin Capital Flow
      * Weight(IP): 100 Security Type: USER_DATA Notes: - Only supports querying the data of the last
-     * 90 days - The time between startTime and endTime cannot be longer than 7 days. - If fromId is
-     * set, the data with id &gt; fromId will be returned. Otherwise the latest data will be
-     * returned - To query isolated data, Symbol needs to be entered.
+     * 90 days - The time between startTime and endTime cannot be longer than 7 days. - If both
+     * startTime and endTime are omitted, the most recent 7 days are queried (endTime defaults to
+     * the current time, and startTime to the current time minus 7 days). - If startTime is provided
+     * without endTime, endTime defaults to startTime plus 7 days. - If endTime is provided without
+     * startTime, startTime defaults to endTime minus 7 days. - If fromId is set, the data with id
+     * &gt; fromId within the queried time range will be returned. Otherwise the latest data within
+     * that range will be returned. fromId does not extend the time range; to retrieve older
+     * records, move startTime and endTime backwards in windows of up to 7 days. - To query isolated
+     * data, Symbol needs to be entered.
      *
      * @param asset (optional)
      * @param symbol Mandatory for Isolated data (optional)
@@ -601,8 +606,7 @@ public class MarginTradingRestApi {
     /**
      * Query Max Borrow (USER_DATA) Query Max Borrow Weight(IP): 50 Security Type: USER_DATA Notes:
      * - If isolatedSymbol is not sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60;
-     * is also available from
-     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
+     * is also available from https://www.binance.com/en/margin-fee
      *
      * @param asset (required)
      * @param isolatedSymbol (optional)
@@ -945,37 +949,31 @@ public class MarginTradingRestApi {
 
     /**
      * Create Special Key(Low-Latency Trading) (TRADE) **Eligibility** - Binance Margin offers
-     * low-latency trading through a [special
-     * key](https://www.binance.com/en/support/faq/frequently-asked-questions-on-margin-special-api-key-3208663e900d4d2e9fec4140e1832f4e),
-     * available exclusively to users with VIP level 7 or higher. - If you are VIP level 6 or below,
-     * please contact your VIP manager for eligibility criterias. - All new Margin Special Key users
-     * are required to read, understand, and agree to the Margin Special Key Supplemental Product
-     * Terms at the master account level before creating a Margin Special Key. - Once signed at the
-     * master account level, the agreement applies to all sub-accounts. The master account and all
-     * sub-accounts (Cross Margin Classic and Portfolio Margin Pro) are authorized to create a
-     * Margin Special Key and are subject to the LiquidationLoan policy. For more information,
-     * please refer to
-     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
-     * **Supported Products:** - Cross Margin - Isolated Margin - Portfolio Margin Pro **Unsupported
-     * Products:** - Portfolio Margin We support several types of API keys: * Ed25519 (recommended)
-     * * HMAC * RSA We recommend to **use Ed25519 API keys** as it should provide the best
-     * performance and security out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY).
-     * For how to generate an RSA key pair to send API requests on Binance. Please refer to the
-     * document below
-     * [FAQ](https://www.binance.com/en/support/faq/how-to-generate-an-rsa-key-pair-to-send-api-requests-on-binance-2b79728f331e43079b27440d9d15c5db)
-     * . **How to use the Margin Special Key** - Use the below &#x60;sapi&#x60; endpoint to create
-     * your margin special API Key. - For accessing the Cross Margin account, do not send the
+     * low-latency trading through a special key, available exclusively to users with VIP level 7 or
+     * higher. - If you are VIP level 6 or below, please contact your VIP manager for eligibility
+     * criterias. - All new Margin Special Key users are required to read, understand, and agree to
+     * the Margin Special Key Supplemental Product Terms at the master account level before creating
+     * a Margin Special Key. - Once signed at the master account level, the agreement applies to all
+     * sub-accounts. The master account and all sub-accounts (Cross Margin Classic and Portfolio
+     * Margin Pro) are authorized to create a Margin Special Key and are subject to the
+     * LiquidationLoan policy. For more information, please refer to FAQ. **Supported Products:** -
+     * Cross Margin - Isolated Margin - Portfolio Margin Pro **Unsupported Products:** - Portfolio
+     * Margin We support several types of API keys: * Ed25519 (recommended) * HMAC * RSA We
+     * recommend to **use Ed25519 API keys** as it should provide the best performance and security
+     * out of all supported key types. We accept PKCS#8 (BEGIN PUBLIC KEY). For how to generate an
+     * RSA key pair to send API requests on Binance. Please refer to the document below FAQ . **How
+     * to use the Margin Special Key** - Use the below &#x60;sapi&#x60; endpoint to create your
+     * margin special API Key. - For accessing the Cross Margin account, do not send the
      * &#x60;symbol&#x60; parameter. - For accessing the Isolated Margin account(s), pass the
      * relevant &#x60;symbol&#x60; parameter in the API Key creation request. - Use the generated
      * API Key (and Secret key, if applicable) to perform margin trading and listenKey generation
-     * via **Spot** REST API (&#x60;https://api.binance.com/api/v3/_*&#x60;) endpoints. Read [REST
-     * API](/products/spot/rest-api#signed-trade-and-user_data-endpoint-security) or [WebSocket
-     * API](/products/spot/web-socket-api#request-security) documentation to learn how to use
-     * different API keys You need to enable Permits “Enable Spot &amp; Margin Trading” option for
-     * the API Key which requests this endpoint. Weight(UID): 1 Security Type: TRADE Response Notes:
-     * - Error Code Description - **UNSUPPORTED_OPERATION** : Portfolio Margin is an unsupported
-     * product, please change the account type to a supported margin product. - **Forbidden**: Cross
-     * Margin Pro accounts require additional agreements, please contact your relationship manager.
+     * via **Spot** REST API (&#x60;https://api.binance.com/api/v3/_*&#x60;) endpoints. Read REST
+     * API or WebSocket API documentation to learn how to use different API keys You need to enable
+     * Permits “Enable Spot &amp; Margin Trading” option for the API Key which requests this
+     * endpoint. Weight(UID): 1 Security Type: TRADE Response Notes: - Error Code Description -
+     * **UNSUPPORTED_OPERATION** : Portfolio Margin is an unsupported product, please change the
+     * account type to a supported margin product. - **Forbidden**: Cross Margin Pro accounts
+     * require additional agreements, please contact your relationship manager.
      *
      * @param createSpecialKeyRequest (required)
      * @return ApiResponse&lt;CreateSpecialKeyResponse&gt;
@@ -1067,14 +1065,12 @@ public class MarginTradingRestApi {
      * mode account will be deleted. 2. All pre-execution margin checks (including Open-order-loss
      * calculation) will revert to standard mode. 3. A cooldown period (default: 24 hours) will be
      * enforced, during which the account will not be permitted to create new Margin Special API
-     * Keys. For more information, please refer to
-     * [FAQ](https://www.binance.com/en/support/faq/detail/3208663e900d4d2e9fec4140e1832f4e).
-     * **Preconditions:** The following conditions must be met; otherwise the request will be
-     * rejected: - Account type must be **Cross Margin Classic**. - Account must currently be in
-     * **Special Key Mode**. If not, the request silently succeeds. - Account must **not be in
-     * liquidation**. - Account must **have no liability**. You need to enable \&quot;Permits Enable
-     * Spot &amp; Margin Trading\&quot; option for the API Key which requests this endpoint.
-     * Weight(UID): 10 Security Type: TRADE
+     * Keys. For more information, please refer to FAQ. **Preconditions:** The following conditions
+     * must be met; otherwise the request will be rejected: - Account type must be **Cross Margin
+     * Classic**. - Account must currently be in **Special Key Mode**. If not, the request silently
+     * succeeds. - Account must **not be in liquidation**. - Account must **have no liability**. You
+     * need to enable \&quot;Permits Enable Spot &amp; Margin Trading\&quot; option for the API Key
+     * which requests this endpoint. Weight(UID): 10 Security Type: TRADE
      *
      * @param exitSpecialKeyModeRequest (optional)
      * @return ApiResponse&lt;Object&gt;
@@ -1423,16 +1419,14 @@ public class MarginTradingRestApi {
      * behavior of the working order is the same as the OTO. - OTOCO has 2 pending orders (pending
      * above and pending below), forming an OCO pair. The pending orders are only placed on the
      * order book when the working order gets **fully filled**. - The rules of the pending above and
-     * pending below follow the same rules as the [Order List
-     * OCO](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco).
-     * - OTOCOs add **3 orders** against the unfilled order count,
-     * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight:
-     * 6(UID) or 1500(UID) when sideEffectType is MARGIN_BUY or AUTO_BORROW_REPAY Security Type:
-     * TRADE Notes: - autoRepayAtCancel is suggested to set as “FALSE” to keep liability unrepaid
-     * under high frequent new order/cancel order execution - Depending on the
-     * &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or &#x60;workingType&#x60;, some
-     * optional parameters will become mandatory: | Type | Additional mandatory parameters |
-     * Additional information | | ------------------------------------ |
+     * pending below follow the same rules as the Order List OCO. - OTOCOs add **3 orders** against
+     * the unfilled order count, &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter, and
+     * &#x60;MAX_NUM_ORDERS&#x60; filter. Weight: 6(UID) or 1500(UID) when sideEffectType is
+     * MARGIN_BUY or AUTO_BORROW_REPAY Security Type: TRADE Notes: - autoRepayAtCancel is suggested
+     * to set as “FALSE” to keep liability unrepaid under high frequent new order/cancel order
+     * execution - Depending on the &#x60;pendingAboveType&#x60;/&#x60;pendingBelowType&#x60; or
+     * &#x60;workingType&#x60;, some optional parameters will become mandatory: | Type | Additional
+     * mandatory parameters | Additional information | | ------------------------------------ |
      * ------------------------------------------------------------ | ---------------------- | |
      * &#x60;workingType&#x60; &#x3D; &#x60;LIMIT&#x60; | &#x60;workingTimeInForce&#x60; | | |
      * &#x60;pendingAboveType&#x60;&#x3D; &#x60;LIMIT_MAKER&#x60; | &#x60;pendingAbovePrice&#x60; |

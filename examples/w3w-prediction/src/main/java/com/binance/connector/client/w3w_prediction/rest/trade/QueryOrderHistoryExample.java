@@ -31,7 +31,7 @@ public class QueryOrderHistoryExample {
      * Query Order History (PREDICTION_TRADE)
      *
      * <p>Get historical prediction orders (all statuses) for the authenticated user, with optional
-     * filters. Weight(IP): 200 Security Type: PREDICTION_TRADE
+     * filters. Weight(IP): 1 Security Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails
      */

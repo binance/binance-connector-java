@@ -1057,7 +1057,7 @@ public class WalletRestApi {
      * @param coin (optional)
      * @param withdrawOrderId client side id for withdrawal, if provided in POST
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
-     * @param status 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+     * @param status 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed)
      *     (optional)
      * @param offset Default: 0 (optional)
      * @param limit (optional)
@@ -1243,7 +1243,7 @@ public class WalletRestApi {
      * @param tranId Comma(,) separated list of wallet tran Ids. (optional)
      * @param network (optional)
      * @param coin (optional)
-     * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
+     * @param travelRuleStatus 0: Completed,1: Pending,2: Failed (optional)
      * @param pendingQuestionnaire true: Only return records that pending deposit questionnaire.
      *     false/not provided: return all records. (optional)
      * @param startTime Default: 90 days from current timestamp (optional)
@@ -1377,7 +1377,7 @@ public class WalletRestApi {
 
     /**
      * Get Country List (USER_DATA) Query the active country list for travel rule questionnaires.
-     * Currently, only supports AU entity. Weight(IP): 1 Security Type: USER_DATA
+     * Currently supports AU and BR entities. Weight(IP): 1 Security Type: USER_DATA
      *
      * @param recvWindow (optional)
      * @return ApiResponse&lt;GetCountryListResponse&gt;
@@ -1581,7 +1581,7 @@ public class WalletRestApi {
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
-     * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
+     * @param travelRuleStatus 0: Completed,1: Pending,2: Failed (optional)
      * @param offset (optional)
      * @param limit (optional)
      * @param startTime Default: 90 days from current timestamp (optional)
@@ -1648,7 +1648,7 @@ public class WalletRestApi {
      *     &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. (optional)
      * @param network (optional)
      * @param coin (optional)
-     * @param travelRuleStatus 0:Completed,1:Pending,2:Failed (optional)
+     * @param travelRuleStatus 0: Completed,1: Pending,2: Failed (optional)
      * @param offset (optional)
      * @param limit (optional)
      * @param startTime Default: 90 days from current timestamp (optional)

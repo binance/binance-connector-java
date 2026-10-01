@@ -43,7 +43,7 @@ public class TradingStatusStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_E_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ELowerCase;
+    private String eLowerCase;
 
     public static final String SERIALIZED_NAME_SYMBOL = "symbol";
 
@@ -79,7 +79,7 @@ public class TradingStatusStreamResponse extends BaseDTO {
 
     @SerializedName(SERIALIZED_NAME_Z_LOWER_CASE)
     @jakarta.annotation.Nullable
-    private String ZLowerCase;
+    private String zLowerCase;
 
     public static final String SERIALIZED_NAME_TRADABILITY = "tradability";
 
@@ -89,23 +89,23 @@ public class TradingStatusStreamResponse extends BaseDTO {
 
     public TradingStatusStreamResponse() {}
 
-    public TradingStatusStreamResponse ELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public TradingStatusStreamResponse eLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
         return this;
     }
 
     /**
      * Event type, always &#x60;\&quot;tradingStatus\&quot;&#x60;.
      *
-     * @return ELowerCase
+     * @return eLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getELowerCase() {
-        return ELowerCase;
+    public String geteLowerCase() {
+        return eLowerCase;
     }
 
-    public void setELowerCase(@jakarta.annotation.Nullable String ELowerCase) {
-        this.ELowerCase = ELowerCase;
+    public void seteLowerCase(@jakarta.annotation.Nullable String eLowerCase) {
+        this.eLowerCase = eLowerCase;
     }
 
     public TradingStatusStreamResponse symbol(@jakarta.annotation.Nullable String symbol) {
@@ -203,23 +203,23 @@ public class TradingStatusStreamResponse extends BaseDTO {
         this.time = time;
     }
 
-    public TradingStatusStreamResponse ZLowerCase(@jakarta.annotation.Nullable String ZLowerCase) {
-        this.ZLowerCase = ZLowerCase;
+    public TradingStatusStreamResponse zLowerCase(@jakarta.annotation.Nullable String zLowerCase) {
+        this.zLowerCase = zLowerCase;
         return this;
     }
 
     /**
      * Tape designation: &#x60;C&#x60; &#x3D; CTA (NYSE / AMEX), &#x60;N&#x60; &#x3D; UTP (Nasdaq).
      *
-     * @return ZLowerCase
+     * @return zLowerCase
      */
     @jakarta.annotation.Nullable
-    public String getZLowerCase() {
-        return ZLowerCase;
+    public String getzLowerCase() {
+        return zLowerCase;
     }
 
-    public void setZLowerCase(@jakarta.annotation.Nullable String ZLowerCase) {
-        this.ZLowerCase = ZLowerCase;
+    public void setzLowerCase(@jakarta.annotation.Nullable String zLowerCase) {
+        this.zLowerCase = zLowerCase;
     }
 
     public TradingStatusStreamResponse tradability(
@@ -252,33 +252,33 @@ public class TradingStatusStreamResponse extends BaseDTO {
             return false;
         }
         TradingStatusStreamResponse tradingStatusStreamResponse = (TradingStatusStreamResponse) o;
-        return Objects.equals(this.ELowerCase, tradingStatusStreamResponse.ELowerCase)
+        return Objects.equals(this.eLowerCase, tradingStatusStreamResponse.eLowerCase)
                 && Objects.equals(this.symbol, tradingStatusStreamResponse.symbol)
                 && Objects.equals(this.assetCode, tradingStatusStreamResponse.assetCode)
                 && Objects.equals(this.status, tradingStatusStreamResponse.status)
                 && Objects.equals(this.msg, tradingStatusStreamResponse.msg)
                 && Objects.equals(this.time, tradingStatusStreamResponse.time)
-                && Objects.equals(this.ZLowerCase, tradingStatusStreamResponse.ZLowerCase)
+                && Objects.equals(this.zLowerCase, tradingStatusStreamResponse.zLowerCase)
                 && Objects.equals(this.tradability, tradingStatusStreamResponse.tradability);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                ELowerCase, symbol, assetCode, status, msg, time, ZLowerCase, tradability);
+                eLowerCase, symbol, assetCode, status, msg, time, zLowerCase, tradability);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class TradingStatusStreamResponse {\n");
-        sb.append("		ELowerCase: ").append(toIndentedString(ELowerCase)).append("\n");
+        sb.append("		eLowerCase: ").append(toIndentedString(eLowerCase)).append("\n");
         sb.append("		symbol: ").append(toIndentedString(symbol)).append("\n");
         sb.append("		assetCode: ").append(toIndentedString(assetCode)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		msg: ").append(toIndentedString(msg)).append("\n");
         sb.append("		time: ").append(toIndentedString(time)).append("\n");
-        sb.append("		ZLowerCase: ").append(toIndentedString(ZLowerCase)).append("\n");
+        sb.append("		zLowerCase: ").append(toIndentedString(zLowerCase)).append("\n");
         sb.append("		tradability: ").append(toIndentedString(tradability)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -288,10 +288,10 @@ public class TradingStatusStreamResponse extends BaseDTO {
         StringBuilder sb = new StringBuilder();
         Map<String, String> valMap = new TreeMap<String, String>();
         valMap.put("apiKey", getApiKey());
-        String ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            String ELowerCaseValueAsString = ELowerCaseValue.toString();
-            valMap.put("ELowerCase", ELowerCaseValueAsString);
+        String eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            String eLowerCaseValueAsString = eLowerCaseValue.toString();
+            valMap.put("eLowerCase", eLowerCaseValueAsString);
         }
         String symbolValue = getSymbol();
         if (symbolValue != null) {
@@ -318,10 +318,10 @@ public class TradingStatusStreamResponse extends BaseDTO {
             String timeValueAsString = timeValue.toString();
             valMap.put("time", timeValueAsString);
         }
-        String ZLowerCaseValue = getZLowerCase();
-        if (ZLowerCaseValue != null) {
-            String ZLowerCaseValueAsString = ZLowerCaseValue.toString();
-            valMap.put("ZLowerCase", ZLowerCaseValueAsString);
+        String zLowerCaseValue = getzLowerCase();
+        if (zLowerCaseValue != null) {
+            String zLowerCaseValueAsString = zLowerCaseValue.toString();
+            valMap.put("zLowerCase", zLowerCaseValueAsString);
         }
         String tradabilityValue = getTradability();
         if (tradabilityValue != null) {
@@ -339,9 +339,9 @@ public class TradingStatusStreamResponse extends BaseDTO {
     public Map<String, Object> toMap() {
         Map<String, Object> valMap = new TreeMap<String, Object>();
         valMap.put("apiKey", getApiKey());
-        Object ELowerCaseValue = getELowerCase();
-        if (ELowerCaseValue != null) {
-            valMap.put("ELowerCase", ELowerCaseValue);
+        Object eLowerCaseValue = geteLowerCase();
+        if (eLowerCaseValue != null) {
+            valMap.put("eLowerCase", eLowerCaseValue);
         }
         Object symbolValue = getSymbol();
         if (symbolValue != null) {
@@ -363,9 +363,9 @@ public class TradingStatusStreamResponse extends BaseDTO {
         if (timeValue != null) {
             valMap.put("time", timeValue);
         }
-        Object ZLowerCaseValue = getZLowerCase();
-        if (ZLowerCaseValue != null) {
-            valMap.put("ZLowerCase", ZLowerCaseValue);
+        Object zLowerCaseValue = getzLowerCase();
+        if (zLowerCaseValue != null) {
+            valMap.put("zLowerCase", zLowerCaseValue);
         }
         Object tradabilityValue = getTradability();
         if (tradabilityValue != null) {

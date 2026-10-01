@@ -29,7 +29,7 @@ public class ListPredictionWalletsExample {
     /**
      * List Prediction Wallets (PREDICTION_TRADE)
      *
-     * <p>Get all prediction wallets registered for the authenticated user. Weight(IP): 200 Security
+     * <p>Get all prediction wallets registered for the authenticated user. Weight(IP): 1 Security
      * Type: PREDICTION_TRADE
      *
      * @throws ApiException if the Api call fails

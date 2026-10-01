@@ -196,8 +196,7 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Default: &#x60;false&#x60; &lt;br&gt; See [Commissions
-     * FAQ](/products/spot/faqs/commission_faq#test-order-diferences) to learn more.
+     * Default: &#x60;false&#x60; &lt;br&gt; See Commissions FAQ to learn more.
      *
      * @return computeCommissionRates
      */
@@ -423,7 +422,7 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
+     * See Trailing Stop order FAQ
      *
      * @return trailingDelta
      */
@@ -544,8 +543,7 @@ public class OrderTestRequest extends BaseDTO {
     }
 
     /**
-     * Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders)
-     * maximum: 100
+     * Price level for pegging (max: 100). See Pegged Orders maximum: 100
      *
      * @return pegOffsetValue
      */

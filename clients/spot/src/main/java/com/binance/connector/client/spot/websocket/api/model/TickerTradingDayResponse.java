@@ -12,360 +12,29 @@
 
 package com.binance.connector.client.spot.websocket.api.model;
 
-import com.binance.connector.client.common.websocket.dtos.BaseDTO;
+import com.binance.connector.client.common.AbstractOpenApiSchema;
 import com.binance.connector.client.spot.websocket.api.JSON;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
-import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.validator.constraints.*;
 
-/** TickerTradingDayResponse */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
-public class TickerTradingDayResponse extends BaseDTO {
-    public static final String SERIALIZED_NAME_ID = "id";
-
-    @SerializedName(SERIALIZED_NAME_ID)
-    @jakarta.annotation.Nullable
-    private String id;
-
-    public static final String SERIALIZED_NAME_STATUS = "status";
-
-    @SerializedName(SERIALIZED_NAME_STATUS)
-    @jakarta.annotation.Nullable
-    private Long status;
-
-    public static final String SERIALIZED_NAME_RESULT = "result";
-
-    @SerializedName(SERIALIZED_NAME_RESULT)
-    @jakarta.annotation.Nullable
-    private List<@Valid TickerTradingDayResponseResultInner> result;
-
-    public static final String SERIALIZED_NAME_RATE_LIMITS = "rateLimits";
-
-    @SerializedName(SERIALIZED_NAME_RATE_LIMITS)
-    @jakarta.annotation.Nullable
-    private List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits;
-
-    public TickerTradingDayResponse() {}
-
-    public TickerTradingDayResponse id(@jakarta.annotation.Nullable String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id
-     */
-    @jakarta.annotation.Nullable
-    public String getId() {
-        return id;
-    }
-
-    public void setId(@jakarta.annotation.Nullable String id) {
-        this.id = id;
-    }
-
-    public TickerTradingDayResponse status(@jakarta.annotation.Nullable Long status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return status
-     */
-    @jakarta.annotation.Nullable
-    public Long getStatus() {
-        return status;
-    }
-
-    public void setStatus(@jakarta.annotation.Nullable Long status) {
-        this.status = status;
-    }
-
-    public TickerTradingDayResponse result(
-            @jakarta.annotation.Nullable List<@Valid TickerTradingDayResponseResultInner> result) {
-        this.result = result;
-        return this;
-    }
-
-    public TickerTradingDayResponse addResultItem(TickerTradingDayResponseResultInner resultItem) {
-        if (this.result == null) {
-            this.result = new ArrayList<>();
-        }
-        this.result.add(resultItem);
-        return this;
-    }
-
-    /**
-     * Get result
-     *
-     * @return result
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public List<@Valid TickerTradingDayResponseResultInner> getResult() {
-        return result;
-    }
-
-    public void setResult(
-            @jakarta.annotation.Nullable List<@Valid TickerTradingDayResponseResultInner> result) {
-        this.result = result;
-    }
-
-    public TickerTradingDayResponse rateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
-        this.rateLimits = rateLimits;
-        return this;
-    }
-
-    public TickerTradingDayResponse addRateLimitsItem(
-            AccountCommissionResponseRateLimitsInner rateLimitsItem) {
-        if (this.rateLimits == null) {
-            this.rateLimits = new ArrayList<>();
-        }
-        this.rateLimits.add(rateLimitsItem);
-        return this;
-    }
-
-    /**
-     * Get rateLimits
-     *
-     * @return rateLimits
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-    public List<@Valid AccountCommissionResponseRateLimitsInner> getRateLimits() {
-        return rateLimits;
-    }
-
-    public void setRateLimits(
-            @jakarta.annotation.Nullable
-                    List<@Valid AccountCommissionResponseRateLimitsInner> rateLimits) {
-        this.rateLimits = rateLimits;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TickerTradingDayResponse tickerTradingDayResponse = (TickerTradingDayResponse) o;
-        return Objects.equals(this.id, tickerTradingDayResponse.id)
-                && Objects.equals(this.status, tickerTradingDayResponse.status)
-                && Objects.equals(this.result, tickerTradingDayResponse.result)
-                && Objects.equals(this.rateLimits, tickerTradingDayResponse.rateLimits);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, status, result, rateLimits);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class TickerTradingDayResponse {\n");
-        sb.append("		id: ").append(toIndentedString(id)).append("\n");
-        sb.append("		status: ").append(toIndentedString(status)).append("\n");
-        sb.append("		result: ").append(toIndentedString(result)).append("\n");
-        sb.append("		rateLimits: ").append(toIndentedString(rateLimits)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    public String toUrlQueryString() {
-        StringBuilder sb = new StringBuilder();
-        Map<String, String> valMap = new TreeMap<String, String>();
-        valMap.put("apiKey", getApiKey());
-        String idValue = getId();
-        if (idValue != null) {
-            String idValueAsString = idValue.toString();
-            valMap.put("id", idValueAsString);
-        }
-        Long statusValue = getStatus();
-        if (statusValue != null) {
-            String statusValueAsString = statusValue.toString();
-            valMap.put("status", statusValueAsString);
-        }
-        List<@Valid TickerTradingDayResponseResultInner> resultValue = getResult();
-        if (resultValue != null) {
-            String resultValueAsString = JSON.getGson().toJson(resultValue);
-            valMap.put("result", resultValueAsString);
-        }
-        List<@Valid AccountCommissionResponseRateLimitsInner> rateLimitsValue = getRateLimits();
-        if (rateLimitsValue != null) {
-            String rateLimitsValueAsString = JSON.getGson().toJson(rateLimitsValue);
-            valMap.put("rateLimits", rateLimitsValueAsString);
-        }
-
-        valMap.put("timestamp", getTimestamp());
-        return asciiEncode(
-                valMap.keySet().stream()
-                        .map(key -> key + "=" + valMap.get(key))
-                        .collect(Collectors.joining("&")));
-    }
-
-    public Map<String, Object> toMap() {
-        Map<String, Object> valMap = new TreeMap<String, Object>();
-        valMap.put("apiKey", getApiKey());
-        Object idValue = getId();
-        if (idValue != null) {
-            valMap.put("id", idValue);
-        }
-        Object statusValue = getStatus();
-        if (statusValue != null) {
-            valMap.put("status", statusValue);
-        }
-        Object resultValue = getResult();
-        if (resultValue != null) {
-            valMap.put("result", resultValue);
-        }
-        Object rateLimitsValue = getRateLimits();
-        if (rateLimitsValue != null) {
-            valMap.put("rateLimits", rateLimitsValue);
-        }
-
-        valMap.put("timestamp", getTimestamp());
-        return valMap;
-    }
-
-    public static String asciiEncode(String s) {
-        return new String(s.getBytes(), StandardCharsets.US_ASCII);
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n		");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("id");
-        openapiFields.add("status");
-        openapiFields.add("result");
-        openapiFields.add("rateLimits");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to TickerTradingDayResponse
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!TickerTradingDayResponse.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in TickerTradingDayResponse is not found"
-                                        + " in the empty JSON string",
-                                TickerTradingDayResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!TickerTradingDayResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `TickerTradingDayResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
-                && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `id` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("id").toString()));
-        }
-        if (jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) {
-            JsonArray jsonArrayresult = jsonObj.getAsJsonArray("result");
-            if (jsonArrayresult != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("result").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `result` to be an array in the JSON string"
-                                            + " but got `%s`",
-                                    jsonObj.get("result").toString()));
-                }
-
-                // validate the optional field `result` (array)
-                for (int i = 0; i < jsonArrayresult.size(); i++) {
-                    TickerTradingDayResponseResultInner.validateJsonElement(jsonArrayresult.get(i));
-                }
-                ;
-            }
-        }
-        if (jsonObj.get("rateLimits") != null && !jsonObj.get("rateLimits").isJsonNull()) {
-            JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rateLimits");
-            if (jsonArrayrateLimits != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("rateLimits").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `rateLimits` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("rateLimits").toString()));
-                }
-
-                // validate the optional field `rateLimits` (array)
-                for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-                    AccountCommissionResponseRateLimitsInner.validateJsonElement(
-                            jsonArrayrateLimits.get(i));
-                }
-                ;
-            }
-        }
-    }
+public class TickerTradingDayResponse extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(TickerTradingDayResponse.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
@@ -376,25 +45,237 @@ public class TickerTradingDayResponse extends BaseDTO {
                 // subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<TickerTradingDayResponse> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(TickerTradingDayResponse.class));
+            final TypeAdapter<TickerTradingDayResponse1> adapterTickerTradingDayResponse1 =
+                    gson.getDelegateAdapter(this, TypeToken.get(TickerTradingDayResponse1.class));
+            final TypeAdapter<TickerTradingDayResponse2> adapterTickerTradingDayResponse2 =
+                    gson.getDelegateAdapter(this, TypeToken.get(TickerTradingDayResponse2.class));
 
             return (TypeAdapter<T>)
                     new TypeAdapter<TickerTradingDayResponse>() {
                         @Override
                         public void write(JsonWriter out, TickerTradingDayResponse value)
                                 throws IOException {
-                            JsonElement obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
+                            if (value == null || value.getActualInstance() == null) {
+                                elementAdapter.write(out, null);
+                                return;
+                            }
+
+                            // check if the actual instance is of the type
+                            // `TickerTradingDayResponse1`
+                            if (value.getActualInstance() instanceof TickerTradingDayResponse1) {
+                                JsonElement element =
+                                        adapterTickerTradingDayResponse1.toJsonTree(
+                                                (TickerTradingDayResponse1)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            // check if the actual instance is of the type
+                            // `TickerTradingDayResponse2`
+                            if (value.getActualInstance() instanceof TickerTradingDayResponse2) {
+                                JsonElement element =
+                                        adapterTickerTradingDayResponse2.toJsonTree(
+                                                (TickerTradingDayResponse2)
+                                                        value.getActualInstance());
+                                elementAdapter.write(out, element);
+                                return;
+                            }
+                            throw new IOException(
+                                    "Failed to serialize as the type doesn't match oneOf schemas:"
+                                        + " TickerTradingDayResponse1, TickerTradingDayResponse2");
                         }
 
                         @Override
                         public TickerTradingDayResponse read(JsonReader in) throws IOException {
+                            Object deserialized = null;
                             JsonElement jsonElement = elementAdapter.read(in);
-                            // validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
+
+                            int match = 0;
+                            ArrayList<String> errorMessages = new ArrayList<>();
+                            TypeAdapter actualAdapter = elementAdapter;
+
+                            // deserialize TickerTradingDayResponse1
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                TickerTradingDayResponse1.validateJsonElement(jsonElement);
+                                actualAdapter = adapterTickerTradingDayResponse1;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'TickerTradingDayResponse1'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for TickerTradingDayResponse1"
+                                                        + " failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'TickerTradingDayResponse1'",
+                                        e);
+                            }
+                            // deserialize TickerTradingDayResponse2
+                            try {
+                                // validate the JSON object to see if any exception is thrown
+                                TickerTradingDayResponse2.validateJsonElement(jsonElement);
+                                actualAdapter = adapterTickerTradingDayResponse2;
+                                match++;
+                                log.log(
+                                        Level.FINER,
+                                        "Input data matches schema 'TickerTradingDayResponse2'");
+                            } catch (Exception e) {
+                                // deserialization failed, continue
+                                errorMessages.add(
+                                        String.format(
+                                                "Deserialization for TickerTradingDayResponse2"
+                                                        + " failed with `%s`.",
+                                                e.getMessage()));
+                                log.log(
+                                        Level.FINER,
+                                        "Input data does not match schema"
+                                                + " 'TickerTradingDayResponse2'",
+                                        e);
+                            }
+
+                            if (match == 1) {
+                                TickerTradingDayResponse ret = new TickerTradingDayResponse();
+                                ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                                return ret;
+                            }
+
+                            throw new IOException(
+                                    String.format(
+                                            "Failed deserialization for TickerTradingDayResponse:"
+                                                + " %d classes match result, expected 1. Detailed"
+                                                + " failure message for oneOf schemas: %s. JSON:"
+                                                + " %s",
+                                            match, errorMessages, jsonElement.toString()));
                         }
                     }.nullSafe();
+        }
+    }
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+    public TickerTradingDayResponse() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public TickerTradingDayResponse(Object o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("TickerTradingDayResponse1", TickerTradingDayResponse1.class);
+        schemas.put("TickerTradingDayResponse2", TickerTradingDayResponse2.class);
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return TickerTradingDayResponse.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check the instance parameter is valid
+     * against the oneOf child schemas: TickerTradingDayResponse1, TickerTradingDayResponse2
+     *
+     * <p>It could be an instance of the 'oneOf' schemas.
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (instance instanceof TickerTradingDayResponse1) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof TickerTradingDayResponse2) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException(
+                "Invalid instance type. Must be TickerTradingDayResponse1,"
+                        + " TickerTradingDayResponse2");
+    }
+
+    /**
+     * Get the actual instance, which can be the following: TickerTradingDayResponse1,
+     * TickerTradingDayResponse2
+     *
+     * @return The actual instance (TickerTradingDayResponse1, TickerTradingDayResponse2)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `TickerTradingDayResponse1`. If the actual instance is not
+     * `TickerTradingDayResponse1`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `TickerTradingDayResponse1`
+     * @throws ClassCastException if the instance is not `TickerTradingDayResponse1`
+     */
+    public TickerTradingDayResponse1 getTickerTradingDayResponse1() throws ClassCastException {
+        return (TickerTradingDayResponse1) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `TickerTradingDayResponse2`. If the actual instance is not
+     * `TickerTradingDayResponse2`, the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `TickerTradingDayResponse2`
+     * @throws ClassCastException if the instance is not `TickerTradingDayResponse2`
+     */
+    public TickerTradingDayResponse2 getTickerTradingDayResponse2() throws ClassCastException {
+        return (TickerTradingDayResponse2) super.getActualInstance();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to TickerTradingDayResponse
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // validate oneOf schemas one by one
+        int validCount = 0;
+        ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with TickerTradingDayResponse1
+        try {
+            TickerTradingDayResponse1.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for TickerTradingDayResponse1 failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with TickerTradingDayResponse2
+        try {
+            TickerTradingDayResponse2.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(
+                    String.format(
+                            "Deserialization for TickerTradingDayResponse2 failed with `%s`.",
+                            e.getMessage()));
+            // continue to the next one
+        }
+        if (validCount != 1) {
+            throw new IOException(
+                    String.format(
+                            "The JSON string is invalid for TickerTradingDayResponse with oneOf"
+                                + " schemas: TickerTradingDayResponse1, TickerTradingDayResponse2."
+                                + " %d class(es) match the result, expected 1. Detailed failure"
+                                + " message for oneOf schemas: %s. JSON: %s",
+                            validCount, errorMessages, jsonElement.toString()));
         }
     }
 

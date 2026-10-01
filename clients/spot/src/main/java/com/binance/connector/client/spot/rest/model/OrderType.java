@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Please see [Enums](/products/spot/enums#ordertypes) for supported values. */
+/** Please see Enums for supported values. */
 @JsonAdapter(OrderType.Adapter.class)
 public enum OrderType {
     MARKET("MARKET"),

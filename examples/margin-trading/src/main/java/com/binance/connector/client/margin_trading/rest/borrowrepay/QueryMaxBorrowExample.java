@@ -31,7 +31,7 @@ public class QueryMaxBorrowExample {
      *
      * <p>Query Max Borrow Weight(IP): 50 Security Type: USER_DATA Notes: - If isolatedSymbol is not
      * sent, crossed margin data will be sent. - &#x60;borrowLimit&#x60; is also available from
-     * [https://www.binance.com/en/margin-fee](https://www.binance.com/en/margin-fee)
+     * https://www.binance.com/en/margin-fee
      *
      * @throws ApiException if the Api call fails
      */

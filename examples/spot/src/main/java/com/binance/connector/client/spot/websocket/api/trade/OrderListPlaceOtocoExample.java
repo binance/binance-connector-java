@@ -38,11 +38,10 @@ public class OrderListPlaceOtocoExample {
      * <p>Place an OTOCO. * An OTOCO (One-Triggers-One-Cancels-the-Other) is an order list comprised
      * of 3 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60;
      * or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The
-     * behavior of the working order is the same as the [OTO](#order-list-place-oto). * OTOCO has 2
-     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
-     * only placed on the order book when the working order gets **fully filled**. * The rules of
-     * the pending above and pending below follow the same rules as the [Order list
-     * OCO](#order-list-place-oco). * OTOCOs add **3 orders** to the
+     * behavior of the working order is the same as the OTO. * OTOCO has 2 pending orders (pending
+     * above and pending below), forming an OCO pair. The pending orders are only placed on the
+     * order book when the working order gets **fully filled**. * The rules of the pending above and
+     * pending below follow the same rules as the Order list OCO. * OTOCOs add **3 orders** to the
      * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
      * 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
      * **Mandatory parameters based on &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or
@@ -62,7 +61,8 @@ public class OrderListPlaceOtocoExample {
      * &#x60;pendingBelowTrailingDelta&#x60;|
      * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingBelowPrice&#x60;,
      * &#x60;pendingBelowStopPrice&#x60; and/or &#x60;pendingBelowTrailingDelta&#x60;,
-     * &#x60;pendingBelowTimeInForce&#x60;|
+     * &#x60;pendingBelowTimeInForce&#x60;| Response Notes: **Note:** The payload above does not
+     * show all fields that can appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderListPlaceOtocoExampleAsync() {
         OrderListPlaceOtocoRequest orderListPlaceOtocoRequest = new OrderListPlaceOtocoRequest();
@@ -92,11 +92,10 @@ public class OrderListPlaceOtocoExample {
      * <p>Place an OTOCO. * An OTOCO (One-Triggers-One-Cancels-the-Other) is an order list comprised
      * of 3 orders. * The first order is called the **working order** and must be &#x60;LIMIT&#x60;
      * or &#x60;LIMIT_MAKER&#x60;. Initially, only the working order goes on the order book. * The
-     * behavior of the working order is the same as the [OTO](#order-list-place-oto). * OTOCO has 2
-     * pending orders (pending above and pending below), forming an OCO pair. The pending orders are
-     * only placed on the order book when the working order gets **fully filled**. * The rules of
-     * the pending above and pending below follow the same rules as the [Order list
-     * OCO](#order-list-place-oco). * OTOCOs add **3 orders** to the
+     * behavior of the working order is the same as the OTO. * OTOCO has 2 pending orders (pending
+     * above and pending below), forming an OCO pair. The pending orders are only placed on the
+     * order book when the working order gets **fully filled**. * The rules of the pending above and
+     * pending below follow the same rules as the Order list OCO. * OTOCOs add **3 orders** to the
      * &#x60;EXCHANGE_MAX_NUM_ORDERS&#x60; filter and &#x60;MAX_NUM_ORDERS&#x60; filter. Weight(IP):
      * 1 Unfilled Order Count: 3 Security Type: TRADE Notes: **Data Source:** Matching Engine
      * **Mandatory parameters based on &#x60;pendingAboveType&#x60;, &#x60;pendingBelowType&#x60; or
@@ -116,7 +115,8 @@ public class OrderListPlaceOtocoExample {
      * &#x60;pendingBelowTrailingDelta&#x60;|
      * |&#x60;pendingBelowType&#x3D;STOP_LOSS_LIMIT/TAKE_PROFIT_LIMIT&#x60;|&#x60;pendingBelowPrice&#x60;,
      * &#x60;pendingBelowStopPrice&#x60; and/or &#x60;pendingBelowTrailingDelta&#x60;,
-     * &#x60;pendingBelowTimeInForce&#x60;|
+     * &#x60;pendingBelowTimeInForce&#x60;| Response Notes: **Note:** The payload above does not
+     * show all fields that can appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderListPlaceOtocoExampleSync() {
         OrderListPlaceOtocoRequest orderListPlaceOtocoRequest = new OrderListPlaceOtocoRequest();

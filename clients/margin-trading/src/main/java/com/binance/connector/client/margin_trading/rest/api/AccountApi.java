@@ -56,7 +56,7 @@ public class AccountApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/7.0.3 (Java/%s; %s; %s)",
+                    "binance-margin-trading/7.0.4 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -213,8 +213,7 @@ public class AccountApi {
      * 3000, 1 times/min per IP Security Type: USER_DATA Notes: - The margin level need higher than
      * the initial risk ratio of adjusted leverage, the initial risk ratio of 3x is 1.5 , the
      * initial risk ratio of 5x is 1.25; The detail conditions on how to switch between Cross Margin
-     * Classic and Cross Margin Pro can refer to [the
-     * FAQ](https://www.binance.com/en/support/faq/how-to-activate-the-cross-margin-pro-mode-on-binance-e27786da05e743a694b8c625b3bc475d).
+     * Classic and Cross Margin Pro can refer to the FAQ.
      *
      * @param adjustCrossMarginMaxLeverageRequest (required)
      * @return ApiResponse&lt;AdjustCrossMarginMaxLeverageResponse&gt;
@@ -977,9 +976,15 @@ public class AccountApi {
     /**
      * Query Cross Isolated Margin Capital Flow (USER_DATA) Query Cross Isolated Margin Capital Flow
      * Weight(IP): 100 Security Type: USER_DATA Notes: - Only supports querying the data of the last
-     * 90 days - The time between startTime and endTime cannot be longer than 7 days. - If fromId is
-     * set, the data with id &gt; fromId will be returned. Otherwise the latest data will be
-     * returned - To query isolated data, Symbol needs to be entered.
+     * 90 days - The time between startTime and endTime cannot be longer than 7 days. - If both
+     * startTime and endTime are omitted, the most recent 7 days are queried (endTime defaults to
+     * the current time, and startTime to the current time minus 7 days). - If startTime is provided
+     * without endTime, endTime defaults to startTime plus 7 days. - If endTime is provided without
+     * startTime, startTime defaults to endTime minus 7 days. - If fromId is set, the data with id
+     * &gt; fromId within the queried time range will be returned. Otherwise the latest data within
+     * that range will be returned. fromId does not extend the time range; to retrieve older
+     * records, move startTime and endTime backwards in windows of up to 7 days. - To query isolated
+     * data, Symbol needs to be entered.
      *
      * @param asset (optional)
      * @param symbol Mandatory for Isolated data (optional)

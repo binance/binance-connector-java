@@ -31,9 +31,8 @@ public class MyFiltersExample {
     /**
      * Query Relevant Filters (USER_DATA)
      *
-     * <p>Retrieves the list of [filters](/products/spot/filters) relevant to an account on a given
-     * symbol. This is the only method that shows if an account has
-     * [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it. Weight(IP):
+     * <p>Retrieves the list of filters relevant to an account on a given symbol. This is the only
+     * method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it. Weight(IP):
      * 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      */
     public void myFiltersExampleAsync() {
@@ -53,9 +52,8 @@ public class MyFiltersExample {
     /**
      * Query Relevant Filters (USER_DATA)
      *
-     * <p>Retrieves the list of [filters](/products/spot/filters) relevant to an account on a given
-     * symbol. This is the only method that shows if an account has
-     * [&#x60;MAX_ASSET&#x60;](/products/spot/filters#max_asset) filters applied to it. Weight(IP):
+     * <p>Retrieves the list of filters relevant to an account on a given symbol. This is the only
+     * method that shows if an account has &#x60;MAX_ASSET&#x60; filters applied to it. Weight(IP):
      * 40 Security Type: USER_DATA Notes: **Data Source:** Memory
      */
     public void myFiltersExampleSync() {

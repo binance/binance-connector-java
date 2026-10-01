@@ -31,7 +31,7 @@ public class BlockTradesHistoricalExample {
     /**
      * Historical Block Trades
      *
-     * <p>Get block trades. Weight(IP): 25 Security Type: NONE Notes: - Data Source: Database
+     * <p>Get block trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Database
      */
     public void blockTradesHistoricalExampleAsync() {
         BlockTradesHistoricalRequest blockTradesHistoricalRequest =
@@ -53,7 +53,7 @@ public class BlockTradesHistoricalExample {
     /**
      * Historical Block Trades
      *
-     * <p>Get block trades. Weight(IP): 25 Security Type: NONE Notes: - Data Source: Database
+     * <p>Get block trades. Weight(IP): 25 Security Type: NONE Notes: **Data Source:** Database
      */
     public void blockTradesHistoricalExampleSync() {
         BlockTradesHistoricalRequest blockTradesHistoricalRequest =

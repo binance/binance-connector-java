@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.1 - 2026-10-01
+
+- Update parent pom to 1.1.4
+
 ## 6.2.0 - 2026-08-25
 
 ### Added (1)

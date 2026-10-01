@@ -35,7 +35,8 @@ public class GetOrderExample {
      * the &#x60;origClientOrderId&#x60; from that result is checked against that order. If both
      * conditions are not met the request will be rejected. - For some historical orders
      * &#x60;cummulativeQuoteQty&#x60; will be &lt; 0, meaning the data is not available at this
-     * time.
+     * time. Response Notes: **Note:** The payload above does not show all fields that can appear.
+     * Please refer to Conditional fields in Order Responses.
      *
      * @throws ApiException if the Api call fails
      */

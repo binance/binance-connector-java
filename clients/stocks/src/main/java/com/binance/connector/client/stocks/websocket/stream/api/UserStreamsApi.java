@@ -39,7 +39,7 @@ import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 public class UserStreamsApi {
     private static final String USER_AGENT =
             String.format(
-                    "binance-stocks/1.0.0 (Java/%s; %s; %s)",
+                    "binance-stocks/1.0.1 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
 
     private StreamConnectionInterface connection;
@@ -103,6 +103,11 @@ public class UserStreamsApi {
         String methodName =
                 "/<listenKey>@orderReport"
                         .substring(1)
+                        .replace(
+                                "<id>",
+                                orderReportStreamRequest.getId() != null
+                                        ? orderReportStreamRequest.getId().toString()
+                                        : "")
                         .replace(
                                 "<listenKey>",
                                 orderReportStreamRequest.getListenKey() != null

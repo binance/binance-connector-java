@@ -29,7 +29,7 @@ public class ListPredictionCategoriesExample {
     /**
      * List Prediction Categories
      *
-     * <p>Get all available prediction market categories (L1 and L2). Weight(IP): 200
+     * <p>Get all available prediction market categories (L1 and L2). Weight(IP): 1
      *
      * @throws ApiException if the Api call fails
      */

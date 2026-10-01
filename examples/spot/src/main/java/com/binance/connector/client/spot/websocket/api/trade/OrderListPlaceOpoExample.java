@@ -35,9 +35,10 @@ public class OrderListPlaceOpoExample {
     /**
      * OPO (TRADE)
      *
-     * <p>Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
-     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
-     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * <p>Place an OPO. * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Response Notes: **Note:** The payload above does not show all fields that can
+     * appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderListPlaceOpoExampleAsync() {
         OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest();
@@ -63,9 +64,10 @@ public class OrderListPlaceOpoExample {
     /**
      * OPO (TRADE)
      *
-     * <p>Place an [OPO](/products/spot/faqs/opo). * OPOs add 2 orders to the
-     * EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS filter. Weight(IP): 1 Unfilled Order Count:
-     * 2 Security Type: TRADE Notes: **Data Source:** Matching Engine
+     * <p>Place an OPO. * OPOs add 2 orders to the EXCHANGE_MAX_NUM_ORDERS filter and MAX_NUM_ORDERS
+     * filter. Weight(IP): 1 Unfilled Order Count: 2 Security Type: TRADE Notes: **Data Source:**
+     * Matching Engine Response Notes: **Note:** The payload above does not show all fields that can
+     * appear. Please refer to Conditional fields in Order Responses.
      */
     public void orderListPlaceOpoExampleSync() {
         OrderListPlaceOpoRequest orderListPlaceOpoRequest = new OrderListPlaceOpoRequest();

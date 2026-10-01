@@ -25,8 +25,7 @@ public class OpenInterestExample {
      * Open Interest
      *
      * <p>Option open interest for specific underlying asset on specific expiration date.
-     * E.g.[ethusdt@openInterest@221125](wss://fstream.binance.com/market/stream?streams&#x3D;ethusdt@openInterest@221125)
-     * Update Speed: 60s
+     * E.g.ethusdt@openInterest@221125 Update Speed: 60s
      *
      * @throws ApiException if the Api call fails
      */

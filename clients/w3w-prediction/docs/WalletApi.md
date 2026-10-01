@@ -16,7 +16,7 @@ All URIs are relative to *https://api.binance.com*
 
 Get Portfolio (PREDICTION_TRADE)
 
-Get the authenticated user&#39;s prediction portfolio overview including active positions count, aggregated PnL, and full position list.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get the authenticated user&#39;s prediction portfolio overview including active positions count, aggregated PnL, and full position list.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -88,7 +88,7 @@ No authorization required
 
 Get Quota Status (PREDICTION_TRADE)
 
-Query the current user&#39;s daily trading quota limit and remaining allowance for prediction markets.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Query the current user&#39;s daily trading quota limit and remaining allowance for prediction markets.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -150,7 +150,7 @@ No authorization required
 
 List Prediction Wallets (PREDICTION_TRADE)
 
-Get all prediction wallets registered for the authenticated user.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get all prediction wallets registered for the authenticated user.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java
@@ -212,7 +212,7 @@ No authorization required
 
 Query Payment Option Balances (PREDICTION_TRADE)
 
-Get available balances for each payment option that can be used for prediction trading.  Weight(IP): 200  Security Type: PREDICTION_TRADE
+Get available balances for each payment option that can be used for prediction trading.  Weight(IP): 1  Security Type: PREDICTION_TRADE
 
 ### Example
 ```java

@@ -31,7 +31,10 @@ public class ReferencePriceExample {
     /**
      * Query Reference Price
      *
-     * <p>Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
+     * <p>Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory If
+     * the symbol has never had a reference price set, the request is rejected with:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2043, \&quot;msg\&quot;: \&quot;This symbol
+     * doesn&#39;t have a reference price.\&quot; } &#x60;&#x60;&#x60;
      */
     public void referencePriceExampleAsync() {
         ReferencePriceRequest referencePriceRequest = new ReferencePriceRequest();
@@ -51,7 +54,10 @@ public class ReferencePriceExample {
     /**
      * Query Reference Price
      *
-     * <p>Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory
+     * <p>Query Reference Price Weight(IP): 2 Security Type: NONE Notes: **Data Source:** Memory If
+     * the symbol has never had a reference price set, the request is rejected with:
+     * &#x60;&#x60;&#x60;json { \&quot;code\&quot;: -2043, \&quot;msg\&quot;: \&quot;This symbol
+     * doesn&#39;t have a reference price.\&quot; } &#x60;&#x60;&#x60;
      */
     public void referencePriceExampleSync() {
         ReferencePriceRequest referencePriceRequest = new ReferencePriceRequest();

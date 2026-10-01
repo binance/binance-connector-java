@@ -34,7 +34,10 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.hibernate.validator.constraints.*;
 
-/** OrderCancelReplaceResponseResultCancelResponse */
+/**
+ * Format is identical to \&quot;order.cancel\&quot; format. Some fields are optional and are
+ * included only for orders that set them.
+ */
 @jakarta.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
         comments = "Generator version: 7.22.0")
@@ -255,7 +258,7 @@ public class OrderCancelReplaceResponseResultCancelResponse extends BaseDTO {
     }
 
     /**
-     * Get origClientOrderId
+     * cancelOrigClientOrderId from request
      *
      * @return origClientOrderId
      */
@@ -315,7 +318,7 @@ public class OrderCancelReplaceResponseResultCancelResponse extends BaseDTO {
     }
 
     /**
-     * Get clientOrderId
+     * cancelNewClientOrderId from request
      *
      * @return clientOrderId
      */

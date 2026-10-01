@@ -35,10 +35,10 @@ public class CreateADualTokenGiftCardExample {
      * USDT plus minting fee. This gift card can keep the value fixed at 100 USDT before redemption,
      * and will be redeemable to BTC equivalent to 100 USDT upon redemption. * Once successfully
      * created, the amount of baseToken (e.g. USDT) in the fixed-value gift card along with the fee
-     * would be deducted from your funding wallet. * To get started with, please make sure: * You
-     * have a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount
-     * and fee amount) in your Binance funding wallet * You need Enable Withdrawals for the API Key
-     * which requests this endpoint. Weight(IP): 1 Security Type: TRADE
+     * would be deducted from your Spot wallet. * To get started with, please make sure: * You have
+     * a Binance account * You have passed KYB * You have a sufﬁcient balance(Gift Card amount and
+     * fee amount) in your Binance Spot wallet * You need Enable Withdrawals for the API Key which
+     * requests this endpoint. Weight(IP): 1 Security Type: TRADE
      *
      * @throws ApiException if the Api call fails
      */
