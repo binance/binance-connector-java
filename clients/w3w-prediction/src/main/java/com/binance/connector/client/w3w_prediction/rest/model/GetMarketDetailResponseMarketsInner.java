@@ -321,7 +321,9 @@ public class GetMarketDetailResponseMarketsInner {
     }
 
     /**
-     * Get decimalPrecision
+     * Price precision of the market, in decimal places. The price tick is 10 to the power of minus
+     * &#x60;decimalPrecision&#x60;, for example &#x60;2&#x60; means a tick of 0.01. A limit price
+     * that is not on the tick is truncated down
      *
      * @return decimalPrecision
      */

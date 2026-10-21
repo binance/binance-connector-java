@@ -32,7 +32,8 @@ public class ListPredictionMarketsExample {
      * List Prediction Markets
      *
      * <p>Get a paginated list of prediction market topics, with optional category and sort filters.
-     * Weight(IP): 1
+     * Weight(IP): 1 Response Notes: - For the values of &#x60;status&#x60; and
+     * &#x60;markets[].tradingStatus&#x60;, see Get Market Detail.
      *
      * @throws ApiException if the Api call fails
      */

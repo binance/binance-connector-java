@@ -13,13 +13,18 @@ import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.dtos.SessionResponse;
 import com.binance.connector.client.common.websocket.service.DeserializeExclusionStrategy;
 import com.binance.connector.client.common.websocket.service.SerializeExclusionStrategy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializer;
+import com.google.gson.*;
+import org.bouncycastle.crypto.CryptoException;
+import org.eclipse.jetty.client.HttpClient;
+import org.eclipse.jetty.http.HttpField;
+import org.eclipse.jetty.http.HttpHeader;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.StatusCode;
+import org.eclipse.jetty.websocket.api.WebSocketListener;
+import org.eclipse.jetty.websocket.api.WriteCallback;
+import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
+import org.eclipse.jetty.websocket.client.WebSocketClient;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -28,72 +33,40 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ClosedChannelException;
 import java.text.DecimalFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.UUID;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bouncycastle.crypto.CryptoException;
-import org.eclipse.jetty.client.HttpClient;
-import org.eclipse.jetty.http.HttpField;
-import org.eclipse.jetty.http.HttpHeader;
-import org.eclipse.jetty.util.component.LifeCycle;
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.StatusCode;
-import org.eclipse.jetty.websocket.api.WebSocketListener;
-import org.eclipse.jetty.websocket.api.WriteCallback;
-import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
-import org.eclipse.jetty.websocket.client.WebSocketClient;
 
 public class ConnectionWrapper implements WebSocketListener, ConnectionInterface {
-    private static final Logger log = Logger.getLogger(ConnectionWrapper.class.getName());
-
     public static final int WAIT_TIME = 5;
+    private static final Logger log = Logger.getLogger(ConnectionWrapper.class.getName());
     private static final String QUERY_PARAM_TIME_UNIT = "timeUnit";
     // -2015 for wrong API Keys, -1022 for wrong signature
     private static final List<Integer> ERROR_CODE_WRONG_CREDENTIALS = Arrays.asList(-2015, -1022);
-
-    protected Map<String, RequestWrapperDTO> pendingRequest = new HashMap<>();
-    protected Session session;
-    protected Session oldSession;
-
-    protected List<String> logonMethods = new ArrayList<>();
-    protected List<String> logoutMethods = new ArrayList<>();
-
-    private String userAgent =
-            String.format(
-                    "binance-connector-java/1.0.0 (Java/%s; %s; %s)",
-                    SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
-
-    private boolean isLoggedOn = false;
-    private boolean isReady = false;
-    private boolean canReconnect = true;
     private final WebSocketClient webSocketClient;
     private final WebSocketClientConfiguration configuration;
     private final SignatureGeneratorFactory signatureGeneratorFactory =
             new SignatureGeneratorFactory();
+    protected Map<String, RequestWrapperDTO> pendingRequest = new HashMap<>();
+    protected Session session;
+    protected Session oldSession;
+    protected List<String> logonMethods = new ArrayList<>();
+    protected List<String> logoutMethods = new ArrayList<>();
+    protected Timer timer;
+    private String userAgent =
+            String.format(
+                    "binance-connector-java/1.0.0 (Java/%s; %s; %s)",
+                    SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
+    private boolean isLoggedOn = false;
+    private boolean isReady = false;
+    private boolean canReconnect = true;
     private Gson gson;
     private SignatureGenerator signatureGenerator;
-
     private CountDownLatch countDownLatch;
-
     private boolean pendingReconnect = false;
-
     private List<BlockingQueue<String>> streamQueues = new ArrayList<>();
-
-    private Timer timer;
 
     public ConnectionWrapper(WebSocketClientConfiguration configuration, Gson gson) {
         this(configuration, null, gson);
@@ -165,24 +138,24 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         Integer reconnectAfter = configuration.getReconnectIntervalTime();
         this.timer = new Timer();
         this.timer.scheduleAtFixedRate(
-                        new TimerTask() {
-                            @Override
-                            public void run() {
-                                try {
-                                    if (canReconnect()) {
-                                        connect();
-                                    } else {
-                                        pendingReconnect = true;
-                                    }
-
-                                } catch (Exception e) {
-                                    System.out.println(e);
-                                    throw new RuntimeException(e);
-                                }
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (canReconnect()) {
+                                connect();
+                            } else {
+                                pendingReconnect = true;
                             }
-                        },
-                        reconnectAfter,
-                        reconnectAfter);
+
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                reconnectAfter,
+                reconnectAfter);
     }
 
     public void connect() {
@@ -203,8 +176,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
 
         Consumer<Session> callback = autoLogon ? getLogonConsumer() : null;
         // The server URI to connect to.
-        URI serverURI = null;
-        serverURI = getUri(configuration.getUrl());
+        URI serverURI = getUri(configuration.getUrl());
 
         if (configuration.getSignatureConfiguration() != null) {
             this.signatureGenerator =
@@ -215,9 +187,12 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         beforeConnect();
 
         ClientUpgradeRequest clientUpgradeRequest = null;
+        clientUpgradeRequest = new ClientUpgradeRequest();
         if (configuration.getCompression()) {
-            clientUpgradeRequest = new ClientUpgradeRequest();
             clientUpgradeRequest.addExtensions("permessage-deflate");
+        }
+        if (configuration.getSignatureConfiguration() != null && configuration.getSignatureConfiguration().getApiKey() != null) {
+            clientUpgradeRequest.setHeader("X-MBX-APIKEY", configuration.getSignatureConfiguration().getApiKey());
         }
 
         // Connect the client EndPoint to the server.
@@ -383,7 +358,9 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
 
                             @Override
                             public void writeSuccess() {
-                                ConnectionWrapper.this.pendingRequest.put(request.getId(), request);
+                                if (request.getId() != null) {
+                                    ConnectionWrapper.this.pendingRequest.put(request.getId(), request);
+                                }
                             }
                         });
     }
@@ -552,7 +529,7 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
         // timeUnit not configured or already specified in query
         if (configuration.getTimeUnit() == null
                 || (oldUri.getQuery() != null
-                        && oldUri.getQuery().contains(QUERY_PARAM_TIME_UNIT + "="))) {
+                && oldUri.getQuery().contains(QUERY_PARAM_TIME_UNIT + "="))) {
             return oldUri;
         }
 
@@ -587,5 +564,9 @@ public class ConnectionWrapper implements WebSocketListener, ConnectionInterface
             timer.cancel();
             webSocketClient.stop();
         }
+    }
+
+    public WebSocketClientConfiguration getConfiguration() {
+        return configuration;
     }
 }

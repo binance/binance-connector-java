@@ -1,0 +1,4 @@
+{
+  "command": "SUBSCRIBE",
+  "value": "web3_prediction_pm_claim_partial_success"
+}

@@ -1,10 +1,10 @@
 ## MarketData
 
-[GET /sapi/v1/w3w/wallet/prediction/market/detail](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail) - getMarketDetail - [GetMarketDetailExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/GetMarketDetailExample.java#L37)
+[GET /sapi/v1/w3w/wallet/prediction/market/detail](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail) - getMarketDetail - [GetMarketDetailExample.java:56](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/GetMarketDetailExample.java#L56)
 
 [GET /sapi/v1/w3w/wallet/prediction/category/list](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories) - listPredictionCategories - [ListPredictionCategoriesExample.java:36](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/ListPredictionCategoriesExample.java#L36)
 
-[GET /sapi/v1/w3w/wallet/prediction/market/list](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets) - listPredictionMarkets - [ListPredictionMarketsExample.java:39](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/ListPredictionMarketsExample.java#L39)
+[GET /sapi/v1/w3w/wallet/prediction/market/list](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets) - listPredictionMarkets - [ListPredictionMarketsExample.java:40](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/ListPredictionMarketsExample.java#L40)
 
 [GET /sapi/v1/w3w/wallet/prediction/market/search](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search) - marketSearch - [MarketSearchExample.java:36](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/marketdata/MarketSearchExample.java#L36)
 
@@ -40,7 +40,7 @@
 
 [GET /sapi/v1/w3w/wallet/prediction/position/filter](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter) - queryPositionsByFilter - [QueryPositionsByFilterExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/position/QueryPositionsByFilterExample.java#L37)
 
-[GET /sapi/v1/w3w/wallet/prediction/position/settled-history](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history) - querySettledPositionHistory - [QuerySettledPositionHistoryExample.java:37](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/position/QuerySettledPositionHistoryExample.java#L37)
+[GET /sapi/v1/w3w/wallet/prediction/position/settled-history](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history) - querySettledPositionHistory - [QuerySettledPositionHistoryExample.java:42](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/position/QuerySettledPositionHistoryExample.java#L42)
 
 ## Redeem
 
@@ -52,7 +52,7 @@
 
 [POST /sapi/v1/w3w/wallet/prediction/trade/batch-cancel](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders) - batchCancelOrders - [BatchCancelOrdersExample.java:53](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/trade/BatchCancelOrdersExample.java#L53)
 
-[POST /sapi/v1/w3w/wallet/prediction/trade/get-quote](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote) - getQuote - [GetQuoteExample.java:48](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/trade/GetQuoteExample.java#L48)
+[POST /sapi/v1/w3w/wallet/prediction/trade/get-quote](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote) - getQuote - [GetQuoteExample.java:51](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/trade/GetQuoteExample.java#L51)
 
 [POST /sapi/v1/w3w/wallet/prediction/trade/place-order-bundle](https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order) - placeOrder - [PlaceOrderExample.java:43](/examples/w3w-prediction/src/main/java/com/binance/connector/client/w3w_prediction/rest/trade/PlaceOrderExample.java#L43)
 

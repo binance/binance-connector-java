@@ -19,6 +19,7 @@
         <module>algo</module>
         <module>alpha</module>
         <module>c2c</module>
+        <module>cms</module>
         <module>convert</module>
         <module>common</module>
         <module>copy-trading</module>
@@ -81,7 +82,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.8.0</version>
+                <version>0.11.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>

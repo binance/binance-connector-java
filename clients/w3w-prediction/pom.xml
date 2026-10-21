@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>binance-w3w-prediction</artifactId>
     <name>w3w-prediction</name>
-    <version>2.1.2</version>
+    <version>2.2.0</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>io.github.binance</groupId>
             <artifactId>binance-common</artifactId>
-            <version>2.5.3</version>
+            <version>2.6.0</version>
         </dependency>
     </dependencies>
 </project>

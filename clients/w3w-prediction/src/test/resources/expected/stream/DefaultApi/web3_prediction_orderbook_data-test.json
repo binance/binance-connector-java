@@ -1,0 +1,4 @@
+{
+  "command": "SUBSCRIBE",
+  "value": "web3_prediction_orderbook_data"
+}

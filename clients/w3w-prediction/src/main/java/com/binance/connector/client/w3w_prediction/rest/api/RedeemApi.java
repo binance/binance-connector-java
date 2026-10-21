@@ -46,7 +46,7 @@ public class RedeemApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.2.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 

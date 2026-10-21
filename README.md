@@ -215,6 +215,8 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 
 **C2c**: [Rest API](clients/c2c/example_rest.md)
 
+**CMS**: [WebSocket Streams](clients/cms/example_websocket_stream.md)
+
 **Convert**: [Rest API](clients/convert/example_rest.md)
 
 **Copy Trading**: [Rest API](clients/copy-trading/example_rest.md)
@@ -259,7 +261,7 @@ When creating WebSocket API clients (such as SpotWebSocketApi), you can follow:
 
 **Vip Loan**: [Rest API](clients/vip-loan/example_rest.md)
 
-**W3W Prediction**: [Rest API](clients/w3w-prediction/example_rest.md)
+**W3W Prediction**: [Rest API](clients/w3w-prediction/example_rest.md) - [WebSocket Streams](clients/w3w-prediction/example_websocket_stream.md)
 
 **Wallet**: [Rest API](clients/wallet/example_rest.md)
 
