@@ -82,6 +82,7 @@ public class StreamConnectionWrapper extends ConnectionWrapper
         if (blockingQueues.isEmpty()) {
             RequestWrapperDTO listSubscriptions =
                     new RequestWrapperDTO.Builder<>()
+                            .id(UUID.randomUUID().toString())
                             .method("UNSUBSCRIBE")
                             .params(Collections.singletonList(operationId))
                             .build();
