@@ -3,6 +3,7 @@ package com.binance.connector.client.common.websocket.adapter.stream;
 import com.binance.connector.client.common.websocket.dtos.RequestWrapperDTO;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueue;
 import com.binance.connector.client.common.websocket.service.StreamBlockingQueueWrapper;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -15,6 +16,10 @@ public interface StreamConnectionInterface {
     void unsubscribe(StreamBlockingQueue blockingQueueWrapper);
 
     void connect();
+
+    boolean canReconnect();
+
+    boolean isReady();
 
     void disconnect();
 

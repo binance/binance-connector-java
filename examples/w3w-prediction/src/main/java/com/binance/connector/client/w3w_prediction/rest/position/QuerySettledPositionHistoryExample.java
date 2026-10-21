@@ -30,7 +30,12 @@ public class QuerySettledPositionHistoryExample {
      * Query Settled Position History (PREDICTION_TRADE)
      *
      * <p>Get the authenticated user&#39;s settled (resolved) prediction position history with
-     * optional filters. Weight(IP): 1 Security Type: PREDICTION_TRADE
+     * optional filters. Weight(IP): 1 Security Type: PREDICTION_TRADE Response Notes: - There is no
+     * separate cancelled, invalid or refunded status. A resolved market pays each outcome by its
+     * payout ratio, which can be fractional, for example &#x60;0.5&#x60; for each of two outcomes.
+     * This is not a refund of the purchase cost. Use &#x60;finalOutcome&#x60;,
+     * &#x60;isWinner&#x60;, &#x60;claimAmount&#x60; and &#x60;redeemStatus&#x60; together with your
+     * own claim records, and Get Market Detail for &#x60;outcomes[].winner&#x60;.
      *
      * @throws ApiException if the Api call fails
      */

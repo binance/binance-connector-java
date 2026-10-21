@@ -18,6 +18,7 @@
         <module>algo</module>
         <module>alpha</module>
         <module>c2c</module>
+        <module>cms</module>
         <module>convert</module>
         <module>copy-trading</module>
         <module>crypto-loan</module>

@@ -7,6 +7,8 @@ public class RequestWrapperDTO<T, U> {
     protected String id;
     protected T params;
     protected String method;
+    protected String command;
+    protected String value;
     protected transient Type responseType;
     protected transient CompletableFuture<U> responseCallback = new CompletableFuture<>();
 
@@ -34,6 +36,22 @@ public class RequestWrapperDTO<T, U> {
         return responseType;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
     public void setResponseType(Type responseType) {
         this.responseType = responseType;
     }
@@ -43,6 +61,8 @@ public class RequestWrapperDTO<T, U> {
         params = builder.params;
         method = builder.method;
         responseType = builder.responseType;
+        command = builder.command;
+        value = builder.value;
     }
 
     public CompletableFuture<U> getResponseCallback() {
@@ -54,6 +74,8 @@ public class RequestWrapperDTO<T, U> {
         private T params;
         private String method;
         private Type responseType;
+        private String command;
+        private String value;
 
         public Builder() {}
 
@@ -74,6 +96,16 @@ public class RequestWrapperDTO<T, U> {
 
         public Builder<T, U> responseType(Type val) {
             responseType = val;
+            return this;
+        }
+
+        public Builder<T, U> command(String val) {
+            command = val;
+            return this;
+        }
+
+        public Builder<T, U> value(String val) {
+            value = val;
             return this;
         }
 

@@ -32,6 +32,12 @@ public class WebSocketClientConfiguration extends ClientConfiguration implements
     /** messageMaxSize for WebSocket messages */
     private Long messageMaxSize = DEFAULT_MAX_MESSAGE_SIZE;
 
+    /** Send ping every configured ms, disabled if null */
+    private Long pingIntervalTime = null;
+
+    /** Default recvWindow */
+    private Long recvWindow = DEFAULT_RECV_WINDOW;
+
     @Override
     public String getUrl() {
         return url;
@@ -104,6 +110,22 @@ public class WebSocketClientConfiguration extends ClientConfiguration implements
 
     public void setMessageMaxSize(Long messageMaxSize) {
         this.messageMaxSize = messageMaxSize;
+    }
+
+    public Long getPingIntervalTime() {
+        return pingIntervalTime;
+    }
+
+    public void setPingIntervalTime(Long pingIntervalTime) {
+        this.pingIntervalTime = pingIntervalTime;
+    }
+
+    public Long getRecvWindow() {
+        return recvWindow;
+    }
+
+    public void setRecvWindow(Long recvWindow) {
+        this.recvWindow = recvWindow;
     }
 
     @Override

@@ -53,7 +53,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.2.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -405,11 +405,14 @@ public class TradeApi {
      * it is denominated in wei (18 decimals) and may exceed JavaScript&#39;s safe integer range.
      * &#x60;feeDiscountBps&#x60; is also a string to allow fractional basis-point values in the
      * future. &#x60;feeRateBps&#x60; and &#x60;slippageBps&#x60; are integers and will never exceed
-     * safe integer bounds. - **MARKET order minimum amount:** For &#x60;MARKET&#x60; orders,
-     * &#x60;amountIn&#x60; must be at least approximately **1.5 USDT** (in wei:
-     * &#x60;1500000000000000000&#x60;). The exact minimum varies by market liquidity. If the amount
-     * is too small, the server returns &#x60;-9000 Your order amount is too small&#x60;. This limit
-     * does **not** apply to &#x60;LIMIT&#x60; orders.
+     * safe integer bounds. - **Minimum order amount:** The minimum order amount is set by the
+     * server and the upstream market rules and may change, so no fixed value is documented.
+     * &#x60;BUY&#x60; orders are checked by amount (&#x60;amountIn&#x60;) and &#x60;SELL&#x60;
+     * orders by share quantity, for both &#x60;MARKET&#x60; and &#x60;LIMIT&#x60; orders. If the
+     * &#x60;amountIn&#x60; of a &#x60;BUY&#x60; order is below the minimum, the server returns
+     * &#x60;-9000&#x60; with the message &#x60;Your order amount is too small&#x60;. A successful
+     * quote does not guarantee that the order is accepted or filled, so check the error message and
+     * the final order status.
      *
      * @param getQuoteRequest (required)
      * @return ApiResponse&lt;GetQuoteResponse&gt;

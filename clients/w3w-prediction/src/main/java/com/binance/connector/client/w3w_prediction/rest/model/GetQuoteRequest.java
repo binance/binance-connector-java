@@ -172,9 +172,8 @@ public class GetQuoteRequest {
     }
 
     /**
-     * Input amount in wei (18 decimals). Must be &gt; 0. For &#x60;MARKET&#x60; orders, minimum is
-     * approximately 1.5 USDT (varies by market depth). Example: &#x60;1000000000000000000&#x60;
-     * &#x3D; 1 USDT
+     * Input amount in wei (18 decimals). Must be &gt; 0. The minimum is set by the server and may
+     * change, see the response notes. Example: &#x60;1000000000000000000&#x60; &#x3D; 1 USDT
      *
      * @return amountIn
      */
@@ -237,7 +236,9 @@ public class GetQuoteRequest {
     }
 
     /**
-     * Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0
+     * Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0. A price that is
+     * not on the price tick of the market (see &#x60;decimalPrecision&#x60; in Get Market Detail)
+     * is truncated down instead of being rejected, unless the result is 0
      *
      * @return priceLimit
      */

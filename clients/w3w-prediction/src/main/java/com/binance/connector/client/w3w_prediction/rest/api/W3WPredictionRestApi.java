@@ -89,7 +89,26 @@ public class W3WPredictionRestApi {
 
     /**
      * Get Market Detail Get full details for a specific prediction market topic, including variant
-     * data and timeline. Weight(IP): 1
+     * data and timeline. Weight(IP): 1 Response Notes: - &#x60;status&#x60; is a case-sensitive
+     * string. &#x60;REGISTERED&#x60;: registered and not yet resolved, this value alone does not
+     * guarantee that trading is available. &#x60;RESOLVED&#x60;: the outcome has been determined,
+     * it does not mean that the user has already claimed the payout. &#x60;PAUSED&#x60;: trading is
+     * temporarily suspended and may resume. &#x60;CLOSED&#x60;: closed for display, for example the
+     * end time has passed or the market was removed, it does not guarantee that trading is closed.
+     * - &#x60;markets[].tradingStatus&#x60; shows whether new orders may be attempted.
+     * &#x60;OPEN&#x60;: new orders may be attempted, this is the only value that allows new orders.
+     * &#x60;MATCHING_NOT_ENABLED&#x60;: order matching is not enabled. &#x60;CANCEL_ONLY&#x60;:
+     * only cancellation is allowed. &#x60;CLOSED&#x60;: trading has stopped. Use
+     * &#x60;markets[].tradingStatus&#x60;, not &#x60;status&#x60;, to decide whether to place an
+     * order, because a market whose &#x60;status&#x60; is &#x60;CLOSED&#x60; can still have
+     * &#x60;tradingStatus&#x60; &#x60;OPEN&#x60;. A topic can contain several markets and an order
+     * is placed on one market, so only the &#x60;tradingStatus&#x60; of that market matters. A
+     * successful quote does not guarantee that an order is accepted or filled. -
+     * &#x60;outcomes[].winner&#x60; is returned only after the market is resolved. There is no
+     * separate cancelled, invalid or refunded status. A resolved market can pay more than one
+     * outcome, in that case several outcomes have &#x60;winner&#x60; set to &#x60;true&#x60; and
+     * &#x60;price&#x60; is the settled value per share, for example &#x60;0.5&#x60; for each of two
+     * outcomes.
      *
      * @param marketTopicId Market topic ID. Must be &gt; 0 (required)
      * @return ApiResponse&lt;GetMarketDetailResponse&gt;
@@ -136,7 +155,8 @@ public class W3WPredictionRestApi {
 
     /**
      * List Prediction Markets Get a paginated list of prediction market topics, with optional
-     * category and sort filters. Weight(IP): 1
+     * category and sort filters. Weight(IP): 1 Response Notes: - For the values of
+     * &#x60;status&#x60; and &#x60;markets[].tradingStatus&#x60;, see Get Market Detail.
      *
      * @param l1Category Level-1 category filter (optional)
      * @param l2Category Level-2 category filter (optional)
@@ -603,7 +623,12 @@ public class W3WPredictionRestApi {
     /**
      * Query Settled Position History (PREDICTION_TRADE) Get the authenticated user&#39;s settled
      * (resolved) prediction position history with optional filters. Weight(IP): 1 Security Type:
-     * PREDICTION_TRADE
+     * PREDICTION_TRADE Response Notes: - There is no separate cancelled, invalid or refunded
+     * status. A resolved market pays each outcome by its payout ratio, which can be fractional, for
+     * example &#x60;0.5&#x60; for each of two outcomes. This is not a refund of the purchase cost.
+     * Use &#x60;finalOutcome&#x60;, &#x60;isWinner&#x60;, &#x60;claimAmount&#x60; and
+     * &#x60;redeemStatus&#x60; together with your own claim records, and Get Market Detail for
+     * &#x60;outcomes[].winner&#x60;.
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)
@@ -745,11 +770,14 @@ public class W3WPredictionRestApi {
      * it is denominated in wei (18 decimals) and may exceed JavaScript&#39;s safe integer range.
      * &#x60;feeDiscountBps&#x60; is also a string to allow fractional basis-point values in the
      * future. &#x60;feeRateBps&#x60; and &#x60;slippageBps&#x60; are integers and will never exceed
-     * safe integer bounds. - **MARKET order minimum amount:** For &#x60;MARKET&#x60; orders,
-     * &#x60;amountIn&#x60; must be at least approximately **1.5 USDT** (in wei:
-     * &#x60;1500000000000000000&#x60;). The exact minimum varies by market liquidity. If the amount
-     * is too small, the server returns &#x60;-9000 Your order amount is too small&#x60;. This limit
-     * does **not** apply to &#x60;LIMIT&#x60; orders.
+     * safe integer bounds. - **Minimum order amount:** The minimum order amount is set by the
+     * server and the upstream market rules and may change, so no fixed value is documented.
+     * &#x60;BUY&#x60; orders are checked by amount (&#x60;amountIn&#x60;) and &#x60;SELL&#x60;
+     * orders by share quantity, for both &#x60;MARKET&#x60; and &#x60;LIMIT&#x60; orders. If the
+     * &#x60;amountIn&#x60; of a &#x60;BUY&#x60; order is below the minimum, the server returns
+     * &#x60;-9000&#x60; with the message &#x60;Your order amount is too small&#x60;. A successful
+     * quote does not guarantee that the order is accepted or filled, so check the error message and
+     * the final order status.
      *
      * @param getQuoteRequest (required)
      * @return ApiResponse&lt;GetQuoteResponse&gt;

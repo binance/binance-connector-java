@@ -1,0 +1,4 @@
+{
+  "command": "SUBSCRIBE",
+  "value": "web3_prediction_pm_limit_submit_fail"
+}

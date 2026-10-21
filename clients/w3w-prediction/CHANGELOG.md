@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.1.3 - 2026-10-09
+
+### Changed (2)
+
+- Modified response for `getMarketDetail()` (`GET /sapi/v1/w3w/wallet/prediction/market/detail`):
+  - `markets`.items.`outcomes`.items: property `winner` added
+  - `markets`.items.`outcomes`.items: item property `winner` added
+  - `markets`.items.`outcomes`.items: property `winner` added
+  - `markets`.items.`outcomes`.items: item property `winner` added
+
+- Modified response field `markets`:
+  - items.`outcomes`.items: property `winner` added
+  - items.`outcomes`.items: item property `winner` added
+  - items.`outcomes`.items: property `winner` added
+  - items.`outcomes`.items: item property `winner` added
+  - affected events:
+    - `getMarketDetailResponse`
+
 ## 2.1.2 - 2026-10-01
 
 - Update parent pom to 1.1.4

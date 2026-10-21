@@ -15,6 +15,8 @@ public class ClientConfiguration {
     public static final int DEFAULT_CONNECT_TIMEOUT = 1000;
     public static final int DEFAULT_READ_TIMEOUT = 5000;
     public static final long DEFAULT_MAX_MESSAGE_SIZE = 65536L;
+    public static final long DEFAULT_PING_INTERVAL_TIME = 30000L;
+    public static final long DEFAULT_RECV_WINDOW = 30000L;
 
     /** Base URL */
     protected String url = "https://api.binance.com";

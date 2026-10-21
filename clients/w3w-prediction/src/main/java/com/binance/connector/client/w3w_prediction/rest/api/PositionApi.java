@@ -46,7 +46,7 @@ public class PositionApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-w3w-prediction/2.1.2 (Java/%s; %s; %s)",
+                    "binance-w3w-prediction/2.2.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -956,7 +956,12 @@ public class PositionApi {
     /**
      * Query Settled Position History (PREDICTION_TRADE) Get the authenticated user&#39;s settled
      * (resolved) prediction position history with optional filters. Weight(IP): 1 Security Type:
-     * PREDICTION_TRADE
+     * PREDICTION_TRADE Response Notes: - There is no separate cancelled, invalid or refunded
+     * status. A resolved market pays each outcome by its payout ratio, which can be fractional, for
+     * example &#x60;0.5&#x60; for each of two outcomes. This is not a refund of the purchase cost.
+     * Use &#x60;finalOutcome&#x60;, &#x60;isWinner&#x60;, &#x60;claimAmount&#x60; and
+     * &#x60;redeemStatus&#x60; together with your own claim records, and Get Market Detail for
+     * &#x60;outcomes[].winner&#x60;.
      *
      * @param walletAddress User&#39;s prediction wallet address (required)
      * @param l1Category Filter by level-1 category (optional)

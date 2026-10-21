@@ -28,4 +28,12 @@ public class StreamBlockingQueueWrapper<T> {
         String take = innerQueue.take();
         return gson.fromJson(take, convertType);
     }
+
+    public T poll() {
+        String take = innerQueue.poll();
+        if (take == null) {
+            return null;
+        }
+        return gson.fromJson(take, convertType);
+    }
 }

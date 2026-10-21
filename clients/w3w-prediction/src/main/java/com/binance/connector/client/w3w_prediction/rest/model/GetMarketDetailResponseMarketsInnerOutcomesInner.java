@@ -66,6 +66,12 @@ public class GetMarketDetailResponseMarketsInnerOutcomesInner {
     @jakarta.annotation.Nullable
     private String tokenId;
 
+    public static final String SERIALIZED_NAME_WINNER = "winner";
+
+    @SerializedName(SERIALIZED_NAME_WINNER)
+    @jakarta.annotation.Nullable
+    private Boolean winner;
+
     public GetMarketDetailResponseMarketsInnerOutcomesInner() {}
 
     public GetMarketDetailResponseMarketsInnerOutcomesInner name(
@@ -168,6 +174,27 @@ public class GetMarketDetailResponseMarketsInnerOutcomesInner {
         this.tokenId = tokenId;
     }
 
+    public GetMarketDetailResponseMarketsInnerOutcomesInner winner(
+            @jakarta.annotation.Nullable Boolean winner) {
+        this.winner = winner;
+        return this;
+    }
+
+    /**
+     * Whether this outcome won. Returned only after the market is resolved. More than one outcome
+     * can be &#x60;true&#x60; when the payout is split
+     *
+     * @return winner
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getWinner() {
+        return winner;
+    }
+
+    public void setWinner(@jakarta.annotation.Nullable Boolean winner) {
+        this.winner = winner;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -187,12 +214,14 @@ public class GetMarketDetailResponseMarketsInnerOutcomesInner {
                 && Objects.equals(
                         this.index, getMarketDetailResponseMarketsInnerOutcomesInner.index)
                 && Objects.equals(
-                        this.tokenId, getMarketDetailResponseMarketsInnerOutcomesInner.tokenId);
+                        this.tokenId, getMarketDetailResponseMarketsInnerOutcomesInner.tokenId)
+                && Objects.equals(
+                        this.winner, getMarketDetailResponseMarketsInnerOutcomesInner.winner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, price, chance, index, tokenId);
+        return Objects.hash(name, price, chance, index, tokenId, winner);
     }
 
     @Override
@@ -204,6 +233,7 @@ public class GetMarketDetailResponseMarketsInnerOutcomesInner {
         sb.append("		chance: ").append(toIndentedString(chance)).append("\n");
         sb.append("		index: ").append(toIndentedString(index)).append("\n");
         sb.append("		tokenId: ").append(toIndentedString(tokenId)).append("\n");
+        sb.append("		winner: ").append(toIndentedString(winner)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -231,6 +261,10 @@ public class GetMarketDetailResponseMarketsInnerOutcomesInner {
         String tokenIdValueAsString = "";
         tokenIdValueAsString = tokenIdValue.toString();
         sb.append("tokenId=").append(urlEncode(tokenIdValueAsString)).append("");
+        Object winnerValue = getWinner();
+        String winnerValueAsString = "";
+        winnerValueAsString = winnerValue.toString();
+        sb.append("winner=").append(urlEncode(winnerValueAsString)).append("");
         return sb.toString();
     }
 
@@ -264,6 +298,7 @@ public class GetMarketDetailResponseMarketsInnerOutcomesInner {
         openapiFields.add("chance");
         openapiFields.add("index");
         openapiFields.add("tokenId");
+        openapiFields.add("winner");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
