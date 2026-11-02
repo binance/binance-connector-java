@@ -21,9 +21,8 @@
 |**type** | **String** | type. |  [optional] |
 |**side** | **String** | side. |  [optional] |
 |**selfTradePreventionMode** | **String** | self Trade Prevention Mode. |  [optional] |
-|**marginBuyBorrowAmount** | **Long** | margin Buy Borrow Amount. |  [optional] |
+|**marginBuyBorrowAmount** | **String** | margin Buy Borrow Amount. |  [optional] |
 |**marginBuyBorrowAsset** | **String** | margin Buy Borrow Asset. |  [optional] |
 |**fills** | [**List&lt;MarginAccountNewOrderResponseFillsInner&gt;**](MarginAccountNewOrderResponseFillsInner.md) | fills list. |  [optional] |
-
 
 
