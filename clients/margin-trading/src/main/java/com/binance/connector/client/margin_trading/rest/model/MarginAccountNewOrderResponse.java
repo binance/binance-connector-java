@@ -131,7 +131,7 @@ public class MarginAccountNewOrderResponse {
 
     @SerializedName(SERIALIZED_NAME_MARGIN_BUY_BORROW_AMOUNT)
     @jakarta.annotation.Nullable
-    private Long marginBuyBorrowAmount;
+    private String marginBuyBorrowAmount;
 
     public static final String SERIALIZED_NAME_MARGIN_BUY_BORROW_ASSET = "marginBuyBorrowAsset";
 
@@ -422,7 +422,7 @@ public class MarginAccountNewOrderResponse {
     }
 
     public MarginAccountNewOrderResponse marginBuyBorrowAmount(
-            @jakarta.annotation.Nullable Long marginBuyBorrowAmount) {
+            @jakarta.annotation.Nullable String marginBuyBorrowAmount) {
         this.marginBuyBorrowAmount = marginBuyBorrowAmount;
         return this;
     }
@@ -433,11 +433,11 @@ public class MarginAccountNewOrderResponse {
      * @return marginBuyBorrowAmount
      */
     @jakarta.annotation.Nullable
-    public Long getMarginBuyBorrowAmount() {
+    public String getMarginBuyBorrowAmount() {
         return marginBuyBorrowAmount;
     }
 
-    public void setMarginBuyBorrowAmount(@jakarta.annotation.Nullable Long marginBuyBorrowAmount) {
+    public void setMarginBuyBorrowAmount(@jakarta.annotation.Nullable String marginBuyBorrowAmount) {
         this.marginBuyBorrowAmount = marginBuyBorrowAmount;
     }
 
