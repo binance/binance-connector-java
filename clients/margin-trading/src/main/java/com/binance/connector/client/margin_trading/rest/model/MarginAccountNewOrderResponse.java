@@ -131,7 +131,7 @@ public class MarginAccountNewOrderResponse {
 
     @SerializedName(SERIALIZED_NAME_MARGIN_BUY_BORROW_AMOUNT)
     @jakarta.annotation.Nullable
-    private Long marginBuyBorrowAmount;
+    private String marginBuyBorrowAmount;
 
     public static final String SERIALIZED_NAME_MARGIN_BUY_BORROW_ASSET = "marginBuyBorrowAsset";
 
@@ -422,7 +422,7 @@ public class MarginAccountNewOrderResponse {
     }
 
     public MarginAccountNewOrderResponse marginBuyBorrowAmount(
-            @jakarta.annotation.Nullable Long marginBuyBorrowAmount) {
+            @jakarta.annotation.Nullable String marginBuyBorrowAmount) {
         this.marginBuyBorrowAmount = marginBuyBorrowAmount;
         return this;
     }
@@ -433,11 +433,12 @@ public class MarginAccountNewOrderResponse {
      * @return marginBuyBorrowAmount
      */
     @jakarta.annotation.Nullable
-    public Long getMarginBuyBorrowAmount() {
+    public String getMarginBuyBorrowAmount() {
         return marginBuyBorrowAmount;
     }
 
-    public void setMarginBuyBorrowAmount(@jakarta.annotation.Nullable Long marginBuyBorrowAmount) {
+    public void setMarginBuyBorrowAmount(
+            @jakarta.annotation.Nullable String marginBuyBorrowAmount) {
         this.marginBuyBorrowAmount = marginBuyBorrowAmount;
     }
 
@@ -825,6 +826,15 @@ public class MarginAccountNewOrderResponse {
                             "Expected the field `selfTradePreventionMode` to be a primitive type in"
                                     + " the JSON string but got `%s`",
                             jsonObj.get("selfTradePreventionMode").toString()));
+        }
+        if ((jsonObj.get("marginBuyBorrowAmount") != null
+                        && !jsonObj.get("marginBuyBorrowAmount").isJsonNull())
+                && !jsonObj.get("marginBuyBorrowAmount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `marginBuyBorrowAmount` to be a primitive type in"
+                                    + " the JSON string but got `%s`",
+                            jsonObj.get("marginBuyBorrowAmount").toString()));
         }
         if ((jsonObj.get("marginBuyBorrowAsset") != null
                         && !jsonObj.get("marginBuyBorrowAsset").isJsonNull())
