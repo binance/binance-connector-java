@@ -88,6 +88,18 @@ public class CreateSubAccountApiKeyResponse {
     @jakarta.annotation.Nullable
     private Boolean canVanillaOptions;
 
+    public static final String SERIALIZED_NAME_CAN_FIX_API_TRADING = "canFixApiTrading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_TRADING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiTrading;
+
+    public static final String SERIALIZED_NAME_CAN_FIX_API_READING = "canFixApiReading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_READING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiReading;
+
     public static final String SERIALIZED_NAME_STATUS = "status";
 
     @SerializedName(SERIALIZED_NAME_STATUS)
@@ -258,6 +270,46 @@ public class CreateSubAccountApiKeyResponse {
         this.canVanillaOptions = canVanillaOptions;
     }
 
+    public CreateSubAccountApiKeyResponse canFixApiTrading(
+            @jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+        return this;
+    }
+
+    /**
+     * Get canFixApiTrading
+     *
+     * @return canFixApiTrading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiTrading() {
+        return canFixApiTrading;
+    }
+
+    public void setCanFixApiTrading(@jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+    }
+
+    public CreateSubAccountApiKeyResponse canFixApiReading(
+            @jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+        return this;
+    }
+
+    /**
+     * Get canFixApiReading
+     *
+     * @return canFixApiReading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiReading() {
+        return canFixApiReading;
+    }
+
+    public void setCanFixApiReading(@jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+    }
+
     public CreateSubAccountApiKeyResponse status(@jakarta.annotation.Nullable Long status) {
         this.status = status;
         return this;
@@ -327,6 +379,10 @@ public class CreateSubAccountApiKeyResponse {
                         createSubAccountApiKeyResponse.canUniversalTransfer)
                 && Objects.equals(
                         this.canVanillaOptions, createSubAccountApiKeyResponse.canVanillaOptions)
+                && Objects.equals(
+                        this.canFixApiTrading, createSubAccountApiKeyResponse.canFixApiTrading)
+                && Objects.equals(
+                        this.canFixApiReading, createSubAccountApiKeyResponse.canFixApiReading)
                 && Objects.equals(this.status, createSubAccountApiKeyResponse.status)
                 && Objects.equals(this.ipList, createSubAccountApiKeyResponse.ipList);
     }
@@ -342,6 +398,8 @@ public class CreateSubAccountApiKeyResponse {
                 canFuturesTrade,
                 canUniversalTransfer,
                 canVanillaOptions,
+                canFixApiTrading,
+                canFixApiReading,
                 status,
                 ipList);
     }
@@ -362,6 +420,8 @@ public class CreateSubAccountApiKeyResponse {
                 .append(toIndentedString(canUniversalTransfer))
                 .append("\n");
         sb.append("		canVanillaOptions: ").append(toIndentedString(canVanillaOptions)).append("\n");
+        sb.append("		canFixApiTrading: ").append(toIndentedString(canFixApiTrading)).append("\n");
+        sb.append("		canFixApiReading: ").append(toIndentedString(canFixApiReading)).append("\n");
         sb.append("		status: ").append(toIndentedString(status)).append("\n");
         sb.append("		ipList: ").append(toIndentedString(ipList)).append("\n");
         sb.append("}");
@@ -409,6 +469,14 @@ public class CreateSubAccountApiKeyResponse {
         sb.append("canVanillaOptions=")
                 .append(urlEncode(canVanillaOptionsValueAsString))
                 .append("");
+        Object canFixApiTradingValue = getCanFixApiTrading();
+        String canFixApiTradingValueAsString = "";
+        canFixApiTradingValueAsString = canFixApiTradingValue.toString();
+        sb.append("canFixApiTrading=").append(urlEncode(canFixApiTradingValueAsString)).append("");
+        Object canFixApiReadingValue = getCanFixApiReading();
+        String canFixApiReadingValueAsString = "";
+        canFixApiReadingValueAsString = canFixApiReadingValue.toString();
+        sb.append("canFixApiReading=").append(urlEncode(canFixApiReadingValueAsString)).append("");
         Object statusValue = getStatus();
         String statusValueAsString = "";
         statusValueAsString = statusValue.toString();
@@ -456,6 +524,8 @@ public class CreateSubAccountApiKeyResponse {
         openapiFields.add("canFuturesTrade");
         openapiFields.add("canUniversalTransfer");
         openapiFields.add("canVanillaOptions");
+        openapiFields.add("canFixApiTrading");
+        openapiFields.add("canFixApiReading");
         openapiFields.add("status");
         openapiFields.add("ipList");
 

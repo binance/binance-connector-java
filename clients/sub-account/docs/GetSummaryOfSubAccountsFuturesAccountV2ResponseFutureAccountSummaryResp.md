@@ -14,7 +14,7 @@
 |**totalPositionInitialMargin** | **String** |  |  [optional] |
 |**totalUnrealizedProfit** | **String** |  |  [optional] |
 |**totalWalletBalance** | **String** |  |  [optional] |
-|**asset** | **String** |  |  [optional] |
+|**asset** | **String** | The sum of BUSD and USDT |  [optional] |
 |**subAccountList** | [**List&lt;GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner&gt;**](GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner.md) |  |  [optional] |
 
 

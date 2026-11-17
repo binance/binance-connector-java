@@ -84,6 +84,18 @@ public class QuerySubAccountApiKeyResponseRowsInner {
     @jakarta.annotation.Nullable
     private Boolean canVanillaOptions;
 
+    public static final String SERIALIZED_NAME_CAN_FIX_API_TRADING = "canFixApiTrading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_TRADING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiTrading;
+
+    public static final String SERIALIZED_NAME_CAN_FIX_API_READING = "canFixApiReading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_READING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiReading;
+
     public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
 
     @SerializedName(SERIALIZED_NAME_TIMESTAMP)
@@ -251,6 +263,46 @@ public class QuerySubAccountApiKeyResponseRowsInner {
         this.canVanillaOptions = canVanillaOptions;
     }
 
+    public QuerySubAccountApiKeyResponseRowsInner canFixApiTrading(
+            @jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+        return this;
+    }
+
+    /**
+     * Get canFixApiTrading
+     *
+     * @return canFixApiTrading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiTrading() {
+        return canFixApiTrading;
+    }
+
+    public void setCanFixApiTrading(@jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+    }
+
+    public QuerySubAccountApiKeyResponseRowsInner canFixApiReading(
+            @jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+        return this;
+    }
+
+    /**
+     * Get canFixApiReading
+     *
+     * @return canFixApiReading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiReading() {
+        return canFixApiReading;
+    }
+
+    public void setCanFixApiReading(@jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+    }
+
     public QuerySubAccountApiKeyResponseRowsInner timestamp(
             @jakarta.annotation.Nullable Long timestamp) {
         this.timestamp = timestamp;
@@ -297,6 +349,12 @@ public class QuerySubAccountApiKeyResponseRowsInner {
                 && Objects.equals(
                         this.canVanillaOptions,
                         querySubAccountApiKeyResponseRowsInner.canVanillaOptions)
+                && Objects.equals(
+                        this.canFixApiTrading,
+                        querySubAccountApiKeyResponseRowsInner.canFixApiTrading)
+                && Objects.equals(
+                        this.canFixApiReading,
+                        querySubAccountApiKeyResponseRowsInner.canFixApiReading)
                 && Objects.equals(this.timestamp, querySubAccountApiKeyResponseRowsInner.timestamp);
     }
 
@@ -311,6 +369,8 @@ public class QuerySubAccountApiKeyResponseRowsInner {
                 canFuturesTrade,
                 canUniversalTransfer,
                 canVanillaOptions,
+                canFixApiTrading,
+                canFixApiReading,
                 timestamp);
     }
 
@@ -330,6 +390,8 @@ public class QuerySubAccountApiKeyResponseRowsInner {
                 .append(toIndentedString(canUniversalTransfer))
                 .append("\n");
         sb.append("		canVanillaOptions: ").append(toIndentedString(canVanillaOptions)).append("\n");
+        sb.append("		canFixApiTrading: ").append(toIndentedString(canFixApiTrading)).append("\n");
+        sb.append("		canFixApiReading: ").append(toIndentedString(canFixApiReading)).append("\n");
         sb.append("		timestamp: ").append(toIndentedString(timestamp)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -376,6 +438,14 @@ public class QuerySubAccountApiKeyResponseRowsInner {
         sb.append("canVanillaOptions=")
                 .append(urlEncode(canVanillaOptionsValueAsString))
                 .append("");
+        Object canFixApiTradingValue = getCanFixApiTrading();
+        String canFixApiTradingValueAsString = "";
+        canFixApiTradingValueAsString = canFixApiTradingValue.toString();
+        sb.append("canFixApiTrading=").append(urlEncode(canFixApiTradingValueAsString)).append("");
+        Object canFixApiReadingValue = getCanFixApiReading();
+        String canFixApiReadingValueAsString = "";
+        canFixApiReadingValueAsString = canFixApiReadingValue.toString();
+        sb.append("canFixApiReading=").append(urlEncode(canFixApiReadingValueAsString)).append("");
         Object timestampValue = getTimestamp();
         String timestampValueAsString = "";
         timestampValueAsString = timestampValue.toString();
@@ -416,6 +486,8 @@ public class QuerySubAccountApiKeyResponseRowsInner {
         openapiFields.add("canFuturesTrade");
         openapiFields.add("canUniversalTransfer");
         openapiFields.add("canVanillaOptions");
+        openapiFields.add("canFixApiTrading");
+        openapiFields.add("canFixApiReading");
         openapiFields.add("timestamp");
 
         // a set of required properties/fields (JSON key names)

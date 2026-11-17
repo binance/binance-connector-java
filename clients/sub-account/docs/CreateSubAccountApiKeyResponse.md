@@ -15,6 +15,8 @@
 |**canFuturesTrade** | **Boolean** |  |  [optional] |
 |**canUniversalTransfer** | **Boolean** |  |  [optional] |
 |**canVanillaOptions** | **Boolean** |  |  [optional] |
+|**canFixApiTrading** | **Boolean** |  |  [optional] |
+|**canFixApiReading** | **Boolean** |  |  [optional] |
 |**status** | **Long** |  |  [optional] |
 |**ipList** | **List&lt;String&gt;** |  |  [optional] |
 

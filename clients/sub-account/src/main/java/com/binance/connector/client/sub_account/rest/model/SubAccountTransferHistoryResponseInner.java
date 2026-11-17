@@ -143,7 +143,7 @@ public class SubAccountTransferHistoryResponseInner {
     }
 
     /**
-     * Get type
+     * 1 for transfer in, 2 for transfer out
      *
      * @return type
      */
@@ -241,7 +241,7 @@ public class SubAccountTransferHistoryResponseInner {
     }
 
     /**
-     * Get status
+     * status: PROCESS / SUCCESS / FAILURE
      *
      * @return status
      */

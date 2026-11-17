@@ -68,7 +68,7 @@ public class QueryManagedSubAccountSnapshotResponse {
     }
 
     /**
-     * Get code
+     * 200 for success; others are error codes
      *
      * @return code
      */
@@ -87,7 +87,7 @@ public class QueryManagedSubAccountSnapshotResponse {
     }
 
     /**
-     * Get msg
+     * error message
      *
      * @return msg
      */

@@ -23,6 +23,8 @@ import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSu
 import com.binance.connector.client.sub_account.rest.model.AddIpRestrictionForSubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyRequest;
 import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyResponse;
+import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyV2Request;
+import com.binance.connector.client.sub_account.rest.model.CreateSubAccountApiKeyV2Response;
 import com.binance.connector.client.sub_account.rest.model.DeleteIpListForASubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.GetIpRestrictionForASubAccountApiKeyResponse;
 import com.binance.connector.client.sub_account.rest.model.ModifySubAccountApiKeyPermissionRequest;
@@ -51,7 +53,7 @@ public class ApiManagementApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-sub-account/8.0.1 (Java/%s; %s; %s)",
+                    "binance-sub-account/8.1.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -339,6 +341,16 @@ public class ApiManagementApi {
                     "canVanillaOptions", createSubAccountApiKeyRequest.getCanVanillaOptions());
         }
 
+        if (createSubAccountApiKeyRequest.getCanFixApiTrading() != null) {
+            localVarFormParams.put(
+                    "canFixApiTrading", createSubAccountApiKeyRequest.getCanFixApiTrading());
+        }
+
+        if (createSubAccountApiKeyRequest.getCanFixApiReading() != null) {
+            localVarFormParams.put(
+                    "canFixApiReading", createSubAccountApiKeyRequest.getCanFixApiReading());
+        }
+
         if (createSubAccountApiKeyRequest.getIpAddress() != null) {
             localVarFormParams.put("ipAddress", createSubAccountApiKeyRequest.getIpAddress());
         }
@@ -449,6 +461,211 @@ public class ApiManagementApi {
                 createSubAccountApiKeyValidateBeforeCall(createSubAccountApiKeyRequest);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<CreateSubAccountApiKeyResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for createSubAccountApiKeyV2
+     *
+     * @param createSubAccountApiKeyV2Request (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Create Sub-account API Key V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key-v2">Create
+     *     Sub-account API Key V2 (For Master Account) (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call createSubAccountApiKeyV2Call(
+            CreateSubAccountApiKeyV2Request createSubAccountApiKeyV2Request) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/sub-account/subAccountApi";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (createSubAccountApiKeyV2Request.getEmail() != null) {
+            localVarFormParams.put("email", createSubAccountApiKeyV2Request.getEmail());
+        }
+
+        if (createSubAccountApiKeyV2Request.getApiName() != null) {
+            localVarFormParams.put("apiName", createSubAccountApiKeyV2Request.getApiName());
+        }
+
+        if (createSubAccountApiKeyV2Request.getStatus() != null) {
+            localVarFormParams.put("status", createSubAccountApiKeyV2Request.getStatus());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanTrade() != null) {
+            localVarFormParams.put("canTrade", createSubAccountApiKeyV2Request.getCanTrade());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanMarginLoanRepay() != null) {
+            localVarFormParams.put(
+                    "canMarginLoanRepay", createSubAccountApiKeyV2Request.getCanMarginLoanRepay());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanFuturesTrade() != null) {
+            localVarFormParams.put(
+                    "canFuturesTrade", createSubAccountApiKeyV2Request.getCanFuturesTrade());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanUniversalTransfer() != null) {
+            localVarFormParams.put(
+                    "canUniversalTransfer",
+                    createSubAccountApiKeyV2Request.getCanUniversalTransfer());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanVanillaOptions() != null) {
+            localVarFormParams.put(
+                    "canVanillaOptions", createSubAccountApiKeyV2Request.getCanVanillaOptions());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanFixApiTrading() != null) {
+            localVarFormParams.put(
+                    "canFixApiTrading", createSubAccountApiKeyV2Request.getCanFixApiTrading());
+        }
+
+        if (createSubAccountApiKeyV2Request.getCanFixApiReading() != null) {
+            localVarFormParams.put(
+                    "canFixApiReading", createSubAccountApiKeyV2Request.getCanFixApiReading());
+        }
+
+        if (createSubAccountApiKeyV2Request.getIpAddress() != null) {
+            localVarFormParams.put("ipAddress", createSubAccountApiKeyV2Request.getIpAddress());
+        }
+
+        if (createSubAccountApiKeyV2Request.getThirdPartyName() != null) {
+            localVarFormParams.put(
+                    "thirdPartyName", createSubAccountApiKeyV2Request.getThirdPartyName());
+        }
+
+        if (createSubAccountApiKeyV2Request.getPublicKey() != null) {
+            localVarFormParams.put("publicKey", createSubAccountApiKeyV2Request.getPublicKey());
+        }
+
+        if (createSubAccountApiKeyV2Request.getRecvWindow() != null) {
+            localVarFormParams.put("recvWindow", createSubAccountApiKeyV2Request.getRecvWindow());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createSubAccountApiKeyV2ValidateBeforeCall(
+            CreateSubAccountApiKeyV2Request createSubAccountApiKeyV2Request) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {createSubAccountApiKeyV2Request};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "createSubAccountApiKeyV2",
+                                    CreateSubAccountApiKeyV2Request.class);
+            Set<ConstraintViolation<ApiManagementApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return createSubAccountApiKeyV2Call(createSubAccountApiKeyV2Request);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Create Sub-account API Key V2 (For Master Account) (USER_DATA) Create a new API Key for a
+     * sub-account. Weight(UID): 3000 Security Type: USER_DATA Notes: - &#x60;status&#x3D;2&#x60;
+     * requires &#x60;ipAddress&#x60; - &#x60;status&#x3D;3&#x60; requires
+     * &#x60;thirdPartyName&#x60; - Asset Sub Account is not supported - The caller must pass the
+     * KYC IP restriction check - &#x60;publicKey&#x60; is rejected if passed in the URL query
+     * string. The example sends it in the request body with &#x60;--data-urlencode&#x60;
+     *
+     * @param createSubAccountApiKeyV2Request (required)
+     * @return ApiResponse&lt;CreateSubAccountApiKeyV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Create Sub-account API Key V2 </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key-v2">Create
+     *     Sub-account API Key V2 (For Master Account) (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<CreateSubAccountApiKeyV2Response> createSubAccountApiKeyV2(
+            @Valid @NotNull CreateSubAccountApiKeyV2Request createSubAccountApiKeyV2Request)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                createSubAccountApiKeyV2ValidateBeforeCall(createSubAccountApiKeyV2Request);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<CreateSubAccountApiKeyV2Response>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1023,6 +1240,18 @@ public class ApiManagementApi {
             localVarFormParams.put(
                     "canVanillaOptions",
                     modifySubAccountApiKeyPermissionRequest.getCanVanillaOptions());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanFixApiTrading() != null) {
+            localVarFormParams.put(
+                    "canFixApiTrading",
+                    modifySubAccountApiKeyPermissionRequest.getCanFixApiTrading());
+        }
+
+        if (modifySubAccountApiKeyPermissionRequest.getCanFixApiReading() != null) {
+            localVarFormParams.put(
+                    "canFixApiReading",
+                    modifySubAccountApiKeyPermissionRequest.getCanFixApiReading());
         }
 
         if (modifySubAccountApiKeyPermissionRequest.getRecvWindow() != null) {

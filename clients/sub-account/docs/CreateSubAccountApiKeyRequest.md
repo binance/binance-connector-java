@@ -15,6 +15,8 @@
 |**canFuturesTrade** | **Boolean** | Futures trading permission, default false |  [optional] |
 |**canUniversalTransfer** | **Boolean** | Universal transfer permission, default false |  [optional] |
 |**canVanillaOptions** | **Boolean** | Vanilla options permission, default false |  [optional] |
+|**canFixApiTrading** | **Boolean** | FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; |  [optional] |
+|**canFixApiReading** | **Boolean** | FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; |  [optional] |
 |**ipAddress** | **String** | Required when status&#x3D;2. IP address list, max 500 chars |  [optional] |
 |**thirdPartyName** | **String** | Required when status&#x3D;3. Third-party name |  [optional] |
 |**publicKey** | **String** | Ed25519 public key (optional, for Ed25519 type API Key) |  [optional] |

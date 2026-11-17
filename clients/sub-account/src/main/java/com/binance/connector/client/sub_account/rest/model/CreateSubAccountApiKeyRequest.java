@@ -84,6 +84,18 @@ public class CreateSubAccountApiKeyRequest {
     @jakarta.annotation.Nullable
     private Boolean canVanillaOptions;
 
+    public static final String SERIALIZED_NAME_CAN_FIX_API_TRADING = "canFixApiTrading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_TRADING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiTrading;
+
+    public static final String SERIALIZED_NAME_CAN_FIX_API_READING = "canFixApiReading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_READING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiReading;
+
     public static final String SERIALIZED_NAME_IP_ADDRESS = "ipAddress";
 
     @SerializedName(SERIALIZED_NAME_IP_ADDRESS)
@@ -270,6 +282,50 @@ public class CreateSubAccountApiKeyRequest {
         this.canVanillaOptions = canVanillaOptions;
     }
 
+    public CreateSubAccountApiKeyRequest canFixApiTrading(
+            @jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+        return this;
+    }
+
+    /**
+     * FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting
+     * it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported
+     * operation&#x60;
+     *
+     * @return canFixApiTrading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiTrading() {
+        return canFixApiTrading;
+    }
+
+    public void setCanFixApiTrading(@jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+    }
+
+    public CreateSubAccountApiKeyRequest canFixApiReading(
+            @jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+        return this;
+    }
+
+    /**
+     * FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting
+     * it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported
+     * operation&#x60;
+     *
+     * @return canFixApiReading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiReading() {
+        return canFixApiReading;
+    }
+
+    public void setCanFixApiReading(@jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+    }
+
     public CreateSubAccountApiKeyRequest ipAddress(@jakarta.annotation.Nullable String ipAddress) {
         this.ipAddress = ipAddress;
         return this;
@@ -371,6 +427,10 @@ public class CreateSubAccountApiKeyRequest {
                         createSubAccountApiKeyRequest.canUniversalTransfer)
                 && Objects.equals(
                         this.canVanillaOptions, createSubAccountApiKeyRequest.canVanillaOptions)
+                && Objects.equals(
+                        this.canFixApiTrading, createSubAccountApiKeyRequest.canFixApiTrading)
+                && Objects.equals(
+                        this.canFixApiReading, createSubAccountApiKeyRequest.canFixApiReading)
                 && Objects.equals(this.ipAddress, createSubAccountApiKeyRequest.ipAddress)
                 && Objects.equals(this.thirdPartyName, createSubAccountApiKeyRequest.thirdPartyName)
                 && Objects.equals(this.publicKey, createSubAccountApiKeyRequest.publicKey)
@@ -388,6 +448,8 @@ public class CreateSubAccountApiKeyRequest {
                 canFuturesTrade,
                 canUniversalTransfer,
                 canVanillaOptions,
+                canFixApiTrading,
+                canFixApiReading,
                 ipAddress,
                 thirdPartyName,
                 publicKey,
@@ -410,6 +472,8 @@ public class CreateSubAccountApiKeyRequest {
                 .append(toIndentedString(canUniversalTransfer))
                 .append("\n");
         sb.append("		canVanillaOptions: ").append(toIndentedString(canVanillaOptions)).append("\n");
+        sb.append("		canFixApiTrading: ").append(toIndentedString(canFixApiTrading)).append("\n");
+        sb.append("		canFixApiReading: ").append(toIndentedString(canFixApiReading)).append("\n");
         sb.append("		ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
         sb.append("		thirdPartyName: ").append(toIndentedString(thirdPartyName)).append("\n");
         sb.append("		publicKey: ").append(toIndentedString(publicKey)).append("\n");
@@ -459,6 +523,14 @@ public class CreateSubAccountApiKeyRequest {
         sb.append("canVanillaOptions=")
                 .append(urlEncode(canVanillaOptionsValueAsString))
                 .append("");
+        Object canFixApiTradingValue = getCanFixApiTrading();
+        String canFixApiTradingValueAsString = "";
+        canFixApiTradingValueAsString = canFixApiTradingValue.toString();
+        sb.append("canFixApiTrading=").append(urlEncode(canFixApiTradingValueAsString)).append("");
+        Object canFixApiReadingValue = getCanFixApiReading();
+        String canFixApiReadingValueAsString = "";
+        canFixApiReadingValueAsString = canFixApiReadingValue.toString();
+        sb.append("canFixApiReading=").append(urlEncode(canFixApiReadingValueAsString)).append("");
         Object ipAddressValue = getIpAddress();
         String ipAddressValueAsString = "";
         ipAddressValueAsString = ipAddressValue.toString();
@@ -511,6 +583,8 @@ public class CreateSubAccountApiKeyRequest {
         openapiFields.add("canFuturesTrade");
         openapiFields.add("canUniversalTransfer");
         openapiFields.add("canVanillaOptions");
+        openapiFields.add("canFixApiTrading");
+        openapiFields.add("canFixApiReading");
         openapiFields.add("ipAddress");
         openapiFields.add("thirdPartyName");
         openapiFields.add("publicKey");

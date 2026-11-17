@@ -22,6 +22,8 @@
 
 [POST /sapi/v1/sub-account/subAccountApi](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key) - createSubAccountApiKey - [CreateSubAccountApiKeyExample.java:40](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/apimanagement/CreateSubAccountApiKeyExample.java#L40)
 
+[POST /sapi/v2/sub-account/subAccountApi](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key-v2) - createSubAccountApiKeyV2 - [CreateSubAccountApiKeyV2Example.java:41](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/apimanagement/CreateSubAccountApiKeyV2Example.java#L41)
+
 [DELETE /sapi/v1/sub-account/subAccountApi/ipRestriction/ipList](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#delete-ip-list-for-asub-account-api-key) - deleteIpListForASubAccountApiKey - [DeleteIpListForASubAccountApiKeyExample.java:38](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/apimanagement/DeleteIpListForASubAccountApiKeyExample.java#L38)
 
 [DELETE /sapi/v1/sub-account/subAccountApi](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#delete-sub-account-api-key) - deleteSubAccountApiKey - [DeleteSubAccountApiKeyExample.java:36](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/apimanagement/DeleteSubAccountApiKeyExample.java#L36)
@@ -56,7 +58,7 @@
 
 [POST /sapi/v1/sub-account/margin/transfer](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#margin-transfer-for-sub-account) - marginTransferForSubAccount - [MarginTransferForSubAccountExample.java:39](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/MarginTransferForSubAccountExample.java#L39)
 
-[POST /sapi/v1/sub-account/futures/move-position](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#move-position-for-sub-account) - movePositionForSubAccount - [MovePositionForSubAccountExample.java:48](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/MovePositionForSubAccountExample.java#L48)
+[POST /sapi/v1/sub-account/futures/move-position](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#move-position-for-sub-account) - movePositionForSubAccount - [MovePositionForSubAccountExample.java:53](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/MovePositionForSubAccountExample.java#L53)
 
 [GET /sapi/v3/sub-account/assets](https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets) - querySubAccountAssets - [QuerySubAccountAssetsExample.java:36](/examples/sub-account/src/main/java/com/binance/connector/client/sub_account/rest/assetmanagement/QuerySubAccountAssetsExample.java#L36)
 

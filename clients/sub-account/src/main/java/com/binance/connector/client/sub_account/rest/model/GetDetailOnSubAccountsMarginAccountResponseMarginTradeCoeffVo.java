@@ -63,7 +63,7 @@ public class GetDetailOnSubAccountsMarginAccountResponseMarginTradeCoeffVo {
     }
 
     /**
-     * Get forceLiquidationBar
+     * Liquidation margin ratio
      *
      * @return forceLiquidationBar
      */
@@ -83,7 +83,7 @@ public class GetDetailOnSubAccountsMarginAccountResponseMarginTradeCoeffVo {
     }
 
     /**
-     * Get marginCallBar
+     * Margin call margin ratio
      *
      * @return marginCallBar
      */
@@ -103,7 +103,7 @@ public class GetDetailOnSubAccountsMarginAccountResponseMarginTradeCoeffVo {
     }
 
     /**
-     * Get normalBar
+     * Initial margin ratio
      *
      * @return normalBar
      */

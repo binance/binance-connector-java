@@ -76,7 +76,7 @@ public class EnableFuturesForSubAccountResponse {
     }
 
     /**
-     * Get isFuturesEnabled
+     * true or false
      *
      * @return isFuturesEnabled
      */

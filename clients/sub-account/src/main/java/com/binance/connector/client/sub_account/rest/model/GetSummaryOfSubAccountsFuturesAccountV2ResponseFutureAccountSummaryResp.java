@@ -254,7 +254,7 @@ public class GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummary
     }
 
     /**
-     * Get asset
+     * The sum of BUSD and USDT
      *
      * @return asset
      */

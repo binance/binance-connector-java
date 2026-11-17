@@ -78,6 +78,18 @@ public class ModifySubAccountApiKeyPermissionRequest {
     @jakarta.annotation.Nullable
     private Boolean canVanillaOptions;
 
+    public static final String SERIALIZED_NAME_CAN_FIX_API_TRADING = "canFixApiTrading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_TRADING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiTrading;
+
+    public static final String SERIALIZED_NAME_CAN_FIX_API_READING = "canFixApiReading";
+
+    @SerializedName(SERIALIZED_NAME_CAN_FIX_API_READING)
+    @jakarta.annotation.Nullable
+    private Boolean canFixApiReading;
+
     public static final String SERIALIZED_NAME_RECV_WINDOW = "recvWindow";
 
     @SerializedName(SERIALIZED_NAME_RECV_WINDOW)
@@ -227,6 +239,50 @@ public class ModifySubAccountApiKeyPermissionRequest {
         this.canVanillaOptions = canVanillaOptions;
     }
 
+    public ModifySubAccountApiKeyPermissionRequest canFixApiTrading(
+            @jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+        return this;
+    }
+
+    /**
+     * FIX API Trading permission. If omitted, the existing value is unchanged. Only supported for
+     * API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type
+     * returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+     *
+     * @return canFixApiTrading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiTrading() {
+        return canFixApiTrading;
+    }
+
+    public void setCanFixApiTrading(@jakarta.annotation.Nullable Boolean canFixApiTrading) {
+        this.canFixApiTrading = canFixApiTrading;
+    }
+
+    public ModifySubAccountApiKeyPermissionRequest canFixApiReading(
+            @jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+        return this;
+    }
+
+    /**
+     * FIX API Reading permission. If omitted, the existing value is unchanged. Only supported for
+     * API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type
+     * returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+     *
+     * @return canFixApiReading
+     */
+    @jakarta.annotation.Nullable
+    public Boolean getCanFixApiReading() {
+        return canFixApiReading;
+    }
+
+    public void setCanFixApiReading(@jakarta.annotation.Nullable Boolean canFixApiReading) {
+        this.canFixApiReading = canFixApiReading;
+    }
+
     public ModifySubAccountApiKeyPermissionRequest recvWindow(
             @jakarta.annotation.Nullable Long recvWindow) {
         this.recvWindow = recvWindow;
@@ -276,6 +332,12 @@ public class ModifySubAccountApiKeyPermissionRequest {
                         this.canVanillaOptions,
                         modifySubAccountApiKeyPermissionRequest.canVanillaOptions)
                 && Objects.equals(
+                        this.canFixApiTrading,
+                        modifySubAccountApiKeyPermissionRequest.canFixApiTrading)
+                && Objects.equals(
+                        this.canFixApiReading,
+                        modifySubAccountApiKeyPermissionRequest.canFixApiReading)
+                && Objects.equals(
                         this.recvWindow, modifySubAccountApiKeyPermissionRequest.recvWindow);
     }
 
@@ -289,6 +351,8 @@ public class ModifySubAccountApiKeyPermissionRequest {
                 canFuturesTrade,
                 canUniversalTransfer,
                 canVanillaOptions,
+                canFixApiTrading,
+                canFixApiReading,
                 recvWindow);
     }
 
@@ -307,6 +371,8 @@ public class ModifySubAccountApiKeyPermissionRequest {
                 .append(toIndentedString(canUniversalTransfer))
                 .append("\n");
         sb.append("		canVanillaOptions: ").append(toIndentedString(canVanillaOptions)).append("\n");
+        sb.append("		canFixApiTrading: ").append(toIndentedString(canFixApiTrading)).append("\n");
+        sb.append("		canFixApiReading: ").append(toIndentedString(canFixApiReading)).append("\n");
         sb.append("		recvWindow: ").append(toIndentedString(recvWindow)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -349,6 +415,14 @@ public class ModifySubAccountApiKeyPermissionRequest {
         sb.append("canVanillaOptions=")
                 .append(urlEncode(canVanillaOptionsValueAsString))
                 .append("");
+        Object canFixApiTradingValue = getCanFixApiTrading();
+        String canFixApiTradingValueAsString = "";
+        canFixApiTradingValueAsString = canFixApiTradingValue.toString();
+        sb.append("canFixApiTrading=").append(urlEncode(canFixApiTradingValueAsString)).append("");
+        Object canFixApiReadingValue = getCanFixApiReading();
+        String canFixApiReadingValueAsString = "";
+        canFixApiReadingValueAsString = canFixApiReadingValue.toString();
+        sb.append("canFixApiReading=").append(urlEncode(canFixApiReadingValueAsString)).append("");
         Object recvWindowValue = getRecvWindow();
         String recvWindowValueAsString = "";
         recvWindowValueAsString = recvWindowValue.toString();
@@ -388,6 +462,8 @@ public class ModifySubAccountApiKeyPermissionRequest {
         openapiFields.add("canFuturesTrade");
         openapiFields.add("canUniversalTransfer");
         openapiFields.add("canVanillaOptions");
+        openapiFields.add("canFixApiTrading");
+        openapiFields.add("canFixApiReading");
         openapiFields.add("recvWindow");
 
         // a set of required properties/fields (JSON key names)

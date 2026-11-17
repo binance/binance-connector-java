@@ -76,7 +76,7 @@ public class EnableOptionsForSubAccountResponse {
     }
 
     /**
-     * Get isEOptionsEnabled
+     * true or false
      *
      * @return isEOptionsEnabled
      */

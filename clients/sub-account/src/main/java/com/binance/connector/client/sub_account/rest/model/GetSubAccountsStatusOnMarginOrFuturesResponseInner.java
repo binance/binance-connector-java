@@ -87,7 +87,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get email
+     * user email
      *
      * @return email
      */
@@ -107,7 +107,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get isSubUserEnabled
+     * true or false
      *
      * @return isSubUserEnabled
      */
@@ -127,7 +127,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get isUserActive
+     * true or false
      *
      * @return isUserActive
      */
@@ -147,7 +147,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get insertTime
+     * sub account create time
      *
      * @return insertTime
      */
@@ -167,7 +167,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get isMarginEnabled
+     * true or false for margin
      *
      * @return isMarginEnabled
      */
@@ -187,7 +187,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get isFutureEnabled
+     * true or false for futures.
      *
      * @return isFutureEnabled
      */
@@ -207,7 +207,7 @@ public class GetSubAccountsStatusOnMarginOrFuturesResponseInner {
     }
 
     /**
-     * Get mobile
+     * user mobile number
      *
      * @return mobile
      */

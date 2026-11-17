@@ -128,6 +128,12 @@ public class JSON {
                         .CreateSubAccountApiKeyResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model
+                        .CreateSubAccountApiKeyV2Request.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
+                        .CreateSubAccountApiKeyV2Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.sub_account.rest.model
                         .DeleteIpListForASubAccountApiKeyResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.sub_account.rest.model

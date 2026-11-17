@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**email** | **String** |  |  [optional] |
-|**isFuturesEnabled** | **Boolean** |  |  [optional] |
+|**isFuturesEnabled** | **Boolean** | true or false |  [optional] |
 
 
 

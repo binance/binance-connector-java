@@ -6,6 +6,7 @@ All URIs are relative to *https://api.binance.com*
 |------------- | ------------- | -------------|
 | [**addIpRestrictionForSubAccountApiKey**](ApiManagementApi.md#addIpRestrictionForSubAccountApiKey) | **POST** /sapi/v2/sub-account/subAccountApi/ipRestriction | Add IP Restriction for Sub-Account API key (For Master Account) (USER_DATA) |
 | [**createSubAccountApiKey**](ApiManagementApi.md#createSubAccountApiKey) | **POST** /sapi/v1/sub-account/subAccountApi | Create Sub-account API Key (For Master Account) (USER_DATA) |
+| [**createSubAccountApiKeyV2**](ApiManagementApi.md#createSubAccountApiKeyV2) | **POST** /sapi/v2/sub-account/subAccountApi | Create Sub-account API Key V2 (For Master Account) (USER_DATA) |
 | [**deleteIpListForASubAccountApiKey**](ApiManagementApi.md#deleteIpListForASubAccountApiKey) | **DELETE** /sapi/v1/sub-account/subAccountApi/ipRestriction/ipList | Delete IP List For a Sub-account API Key (For Master Account) (USER_DATA) |
 | [**deleteSubAccountApiKey**](ApiManagementApi.md#deleteSubAccountApiKey) | **DELETE** /sapi/v1/sub-account/subAccountApi | Delete Sub-account API Key (For Master Account) (USER_DATA) |
 | [**getIpRestrictionForASubAccountApiKey**](ApiManagementApi.md#getIpRestrictionForASubAccountApiKey) | **GET** /sapi/v1/sub-account/subAccountApi/ipRestriction | Get IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA) |
@@ -136,6 +137,68 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Create Sub-account API Key |  -  |
+
+<a id="createSubAccountApiKeyV2"></a>
+# **createSubAccountApiKeyV2**
+> CreateSubAccountApiKeyV2Response createSubAccountApiKeyV2(createSubAccountApiKeyV2Request)
+
+Create Sub-account API Key V2 (For Master Account) (USER_DATA)
+
+Create a new API Key for a sub-account.  Weight(UID): 3000  Security Type: USER_DATA  Notes: - &#x60;status&#x3D;2&#x60; requires &#x60;ipAddress&#x60; - &#x60;status&#x3D;3&#x60; requires &#x60;thirdPartyName&#x60; - Asset Sub Account is not supported - The caller must pass the KYC IP restriction check - &#x60;publicKey&#x60; is rejected if passed in the URL query string. The example sends it in the request body with &#x60;--data-urlencode&#x60;
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.sub_account.ApiClient;
+import com.binance.connector.client.sub_account.ApiException;
+import com.binance.connector.client.sub_account.Configuration;
+import com.binance.connector.client.sub_account.models.*;
+import com.binance.connector.client.sub_account.rest.api.ApiManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    ApiManagementApi apiInstance = new ApiManagementApi(defaultClient);
+    CreateSubAccountApiKeyV2Request createSubAccountApiKeyV2Request = new CreateSubAccountApiKeyV2Request(); // CreateSubAccountApiKeyV2Request | 
+    try {
+      CreateSubAccountApiKeyV2Response result = apiInstance.createSubAccountApiKeyV2(createSubAccountApiKeyV2Request);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ApiManagementApi#createSubAccountApiKeyV2");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createSubAccountApiKeyV2Request** | [**CreateSubAccountApiKeyV2Request**](CreateSubAccountApiKeyV2Request.md)|  | |
+
+### Return type
+
+[**CreateSubAccountApiKeyV2Response**](CreateSubAccountApiKeyV2Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Create Sub-account API Key V2 |  -  |
 
 <a id="deleteIpListForASubAccountApiKey"></a>
 # **deleteIpListForASubAccountApiKey**

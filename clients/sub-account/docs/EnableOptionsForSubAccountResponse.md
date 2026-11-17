@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**email** | **String** |  |  [optional] |
-|**isEOptionsEnabled** | **Boolean** |  |  [optional] |
+|**isEOptionsEnabled** | **Boolean** | true or false |  [optional] |
 
 
 

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**forceLiquidationBar** | **String** |  |  [optional] |
-|**marginCallBar** | **String** |  |  [optional] |
-|**normalBar** | **String** |  |  [optional] |
+|**forceLiquidationBar** | **String** | Liquidation margin ratio |  [optional] |
+|**marginCallBar** | **String** | Margin call margin ratio |  [optional] |
+|**normalBar** | **String** | Initial margin ratio |  [optional] |
 
 
 

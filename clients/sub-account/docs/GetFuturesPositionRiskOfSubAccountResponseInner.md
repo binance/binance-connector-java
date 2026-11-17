@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**entryPrice** | **String** |  |  [optional] |
-|**leverage** | **String** |  |  [optional] |
-|**maxNotional** | **String** |  |  [optional] |
+|**leverage** | **String** | current initial leverage |  [optional] |
+|**maxNotional** | **String** | notional value limit of current initial leverage |  [optional] |
 |**liquidationPrice** | **String** |  |  [optional] |
 |**markPrice** | **String** |  |  [optional] |
 |**positionAmount** | **String** |  |  [optional] |

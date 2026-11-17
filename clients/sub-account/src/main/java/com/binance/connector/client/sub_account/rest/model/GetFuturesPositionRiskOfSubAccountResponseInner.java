@@ -113,7 +113,7 @@ public class GetFuturesPositionRiskOfSubAccountResponseInner {
     }
 
     /**
-     * Get leverage
+     * current initial leverage
      *
      * @return leverage
      */
@@ -133,7 +133,7 @@ public class GetFuturesPositionRiskOfSubAccountResponseInner {
     }
 
     /**
-     * Get maxNotional
+     * notional value limit of current initial leverage
      *
      * @return maxNotional
      */

@@ -1,5 +1,52 @@
 # Changelog
 
+## 8.1.0 - 2026-11-16
+
+### Added (1)
+
+- `createSubAccountApiKeyV2()` (`POST /sapi/v2/sub-account/subAccountApi`)
+
+### Changed (9)
+
+- Added parameter `canFixApiReading`
+  - affected methods:
+    - `createSubAccountApiKey()` (`POST /sapi/v1/sub-account/subAccountApi`)
+    - `modifySubAccountApiKeyPermission()` (`POST /sapi/v1/sub-account/subAccountApiPermission`)
+- Added parameter `canFixApiTrading`
+  - affected methods:
+    - `createSubAccountApiKey()` (`POST /sapi/v1/sub-account/subAccountApi`)
+    - `modifySubAccountApiKeyPermission()` (`POST /sapi/v1/sub-account/subAccountApiPermission`)
+- Modified response for `querySubAccountApiKey()` (`GET /sapi/v1/sub-account/subAccountApi`):
+  - `rows`.items: property `canFixApiReading` added
+  - `rows`.items: property `canFixApiTrading` added
+  - `rows`.items: item property `canFixApiReading` added
+  - `rows`.items: item property `canFixApiTrading` added
+
+- Modified response for `createSubAccountApiKey()` (`POST /sapi/v1/sub-account/subAccountApi`):
+  - property `canFixApiReading` added
+  - property `canFixApiTrading` added
+
+- Modified response for `modifySubAccountApiKeyPermission()` (`POST /sapi/v1/sub-account/subAccountApiPermission`):
+  - property `canFixApiTrading` added
+  - property `canFixApiReading` added
+
+- Added response field `canFixApiReading`
+  - affected events:
+    - `createSubAccountApiKeyResponse`
+    - `modifySubAccountApiKeyPermissionResponse`
+- Added response field `canFixApiTrading`
+  - affected events:
+    - `createSubAccountApiKeyResponse`
+    - `modifySubAccountApiKeyPermissionResponse`
+- Modified response field `rows`:
+  - items: property `canFixApiReading` added
+  - items: property `canFixApiTrading` added
+  - items: item property `canFixApiReading` added
+  - items: item property `canFixApiTrading` added
+  - affected events:
+    - `querySubAccountApiKeyResponse`
+- Added response schema `createSubAccountApiKeyV2Response`
+
 ## 8.0.1 - 2026-10-01
 
 - Update parent pom to 1.1.4
