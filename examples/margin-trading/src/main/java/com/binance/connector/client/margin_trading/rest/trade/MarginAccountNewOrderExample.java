@@ -44,7 +44,7 @@ public class MarginAccountNewOrderExample {
                 new MarginAccountNewOrderRequest();
         marginAccountNewOrderRequest.symbol("BTCUSDT");
         marginAccountNewOrderRequest.side(Side.BUY);
-        marginAccountNewOrderRequest.type(OrderType.ROLL_IN);
+        marginAccountNewOrderRequest.type(OrderType.TRANSFER);
         ApiResponse<MarginAccountNewOrderResponse> response =
                 getApi().marginAccountNewOrder(marginAccountNewOrderRequest);
         System.out.println(response.getData());

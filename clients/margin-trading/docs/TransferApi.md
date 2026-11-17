@@ -32,7 +32,7 @@ public class Example {
 
     TransferApi apiInstance = new TransferApi(defaultClient);
     String asset = "BNB"; // String | 
-    OrderType type = OrderType.fromValue("ROLL_IN"); // OrderType | 
+    String type = "ROLL_IN"; // String | 
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     Long current = 1L; // Long | 
@@ -58,7 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
-| **type** | [**OrderType**](.md)|  | [optional] [enum: ROLL_IN, ROLL_OUT] |
+| **type** | **String**|  | [optional] [enum: ROLL_IN, ROLL_OUT] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **current** | **Long**|  | [optional] |

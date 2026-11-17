@@ -6,7 +6,6 @@ import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
-import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
 import java.io.IOException;
 
@@ -35,7 +34,7 @@ public class QueryMarginAvailableInventoryExample {
      * @throws ApiException if the Api call fails
      */
     public void queryMarginAvailableInventoryExample() throws ApiException, IOException {
-        OrderType type = OrderType.ROLL_IN;
+        String type = "MARGIN";
         ApiResponse<QueryMarginAvailableInventoryResponse> response =
                 getApi().queryMarginAvailableInventory(type);
         System.out.println(response.getData());

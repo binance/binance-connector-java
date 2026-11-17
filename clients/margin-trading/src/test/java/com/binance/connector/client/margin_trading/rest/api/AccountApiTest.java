@@ -270,7 +270,7 @@ public class AccountApiTest {
             throws ApiException, CryptoException, IOException {
         String asset = "USDT";
         String symbol = "BTCUSDT";
-        OrderType type = OrderType.ROLL_IN;
+        OrderType type = OrderType.TRANSFER;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long fromId = 1L;
@@ -291,9 +291,9 @@ public class AccountApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "asset=USDT&symbol=BTCUSDT&type=ROLL_IN&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
+                "asset=USDT&symbol=BTCUSDT&type=TRANSFER&startTime=1623319461670&endTime=1641782889000&fromId=1&limit=500&recvWindow=5000&timestamp=1736393892000", signInputCaptor.getValue());
         assertEquals(
-                "00cf7bea4876592845cf629b8ceda79c21300d60f6891267c4df070f2075a035",
+                "8abdd5c3a7eac949fdc85268302a8acadd22e6052c542db2eaba833c9f1af549",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/margin/capital-flow", actualRequest.url().encodedPath());

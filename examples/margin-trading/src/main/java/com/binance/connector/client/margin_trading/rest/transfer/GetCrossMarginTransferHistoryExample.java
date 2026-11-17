@@ -7,7 +7,6 @@ import com.binance.connector.client.common.configuration.SignatureConfiguration;
 import com.binance.connector.client.margin_trading.rest.MarginTradingRestApiUtil;
 import com.binance.connector.client.margin_trading.rest.api.MarginTradingRestApi;
 import com.binance.connector.client.margin_trading.rest.model.GetCrossMarginTransferHistoryResponse;
-import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import java.io.IOException;
 
 /** API examples for TransferApi */
@@ -38,7 +37,7 @@ public class GetCrossMarginTransferHistoryExample {
      */
     public void getCrossMarginTransferHistoryExample() throws ApiException, IOException {
         String asset = "BNB";
-        OrderType type = OrderType.ROLL_IN;
+        String type = "ROLL_IN";
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;

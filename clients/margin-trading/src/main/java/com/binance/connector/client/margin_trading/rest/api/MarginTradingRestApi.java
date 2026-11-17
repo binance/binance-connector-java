@@ -33,6 +33,7 @@ import com.binance.connector.client.margin_trading.rest.model.GetSmallLiabilityE
 import com.binance.connector.client.margin_trading.rest.model.GetSummaryOfMarginAccountResponse;
 import com.binance.connector.client.margin_trading.rest.model.IsIsolated;
 import com.binance.connector.client.margin_trading.rest.model.KeepaliveUserDataStreamRequest;
+import com.binance.connector.client.margin_trading.rest.model.KeepaliveUserDataStreamV2Request;
 import com.binance.connector.client.margin_trading.rest.model.LiquidationLoanRepayRequest;
 import com.binance.connector.client.margin_trading.rest.model.LiquidationLoanRepayResponse;
 import com.binance.connector.client.margin_trading.rest.model.MarginAccountBorrowRepayRequest;
@@ -68,6 +69,7 @@ import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccount
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOrdersResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOtootocoOrderListsResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOrderResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsTradeListResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
@@ -80,6 +82,7 @@ import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyLis
 import com.binance.connector.client.margin_trading.rest.model.QuerySpecialKeyResponse;
 import com.binance.connector.client.margin_trading.rest.model.SmallLiabilityExchangeRequest;
 import com.binance.connector.client.margin_trading.rest.model.StartUserDataStreamResponse;
+import com.binance.connector.client.margin_trading.rest.model.StartUserDataStreamV2Response;
 
 public class MarginTradingRestApi {
 
@@ -919,7 +922,7 @@ public class MarginTradingRestApi {
      *     Margin Available Inventory (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAvailableInventoryResponse> queryMarginAvailableInventory(
-            OrderType type) throws ApiException {
+            String type) throws ApiException {
         return marketDataApi.queryMarginAvailableInventory(type);
     }
 
@@ -1215,7 +1218,7 @@ public class MarginTradingRestApi {
      * Security Type: TRADE
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1243,7 +1246,7 @@ public class MarginTradingRestApi {
      * entire OCO
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderListId (optional)
      * @param listClientOrderId (optional)
      * @param newClientOrderId (optional)
@@ -1279,7 +1282,7 @@ public class MarginTradingRestApi {
      * Security Type: TRADE Notes: - Either orderId or origClientOrderId must be sent.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param newClientOrderId (optional)
@@ -1493,7 +1496,7 @@ public class MarginTradingRestApi {
      * Query Current Margin Order Count Usage (TRADE) Displays the user&#39;s current margin order
      * count usage for all intervals. Weight(IP): 20 Security Type: TRADE
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentMarginOrderCountUsageResponse&gt;
@@ -1582,7 +1585,7 @@ public class MarginTradingRestApi {
      * Query Margin Account&#39;s all OCO (USER_DATA) Retrieves all OCO for a specific margin
      * account based on provided optional parameters Weight(IP): 200 Security Type: USER_DATA
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param fromId (optional)
      * @param startTime (optional)
@@ -1624,7 +1627,7 @@ public class MarginTradingRestApi {
      * this time. - Less than 24 hours between startTime and endTime.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -1661,7 +1664,7 @@ public class MarginTradingRestApi {
      * Query Margin Account&#39;s OCO (USER_DATA) Retrieves a specific OCO based on provided
      * optional parameters Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param orderListId (optional)
      * @param origClientOrderId (optional)
@@ -1695,7 +1698,7 @@ public class MarginTradingRestApi {
      * Query Margin Account&#39;s Open OCO (USER_DATA) Query Margin Account&#39;s Open OCO
      * Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOcoResponse&gt;
@@ -1725,7 +1728,7 @@ public class MarginTradingRestApi {
      * exchange. - If isIsolated &#x3D;\&quot;TRUE\&quot;, symbol must be sent.
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1747,13 +1750,44 @@ public class MarginTradingRestApi {
     }
 
     /**
+     * Query Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA) Retrieves all open OTO /
+     * OTOCO order lists of the margin account. Notes: - The returned list contains order lists
+     * whose &#x60;listOrderStatus&#x60; is &#x60;EXECUTING&#x60;, i.e. at least one order of the
+     * list is still open (&#x60;NEW&#x60; / &#x60;PARTIALLY_FILLED&#x60;). - For OTO, the
+     * &#x60;orders&#x60; array contains 2 orders: the working order and the pending order. - For
+     * OTOCO, the &#x60;orders&#x60; array contains 3 orders: the working order and the two pending
+     * orders (pending above / pending below). Weight(UID): 10 Security Type: USER_DATA
+     *
+     * @param symbol (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryMarginAccountsOpenOtootocoOrderListsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Margin Account&#39;s Open OTO/OTOCO Order Lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-otootoco-order-lists">Query
+     *     Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryMarginAccountsOpenOtootocoOrderListsResponse>
+            queryMarginAccountsOpenOtootocoOrderLists(String symbol, Long recvWindow)
+                    throws ApiException {
+        return tradeApi.queryMarginAccountsOpenOtootocoOrderLists(symbol, recvWindow);
+    }
+
+    /**
      * Query Margin Account&#39;s Order (USER_DATA) Query Margin Account&#39;s Order Weight(IP): 10
      * Security Type: USER_DATA Notes: - Either orderId or origClientOrderId must be sent. - For
      * some historical orders cummulativeQuoteQty will be &lt; 0, meaning the data is not available
      * at this time.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param recvWindow (optional)
@@ -1789,7 +1823,7 @@ public class MarginTradingRestApi {
      * hours between startTime and endTime.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -1839,7 +1873,7 @@ public class MarginTradingRestApi {
      * @param preventedMatchId (optional)
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryPreventedMatchesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1972,7 +2006,7 @@ public class MarginTradingRestApi {
      */
     public ApiResponse<GetCrossMarginTransferHistoryResponse> getCrossMarginTransferHistory(
             String asset,
-            OrderType type,
+            String type,
             Long startTime,
             Long endTime,
             Long current,
@@ -2034,6 +2068,28 @@ public class MarginTradingRestApi {
     }
 
     /**
+     * Close User Data Stream V2 (USER_STREAM) Close out a user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
+     *
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#close-user-data-stream-v2">Close
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    public void closeUserDataStreamV2() throws ApiException {
+        userDataStreamApi.closeUserDataStreamV2();
+    }
+
+    /**
      * Keepalive User Data Stream (USER_STREAM) Keepalive a user data stream to prevent a time out.
      * Weight(UID): 1 Security Type: USER_STREAM
      *
@@ -2058,6 +2114,30 @@ public class MarginTradingRestApi {
     }
 
     /**
+     * Keepalive User Data Stream V2 (USER_STREAM) Keepalive a user data stream to prevent a time
+     * out. Weight(IP): 1 Security Type: USER_STREAM
+     *
+     * @param keepaliveUserDataStreamV2Request (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#keepalive-user-data-stream-v2">Keepalive
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    public void keepaliveUserDataStreamV2(
+            KeepaliveUserDataStreamV2Request keepaliveUserDataStreamV2Request) throws ApiException {
+        userDataStreamApi.keepaliveUserDataStreamV2(keepaliveUserDataStreamV2Request);
+    }
+
+    /**
      * Start User Data Stream (USER_STREAM) Start a new user data stream. Weight(UID): 1 Security
      * Type: USER_STREAM
      *
@@ -2077,5 +2157,27 @@ public class MarginTradingRestApi {
      */
     public ApiResponse<StartUserDataStreamResponse> startUserDataStream() throws ApiException {
         return userDataStreamApi.startUserDataStream();
+    }
+
+    /**
+     * Start User Data Stream V2 (USER_STREAM) Start a new user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
+     *
+     * @return ApiResponse&lt;StartUserDataStreamV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Start User Data Stream </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#start-user-data-stream-v2">Start
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    public ApiResponse<StartUserDataStreamV2Response> startUserDataStreamV2() throws ApiException {
+        return userDataStreamApi.startUserDataStreamV2();
     }
 }

@@ -40,21 +40,21 @@
 |**Q** | **String** | Quote Order Quantity |  [optional] |
 |**W** | **Long** | Working Time; This is only visible if the order has been placed on the book. |  [optional] |
 |**V** | **String** | selfTradePreventionMode |  [optional] |
-|**dLowerCase** | **String** | Trailing Delta; This is only visible if the order was a trailing stop order. |  [optional] |
-|**D** | **String** | Trailing Time |  [optional] |
-|**jLowerCase** | **String** | Strategy Id |  [optional] |
-|**J** | **String** | Strategy Type |  [optional] |
-|**vLowerCase** | **String** | Prevented Match Id |  [optional] |
+|**dLowerCase** | **Long** | Trailing Delta; This is only visible if the order was a trailing stop order. |  [optional] |
+|**D** | **Long** | Trailing Time |  [optional] |
+|**jLowerCase** | **Long** | Strategy Id |  [optional] |
+|**J** | **Long** | Strategy Type |  [optional] |
+|**vLowerCase** | **Long** | Prevented Match Id |  [optional] |
 |**A** | **String** | Prevented Quantity |  [optional] |
 |**B** | **String** | Last Prevented Quantity |  [optional] |
-|**uLowerCase** | **String** | Trade Group Id |  [optional] |
-|**U** | **String** | Counter Order Id |  [optional] |
+|**uLowerCase** | **Long** | Trade Group Id |  [optional] |
+|**U** | **Long** | Counter Order Id |  [optional] |
 |**cs** | **String** | Counter Symbol |  [optional] |
 |**pl** | **String** | Prevented Execution Quantity |  [optional] |
 |**pL** | **String** | Prevented Execution Price |  [optional] |
 |**pY** | **String** | Prevented Execution Quote Qty |  [optional] |
 |**bLowerCase** | **String** | Match Type |  [optional] |
-|**aLowerCase** | **String** | Allocation ID |  [optional] |
+|**aLowerCase** | **Long** | Allocation ID |  [optional] |
 |**kLowerCase** | **String** | Working Floor |  [optional] |
 |**uS** | **Boolean** | UsedSor |  [optional] |
 

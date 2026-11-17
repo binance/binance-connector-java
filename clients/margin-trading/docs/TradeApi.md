@@ -28,6 +28,7 @@ All URIs are relative to *https://api.binance.com*
 | [**queryMarginAccountsOco**](TradeApi.md#queryMarginAccountsOco) | **GET** /sapi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA) |
 | [**queryMarginAccountsOpenOco**](TradeApi.md#queryMarginAccountsOpenOco) | **GET** /sapi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA) |
 | [**queryMarginAccountsOpenOrders**](TradeApi.md#queryMarginAccountsOpenOrders) | **GET** /sapi/v1/margin/openOrders | Query Margin Account&#39;s Open Orders (USER_DATA) |
+| [**queryMarginAccountsOpenOtootocoOrderLists**](TradeApi.md#queryMarginAccountsOpenOtootocoOrderLists) | **GET** /sapi/v1/margin/oto/openOrderList | Query Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA) |
 | [**queryMarginAccountsOrder**](TradeApi.md#queryMarginAccountsOrder) | **GET** /sapi/v1/margin/order | Query Margin Account&#39;s Order (USER_DATA) |
 | [**queryMarginAccountsTradeList**](TradeApi.md#queryMarginAccountsTradeList) | **GET** /sapi/v1/margin/myTrades | Query Margin Account&#39;s Trade List (USER_DATA) |
 | [**queryPreventedMatches**](TradeApi.md#queryPreventedMatches) | **GET** /sapi/v1/margin/myPreventedMatches | Query Prevented Matches (USER_DATA) |
@@ -597,7 +598,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -666,7 +667,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **orderListId** | **Long**|  | [optional] |
 | **listClientOrderId** | **String**|  | [optional] |
 | **newClientOrderId** | **String**|  | [optional] |
@@ -738,7 +739,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **newClientOrderId** | **String**|  | [optional] |
@@ -1116,7 +1117,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **symbol** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
@@ -1318,7 +1319,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **symbol** | **String**|  | [optional] |
 | **fromId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
@@ -1393,7 +1394,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **orderId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
@@ -1464,7 +1465,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **symbol** | **String**|  | [optional] |
 | **orderListId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
@@ -1532,7 +1533,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **symbol** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
 
@@ -1599,7 +1600,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**| isolated margin pair | [optional] |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type
@@ -1619,6 +1620,70 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Margin Account&#39;s Open Orders |  -  |
+
+<a id="queryMarginAccountsOpenOtootocoOrderLists"></a>
+# **queryMarginAccountsOpenOtootocoOrderLists**
+> QueryMarginAccountsOpenOtootocoOrderListsResponse queryMarginAccountsOpenOtootocoOrderLists(symbol, recvWindow)
+
+Query Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA)
+
+Retrieves all open OTO / OTOCO order lists of the margin account.   Notes: - The returned list contains order lists whose &#x60;listOrderStatus&#x60; is &#x60;EXECUTING&#x60;, i.e. at least one order of the list is still open (&#x60;NEW&#x60; / &#x60;PARTIALLY_FILLED&#x60;). - For OTO, the &#x60;orders&#x60; array contains 2 orders: the working order and the pending order. - For OTOCO, the &#x60;orders&#x60; array contains 3 orders: the working order and the two pending orders (pending above / pending below).  Weight(UID): 10  Security Type: USER_DATA
+
+### Example
+```java
+// Import classes:
+import com.binance.connector.client.margin_trading.ApiClient;
+import com.binance.connector.client.margin_trading.ApiException;
+import com.binance.connector.client.margin_trading.Configuration;
+import com.binance.connector.client.margin_trading.models.*;
+import com.binance.connector.client.margin_trading.rest.api.TradeApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.binance.com");
+
+    TradeApi apiInstance = new TradeApi(defaultClient);
+    String symbol = "ASTERUSDT"; // String | 
+    Long recvWindow = 5000L; // Long | 
+    try {
+      QueryMarginAccountsOpenOtootocoOrderListsResponse result = apiInstance.queryMarginAccountsOpenOtootocoOrderLists(symbol, recvWindow);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TradeApi#queryMarginAccountsOpenOtootocoOrderLists");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **symbol** | **String**|  | [optional] |
+| **recvWindow** | **Long**|  | [optional] |
+
+### Return type
+
+[**QueryMarginAccountsOpenOtootocoOrderListsResponse**](QueryMarginAccountsOpenOtootocoOrderListsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Margin Account&#39;s Open OTO/OTOCO Order Lists |  -  |
 
 <a id="queryMarginAccountsOrder"></a>
 # **queryMarginAccountsOrder**
@@ -1667,7 +1732,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **orderId** | **Long**|  | [optional] |
 | **origClientOrderId** | **String**|  | [optional] |
 | **recvWindow** | **Long**|  | [optional] |
@@ -1740,7 +1805,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **symbol** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **orderId** | **Long**|  | [optional] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
@@ -1817,7 +1882,7 @@ public class Example {
 | **preventedMatchId** | **Long**|  | [optional] |
 | **orderId** | **Long**|  | [optional] |
 | **fromPreventedMatchId** | **Long**|  | [optional] |
-| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [optional] [enum: TRUE, FALSE] |
 | **recvWindow** | **Long**|  | [optional] |
 
 ### Return type

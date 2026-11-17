@@ -613,7 +613,7 @@ public class TradeApiTest {
                 new MarginAccountNewOrderRequest();
         marginAccountNewOrderRequest.symbol("BTCUSDT");
         marginAccountNewOrderRequest.side(Side.BUY);
-        marginAccountNewOrderRequest.type(OrderType.ROLL_IN);
+        marginAccountNewOrderRequest.type(OrderType.MARKET);
 
         ApiResponse<MarginAccountNewOrderResponse> response =
                 api.marginAccountNewOrder(marginAccountNewOrderRequest);
@@ -628,9 +628,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&type=ROLL_IN", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000symbol=BTCUSDT&side=BUY&type=MARKET", signInputCaptor.getValue());
         assertEquals(
-                "80c74b1160bd6a691d9de3bc80f79091bf5d0230ef243193674321644f75b921",
+                "c09a2c7d059ea628e0d13ad63606a465df0667d9e39f2c47d2d8234021684f91",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/order", actualRequest.url().encodedPath());
     }
@@ -786,7 +786,7 @@ public class TradeApiTest {
     public void marginManualLiquidationTest() throws ApiException, CryptoException, IOException {
         MarginManualLiquidationRequest marginManualLiquidationRequest =
                 new MarginManualLiquidationRequest();
-        marginManualLiquidationRequest.type(OrderType.ROLL_IN);
+        marginManualLiquidationRequest.type(OrderType.ISOLATED);
 
         ApiResponse<MarginManualLiquidationResponse> response =
                 api.marginManualLiquidation(marginManualLiquidationRequest);
@@ -801,9 +801,9 @@ public class TradeApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000type=ROLL_IN", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000type=ISOLATED", signInputCaptor.getValue());
         assertEquals(
-                "a04dc574a8036f72e99afb75473a5f85eaba56d15fed01f013334e6a6d771051",
+                "e0e0dd2575e0aa299ca11fed4587f24eca3c31cb421dcc3df8cea16eb56f5200",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/manual-liquidation", actualRequest.url().encodedPath());
     }

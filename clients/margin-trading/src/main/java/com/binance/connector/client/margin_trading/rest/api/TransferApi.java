@@ -20,7 +20,6 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.margin_trading.rest.model.GetCrossMarginTransferHistoryResponse;
-import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryMaxTransferOutAmountResponse;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
@@ -44,7 +43,7 @@ public class TransferApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/7.0.4 (Java/%s; %s; %s)",
+                    "binance-margin-trading/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -107,7 +106,7 @@ public class TransferApi {
      */
     private okhttp3.Call getCrossMarginTransferHistoryCall(
             String asset,
-            OrderType type,
+            String type,
             Long startTime,
             Long endTime,
             Long current,
@@ -205,7 +204,7 @@ public class TransferApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getCrossMarginTransferHistoryValidateBeforeCall(
             String asset,
-            OrderType type,
+            String type,
             Long startTime,
             Long endTime,
             Long current,
@@ -230,7 +229,7 @@ public class TransferApi {
                             .getMethod(
                                     "getCrossMarginTransferHistory",
                                     String.class,
-                                    OrderType.class,
+                                    String.class,
                                     Long.class,
                                     Long.class,
                                     Long.class,
@@ -285,7 +284,7 @@ public class TransferApi {
      */
     public ApiResponse<GetCrossMarginTransferHistoryResponse> getCrossMarginTransferHistory(
             String asset,
-            OrderType type,
+            String type,
             Long startTime,
             Long endTime,
             @Min(1L) Long current,

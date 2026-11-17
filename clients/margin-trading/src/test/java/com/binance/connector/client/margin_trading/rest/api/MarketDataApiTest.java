@@ -396,9 +396,8 @@ public class MarketDataApiTest {
     @Test
     public void queryMarginAvailableInventoryTest()
             throws ApiException, CryptoException, IOException {
-        OrderType type = OrderType.ROLL_IN;
         ApiResponse<QueryMarginAvailableInventoryResponse> response =
-                api.queryMarginAvailableInventory(type);
+                api.queryMarginAvailableInventory("ROLL_IN");
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)

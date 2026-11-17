@@ -237,6 +237,9 @@ public class JSON {
                         .KeepaliveUserDataStreamRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
+                        .KeepaliveUserDataStreamV2Request.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
                         .LiquidationLoanRepayRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
@@ -456,6 +459,18 @@ public class JSON {
                         .QueryMarginAccountsOpenOrdersResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
+                        .QueryMarginAccountsOpenOtootocoOrderListsResponse
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
+                        .QueryMarginAccountsOpenOtootocoOrderListsResponseInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
+                        .QueryMarginAccountsOpenOtootocoOrderListsResponseInnerOrdersInner
+                        .CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
                         .QueryMarginAccountsOrderResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
@@ -502,6 +517,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(
                 new com.binance.connector.client.margin_trading.rest.model
                         .StartUserDataStreamResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(
+                new com.binance.connector.client.margin_trading.rest.model
+                        .StartUserDataStreamV2Response.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

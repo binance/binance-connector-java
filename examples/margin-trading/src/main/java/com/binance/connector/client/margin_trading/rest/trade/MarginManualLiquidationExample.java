@@ -40,7 +40,7 @@ public class MarginManualLiquidationExample {
     public void marginManualLiquidationExample() throws ApiException, IOException {
         MarginManualLiquidationRequest marginManualLiquidationRequest =
                 new MarginManualLiquidationRequest();
-        marginManualLiquidationRequest.type(OrderType.ROLL_IN);
+        marginManualLiquidationRequest.type(OrderType.TRANSFER);
         ApiResponse<MarginManualLiquidationResponse> response =
                 getApi().marginManualLiquidation(marginManualLiquidationRequest);
         System.out.println(response.getData());

@@ -354,7 +354,7 @@ public class Example {
     AccountApi apiInstance = new AccountApi(defaultClient);
     String asset = "USDT"; // String | 
     String symbol = "BTCUSDT"; // String | Mandatory for Isolated data
-    OrderType type = OrderType.fromValue("ROLL_IN"); // OrderType | 
+    OrderType type = OrderType.fromValue("TRANSFER"); // OrderType | 
     Long startTime = 1623319461670L; // Long | 
     Long endTime = 1641782889000L; // Long | 
     Long fromId = 1L; // Long | 
@@ -380,7 +380,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **asset** | **String**|  | [optional] |
 | **symbol** | **String**| Mandatory for Isolated data | [optional] |
-| **type** | [**OrderType**](.md)|  | [optional] [enum: ROLL_IN, ROLL_OUT] |
+| **type** | [**OrderType**](.md)|  | [optional] [enum: TRANSFER, BORROW, REPAY, BUY_INCOME, BUY_EXPENSE, SELL_INCOME, SELL_EXPENSE, TRADING_COMMISSION, BUY_LIQUIDATION, SELL_LIQUIDATION, REPAY_LIQUIDATION, OTHER_LIQUIDATION, LIQUIDATION_FEE, SMALL_BALANCE_CONVERT, COMMISSION_RETURN, SMALL_CONVERT, LIMIT, MARKET, STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, TAKE_PROFIT_LIMIT, LIMIT_MAKER, MARGIN, ISOLATED] |
 | **startTime** | **Long**|  | [optional] |
 | **endTime** | **Long**|  | [optional] |
 | **fromId** | **Long**|  | [optional] |

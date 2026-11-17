@@ -10,11 +10,11 @@
 |**E** | **Long** | Event Time |  [optional] |
 |**lLowerCase** | **String** | List Status Type |  [optional] |
 |**sLowerCase** | **String** | Symbol |  [optional] |
-|**aLowerCase** | **String** | Allocation ID |  [optional] |
+|**aLowerCase** | **Long** | Allocation ID |  [optional] |
 |**tLowerCase** | **Long** | Trade ID |  [optional] |
 |**pLowerCase** | **String** | Order price |  [optional] |
 |**iLowerCase** | **Long** | Order ID |  [optional] |
-|**dLowerCase** | **String** | Trailing Delta; This is only visible if the order was a trailing stop order. |  [optional] |
+|**dLowerCase** | **Long** | Trailing Delta; This is only visible if the order was a trailing stop order. |  [optional] |
 |**T** | **Long** | Transaction Time |  [optional] |
 |**cLowerCase** | **String** | Contingency Type |  [optional] |
 |**S** | **String** | Side |  [optional] |
@@ -42,14 +42,14 @@
 |**Q** | **String** | Quote Order Quantity |  [optional] |
 |**W** | **Long** | Working Time; This is only visible if the order has been placed on the book. |  [optional] |
 |**V** | **String** | selfTradePreventionMode |  [optional] |
-|**D** | **String** | Trailing Time |  [optional] |
-|**jLowerCase** | **String** | Strategy Id |  [optional] |
-|**J** | **String** | Strategy Type |  [optional] |
-|**vLowerCase** | **String** | Prevented Match Id |  [optional] |
+|**D** | **Long** | Trailing Time |  [optional] |
+|**jLowerCase** | **Long** | Strategy Id |  [optional] |
+|**J** | **Long** | Strategy Type |  [optional] |
+|**vLowerCase** | **Long** | Prevented Match Id |  [optional] |
 |**A** | **String** | Prevented Quantity |  [optional] |
 |**B** | [**List&lt;OutboundAccountPositionBInner&gt;**](OutboundAccountPositionBInner.md) | Balances Array |  [optional] |
 |**uLowerCase** | **Long** | Time of last account update |  [optional] |
-|**U** | **String** | Counter Order Id |  [optional] |
+|**U** | **Long** | Counter Order Id |  [optional] |
 |**cs** | **String** | Counter Symbol |  [optional] |
 |**pl** | **String** | Prevented Execution Quantity |  [optional] |
 |**pL** | **String** | Prevented Execution Price |  [optional] |

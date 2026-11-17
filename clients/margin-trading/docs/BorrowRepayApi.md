@@ -56,7 +56,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **assets** | **String**|  | |
-| **isIsolated** | [**IsIsolated**](.md)|  | [default to FALSE] [enum: TRUE, FALSE] |
+| **isIsolated** | [**IsIsolated**](.md)|  | [enum: TRUE, FALSE] |
 
 ### Return type
 
@@ -235,7 +235,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     BorrowRepayApi apiInstance = new BorrowRepayApi(defaultClient);
-    OrderType type = OrderType.fromValue("ROLL_IN"); // OrderType | 
+    OrderType type = OrderType.fromValue("TRANSFER"); // OrderType | 
     String asset = "BNB"; // String | 
     String isolatedSymbol = "BNBUSDT"; // String | 
     Long txId = 1L; // Long | 
@@ -262,7 +262,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | [**OrderType**](.md)|  | [enum: ROLL_IN, ROLL_OUT] |
+| **type** | [**OrderType**](.md)|  | [enum: TRANSFER, BORROW, REPAY, BUY_INCOME, BUY_EXPENSE, SELL_INCOME, SELL_EXPENSE, TRADING_COMMISSION, BUY_LIQUIDATION, SELL_LIQUIDATION, REPAY_LIQUIDATION, OTHER_LIQUIDATION, LIQUIDATION_FEE, SMALL_BALANCE_CONVERT, COMMISSION_RETURN, SMALL_CONVERT, LIMIT, MARKET, STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, TAKE_PROFIT_LIMIT, LIMIT_MAKER, MARGIN, ISOLATED] |
 | **asset** | **String**|  | [optional] |
 | **isolatedSymbol** | **String**|  | [optional] |
 | **txId** | **Long**|  | [optional] |

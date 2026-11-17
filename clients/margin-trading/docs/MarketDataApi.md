@@ -710,7 +710,7 @@ public class Example {
     defaultClient.setBasePath("https://api.binance.com");
 
     MarketDataApi apiInstance = new MarketDataApi(defaultClient);
-    OrderType type = OrderType.fromValue("ROLL_IN"); // OrderType | 
+    String type = "MARGIN"; // String | 
     try {
       QueryMarginAvailableInventoryResponse result = apiInstance.queryMarginAvailableInventory(type);
       System.out.println(result);
@@ -729,7 +729,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | [**OrderType**](.md)|  | [enum: ROLL_IN, ROLL_OUT] |
+| **type** | **String**|  | [enum: MARGIN, ISOLATED] |
 
 ### Return type
 

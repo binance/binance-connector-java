@@ -21,7 +21,7 @@ import jakarta.validation.constraints.*;
 import java.io.IOException;
 import org.hibernate.validator.constraints.*;
 
-/** Gets or Sets isIsolated */
+/** for isolated margin or not */
 @JsonAdapter(IsIsolated.Adapter.class)
 public enum IsIsolated {
     TRUE("TRUE"),

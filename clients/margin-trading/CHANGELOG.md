@@ -1,5 +1,84 @@
 # Changelog
 
+## 8.0.0 - 2026-11-16
+
+### Added (3)
+
+#### REST API
+
+- `closeUserDataStreamV2()` (`DELETE /sapi/v2/margin/listen-key`)
+- `keepaliveUserDataStreamV2()` (`PUT /sapi/v2/margin/listen-key`)
+- `startUserDataStreamV2()` (`POST /sapi/v2/margin/listen-key`)
+
+### Changed (3)
+
+#### REST API
+
+- Modified response for `marginAccountNewOrder()` (`POST /sapi/v1/margin/order`):
+  - `marginBuyBorrowAmount`: type `integer` → `string`
+
+- Modified response field `marginBuyBorrowAmount`:
+  - type `integer` → `string`
+  - affected events:
+    - `marginAccountNewOrderResponse`
+- Added response schema `startUserDataStreamV2Response`
+
+## 7.1.0 - 2026-10-09
+
+### Added (1)
+
+#### REST API
+
+- `queryMarginAccountsOpenOtootocoOrderLists()` (`GET /sapi/v1/margin/oto/openOrderList`)
+
+### Changed (9)
+
+#### REST API
+
+- Added response schema `queryMarginAccountsOpenOtootocoOrderListsResponse`
+#### WebSocket Streams
+
+- Modified response field `D`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `J`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `U`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `a`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `d`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `j`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `u`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+- Modified response field `v`:
+  - type `string` → `integer`
+  - affected events:
+    - `TradeDataStreamEventsResponse`
+    - `executionReport`
+
 ## 7.0.4 - 2026-10-01
 
 - Update parent pom to 1.1.4

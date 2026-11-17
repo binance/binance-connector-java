@@ -91,7 +91,6 @@ public class TransferApiTest {
     public void getCrossMarginTransferHistoryTest()
             throws ApiException, CryptoException, IOException {
         String asset = "BNB";
-        OrderType type = OrderType.ROLL_IN;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long current = 1L;
@@ -100,7 +99,7 @@ public class TransferApiTest {
         Long recvWindow = 5000L;
         ApiResponse<GetCrossMarginTransferHistoryResponse> response =
                 api.getCrossMarginTransferHistory(
-                        asset, type, startTime, endTime, current, size, isolatedSymbol, recvWindow);
+                        asset, "ROLL_IN", startTime, endTime, current, size, isolatedSymbol, recvWindow);
 
         ArgumentCaptor<Call> callArgumentCaptor = ArgumentCaptor.forClass(Call.class);
         Mockito.verify(apiClientSpy)

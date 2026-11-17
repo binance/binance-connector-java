@@ -51,6 +51,7 @@ import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccount
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOcoResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOrdersResponse;
+import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOpenOtootocoOrderListsResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsOrderResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAccountsTradeListResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryPreventedMatchesResponse;
@@ -80,7 +81,7 @@ public class TradeApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/7.0.4 (Java/%s; %s; %s)",
+                    "binance-margin-trading/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -1416,7 +1417,7 @@ public class TradeApi {
      * Build call for marginAccountCancelAllOpenOrdersOnASymbol
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1543,7 +1544,7 @@ public class TradeApi {
      * Security Type: TRADE
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;MarginAccountCancelAllOpenOrdersOnASymbolResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -1575,7 +1576,7 @@ public class TradeApi {
      * Build call for marginAccountCancelOco
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderListId (optional)
      * @param listClientOrderId (optional)
      * @param newClientOrderId (optional)
@@ -1742,7 +1743,7 @@ public class TradeApi {
      * entire OCO
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderListId (optional)
      * @param listClientOrderId (optional)
      * @param newClientOrderId (optional)
@@ -1786,7 +1787,7 @@ public class TradeApi {
      * Build call for marginAccountCancelOrder
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param newClientOrderId (optional)
@@ -1951,7 +1952,7 @@ public class TradeApi {
      * Security Type: TRADE Notes: - Either orderId or origClientOrderId must be sent.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param newClientOrderId (optional)
@@ -3230,7 +3231,7 @@ public class TradeApi {
     /**
      * Build call for queryCurrentMarginOrderCountUsage
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -3355,7 +3356,7 @@ public class TradeApi {
      * Query Current Margin Order Count Usage (TRADE) Displays the user&#39;s current margin order
      * count usage for all intervals. Weight(IP): 20 Security Type: TRADE
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryCurrentMarginOrderCountUsageResponse&gt;
@@ -3703,7 +3704,7 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsAllOco
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param fromId (optional)
      * @param startTime (optional)
@@ -3869,7 +3870,7 @@ public class TradeApi {
      * Query Margin Account&#39;s all OCO (USER_DATA) Retrieves all OCO for a specific margin
      * account based on provided optional parameters Weight(IP): 200 Security Type: USER_DATA
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param fromId (optional)
      * @param startTime (optional)
@@ -3911,7 +3912,7 @@ public class TradeApi {
      * Build call for queryMarginAccountsAllOrders
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -4080,7 +4081,7 @@ public class TradeApi {
      * this time. - Less than 24 hours between startTime and endTime.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -4120,7 +4121,7 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsOco
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param orderListId (optional)
      * @param origClientOrderId (optional)
@@ -4272,7 +4273,7 @@ public class TradeApi {
      * Query Margin Account&#39;s OCO (USER_DATA) Retrieves a specific OCO based on provided
      * optional parameters Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param orderListId (optional)
      * @param origClientOrderId (optional)
@@ -4309,7 +4310,7 @@ public class TradeApi {
     /**
      * Build call for queryMarginAccountsOpenOco
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param recvWindow (optional)
      * @return Call to execute
@@ -4434,7 +4435,7 @@ public class TradeApi {
      * Query Margin Account&#39;s Open OCO (USER_DATA) Query Margin Account&#39;s Open OCO
      * Weight(IP): 10 Security Type: USER_DATA
      *
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param symbol (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOcoResponse&gt;
@@ -4465,7 +4466,7 @@ public class TradeApi {
      * Build call for queryMarginAccountsOpenOrders
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -4593,7 +4594,7 @@ public class TradeApi {
      * exchange. - If isIsolated &#x3D;\&quot;TRUE\&quot;, symbol must be sent.
      *
      * @param symbol isolated margin pair (optional)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryMarginAccountsOpenOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -4620,10 +4621,163 @@ public class TradeApi {
     }
 
     /**
+     * Build call for queryMarginAccountsOpenOtootocoOrderLists
+     *
+     * @param symbol (optional)
+     * @param recvWindow (optional)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Margin Account&#39;s Open OTO/OTOCO Order Lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-otootoco-order-lists">Query
+     *     Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA) Documentation</a>
+     */
+    private okhttp3.Call queryMarginAccountsOpenOtootocoOrderListsCall(
+            String symbol, Long recvWindow) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v1/margin/oto/openOrderList";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (symbol != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("symbol", symbol));
+        }
+
+        if (recvWindow != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recvWindow", recvWindow));
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceSignature");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "GET",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call queryMarginAccountsOpenOtootocoOrderListsValidateBeforeCall(
+            String symbol, Long recvWindow) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {symbol, recvWindow};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "queryMarginAccountsOpenOtootocoOrderLists",
+                                    String.class,
+                                    Long.class);
+            Set<ConstraintViolation<TradeApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return queryMarginAccountsOpenOtootocoOrderListsCall(symbol, recvWindow);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Query Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA) Retrieves all open OTO /
+     * OTOCO order lists of the margin account. Notes: - The returned list contains order lists
+     * whose &#x60;listOrderStatus&#x60; is &#x60;EXECUTING&#x60;, i.e. at least one order of the
+     * list is still open (&#x60;NEW&#x60; / &#x60;PARTIALLY_FILLED&#x60;). - For OTO, the
+     * &#x60;orders&#x60; array contains 2 orders: the working order and the pending order. - For
+     * OTOCO, the &#x60;orders&#x60; array contains 3 orders: the working order and the two pending
+     * orders (pending above / pending below). Weight(UID): 10 Security Type: USER_DATA
+     *
+     * @param symbol (optional)
+     * @param recvWindow (optional)
+     * @return ApiResponse&lt;QueryMarginAccountsOpenOtootocoOrderListsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Margin Account&#39;s Open OTO/OTOCO Order Lists </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-otootoco-order-lists">Query
+     *     Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA) Documentation</a>
+     */
+    public ApiResponse<QueryMarginAccountsOpenOtootocoOrderListsResponse>
+            queryMarginAccountsOpenOtootocoOrderLists(String symbol, @Max(60000L) Long recvWindow)
+                    throws ApiException {
+        okhttp3.Call localVarCall =
+                queryMarginAccountsOpenOtootocoOrderListsValidateBeforeCall(symbol, recvWindow);
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<QueryMarginAccountsOpenOtootocoOrderListsResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
      * Build call for queryMarginAccountsOrder
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param recvWindow (optional)
@@ -4774,7 +4928,7 @@ public class TradeApi {
      * at this time.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param origClientOrderId (optional)
      * @param recvWindow (optional)
@@ -4811,7 +4965,7 @@ public class TradeApi {
      * Build call for queryMarginAccountsTradeList
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -4987,7 +5141,7 @@ public class TradeApi {
      * hours between startTime and endTime.
      *
      * @param symbol (required)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param orderId (optional)
      * @param startTime (optional)
      * @param endTime (optional)
@@ -5033,7 +5187,7 @@ public class TradeApi {
      * @param preventedMatchId (optional)
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -5206,7 +5360,7 @@ public class TradeApi {
      * @param preventedMatchId (optional)
      * @param orderId (optional)
      * @param fromPreventedMatchId (optional)
-     * @param isIsolated (optional, default to FALSE)
+     * @param isIsolated (optional)
      * @param recvWindow (optional)
      * @return ApiResponse&lt;QueryPreventedMatchesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the

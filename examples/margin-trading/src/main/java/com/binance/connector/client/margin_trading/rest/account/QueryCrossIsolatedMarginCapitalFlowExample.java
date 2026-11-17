@@ -46,7 +46,7 @@ public class QueryCrossIsolatedMarginCapitalFlowExample {
     public void queryCrossIsolatedMarginCapitalFlowExample() throws ApiException, IOException {
         String asset = "USDT";
         String symbol = "BTCUSDT";
-        OrderType type = OrderType.ROLL_IN;
+        OrderType type = OrderType.TRANSFER;
         Long startTime = 1623319461670L;
         Long endTime = 1641782889000L;
         Long fromId = 1L;

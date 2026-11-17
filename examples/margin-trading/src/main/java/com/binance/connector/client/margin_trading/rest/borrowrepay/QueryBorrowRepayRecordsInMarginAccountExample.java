@@ -41,7 +41,7 @@ public class QueryBorrowRepayRecordsInMarginAccountExample {
      * @throws ApiException if the Api call fails
      */
     public void queryBorrowRepayRecordsInMarginAccountExample() throws ApiException, IOException {
-        OrderType type = OrderType.ROLL_IN;
+        OrderType type = OrderType.TRANSFER;
         String asset = "BNB";
         String isolatedSymbol = "BNBUSDT";
         Long txId = 1L;

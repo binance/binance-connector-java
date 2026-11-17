@@ -60,7 +60,7 @@
 
 [GET /sapi/v1/margin/leverageBracket](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-liability-coin-leverage-bracket-in-cross-margin-pro-mode) - queryLiabilityCoinLeverageBracketInCrossMarginProMode - [QueryLiabilityCoinLeverageBracketInCrossMarginProModeExample.java:37](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryLiabilityCoinLeverageBracketInCrossMarginProModeExample.java#L37)
 
-[GET /sapi/v1/margin/available-inventory](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-available-inventory) - queryMarginAvailableInventory - [QueryMarginAvailableInventoryExample.java:37](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryMarginAvailableInventoryExample.java#L37)
+[GET /sapi/v1/margin/available-inventory](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-available-inventory) - queryMarginAvailableInventory - [QueryMarginAvailableInventoryExample.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryMarginAvailableInventoryExample.java#L36)
 
 [GET /sapi/v1/margin/priceIndex](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-priceindex) - queryMarginPriceindex - [QueryMarginPriceindexExample.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/marketdata/QueryMarginPriceindexExample.java#L36)
 
@@ -114,6 +114,8 @@
 
 [GET /sapi/v1/margin/openOrders](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-orders) - queryMarginAccountsOpenOrders - [QueryMarginAccountsOpenOrdersExample.java:41](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryMarginAccountsOpenOrdersExample.java#L41)
 
+[GET /sapi/v1/margin/oto/openOrderList](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-otootoco-order-lists) - queryMarginAccountsOpenOtootocoOrderLists - [QueryMarginAccountsOpenOtootocoOrderListsExample.java:41](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryMarginAccountsOpenOtootocoOrderListsExample.java#L41)
+
 [GET /sapi/v1/margin/order](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-order) - queryMarginAccountsOrder - [QueryMarginAccountsOrderExample.java:39](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryMarginAccountsOrderExample.java#L39)
 
 [GET /sapi/v1/margin/myTrades](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-trade-list) - queryMarginAccountsTradeList - [QueryMarginAccountsTradeListExample.java:39](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/trade/QueryMarginAccountsTradeListExample.java#L39)
@@ -128,7 +130,7 @@
 
 ## Transfer
 
-[GET /sapi/v1/margin/transfer](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#get-cross-margin-transfer-history) - getCrossMarginTransferHistory - [GetCrossMarginTransferHistoryExample.java:39](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/transfer/GetCrossMarginTransferHistoryExample.java#L39)
+[GET /sapi/v1/margin/transfer](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#get-cross-margin-transfer-history) - getCrossMarginTransferHistory - [GetCrossMarginTransferHistoryExample.java:38](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/transfer/GetCrossMarginTransferHistoryExample.java#L38)
 
 [GET /sapi/v1/margin/maxTransferable](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#query-max-transfer-out-amount) - queryMaxTransferOutAmount - [QueryMaxTransferOutAmountExample.java:37](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/transfer/QueryMaxTransferOutAmountExample.java#L37)
 
@@ -136,7 +138,13 @@
 
 [DELETE /sapi/v1/margin/listen-key](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#close-user-data-stream) - closeUserDataStream - [CloseUserDataStreamExample.java:34](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/userdatastream/CloseUserDataStreamExample.java#L34)
 
+[DELETE /sapi/v2/margin/listen-key](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#close-user-data-stream-v2) - closeUserDataStreamV2 - [CloseUserDataStreamV2Example.java:34](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/userdatastream/CloseUserDataStreamV2Example.java#L34)
+
 [PUT /sapi/v1/margin/listen-key](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#keepalive-user-data-stream) - keepaliveUserDataStream - [KeepaliveUserDataStreamExample.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/userdatastream/KeepaliveUserDataStreamExample.java#L36)
 
+[PUT /sapi/v2/margin/listen-key](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#keepalive-user-data-stream-v2) - keepaliveUserDataStreamV2 - [KeepaliveUserDataStreamV2Example.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/userdatastream/KeepaliveUserDataStreamV2Example.java#L36)
+
 [POST /sapi/v1/margin/listen-key](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#start-user-data-stream) - startUserDataStream - [StartUserDataStreamExample.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/userdatastream/StartUserDataStreamExample.java#L36)
+
+[POST /sapi/v2/margin/listen-key](https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#start-user-data-stream-v2) - startUserDataStreamV2 - [StartUserDataStreamV2Example.java:36](/examples/margin-trading/src/main/java/com/binance/connector/client/margin_trading/rest/userdatastream/StartUserDataStreamV2Example.java#L36)
 

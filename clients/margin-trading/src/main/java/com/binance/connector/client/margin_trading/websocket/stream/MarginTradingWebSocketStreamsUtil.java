@@ -15,8 +15,12 @@ public class MarginTradingWebSocketStreamsUtil {
         if (!HAS_TIME_UNIT) {
             clientConfiguration.setTimeUnit(null);
         }
-        clientConfiguration.setUrl(BASE_URL + path + "/stream");
+        clientConfiguration.setUrl(getBaseUrl(path));
         clientConfiguration.setAutoLogon(false);
         return clientConfiguration;
+    }
+
+    protected static String getBaseUrl(String path) {
+        return BASE_URL + path + "/stream";
     }
 }

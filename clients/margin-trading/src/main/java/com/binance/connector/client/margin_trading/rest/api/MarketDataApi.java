@@ -28,7 +28,6 @@ import com.binance.connector.client.margin_trading.rest.model.GetLimitPricePairs
 import com.binance.connector.client.margin_trading.rest.model.GetListScheduleResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetMarginAssetRiskBasedLiquidationRatioResponse;
 import com.binance.connector.client.margin_trading.rest.model.GetMarginRestrictedAssetsResponse;
-import com.binance.connector.client.margin_trading.rest.model.OrderType;
 import com.binance.connector.client.margin_trading.rest.model.QueryIsolatedMarginTierDataResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse;
 import com.binance.connector.client.margin_trading.rest.model.QueryMarginAvailableInventoryResponse;
@@ -55,7 +54,7 @@ public class MarketDataApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/7.0.4 (Java/%s; %s; %s)",
+                    "binance-margin-trading/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -146,6 +145,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -277,6 +277,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -416,6 +417,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -553,6 +555,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -685,6 +688,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -812,6 +816,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -950,6 +955,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1077,6 +1083,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1204,6 +1211,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1485,6 +1493,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -1579,7 +1588,7 @@ public class MarketDataApi {
      *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/market-data#query-margin-available-inventory">Query
      *     Margin Available Inventory (USER_DATA) Documentation</a>
      */
-    private okhttp3.Call queryMarginAvailableInventoryCall(OrderType type) throws ApiException {
+    private okhttp3.Call queryMarginAvailableInventoryCall(String type) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -1639,7 +1648,7 @@ public class MarketDataApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call queryMarginAvailableInventoryValidateBeforeCall(OrderType type)
+    private okhttp3.Call queryMarginAvailableInventoryValidateBeforeCall(String type)
             throws ApiException {
         try {
             Validator validator =
@@ -1652,7 +1661,7 @@ public class MarketDataApi {
 
             Object[] parameterValues = {type};
             Method method =
-                    this.getClass().getMethod("queryMarginAvailableInventory", OrderType.class);
+                    this.getClass().getMethod("queryMarginAvailableInventory", String.class);
             Set<ConstraintViolation<MarketDataApi>> violations =
                     executableValidator.validateParameters(this, method, parameterValues);
 
@@ -1690,7 +1699,7 @@ public class MarketDataApi {
      *     Margin Available Inventory (USER_DATA) Documentation</a>
      */
     public ApiResponse<QueryMarginAvailableInventoryResponse> queryMarginAvailableInventory(
-            @NotNull OrderType type) throws ApiException {
+            @NotNull String type) throws ApiException {
         okhttp3.Call localVarCall = queryMarginAvailableInventoryValidateBeforeCall(type);
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<QueryMarginAvailableInventoryResponse>() {}.getType();
@@ -1756,6 +1765,7 @@ public class MarketDataApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }

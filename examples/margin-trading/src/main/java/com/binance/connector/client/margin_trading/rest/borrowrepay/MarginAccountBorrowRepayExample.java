@@ -57,7 +57,7 @@ public class MarginAccountBorrowRepayExample {
         marginAccountBorrowRepayRequest.asset("USDT");
         marginAccountBorrowRepayRequest.isIsolated(IsIsolated.TRUE);
         marginAccountBorrowRepayRequest.amount("1.0");
-        marginAccountBorrowRepayRequest.type(OrderType.ROLL_IN);
+        marginAccountBorrowRepayRequest.type(OrderType.TRANSFER);
         ApiResponse<MarginAccountBorrowRepayResponse> response =
                 getApi().marginAccountBorrowRepay(marginAccountBorrowRepayRequest);
         System.out.println(response.getData());

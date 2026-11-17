@@ -20,7 +20,9 @@ import com.binance.connector.client.common.SystemUtil;
 import com.binance.connector.client.common.configuration.ClientConfiguration;
 import com.binance.connector.client.common.exception.ConstraintViolationException;
 import com.binance.connector.client.margin_trading.rest.model.KeepaliveUserDataStreamRequest;
+import com.binance.connector.client.margin_trading.rest.model.KeepaliveUserDataStreamV2Request;
 import com.binance.connector.client.margin_trading.rest.model.StartUserDataStreamResponse;
+import com.binance.connector.client.margin_trading.rest.model.StartUserDataStreamV2Response;
 import com.google.gson.reflect.TypeToken;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
@@ -44,7 +46,7 @@ public class UserDataStreamApi {
 
     private static final String USER_AGENT =
             String.format(
-                    "binance-margin-trading/7.0.4 (Java/%s; %s; %s)",
+                    "binance-margin-trading/8.0.0 (Java/%s; %s; %s)",
                     SystemUtil.getJavaVersion(), SystemUtil.getOs(), SystemUtil.getArch());
     private static final boolean HAS_TIME_UNIT = false;
 
@@ -135,6 +137,7 @@ public class UserDataStreamApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -205,6 +208,130 @@ public class UserDataStreamApi {
     }
 
     /**
+     * Build call for closeUserDataStreamV2
+     *
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#close-user-data-stream-v2">Close
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    private okhttp3.Call closeUserDataStreamV2Call() throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/margin/listen-key";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "DELETE",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call closeUserDataStreamV2ValidateBeforeCall() throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {};
+            Method method = this.getClass().getMethod("closeUserDataStreamV2");
+            Set<ConstraintViolation<UserDataStreamApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return closeUserDataStreamV2Call();
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Close User Data Stream V2 (USER_STREAM) Close out a user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
+     *
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#close-user-data-stream-v2">Close
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    public ApiResponse<Void> closeUserDataStreamV2() throws ApiException {
+        okhttp3.Call localVarCall = closeUserDataStreamV2ValidateBeforeCall();
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
      * Build call for keepaliveUserDataStream
      *
      * @param keepaliveUserDataStreamRequest (required)
@@ -264,6 +391,7 @@ public class UserDataStreamApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -343,6 +471,145 @@ public class UserDataStreamApi {
     }
 
     /**
+     * Build call for keepaliveUserDataStreamV2
+     *
+     * @param keepaliveUserDataStreamV2Request (required)
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#keepalive-user-data-stream-v2">Keepalive
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    private okhttp3.Call keepaliveUserDataStreamV2Call(
+            KeepaliveUserDataStreamV2Request keepaliveUserDataStreamV2Request) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/margin/listen-key";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (keepaliveUserDataStreamV2Request.getListenKey() != null) {
+            localVarFormParams.put("listenKey", keepaliveUserDataStreamV2Request.getListenKey());
+        }
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "PUT",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call keepaliveUserDataStreamV2ValidateBeforeCall(
+            KeepaliveUserDataStreamV2Request keepaliveUserDataStreamV2Request) throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {keepaliveUserDataStreamV2Request};
+            Method method =
+                    this.getClass()
+                            .getMethod(
+                                    "keepaliveUserDataStreamV2",
+                                    KeepaliveUserDataStreamV2Request.class);
+            Set<ConstraintViolation<UserDataStreamApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return keepaliveUserDataStreamV2Call(keepaliveUserDataStreamV2Request);
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Keepalive User Data Stream V2 (USER_STREAM) Keepalive a user data stream to prevent a time
+     * out. Weight(IP): 1 Security Type: USER_STREAM
+     *
+     * @param keepaliveUserDataStreamV2Request (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#keepalive-user-data-stream-v2">Keepalive
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    public ApiResponse<Void> keepaliveUserDataStreamV2(
+            @Valid @NotNull KeepaliveUserDataStreamV2Request keepaliveUserDataStreamV2Request)
+            throws ApiException {
+        okhttp3.Call localVarCall =
+                keepaliveUserDataStreamV2ValidateBeforeCall(keepaliveUserDataStreamV2Request);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
      * Build call for startUserDataStream
      *
      * @return Call to execute
@@ -396,6 +663,7 @@ public class UserDataStreamApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
         Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
         if (HAS_TIME_UNIT) {
             localVarAuthNames.add("timeUnit");
         }
@@ -464,6 +732,132 @@ public class UserDataStreamApi {
         okhttp3.Call localVarCall = startUserDataStreamValidateBeforeCall();
         java.lang.reflect.Type localVarReturnType =
                 new TypeToken<StartUserDataStreamResponse>() {}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Build call for startUserDataStreamV2
+     *
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Start User Data Stream </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#start-user-data-stream-v2">Start
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    private okhttp3.Call startUserDataStreamV2Call() throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sapi/v2/margin/listen-key";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {"application/json"};
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {"application/x-www-form-urlencoded"};
+        final String localVarContentType =
+                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (!localVarFormParams.isEmpty() && localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+        Set<String> localVarAuthNames = new HashSet<>();
+        localVarAuthNames.add("binanceApiKeyOnly");
+        if (HAS_TIME_UNIT) {
+            localVarAuthNames.add("timeUnit");
+        }
+        return localVarApiClient.buildCall(
+                basePath,
+                localVarPath,
+                "POST",
+                localVarQueryParams,
+                localVarCollectionQueryParams,
+                localVarPostBody,
+                localVarHeaderParams,
+                localVarCookieParams,
+                localVarFormParams,
+                localVarAuthNames);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call startUserDataStreamV2ValidateBeforeCall() throws ApiException {
+        try {
+            Validator validator =
+                    Validation.byDefaultProvider()
+                            .configure()
+                            .messageInterpolator(new ParameterMessageInterpolator())
+                            .buildValidatorFactory()
+                            .getValidator();
+            ExecutableValidator executableValidator = validator.forExecutables();
+
+            Object[] parameterValues = {};
+            Method method = this.getClass().getMethod("startUserDataStreamV2");
+            Set<ConstraintViolation<UserDataStreamApi>> violations =
+                    executableValidator.validateParameters(this, method, parameterValues);
+
+            if (violations.size() == 0) {
+                return startUserDataStreamV2Call();
+            } else {
+                throw new ConstraintViolationException((Set) violations);
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            throw new ApiException(e.getMessage());
+        }
+    }
+
+    /**
+     * Start User Data Stream V2 (USER_STREAM) Start a new user data stream. Weight(IP): 1 Security
+     * Type: USER_STREAM
+     *
+     * @return ApiResponse&lt;StartUserDataStreamV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
+     *     response body
+     * @http.response.details
+     *     <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Start User Data Stream </td><td>  -  </td></tr>
+     * </table>
+     *
+     * @see <a
+     *     href="https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/user-data-stream#start-user-data-stream-v2">Start
+     *     User Data Stream V2 (USER_STREAM) Documentation</a>
+     */
+    public ApiResponse<StartUserDataStreamV2Response> startUserDataStreamV2() throws ApiException {
+        okhttp3.Call localVarCall = startUserDataStreamV2ValidateBeforeCall();
+        java.lang.reflect.Type localVarReturnType =
+                new TypeToken<StartUserDataStreamV2Response>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 }

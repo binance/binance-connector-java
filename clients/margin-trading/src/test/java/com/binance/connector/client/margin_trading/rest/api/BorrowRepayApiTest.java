@@ -177,7 +177,7 @@ public class BorrowRepayApiTest {
         marginAccountBorrowRepayRequest.asset("USDT");
         marginAccountBorrowRepayRequest.isIsolated(IsIsolated.TRUE);
         marginAccountBorrowRepayRequest.amount("1.0");
-        marginAccountBorrowRepayRequest.type(OrderType.ROLL_IN);
+        marginAccountBorrowRepayRequest.type(OrderType.TRANSFER);
 
         ApiResponse<MarginAccountBorrowRepayResponse> response =
                 api.marginAccountBorrowRepay(marginAccountBorrowRepayRequest);
@@ -192,9 +192,9 @@ public class BorrowRepayApiTest {
         Call captorValue = callArgumentCaptor.getValue();
         Request actualRequest = captorValue.request();
 
-        assertEquals("timestamp=1736393892000amount=1.0&isIsolated=TRUE&asset=USDT&type=ROLL_IN", signInputCaptor.getValue());
+        assertEquals("timestamp=1736393892000amount=1.0&isIsolated=TRUE&asset=USDT&type=TRANSFER", signInputCaptor.getValue());
         assertEquals(
-                "3fba8c816720664dd968ac8a7a255bdc1a4024e739d1ff5c906ddec56cc950f7",
+                "f00dd479c3a1439ebee135fa6834833626b55d28c0d5baa57b1502866b17b024",
                 actualRequest.url().queryParameter("signature"));
         assertEquals("/sapi/v1/margin/borrow-repay", actualRequest.url().encodedPath());
     }
@@ -215,7 +215,7 @@ public class BorrowRepayApiTest {
     @Test
     public void queryBorrowRepayRecordsInMarginAccountTest()
             throws ApiException, CryptoException, IOException {
-        OrderType type = OrderType.ROLL_IN;
+        OrderType type = OrderType.BORROW;
         String asset = "BNB";
         String isolatedSymbol = "BNBUSDT";
         Long txId = 1L;
@@ -247,10 +247,10 @@ public class BorrowRepayApiTest {
         Request actualRequest = captorValue.request();
 
         assertEquals(
-                "asset=BNB&isolatedSymbol=BNBUSDT&txId=1&startTime=1623319461670&endTime=1641782889000&current=1&size=10&type=ROLL_IN&recvWindow=5000&timestamp=1736393892000",
+                "asset=BNB&isolatedSymbol=BNBUSDT&txId=1&startTime=1623319461670&endTime=1641782889000&current=1&size=10&type=BORROW&recvWindow=5000&timestamp=1736393892000",
                 signInputCaptor.getValue());
         assertEquals(
-                "d3860b61343432bef178bc57c332d8c23bf6a93190060be5114e5ae32d4a5c24",
+                "0cb75f78bc1156851fb50b6be381297d1dd8617178b62959a705859507d4a862",
                 actualRequest.url().queryParameter("signature"));
         assertEquals(
                 "/sapi/v1/margin/borrow-repay", actualRequest.url().encodedPath());
